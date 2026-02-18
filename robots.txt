@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dariatravel.github.io/lending_pervyi/sitemap.xml
