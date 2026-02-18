@@ -226,6 +226,17 @@ h2 {
   filter: brightness(1.05);
 }
 
+.contact-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.contact-buttons .btn-book {
+  text-align: center;
+}
+
 .grain {
   pointer-events: none;
   position: fixed;
@@ -256,6 +267,10 @@ h2 {
 
   .catalog-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-buttons {
+    grid-template-columns: 1fr;
   }
 }
 
