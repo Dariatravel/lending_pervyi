@@ -60,6 +60,10 @@ main {
   color: var(--muted);
 }
 
+.eyebrow a {
+  color: inherit;
+}
+
 h1,
 h2 {
   font-family: "Prata", Georgia, serif;
@@ -92,6 +96,41 @@ h2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.2rem;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.catalog-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 0.8rem;
+}
+
+.catalog-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--line);
+}
+
+.catalog-card h3 {
+  margin: 0.65rem 0 0.25rem;
+  font-family: "Prata", Georgia, serif;
+  font-size: 1.15rem;
+}
+
+.catalog-card p {
+  margin: 0;
+  color: #474037;
+  font-size: 0.95rem;
 }
 
 .card,
@@ -214,6 +253,10 @@ h2 {
   .media-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 560px) {
@@ -224,5 +267,9 @@ h2 {
   .media-grid img,
   .media-grid video {
     height: auto;
+  }
+
+  .catalog-grid {
+    grid-template-columns: 1fr;
   }
 }
