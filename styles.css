@@ -210,6 +210,33 @@ h2 {
   font-weight: 700;
 }
 
+.reviews-scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(260px, 1fr);
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  scroll-snap-type: x mandatory;
+}
+
+.review-item {
+  scroll-snap-align: start;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 0.9rem;
+}
+
+.review-head {
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+}
+
+.review-text {
+  margin: 0;
+  color: #3f3932;
+}
+
 .btn-book {
   display: inline-block;
   text-decoration: none;
