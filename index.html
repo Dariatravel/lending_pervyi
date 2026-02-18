@@ -50,7 +50,7 @@
           Собрали свежие обзоры из канала <strong>@abhazbooking</strong>: локации, фото, цены и прямой
           контакт для брони.
         </p>
-        <p class="updated">Обновлено: <time datetime="2026-02-18">18 февраля 2026</time></p>
+        <p class="updated">Обновлено: <time id="current-date" datetime="">—</time></p>
         <a class="btn-book" href="https://t.me/abhazbooking_online" target="_blank" rel="noopener noreferrer"
           >Забронировать</a
         >
@@ -98,5 +98,18 @@
         >
       </section>
     </main>
+    <script>
+      (function () {
+        const el = document.getElementById("current-date");
+        if (!el) return;
+        const now = new Date();
+        el.dateTime = now.toISOString().slice(0, 10);
+        el.textContent = now.toLocaleDateString("ru-RU", {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        });
+      })();
+    </script>
   </body>
 </html>
