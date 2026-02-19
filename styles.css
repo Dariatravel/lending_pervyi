@@ -90,8 +90,6 @@ body.modal-open {
   align-items: center;
   gap: 0.55rem 0.75rem;
   margin: 0 0 0.9rem;
-  font-size: 0.5rem;
-  font-weight: 400;
 }
 
 .btn-filter {
@@ -101,7 +99,7 @@ body.modal-open {
   background: #f2f2f2;
   color: #1f1f1f;
   font: inherit;
-  font-weight: 400;
+  font-weight: 700;
   padding: 0.55rem 1rem;
   cursor: pointer;
 }
@@ -112,13 +110,8 @@ body.modal-open {
 
 .filter-result {
   margin: 0;
-  font-size: 0.5rem;
-  font-weight: 400;
+  font-size: 0.95rem;
   color: #3d372f;
-}
-
-.filter-result strong {
-  font-weight: 400;
 }
 
 .filter-empty {
