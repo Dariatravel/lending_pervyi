@@ -59,413 +59,517 @@
       <section class="section">
         <article class="card">
           <h2>Популярные обзоры</h2>
-          <div class="catalog-grid">
-            <a class="catalog-card" href="/hotels/leon-domiki/">
+          <div class="filters-wrap" id="filters-root">
+            <div class="filters-toolbar">
+              <button type="button" class="btn-filter" id="open-advanced-filters">Расширенные фильтры</button>
+              <button type="button" class="btn-filter btn-filter--ghost" id="clear-filters">Сбросить</button>
+            </div>
+
+            <div class="filters-grid">
+              <details class="filter-group" open>
+                <summary>Расстояние до пляжа</summary>
+                <div class="filter-chips">
+                  <button type="button" class="filter-chip" data-group="distance" data-value="beachfront">Береговая зона</button>
+                  <button type="button" class="filter-chip" data-group="distance" data-value="up-to-5">До 5 минут</button>
+                  <button type="button" class="filter-chip" data-group="distance" data-value="up-to-10">До 10 минут</button>
+                  <button type="button" class="filter-chip" data-group="distance" data-value="over-10">Более 10 минут</button>
+                </div>
+              </details>
+
+              <details class="filter-group" open>
+                <summary>Питание</summary>
+                <div class="filter-chips">
+                  <button type="button" class="filter-chip" data-group="food" data-value="breakfast">Завтрак</button>
+                  <button type="button" class="filter-chip" data-group="food" data-value="half-board">Полупансион</button>
+                  <button type="button" class="filter-chip" data-group="food" data-value="full-board">Завтрак, обед, ужин</button>
+                  <button type="button" class="filter-chip" data-group="food" data-value="cafe">Есть кафе/столовая</button>
+                  <button type="button" class="filter-chip" data-group="food" data-value="no-food">Без питания</button>
+                </div>
+              </details>
+
+              <details class="filter-group" open>
+                <summary>Цена</summary>
+                <div class="filter-chips">
+                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-3000">До 3000 руб.</button>
+                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-4000">До 4000 руб.</button>
+                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-5000">До 5000 руб.</button>
+                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-6000">До 6000 руб.</button>
+                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-7000">До 7000 руб.</button>
+                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-8000">До 8000 руб.</button>
+                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-9000">До 9000 руб.</button>
+                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-10000">До 10000 руб.</button>
+                  <button type="button" class="filter-chip" data-group="price" data-value="over-10000">Свыше 10000 руб.</button>
+                </div>
+              </details>
+            </div>
+
+            <p class="filter-result">Показано объектов: <strong id="visible-count">0</strong></p>
+            <p class="filter-empty" id="filter-empty" hidden>По выбранным параметрам пока нет подходящих объектов.</p>
+          </div>
+
+          <div class="filters-modal" id="advanced-filters-modal" hidden>
+            <div class="filters-modal__backdrop" data-close-advanced></div>
+            <div class="filters-modal__panel" role="dialog" aria-modal="true" aria-labelledby="advanced-filters-title">
+              <div class="filters-modal__header">
+                <h3 id="advanced-filters-title">Расширенные фильтры</h3>
+                <button type="button" class="filters-modal__close" data-close-advanced aria-label="Закрыть">✕</button>
+              </div>
+
+              <div class="filters-advanced-grid">
+                <details class="filter-group" open>
+                  <summary>Город</summary>
+                  <div class="filter-chips">
+                    <button type="button" class="filter-chip" data-group="city" data-value="sukhum">Сухум</button>
+                    <button type="button" class="filter-chip" data-group="city" data-value="new-afon">Новый Афон</button>
+                    <button type="button" class="filter-chip" data-group="city" data-value="gudauta">Гудаута</button>
+                    <button type="button" class="filter-chip" data-group="city" data-value="ldzaa">Лдзаа</button>
+                    <button type="button" class="filter-chip" data-group="city" data-value="pitsunda">Пицунда</button>
+                    <button type="button" class="filter-chip" data-group="city" data-value="alakhadzy">Алахадзы</button>
+                    <button type="button" class="filter-chip" data-group="city" data-value="gagra">Гагра</button>
+                    <button type="button" class="filter-chip" data-group="city" data-value="tsandripsh">Цандрипш</button>
+                  </div>
+                </details>
+
+                <details class="filter-group" open>
+                  <summary>Пляж</summary>
+                  <div class="filter-chips">
+                    <button type="button" class="filter-chip" data-group="beach" data-value="pebble">Галечный</button>
+                    <button type="button" class="filter-chip" data-group="beach" data-value="pine-pebble">Сосновый галечный</button>
+                    <button type="button" class="filter-chip" data-group="beach" data-value="sand">Песчаный</button>
+                    <button type="button" class="filter-chip" data-group="beach" data-value="mixed">Галечно-песочный</button>
+                  </div>
+                </details>
+
+                <details class="filter-group" open>
+                  <summary>Особенности номера</summary>
+                  <div class="filter-chips">
+                    <button type="button" class="filter-chip" data-group="room" data-value="sea-view">Вид на море</button>
+                    <button type="button" class="filter-chip" data-group="room" data-value="balcony">Балкон</button>
+                    <button type="button" class="filter-chip" data-group="room" data-value="pool">Бассейн</button>
+                    <button type="button" class="filter-chip" data-group="room" data-value="one-room">Однокомнатный</button>
+                    <button type="button" class="filter-chip" data-group="room" data-value="two-room">Двухкомнатный</button>
+                    <button type="button" class="filter-chip" data-group="room" data-value="kitchen">Своя кухня</button>
+                    <button type="button" class="filter-chip" data-group="room" data-value="ac">Кондиционер</button>
+                  </div>
+                </details>
+
+                <details class="filter-group" open>
+                  <summary>Особенности размещения</summary>
+                  <div class="filter-chips">
+                    <button type="button" class="filter-chip" data-group="stay" data-value="kids">Можно с детьми</button>
+                    <button type="button" class="filter-chip" data-group="stay" data-value="pets">Можно с животными</button>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+          <div class="catalog-grid" id="catalog-grid">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/leon-domiki/">
               <img src="https://cdn4.telesco.pe/file/LuKHr_ykGxPjTq9Aw0WVxbqlTBYBpXUSLB84taU785xlcf1L9nhjRQuHAEAGOSth8hO8Z37O5XUoqBbTMPnRDCrzQ8KyCkmT2vFAX_xY4DfHNMfqky3aKbLyVCYjrmc2euCppGJHkH1nz9aGdWN3LrqjvEWKkVeIDN8pA7R8A0tHDtvkDduKjEEO9cFzvXUdj08zJFcx5V-yp1EEusCR-gQE71euYxeP1vkaEGdQhhZHQqYyzrkrba9F3tbFwxObWCcSfaO_o04hXIE9nyRm9xweUSNE44b9V8TbmyLF-qh8E1oImB5xTAotpnmCrqr3uHXZvd3TtyZiG2Qbh56sXw.jpg" alt="ЛЕОН домики" loading="lazy" />
               <h3>ЛЕОН ДОМИКИ</h3>
               <p>Хыпста, Бамбора. 3 минуты до пляжа, до 4 гостей.</p>
             </a>
-            <a class="catalog-card" href="/hotels/belaya-rechka/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/belaya-rechka/">
               <img src="https://cdn4.telesco.pe/file/Z9y9igyq6jjZSnQernIwWhyEz57LqOqoWLCDV_oVv5SxbzkhcVhoUeasb6jwpQtfF9Zq8OxbkGdaTwIc7kyt3oAi3ZEtRGD5S4xAuv5ry8v674C030nUsyqDiYTh0LTbnz7onpc1G6eiH9e0xhO6oioGGKTOgQq5goO1UEn4CLpHRPpQthUpIFjhXMy9LIxixhV_8r_b2Mwi7NQC4k7kaYJDZ5hDqTSiBZ6URmblHbHRQfeL1T3JYC-JbO8c2iclBsoNS62RG6bItjPd_csWhDHMqhUiSbTBMSsCWxmdfbvTOvxGYPDyEmTUk4Ah3GR29CXVaFyqEkxBKvT1vUs65Q.jpg" alt="Белая Речка" loading="lazy" />
               <h3>БЕЛАЯ РЕЧКА</h3>
               <p>Гудаута, Хыпста. Гостевой дом с кафе, 10 минут до моря.</p>
             </a>
-            <a class="catalog-card" href="/hotels/limari-domiki/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/limari-domiki/">
               <img src="https://cdn4.telesco.pe/file/PyupjEfoaVksvMWrsnM0Y-J2dn1NQ0Ht7s2K3wpW3Mxpmdv9NoJRp9KgSzbQ0mV49fWHrpaeB98bIpxgE9eqDRNTXhUrm5vCQV3nt82gmFNn_LtcD0mweeu3e4BpTtW1ihPLX5tZfx7ZXX8o2RlUX4AVLSwNMRzmRMo4284bHLqObwVqkwZpb3MuOTfUHykBnwXdL63oqpKr5W0bCb5d_21qJV56_orEXM53UByIri79SUBve6532kRMqPmCyYyhqaZ_IjJpDahdp6NNdA6qhVpk9p4yueSgVLG_icut6uVeRco7tgv_tikeOIjxK7FMDzMOgW2x-VzAdV5-cGvevg.jpg" alt="Лимари домики" loading="lazy" />
               <h3>ЛИМАРИ ДОМИКИ</h3>
               <p>Лдзаа. 4 минуты до пляжа, отдельные домики до 4 человек.</p>
             </a>
-            <a class="catalog-card" href="/hotels/v-sinope-domiki/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/v-sinope-domiki/">
               <img src="https://cdn4.telesco.pe/file/auslsdhHZC_gnH0HrMykj1bl3LrxCeOfQl5At0F9qZTKBYFrfC5nSHnHn-WFTYF2SH4cq4B33hYLu4gy7cdTUPrZxjDp9306nxYu_ApsqwqslWdekIGV1U-tUVZdMEJ6bs41bPQk9r0UV52labe4qPnckLBNveU2GFON_Ry7aFDVixV31O92LHoIPH4fNs_UwUhaONEJoxD1fQvkBIA6KiLUSXHuS-nGsit7c2RJDixWM1Pwifg1lUO4XbFFdNwduMmJoLBjUU3GPeiBiUJaCJ41Jf7LhjboTSVfnP5v5naV7pvxP61zEUWevbgdn7ddg6CutNv3Qmm-tYRESj3nqw.jpg" alt="Домики в Синопе" loading="lazy" />
               <h3>В СИНОПЕ ДОМИКИ</h3>
               <p>Сухум. 5 минут до пляжа, отдельная территория.</p>
             </a>
-            <a class="catalog-card" href="/hotels/demi-mokko-domiki/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/demi-mokko-domiki/">
               <img src="https://cdn4.telesco.pe/file/vei9OzJP4MRy7atAHyHjKk-pvFSEApp2iVHd5QVG3kMNa_mIeTeQC-iTrFdDqqVOvxx-HGZIO_VxKgep0rr-ry1sD3cHinHIVNmwDoL7on4UIwV_bZSnljOSQGHO8nlRF9U8JBAt8a22IFVBvtgRIdWzCCVbA_dPuhaSiTdj_GoDhtI_JxFCh46XIj2SGiRJY9sXf6SFX_kacrGJOzTpoTN1P1DF81uWy-ZMambkNMWwnN6b-ypvVVtd7AcUdDHYQXon6-xTONcPp3A_rl1RmVsz5hCnzFk_iBoBMGwoOCLcHZYuilH1OzRmMrl37GxIRtwEMrLWCvwr4jrJNbivGg.jpg" alt="Деми Мокко" loading="lazy" />
               <h3>ДЕМИ МОККО</h3>
               <p>Сухум. 4 минуты до пляжа Мокко, два домика на территории.</p>
             </a>
-            <a class="catalog-card" href="/hotels/amor-apartamenty/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/amor-apartamenty/">
               <img src="https://cdn4.telesco.pe/file/lBlg7N6VPpd9W1DfkNRKVanjd6fGkZwz8EWSb4cKWZdkUYMKjzZyVJyHovJ-V6mw1XG81TImXWLw5qC2txJ80gwJJvXSZ51SQcwe7xmtkzo7mMzRBkNkhTdsFOPnwp8fkG0nLHeGLYZGkf-RffvTZHI58ovltO7oTu4RRJm6j7gGtVPnjeLoI7BvxSyhwCEF1-6I0NGOBZQj-Nz1V7IrORMeYZjveslT4LNQ7rWalsucei6vOumloEJotRpGfUu4LQwI7jM-H3LNGEAtRILXQ43j9gHC6KV2EoTI--nYvNwSNAo0IWGbJsEpNSn7vgKUGpCKLe1qs_OcSqGrElKgBA.jpg" alt="АМОР АПАРТАМЕНТЫ С КУХНЕЙ И БАССЕЙНОМ" loading="lazy" />
               <h3>АМОР АПАРТАМЕНТЫ С КУХНЕЙ И БАССЕЙНОМ</h3>
               <p>Абхазия. подробности в посте.</p>
             </a>
-            <a class="catalog-card" href="/hotels/dyshi-glubzhe-domiki/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/dyshi-glubzhe-domiki/">
               <img src="https://cdn4.telesco.pe/file/Ey1Dxqme1PZ68Yyvx2Ba5JoU_tJ26iiDcLgHkbVzqJSk0gLxuKBWaXxkPAldgLlSCHfgNSTBpeVtII0VwJhL0nx-cbkZYLlbIo26hTw68vY5CeqTLzIE5BHKelWobn1CcKv6-2aTFJhHG2OGOjc-8eINFLHZiradzx3vDLFA7lJBySeu9vB1epH3Se0Cmvas3-l_AwsptHI2EyZhcxPqBoXU2F5v0RBXUlX2eROJ1yEsn-e5cVap46P923iHYTiMSy3iDjDh6Jx-Pz12mmo2IV8YgJxjBVtlzXT0ShfKvWiW5qOPutN56Te88xjGHfH9rLwByTVY_rsFUgg1nZNBCw.jpg" alt="ДЫШИ ГЛУБЖЕ ДОМИКИ В ГОРАХ" loading="lazy" />
               <h3>ДЫШИ ГЛУБЖЕ ДОМИКИ В ГОРАХ</h3>
               <p>Абхазия. подробности в посте.</p>
             </a>
-            <a class="catalog-card" href="/hotels/sirius-otel/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/sirius-otel/">
               <img src="https://cdn4.telesco.pe/file/H3Drloy1hwe8SBdeuRN7EpuBNDULPHCNERxm-jkldHnS0oBpkYjnDP2mY1qE6BJkBG6tVNXKa2mfTDlH9L5yVFBsWGbJTQPH8ovuBK9e84JUpozU03g1gRIX9I2scJ2gT_bToTxQL1ur2jlISpg-HJhA6qQR5LqJQpdaZ1vQYnMsWNo18J87MZX5zEL409aS1VyUy5g2gqTwEkmCOisQmgTP-aiz3dkzK7Gd21lBr74pz8QwMknntQj7qeIQsXsgIJ5PZfeo8dTmdJjQCQzGd_9bW5u3mp2xoMAwI3Mt4N9r9tYyTIVVoXR6Ev2SFp1zUq6TyZRWywz4k5l9SAzoZQ.jpg" alt="СИРИУС ОТЕЛЬ У СОСНОВОГО ПЛЯЖА" loading="lazy" />
               <h3>СИРИУС ОТЕЛЬ У СОСНОВОГО ПЛЯЖА</h3>
               <p>Абхазия. подробности в посте.</p>
             </a>
-            <a class="catalog-card" href="/hotels/tis-mini-otel/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/tis-mini-otel/">
               <img src="https://cdn4.telesco.pe/file/ayFyOPNX7LDxMJvoMY8NtXzIKaNjFFHzmEP1vnPSzXmpcFtAb9q5kRCr71F8uCyQ_EcBwNGSojHEYaoFdDOkqIguLWirbVcd37TPgB8NZNsSIBRN4dLMnimK5heqrmaQkFROU5580LqYnYTnVY3uJ6GvAdtREdO2nHe19tKFZaf7ATQZuTptj-Pfy9ZlbYhSqbHdfjFc0s-s25mk3Ij_-7Ekswr1zIg_ykESQBtOrmOTAclwNFmPf9d4Fo9eqfyiy0VD5n0q1kXl3LcquWOFjhqD2mbQ0IL9kn0w5Cn_pu2d249dfMVPVu2FwW8IsN0hi05KX_-FcupNBwbsvm0b5A.jpg" alt="ТИС МИНИ-ОТЕЛЬ У ЗАПОВЕДНИКА" loading="lazy" />
               <h3>ТИС МИНИ-ОТЕЛЬ У ЗАПОВЕДНИКА</h3>
               <p>Абхазия. подробности в посте.</p>
             </a>
-            <a class="catalog-card" href="/hotels/tis-kottedzhi/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/tis-kottedzhi/">
               <img src="https://cdn4.telesco.pe/file/qypWOaLfjldjlJJ9itzb11P7TTHjNkqcUZWXZXPdji_mWVg-xIl8_3dMveRZZCwSg4P6c_eAoM3gA0Wvl7gsCnaZkik3iom9iR_cRLvirAspAlHe4FHJXT2stInD7YaajVeClsNMU4o19dAKX5uWx2WUq1MWWT1YNjoYELEV1UGpIWojno1x776-Ed_FY9kKDb219eilsqhAYYxeJQAi1MdwD6qO_8bi5MwoRPUdlhhph3NODHrkqa-yGLHuPdqRRRiLvPEUAXjNDCiPHz5NFmx6yAzpUoq3JraCr-LhpIlzdqhgQbPJqCCbn60RCAV9kfJ4XLOT2eyPRedJAqkRBw.jpg" alt="ТИС КОТТЕДЖИ У ЗАПОВЕДНИКА" loading="lazy" />
               <h3>ТИС КОТТЕДЖИ У ЗАПОВЕДНИКА</h3>
               <p>Абхазия. подробности в посте.</p>
             </a>
-            <a class="catalog-card" href="/hotels/rayskiy-bereg/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/rayskiy-bereg/">
               <img src="https://cdn4.telesco.pe/file/kmC5fkQ41WmiEncZXjEPwB5eBYtfas8z6247ntkHJYqC0cw4KHTIqkMbhv_ksW20zyWkRpcwfpx3Rsb-npQfw7YqD_F9p7tCj7tWY8rSJ4iEqJs1WODtvvHbODBN8Hv1gyBkeajWZRE24WyZjRGoCEn4gaHoYgrwKEx_Miu1-2LtGTh8hcvSjgVhrRlw4AfFHJzDwqXtymOG_mpk7f84iBIGaw2epsTLwHcgiIzWibqdxIzXvk7_y-ShZ_xqyx0cGxk3n6Qc7IM23FtG61JihkOfQNhxSGfneDDkPYKsSsMPJxQrA3ssIJ10QW-jSS6Mqm-jnH5dvEF7MtShQ0_RyA.jpg" alt="РАЙСКИЙ БЕРЕГ МИНИ-ОТЕЛЬ" loading="lazy" />
               <h3>РАЙСКИЙ БЕРЕГ МИНИ-ОТЕЛЬ</h3>
               <p>Абхазия. подробности в посте.</p>
             </a>
-            <a class="catalog-card" href="/hotels/karin-gostevoy-dom/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/karin-gostevoy-dom/">
               <img src="https://cdn4.telesco.pe/file/naUdM6xwMfuUG-u57z2y9AX9wTwhRTvCjXaJslm1iBf8SBrOZYe1ZSIldXyX5T5DWOly-EtFFvz133wHpLs8Ep0bKpWI27xbJAEesyZ4QkznVXamK1k2ZIPmOJwEgepGb-R1bWLxQuDZjqzQHKWFPyIrtjXoToKf0heMu9U8_1ulMMCv5gl1ad2lAM6fyQNQS8I8FI6nqMQ_bk00VBzFGl7G9amX6xz2VKPQoonAYyooqW_GI7qSp1QiNEEJQPy0wYyDVTAkmvPnaZOB0iSEjUBBf6zQ6zxmG4oaxpUaVKBoVqa8Aic7GCnHTk-zuZyFBM6ivtyfeIcFbw9X610JPA.jpg" alt="КАРИН ГОСТЕВОЙ ДОМ" loading="lazy" />
               <h3>КАРИН ГОСТЕВОЙ ДОМ</h3>
               <p>Абхазия. подробности в посте.</p>
             </a>
-            <a class="catalog-card" href="/hotels/nasta-apartamenty/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/nasta-apartamenty/">
               <img src="https://cdn4.telesco.pe/file/MHX-NLxBD4wtYeE-npTtKpmjcC7H6jSLbwklOV0OwXEpOncXlQw-pSr0STRgGfsKPlDNX3t2Vx0rmY4wql-PtwRg8QTMSlU3Ys_8x7kE45_uu0aXhdu35PyqYKplmNAJ4TYZRxexa6YDQI2cwjIp2NYDXp4tQ7lN8P1WRksIZfHxWA7dsW58_tsyugfptYkZo_hADsMtoSuCsZaEFT-81nb5HgELyCvS6CPV0EIRKjzjCu-qgZUdsaa6fZUKkouc_RlIaN8KYphJkUqaECKNdQDY797sCu1Ccmv99DsM7QB79beiLiBwkXiiuTA04Og2CRBfperDVx7GFMfPAPjGwA.jpg" alt="НАСТА АПАРТАМЕНТЫ" loading="lazy" />
               <h3>НАСТА АПАРТАМЕНТЫ</h3>
               <p>Абхазия. подробности в посте.</p>
             </a>
-            <a class="catalog-card" href="/hotels/nasta-gostevoy-dom/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/nasta-gostevoy-dom/">
               <img src="https://cdn4.telesco.pe/file/cfRa8i11m5qD8xysG-2CEXVJoXaxEq0jotUgvA9tlxz_PpTcizDd49o5JBqrn4XbZDDsSe8nY8YaWHEmYTx5l6r2b2jfeipDPxpP6U-FpE_z3RePPa2x1QjymhCVL34aQ-qe0TPuiZs7AAe0q6v0Dg3YfD-JErcOkvrEeNCNHasRR5kH1z5DOWYUlgbD1hPrjTiB73cy3avlmjsZ0deOJ4_CZUjS5V1OFEO1ojfmdhAfUNMm-v0PRrzrXKom_wM75h43wmeWspwk6xcsrbb5Mm2-KW-6FUAP-OY-K8B_2QarBI2btO5vBfmAhND6n5Te0-PPwJ6ziF_JbYSvr-I-iw.jpg" alt="НАСТА ГОСТЕВОЙ ДОМ" loading="lazy" />
               <h3>НАСТА ГОСТЕВОЙ ДОМ</h3>
               <p>Абхазия. подробности в посте.</p>
             </a>
-            <a class="catalog-card" href="/hotels/abyrlash-otel/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/abyrlash-otel/">
               <img src="https://cdn4.telesco.pe/file/vxTCU7IOOdRlSWyebMQwauoi957QfbEzMoizkOACh_HEzizmnmb1ny2w39UDQDfzJrHuG1qQkSmPjY-yNbQPiGtWBQyIfolljfx_rliSBqexbD07WZzDevMe1Q-PqJK0uc_0cJRLEITCf9hNMduk1KJ9wmUlVia0iJaIZ5FIiGgvDEAR8GEw3cBsr96D7B8UQgZQ6XNePjkFfw3mokSBBS_YgtD5M3n3rdsyXyKgBC6Cl0TbCyNmmZZLkE4AOTbGHOHnNYxJGAYJ75VL0qS1F4eqnUPo2YG6H6m7lGIkNgE501sIdPxgwZFS8gxnp_4jnCdRlLJ_TOgVxCgx39vlcQ.jpg" alt="АБЫРЛАШ ОТЕЛЬ НА ПЛЯЖЕ" loading="lazy" />
               <h3>АБЫРЛАШ ОТЕЛЬ НА ПЛЯЖЕ</h3>
               <p>Абхазия. подробности в посте.</p>
             </a>
-            <a class="catalog-card" href="/hotels/asman-gostevoy-dom-ekonom/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/asman-gostevoy-dom-ekonom/">
               <img src="https://cdn4.telesco.pe/file/VoCBpL5RfT3bihgsvzMSDZSCGqpiXs5wwdILRrzY4rwgvzx2yBVO18ipXvQLm3vGmNTqgkanN0_Y_J5ewRjQTfUUmZXd04xivMlDLPgK_ofKB9FQmkSTEe4Anu4afAao0suFQIJdS6Tp9rFWNeRHLtVAgtil-GtgW-NWRkJSPJOwoPcxG-2BkYEWphr9PDPL3uwX10-0GFzjEtJPAVliOOMAC-U--SAJs_a1zksDEzczU7VvAcNZHy9O4QjMh5VD1YkEQT_jqSzhoX3jlYGPUFgP2w-s9QYkh4laFBXUfi30LGU6F9v0lH1JWG6TpAYRqrGShBx_2E5jfCk5BguHcQ.jpg" alt="АСМАН ГОСТЕВОЙ ДОМ ЭКОНОМ" loading="lazy" />
               <h3>АСМАН ГОСТЕВОЙ ДОМ ЭКОНОМ</h3>
               <p>Лдзаа, ул. Рыбзаводская 77. до моря 1-2 минуты.</p>
             </a>
-            <a class="catalog-card" href="/hotels/amor-domiki-gagra/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/amor-domiki-gagra/">
               <img src="https://cdn4.telesco.pe/file/N_z9nce4ZrZQItR1_yFyfNSMW5L_DQme7_BRMKq7zhzrShqdD09xAVWw56RyjBRrVspqrSiA1ZHzVyJ4QT_JNjuU0ripKAbrfbuLBgPuenqjwFnbJhTQ6YS1djj4LOOPhXIqwTGOgwYEzR64TyJBOIT0Alwyph9WT3uAZ8bEtlP8szf7MyHplQZx6QWjL_2iIRyV--W1FHr10u6ECQbMiJZ-N7Iv-zynLuKjaiEDIZgKSM3MaNgsi5rVI0WcHxXJ4caexIwMItK8g97Jyclg_WxkOJcQh5vo934mHPgv1_zqqhQyLLVINOLhumJ0OeCg4XH7EnsyCCdeIUlV0WGhIg.jpg" alt="АМОР ДОМИКИ В ЦЕНТРЕ ГАГРЫ" loading="lazy" />
               <h3>АМОР ДОМИКИ В ЦЕНТРЕ ГАГРЫ</h3>
               <p>Гагра, ул. Ардзинба 79. 5 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/alma-domiki/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/alma-domiki/">
               <img src="https://cdn4.telesco.pe/file/pPdwxNFSvnGxBqG-XvQV4gfQYoba2uAPujW0EledTolPH3P4qAptr0YchKOqVLvnXrp7kTWn5-Z8LpvuAc7RBtpNlVhfsfVxlznf0qCqL4Brr3QKJxwK2siLpZTSKWya3bjofj_ydb_akv51RKl5ScwxpipXB49sTX_G06wXq1dMwXpoNIwihAadUyYhyhDBLPWNHHRgbWOM5aqOxJtYlmmwzO9ylsfN0bzBIjhL9ELaZeZQcgheTJ2bCyvNq8Jbqw8ivXijrQOyVz4XlcBrK077L8pqUq5KLvQNlPKCIJzpwsNlfiKsduzrj_P1I0TI5y1CNQzfroEAieJ_bOVlfw.jpg" alt="АЛМА ДОМИКИ НА БЕРЕГУ" loading="lazy" />
               <h3>АЛМА ДОМИКИ НА БЕРЕГУ</h3>
               <p>Цандрипш, ул. Приморская, 46. 0 минут до пляжа, галька/песок.</p>
             </a>
-            <a class="catalog-card" href="/hotels/delfin-domiki/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/delfin-domiki/">
               <img src="https://cdn4.telesco.pe/file/UtDMwvr2uTEmXYeh_It2gMd1kctPa1CwCPu22YhVv5apt9FxIO4YfgrWhUpaqlkCBy-Y05NrErewkQFLbV3HzjuoPPMwaNqqQu3vJZGzDwEJAvoHoKuxksEQZO4TqFZ1wFnHtjUIPPhQLGYz0RYYa3WzqY0KLnSHBxmMFgWLGfedy2OFt4QrVv36toqLpPehBZZaWofuIgKlSBqH21hhJDRP_beJyhko7bWjpYAcGjmPoG5ojniWyWa0NkmlAdX2iXdZSHT5UG62Okil9ml3DYlAydIH9mO99Rjk6m1PTOwuM5bLGHZ3lWUL63LJbinE1tgfbCv30EPFJgWjSBLc_Q.jpg" alt="ДЕЛЬФИН ДОМИКИ" loading="lazy" />
               <h3>ДЕЛЬФИН ДОМИКИ</h3>
               <p>Новый Афон, Псырцха, проезд Братьев Джинджолия, 6. 4 минуты до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/bugenvileya-otel/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/bugenvileya-otel/">
               <img src="https://cdn4.telesco.pe/file/El3RSRpci1gU4xaRUk22GPq8HGmfdONIkaOFsfvXufICGwmEVuzfvnCTcBSx82SU4_45r30JzWElSMRBcypVmwTDa-uDqc3aYn4LVefdQxdvGcgufHYx8HS9aOuivdVrhdZQxJmfU-1myZ7LHMexkr2mGhzwdmEttLiFJ8F1MMEmsxGO8-kecdjWWO5Lv1QL6TEX3ef_P9nw_V5K1Qp1lJ969mU2KUzE5MWQ18697JBGc4rgtEkt9JPbB3SB9suzHC32tpJZnp5xECklUhAxMUYWY2oFJYzKiF3bCwE6W5rQ8AA_LtRHihYPm-B4zK8FYaRh_Osb27YdgWL4yTO9WQ.jpg" alt="БУГЕНВИЛЛЕЯ ОТЕЛЬ С БАССЕЙНОМ" loading="lazy" />
               <h3>БУГЕНВИЛЛЕЯ ОТЕЛЬ С БАССЕЙНОМ</h3>
               <p>Лдзаа, ул. Аиааира, д. 35. сосновый пляж 5 минут.</p>
             </a>
-            <a class="catalog-card" href="/hotels/boho-kottedzhi-u-morya/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/boho-kottedzhi-u-morya/">
               <img src="https://cdn4.telesco.pe/file/PRipR2kBZL832Cbii2YCqOQ9nRaTsfr4Lcpg0mqvkk7ZPHTkD9ovIGCnrbdD07V-CeGYYkqtETOcGvEttZTFMbLsN3B3bqxWcxEMsPRb2HFrgJ-jnjKkvsKeJXwu1gr4Z7UE7S_Gfy9DIHYpQNV2ZoE0fqmL7QluKXDIymMnbgdrSJjmRp_LjziZa7Wa8wPUzDYFd1xX90gG5xNFj8BT8xCnuJWB5Bc1c-qSw2ApHg7oXHrT-8PA2jgBoi0NIUv3wjF6Adukvf7wNfkrsMYI8GWRrtEns0C1McvSteTWtKvroI9ar7uCf-KZcdRXN4sNtvJljL5FxIcAhMMzl-2Emw.jpg" alt="БОХО КОТТЕДЖИ У МОРЯ С БАССЕЙНОМ" loading="lazy" />
               <h3>БОХО КОТТЕДЖИ У МОРЯ С БАССЕЙНОМ</h3>
               <p>Гагра, ул. Лакоба 99. 0 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/mika-gostevoy-dom-ekonom/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/mika-gostevoy-dom-ekonom/">
               <img src="https://cdn4.telesco.pe/file/H1O6APHYk4eZHgZFWPqntyyyCYRIo81srCxxhC4VTsCdSeOJAFMY7tiT8wlAIhyfirdsln6tBP5AZLf3R7b7AtZUKw9d2pMjW4b6L9r_SD5VRxrd89W0ygMDtKP42svKSjmdVvvB81LaWQqZsipdVWWIFC3lvWrs5T9oS8snDsypcic4SiCh0cTd7HCfAls4ntO2CpgzNcLAylgOF0RaI68qzM2XfgacgWxttYvZvRtH8Rj4EQLx-wkoePMw5SdILiGCu5RNDCr7lm3hUpcmkeTjfwpbfT02rNDd0nIlnvpxX28nfEYEzGbnmgKdMy4SKK-ebQvaHJXa7Xtb8wB3pw.jpg" alt="МИКА ГОСТЕВОЙ ДОМ ЭКОНОМ" loading="lazy" />
               <h3>МИКА ГОСТЕВОЙ ДОМ ЭКОНОМ</h3>
               <p>Лдзаа, ул. Нозадзе 45Б. пляж галечный сосновый.</p>
             </a>
-            <a class="catalog-card" href="/hotels/grin-haus-domiki/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/grin-haus-domiki/">
               <img src="https://cdn4.telesco.pe/file/L4mRtilnSl_oGyuD0ALLyAoUWK8md2VmauH5GQ77NM2i4bSfYEhzshaRxKDqnvICWJgNEN7MkrTrEvN1-jUuVuhOXclSGcab7HFmzfZ7E77EPf9fsw1RchfKOHbubhVsJ5dqNVJupDgv2EpYeFwj4GxIJ04kPnODaJZB_JhARqiefk8jJN6VIBoJ-lQ6MDidxOZaZSLKDSGjuYWcBcq_i1hTz-CO9_49QOdZlCB1wpigI4OhgcZ2so-Zt6eWWkutoTzhzOU8isbeOnseeo810YCmZ4A3rP3da9YVGoICVs_EltZZsbbYsgv_WVUJFiDuaylN1P3hT8JaLQvi-kCFwQ.jpg" alt="ГРИН ХАУС ДОМИКИ" loading="lazy" />
               <h3>ГРИН ХАУС ДОМИКИ</h3>
               <p>Сухум, Кодорское ш., 665/128. 5 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/akva-otel-basseyn-zavtraki/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/akva-otel-basseyn-zavtraki/">
               <img src="https://cdn4.telesco.pe/file/VrXIMSefkRqzdGlxgotlWG9WQeGb_oJwJ3LANr6o9ICpKo-wrh4ZTE0ZUanxgh-qj359DGHPD8Yg-SzLrGdCH3Y_kPeRXZbf1_7yedjtcQS3uMBawvCNckhS65ArD2JsoNfsnXdF3G3mzL_KfPMZ13YNx3Q_s11vOPkH68moHpGYhJM74ZkBm4qMYfy4J67iL8OWBQpB9DBKA0TEx2nBI5oSzud_ttn5t0PhZEWj0ZU-jTHD1yCC7TwRVHuuPKYsyHzpUll9fTP7JdOabz9XOS2r3ziMrz2x-JuTTbQs7Xd64MMK816wDuzzy_zdQF8u44Xp6-3EHw1snW6BuXMo8Q.jpg" alt="АКВА ОТЕЛЬ С БАССЕЙНОМ И ЗАВТРАКАМИ" loading="lazy" />
               <h3>АКВА ОТЕЛЬ С БАССЕЙНОМ И ЗАВТРАКАМИ</h3>
               <p>Алахадзы, Туманяна 26. до пляжа 10 минут пешком (800м).</p>
             </a>
-            <a class="catalog-card" href="/hotels/grey-haus-domiki/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/grey-haus-domiki/">
               <img src="https://cdn4.telesco.pe/file/qTN8oQgOmgiBDJ_WNCouFObl_edTX4cYiyf_1y6j9DOv9xmGYIEqpM6rHYs3FJ07OlboBxj33tPNTHL4-ArDHy-XdCP0-o0sSKZkcHVL27qbve0IGn1ukSIbunapuzz0IjFv8E302eLTsIR9Y1cMuiwGWvbotyQU4M5a2ue7USiCzB41h8-f-CfIGT8ynIZbNms8O7vHMkqcb-ywS3EzBF6BMZyfBjbjk14-qJWssWeep04aAIp9a-x33DWzRbcNfSo1tyNll6cneYmJJlxP6nrnUnm1SPzNggKRlaCZpUnNh4j_x1gSSWZRN01WlURuwtLcxqpn7O9TKv3qy2PRYg.jpg" alt="ГРЕЙ ХАУС ДОМИКИ С БАССЕЙНОМ" loading="lazy" />
               <h3>ГРЕЙ ХАУС ДОМИКИ С БАССЕЙНОМ</h3>
               <p>Алахадзы, Морская улица, 22А. пляж галечный в 10 минутах.</p>
             </a>
-            <a class="catalog-card" href="/hotels/fyuzhn-tri-domika/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/fyuzhn-tri-domika/">
               <img src="https://cdn4.telesco.pe/file/W18t_zDxMlX5ZvhFoqgwTVRbt7SicVKX4BiyglHa500NQuMry3anxmeRG8lYxQU1Tmt3oPHnvhzX8a3fJUvWUxLqi3GVABqNnO-M8RVA_dbFEb41t_t66Fk5hCOZhvvRDTpGndw18JPf_XVxSBB_L_BxwCM437I9-r_EAPZ0PGVVnxIUzzaBsnoo5OrTfLEpKz5yxyYIBE2wfux0qrFodknQDdudCI4FWsOV7sE_-AUmwVDzkoHzGvQZzU1l51HZWNznCHnL4Gslf3B1TX1zUHkjsR13MMoKFyU6J1QJWiTdtWodyJH7r0noC-CPRL3g9aauBQV4IXEz89lRO4v7rQ.jpg" alt="ФЬЮЖН ТРИ ДОМИКА С ЛАУНЖ-ЗОНОЙ" loading="lazy" />
               <h3>ФЬЮЖН ТРИ ДОМИКА С ЛАУНЖ-ЗОНОЙ</h3>
               <p>Сухум, ул. Братьев Эзугбая, д. 686. 10 мин до моря.</p>
             </a>
-            <a class="catalog-card" href="/hotels/rita-domiki-apartamenty/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/rita-domiki-apartamenty/">
               <img src="https://cdn4.telesco.pe/file/txBoprxTpGX2kltLBCgie_BFW_T1I02qjjRQ1LLsdb_oOQxfD_82naVT3WBHqIbwfnBFcWB7Pk3OdMRfZ1fp-Xdgsg-Dki2RocXUARQbvQ_jhilVJR04Dzu9h5QWBmP37iUF0BrbMeUO7Rc_RIvaOurxSt_t3q_veyT0VVAvbS7eNZorfGFVTZgDMW1rw8OdZ5SdnTbWdPxJpRbclO--mkeQsFopj_hJWRDq5Z_h1d7SQItc9MF48MxO9u9rQ_bmrlnd47Fm3ttVE8Ak2onoW3dTxUjbQ7rEctQrHw2-esEG2Jm4cnTtnKfENh6yqM8RlIJd8aWMZtKz-SOhJJ2EiA.jpg" alt="РИТА ДОМИКИ И АПАРТАМЕНТЫ С ПИТАНИЕМ" loading="lazy" />
               <h3>РИТА ДОМИКИ И АПАРТАМЕНТЫ С ПИТАНИЕМ</h3>
               <p>Алахадзы, ул. Морская 5а. пляж галечный 2 минуты.</p>
             </a>
-            <a class="catalog-card" href="/hotels/fazenda-kottedzhi/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/fazenda-kottedzhi/">
               <img src="https://cdn4.telesco.pe/file/ane6rp4WapK4YPWU_4IQKhEX_Z5Fy4qMxbMBrlIEcVokEq_agOPmQLR7w17dPqHUGcOczJivP9rYidTB2v9QqpoDM8CAu6Uh_cde6uBtYqkw8kuc8u04imu-CbZ2NTaZGFOy9AjgCXpMK9pIKWziOmBs3nKplsatenX1b6OT9C3_0a0Z-q9hnlCHqVzq7kEvc9en6Tzr4HMLFA5SyZrVmzCydSLzyLUTGqfGwALvH6GPqtScwpMX735TjjYKIqH35Y1llPQyH4BhpXnbGQLskxUqocejBxe4skZ8f20sv83nerBFiUy4-QmJry5FB7XeM4z2pv6zO0snJl3XzApbIw.jpg" alt="ФАЗЕНДА ДВУХЭТАЖНЫЕ КОТТЕДЖИ С БАССЕЙНОМ И ПИТАНИЕМ" loading="lazy" />
               <h3>ФАЗЕНДА ДВУХЭТАЖНЫЕ КОТТЕДЖИ С БАССЕЙНОМ И ПИТАНИЕМ</h3>
               <p>Пицунда, ул.Фабричная 13/1 (Птицефабрика). 7 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/">
               <img src="https://cdn4.telesco.pe/file/rCDI0eOaUmF0sYyS62ayV5gOC-_LTQtmgxzmI0Yg5wDpI06XSRY-wze_ESNXZOE07UJ30ap2Aciqt4RZXIC-b37sQFfC1tfGqxT-IbjWqZCZvnY1bdZcA9quq9cz4K-FMVgbyKh9Swtw6PvCP_E9P6nbU_VaQFLd9lgKIDDrBazcW9UU3vvPKeC7hKhmPJVPXHsoWi5MtS2v_fgNk3FOzuizoOOc4B48oeC9Gx10kTanUXmo7IuQadg4u3eZWIrKRS9rYba3C-rxJ2_HAPSzqsXhBdumZkrKvDjM5rUVR2Czh1fo6vJll_j9njvL2y2BonxKzROIbpXJKijTp5CgsA.jpg" alt="ПЕГАС ОТЕЛЬ НА ПЕРВОЙ ЛИНИИ, ВИД НА МОРЕ" loading="lazy" />
               <h3>ПЕГАС ОТЕЛЬ НА ПЕРВОЙ ЛИНИИ, ВИД НА МОРЕ</h3>
               <p>Лдзаа, ул. Приморская 16. пляж в 2 минутах.</p>
             </a>
-            <a class="catalog-card" href="/hotels/lazurit-novyy-otel-s-zavtrakami-2583/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/lazurit-novyy-otel-s-zavtrakami-2583/">
               <img src="https://cdn4.telesco.pe/file/NtlBs_yxfVEcfEs0kxmARQmnzpeO2uuZAe7ziXBCJvNGzKowh2YEmGGVNGauGVweiTLUAGSvypDQgmmr1F_dq6_gebz50COV1XwQ-qztlA8Yw9shcQOjv9l37I3etCqiHp_hXyzP5OEU0KfETLBCfPPHag48VDJuhqO_k8Z9UwJqYFAjAHWyKZBmYKM7A1pbON5U2Wx0HAyx3PH-K4dzOmoSRCQfzaSsM0ywuG54LKDW9-DtokzKdkBZc3dYOpvw77m3BWk-ihs0AMDNYCksQEVfQHnIKW6-SU-PHlORvz35ixEPPmaIheWWPRr9GIWUzaymd2zVkYlzJ0f5DoO2VQ.jpg" alt="ЛАЗУРИТ НОВЫЙ ОТЕЛЬ С ЗАВТРАКАМИ" loading="lazy" />
               <h3>ЛАЗУРИТ НОВЫЙ ОТЕЛЬ С ЗАВТРАКАМИ</h3>
               <p>Лдзаа, ул. Рыбзаводская, д. 47. 3 минуты, пляж песчано-галечный.</p>
             </a>
-            <a class="catalog-card" href="/hotels/lazurnyy-bereg-butik-otel-s-pitaniem-2592/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/lazurnyy-bereg-butik-otel-s-pitaniem-2592/">
               <img src="https://cdn4.telesco.pe/file/FSEC7rcf-cwTPgUO1kpnidGX3z6ilZZoezmCKb-cCDljSZNYrPwKLyrBu5R-Qmm4JzmAZKV_d4wPk1w_ijf8Oxf9krGhelYReUJ097awcnUFLwSJMRMeh28X2l_ZfrCKhGLDqLUhGwacsHTOtyHuXOJ_Co4VzPJQIQfp7fLH8G4QaGwHVfqVTZsbQmVuUZNtjPCOt7XmWHZjOpaEUyxJw77t-0pnOvzhjiIAQBp6s7KAcRdR3-cTWC-fp6ns0rAZ4Ufb2TS0YulEhpa1KJzC15V9ZuEHBVB1qtGdnUWOQwSP4PYKQjpQ84d5caT9D0yWokLKPkXQNwLb9_Thw8shzw.jpg" alt="ЛАЗУРНЫЙ БЕРЕГ БУТИК-ОТЕЛЬ С ПИТАНИЕМ" loading="lazy" />
               <h3>ЛАЗУРНЫЙ БЕРЕГ БУТИК-ОТЕЛЬ С ПИТАНИЕМ</h3>
               <p>Лдзаа / Монашеское ущелье, ул. Золотая бухта, 2а. песчаный пляж 2 минуты.</p>
             </a>
-            <a class="catalog-card" href="/hotels/parus-vidovoy-otel-s-basseynom-i-stolovoy-2602/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/parus-vidovoy-otel-s-basseynom-i-stolovoy-2602/">
               <img src="https://cdn4.telesco.pe/file/M-qR-jbS8UWWUriJScsNpHwM19QwxMb-lWcWRJqfyWxddQnpZ6r4Ctu2DXvVvTrDZSnW2wGvkIwy4D1YLUX0XqtWIjDEZW3o-QMrPwVjAiOQP8L5JF6pnRqDYslY0FqwqpDOmLuleFZsg7qVsOQ_IXkH2F3z-WEsZJhAC2NBBHdWGeoMJuycXDQh1vagADnLFYHjdoQoHzR2PnLIpgW44B9yU90pxYZACdOrtjO-aYiYBJXoQQilcUVk3iT2DWSGAM5WMNrdWC4F0yNohD3al6yZ6s1jSM8pDiQHiT8dAseM4GoGEIZJ3ir7QA126ep8Z1eqEpk_YiX5I28KbGTtOA.jpg" alt="ПАРУС ВИДОВОЙ ОТЕЛЬ С БАССЕЙНОМ И СТОЛОВОЙ" loading="lazy" />
               <h3>ПАРУС ВИДОВОЙ ОТЕЛЬ С БАССЕЙНОМ И СТОЛОВОЙ</h3>
               <p>Гагра, пр. Ардзинба, 65а. 5 минут до пляжа, мелкая галька.</p>
             </a>
-            <a class="catalog-card" href="/hotels/apsa-park-otel-v-zapovednike-2611/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/apsa-park-otel-v-zapovednike-2611/">
               <img src="https://cdn4.telesco.pe/file/F_sVCyu-uVq-m3fQErlPBFwY3_WGXMGmEhAGu7yB61Y4an3lfpz6jtRnFSV92qKFlF0KvKlL8yiRBVG5W9lHsHQccI7C3PV1tSvshpejluqUyaQIYluH8HdVTuUbDYAiWI31hsgj3B_GBbRDDtB8DFVBoQtm5AQe-SvXFT-MEb03PP725eYc8ZfpEQakTiJXkXf95m_SM0NzRjTQNz08Cv4XKJEuY9HFIMxg-jq8CxqMNFz48jVNbGaSOEbfN0D7K3IHZWDiABRggyBWCUPnJO3gcoqiaArrBeovZF6w_K7-QI6rVq6adycosoiuQ-SfYf1znR7FO3UADaZgbupcXQ.jpg" alt="АПСА ПАРК-ОТЕЛЬ В ЗАПОВЕДНИКЕ" loading="lazy" />
               <h3>АПСА ПАРК-ОТЕЛЬ В ЗАПОВЕДНИКЕ</h3>
               <p>Пицунда, Кипарисовая аллея, 11. 2 минуты до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/san-amra-novyy-otel-na-plyazhe-ldzaa-2631/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/san-amra-novyy-otel-na-plyazhe-ldzaa-2631/">
               <img src="https://cdn4.telesco.pe/file/BI-oy-03t6wH5zUWv61QsLlU4Fw0WTF-jKqH9D_Aq46JKgvng5vKDDri-MD1v5jKDP69UA3AI2rKVydGNqAr0FYGe30QZYxiqO3Sxw00QIe4S9fqGOvpBu75mVIiSFpuaSYyEqfIWg6UXryS_00dVBhkQGw_gNpKjY0Hun82oiBpMXdCyTOqP7EcbyoaySOPu_QPCScybPyK_yMhmL82YfmqlT_PEKLEvQBL8NVTIr9XEzc8AuvEud64HIbvuqfLyC57UfzujvSDcVMR3WbY8rd7kWT6mXIhw5KCBFOPihYhHBnbzpQXm1j6xwFzCqReOETLQLDFtUX8S7e-vfpDPg.jpg" alt="САН АМРА НОВЫЙ ОТЕЛЬ НА ПЛЯЖЕ ЛДЗАА" loading="lazy" />
               <h3>САН АМРА НОВЫЙ ОТЕЛЬ НА ПЛЯЖЕ ЛДЗАА</h3>
               <p>Лдзаа, улица Рыбзаводская 80 А. 0 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/avrora-inn-novyy-otel-v-tsentre-goroda-2641/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/avrora-inn-novyy-otel-v-tsentre-goroda-2641/">
               <img src="https://cdn4.telesco.pe/file/aessBHnRj3ClCvbiZ-CW3TfwuYFSOzLTx-MAwD_c5rE-UYVeeC3b0YUTRkvD9i4IJFjM8sOIqYsAZTSzX9VeowOW8IM2ro2swZ8ER_z6uHjnOCOK70KQGaa5-blfIv9F4jin9iQbHJ1zeWfMfD9pSptqHdjr9FXB-A2DnBn7h-dkqtmid565nCWyzIxWnVxEqtd7ye62RTPmNkd0ZOp1i1ZP5zhnbxZij5oGgv2r3eS5fQHPP_8qNB64J9EMSwhrsODgJU0pRIPLo3BngySSgApR7It4UIPymOKWUdiTyC8ji9lP9XwWqaBg1becgGem3i2-TNijgod8PCqFzQuf0A.jpg" alt="АВРОРА ИНН - НОВЫЙ ОТЕЛЬ В ЦЕНТРЕ ГОРОДА" loading="lazy" />
               <h3>АВРОРА ИНН - НОВЫЙ ОТЕЛЬ В ЦЕНТРЕ ГОРОДА</h3>
               <p>Гагра, улица Рашида Гечба, 1. 4 минуты (300 м) до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/aisha-otel-s-basseynami-2651/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/aisha-otel-s-basseynami-2651/">
               <img src="https://cdn4.telesco.pe/file/P4eOlH_Rb4QVI7wdezOSL0g99Gy6pQeOSew31xrVjekEvpGmACm2Kq00VT4ErIwjVLAv5oGz9p2tEBd4WmNpdF-ypoQQ6bSKrKAuq3SEGkukpb2aX3ug3yDq6hyDOTRYUxpFCL-LgVfO_aGfGz88oknJrDSqTdYvol8Ec_h78TFk_SA6t0Bl6hHJ-LcfjpXyWmgSA4Q2OaCEoahBTqU2QhFJnZ9VXIgvuTd7HZ68mxT71Pkjmmvt4LUTci1bRWGi4lD5BDRS_B0XqorA2nNjeeNcU3OQ9XKnnbTAMQdK_b64BGKNm1r0Vzw_pvylZZKatCXfoMLt_M2lRrmtp5jbrA.jpg" alt="АИША ОТЕЛЬ С БАССЕЙНАМИ" loading="lazy" />
               <h3>АИША ОТЕЛЬ С БАССЕЙНАМИ</h3>
               <p>Алахадзы, Туманяна 26. до пляжа 10 минут пешком (800м).</p>
             </a>
-            <a class="catalog-card" href="/hotels/amzara-otel-s-vinodelney-u-zapovednika-2668/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/amzara-otel-s-vinodelney-u-zapovednika-2668/">
               <img src="https://cdn4.telesco.pe/file/ZkMBo1ei56II0fI8pPr8u3rwjX7rkT8ps3o7w140T5qTS5E_QSMpJ8u9r01fROWN3vPa3FQ4fJ8aCxNCXo4N26me2DzlnmL3AGp6cp8oMExcXObRteiBdsO3FEjyjk3kHpGp125tJRkD9U2ErBGwHoBDPog1lXz5eEt2vYwsx34cs4ZJ4_UoYS8wcSrHzE04kVnR2AvT3yIaAIpdNAb_iDQvk6hrVNNzSy7tZPqlw7uPDl33eLd7NOD7G8fGZPnNEnlwyml16BWbKpafNT_rFU3hVhBvRL7-BIMnkz8mgNCrq__ApXCGZpuGWkA8Dzbv5JXX72ypDMFOf4Z9Nzz4gA.jpg" alt="АМЗАРА ОТЕЛЬ С ВИНОДЕЛЬНЕЙ У ЗАПОВЕДНИКА" loading="lazy" />
               <h3>АМЗАРА ОТЕЛЬ С ВИНОДЕЛЬНЕЙ У ЗАПОВЕДНИКА</h3>
               <p>Пицунда, Гочуа 56 А. 5 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/samshit-domiki-i-nomera-u-zapovednika-2677/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/samshit-domiki-i-nomera-u-zapovednika-2677/">
               <img src="https://cdn4.telesco.pe/file/XjiIVlMMsi284t_g3iDo_snfb-xIIRpUHGnjyC8MoezAjJnwNynINmqnTGlsxIytvmmkQ1mW3KbNU3XJLuxFtgLFYu3cQPPNohKnHt-J18mf30LSppYyHLnBCcjba7per_tjdUIRZlMbMZjFNYwjlrj6Bp0Vh6ENIdmgd0bYtOHBGdAhPvZ2SFHkqVYNYpqXZgcoC9EwUQx0JD2mdQlbcNbiHoY-LkjShyX_usisKxBdHlSMDmFsYTT2b3RPSUzr5DMzO3jA4eFGCwE5-rP83Ybc_OYh5oBH_Tbhr70dz5vowmX6yJOeCujhdCsebjAqwlTqrBX6d2olExqMIN85Hw.jpg" alt="САМШИТ ДОМИКИ И НОМЕРА У ЗАПОВЕДНИКА" loading="lazy" />
               <h3>САМШИТ ДОМИКИ И НОМЕРА У ЗАПОВЕДНИКА</h3>
               <p>Пицунда, ул. Гицба, 1. пляж песчано-галечный 2 минуты.</p>
             </a>
-            <a class="catalog-card" href="/hotels/rivera-gostinitsa-vidovaya-2706/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/rivera-gostinitsa-vidovaya-2706/">
               <img src="https://cdn4.telesco.pe/file/NVUN9jtqDj5Tm6jmonSDzZzTT_vyG8fWhmlHGQuXXkyc7AIPLopErQ4DNE5_QhxQ-OJicRFrkM9-uQ7sbqRlgbPQ42jcifTbzpuiGkTd67AoqIqRefZdV9aWRAf4bZ1L5xZOf4KpBD5Ief1DTe-kN4D4jiqcaAvtLxdWXjcmWznQDv5dToPlXiFeHQlHTsdCdJIxZY45KuG55YeKo4PcNirnliP2UgU45VZ6iUizkhsfPWtHEXqQbvFazCQ3zTylWHG1O8X-E_BQyaoEXq5xjNtWHeLoa52zz7QrcS4Cy3SiC3YG5RS7Z7YRxulS5kLNEAmc4L3Qvv3D96BrabaSXg.jpg" alt="РИВЬЕРА ГОСТИНИЦА ВИДОВАЯ" loading="lazy" />
               <h3>РИВЬЕРА ГОСТИНИЦА ВИДОВАЯ</h3>
               <p>Лдзаа, ул. Рыбзаводская, дом 81/1. 2 минуты до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/kira-gostevoy-kompleks-2725/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/kira-gostevoy-kompleks-2725/">
               <img src="https://cdn4.telesco.pe/file/i1XGhoiaWNj8qv6EFJdV5ycyH7hEifaV2HV-P8Sms7lxWHO1_bqW-Orqt7mj9UIYk_S0QqboJowpVi3vfRnOjZanf2S9wLqy8mF0qtcuxxVetKsv3KECnqYAGtF_TRiAnomBZ7ggN0JLb3Io_7klxIGdwj5VyYcP5pAJV8i_Ir_0hYp4VwCrJ5HCUZ3WesSmWEO_wkS-RQ1t8wu_kl0XEkRKB6tlnRQqfw0meBQGoafLLZb6RJjyomEoXyTOYcv6wLyliDvzVIXX3c5opdUUCAnZlHXka1Pmt_Tb1JEI8xh-7c5Htbm90OUiMl2n-L_Ctpj-chioGHRnliXcG6eWLw.jpg" alt="КИРА ГОСТЕВОЙ КОМПЛЕКС" loading="lazy" />
               <h3>КИРА ГОСТЕВОЙ КОМПЛЕКС</h3>
               <p>Гагра, ул. Саят-Нова, 29. 6 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/sabina-domiki-u-morya-2744/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/sabina-domiki-u-morya-2744/">
               <img src="https://cdn4.telesco.pe/file/qFUlSoU91oXLeUbTSI38Wdngk5BxwPj3CVNU-3eXNziPo51SrsbGjuJpt4-Sd0exf6X1GQhtevyTZloaG12E9xHt7U4AFi7yVaPv4_j0c15M7Ob-LCPYwE_BJswKahTrfsfhf040O_vfrNeXI-wUTMCU58nxiFYgbbyGWsJIqmwoAnojGm-PNtOAN4OlGarPqCpqeBaBQ3BZtxS4iim4sqA8L-27EuereNhU7xFN-3-MKfONngvNjg42xxykiIV_ODVdy2xF7uhtXpXoqGgg7hs5xVSFU_T6Zv5W_cMSSL3ubVTAVfBuAy-VYMC4VSF9cssJ7O2TPu7IY5Dc_YPzpA.jpg" alt="САБИНА ДОМИКИ У МОРЯ" loading="lazy" />
               <h3>САБИНА ДОМИКИ У МОРЯ</h3>
               <p>Алахадзе, ул. Туманяна, 55. пляж галечный 1 минута.</p>
             </a>
-            <a class="catalog-card" href="/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobs-2755/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobs-2755/">
               <img src="https://cdn4.telesco.pe/file/WG6HRKQxxdF0x0uS-wp8zZNzz7WpNujH1BwCmnXtnonVZ8tVIrdwhetLUfTRAO18uqPPUcpS40ozsEF2aqJFUDTGNocR7zqyr6rZxE_2ZxD_YgzS9HjKli-At_XXp2Dhr2NMIZZifGlzUP1cyw7jtAmoOij7IhWqium2NNHNTg3BvQzHBGYPjqy7-nmm0J_L8tsTSjmgchxSvHh3UR8Tkx_X6B0EDlr4yY1WAvZ2aKkzExHXyWDAB8Gl_Od1emaSmgOrnR3Em222XYGqZaBbP-IyWqxwO0ndtY2pbEOFGhWl6Scer5N6_rd6yHDrhbkhdRpVusvloVwMyv-eWbAGsg.jpg" alt="ВИЛЛА ЛЕОНА ОТЕЛЬ С БАССЕЙНОМ, ПИТАНИЕМ И СОБСТВЕННЫМ ПЛЯЖЕМ" loading="lazy" />
               <h3>ВИЛЛА ЛЕОНА ОТЕЛЬ С БАССЕЙНОМ, ПИТАНИЕМ И СОБСТВЕННЫМ ПЛЯЖЕМ</h3>
               <p>Гагра, ул. Гагрипшское ущелье литер “А”. 4 минуты пешком до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/krylya-domiki-vidovye-dvuhkomnatnye-2765/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/krylya-domiki-vidovye-dvuhkomnatnye-2765/">
               <img src="https://cdn4.telesco.pe/file/g8Jr1kzP2ggVQizjCSAOcnJjyUeH9gd0tU9EAQGhH8wDONRruIGpmuSJTW8HYrOxZseCZ9joJxM1H6IvXoMUcbBCdlxQMII-mq-SXCZH0fpEhC6TovVQFo-33hwuW2lw0voeDxmGd4haXfwk2H554j05MsqNMKBbNdQVW8oPZzYGbt0Bmd4JzZHrcru02t1iTzHVw-HOIAG818TZdSfkRNdoMYeRSRhChHt9Qg-6awmcvU4uf-G2a1ckvjK6W9epxA0V13KhgDMLk52sCRNBwQDOeWTLOZPxCm1PtkDAJ49gSCV1RqhFS5qhot9PFVvlR6fIyDA-8TfuZF5dxuRY4A.jpg" alt="КРЫЛЬЯ ДОМИКИ ВИДОВЫЕ ДВУХКОМНАТНЫЕ" loading="lazy" />
               <h3>КРЫЛЬЯ ДОМИКИ ВИДОВЫЕ ДВУХКОМНАТНЫЕ</h3>
               <p>Гагра, ул. Сосновая, 28. 15 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/lavanda-villa-s-basseynom-2774/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/lavanda-villa-s-basseynom-2774/">
               <img src="https://cdn4.telesco.pe/file/hWlc7G2z7NbdSaydET22PRJ7-qWBQJcFMQ23-LwKD_fNRr60mYOyviFr3p_FCk19CQytW2cAkC7P2h9n3QNKtMzHLy-gdDuxsE4CpdSkOgLJBAVJxN6nwGraPQS1A_P1ZbOtY3TnzHol4LBxjKzXQRX3asTwijf-rI6SXasM9Tq5UcT1cCB0NU-rGFFdVmqu2yvWv8sfldmF82BZbLN7rtuDQb-fIqvFtL9bYsibPF9XR0LhS7ZobtHTP9vZeNNJaCp0fMX64YQaFW21C6mm1JL8ZT1abSaeTh-Whg3j6szs9-pq3hZO8jGi2IYAClnY9tnfjfaznwH-mTOEpTXt5Q.jpg" alt="ЛАВАНДА ВИЛЛА С БАССЕЙНОМ" loading="lazy" />
               <h3>ЛАВАНДА ВИЛЛА С БАССЕЙНОМ</h3>
               <p>Лдзаа, ул. Аиааира, д.45. 8 минут до знаменитого соснового пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/arina-mini-otel-2792/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/arina-mini-otel-2792/">
               <img src="https://cdn4.telesco.pe/file/STvbYb3SbiFZsxu_iFNBqgBhqEdrnJkOAF8dbPb-ON7KZOOj7Dv1LoWEu3gJ5XZx1dJTfvDd4idsuLIZPZ5U5Io5rZArKKskO_220UrR-q5TALW06pR2uDTZdMMm4xqZvU7CyZ2g0pgByQZKZ6f3hWI7ExdcsPKimChkkWkkAqP1uacdejIu2wEz3ZBQxSVmjxtpL3ux6PMWhNvcNXktJn9VxMZBHPCysHCxjAtEEM47dW3di8BI3TLdrTQ-ZVz4E6Bb3XM3QepcpNVEqDcDn4Ed_m6QmrQgvObEtM6f4DYPGbYlGfHPjdHbTTcJL0zlhH3nO7rRZAMvuwhPxRCtqw.jpg" alt="АРИНА МИНИ-ОТЕЛЬ" loading="lazy" />
               <h3>АРИНА МИНИ-ОТЕЛЬ</h3>
               <p>Пицунда, ул. Агрба 1. 5 минут до пляжа, галечный.</p>
             </a>
-            <a class="catalog-card" href="/hotels/grant-apartamenty-2801/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/grant-apartamenty-2801/">
               <img src="https://cdn4.telesco.pe/file/QDWu9EYvYqSqRxI6GN1TMfMnAvRKwbIiUWIHVVomCj6ZdRJItTGe3sbB3mLSVjtmWOD9NQgYrBNa_g7Zg0EuS7M6gQIDeSjoT81blj_TgY553eP3T25zx0nrMvTeZbn6ugzl6v0-6ncBHrl9kKKH5wluHJWDg-B9QDzvrdY2ScEsL1vWc54DWpLzW8MkwepPAMI8EiqOfYFUDvPz-rMzJ5MA9MfT5F1XTobaSvOC4KchPWT_a6exFyBz3I6A3HL_jclJ8Zyp7vWUq3blH3sduUoKEyZ8Q6FigwirToJTVRbplOabzENpbAEa2mvteUG6SjTGQU7nTx3rlQBNUH__bA.jpg" alt="ГРАНТ АПАРТАМЕНТЫ" loading="lazy" />
               <h3>ГРАНТ АПАРТАМЕНТЫ</h3>
               <p>Лдзаа, ул. Политрука Нозадзе, д.58. 7 минут пешком до соснового пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/grant-kompleks-domikov-s-zavtrakami-2811/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/grant-kompleks-domikov-s-zavtrakami-2811/">
               <img src="https://cdn4.telesco.pe/file/WDX4kj5Z7QZV1E4tFZLpIVJwhIIsabSu_fbzgeGzc_9fFITAvDk7MbO5F0SQrKC2O8LchB7bPs0WZ6mwI1b51vMls1a3NmIlXDCQn4VmCoPGgVtEwD7wbkVuhcLcTqeG2VagEnMqBEPftp-8rg0t3rp34nxzdaT4SUZZ_h4m315MsrtPXE9w7MnVua6rQ_dSUUtydJY9HwOqUFI4ybSC1b0D_cthw27HgzGtviY4lPRchVR_NOC9yYUHMq6AD6FYW0Xs32ihQNk2-nPFdfKKHB9xme2GnpbrFCGWxeuqVko9KJ_t_L_DJIFQIqVQcoktIzaQR-JXC76d-5L_DzGUWg.jpg" alt="ГРАНТ КОМПЛЕКС ДОМИКОВ С ЗАВТРАКАМИ" loading="lazy" />
               <h3>ГРАНТ КОМПЛЕКС ДОМИКОВ С ЗАВТРАКАМИ</h3>
               <p>Лдзаа, ул. Политрука Нозадзе, д.58. 7 минут пешком до соснового пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/grant-otel-nomera-2820/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/grant-otel-nomera-2820/">
               <img src="https://cdn4.telesco.pe/file/fM4GT0lPP3PP9lVJ-SEfwwksdKnGb6OJscdpqb7j5z3kBMhuoX0CN3gwaqkjMrzQRp6PkADIrAKD28yFFuMFQFevwrvE1RgtelxLuPPr6R3XxRszfNI5L7ShZ2WN1exfNRSMydz5rJ9qug7tYR8jFGtV2kdWUZGKqE00H3R7QYq8v8NFnOfkOVHTL4fjydwFyDf_b1BtqzPbEqRWSo1sAGjE_p6K9muj-hlyo3ChIKsv5fo707ncWa3H4jTsISsnHAJCpBAC2N9ilJVViBEy71nBO7aRJ2Jaszza2x7rxNPREwfc8ycye43uPwqkQnxrmb1Co5hhGia-BtbHF12esA.jpg" alt="ГРАНТ ОТЕЛЬ НОМЕРА" loading="lazy" />
               <h3>ГРАНТ ОТЕЛЬ НОМЕРА</h3>
               <p>Лдзаа, ул. Политрука Нозадзе, д.58. 7 минут пешком до соснового пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/damira-otel-v-tsentre-goroda-2830/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/damira-otel-v-tsentre-goroda-2830/">
               <img src="https://cdn4.telesco.pe/file/ZSvgOS_4FSW6FI5M0eGa776Imx22xZ_m00RJYLxY75HOY7wp5o8Ntr_lqoeOZ-2W79Q7YzK0zF9n3eW4CpgjXo9fRfXbzASZvmjwZmKmYjV2xukzRGee5JYoe4JdDx9Y_kaw9LYlJ8micR2_TNc7cBJ065TfeO07Om0LZD2s8GDHd_uvuYVxjjhxMPrLvyFyz_kBAuPsrKaUyvyrsakXKW-6pE9GhgwXNZyIC7E0kcH6t2AXBgXSjpjnuJdkhEBEN7dvrI53PZ9TKMdM0dc8jCT1nzyf78GczKe7XHjm6XQyaOipYrlzerP5vMyeE-PRnctPkfGNC_Sv5dcG414Tiw.jpg" alt="ДАМИРА ОТЕЛЬ В ЦЕНТРЕ ГОРОДА" loading="lazy" />
               <h3>ДАМИРА ОТЕЛЬ В ЦЕНТРЕ ГОРОДА</h3>
               <p>Пицунда, Тополёвая ул., 2. 15 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/assir-gostevoy-dom-2840/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/assir-gostevoy-dom-2840/">
               <img src="https://cdn4.telesco.pe/file/b4GoMfMskwALGIki0eVzLraEf-5GSqz0tkXNeI1O0bg_mO0Ta1w46LOfSgrAnbfG3E7NHV9tqGPWtVKj-pbtpIxHdRTD_C-HwgkRKUUJfzTSiuGYuNgwoEdohK5V6Dgaub-v9w_uK_SsOc6staMorPzM7BHKTvNbzkE9AmER7bHcTLOkMQdcGKaJf8B6UoOXnob8jW4_y722n1Usna3J6G85uALJbJ_uf-mvNQ9pQ0mfocFDCEbb_OKgQm4suhWPltFiNLctZzxeA1sb5Z7jhSTVlhU87lKdOIwZvpoBdi7zd6FjmoRLdmqln0aaDFzWHnrgdRBt2tIeztswT0-NBg.jpg" alt="АССИР ГОСТЕВОЙ ДОМ" loading="lazy" />
               <h3>АССИР ГОСТЕВОЙ ДОМ</h3>
               <p>Лдзаа, ул. Рыбзаводская, 51. пешком 3 минуты (250 м) пляж песок/мелкая галька.</p>
             </a>
-            <a class="catalog-card" href="/hotels/banan-i-funduk-gostevoy-dom-2849/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/banan-i-funduk-gostevoy-dom-2849/">
               <img src="https://cdn4.telesco.pe/file/Qc9M83ng3MzrMUUNSWM4hnZt8bMY8H0T9Juk_liKSRMAguUBOmAUsPlRJiVrqzjVSPl4yE6IHrj6xXEGU5GxilYlxs-fZzCVLDIY5dRx8ydxQCAl1u6lpHFDJjyBd_nb4EhkR8WrRZgmv5X4IytykhPWOrcuCDyEwbtaSGPK9EU50mmnZjF7uYWCXysLrtEHPortjaOV95MyfHzWlm8aVVQoAjnFFQaXz32np1poNqB4pW_49RoRTweOtQuZKqR4V__nV92QuP_-SHUjrpoEuJ4769U30P3XHOCsfQMX4uLuWd32HYzV-NkUbDRCq1mxQYgf3bvoJzbA0IzQssGSBA.jpg" alt="БАНАН И ФУНДУК ГОСТЕВОЙ ДОМ" loading="lazy" />
               <h3>БАНАН И ФУНДУК ГОСТЕВОЙ ДОМ</h3>
               <p>Лдзаа, Монашеское ущелье 18а. песчаный пляж, 9 минут пешком до моря.</p>
             </a>
-            <a class="catalog-card" href="/hotels/kastl-otel-s-teplym-basseynom-i-vidom-na-mor-2859/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/kastl-otel-s-teplym-basseynom-i-vidom-na-mor-2859/">
               <img src="https://cdn4.telesco.pe/file/N9Ohfk3mfSwTOAWo2Yoxsni1mGd3G1dznCw1eXU5Hv5tgzLM4kCGPa75x_KNFal5ujAY_0Jbj_K8tiPqvodne5tbr1tmB_ARUia7kzau4kjoxiqWGOvn3imd2CGjYwfIvndC7q-I3LSVtrJX3FasoTVCuGRPkB4JaRJjgHPjym8CmJ0QMT9qCp6Prm6gwAmkkSUCo41jDWyW7uyBjAQeFWGwbvmnWiH4rrdWrykavNZeFBjt5RLa7bary5LspyefiqmxtLF2troULmDpjfiWh5v3BHPil7R_Oc-vO7Z1rYpefdlvyVufJAfdBO1g0JOEDVyM2iNTqwcgFV7TGkm5_Q.jpg" alt="КАСТЛ ОТЕЛЬ С ТЕПЛЫМ БАССЕЙНОМ И ВИДОМ НА МОРЕ" loading="lazy" />
               <h3>КАСТЛ ОТЕЛЬ С ТЕПЛЫМ БАССЕЙНОМ И ВИДОМ НА МОРЕ</h3>
               <p>Новый Афон, ул. Чакрян, 42а. 1 минута до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/mimi-domiki-s-vidom-na-gory-2869/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/mimi-domiki-s-vidom-na-gory-2869/">
               <img src="https://cdn4.telesco.pe/file/F4xgu9UPXBlM6dLBmMtnDcIsricjrucb6DhZetJXj4la7zYyGTCXZN_wMUlHXm4MbNqW9sR4a4cCKmgOxdy8UQzRB62g0WW8wXCt-7Yt9Tpgj5cUfnd8Bb8dAStVUG2lEtREcUb63ARjHZLwTEz9nW5AbMQGs8X1X1_C--WMEZWsgi4Mu5Wz-jI6H9ZTEMs9UKaghNDB_MuCO4XA-lolA4eeUTSeOeynWs5CPW_5SjtOZwHPYcH_xnBofxuD2PsXDTFBLM6yv4punCBkHROW1lysiErtoMkpK1VzVE44hAmPNf4Fy88k2Ny3rXKUuwjYk6ZP1WGnD9kKFfHpEJjRkQ.jpg" alt="МИМИ ДОМИКИ С ВИДОМ НА ГОРЫ" loading="lazy" />
               <h3>МИМИ ДОМИКИ С ВИДОМ НА ГОРЫ</h3>
               <p>Цандрипш, ул. 6 Октября, д. 11А. 5 минут до пляжа, галечный.</p>
             </a>
-            <a class="catalog-card" href="/hotels/v-gostyah-u-belochki-domiki-i-nomera-2879/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/v-gostyah-u-belochki-domiki-i-nomera-2879/">
               <img src="https://cdn4.telesco.pe/file/it-Mz1eX5AIc0rXH2EHyVxZrOj2qC_PEgNerdz873I-bX5ixzIFK25QeoxaxbD9yJmgNVuVGk_b6_Ia0nNHH1brkWFJp0TUfbuo8eAsHnmgT7GAynUR1e4omz7BnwqLUSgomtIFelNJqUdQJNv3WC6UlzlGpnxVGD4sUmB6nTxSF0eBFSFrbNIhWDAHUH8isrHkehfSZycb6a91Lqjw_iF6sLqpwlFN-xUFGhxuueLngEMZf5ZaJGS7AmSK-d-ZZ_gF2VUSG-vLAb_ursk4SVWXq8fEnKGq-wY8VILwJ7TpsMHxEx-B6hyIKgLG84ECIpT_HywGhTdMJRp-Df4BvfQ.jpg" alt="В ГОСТЯХ У БЕЛОЧКИ ДОМИКИ И НОМЕРА" loading="lazy" />
               <h3>В ГОСТЯХ У БЕЛОЧКИ ДОМИКИ И НОМЕРА</h3>
               <p>Лдзаа, ул. Нозадзе, 10. 3 минуты до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/">
               <img src="https://cdn4.telesco.pe/file/avh8LyWwDC_K8Pxl1NC4mFAzozjvx6_gR8y-74cbfbiqwK_9XJw4cGT7eVwK6uRfJ77GxUPMpax1oLd8MtZH5BWYmlM70ppc567HbYBlTm_66q4kcqLaySD-k6ibCh7Qm0zLU-016L72zpLaxyAp0lLnSebQv4ZQTSVRFSbppJQghMse7MXUoj6m6ygYonOpM5kBjW5iYf2qIBXTU53iYWBuA6luFYo2y-ClwNfXnyKpKdPWLSj2bHzNkEeC1lciG-79S0hKDqQ6wCe-JgYhN76lijV0MlVoZq1BFKuhdZFrho9cOVg94ZCMSGtnX7oo-P-ARDjsTAW7JwfTJ399rQ.jpg" alt="ПШАДА ОТЕЛЬ С ПИТАНИЕМ У СОСНОВОГО ПЛЯЖА" loading="lazy" />
               <h3>ПШАДА ОТЕЛЬ С ПИТАНИЕМ У СОСНОВОГО ПЛЯЖА</h3>
               <p>Лдзаа, улица Политрука Нозадзе, 21Б. 3 минуты пешком до соснового пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/zelenyy-dvorik-domiki-i-nomera-2909/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/zelenyy-dvorik-domiki-i-nomera-2909/">
               <img src="https://cdn4.telesco.pe/file/fz405SJf5sa2qum3PID-VzbbJShjMRkTWE-sAKQ5lqg3c0ns-fL9RnEFKEHYX3PPLYsebriAIsN5xx4r6BPaXvTwo0GbQO-HHG9CBBlxw8fQK2yTXoZKh66SQXttnMo9HjS-Db99XODkeX2Al_A3AA4hvlfPfqEmiE9h9aXoM3Y0cnLRerOnBq70G_ZlPHsIdRDRTpfufKlTLNqqmj-QSktXBC_3dAQEhvelM6WtWCH7aM_M7Axv7nl98L6QR4BUuAez6qxsY9tF3emV_6tGR4mPcwMpGsfwBEKdViLovUJ2PmL8pLqXzKEkaRnLoIqTFmuNZeZYmb5aQ9lFlm3McQ.jpg" alt="ЗЕЛЕНЫЙ ДВОРИК ДОМИКИ И НОМЕРА" loading="lazy" />
               <h3>ЗЕЛЕНЫЙ ДВОРИК ДОМИКИ И НОМЕРА</h3>
               <p>Лдзаа, ул. Рыбзаводская, 75/1. 3 минуты до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/moreon-domiki-2919/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/moreon-domiki-2919/">
               <img src="https://cdn4.telesco.pe/file/foUuZ8dR1wyNseNnZlNluo2OeJUf27IAqpDFZOPvlXywUo9Ra-_dSQ48Wa4pVKrlJ6hbej6u-77pFJ_BhMiFQ-To1yJ8LfUt2mExIyEb4DNS_sfCFLBD8jAdyXEoZJji106JNZKqXOQwQbjbq6mndIQ3f01rxRwz4O8kB9Qp0mcSay9ITHc0cNEt1vED3dv8mUFeCtKLetEpaw4yTWxt4u60gZ4KtZFfhedrX49d1eIy2dEYA4HMa9v8vwaZnNCZ5f4WmjRyf1itAeLBpISUJvEd6kEXIWm76WIetwoiD48-CZbQiX6HKV9JmXCTMYKyHtfBD47uequ6VZtkN5nPsA.jpg" alt="МОРЕОН ДОМИКИ" loading="lazy" />
               <h3>МОРЕОН ДОМИКИ</h3>
               <p>Лдзаа, ул. Рыбзаводская 40. 1 минута до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basse-2928/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basse-2928/">
               <img src="https://cdn4.telesco.pe/file/qYAt4KgIo7cR0TcxUUMMHG57yYNjJ1bn25itaPUjdX9DBkHiwNmBqS-_mkmTSFbMbSSx5jrd9uuK4PGasPY7yaQhBS4pzVT8rZ_-h1YTe2l4oX87lG71JglNlXgZFcEZ78TQdsbz7oEZCktn5DocBdZQ_E4iQgNSYSP-M7PBfbld8lyIVXJC3NyYuQkeSR6BWoSacJCYK6nQweb2ELwJsrElVdPxbUYlsf1hsgbvHuf0SznVn4k6Flrbjak1_Qhdc8nNe6g2F_QAEskESGAtvB-us1cx5vKPzngsayeOadJILp41KS_oBasmKGl0Fl7BUlTPczT5MWGK8nUZ2C6tRg.jpg" alt="ГРАСС ОТЕЛЬ КОТТЕДЖИ В ГОРАХ АБХАЗИИ С БАССЕЙНОМ" loading="lazy" />
               <h3>ГРАСС ОТЕЛЬ КОТТЕДЖИ В ГОРАХ АБХАЗИИ С БАССЕЙНОМ</h3>
               <p>Рицинское ущелье, 3-й км., дорога на озеро Рица. 25 минут до пляжа на авто.</p>
             </a>
-            <a class="catalog-card" href="/hotels/rancho-elivel-mini-otel-2938/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/rancho-elivel-mini-otel-2938/">
               <img src="https://cdn4.telesco.pe/file/v-jJCyBIfaV8Al1CTaHhODh8rucmb-Ai-NNh2Top3OabnRwf5kWgaFZdBk_ByCX_RH3JID9qSE3qc6cm99HkMToSZU7n_UWyiDlgtv0DBHQy4uZ6riZ9JVMfHBWCdz5VjwZv3T3p9AEO_qEmhWZ3RvE0gykCOTWEASMA6khy4_p5dsyBaXhXw8oNxQzJqM1rPvJNO-fiPx-zIJHSbxQG-d40kbmcD0ktuUBPQk6ifbTSyBlKloEq1kePeK3JJ8srkFRPvwVBjD1yDAM694WE46U6oCeyGH1oQQJbEcO8JygofHAa_MvH64x_Na5cOkLwIvGqimax-6PCgJItYA348g.jpg" alt="РАНЧО ЭЛИВЕЛ МИНИ-ОТЕЛЬ" loading="lazy" />
               <h3>РАНЧО ЭЛИВЕЛ МИНИ-ОТЕЛЬ</h3>
               <p>Лдзаа, ул. Агрба, 81/А. 7 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/mira-domiki-i-nomera-u-ozera-2956/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/mira-domiki-i-nomera-u-ozera-2956/">
               <img src="https://cdn4.telesco.pe/file/WtgcVwTsgA4yKahTLgvJhw4vYN6qnwtK60vKx4Nr0xnXYp0H26iDfF48AqGxW55vNeYnI6-6p05kK82Nj8zDedb-Q5NDZyYtumMkYqyguxL264NpnO0F6yO0ddg5xAhObkmUxG242NA02iZyDaqVQOpj1FNSo-Fso0weBtUQPT3FCWf896Omkh4QB-dvTc5eQlMQ2TYhVbKUY26Y03ODUze3pW8T_8d0XgM4Lotpil0qfKnTAeKt15owW6av9vItVapDkI8Jza6mVNHgyC8ynrgUWjw4OG86pXoVc8nQORSbgPtU70WOaTWO0w5Es9-W5BHZD9XwP0m6NKzZFvyueg.jpg" alt="МИРА ДОМИКИ И НОМЕРА У ОЗЕРА" loading="lazy" />
               <h3>МИРА ДОМИКИ И НОМЕРА У ОЗЕРА</h3>
               <p>Пицунда, Агрба16А. 23 минуты до пицундского пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/rivera-domiki-na-plyazhe-2966/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/rivera-domiki-na-plyazhe-2966/">
               <img src="https://cdn4.telesco.pe/file/R1sySDn2bfkLnU2SdqmoAaxjz4nVhMP0VaWVzRgNUHuFLkvg08GmkIKwwKJgaXOij47lJs_JxRnVPCG9a1iHbvok5sO7iW8kz3uQ7iZlqCZa9dg-xWpuwArD6HmuR-b7doIApvrvFiPs8w2ywba2n7mi3YOOOFjpgXcpn-zaAL2wChgn7P6mvRkhVYY09i-M3VL0Yb5BHi8QuzFwR13jT3MmgsmT9f63p7Psd_WulqdD2b4X9_FsIn8b4fQAIVKYJoztSW3WnJnkyvEQdv99kV8ut-3eQ8U_eGJ3UrPpGWZxRi6_Sc03Mizfyd2QF87XT9Hd4P9YYMbnvNQ6e7nQgg.jpg" alt="РИВЬЕРА ДОМИКИ НА ПЛЯЖЕ" loading="lazy" />
               <h3>РИВЬЕРА ДОМИКИ НА ПЛЯЖЕ</h3>
               <p>Лдзаа, ул. Рыбзаводская, 89. 0 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/san-pino-domiki-derevyannye-s-basseynom-3005/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/san-pino-domiki-derevyannye-s-basseynom-3005/">
               <img src="https://cdn4.telesco.pe/file/Ow0DiqdtjtDtkqtPQSUiqfuYTIYBgaQp9CS_VRTi8baf2gW5ExmDPrYe0DaRbhkypSvvTFZbMS1ozfC71hfWEK1B3qoxxbVF-65X7ZvFPMnU2S4Zqp9X2tvfFL_mmMgljhZLW-9eKJZVHLt1BvcWXs0jvOeENGwLGNZFqHpniRgg396w239fArOKVKqJhBYynN2x1cwc3BUhVcI4mzxRYz6ceEOVy4uHKefggsGTOb_RqkMsqN3k7BoKsgpK5JkKMGGwDg8vxOqW_1DJYYId3nLLlcCUmRr885Z6WXWp1fPIl1T9fM3Q0pPS0cPuxpTDXGQ_avXeH6KglULcEeB99g.jpg" alt="САН ПИНО ДОМИКИ ДЕРЕВЯННЫЕ С БАССЕЙНОМ" loading="lazy" />
               <h3>САН ПИНО ДОМИКИ ДЕРЕВЯННЫЕ С БАССЕЙНОМ</h3>
               <p>Пицунда, ул. Гицба, 7а. 5 минут до пляжа, галечный.</p>
             </a>
-            <a class="catalog-card" href="/hotels/nikopsiya-domiki-3015/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/nikopsiya-domiki-3015/">
               <img src="https://cdn4.telesco.pe/file/hZP6qU1bToaEAkW6FFxWmzVDn2zVWHx1O-LQjwc2ZQApx8t62vh9aGLprRvpKOB7d5e8_PVZt_XJ5oHGZrLUCKKG_ylGFkkgiKyPK2_ZANb6X9NKRe2U6072waWgjBd3oyraKltNe-lx8ntldjZ8gVnt3YmEkPk219tZ28kt6iN22_7jXIk0lKDCzy4KRgnuH_OnIZyouIoBfBF5pVbulHnRhy4k5lbH_eaxq94Qa3ZpFq3cK-71bVD4KiuH5nYUC73Yi4_ckY6g3peLPkXhw1iDlCWWerRKG1JzPiDwSl9aetAuUGk2oAnjuixSoRMDEKZx3Yr6jZeAATJ_A2uzZg.jpg" alt="НИКОПСИЯ ДОМИКИ" loading="lazy" />
               <h3>НИКОПСИЯ ДОМИКИ</h3>
               <p>Новый Афон, Псырцха, ул. Абовяна, 43.079580, 40.848386. 7 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/radonovyy-istochnik-otel-v-gorah-3064/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/radonovyy-istochnik-otel-v-gorah-3064/">
               <img src="https://cdn4.telesco.pe/file/gCxcZw0NTtLQVYqIUqFmJkOTFQI9crr_FJrGFHaK4cczxvOlHURTTaFex3af-A_rohpcgucb9Ypi05_KXK9t4OWGZlH4n9Qf5XK6X-sDZdnQ5yHRaeH-SazfZoLMhQxC-8-4zsMnZSPTDuwr0-xZ5CazNSdWlNLakqWPBSuALj4gBeXdyk9DCzYuLvwX3Zd4yUU1qCJ1IG2EjgN5wDrJzfSU1fYY1l6cYtEiUR2eLHFhOvpiDjNunFgbTIOP08XRx40tFIhxBboxWwqO-EsMRUycZzP_VMMMXNIOVQgcdNK2d1ygXIoNocXsve1703Nls0yKyVCrDC801LjuZCzTSQ.jpg" alt="РАДОНОВЫЙ ИСТОЧНИК ОТЕЛЬ В ГОРАХ📍" loading="lazy" />
               <h3>РАДОНОВЫЙ ИСТОЧНИК ОТЕЛЬ В ГОРАХ📍</h3>
               <p>Ткуарчалский район, координаты 42.857166, 41.757940. Уточняйте у менеджера.</p>
             </a>
-            <a class="catalog-card" href="/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/">
               <img src="https://cdn4.telesco.pe/file/Sn6uXGVFYFNOKRrUG8UK_QmiVJtmVcaFG7P6x-p8q0pahlpyLidSLlZtR7o4Ty5E7UQva_FTR4vlCdS9n811FhpZB9lHxiEoDXtD1kQcPb_sNSR7021utUzwr0WeFJujekDYjSS1ZMq0UZNo0caoKu6ejq44rnCgsvTbkKO9_1b7gdw8PEsNTOOdM4mD1zvafXzqXPehcc1XoRrg_GaSEocAdwj4FWTWakE12YgsdHYbfV91OYNSqO5wXYsAUtl5uJV_RAveSyoRK55aAMVtMYQFqgj_QX744I7p6a25Yj-xUSWSvEWCytW4fIutfn2I1LyJzbE7kh-XvXvpNNCDyw.jpg" alt="МУЛБЕРРИ ОТЕЛЬ НА ПЛЯЖЕ С БАССЕЙНОМ И КАФЕ" loading="lazy" />
               <h3>МУЛБЕРРИ ОТЕЛЬ НА ПЛЯЖЕ С БАССЕЙНОМ И КАФЕ</h3>
               <p>Лдзаа, ул. Рыбзаводская 86. 0 минут до пляжа (песчаный).</p>
             </a>
-            <a class="catalog-card" href="/hotels/kameliya-3084/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/kameliya-3084/">
               <img src="https://cdn4.telesco.pe/file/HebktO7JYJR_RG46co4Zl7w-NkUDTgjwh-k86I9ktuOpNLIESZwsj11UMp39kVcyqq7c6ODa0WiMmAuIxODSfcqy4LivcF3Z5d_lyvBhzAFXI2cJvR7xURwKN1NO3nP77hkivSpzdw7h3y2sfTzqGlx1KzLTs0KZwoL_gAq7mQmvVpScQ7ZBZ-dTszYmLcsAU9ZsTxvzQVVvJgIkLZAvihJdWDCxr4VPdyqyboCqmiZq50MhvqqKnvH_qx4PYWu4_CKlmvh1V-ayWV5HlLTZxflmQCSH6arbLAOmwhQjtlOHIkP0QrAIO1QRRJn88uuIU1RgbgoUq8QjLoYj76q5aw.jpg" alt="КАМЕЛИЯ" loading="lazy" />
               <h3>КАМЕЛИЯ</h3>
               <p>Лдзаа, Лидзавское шоссе 8. пляж в 5 минутах сосновый.</p>
             </a>
-            <a class="catalog-card" href="/hotels/karalina-apartamenty-3124/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/karalina-apartamenty-3124/">
               <img src="https://cdn4.telesco.pe/file/JHRk7jAti5W_hX1wqjQI6AT4n-dqHqsq67n6leFl1MDbx9RImNDlyi3dtquWASuc5k19J4LQW0URo50GQxC0aVvete3MOpbdgVfpQumWzEIXieht3WemZ90t0t0k6QLc5q3C62SyQAKSrbChKPV4MUtgZy0lXe6H7Jgi5IS4v13xewJllYoFFYlW6LXlPNkpFcetFoHyPz1pcSNcoQxEJxO9sdrypj0UMFSP9MT42TggBSUPKwijXeOhyTFseIR9dsLRDlJLHQB0S-zxyzQ5abAmnJVuTHWjhO6Hvkryn8TfKXd0J-5_Q0M6f2kBaUYM3LMyJTVqzV4ndi22mupmPA.jpg" alt="КАРАЛИНА АПАРТАМЕНТЫ" loading="lazy" />
               <h3>КАРАЛИНА АПАРТАМЕНТЫ</h3>
               <p>Пицунда, ул. Самшитовая, 35. 25 минут до центрального пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/saya-domiki-3134/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/saya-domiki-3134/">
               <img src="https://cdn4.telesco.pe/file/IiqE29FyfBtdaSYEQgWm1_iR9hMbuu50aBC6BrdSU88As_HROjlu2YY8uRFYoA5wLcBuG0XqUxgpBmHkW4GbaYmDX00h2MAT2c78aPSkXM6wDgNqOBRtz4T7H40n_BERisugRaYEEPXS86vqK6J0tzWRp3cKDNEZaAn3f55VCaec6GKlWTxbM4uc4IBZw1A4uFIo_4XjHgjFnIrYJ2lkfH9o-JAZKpGqwHeCTEZfQ2hzJm3MtOzzRbqR2XdpCh31THReuu39AbH57LupM5Jw9mlJvIlHFYTakioHbIXDPPt2KOIg9qp-iqc-Xe88gvO8tVr_OPMDUKnk5J8mW2DH6Q.jpg" alt="САЯ ДОМИКИ" loading="lazy" />
               <h3>САЯ ДОМИКИ</h3>
               <p>Пицунда, Агрба 24. 20 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/miraslava-mini-otel-3143/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/miraslava-mini-otel-3143/">
               <img src="https://cdn4.telesco.pe/file/tjgkjmIBVKc9uG6HIeXI0jc5Pd4MymeaCIsEO_zCYngzStKjWQ0-hb-LdoxqBfhuHMwlnIxOC85pzBif4rRw0aF8hputaWfEMgYxPBBiFpq4Uh0Js1bc_EphOP0Y-EksSterbnJApXuHjdD7zGrYRUyh4gu-TgYhdLf_mt-HP-CxLx4i2-AaGS1S9UyJorKtp2vmcsrkfigtVL-Hj7ChVOCi-Zq29Zbgk3RwA3bA6AgbxdJR6n-VIvlWNce7y-vHRku9bZrOLF9wsBxH1QYHCzMYSi-k3eCL6-rQnj-N64UMkx2iGKlvaUHfLOqOX1grFcAaELYGGSrWz619w9MQVQ.jpg" alt="МИРАСЛАВА МИНИ-ОТЕЛЬ" loading="lazy" />
               <h3>МИРАСЛАВА МИНИ-ОТЕЛЬ</h3>
               <p>Лдзаа, Рыбзаводская 82. 2 минуты до моря.</p>
             </a>
-            <a class="catalog-card" href="/hotels/aduney-gostevoy-dom-3181/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/aduney-gostevoy-dom-3181/">
               <img src="https://cdn4.telesco.pe/file/kRMYW2ndfOdXnDcDXGi37S7TFtampeaUOlSKLRxhMvXK5bQl8cG71Q8OUtEOs54ZTVdmkjsWzS4N777HnUEGpuibLl298NzhA_WlXwNEgF1XXuYKcBMGMGSNihT6QGBclkHRroPfXHRXxhgKQg80bTJlrMPNpEc1JtGzB1CLS5kb0CDOcqE09pthhMhDYwuYfQaj4DKANsmT54XV4zIHQEedB3SSGHaiCUvKojl5MNzSfaIQyr_qne9OEEz6q8zT9GgoncO0hscKr-rlFlVZqC8GezCSUKFAhg43WLqDbLDqoN03ccud3QP3B1ckVTamgu2Tt_9_ACHnufQw0wXikg.jpg" alt="АДУНЕЙ ГОСТЕВОЙ ДОМ" loading="lazy" />
               <h3>АДУНЕЙ ГОСТЕВОЙ ДОМ</h3>
               <p>Гагра, улица Абазгаа 65/2. 7 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/fazenda-otel-s-basseynom-i-pitaniem-3190/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/fazenda-otel-s-basseynom-i-pitaniem-3190/">
               <img src="https://cdn4.telesco.pe/file/CyJYJ-T8jcxFQCqo-9w8JMRYJEzlsbg0v3t1ADS8bxRAWM80SxQz7LAzYdZ1sVpxouW_ExC-45j8PowwruLFULA7q83npvjCFykfQjdSvGuDEMjGfSzqColP6_woxTx2cIn4McrrzsO35pJrrpm2FEndpMadbcSRcJ3rZI12yDjt0Ac8OE-6XJTeeb_I_-_98_uj3nWxZ5PiimIZ3vwsOyAOmcE00DunLYtX0kSfsJgFOO8zurKBTeNKGT6tep2l-iGOKJcMyevEoZxBCxHhtX2C7gidurvZLOpA0FiknG15mLy1KRZ7qyLe7_t6Zqin-ISemsCKwoVFgO3z0tv6cQ.jpg" alt="ФАЗЕНДА ОТЕЛЬ С БАССЕЙНОМ И ПИТАНИЕМ" loading="lazy" />
               <h3>ФАЗЕНДА ОТЕЛЬ С БАССЕЙНОМ И ПИТАНИЕМ</h3>
               <p>Пицунда, ул.Фабричная 13/1. 7 минут до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/u-morya-domiki-3200/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/u-morya-domiki-3200/">
               <img src="https://cdn4.telesco.pe/file/dx7PrQTbA3bC5yU6_Z5kSoYaVp9FqhBYsaQPAB1e1TDJa0vFXWY8IR0TRN9S9YBErHc4kYaanQlmzV8zE-GT1nfTW9K9I5StPaAIkWtMfqI6-VfPRElbNXDwRJQFNxdEhinHOshTSa-ke49_CohuyExFfGO9yNWJjEh1HVk5RK4NXYDZiqXJ2Qq1G73cdeGsMkO0OrwqpL_VsBZcgOnnCOAVeRzLPCijMiZnbUcUVB8hH5GUtbgNAFQBfoSStB_ykQX2gjecIsZu52f7b8qN2xZshC3RfPU8W0toD6WcrQ8bhm76la7qO4A8vaMnDbBPWVuJIH228-BkzALZ9DU3PQ.jpg" alt="У МОРЯ ДОМИКИ" loading="lazy" />
               <h3>У МОРЯ ДОМИКИ</h3>
               <p>Сухум, ул. Кодорское шоссе 665 д. 43. 2 минуты до знаменитого пляжа Мокко.</p>
             </a>
-            <a class="catalog-card" href="/hotels/heppi-lend-domiki-dvuhetazhnye-3313/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/heppi-lend-domiki-dvuhetazhnye-3313/">
               <img src="https://cdn4.telesco.pe/file/rlRervly0QTrXWq96rvop9cmbrGKePNbLoB1-2hE65jroSsSsTdahswISPr_f2Od-vkfz4MtOHrvPv1yFPYqsw577ZUn80Wv2cNdtCM0RvrgTw_-Pltsp5YLxreBcKAnLNUWqdUljxt16azlnt8N4Mlf7hKsgQLKu6bjlzrQ3IIn1P8NcPsPXJK-t_9sDPbQLQL-J0dkMa0D3BynLZ4iIjaAYgv3yhJWqKU0gHyWB4a4fr-VZX_0QR8y6btxCHmNhVltkTvAEf3SyLGqvhb_HYerhZC0bn8aqGrQDos4VmSCEmN9-kYg4IYSqMuwMN3IDWJl-nwigUv7Nqn8197Akg.jpg" alt="ХЭППИ ЛЭНД ДОМИКИ ДВУХЭТАЖНЫЕ" loading="lazy" />
               <h3>ХЭППИ ЛЭНД ДОМИКИ ДВУХЭТАЖНЫЕ</h3>
               <p>Лдзаа, ул. Рыбзаводская 51. пляж мелко-галечный в 1 минуте.</p>
             </a>
-            <a class="catalog-card" href="/hotels/kavo-de-bukso-domiki-3323/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/kavo-de-bukso-domiki-3323/">
               <img src="https://cdn4.telesco.pe/file/gkaEDp_XyYPQBUY8hxxhn6Dghzlzktf6S7-Bt_101Z_oguloNSsREWIiQDl5rSg87XZZj9WbVgDIYRmxp0z5PpJ1CPPcR6QgNwZlcn-79-JZSrTuEL1zhfsCHlVJDIXHLNZMgio5sA83tti7Ec0SXzTUNNWaIx2uPvz4QSzQ0R3JQkgeFnOfzx7pJu1oZEj3ahj64-MsS5pxG-vJJphhSR8Kez6EARPHD7mz5_oCpunifIrP9fLekJ3im2eXwwWJZbjdJ76AVTqDotOinxY_4UZ0EynXpPB4S6G8IKmD_3qTXmyTt-6Ekyu6Mq5aFiBn8U_jCEJfpMDsURCuThzMEg.jpg" alt="КАВО ДЕ БУКСО ДОМИКИ" loading="lazy" />
               <h3>КАВО ДЕ БУКСО ДОМИКИ</h3>
               <p>Лдзаа, Агрба 5г. сосновый галечный пляж в 5 минутах.</p>
             </a>
-            <a class="catalog-card" href="/hotels/bi-heppi-apart-otel-3334/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/bi-heppi-apart-otel-3334/">
               <img src="https://cdn4.telesco.pe/file/H16yAzPy3iwKfRhYRDPtz8tdS3Pd0BEsOxGuLlrAHv6aoBCr3gfcG7qVXiRLc-thVBcBv2MmaCKkRUwEsuYwkjfUIGZpWXlg1x5WAiPr6-LVqRThoGax11R57vMjCXedcCfZE_6SYn5mChPKyXsrmDCrKL3xDva8nW87gcbLmMsCtAsYPLYuK577w-neZ3ECJ94JHrjpYU_VNukfmM7lAJC3Fpb1s2MQL5j2Ws6-wthfV4b6FWFr7sesf2MlUNvDUvq89w6oB9jmyCtTYF-FxvLGyHzK2Y4D6RU3tNMnZsPjJRBG5uKw1L1uLhh-IzbJ6tP2_6R9jQentpbYQWdyKg.jpg" alt="БИ ХЭППИ АПАРТ-ОТЕЛЬ" loading="lazy" />
               <h3>БИ ХЭППИ АПАРТ-ОТЕЛЬ</h3>
               <p>Сухум, район Синоп, Кодорское шоссе, д. 665 (ориентир — детский сад). 3 минуты до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/madlena-domiki-3344/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/madlena-domiki-3344/">
               <img src="https://cdn4.telesco.pe/file/JlbsQhhQUojYrblamjG3UabQNnhKZZO10nN_OL9LajomxUGcmTa1zi28W_BHYl0awccpABGL1N8uZ5jySDg8nE46_mZMAOdjBMR9by0kY95Sv-wYwtdEihlBHQ6Xk5w2lKQQ84RmDWIU4zxBqvQmD2GeimX8GrXjPLxcu5VqXMFEhF-3e33NXOfkK2_Ia7mHALC119XCA8t6KqDhVQfaa24Cj3vSEzHdwzuOtEkaU23w2wnlwyK6PbrEWKWCHAW1xaUCuTmuUifdvCEX-PbKfTel4yL4TvDvfFvhDyyBoXfkkn96B2Wwa8YPsciJGzYOzBT-JYgDkj4LvX8ozxeGiA.jpg" alt="МАДЛЕНА ДОМИКИ" loading="lazy" />
               <h3>МАДЛЕНА ДОМИКИ</h3>
               <p>Лдзаа, ул. Речная 41Б. пляж в 3 минутах пешком.</p>
             </a>
-            <a class="catalog-card" href="/hotels/mechta-apartamenty-s-kuhney-3363/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/mechta-apartamenty-s-kuhney-3363/">
               <img src="https://cdn4.telesco.pe/file/UQcDtlbmJCfxoK530rOGUEAqeQWti6LQSjVWIASgRyH9g1yvhWeIwjZ3kZ5ZOHvbQusVGmDhMozITTTUA8ZnbAnHSdMoZ0G-cLN61O1nTURZeGpM6MyP_BBuThMfzP0wEsm7pf2KXUFAYBuMXXa_HOeoi9u1Avp2gM3xHGBNe44WaglNV-E9vtEaKjoZEfsvxgmT4NYwVj-RiaJSZm8Bn86Lv9Fb77G7rJRzpsmCZISr3lg8IZJuV1h69TL2LBzbMlNsGTI3JlYW8jR9IIhI_Cd8lHvFhfnAIWavVzMiDAgWPuqC0cZLAiVQqCtABS7U1AIljgOksuWPeLuk4f_JAQ.jpg" alt="МЕЧТА АПАРТАМЕНТЫ С КУХНЕЙ" loading="lazy" />
               <h3>МЕЧТА АПАРТАМЕНТЫ С КУХНЕЙ</h3>
               <p>Лдзаа, Рыбзавод. 1 минута до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/sisayd-domiki-3409/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/sisayd-domiki-3409/">
               <img src="https://cdn4.telesco.pe/file/WqBdluKPM07dKojW_Ggw5KOOCHnbXMslSK6EbaVpxlIKSgVGUIGh4QoIsz9pcfQny4TrhbVO65YCBS9vJWHaS8svTwT_Ap9IrZFxJoFiphc7uWNRH32WbaGtNPggu-XpPVmvG8xX_FX0JRzdTB5BAK4r_osoPDAz3zCzt974iUWgFZq5nUtUhQfSsamHZ8wdl2LHCvJ8CqhqALfmAgi58An0iTHAYjDkjex1jO1v89kuEh0j_UI4_Skit6r0JXpjl9xCOemGjw2vlc0LQESVgqP7v6T1altqIk_0mYq76wrX8wSW00Lxw9-FP9qyfNXwVLr14ff8RRC2AVnEeF70mA.jpg" alt="СИСАЙД ДОМИКИ" loading="lazy" />
               <h3>СИСАЙД ДОМИКИ</h3>
               <p>Приморское/Новый Афон. 1 минута до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/voshodyaschaya-zvezda-otel-s-basseynom-3428/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/voshodyaschaya-zvezda-otel-s-basseynom-3428/">
               <img src="https://cdn4.telesco.pe/file/Scb2rX2dWRnOZBpLrIWtbzCrZ0Et86Q0BBnbME0awJnUPFeOBwAk14Y44bHabx1W5JultDUQ7bBZcpn6hzQTfgw_lMAuS5QEnUTJlYDkzlRRSHweqzFFTgs4BHv-vmUtVdGk_Q8J3r_vjEuMVKjmppQk-TXN7NxlbDh0AI5KUX7NOAf73fTdHdd0WgicUR6kjarCnIUTys509Xm1ttiQzm-pgRGSaHWk5RZBzVrP2NBri2BgBnuiZE1uY5xlWn1o24X8SBSbDhRvv3OPaOPO3UQ6bTRXTZDrYs1nNzPDRC5dRGd47KWHinqwzlSFawLbgYsTKAQuWjZYUqbkLCgkkw.jpg" alt="ВОСХОДЯЩАЯ ЗВЕЗДА ОТЕЛЬ С БАССЕЙНОМ" loading="lazy" />
               <h3>ВОСХОДЯЩАЯ ЗВЕЗДА ОТЕЛЬ С БАССЕЙНОМ</h3>
               <p>Алахадзы, ул. Инал-Ипа, 75. 9 минут пешком до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/sizon-gostevoy-dom-3449/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/sizon-gostevoy-dom-3449/">
               <img src="https://cdn4.telesco.pe/file/EtNf1qck9ka2vDdED6Y4jKMRd-0qaQ1aps8xH9wk-sXmvlKoMKhGz0-TA4-g3JXnyupbf4eDq9-GTx6FNYN2ltA-p1AOwQxxC3T6JoAT1FAeLuwsv2yJNukEPL43WTcAGDB7Ftju8T-XzTP8WlJBp6ImkB8m8K0nB6e3WjK60lLQCXM9xBxNc7VsmPLCEnqs3iUzIKqHX1P07S2dYojJqeDmSVgUJBWF0P23dRc5v8TUXbVMfSLSeKWIb-C_H_RakhIdHtYUmguoVGSBQl-_AFQCCvqKaAZOxFcFrgFv8-ElCbLHORyDIVr68PpyGmRe22m7tOI7BtGCV17DNtpUkg.jpg" alt="СИЗОН ГОСТЕВОЙ ДОМ" loading="lazy" />
               <h3>СИЗОН ГОСТЕВОЙ ДОМ</h3>
               <p>Лдзаа, ул. Рыбзаводская, 75. 2 минуты до пляжа.</p>
             </a>
-            <a class="catalog-card" href="/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/">
               <img src="https://cdn4.telesco.pe/file/Aa8TW8NMB7Pu2oclx0BSW53jp1sRmZxa8qEEE_m7NcUEdbDIFpmYJfX2Efr0WsrDBzYubfVA4iTchfRdc8Dkl6YKwp5qpx6Med8NcgEHbe6jdwLjRNdmTWDjsn4EtcrTP8M52DlKwnf7V5S6atiCN_uRnIDazNoirNPSW7Q7tRSYbK5VqeIablNB3RSBRGf-cRO-uuOQhqH0DRkRRsoCyxwmDzll-LACaE_fzkDiGXZ0X1CkKPQEvYCDhlF4v7dvmSyolSXsNwkFFnUkHPcHeIsE6C-_iPJwpV9RBlhdEkfjwqeDMTtOJB5Xwfmw8zPIsupTp-jJKdpGQqHqBq1__w.jpg" alt="ВИЛЛА ЛЮБОВЬ ВЫХОД ИЗ ОТЕЛЯ СРАЗУ НА ПЛЯЖ" loading="lazy" />
               <h3>ВИЛЛА ЛЮБОВЬ ВЫХОД ИЗ ОТЕЛЯ СРАЗУ НА ПЛЯЖ</h3>
               <p>Лдзаа, Рыбозаводская 86. пляж мелко-галечный, частично песчаный.</p>
             </a>
-            <a class="catalog-card" href="/hotels/antaa-gostinitsa-u-sosnovogo-plyazha-2899/">
+            <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/antaa-gostinitsa-u-sosnovogo-plyazha-2899/">
               <img src="https://cdn4.telesco.pe/file/KzgQGG0oCXVuc1Rdh8iqHv2Fi5ibp_vo_RIKs_cNiPn4U6Idi6vf0nNpZSQDAap6-TmD-V9qAhywCH0c_tuT1m6Kqa0q5-2Zr-neyRRnG01xHNlX-Zu1vPM4zqLImSJk2__VhoUsYE7Htaf7Yi10A3dgD6aUK-v7D9C1d-dyXlJp5v8b7EvyCz29fFz6rtrsJzMjQQaUEObD-3knmeHP_4mVZiQeaaJRVnCo6tBCBLP3JV9Qkgw2uhOlnXFW2ZUp73JyLlC_JLq7AhBD9P_omuNPOkjoGx2AI8JG2U5qnZsie_2LjWTLv_FG6hQIPXlukBbABC30o-_ybxR-x3XKFw.jpg" alt="АНТАА ГОСТИНИЦА У СОСНОВОГО ПЛЯЖА" loading="lazy" />
               <h3>АНТАА ГОСТИНИЦА У СОСНОВОГО ПЛЯЖА</h3>
               <p>Лдзаа, ул. Назадзе 45а (возле погранзаставы). пляж галечный сосновый 1 минута.</p>
@@ -540,6 +644,101 @@
           month: "long",
           year: "numeric"
         });
+      })();
+
+      (function () {
+        const chips = Array.from(document.querySelectorAll('.filter-chip'));
+        const cards = Array.from(document.querySelectorAll('.catalog-card'));
+        const visibleCount = document.getElementById('visible-count');
+        const emptyNote = document.getElementById('filter-empty');
+        const clearBtn = document.getElementById('clear-filters');
+        const openAdvancedBtn = document.getElementById('open-advanced-filters');
+        const advancedModal = document.getElementById('advanced-filters-modal');
+        const closeAdvancedEls = Array.from(document.querySelectorAll('[data-close-advanced]'));
+
+        const groups = ['distance', 'food', 'price', 'city', 'beach', 'room', 'stay'];
+        const selected = Object.fromEntries(groups.map((g) => [g, new Set()]));
+
+        function parseValues(card, group) {
+          const key = `filter${group.charAt(0).toUpperCase()}${group.slice(1)}`;
+          const raw = card.dataset[key] || '';
+          return raw.split('|').map((v) => v.trim()).filter(Boolean);
+        }
+
+        function applyFilters() {
+          let shown = 0;
+          cards.forEach((card) => {
+            let ok = true;
+            for (const group of groups) {
+              if (selected[group].size === 0) continue;
+              const values = parseValues(card, group);
+              const hit = values.some((v) => selected[group].has(v));
+              if (!hit) {
+                ok = false;
+                break;
+              }
+            }
+            card.hidden = !ok;
+            if (ok) shown += 1;
+          });
+          if (visibleCount) visibleCount.textContent = String(shown);
+          if (emptyNote) emptyNote.hidden = shown !== 0;
+        }
+
+        chips.forEach((chip) => {
+          chip.type = 'button';
+          chip.setAttribute('aria-pressed', 'false');
+          chip.addEventListener('click', () => {
+            const group = chip.dataset.group;
+            const value = chip.dataset.value;
+            if (!group || !value || !selected[group]) return;
+            if (selected[group].has(value)) {
+              selected[group].delete(value);
+              chip.classList.remove('is-active');
+              chip.setAttribute('aria-pressed', 'false');
+            } else {
+              selected[group].add(value);
+              chip.classList.add('is-active');
+              chip.setAttribute('aria-pressed', 'true');
+            }
+            applyFilters();
+          });
+        });
+
+        if (clearBtn) {
+          clearBtn.addEventListener('click', () => {
+            groups.forEach((g) => selected[g].clear());
+            chips.forEach((chip) => {
+              chip.classList.remove('is-active');
+              chip.setAttribute('aria-pressed', 'false');
+            });
+            applyFilters();
+          });
+        }
+
+        if (openAdvancedBtn && advancedModal) {
+          openAdvancedBtn.addEventListener('click', () => {
+            advancedModal.hidden = false;
+            document.body.classList.add('modal-open');
+          });
+        }
+
+        closeAdvancedEls.forEach((el) => {
+          el.addEventListener('click', () => {
+            if (!advancedModal) return;
+            advancedModal.hidden = true;
+            document.body.classList.remove('modal-open');
+          });
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && advancedModal && !advancedModal.hidden) {
+            advancedModal.hidden = true;
+            document.body.classList.remove('modal-open');
+          }
+        });
+
+        applyFilters();
       })();
     </script>
   </body>
