@@ -59,111 +59,110 @@
       <section class="section">
         <article class="card">
           <h2>Популярные обзоры</h2>
-          <div class="filters-wrap" id="filters-root">
-            <div class="filters-toolbar">
-              <button type="button" class="btn-filter" id="open-advanced-filters">Расширенные фильтры</button>
-              <button type="button" class="btn-filter btn-filter--ghost" id="clear-filters">Сбросить</button>
-            </div>
-
-            <div class="filters-grid">
-              <details class="filter-group" open>
-                <summary>Расстояние до пляжа</summary>
-                <div class="filter-chips">
-                  <button type="button" class="filter-chip" data-group="distance" data-value="beachfront">Береговая зона</button>
-                  <button type="button" class="filter-chip" data-group="distance" data-value="up-to-5">До 5 минут</button>
-                  <button type="button" class="filter-chip" data-group="distance" data-value="up-to-10">До 10 минут</button>
-                  <button type="button" class="filter-chip" data-group="distance" data-value="over-10">Более 10 минут</button>
-                </div>
-              </details>
-
-              <details class="filter-group" open>
-                <summary>Питание</summary>
-                <div class="filter-chips">
-                  <button type="button" class="filter-chip" data-group="food" data-value="breakfast">Завтрак</button>
-                  <button type="button" class="filter-chip" data-group="food" data-value="half-board">Полупансион</button>
-                  <button type="button" class="filter-chip" data-group="food" data-value="full-board">Завтрак, обед, ужин</button>
-                  <button type="button" class="filter-chip" data-group="food" data-value="cafe">Есть кафе/столовая</button>
-                  <button type="button" class="filter-chip" data-group="food" data-value="no-food">Без питания</button>
-                </div>
-              </details>
-
-              <details class="filter-group" open>
-                <summary>Цена</summary>
-                <div class="filter-chips">
-                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-3000">До 3000 руб.</button>
-                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-4000">До 4000 руб.</button>
-                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-5000">До 5000 руб.</button>
-                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-6000">До 6000 руб.</button>
-                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-7000">До 7000 руб.</button>
-                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-8000">До 8000 руб.</button>
-                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-9000">До 9000 руб.</button>
-                  <button type="button" class="filter-chip" data-group="price" data-value="up-to-10000">До 10000 руб.</button>
-                  <button type="button" class="filter-chip" data-group="price" data-value="over-10000">Свыше 10000 руб.</button>
-                </div>
-              </details>
-            </div>
-
-            <p class="filter-result">Показано объектов: <strong id="visible-count">0</strong></p>
-            <p class="filter-empty" id="filter-empty" hidden>По выбранным параметрам пока нет подходящих объектов.</p>
-          </div>
-
-          <div class="filters-modal" id="advanced-filters-modal" hidden>
-            <div class="filters-modal__backdrop" data-close-advanced></div>
-            <div class="filters-modal__panel" role="dialog" aria-modal="true" aria-labelledby="advanced-filters-title">
-              <div class="filters-modal__header">
-                <h3 id="advanced-filters-title">Расширенные фильтры</h3>
-                <button type="button" class="filters-modal__close" data-close-advanced aria-label="Закрыть">✕</button>
+          <div class="catalog-layout" id="filters-root">
+            <aside class="filters-wrap">
+              <p class="filters-sidebar-title">Фильтры</p>
+              <div class="filters-toolbar">
+                <button type="button" class="btn-filter btn-filter--ghost" id="clear-filters">Сбросить</button>
               </div>
 
-              <div class="filters-advanced-grid">
-                <details class="filter-group" open>
-                  <summary>Город</summary>
-                  <div class="filter-chips">
-                    <button type="button" class="filter-chip" data-group="city" data-value="sukhum">Сухум</button>
-                    <button type="button" class="filter-chip" data-group="city" data-value="new-afon">Новый Афон</button>
-                    <button type="button" class="filter-chip" data-group="city" data-value="gudauta">Гудаута</button>
-                    <button type="button" class="filter-chip" data-group="city" data-value="ldzaa">Лдзаа</button>
-                    <button type="button" class="filter-chip" data-group="city" data-value="pitsunda">Пицунда</button>
-                    <button type="button" class="filter-chip" data-group="city" data-value="alakhadzy">Алахадзы</button>
-                    <button type="button" class="filter-chip" data-group="city" data-value="gagra">Гагра</button>
-                    <button type="button" class="filter-chip" data-group="city" data-value="tsandripsh">Цандрипш</button>
-                  </div>
-                </details>
+              <div class="filters-section">
+                <p class="filters-section-title">Основные фильтры</p>
+                <div class="filters-grid">
+                  <details class="filter-group" open>
+                    <summary>Расстояние до пляжа</summary>
+                    <div class="filter-chips">
+                      <button type="button" class="filter-chip" data-group="distance" data-value="beachfront">Береговая зона</button>
+                      <button type="button" class="filter-chip" data-group="distance" data-value="up-to-5">До 5 минут</button>
+                      <button type="button" class="filter-chip" data-group="distance" data-value="up-to-10">До 10 минут</button>
+                      <button type="button" class="filter-chip" data-group="distance" data-value="over-10">Более 10 минут</button>
+                    </div>
+                  </details>
 
-                <details class="filter-group" open>
-                  <summary>Пляж</summary>
-                  <div class="filter-chips">
-                    <button type="button" class="filter-chip" data-group="beach" data-value="pebble">Галечный</button>
-                    <button type="button" class="filter-chip" data-group="beach" data-value="pine-pebble">Сосновый галечный</button>
-                    <button type="button" class="filter-chip" data-group="beach" data-value="sand">Песчаный</button>
-                    <button type="button" class="filter-chip" data-group="beach" data-value="mixed">Галечно-песочный</button>
-                  </div>
-                </details>
+                  <details class="filter-group" open>
+                    <summary>Питание</summary>
+                    <div class="filter-chips">
+                      <button type="button" class="filter-chip" data-group="food" data-value="breakfast">Завтрак</button>
+                      <button type="button" class="filter-chip" data-group="food" data-value="half-board">Полупансион</button>
+                      <button type="button" class="filter-chip" data-group="food" data-value="full-board">Завтрак, обед, ужин</button>
+                      <button type="button" class="filter-chip" data-group="food" data-value="cafe">Есть кафе/столовая</button>
+                      <button type="button" class="filter-chip" data-group="food" data-value="no-food">Без питания</button>
+                    </div>
+                  </details>
 
-                <details class="filter-group" open>
-                  <summary>Особенности номера</summary>
-                  <div class="filter-chips">
-                    <button type="button" class="filter-chip" data-group="room" data-value="sea-view">Вид на море</button>
-                    <button type="button" class="filter-chip" data-group="room" data-value="balcony">Балкон</button>
-                    <button type="button" class="filter-chip" data-group="room" data-value="pool">Бассейн</button>
-                    <button type="button" class="filter-chip" data-group="room" data-value="one-room">Однокомнатный</button>
-                    <button type="button" class="filter-chip" data-group="room" data-value="two-room">Двухкомнатный</button>
-                    <button type="button" class="filter-chip" data-group="room" data-value="kitchen">Своя кухня</button>
-                    <button type="button" class="filter-chip" data-group="room" data-value="ac">Кондиционер</button>
-                  </div>
-                </details>
-
-                <details class="filter-group" open>
-                  <summary>Особенности размещения</summary>
-                  <div class="filter-chips">
-                    <button type="button" class="filter-chip" data-group="stay" data-value="kids">Можно с детьми</button>
-                    <button type="button" class="filter-chip" data-group="stay" data-value="pets">Можно с животными</button>
-                  </div>
-                </details>
+                  <details class="filter-group" open>
+                    <summary>Цена</summary>
+                    <div class="filter-chips">
+                      <button type="button" class="filter-chip" data-group="price" data-value="up-to-3000">До 3000 руб.</button>
+                      <button type="button" class="filter-chip" data-group="price" data-value="up-to-4000">До 4000 руб.</button>
+                      <button type="button" class="filter-chip" data-group="price" data-value="up-to-5000">До 5000 руб.</button>
+                      <button type="button" class="filter-chip" data-group="price" data-value="up-to-6000">До 6000 руб.</button>
+                      <button type="button" class="filter-chip" data-group="price" data-value="up-to-7000">До 7000 руб.</button>
+                      <button type="button" class="filter-chip" data-group="price" data-value="up-to-8000">До 8000 руб.</button>
+                      <button type="button" class="filter-chip" data-group="price" data-value="up-to-9000">До 9000 руб.</button>
+                      <button type="button" class="filter-chip" data-group="price" data-value="up-to-10000">До 10000 руб.</button>
+                      <button type="button" class="filter-chip" data-group="price" data-value="over-10000">Свыше 10000 руб.</button>
+                    </div>
+                  </details>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="catalog-grid" id="catalog-grid">
+
+              <div class="filters-section">
+                <p class="filters-section-title">Расширенные фильтры</p>
+                <div class="filters-advanced-grid">
+                  <details class="filter-group" open>
+                    <summary>Город</summary>
+                    <div class="filter-chips">
+                      <button type="button" class="filter-chip" data-group="city" data-value="sukhum">Сухум</button>
+                      <button type="button" class="filter-chip" data-group="city" data-value="new-afon">Новый Афон</button>
+                      <button type="button" class="filter-chip" data-group="city" data-value="gudauta">Гудаута</button>
+                      <button type="button" class="filter-chip" data-group="city" data-value="ldzaa">Лдзаа</button>
+                      <button type="button" class="filter-chip" data-group="city" data-value="pitsunda">Пицунда</button>
+                      <button type="button" class="filter-chip" data-group="city" data-value="alakhadzy">Алахадзы</button>
+                      <button type="button" class="filter-chip" data-group="city" data-value="gagra">Гагра</button>
+                      <button type="button" class="filter-chip" data-group="city" data-value="tsandripsh">Цандрипш</button>
+                    </div>
+                  </details>
+
+                  <details class="filter-group" open>
+                    <summary>Пляж</summary>
+                    <div class="filter-chips">
+                      <button type="button" class="filter-chip" data-group="beach" data-value="pebble">Галечный</button>
+                      <button type="button" class="filter-chip" data-group="beach" data-value="pine-pebble">Сосновый галечный</button>
+                      <button type="button" class="filter-chip" data-group="beach" data-value="sand">Песчаный</button>
+                      <button type="button" class="filter-chip" data-group="beach" data-value="mixed">Галечно-песочный</button>
+                    </div>
+                  </details>
+
+                  <details class="filter-group" open>
+                    <summary>Особенности номера</summary>
+                    <div class="filter-chips">
+                      <button type="button" class="filter-chip" data-group="room" data-value="sea-view">Вид на море</button>
+                      <button type="button" class="filter-chip" data-group="room" data-value="balcony">Балкон</button>
+                      <button type="button" class="filter-chip" data-group="room" data-value="pool">Бассейн</button>
+                      <button type="button" class="filter-chip" data-group="room" data-value="one-room">Однокомнатный</button>
+                      <button type="button" class="filter-chip" data-group="room" data-value="two-room">Двухкомнатный</button>
+                      <button type="button" class="filter-chip" data-group="room" data-value="kitchen">Своя кухня</button>
+                      <button type="button" class="filter-chip" data-group="room" data-value="ac">Кондиционер</button>
+                    </div>
+                  </details>
+
+                  <details class="filter-group" open>
+                    <summary>Особенности размещения</summary>
+                    <div class="filter-chips">
+                      <button type="button" class="filter-chip" data-group="stay" data-value="kids">Можно с детьми</button>
+                      <button type="button" class="filter-chip" data-group="stay" data-value="pets">Можно с животными</button>
+                    </div>
+                  </details>
+                </div>
+              </div>
+
+              <p class="filter-result">Показано объектов: <strong id="visible-count">0</strong></p>
+              <p class="filter-empty" id="filter-empty" hidden>По выбранным параметрам пока нет подходящих объектов.</p>
+            </aside>
+
+            <div class="catalog-pane">
+              <div class="catalog-grid" id="catalog-grid">
             <a class="catalog-card" data-filter-distance="" data-filter-food="" data-filter-price="" data-filter-city="" data-filter-beach="" data-filter-room="" data-filter-stay="" href="/hotels/leon-domiki/">
               <img src="https://cdn4.telesco.pe/file/LuKHr_ykGxPjTq9Aw0WVxbqlTBYBpXUSLB84taU785xlcf1L9nhjRQuHAEAGOSth8hO8Z37O5XUoqBbTMPnRDCrzQ8KyCkmT2vFAX_xY4DfHNMfqky3aKbLyVCYjrmc2euCppGJHkH1nz9aGdWN3LrqjvEWKkVeIDN8pA7R8A0tHDtvkDduKjEEO9cFzvXUdj08zJFcx5V-yp1EEusCR-gQE71euYxeP1vkaEGdQhhZHQqYyzrkrba9F3tbFwxObWCcSfaO_o04hXIE9nyRm9xweUSNE44b9V8TbmyLF-qh8E1oImB5xTAotpnmCrqr3uHXZvd3TtyZiG2Qbh56sXw.jpg" alt="ЛЕОН домики" loading="lazy" />
               <h3>ЛЕОН ДОМИКИ</h3>
@@ -574,6 +573,8 @@
               <h3>АНТАА ГОСТИНИЦА У СОСНОВОГО ПЛЯЖА</h3>
               <p>Лдзаа, ул. Назадзе 45а (возле погранзаставы). пляж галечный сосновый 1 минута.</p>
             </a>
+              </div>
+            </div>
           </div>
         </article>
       </section>
@@ -652,9 +653,6 @@
         const visibleCount = document.getElementById('visible-count');
         const emptyNote = document.getElementById('filter-empty');
         const clearBtn = document.getElementById('clear-filters');
-        const openAdvancedBtn = document.getElementById('open-advanced-filters');
-        const advancedModal = document.getElementById('advanced-filters-modal');
-        const closeAdvancedEls = Array.from(document.querySelectorAll('[data-close-advanced]'));
 
         const groups = ['distance', 'food', 'price', 'city', 'beach', 'room', 'stay'];
         const selected = Object.fromEntries(groups.map((g) => [g, new Set()]));
@@ -715,28 +713,6 @@
             applyFilters();
           });
         }
-
-        if (openAdvancedBtn && advancedModal) {
-          openAdvancedBtn.addEventListener('click', () => {
-            advancedModal.hidden = false;
-            document.body.classList.add('modal-open');
-          });
-        }
-
-        closeAdvancedEls.forEach((el) => {
-          el.addEventListener('click', () => {
-            if (!advancedModal) return;
-            advancedModal.hidden = true;
-            document.body.classList.remove('modal-open');
-          });
-        });
-
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && advancedModal && !advancedModal.hidden) {
-            advancedModal.hidden = true;
-            document.body.classList.remove('modal-open');
-          }
-        });
 
         applyFilters();
       })();
