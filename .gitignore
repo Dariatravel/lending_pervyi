@@ -1,0 +1,10 @@
+.DS_Store
+.venv/
+__pycache__/
+*.pyc
+
+# local telegram auth/session artifacts
+tg_session.session
+telegram_login_qr.png
+tg_login_check.py
+tg_export_topics.py.save
