@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f0e2cc"/><stop offset="100%" stop-color="#d8c0a0"/></linearGradient></defs>
+<rect width="1200" height="700" fill="url(#g)"/>
+<text x="50%" y="45%" text-anchor="middle" fill="#4b3f33" font-family="Manrope, Arial, sans-serif" font-size="58" font-weight="700">СИРИУС ОТЕЛЬ У СОСНОВОГО ПЛЯЖА</text>
+<text x="50%" y="55%" text-anchor="middle" fill="#6d5e4d" font-family="Manrope, Arial, sans-serif" font-size="36">Фото обновляется</text>
+</svg>
