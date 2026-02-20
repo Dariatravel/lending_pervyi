@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Oswald:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -44,8 +44,11 @@
     <div class="grain" aria-hidden="true"></div>
     <main>
       <header class="hero section">
-        <p class="eyebrow">Абхазберег</p>
-        <h1>Каталог размещения в Абхазии</h1>
+        <div class="brand-badge">
+          <img src="/media/branding/logo-round.svg" alt="Логотип Абхазский Берег" />
+          <p class="eyebrow">Бронирование отелей в Абхазии</p>
+        </div>
+        <h1>АБХАЗСКИЙ БЕРЕГ</h1>
         <p class="lead">
           Собрали свежие обзоры из канала <strong>@abhazbooking</strong>: локации, фото, цены и прямой
           контакт для брони.
@@ -54,7 +57,25 @@
         <a class="btn-book" href="https://t.me/abhazbooking_online" target="_blank" rel="noopener noreferrer"
           >Забронировать</a
         >
+        <div class="hero-usp">
+          <span>Только проверенные отели</span>
+          <span>Цены без накруток</span>
+          <span>Подробные обзоры</span>
+          <span>Поддержка до выезда</span>
+        </div>
       </header>
+
+      <section class="section">
+        <article class="card">
+          <h2>Разделы</h2>
+          <div class="home-nav">
+            <a class="btn-book" href="#ask">Задать вопрос</a>
+            <a class="btn-book" href="#reviews">Отзывы</a>
+            <a class="btn-book" href="#about">Обо мне</a>
+            <a class="btn-book" href="#news">Новости Абхазии</a>
+          </div>
+        </article>
+      </section>
 
       <section class="section">
         <article class="card">
@@ -582,7 +603,50 @@
         </article>
       </section>
 
-      <section class="section">
+      <section class="section" id="about">
+        <article class="card">
+          <h2>Обо Мне</h2>
+          <p>
+            Меня зовут Дарья. Я лично отсматриваю объекты, проверяю локации, собираю реальные фото и видео,
+            чтобы вы понимали, где будете жить.
+          </p>
+          <p>
+            Работаю как персональный менеджер по размещению: от подбора вариантов под бюджет и состав семьи
+            до сопровождения по вопросам заселения.
+          </p>
+          <p>
+            В этой секции можно разместить вашу полную историю и путь в профессии. Если хотите, в следующем
+            шаге я оформлю ее как отдельный красивый блок с таймлайном.
+          </p>
+        </article>
+      </section>
+
+      <section class="section" id="news">
+        <article class="card">
+          <h2>Новости Абхазии</h2>
+          <p>Запускаем отдельную страницу блога с короткими новостями и полезными заметками по сезону.</p>
+          <div class="news-grid">
+            <article class="news-item">
+              <time datetime="2026-02-20">20 февраля 2026</time>
+              <h3>Старт раздела</h3>
+              <p>На странице новостей будем публиковать изменения по курортам, пляжам, маршрутам и ценам.</p>
+            </article>
+            <article class="news-item">
+              <time datetime="2026-02-20">20 февраля 2026</time>
+              <h3>Обновления по объектам</h3>
+              <p>Новые обзоры в каталоге добавляются по мере публикаций с фото и видео из Telegram.</p>
+            </article>
+            <article class="news-item">
+              <time datetime="2026-02-20">20 февраля 2026</time>
+              <h3>Формат блога</h3>
+              <p>Каждая новость имеет дату и краткий вывод, чтобы посетителю было легко следить за изменениями.</p>
+            </article>
+          </div>
+          <p><a class="btn-book" href="/news/">Перейти в Новости Абхазии</a></p>
+        </article>
+      </section>
+
+      <section class="section" id="reviews">
         <article class="card">
           <h2>Отзывы</h2>
           <div class="reviews-scroller" aria-label="Лента отзывов">
@@ -622,8 +686,8 @@
         </article>
       </section>
 
-      <section class="section cta-block">
-        <h2>Контакты</h2>
+      <section class="section cta-block" id="ask">
+        <h2>Задать вопрос</h2>
         <p>
           Задать вопросы либо проверить наличие номеров можно: <strong>+7 940 900-33-40</strong>
           (WhatsApp, Telegram, MAX).

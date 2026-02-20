@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" role="img" aria-label="Абхазский берег">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#25a3e2"/>
+      <stop offset="100%" stop-color="#1673b8"/>
+    </linearGradient>
+  </defs>
+  <circle cx="210" cy="210" r="202" fill="#d6e84f"/>
+  <circle cx="210" cy="210" r="190" fill="#1a6c47"/>
+  <circle cx="210" cy="210" r="168" fill="#ffffff"/>
+  <circle cx="210" cy="210" r="128" fill="url(#g1)"/>
+  <path d="M82 230 C120 200, 300 200, 338 230 L338 252 L82 252 Z" fill="#0f4f35"/>
+  <path d="M92 258 C120 238, 300 238, 328 258" stroke="#3ec565" stroke-width="10" fill="none"/>
+  <path d="M92 280 C120 260, 300 260, 328 280" stroke="#3ec565" stroke-width="10" fill="none"/>
+  <circle cx="210" cy="165" r="42" fill="#ff6b39"/>
+  <rect x="238" y="153" width="22" height="45" rx="2" fill="#0d1c24"/>
+  <rect x="265" y="146" width="16" height="52" rx="2" fill="#0d1c24"/>
+  <path d="M140 194 q10 -22 20 0 q-10 5 -20 0" fill="#0d1c24"/>
+  <path d="M278 194 q10 -22 20 0 q-10 5 -20 0" fill="#0d1c24"/>
+  <path d="M210 128 l40 -22 l-26 24 l26 8 l-18 1 l-7 20 l-7 -19 l-22 2 l17 -10 l-9 -12 z" fill="#0d1c24"/>
+  <g fill="#0d1c24">
+    <circle cx="110" cy="120" r="7"/><circle cx="136" cy="102" r="7"/><circle cx="165" cy="92" r="7"/>
+    <circle cx="255" cy="92" r="7"/><circle cx="284" cy="102" r="7"/><circle cx="310" cy="120" r="7"/>
+  </g>
+  <path d="M80 151 Q210 38 340 151" stroke="#0d1c24" stroke-width="4" fill="none"/>
+  <text x="210" y="344" text-anchor="middle" font-size="44" font-family="Arial, sans-serif" fill="#0d1c24">АБХАЗСКИЙ БЕРЕГ</text>
+</svg>
