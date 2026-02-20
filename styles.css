@@ -356,6 +356,11 @@ body.modal-open {
   border: 1px solid var(--line);
 }
 
+.media-grid img.media-grid__zoomable,
+.video-embed .local-video-preview {
+  cursor: zoom-in;
+}
+
 .note {
   color: var(--muted);
   margin-top: 0.9rem;
@@ -531,6 +536,45 @@ body.modal-open {
   object-fit: cover;
   display: block;
   background: #000;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(10, 10, 10, 0.9);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.lightbox__image {
+  max-width: min(96vw, 1400px);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+}
+
+.lightbox__close {
+  position: fixed;
+  top: 0.9rem;
+  right: 1rem;
+  border: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
 .video-link {
