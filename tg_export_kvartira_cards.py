@@ -2,6 +2,8 @@ import asyncio
 import json
 import re
 import os
+import html
+import urllib.request
 from pathlib import Path
 from telethon import TelegramClient
 
@@ -32,6 +34,35 @@ def excerpt(text: str, n: int = 180) -> str:
     if len(t) <= n:
         return t
     return t[: n - 1].rstrip() + '…'
+
+
+def fetch_og_image_url(message_id: int) -> str:
+    url = f'https://t.me/s/{chat}/{message_id}'
+    req = urllib.request.Request(
+        url,
+        headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/537.36 Chrome/122 Safari/537.36'},
+    )
+    with urllib.request.urlopen(req, timeout=20) as resp:
+        page = resp.read().decode('utf-8', errors='ignore')
+    m = re.search(r'<meta\s+property="og:image"\s+content="([^"]+)"', page, flags=re.IGNORECASE)
+    if not m:
+        return ''
+    return html.unescape(m.group(1))
+
+
+def download_remote_image(url: str, dst: Path) -> bool:
+    if not url:
+        return False
+    req = urllib.request.Request(
+        url,
+        headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/537.36 Chrome/122 Safari/537.36'},
+    )
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        data = resp.read()
+    if not data:
+        return False
+    dst.write_bytes(data)
+    return True
 
 
 async def main():
@@ -73,6 +104,17 @@ async def main():
             local = await client.download_media(msg.document, file=str(MEDIA_DIR / f'{card_slug}{ext}'))
             if local:
                 image_path = '/media/kvartira-cards/' + Path(local).name
+
+        # Fallback: for many forum topics the top message has no attached photo,
+        # but Telegram public page still exposes a post cover in og:image.
+        if not image_path:
+            try:
+                og_url = fetch_og_image_url(mid)
+                dst = MEDIA_DIR / f'{card_slug}-cover.jpg'
+                if download_remote_image(og_url, dst):
+                    image_path = '/media/kvartira-cards/' + dst.name
+            except Exception:
+                pass
 
         cards.append({
             'topic_id': t.get('topic_id'),
