@@ -179,7 +179,7 @@ body.modal-open {
 
 .filters-modal__header h3 {
   margin: 0;
-  font-size: clamp(2rem, 3.4vw, 3.1rem);
+  font-size: clamp(1rem, 1.7vw, 1.55rem);
   line-height: 1.05;
   font-family: "Manrope", "Segoe UI", sans-serif;
   font-weight: 800;
@@ -212,7 +212,7 @@ body.modal-open {
 .filter-group summary {
   list-style: none;
   cursor: pointer;
-  font-size: clamp(1.65rem, 2.5vw, 2.5rem);
+  font-size: clamp(0.82rem, 1.25vw, 1.25rem);
   font-family: "Manrope", "Segoe UI", sans-serif;
   font-weight: 800;
   margin-bottom: 0.85rem;
@@ -252,7 +252,7 @@ body.modal-open {
   font: inherit;
   font-weight: 700;
   line-height: 1.2;
-  font-size: clamp(1.12rem, 1.4vw, 1.75rem);
+  font-size: clamp(0.56rem, 0.7vw, 0.88rem);
   padding: 0.72rem 1.05rem;
   cursor: pointer;
 }
@@ -538,11 +538,11 @@ body.modal-open {
   }
 
   .filter-group summary {
-    font-size: clamp(1.35rem, 6vw, 2rem);
+    font-size: clamp(0.78rem, 3vw, 1rem);
   }
 
   .filter-chip {
-    font-size: clamp(1rem, 4.2vw, 1.2rem);
+    font-size: clamp(0.58rem, 2.3vw, 0.72rem);
     padding: 0.62rem 0.9rem;
   }
 
