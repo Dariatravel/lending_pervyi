@@ -83,9 +83,21 @@ main {
 .hero-home .btn-book,
 .hero-home .updated,
 .hero-home .lead,
-.hero-home .eyebrow {
+.hero-home .eyebrow,
+.hero-home .hero-logo {
   position: relative;
   z-index: 1;
+}
+
+.hero-logo {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+  margin-bottom: 0.25rem;
 }
 
 .hero-home h1 {
@@ -561,6 +573,11 @@ body.modal-open {
     align-content: end;
   }
 
+  .hero-logo {
+    width: 82px;
+    height: 82px;
+  }
+
   .hero-badges {
     position: static;
     margin-top: 0.7rem;
@@ -622,6 +639,11 @@ body.modal-open {
 
   .hero-badges {
     grid-template-columns: 1fr;
+  }
+
+  .hero-logo {
+    width: 72px;
+    height: 72px;
   }
 }
 
