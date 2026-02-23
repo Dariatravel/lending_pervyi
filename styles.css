@@ -60,9 +60,7 @@ main {
   justify-items: center;
   gap: 0.35rem;
   color: #fff;
-  background:
-    linear-gradient(180deg, rgba(4, 84, 132, 0.1) 0%, rgba(4, 78, 123, 0.38) 48%, rgba(4, 66, 104, 0.72) 100%),
-    url("/media/branding/site-cover.jpg") center/cover no-repeat;
+  background: linear-gradient(180deg, #2ea7df 0%, #1a82c4 46%, #10679e 100%);
   border-radius: 0;
 }
 
