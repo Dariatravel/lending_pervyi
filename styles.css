@@ -1,5 +1,5 @@
 :root {
-  --bg: #e6f5ff;
+  --bg: #dff6f3;
   --paper: #f8fcff;
   --ink: #0f2634;
   --muted: #486878;
@@ -15,10 +15,7 @@
 body {
   margin: 0;
   color: var(--ink);
-  background:
-    radial-gradient(1200px 700px at 80% -10%, #bce8ff 0%, transparent 55%),
-    radial-gradient(900px 500px at -10% 10%, #d8f3ff 0%, transparent 60%),
-    var(--bg);
+  background: var(--bg);
   font-family: "Manrope", "Segoe UI", sans-serif;
   line-height: 1.6;
 }
