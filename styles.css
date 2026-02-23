@@ -1,11 +1,11 @@
 :root {
-  --bg: #f6f1e7;
-  --paper: #fffaf2;
-  --ink: #1d1a16;
-  --muted: #6d665d;
-  --accent: #b54d2a;
-  --accent-soft: #f1d7c4;
-  --line: #d8cbb9;
+  --bg: #e6f5ff;
+  --paper: #f8fcff;
+  --ink: #0f2634;
+  --muted: #486878;
+  --accent: #bfd34a;
+  --accent-soft: #d7eb68;
+  --line: #bcd7e7;
 }
 
 * {
@@ -16,8 +16,8 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(1200px 700px at 80% -10%, #f8c9aa 0%, transparent 55%),
-    radial-gradient(900px 500px at -10% 10%, #f2e2c7 0%, transparent 60%),
+    radial-gradient(1200px 700px at 80% -10%, #bce8ff 0%, transparent 55%),
+    radial-gradient(900px 500px at -10% 10%, #d8f3ff 0%, transparent 60%),
     var(--bg);
   font-family: "Manrope", "Segoe UI", sans-serif;
   line-height: 1.6;
@@ -36,9 +36,10 @@ main {
 .hero {
   padding: 2rem;
   border: 1px solid var(--line);
-  background: linear-gradient(145deg, #fff5ea 0%, #fff 45%, #f4ece0 100%);
+  background: linear-gradient(145deg, #f3fbff 0%, #ffffff 45%, #ebf7ff 100%);
   position: relative;
   overflow: hidden;
+  border-radius: 22px;
 }
 
 .hero::after {
@@ -49,7 +50,71 @@ main {
   border-radius: 50%;
   right: -60px;
   top: -60px;
-  background: radial-gradient(circle, var(--accent-soft) 0%, rgba(241, 215, 196, 0) 70%);
+  background: radial-gradient(circle, rgba(144, 215, 255, 0.35) 0%, rgba(241, 215, 196, 0) 70%);
+}
+
+.hero-home {
+  min-height: 470px;
+  display: grid;
+  align-content: end;
+  gap: 0.25rem;
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(2, 65, 107, 0.2) 0%, rgba(3, 74, 120, 0.52) 48%, rgba(4, 61, 95, 0.85) 100%),
+    url("/media/branding/site-cover.jpg") center/cover no-repeat;
+}
+
+.hero-home::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(70% 40% at 50% 10%, rgba(131, 228, 255, 0.28) 0%, transparent 75%);
+}
+
+.hero-home .eyebrow,
+.hero-home .lead,
+.hero-home .updated {
+  color: #e9f9ff;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-home h1,
+.hero-home .btn-book,
+.hero-home .updated,
+.hero-home .lead,
+.hero-home .eyebrow {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-home h1 {
+  text-transform: uppercase;
+  font-size: clamp(2.2rem, 6vw, 5.2rem);
+  line-height: 0.92;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.42);
+}
+
+.hero-badges {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 2;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.hero-badges span {
+  display: block;
+  min-width: 210px;
+  text-align: center;
+  background: var(--accent);
+  color: #0a5a57;
+  border: 1px solid rgba(106, 130, 18, 0.5);
+  border-radius: 14px;
+  padding: 0.5rem 0.65rem;
+  font-weight: 700;
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.28);
 }
 
 .eyebrow {
@@ -94,10 +159,10 @@ body.modal-open {
 
 .btn-filter {
   appearance: none;
-  border: 1px solid #dfdfdf;
+  border: 1px solid #c0d8e6;
   border-radius: 999px;
-  background: #f2f2f2;
-  color: #1f1f1f;
+  background: #eef8ff;
+  color: #1a4b63;
   font: inherit;
   font-weight: 700;
   padding: 0.55rem 1rem;
@@ -133,7 +198,7 @@ body.modal-open {
 .filters-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(28, 25, 20, 0.4);
+  background: rgba(10, 44, 62, 0.4);
 }
 
 .filters-modal__panel {
@@ -143,7 +208,7 @@ body.modal-open {
   overflow: auto;
   margin: 1rem auto;
   background: #fff;
-  border: 1px solid #ddd0be;
+  border: 1px solid #c0d8e6;
   padding: 1.15rem;
 }
 
@@ -223,10 +288,10 @@ body.modal-open {
 
 .filter-chip {
   appearance: none;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #c7dce8;
   border-radius: 16px;
-  background: #f1f1f1;
-  color: #1f1f1f;
+  background: #eff8ff;
+  color: #194c64;
   font: inherit;
   font-weight: 700;
   line-height: 1.2;
@@ -236,19 +301,19 @@ body.modal-open {
 }
 
 .filter-chip:hover {
-  background: #e7e7e7;
+  background: #e0f1fb;
 }
 
 .filter-chip.is-active {
-  background: #212121;
-  color: #fff;
-  border-color: #212121;
+  background: var(--accent);
+  color: #0a5a57;
+  border-color: #a4ba2f;
 }
 
 .lead {
   max-width: 60ch;
   margin: 0.8rem 0 1.4rem;
-  color: #3a342d;
+  color: #264d62;
 }
 
 .updated {
@@ -273,9 +338,10 @@ body.modal-open {
   display: block;
   text-decoration: none;
   color: inherit;
-  background: #fff;
+  background: #f8fdff;
   border: 1px solid var(--line);
   padding: 0.8rem;
+  border-radius: 14px;
 }
 
 .catalog-card__media-wrap {
@@ -308,8 +374,8 @@ body.modal-open {
   display: grid;
   place-items: center;
   border: 1px solid var(--line);
-  background: #f1e6d6;
-  color: #665a4c;
+  background: #e6f4ff;
+  color: #2f5f76;
   font-size: 0.85rem;
 }
 
@@ -321,7 +387,7 @@ body.modal-open {
 
 .catalog-card p {
   margin: 0;
-  color: #474037;
+  color: #385c6f;
   font-size: 0.95rem;
 }
 
@@ -330,6 +396,8 @@ body.modal-open {
   background: var(--paper);
   border: 1px solid var(--line);
   padding: 1.5rem;
+  border-radius: 18px;
+  box-shadow: 0 10px 22px rgba(16, 67, 98, 0.08);
 }
 
 .card p {
@@ -337,7 +405,7 @@ body.modal-open {
 }
 
 .accent {
-  background: linear-gradient(180deg, #fef4e8 0%, #fff9f2 100%);
+  background: linear-gradient(180deg, #eef8ff 0%, #f7fcff 100%);
 }
 
 .paragraph-blocks p {
@@ -420,8 +488,9 @@ body.modal-open {
 .review-item {
   scroll-snap-align: start;
   border: 1px solid var(--line);
-  background: #fff;
+  background: #f5fbff;
   padding: 0.9rem;
+  border-radius: 14px;
 }
 
 .review-head {
@@ -431,17 +500,19 @@ body.modal-open {
 
 .review-text {
   margin: 0;
-  color: #3f3932;
+  color: #2f5b72;
 }
 
 .btn-book {
   display: inline-block;
   text-decoration: none;
   background: var(--accent);
-  color: #fff;
+  color: #0a5a57;
   font-weight: 700;
   padding: 0.75rem 1.2rem;
-  border: 1px solid #8f3c20;
+  border: 1px solid #9fb235;
+  border-radius: 14px;
+  box-shadow: 0 8px 14px rgba(10, 52, 76, 0.22);
   transition: transform 0.15s ease, filter 0.15s ease;
 }
 
@@ -483,6 +554,22 @@ body.modal-open {
   .card,
   .cta-block {
     padding: 1.2rem;
+  }
+
+  .hero-home {
+    min-height: 560px;
+    align-content: end;
+  }
+
+  .hero-badges {
+    position: static;
+    margin-top: 0.7rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-badges span {
+    min-width: 0;
+    font-size: 0.86rem;
   }
 
   .media-grid {
@@ -530,6 +617,10 @@ body.modal-open {
   }
 
   .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-badges {
     grid-template-columns: 1fr;
   }
 }
