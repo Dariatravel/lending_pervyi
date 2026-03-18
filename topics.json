@@ -1,8 +1,38 @@
 [
   {
+    "topic_id": 1410,
+    "title": "\"ПИТИУНТ\" квартира 4к 📍Пицунда",
+    "top_message_id": 1428
+  },
+  {
     "topic_id": 1,
     "title": "General",
-    "top_message_id": 911
+    "top_message_id": 1409
+  },
+  {
+    "topic_id": 1396,
+    "title": "\"ПЕСЧАНЫЙ БЕРЕГ\" новые апартаменты📍Сухум Мокко",
+    "top_message_id": 1407
+  },
+  {
+    "topic_id": 1103,
+    "title": "\"СЕМЕЙНАЯ\" квартира 2к📍Гагра",
+    "top_message_id": 1392
+  },
+  {
+    "topic_id": 136,
+    "title": "\"МОРЕОН\" квартира 2К 📍Пицунда",
+    "top_message_id": 1391
+  },
+  {
+    "topic_id": 469,
+    "title": "\"МОНРО\" квартира 3к📍 Сухум",
+    "top_message_id": 1386
+  },
+  {
+    "topic_id": 1368,
+    "title": "\"ЛЕТНЯЯ\" квартира 3к📍 Сухум",
+    "top_message_id": 1377
   },
   {
     "topic_id": 748,
@@ -125,11 +155,6 @@
     "top_message_id": 1118
   },
   {
-    "topic_id": 1103,
-    "title": "\"СЕМЕЙНАЯ\" квартира 2к📍Гагра",
-    "top_message_id": 1112
-  },
-  {
     "topic_id": 535,
     "title": "\"САНСЕТ\" квартира 1к📍Лдзаа",
     "top_message_id": 1101
@@ -160,16 +185,6 @@
     "top_message_id": 1053
   },
   {
-    "topic_id": 136,
-    "title": "\"МОРЕОН\" квартира 2К 📍Пицунда",
-    "top_message_id": 1051
-  },
-  {
-    "topic_id": 469,
-    "title": "\"МОНРО\" квартира 3к📍 Сухум",
-    "top_message_id": 1033
-  },
-  {
     "topic_id": 433,
     "title": "\"МОККО\" апартаменты 📍Сухум",
     "top_message_id": 1024
@@ -178,11 +193,6 @@
     "topic_id": 29,
     "title": "\"МЕЛАНА\" квартира 3к📍Пицунда",
     "top_message_id": 1015
-  },
-  {
-    "topic_id": 845,
-    "title": "\"ЛЮКС\" квартира 1к📍Гагра",
-    "top_message_id": 1006
   },
   {
     "topic_id": 719,
@@ -235,23 +245,8 @@
     "top_message_id": 910
   },
   {
-    "topic_id": 738,
-    "title": "Квартира 2К \"Нонна\" 📍Сухум",
-    "top_message_id": 747
-  },
-  {
     "topic_id": 708,
     "title": "Квартира 2К \"Афина\" 📍Сухум",
     "top_message_id": 717
-  },
-  {
-    "topic_id": 365,
-    "title": "Квартира 5К \"Мезонет\" 📍 Сухум",
-    "top_message_id": 374
-  },
-  {
-    "topic_id": 40,
-    "title": "Квартира \"Мимоза\" 3К 📍Пицунда",
-    "top_message_id": 89
   }
 ]

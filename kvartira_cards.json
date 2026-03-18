@@ -1,12 +1,72 @@
 [
   {
-    "topic_id": 1,
-    "message_id": 911,
-    "title": "General",
-    "slug": "general-911",
-    "url": "https://t.me/abhkvartira/911",
+    "topic_id": 1410,
+    "message_id": 1428,
+    "title": "\"ПИТИУНТ\" квартира 4к 📍Пицунда",
+    "slug": "pitiunt-kvartira-4k-pitsunda-1428",
+    "url": "https://t.me/abhkvartira/1428",
     "excerpt": "",
-    "image": "/media/kvartira-cards/general-911-cover.jpg",
+    "image": "/media/kvartira-cards/pitiunt-kvartira-4k-pitsunda-1428.jpg",
+    "has_video": false
+  },
+  {
+    "topic_id": 1,
+    "message_id": 1409,
+    "title": "General",
+    "slug": "general-1409",
+    "url": "https://t.me/abhkvartira/1409",
+    "excerpt": "Друзья, в этой группе собраны варианты частного жилья в Абхазии ✔️ Здесь вы найдёте квартиры, апартаменты, дома и коттеджи в разных локациях: Пицунда, Лдзаа, Гагра, Сухум и другие…",
+    "image": "/media/kvartira-cards/general-1409-cover.jpg",
+    "has_video": false
+  },
+  {
+    "topic_id": 1396,
+    "message_id": 1407,
+    "title": "\"ПЕСЧАНЫЙ БЕРЕГ\" новые апартаменты📍Сухум Мокко",
+    "slug": "peschanyy-bereg-novye-apartamenty-suhum-mokko-1407",
+    "url": "https://t.me/abhkvartira/1407",
+    "excerpt": "",
+    "image": "/media/kvartira-cards/peschanyy-bereg-novye-apartamenty-suhum-mokko-1407.jpg",
+    "has_video": false
+  },
+  {
+    "topic_id": 1103,
+    "message_id": 1392,
+    "title": "\"СЕМЕЙНАЯ\" квартира 2к📍Гагра",
+    "slug": "semeynaya-kvartira-2k-gagra-1392",
+    "url": "https://t.me/abhkvartira/1392",
+    "excerpt": "",
+    "image": "/media/kvartira-cards/semeynaya-kvartira-2k-gagra-1392-cover.jpg",
+    "has_video": false
+  },
+  {
+    "topic_id": 136,
+    "message_id": 1391,
+    "title": "\"МОРЕОН\" квартира 2К 📍Пицунда",
+    "slug": "moreon-kvartira-2k-pitsunda-1391",
+    "url": "https://t.me/abhkvartira/1391",
+    "excerpt": "",
+    "image": "/media/kvartira-cards/moreon-kvartira-2k-pitsunda-1391.jpg",
+    "has_video": false
+  },
+  {
+    "topic_id": 469,
+    "message_id": 1386,
+    "title": "\"МОНРО\" квартира 3к📍 Сухум",
+    "slug": "monro-kvartira-3k-suhum-1386",
+    "url": "https://t.me/abhkvartira/1386",
+    "excerpt": "",
+    "image": "/media/kvartira-cards/monro-kvartira-3k-suhum-1386.jpg",
+    "has_video": false
+  },
+  {
+    "topic_id": 1368,
+    "message_id": 1377,
+    "title": "\"ЛЕТНЯЯ\" квартира 3к📍 Сухум",
+    "slug": "letnyaya-kvartira-3k-suhum-1377",
+    "url": "https://t.me/abhkvartira/1377",
+    "excerpt": "",
+    "image": "/media/kvartira-cards/letnyaya-kvartira-3k-suhum-1377.jpg",
     "has_video": false
   },
   {
@@ -250,16 +310,6 @@
     "has_video": true
   },
   {
-    "topic_id": 1103,
-    "message_id": 1112,
-    "title": "\"СЕМЕЙНАЯ\" квартира 2к📍Гагра",
-    "slug": "semeynaya-kvartira-2k-gagra-1112",
-    "url": "https://t.me/abhkvartira/1112",
-    "excerpt": "",
-    "image": "/media/kvartira-cards/semeynaya-kvartira-2k-gagra-1112.jpg",
-    "has_video": false
-  },
-  {
     "topic_id": 535,
     "message_id": 1101,
     "title": "\"САНСЕТ\" квартира 1к📍Лдзаа",
@@ -320,26 +370,6 @@
     "has_video": true
   },
   {
-    "topic_id": 136,
-    "message_id": 1051,
-    "title": "\"МОРЕОН\" квартира 2К 📍Пицунда",
-    "slug": "moreon-kvartira-2k-pitsunda-1051",
-    "url": "https://t.me/abhkvartira/1051",
-    "excerpt": "",
-    "image": "/media/kvartira-cards/moreon-kvartira-2k-pitsunda-1051.jpg",
-    "has_video": false
-  },
-  {
-    "topic_id": 469,
-    "message_id": 1033,
-    "title": "\"МОНРО\" квартира 3к📍 Сухум",
-    "slug": "monro-kvartira-3k-suhum-1033",
-    "url": "https://t.me/abhkvartira/1033",
-    "excerpt": "",
-    "image": "/media/kvartira-cards/monro-kvartira-3k-suhum-1033.jpg",
-    "has_video": false
-  },
-  {
     "topic_id": 433,
     "message_id": 1024,
     "title": "\"МОККО\" апартаменты 📍Сухум",
@@ -357,16 +387,6 @@
     "url": "https://t.me/abhkvartira/1015",
     "excerpt": "",
     "image": "/media/kvartira-cards/melana-kvartira-3k-pitsunda-1015.jpg",
-    "has_video": false
-  },
-  {
-    "topic_id": 845,
-    "message_id": 1006,
-    "title": "\"ЛЮКС\" квартира 1к📍Гагра",
-    "slug": "lyuks-kvartira-1k-gagra-1006",
-    "url": "https://t.me/abhkvartira/1006",
-    "excerpt": "",
-    "image": "/media/kvartira-cards/lyuks-kvartira-1k-gagra-1006.jpg",
     "has_video": false
   },
   {
@@ -470,16 +490,6 @@
     "has_video": false
   },
   {
-    "topic_id": 738,
-    "message_id": 747,
-    "title": "Квартира 2К \"Нонна\" 📍Сухум",
-    "slug": "kvartira-2k-nonna-suhum-747",
-    "url": "https://t.me/abhkvartira/747",
-    "excerpt": "",
-    "image": "/media/kvartira-cards/kvartira-2k-nonna-suhum-747-cover.jpg",
-    "has_video": true
-  },
-  {
     "topic_id": 708,
     "message_id": 717,
     "title": "Квартира 2К \"Афина\" 📍Сухум",
@@ -488,25 +498,5 @@
     "excerpt": "",
     "image": "/media/kvartira-cards/kvartira-2k-afina-suhum-717.jpg",
     "has_video": false
-  },
-  {
-    "topic_id": 365,
-    "message_id": 374,
-    "title": "Квартира 5К \"Мезонет\" 📍 Сухум",
-    "slug": "kvartira-5k-mezonet-suhum-374",
-    "url": "https://t.me/abhkvartira/374",
-    "excerpt": "",
-    "image": "/media/kvartira-cards/kvartira-5k-mezonet-suhum-374-cover.jpg",
-    "has_video": true
-  },
-  {
-    "topic_id": 40,
-    "message_id": 89,
-    "title": "Квартира \"Мимоза\" 3К 📍Пицунда",
-    "slug": "kvartira-mimoza-3k-pitsunda-89",
-    "url": "https://t.me/abhkvartira/89",
-    "excerpt": "КВАРТИРА \"МИМОЗА\" 📍Пицунда, ул. Агрба 23/1 🏖️ 15 минут до пляжа 👥 Размещение 6-7 человек ✔️ТЕРРИТОРИЯ: Квартира расположена в центре Пицунды. Рядом центральный парк, Кафедральный…",
-    "image": "/media/kvartira-cards/kvartira-mimoza-3k-pitsunda-89-cover.jpg",
-    "has_video": true
   }
 ]
