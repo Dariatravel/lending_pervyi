@@ -161,7 +161,7 @@ body {
 .landing-v2__hero-copy h1 {
   max-width: 12ch;
   margin: 0;
-  font-size: clamp(3.2rem, 6vw, 5.4rem);
+  font-size: clamp(2.7rem, 4.9vw, 4.4rem);
 }
 
 .landing-v2__hero-text,
@@ -318,7 +318,7 @@ body {
 .landing-v2__metrics article strong {
   display: block;
   margin-bottom: 8px;
-  font-size: 28px;
+  font-size: 24px;
 }
 
 .landing-v2__regions,
@@ -339,6 +339,7 @@ body {
 .landing-v2__section-heading h2 {
   max-width: 14ch;
   margin: 0;
+  font-size: clamp(1.9rem, 3vw, 2.9rem);
 }
 
 .landing-v2__section-link {
@@ -387,7 +388,7 @@ body {
 }
 
 .landing-v2__region-copy strong {
-  font-size: 30px;
+  font-size: 24px;
   line-height: 1.05;
 }
 
@@ -399,7 +400,7 @@ body {
 .landing-v2__step strong {
   display: block;
   margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .landing-v2__step span {
@@ -449,7 +450,7 @@ body {
 .landing-v2 .catalog-card h3 {
   margin: 0;
   padding: 16px 18px 8px;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.05;
   font-family: "Prata", Georgia, serif;
 }
@@ -539,7 +540,7 @@ body {
 
 .hotel-page-v2 .hero h1 {
   margin-bottom: 16px;
-  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  font-size: clamp(2.35rem, 4.2vw, 3.8rem);
 }
 
 .hotel-page-v2 .hero .lead {
@@ -605,7 +606,7 @@ body {
 }
 
 .hotel-side-summary__focus strong {
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .hotel-side-summary__tags {
@@ -646,7 +647,7 @@ body {
 .hotel-page-v2 .card h2,
 .hotel-page-v2 .cta-block h2 {
   margin: 0 0 14px;
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-size: clamp(1.55rem, 2.4vw, 2.25rem);
 }
 
 .hotel-page-v2 .media-grid {
@@ -763,7 +764,7 @@ body {
   .landing-v2__hero-copy h1,
   .hotel-page-v2 .hero h1 {
     max-width: none;
-    font-size: 3rem;
+    font-size: 2.45rem;
   }
 
   .landing-v2__search-bar,
