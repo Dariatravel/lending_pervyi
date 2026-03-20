@@ -23,6 +23,7 @@
 .hotel-site-concept {
   position: relative;
   width: min(1360px, calc(100vw - 48px));
+  max-width: calc(100vw - 24px);
   margin: 0 auto;
   padding: 28px 0 64px;
 }
@@ -78,6 +79,7 @@
   top: 14px;
   z-index: 20;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
@@ -124,6 +126,7 @@
 .site-concept__topbar-actions {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -603,6 +606,7 @@
   gap: 24px;
   padding: 22px;
   border-radius: 34px;
+  align-items: start;
 }
 
 .hotel-card__gallery {
@@ -988,6 +992,7 @@ body {
     radial-gradient(circle at top left, rgba(216, 236, 223, 0.92), transparent 26%),
     radial-gradient(circle at top right, rgba(243, 223, 196, 0.72), transparent 24%),
     linear-gradient(180deg, #e8f2ea 0%, #f7f2e9 52%, #eef5ef 100%);
+  overflow-x: hidden;
 }
 
 .landing-v2,
@@ -1971,6 +1976,7 @@ body {
     linear-gradient(180deg, var(--bg-top) 0%, #edf3e6 18%, var(--bg-bottom) 58%, #dfeee8 100%);
   font-family: "Manrope", "Segoe UI", sans-serif;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 img,
