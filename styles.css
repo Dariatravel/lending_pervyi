@@ -181,16 +181,30 @@
 
 .site-concept__hero-copy {
   display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  grid-template-areas:
+    "eyebrow highlights"
+    "title highlights"
+    "text highlights"
+    "search search"
+    "metrics metrics";
+  align-items: start;
   gap: 12px;
 }
 
+.site-concept__hero-copy > :nth-child(1) {
+  grid-area: eyebrow;
+}
+
 .site-concept__hero-copy h1 {
+  grid-area: title;
   max-width: 16ch;
   font-size: clamp(1.45rem, 2.8vw, 2.35rem);
   line-height: 1.04;
 }
 
 .site-concept__hero-text {
+  grid-area: text;
   max-width: 64ch;
   margin: 0;
   color: var(--muted);
@@ -199,6 +213,7 @@
 }
 
 .site-concept__search-surface {
+  grid-area: search;
   padding: 12px;
   background: rgba(255, 255, 255, 0.82);
   border: 1px solid rgba(20, 32, 26, 0.06);
@@ -320,6 +335,7 @@
 }
 
 .site-concept__hero-metrics {
+  grid-area: metrics;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
@@ -345,7 +361,10 @@
 }
 
 .site-concept__hero-highlights {
+  grid-area: highlights;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr;
+  align-self: stretch;
 }
 
 .site-concept__mini-card {
@@ -932,6 +951,17 @@
   .hotel-site-concept .reviews-grid,
   .hotel-site-concept__detail-grid {
     grid-template-columns: 1fr;
+  }
+
+  .site-concept__hero-copy {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "eyebrow"
+      "title"
+      "text"
+      "search"
+      "metrics"
+      "highlights";
   }
 }
 
