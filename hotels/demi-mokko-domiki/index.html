@@ -19,16 +19,36 @@
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
-    <main>
-      <header class="hero section">
+    <main class="hotel-page-v2">
+      <div class="hotel-page-v2__glow hotel-page-v2__glow--mint" aria-hidden="true"></div>
+      <div class="hotel-page-v2__glow hotel-page-v2__glow--sand" aria-hidden="true"></div>
+      <section class="hotel-hero-shell">
+        <header class="hero section hotel-hero-v2">
         <p class="eyebrow"><a href="/">Каталог Абхазберег</a></p>
         <h1>«ДЕМИ МОККО»</h1>
         <p class="lead">Сухум, Кодорское шоссе, 11. До пляжа Мокко 4 минуты, размещение до 4 человек.</p>
         <p class="updated">Обновлено: <time datetime="2026-02-03">3 февраля 2026</time></p>
         <a class="btn-book" href="https://t.me/abhazbooking_online" target="_blank" rel="noopener noreferrer">Забронировать</a>
       </header>
+        <aside class="hotel-side-summary">
+          <div class="hotel-side-summary__badge">Коротко об объекте</div>
+          <div class="hotel-side-summary__facts">
+            <div class="hotel-side-summary__fact"><span>01</span><strong>Сухум, Кодорское шоссе, 11. До пляжа Мокко 4 минуты, размещение до 4 человек.</strong></div>
+          </div>
+          <div class="hotel-side-summary__focus">
+            <span>Что важно изучить</span>
+            <strong>Фото из поста</strong>
+          </div>
+          <div class="hotel-side-summary__tags">
+            <span>Фото из поста</span><span>Что рядом</span>
+          </div>
+        </aside>
+      </section>
 
-      <section class="section">
+      <div class="hotel-layout-v2">
+        <div class="hotel-layout-v2__main">
+          
+          <section class="section">
         <article class="card">
           <h2>Фото из поста</h2>
           <p class="media-note">Источник: <a href="https://t.me/abhazbooking/3353" target="_blank" rel="noopener noreferrer">@abhazbooking/3353</a>.</p>
@@ -48,25 +68,7 @@
 </div>
           </div>
         </article>
-      </section>
-
-      <section class="section grid-two">
-        <article class="card accent">
-          <h2>Территория</h2>
-          <p>Всего два коттеджа, свой небольшой дворик с беседкой.</p>
-          <p>Парковочное место перед домиками.</p>
-          <p>Тихий формат размещения у популярного пляжа.</p>
-        </article>
-        <article class="card">
-          <h2>Домики</h2>
-          <p>Два зеркальных домика под одной крышей.</p>
-          <p>Двуспальная кровать и диван-кровать (полуторка).</p>
-          <p>В каждом: кондиционер, телевизор, Wi‑Fi, мини-кухня и стиральная машина.</p>
-          <p>На веранде столик со стульями.</p>
-        </article>
-      </section>
-
-      <section class="section">
+      </section><section class="section">
         <article class="card">
           <h2>Что рядом</h2>
           <div class="paragraph-blocks">
@@ -76,19 +78,7 @@
           </div>
         </article>
       </section>
-
-      <section class="section">
-        <article class="card price-card">
-          <h2>Цены</h2>
-          <ul>
-            <li><strong>5000₽/сутки</strong> — май, июнь</li>
-            <li><strong>6000₽/сутки</strong> — июль, август, сентябрь</li>
-          </ul>
-          <p class="note">Можно с небольшими и послушными собачками по правилам проживания.</p>
-        </article>
-      </section>
-
-      <section class="section">
+          <section class="section hotel-reviews-section">
         <article class="card">
           <h2>Отзывы</h2>
           <div class="reviews-scroller" aria-label="Лента отзывов">
@@ -111,8 +101,7 @@
           </div>
         </article>
       </section>
-
-      <section class="section">
+          <section class="section hotel-faq-section">
         <article class="card faq-card">
           <h2>Частые вопросы</h2>
           <div class="faq-list">
@@ -131,8 +120,19 @@
           </div>
         </article>
       </section>
-
-      <section class="section cta-block">
+        </div>
+        <aside class="hotel-layout-v2__aside">
+          <section class="section hotel-price-section">
+        <article class="card price-card">
+          <h2>Цены</h2>
+          <ul>
+            <li><strong>5000₽/сутки</strong> — май, июнь</li>
+            <li><strong>6000₽/сутки</strong> — июль, август, сентябрь</li>
+          </ul>
+          <p class="note">Можно с небольшими и послушными собачками по правилам проживания.</p>
+        </article>
+      </section>
+          <section class="section cta-block hotel-contact-section">
         <h2>Контакты</h2>
         <p>Задать вопросы либо проверить наличие номеров можно: <strong>+7 940 900-33-40</strong> (WhatsApp, Telegram, MAX).</p>
         <p class="note">(только сообщение, звонок не пройдёт)</p>
@@ -143,6 +143,8 @@
           <a class="btn-book" href="https://wa.me/79409003340" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В WHATSAPP</a>
         </div>
       </section>
+        </aside>
+      </div>
     </main>
       <script src="../../scripts.js" defer></script>
 </body>

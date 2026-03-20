@@ -19,8 +19,11 @@
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
-    <main>
-      <header class="hero section">
+    <main class="hotel-page-v2">
+      <div class="hotel-page-v2__glow hotel-page-v2__glow--mint" aria-hidden="true"></div>
+      <div class="hotel-page-v2__glow hotel-page-v2__glow--sand" aria-hidden="true"></div>
+      <section class="hotel-hero-shell">
+        <header class="hero section hotel-hero-v2">
         <p class="eyebrow"><a href="/">Каталог Абхазберег</a></p>
         <h1>МУЛБЕРРИ ОТЕЛЬ НА ПЛЯЖЕ С БАССЕЙНОМ И КАФЕ</h1>
         <p class="lead">
@@ -31,8 +34,24 @@
         <p class="updated">Обновлено: <time datetime="2026-01-24">24 января 2026</time></p>
         <a class="btn-book" href="https://t.me/abhazbooking_online" target="_blank" rel="noopener noreferrer">Забронировать</a>
       </header>
+        <aside class="hotel-side-summary">
+          <div class="hotel-side-summary__badge">Коротко об объекте</div>
+          <div class="hotel-side-summary__facts">
+            <div class="hotel-side-summary__fact"><span>01</span><strong>Лдзаа, ул. Рыбзаводская 86</strong></div><div class="hotel-side-summary__fact"><span>02</span><strong>0 минут до пляжа (песчаный)</strong></div><div class="hotel-side-summary__fact"><span>03</span><strong>размещение до 5 человек</strong></div>
+          </div>
+          <div class="hotel-side-summary__focus">
+            <span>Что важно изучить</span>
+            <strong>Территория</strong>
+          </div>
+          <div class="hotel-side-summary__tags">
+            <span>Территория</span><span>Номера</span><span>Рядом</span>
+          </div>
+        </aside>
+      </section>
 
-      <section class="section">
+      <div class="hotel-layout-v2">
+        <div class="hotel-layout-v2__main">
+          <section class="section hotel-media-section">
         <article class="card">
           <h2>Фото и видео из поста</h2>
           <p class="media-note">Источник: <a href="https://t.me/abhazbooking/3074" target="_blank" rel="noopener noreferrer">@abhazbooking/3074</a>.</p>
@@ -55,8 +74,7 @@
           </div>
         </article>
       </section>
-
-      <section class="section">
+          <section class="section">
         <article class="card">
           <h2>Территория</h2>
           <div class="paragraph-blocks">
@@ -67,8 +85,7 @@
             <p>На территории небольшая парковка.</p>
           </div>
         </article>
-      </section>
-      <section class="section">
+      </section><section class="section">
         <article class="card">
           <h2>Номера</h2>
           <div class="paragraph-blocks">
@@ -78,8 +95,7 @@
             <p>Варианты размещения: люксы двухкомнатные с собственной кухней (размещение до 5 человек) и комфорты однокомнатные с видом на море/либо на горы (размещение до 4 человек).</p>
           </div>
         </article>
-      </section>
-      <section class="section">
+      </section><section class="section">
         <article class="card">
           <h2>Рядом</h2>
           <div class="paragraph-blocks">
@@ -88,8 +104,51 @@
           </div>
         </article>
       </section>
-
-      <section class="section">
+          <section class="section hotel-reviews-section">
+        <article class="card">
+          <h2>Отзывы</h2>
+          <div class="reviews-scroller" aria-label="Лента отзывов">
+            <div class="review-item">
+              <p class="review-head">ЮЛИЯ АЛЕКСАНЯН</p>
+              <p class="review-text">Обращалась заранее и немного сомневалась, но вы быстро расположили к себе: предложили несколько вариантов, подробно объяснили различия, учли бюджет и предпочтения. На месте всё совпало с ожиданиями. Спасибо за труд и честность.</p>
+            </div>
+            <div class="review-item">
+              <p class="review-head">АНДРЕЙ НИКУЛИН</p>
+              <p class="review-text">Спасибо большое за помощь. Отдыхали в конце июня, море рядом, людей немного, отель новый и чистый, номер с хорошим видом. В целом всё очень понравилось, поездкой довольны всей семьёй.</p>
+            </div>
+            <div class="review-item">
+              <p class="review-head">АЙГУЛЬ</p>
+              <p class="review-text">Первый раз были в Абхазии, и отпуск получился очень ярким. По вашей рекомендации выбрали удачный вариант в Лдзаа: тихое море, удобный вход, комфортный номер и хорошее питание рядом. Благодарим за оперативный подбор в сезон.</p>
+            </div>
+            <div class="review-item">
+              <p class="review-head">ИРИНОЧКА ФАРНАСОВА</p>
+              <p class="review-text">Спасибо за помощь в выборе, особенно за подробные объяснения до поездки. Мы переживали, но в итоге остались в полном восторге: гостеприимство, вкусная еда, прекрасная природа. Обязательно вернёмся ещё.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+          <section class="section hotel-faq-section">
+        <article class="card faq-card">
+          <h2>Частые вопросы</h2>
+          <div class="faq-list">
+            <details>
+              <summary>Где уточнить актуальное наличие номеров?</summary>
+              <p>Актуальное наличие уточняется напрямую у менеджера через Telegram, MAX, VK или WhatsApp.</p>
+            </details>
+            <details>
+              <summary>Цены на странице актуальны?</summary>
+              <p>Цены приведены по публикации поста. Перед оплатой всегда подтверждайте стоимость и даты у менеджера.</p>
+            </details>
+            <details>
+              <summary>Есть ли дополнительные условия по размещению?</summary>
+              <p>Да, условия зависят от конкретного объекта. Уточняйте детали при бронировании по указанным контактам.</p>
+            </details>
+          </div>
+        </article>
+      </section>
+        </div>
+        <aside class="hotel-layout-v2__aside">
+          <section class="section hotel-price-section">
         <article class="card price-card">
           <h2>Цены</h2>
           <ul>
@@ -127,52 +186,7 @@
           </ul>
         </article>
       </section>
-
-      <section class="section">
-        <article class="card">
-          <h2>Отзывы</h2>
-          <div class="reviews-scroller" aria-label="Лента отзывов">
-            <div class="review-item">
-              <p class="review-head">ЮЛИЯ АЛЕКСАНЯН</p>
-              <p class="review-text">Обращалась заранее и немного сомневалась, но вы быстро расположили к себе: предложили несколько вариантов, подробно объяснили различия, учли бюджет и предпочтения. На месте всё совпало с ожиданиями. Спасибо за труд и честность.</p>
-            </div>
-            <div class="review-item">
-              <p class="review-head">АНДРЕЙ НИКУЛИН</p>
-              <p class="review-text">Спасибо большое за помощь. Отдыхали в конце июня, море рядом, людей немного, отель новый и чистый, номер с хорошим видом. В целом всё очень понравилось, поездкой довольны всей семьёй.</p>
-            </div>
-            <div class="review-item">
-              <p class="review-head">АЙГУЛЬ</p>
-              <p class="review-text">Первый раз были в Абхазии, и отпуск получился очень ярким. По вашей рекомендации выбрали удачный вариант в Лдзаа: тихое море, удобный вход, комфортный номер и хорошее питание рядом. Благодарим за оперативный подбор в сезон.</p>
-            </div>
-            <div class="review-item">
-              <p class="review-head">ИРИНОЧКА ФАРНАСОВА</p>
-              <p class="review-text">Спасибо за помощь в выборе, особенно за подробные объяснения до поездки. Мы переживали, но в итоге остались в полном восторге: гостеприимство, вкусная еда, прекрасная природа. Обязательно вернёмся ещё.</p>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <section class="section">
-        <article class="card faq-card">
-          <h2>Частые вопросы</h2>
-          <div class="faq-list">
-            <details>
-              <summary>Где уточнить актуальное наличие номеров?</summary>
-              <p>Актуальное наличие уточняется напрямую у менеджера через Telegram, MAX, VK или WhatsApp.</p>
-            </details>
-            <details>
-              <summary>Цены на странице актуальны?</summary>
-              <p>Цены приведены по публикации поста. Перед оплатой всегда подтверждайте стоимость и даты у менеджера.</p>
-            </details>
-            <details>
-              <summary>Есть ли дополнительные условия по размещению?</summary>
-              <p>Да, условия зависят от конкретного объекта. Уточняйте детали при бронировании по указанным контактам.</p>
-            </details>
-          </div>
-        </article>
-      </section>
-
-      <section class="section cta-block">
+          <section class="section cta-block hotel-contact-section">
         <h2>Контакты</h2>
         <p>Задать вопросы либо проверить наличие номеров можно: <strong>+7 940 900-33-40</strong> (WhatsApp, Telegram, MAX).</p>
         <p class="note">(только сообщение, звонок не пройдёт)</p>
@@ -183,6 +197,8 @@
           <a class="btn-book" href="https://wa.me/79409003340" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В WHATSAPP</a>
         </div>
       </section>
+        </aside>
+      </div>
     </main>
       <script src="../../scripts.js" defer></script>
 </body>

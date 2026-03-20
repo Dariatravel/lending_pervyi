@@ -31,15 +31,23 @@
     }
   };
 
+  const bindZoomable = (img) => {
+    if (!img || img.dataset.lightboxBound === "true") return;
+    img.dataset.lightboxBound = "true";
+    img.classList.add("media-grid__zoomable");
+    img.addEventListener("click", () => openLightbox(img.currentSrc || img.src, img.alt));
+  };
+
   closeButton?.addEventListener("click", closeLightbox);
   modal.addEventListener("click", (event) => {
     if (event.target === modal) closeLightbox();
   });
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !modal.hasAttribute("hidden")) closeLightbox();
   });
 
-  document.querySelectorAll(".media-grid img").forEach((img) => {
+  document.querySelectorAll(".media-grid img, .hotel-media-section img").forEach((img) => {
     const isPreview = img.classList.contains("local-video-preview");
     if (isPreview) {
       img.addEventListener("click", () => {
@@ -50,8 +58,7 @@
       return;
     }
 
-    img.classList.add("media-grid__zoomable");
-    img.addEventListener("click", () => openLightbox(img.currentSrc || img.src, img.alt));
+    bindZoomable(img);
   });
 
   document.querySelectorAll(".local-video").forEach((video) => {
