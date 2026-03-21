@@ -1,5 +1,15 @@
 [
   {
+    "topic_id": 1430,
+    "message_id": 1440,
+    "title": "\"МАНДАРИНОВЫЙ ДВОРИК\" дом под ключ📍Новый Афон",
+    "slug": "mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440",
+    "url": "https://t.me/abhkvartira/1440",
+    "excerpt": "",
+    "image": "/media/kvartira-cards/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440-cover.jpg",
+    "has_video": true
+  },
+  {
     "topic_id": 1410,
     "message_id": 1428,
     "title": "\"ПИТИУНТ\" квартира 4к 📍Пицунда",
@@ -132,11 +142,11 @@
   {
     "topic_id": 1294,
     "message_id": 1303,
-    "title": "\"КЛАССИКА\" квартира 2к📍Лдзаа",
-    "slug": "klassika-kvartira-2k-ldzaa-1303",
+    "title": "\"КЛАССИКА\" квартира 3к📍Лдзаа",
+    "slug": "klassika-kvartira-3k-ldzaa-1303",
     "url": "https://t.me/abhkvartira/1303",
     "excerpt": "",
-    "image": "/media/kvartira-cards/klassika-kvartira-2k-ldzaa-1303-cover.jpg",
+    "image": "/media/kvartira-cards/klassika-kvartira-3k-ldzaa-1303-cover.jpg",
     "has_video": true
   },
   {
