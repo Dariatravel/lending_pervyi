@@ -82,9 +82,9 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 20px;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 22px;
 }
 
 .site-concept__brand {
@@ -94,15 +94,15 @@
 }
 
 .site-concept__brand-mark {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
   display: grid;
   place-items: center;
   background: linear-gradient(180deg, #163128 0%, #2f5548 100%);
   color: #fff;
   font-family: "Prata", Georgia, serif;
-  font-size: 20px;
+  font-size: 23px;
 }
 
 .site-concept__brand-copy {
@@ -111,12 +111,12 @@
 }
 
 .site-concept__brand-copy strong {
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 0.01em;
 }
 
 .site-concept__brand-copy span {
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: var(--muted);
@@ -132,9 +132,10 @@
 
 .site-concept__topnav a,
 .site-concept__topbar-link {
-  padding: 8px 10px;
+  padding: 10px 12px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 600;
   border-radius: 999px;
   transition:
     background-color 0.18s ease,
@@ -144,7 +145,7 @@
 
 .site-concept__topnav a:hover,
 .site-concept__topbar-link:hover {
-  background: rgba(241, 247, 243, 0.96);
+  background: rgba(233, 243, 237, 0.98);
   color: var(--text);
   transform: translateY(-1px);
 }
@@ -284,7 +285,7 @@
   align-items: center;
   justify-content: center;
   min-width: 190px;
-  padding: 11px 16px;
+  padding: 12px 18px;
   background: linear-gradient(180deg, #ff8e69 0%, #e15f3b 100%);
   color: #fff;
   box-shadow: 0 16px 28px rgba(225, 95, 59, 0.22);
