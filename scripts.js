@@ -60,7 +60,7 @@
     let query = client
       .from("listings")
       .select(
-        "id, slug, source_kind, title, summary, excerpt, city, page_url, telegram_url, published_at, has_video, cover_url, details, listing_media(id, media_role, sort_order, public_url, storage_path, mime_type)"
+        "id, slug, source_kind, title, summary, excerpt, city, page_url, telegram_url, published_at, has_video, cover_url, details, listing_media(id, media_role, sort_order, public_url, storage_path, mime_type, source_url, details)"
       )
       .eq("is_active", true)
       .order("published_at", { ascending: false, nullsFirst: false })
@@ -281,6 +281,33 @@
           video.playsInline = true;
           video.src = item.public_url;
           fragment.appendChild(video);
+          return;
+        }
+
+        if ((item.details && item.details.telegram_post) || item.mime_type === "application/x-telegram-embed") {
+          const wrap = document.createElement("div");
+          wrap.className = "video-embed video-embed--telegram";
+
+          const script = document.createElement("script");
+          script.async = true;
+          script.src = "https://telegram.org/js/telegram-widget.js?22";
+          script.dataset.telegramPost = item.details?.telegram_post || "";
+          script.dataset.width = "100%";
+          script.dataset.userpic = "false";
+          script.dataset.single = "1";
+          wrap.appendChild(script);
+
+          if (item.source_url) {
+            const link = document.createElement("a");
+            link.className = "video-link";
+            link.href = item.source_url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = "Открыть видео в Telegram";
+            wrap.appendChild(link);
+          }
+
+          fragment.appendChild(wrap);
           return;
         }
 
