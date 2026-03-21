@@ -79,12 +79,61 @@
     return rows[0] || null;
   }
 
+  function localCardFallback(row) {
+    if (!row?.slug) return "";
+    const folder = row.source_kind === "kvartira" ? "cards" : "cards";
+    return `/media/${folder}/${row.slug}.jpg`;
+  }
+
+  function normalizeMediaUrl(value) {
+    if (!value || typeof value !== "string") return "";
+    const raw = value.trim();
+    if (!raw) return "";
+
+    if (raw.includes("/storage/v1/object/public/site-media/http")) {
+      const marker = "/storage/v1/object/public/site-media/";
+      const idx = raw.indexOf(marker);
+      const nested = raw.slice(idx + marker.length);
+      try {
+        const decoded = decodeURIComponent(nested);
+        if (decoded.startsWith("http://") || decoded.startsWith("https://")) {
+          return decoded;
+        }
+      } catch (error) {
+        console.warn("Не удалось декодировать вложенный URL медиа", raw, error);
+      }
+    }
+
+    return raw;
+  }
+
   function pickCoverUrl(row) {
     const media = Array.isArray(row.listing_media) ? [...row.listing_media] : [];
     media.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
-    const card = media.find((item) => item.media_role === "card" && item.public_url);
-    const image = media.find((item) => item.public_url && (item.mime_type || "").startsWith("image/"));
-    return card?.public_url || image?.public_url || row.cover_url || "";
+    const card = media.find((item) => item.media_role === "card" && normalizeMediaUrl(item.public_url));
+    const image = media.find((item) => normalizeMediaUrl(item.public_url) && (item.mime_type || "").startsWith("image/"));
+    return (
+      normalizeMediaUrl(card?.public_url) ||
+      normalizeMediaUrl(image?.public_url) ||
+      normalizeMediaUrl(row.cover_url) ||
+      localCardFallback(row)
+    );
+  }
+
+  function attachImageFallback(image, row) {
+    if (!image) return;
+    image.addEventListener(
+      "error",
+      () => {
+        const fallback = localCardFallback(row);
+        if (fallback && image.src !== new URL(fallback, window.location.origin).href) {
+          image.src = fallback;
+          return;
+        }
+        image.removeAttribute("src");
+      },
+      { once: true }
+    );
   }
 
   function textValue(value) {
@@ -133,6 +182,7 @@
       image.loading = "lazy";
       image.alt = row.title || "";
       image.src = pickCoverUrl(row);
+      attachImageFallback(image, row);
       card.appendChild(image);
 
       card.appendChild(createTextNode("h3", row.title || ""));
@@ -167,6 +217,7 @@
       image.loading = "lazy";
       image.alt = row.title || "";
       image.src = pickCoverUrl(row);
+      attachImageFallback(image, row);
       mediaWrap.appendChild(image);
 
       card.appendChild(mediaWrap);
