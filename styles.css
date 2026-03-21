@@ -22,10 +22,10 @@
 .site-concept,
 .hotel-site-concept {
   position: relative;
-  width: min(960px, calc(100vw - 56px));
+  width: min(1280px, calc(100vw - 56px));
   max-width: calc(100vw - 24px);
-  margin: 0 auto;
-  padding: 16px 0 36px;
+  margin: 0 auto 32px;
+  padding: 20px 0 44px;
 }
 
 .site-concept {
@@ -198,8 +198,8 @@
 
 .site-concept__hero-copy h1 {
   grid-area: title;
-  max-width: 16ch;
-  font-size: clamp(1.45rem, 2.8vw, 2.35rem);
+  max-width: 15ch;
+  font-size: clamp(2rem, 4.3vw, 3.9rem);
   line-height: 1.04;
 }
 
@@ -208,8 +208,8 @@
   max-width: 64ch;
   margin: 0;
   color: var(--muted);
-  line-height: 1.6;
-  font-size: 14px;
+  line-height: 1.72;
+  font-size: 16px;
 }
 
 .site-concept__search-surface {
@@ -401,7 +401,7 @@
 
 .site-concept__section-head h2 {
   max-width: 15ch;
-  font-size: clamp(1.2rem, 1.7vw, 1.7rem);
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
 }
 
 .site-concept__destination-grid {
@@ -411,7 +411,7 @@
 .site-concept__destination-card {
   position: relative;
   overflow: hidden;
-  min-height: 190px;
+  min-height: 280px;
   border-radius: 20px;
 }
 
@@ -446,7 +446,7 @@
 }
 
 .site-concept__destination-content strong {
-  font-size: 20px;
+  font-size: 30px;
   line-height: 1.05;
 }
 
@@ -551,7 +551,7 @@
 }
 
 .site-concept__guide-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .site-concept__guide-card span {
@@ -570,7 +570,7 @@
 .site-concept__guide-card strong {
   display: block;
   margin-bottom: 8px;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .site-concept .contact-buttons,
@@ -636,14 +636,14 @@
 
 .hotel-site-concept__intro h1 {
   margin-bottom: 12px;
-  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  font-size: clamp(2.3rem, 4.5vw, 4rem);
 }
 
 .hotel-site-concept__card {
   display: grid;
-  grid-template-columns: 400px 1fr;
-  gap: 14px;
-  padding: 14px;
+  grid-template-columns: 460px 1fr;
+  gap: 18px;
+  padding: 18px;
   border-radius: 24px;
   align-items: start;
 }
@@ -657,7 +657,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 20px;
-  min-height: 300px;
+  min-height: 360px;
 }
 
 .hotel-card__main-photo img,
@@ -674,7 +674,7 @@
 }
 
 .hotel-card__thumbs img {
-  height: 82px;
+  height: 96px;
   border-radius: 14px;
 }
 
@@ -983,6 +983,14 @@
       "metrics"
       "highlights";
   }
+
+  .site-concept__topbar-actions {
+    width: 100%;
+  }
+
+  .site-concept__topbar-actions .site-concept__cta {
+    margin-left: auto;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1005,7 +1013,12 @@
 
   .site-concept__hero-copy h1,
   .hotel-site-concept__intro h1 {
-    font-size: 2.45rem;
+    font-size: clamp(2rem, 10vw, 2.6rem);
+    max-width: none;
+  }
+
+  .site-concept__section-head h2 {
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
     max-width: none;
   }
 
@@ -1015,13 +1028,53 @@
 
   .site-concept__search-submit,
   .site-concept__cta,
+  .site-concept__topbar-link,
   .hotel-site-concept .button--accent,
   .hotel-site-concept .button--ghost {
     width: 100%;
   }
 
+  .site-concept__topbar {
+    gap: 12px;
+  }
+
+  .site-concept__topnav {
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .site-concept__topnav a {
+    white-space: nowrap;
+  }
+
+  .site-concept__topbar-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .site-concept__destination-card {
+    min-height: 220px;
+  }
+
+  .site-concept__destination-content strong {
+    font-size: 24px;
+  }
+
+  .hotel-site-concept__card {
+    padding: 14px;
+  }
+
+  .hotel-card__main-photo {
+    min-height: 280px;
+  }
+
   .hotel-card__thumbs {
     grid-template-columns: 1fr;
+  }
+
+  .hotel-card__thumbs img {
+    height: 120px;
   }
 
   .hotel-site-concept .media-grid {
