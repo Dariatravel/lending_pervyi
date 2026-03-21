@@ -2547,8 +2547,9 @@ main {
 
 .hero-home__chrome {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1.35rem;
   padding: 0.2rem 0.35rem 0;
@@ -2592,8 +2593,11 @@ main {
 
 .site-nav {
   display: flex;
+  order: 3;
+  flex: 1 1 100%;
+  min-width: 0;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.45rem;
 }
 
@@ -3039,6 +3043,8 @@ body.modal-open {
 }
 
 .btn-book--nav {
+  order: 2;
+  margin-left: auto;
   padding: 0.72rem 1.15rem;
   white-space: nowrap;
 }
