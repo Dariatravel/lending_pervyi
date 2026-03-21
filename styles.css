@@ -403,7 +403,15 @@
 
 .site-concept__section-head h2 {
   max-width: 15ch;
-  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-size: clamp(2rem, 3.6vw, 3.2rem);
+  line-height: 1.02;
+}
+
+.site-concept__section-head a {
+  color: #294a3d;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.01em;
 }
 
 .site-concept__destination-grid {
@@ -448,8 +456,8 @@
 }
 
 .site-concept__destination-content strong {
-  font-size: 30px;
-  line-height: 1.05;
+  font-size: clamp(1.55rem, 2.2vw, 2.05rem);
+  line-height: 1.04;
 }
 
 .site-concept .site-concept__catalog {
