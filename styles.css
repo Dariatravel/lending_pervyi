@@ -1025,12 +1025,13 @@
 
   .site-concept__hero-copy h1,
   .hotel-site-concept__intro h1 {
-    font-size: clamp(2rem, 10vw, 2.6rem);
+    /* Меньше vw — на ~400px не «раздувает» заголовок */
+    font-size: clamp(1.35rem, 6.2vw, 2.05rem);
     max-width: none;
   }
 
   .site-concept__section-head h2 {
-    font-size: clamp(1.6rem, 8vw, 2.2rem);
+    font-size: clamp(1.2rem, 5vw, 1.85rem);
     max-width: none;
   }
 
@@ -1106,6 +1107,36 @@
   .site-concept__contacts .contact-buttons,
   .hotel-site-concept .contact-buttons {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-concept .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-concept__topbar,
+  .site-concept__hero-card {
+    padding: 12px 14px;
+    border-radius: 18px;
+  }
+
+  .site-concept__search-surface {
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+  .site-concept__topnav a,
+  .site-concept__topbar-link {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+
+  .site-concept__hero-text {
+    font-size: 14px;
   }
 }
 
@@ -3146,6 +3177,11 @@ body.modal-open {
   position: fixed;
   inset: 0;
   z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  box-sizing: border-box;
 }
 
 .filters-modal__backdrop {
@@ -3157,47 +3193,66 @@ body.modal-open {
 
 .filters-modal__panel {
   position: relative;
-  width: min(1220px, calc(100vw - 2rem));
-  max-height: calc(100vh - 2rem);
+  z-index: 1;
+  /* Было до 1220px — занимало пол-экрана; компактная колонка фильтров */
+  width: min(520px, calc(100vw - 1rem));
+  max-height: min(640px, calc(100vh - 1rem));
   overflow: auto;
-  margin: 1rem auto;
+  margin: 0;
   background: #fffaf2;
   border: 1px solid var(--line);
-  border-radius: 30px;
-  padding: 1.3rem;
+  border-radius: 18px;
+  padding: 0.85rem 1rem 1rem;
   box-shadow: var(--shadow-lg);
+  -webkit-overflow-scrolling: touch;
 }
 
 .filters-modal__header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 0.8rem;
-  margin-bottom: 1rem;
+  gap: 0.6rem;
+  margin-bottom: 0.65rem;
 }
 
 .filters-modal__header h3 {
   margin: 0;
-  font-size: clamp(1.3rem, 2vw, 1.9rem);
+  font-size: clamp(1.05rem, 3.5vw, 1.35rem);
+  line-height: 1.2;
 }
 
 .filters-modal__close {
   appearance: none;
-  width: 44px;
-  height: 44px;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
   border: 0;
   border-radius: 50%;
   background: rgba(244, 236, 223, 0.9);
   color: #66554d;
-  font-size: 1.6rem;
+  font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
 }
 
 .filters-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem 1.8rem;
+  grid-template-columns: 1fr;
+  gap: 0.85rem 1rem;
+}
+
+@media (min-width: 700px) {
+  .filters-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 1.1rem;
+  }
+
+  .filters-modal__panel {
+    width: min(640px, calc(100vw - 1.5rem));
+    max-height: calc(100vh - 1.5rem);
+    border-radius: 22px;
+    padding: 1rem 1.1rem 1.15rem;
+  }
 }
 
 .filter-group {
@@ -3213,8 +3268,8 @@ body.modal-open {
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
-  margin-bottom: 0.85rem;
-  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  margin-bottom: 0.5rem;
+  font-size: clamp(0.82rem, 2.8vw, 1rem);
   font-family: "Prata", Georgia, serif;
 }
 
@@ -3235,20 +3290,20 @@ body.modal-open {
 .filter-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem;
+  gap: 0.45rem;
 }
 
 .filter-chip {
   appearance: none;
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: 999px;
   background: rgba(255, 255, 255, 0.74);
   color: var(--ink);
   font: inherit;
-  font-weight: 700;
-  font-size: 0.88rem;
-  line-height: 1.2;
-  padding: 0.72rem 1rem;
+  font-weight: 600;
+  font-size: clamp(0.72rem, 2.4vw, 0.8rem);
+  line-height: 1.25;
+  padding: 0.4rem 0.65rem;
   cursor: pointer;
 }
 
@@ -3668,10 +3723,11 @@ body.modal-open {
 
   .filters-modal__panel {
     width: calc(100vw - 1rem);
+    max-width: 520px;
     max-height: calc(100vh - 1rem);
-    margin: 0.5rem auto;
-    padding: 1rem;
-    border-radius: 24px;
+    margin: 0;
+    padding: 0.85rem 1rem;
+    border-radius: 18px;
   }
 }
 
