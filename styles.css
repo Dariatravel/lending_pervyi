@@ -22,15 +22,14 @@
 .site-concept,
 .hotel-site-concept {
   position: relative;
-  width: min(920px, calc(100vw - 40px));
-  max-width: calc(100vw - 24px);
+  width: min(1540px, calc(100vw - clamp(24px, 3vw, 64px) * 2));
   margin: 0 auto 24px;
   padding: 10px 0 22px;
 }
 
 .site-concept {
   display: grid;
-  gap: 14px;
+  gap: clamp(14px, 1.5vw, 24px);
 }
 
 .site-concept .bg-blur,
@@ -156,8 +155,8 @@
 .site-concept .section,
 .hotel-site-concept__intro,
 .hotel-site-concept__detail-section {
-  border-radius: 24px;
-  padding: 12px;
+  border-radius: clamp(18px, 2vw, 32px);
+  padding: clamp(12px, 2vw, 28px);
 }
 
 .site-concept__eyebrow,
@@ -183,7 +182,7 @@
 
 .site-concept__hero-copy {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
   grid-template-areas:
     "eyebrow highlights"
     "title highlights"
@@ -191,7 +190,7 @@
     "search search"
     "metrics metrics";
   align-items: start;
-  gap: 12px;
+  gap: clamp(12px, 1.5vw, 24px);
 }
 
 .site-concept__hero-copy > :nth-child(1) {
@@ -200,8 +199,8 @@
 
 .site-concept__hero-copy h1 {
   grid-area: title;
-  max-width: 14ch;
-  font-size: clamp(1.9rem, 3.8vw, 3.2rem);
+  max-width: 16ch;
+  font-size: clamp(1.9rem, 3.6vw, 3.6rem);
   line-height: 1.03;
 }
 
@@ -256,18 +255,28 @@
 }
 
 .site-concept__search-bar {
-  display: grid;
-  grid-template-columns: 2.2fr 1fr 1fr 1fr auto;
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
 .site-concept__search-field {
+  flex: 1 1 140px;
   display: grid;
   gap: 4px;
   padding: 10px 12px;
   background: #fff;
   border: 1px solid rgba(31, 47, 40, 0.09);
   border-radius: 20px;
+}
+
+.site-concept__search-field--wide {
+  flex: 2.2 1 240px;
+}
+
+.site-concept__search-submit {
+  flex: 0 0 auto;
+  min-width: 160px;
 }
 
 .site-concept__search-field span {
@@ -338,7 +347,7 @@
 
 .site-concept__hero-metrics {
   grid-area: metrics;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
   margin-top: 2px;
 }
 
@@ -365,7 +374,6 @@
 
 .site-concept__hero-highlights {
   grid-area: highlights;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-columns: 1fr;
   align-self: stretch;
 }
@@ -403,8 +411,8 @@
 }
 
 .site-concept__section-head h2 {
-  max-width: 20ch;
-  font-size: clamp(1.25rem, 2.1vw, 1.9rem);
+  max-width: 24ch;
+  font-size: clamp(1.25rem, 2.2vw, 2.2rem);
   line-height: 1.06;
 }
 
@@ -416,14 +424,30 @@
 }
 
 .site-concept__destination-grid {
-  grid-template-columns: 1.3fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+}
+
+.site-concept__destination-card--wide {
+  grid-column: span 1;
+}
+
+@media (min-width: 768px) {
+  .site-concept__destination-grid {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
 }
 
 .site-concept__destination-card {
   position: relative;
   overflow: hidden;
-  min-height: 170px;
-  border-radius: 20px;
+  min-height: clamp(170px, 20vw, 320px);
+  border-radius: clamp(16px, 1.5vw, 24px);
+  transition: transform 280ms ease, box-shadow 280ms ease;
+}
+
+.site-concept__destination-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(18, 31, 25, 0.16);
 }
 
 .site-concept__destination-card img {
@@ -488,9 +512,9 @@
 }
 
 .site-concept .catalog-shell__header h2 {
-  max-width: 22ch;
+  max-width: 28ch;
   margin-inline: auto;
-  font-size: clamp(1.15rem, 1.8vw, 1.75rem);
+  font-size: clamp(1.15rem, 2vw, 2rem);
   line-height: 1.08;
   text-align: center;
 }
@@ -524,8 +548,8 @@
 }
 
 .site-concept .catalog-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: clamp(10px, 1.5vw, 20px);
   align-items: start;
 }
 
@@ -535,18 +559,24 @@
   height: 100%;
   overflow: hidden;
   padding: 0;
-  border-radius: 22px;
+  border-radius: clamp(16px, 1.5vw, 24px);
   background: #fff;
   border: 1px solid rgba(25, 35, 30, 0.08);
   box-shadow: 0 16px 34px rgba(17, 28, 22, 0.08);
   text-decoration: none;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
 
 .site-concept .catalog-card img {
   width: 100%;
-  height: 230px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   background: rgba(232, 239, 235, 0.9);
+  transition: transform 280ms ease;
+}
+
+.site-concept .catalog-card:hover img {
+  transform: scale(1.04);
 }
 
 .site-concept .catalog-card h3 {
@@ -584,7 +614,7 @@
 }
 
 .site-concept__guide-grid {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
 }
 
 .site-concept__guide-card span {
@@ -627,13 +657,13 @@
 
 .site-concept__reviews .section-heading--compact h2,
 .site-concept__contacts .contact-shell h2 {
-  font-size: clamp(1.85rem, 3vw, 2.9rem);
-  max-width: 16ch;
+  font-size: clamp(1.85rem, 3vw, 3.2rem);
+  max-width: 20ch;
 }
 
 .site-concept__reviews .reviews-scroller {
-  grid-auto-columns: minmax(320px, 1fr);
-  gap: 14px;
+  grid-auto-columns: minmax(min(320px, 80vw), 1fr);
+  gap: clamp(10px, 1.5vw, 20px);
 }
 
 .site-concept__reviews .review-item {
@@ -643,8 +673,8 @@
 
 .site-concept__contacts .contact-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
-  gap: 20px;
+  grid-template-columns: minmax(0, 1fr) minmax(min(320px, 100%), 420px);
+  gap: clamp(20px, 3vw, 40px);
   align-items: center;
 }
 
@@ -989,32 +1019,12 @@
     align-items: stretch;
   }
 
-  .site-concept__search-bar,
-  .site-concept__hero-metrics,
-  .site-concept__hero-highlights,
-  .site-concept__destination-grid,
-  .site-concept__guide-grid,
   .site-concept__contacts .contact-shell,
   .hotel-site-concept__card,
   .hotel-site-concept .benefit-grid,
   .hotel-site-concept .reviews-grid,
   .hotel-site-concept__detail-grid {
     grid-template-columns: 1fr;
-  }
-
-  .site-concept .catalog-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .site-concept__hero-copy {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "eyebrow"
-      "title"
-      "text"
-      "search"
-      "metrics"
-      "highlights";
   }
 
   .site-concept__topbar-actions {
@@ -1026,10 +1036,27 @@
   }
 }
 
+@media (max-width: 900px) {
+  .site-concept__hero-copy {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "eyebrow"
+      "title"
+      "text"
+      "search"
+      "metrics"
+      "highlights";
+  }
+
+  .site-concept__destination-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 760px) {
   .site-concept,
   .hotel-site-concept {
-    width: min(100vw - 20px, 1360px);
+    width: min(100vw - 20px, 1540px);
     padding-top: 16px;
   }
 
@@ -1040,13 +1067,12 @@
   .hotel-site-concept__intro,
   .hotel-site-concept__card,
   .hotel-site-concept__detail-section {
-    padding: 20px;
-    border-radius: 24px;
+    padding: 16px;
+    border-radius: 20px;
   }
 
   .site-concept__hero-copy h1,
   .hotel-site-concept__intro h1 {
-    /* Меньше vw — на ~400px не «раздувает» заголовок */
     font-size: clamp(1.35rem, 6.2vw, 2.05rem);
     max-width: none;
   }
@@ -1054,10 +1080,6 @@
   .site-concept__section-head h2 {
     font-size: clamp(1.2rem, 5vw, 1.85rem);
     max-width: none;
-  }
-
-  .site-concept__search-bar {
-    grid-template-columns: 1fr;
   }
 
   .site-concept__search-submit,
@@ -1115,10 +1137,6 @@
     grid-template-columns: 1fr;
   }
 
-  .site-concept .catalog-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .site-concept__reviews .reviews-scroller {
     grid-auto-flow: row;
     grid-auto-columns: unset;
@@ -1128,13 +1146,6 @@
   .site-concept__contacts .contact-buttons,
   .hotel-site-concept .contact-buttons {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 520px) {
-  .site-concept .catalog-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 6px;
   }
 }
 
@@ -2163,14 +2174,14 @@ a {
 }
 
 main {
-  width: min(1180px, 94vw);
+  width: min(1540px, 94vw);
   margin: 0 auto;
   padding: 3rem 0 4rem;
   position: relative;
 }
 
 .page-shell {
-  width: min(1320px, 96vw);
+  width: min(1540px, calc(100vw - clamp(24px, 3vw, 64px) * 2));
   padding: 2.2rem 0 4.5rem;
 }
 
