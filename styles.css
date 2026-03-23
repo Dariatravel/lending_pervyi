@@ -488,9 +488,11 @@
 }
 
 .site-concept .catalog-shell__header h2 {
-  max-width: 18ch;
-  font-size: clamp(1.05rem, 1.55vw, 1.45rem);
+  max-width: 22ch;
+  margin-inline: auto;
+  font-size: clamp(1.15rem, 1.8vw, 1.75rem);
   line-height: 1.08;
+  text-align: center;
 }
 
 .site-concept .catalog-shell__text,
@@ -507,6 +509,8 @@
 .site-concept .filters-launch {
   align-items: center;
   gap: 10px;
+  justify-content: center;
+  text-align: center;
 }
 
 .site-concept .btn-filter {
@@ -520,40 +524,57 @@
 }
 
 .site-concept .catalog-grid {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
   align-items: start;
 }
 
 .site-concept .catalog-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   overflow: hidden;
   padding: 0;
-  border-radius: 12px;
-  box-shadow: 0 6px 14px rgba(17, 28, 22, 0.05);
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid rgba(25, 35, 30, 0.08);
+  box-shadow: 0 16px 34px rgba(17, 28, 22, 0.08);
+  text-decoration: none;
 }
 
 .site-concept .catalog-card img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 8;
+  height: 230px;
   object-fit: cover;
   background: rgba(232, 239, 235, 0.9);
 }
 
 .site-concept .catalog-card h3 {
   margin: 0;
-  padding: 6px 8px 2px;
-  font-size: 11px;
-  line-height: 1.14;
-  font-family: "Prata", Georgia, serif;
+  padding: 18px 18px 6px;
+  font-size: 16px;
+  line-height: 1.2;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-weight: 800;
+  text-align: center;
+  color: #1f2f28;
 }
 
 .site-concept .catalog-card p {
-  margin: 0 8px 8px;
-  padding: 0;
-  background: transparent;
-  font-size: 11px;
-  line-height: 1.2;
+  margin: 0;
+  padding: 0 18px 18px;
+  font-size: 14px;
+  line-height: 1.45;
+  text-align: center;
+  color: #7a847d;
+  margin-top: auto;
+}
+
+.site-concept .catalog-shell__header,
+.site-concept .filters-launch,
+.site-concept .catalog-shell__text {
+  justify-content: center;
+  text-align: center;
 }
 
 .site-concept .catalog-card:hover {
