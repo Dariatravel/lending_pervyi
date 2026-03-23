@@ -182,7 +182,8 @@
 .hotel-site-concept h1,
 .hotel-site-concept h2 {
   margin: 0;
-  font-family: "Prata", Georgia, serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-weight: 800;
   line-height: 1.03;
   letter-spacing: -0.02em;
 }
@@ -1326,7 +1327,8 @@ body {
 .hotel-layout-v2 h3,
 .landing-v2 .card h2,
 .landing-v2 .cta-block h2 {
-  font-family: "Prata", Georgia, serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.02em;
 }
@@ -1625,7 +1627,8 @@ body {
   padding: 16px 18px 8px;
   font-size: 20px;
   line-height: 1.05;
-  font-family: "Prata", Georgia, serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-weight: 800;
 }
 
 .landing-v2 .catalog-card p {
@@ -2796,7 +2799,8 @@ main.page-shell.site-concept {
 h1,
 h2,
 h3 {
-  font-family: "Prata", Georgia, serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.02em;
 }
@@ -3345,7 +3349,8 @@ body.modal-open {
   margin-bottom: 0.5rem;
   min-width: 0;
   font-size: clamp(0.82rem, 2.8vw, 1rem);
-  font-family: "Prata", Georgia, serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-weight: 700;
 }
 
 .filter-group summary::-webkit-details-marker {
