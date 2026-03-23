@@ -22,14 +22,16 @@
 .site-concept,
 .hotel-site-concept {
   position: relative;
-  width: min(1540px, calc(100vw - clamp(24px, 3vw, 64px) * 2));
+  width: 100%;
+  max-width: 1540px;
   margin: 0 auto 24px;
-  padding: 10px 0 22px;
+  padding: 10px clamp(12px, 3vw, 32px) 22px;
 }
 
 .site-concept {
   display: grid;
   gap: clamp(14px, 1.5vw, 24px);
+  overflow-x: hidden;
 }
 
 .site-concept .bg-blur,
@@ -1056,8 +1058,8 @@
 @media (max-width: 760px) {
   .site-concept,
   .hotel-site-concept {
-    width: min(100vw - 20px, 1540px);
-    padding-top: 16px;
+    width: 100%;
+    padding: 16px clamp(10px, 2.5vw, 20px) 22px;
   }
 
   .site-concept__topbar,
@@ -1183,9 +1185,10 @@ body {
 .landing-v2,
 .hotel-page-v2 {
   position: relative;
-  width: min(1380px, calc(100vw - 40px));
+  width: 100%;
+  max-width: 1540px;
   margin: 0 auto;
-  padding: 24px 0 72px;
+  padding: 24px clamp(12px, 3vw, 32px) 72px;
 }
 
 .landing-v2__topbar,
@@ -1898,8 +1901,8 @@ body {
 @media (max-width: 760px) {
   .landing-v2,
   .hotel-page-v2 {
-    width: min(100vw - 20px, 1380px);
-    padding-top: 16px;
+    width: 100%;
+    padding: 16px clamp(10px, 2.5vw, 20px) 72px;
   }
 
   .landing-v2__topbar,
@@ -2174,15 +2177,17 @@ a {
 }
 
 main {
-  width: min(1540px, 94vw);
+  width: 100%;
+  max-width: 1540px;
   margin: 0 auto;
-  padding: 3rem 0 4rem;
+  padding: 3rem clamp(12px, 3vw, 32px) 4rem;
   position: relative;
 }
 
 .page-shell {
-  width: min(1540px, calc(100vw - clamp(24px, 3vw, 64px) * 2));
-  padding: 2.2rem 0 4.5rem;
+  width: 100%;
+  max-width: 1540px;
+  padding: 2.2rem clamp(12px, 3vw, 32px) 4.5rem;
 }
 
 .section {
@@ -3688,7 +3693,7 @@ body.modal-open {
 @media (max-width: 900px) {
   main,
   .page-shell {
-    width: min(94vw, 100%);
+    width: 100%;
     padding-top: 1.6rem;
   }
 
