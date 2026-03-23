@@ -398,24 +398,38 @@
       applyFilters();
     });
 
-    openFiltersBtn?.addEventListener("click", () => {
+    function openDrawer() {
       if (!filtersModal) return;
       filtersModal.hidden = false;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          filtersModal.classList.add("is-visible");
+        });
+      });
       body.classList.add("modal-open");
-    });
+    }
+
+    function closeDrawer() {
+      if (!filtersModal) return;
+      filtersModal.classList.remove("is-visible");
+      body.classList.remove("modal-open");
+      filtersModal.addEventListener("transitionend", function handler(e) {
+        if (e.target === filtersModal.querySelector(".filters-modal__panel")) {
+          filtersModal.hidden = true;
+          filtersModal.removeEventListener("transitionend", handler);
+        }
+      });
+    }
+
+    openFiltersBtn?.addEventListener("click", openDrawer);
 
     closeFilterEls.forEach((element) => {
-      element.addEventListener("click", () => {
-        if (!filtersModal) return;
-        filtersModal.hidden = true;
-        body.classList.remove("modal-open");
-      });
+      element.addEventListener("click", closeDrawer);
     });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && filtersModal && !filtersModal.hidden) {
-        filtersModal.hidden = true;
-        body.classList.remove("modal-open");
+        closeDrawer();
       }
     });
 

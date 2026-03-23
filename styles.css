@@ -2051,8 +2051,7 @@ body {
 }
 
 .landing-v2 .filters-modal__panel {
-  border-radius: 28px;
-  box-shadow: 0 28px 60px rgba(17, 30, 22, 0.16);
+  box-shadow: -8px 0 40px rgba(17, 30, 22, 0.15);
 }
 
 .landing-v2 .filter-group summary {
@@ -3231,93 +3230,98 @@ body.modal-open {
 .filters-modal {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 1000;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  box-sizing: border-box;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.filters-modal.is-visible {
+  pointer-events: auto;
 }
 
 .filters-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(38, 47, 38, 0.44);
-  backdrop-filter: blur(8px);
+  background: rgba(30, 38, 30, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.filters-modal.is-visible .filters-modal__backdrop {
+  opacity: 1;
 }
 
 .filters-modal__panel {
   position: relative;
   z-index: 1;
-  /* border-box: иначе padding/border добавляются к width и панель вылезает за экран */
   box-sizing: border-box;
-  /* flex-элемент с min-width:auto раздувается под контент — фиксируем */
-  flex: 0 1 auto;
-  min-width: 0;
-  align-self: center;
-  /* Было до 1220px — занимало пол-экрана; компактная колонка фильтров */
-  width: min(520px, calc(100vw - 1rem));
-  max-width: calc(100vw - 1rem);
-  max-height: min(640px, calc(100vh - 1rem));
-  overflow-x: auto;
-  overflow-y: auto;
-  margin: 0;
+  width: min(420px, 85vw);
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
   background: #fffaf2;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 0.85rem 1rem 1rem;
-  box-shadow: var(--shadow-lg);
-  -webkit-overflow-scrolling: touch;
+  border-left: 1px solid var(--line);
+  box-shadow: -8px 0 40px rgba(17, 30, 22, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+  overflow: hidden;
+}
+
+.filters-modal.is-visible .filters-modal__panel {
+  transform: translateX(0);
 }
 
 .filters-modal__header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
-  margin-bottom: 0.65rem;
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
 }
 
 .filters-modal__header h3 {
   margin: 0;
-  font-size: clamp(1.05rem, 3.5vw, 1.35rem);
+  font-size: 1.15rem;
+  font-weight: 600;
   line-height: 1.2;
 }
 
 .filters-modal__close {
   appearance: none;
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border: 0;
   border-radius: 50%;
-  background: rgba(244, 236, 223, 0.9);
+  background: transparent;
   color: #66554d;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   line-height: 1;
   cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.filters-modal__close:hover {
+  background: rgba(244, 236, 223, 0.9);
+  color: #3d2e26;
 }
 
 .filters-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.85rem 1rem;
-  min-width: 0;
-}
-
-@media (min-width: 700px) {
-  .filters-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem 1.1rem;
-  }
-
-  .filters-modal__panel {
-    width: min(640px, calc(100vw - 1rem));
-    max-width: calc(100vw - 1rem);
-    max-height: calc(100vh - 1.5rem);
-    border-radius: 22px;
-    padding: 1rem 1.1rem 1.15rem;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 1rem 1.25rem 6rem;
+  min-height: 0;
 }
 
 .filter-group {
@@ -3795,13 +3799,8 @@ body.modal-open {
   }
 
   .filters-modal__panel {
-    width: calc(100vw - 1rem);
-    max-width: min(520px, calc(100vw - 1rem));
-    max-height: calc(100vh - 1rem);
-    margin: 0;
-    padding: 0.85rem 1rem;
-    border-radius: 18px;
-    box-sizing: border-box;
+    width: 100vw;
+    width: 100dvw;
   }
 }
 
