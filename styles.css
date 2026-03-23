@@ -3194,10 +3194,18 @@ body.modal-open {
 .filters-modal__panel {
   position: relative;
   z-index: 1;
+  /* border-box: иначе padding/border добавляются к width и панель вылезает за экран */
+  box-sizing: border-box;
+  /* flex-элемент с min-width:auto раздувается под контент — фиксируем */
+  flex: 0 1 auto;
+  min-width: 0;
+  align-self: center;
   /* Было до 1220px — занимало пол-экрана; компактная колонка фильтров */
   width: min(520px, calc(100vw - 1rem));
+  max-width: calc(100vw - 1rem);
   max-height: min(640px, calc(100vh - 1rem));
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: auto;
   margin: 0;
   background: #fffaf2;
   border: 1px solid var(--line);
@@ -3239,6 +3247,7 @@ body.modal-open {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.85rem 1rem;
+  min-width: 0;
 }
 
 @media (min-width: 700px) {
@@ -3248,7 +3257,8 @@ body.modal-open {
   }
 
   .filters-modal__panel {
-    width: min(640px, calc(100vw - 1.5rem));
+    width: min(640px, calc(100vw - 1rem));
+    max-width: calc(100vw - 1rem);
     max-height: calc(100vh - 1.5rem);
     border-radius: 22px;
     padding: 1rem 1.1rem 1.15rem;
@@ -3259,6 +3269,7 @@ body.modal-open {
   margin: 0;
   padding: 0;
   border: 0;
+  min-width: 0;
 }
 
 .filter-group summary {
@@ -3269,6 +3280,7 @@ body.modal-open {
   justify-content: space-between;
   gap: 0.6rem;
   margin-bottom: 0.5rem;
+  min-width: 0;
   font-size: clamp(0.82rem, 2.8vw, 1rem);
   font-family: "Prata", Georgia, serif;
 }
@@ -3291,10 +3303,12 @@ body.modal-open {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
+  min-width: 0;
 }
 
 .filter-chip {
   appearance: none;
+  box-sizing: border-box;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.74);
@@ -3305,6 +3319,10 @@ body.modal-open {
   line-height: 1.25;
   padding: 0.4rem 0.65rem;
   cursor: pointer;
+  max-width: 100%;
+  white-space: normal;
+  text-align: left;
+  overflow-wrap: anywhere;
 }
 
 .filter-chip:hover {
@@ -3723,11 +3741,12 @@ body.modal-open {
 
   .filters-modal__panel {
     width: calc(100vw - 1rem);
-    max-width: 520px;
+    max-width: min(520px, calc(100vw - 1rem));
     max-height: calc(100vh - 1rem);
     margin: 0;
     padding: 0.85rem 1rem;
     border-radius: 18px;
+    box-sizing: border-box;
   }
 }
 
