@@ -266,20 +266,44 @@
     element.replaceChildren(fragment);
   }
 
+  function resolveSupabaseMediaUrl(item, row) {
+    if (item && item.public_url) return item.public_url;
+    const raw = (item && item.storage_path) || (item && item.source_url) || '';
+    if (!raw) return '';
+    if (/^https?:\/\//i.test(raw)) {
+      const marker = `/storage/v1/object/public/${SUPABASE_CONFIG.storageBucket}/`;
+      const idx = raw.indexOf(marker);
+      if (idx !== -1) {
+        let rel = decodeURIComponent(raw.slice(idx + marker.length));
+        while (/^https?:\/\//i.test(rel)) {
+          const nextIdx = rel.indexOf(marker);
+          if (nextIdx === -1) break;
+          rel = decodeURIComponent(rel.slice(nextIdx + marker.length));
+        }
+        return `${SUPABASE_CONFIG.url}/storage/v1/object/public/${SUPABASE_CONFIG.storageBucket}/${rel.split('/').map(encodeURIComponent).join('/')}`;
+      }
+      return raw;
+    }
+    const rel = raw.replace(/^\/+/, '');
+    return `${SUPABASE_CONFIG.url}/storage/v1/object/public/${SUPABASE_CONFIG.storageBucket}/${rel.split('/').map(encodeURIComponent).join('/')}`;
+  }
+
   function renderHotelMedia(row, grid) {
     const fragment = document.createDocumentFragment();
     const media = Array.isArray(row.listing_media) ? [...row.listing_media] : [];
     media
-      .filter((item) => item.media_role !== "card" && item.public_url)
+      .filter((item) => item.media_role !== "card" && (item.public_url || item.storage_path || item.source_url || item.mime_type === "application/x-telegram-embed" || (item.details && item.details.telegram_post)))
       .sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
       .forEach((item, index) => {
         if ((item.mime_type || "").startsWith("video/")) {
+          const resolvedUrl = resolveSupabaseMediaUrl(item, row);
+          if (!resolvedUrl) return;
           const video = document.createElement("video");
           video.className = "local-video";
           video.controls = true;
           video.preload = "metadata";
           video.playsInline = true;
-          video.src = item.public_url;
+          video.src = resolvedUrl;
           fragment.appendChild(video);
           return;
         }
@@ -311,9 +335,11 @@
           return;
         }
 
+        const resolvedUrl = resolveSupabaseMediaUrl(item, row);
+        if (!resolvedUrl) return;
         const image = document.createElement("img");
         image.loading = "lazy";
-        image.src = item.public_url;
+        image.src = resolvedUrl;
         image.alt = `${row.title || "Объект"} фото ${index + 1}`;
         image.classList.add("media-grid__zoomable");
         fragment.appendChild(image);
@@ -398,38 +424,24 @@
       applyFilters();
     });
 
-    function openDrawer() {
+    openFiltersBtn?.addEventListener("click", () => {
       if (!filtersModal) return;
       filtersModal.hidden = false;
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          filtersModal.classList.add("is-visible");
-        });
-      });
       body.classList.add("modal-open");
-    }
-
-    function closeDrawer() {
-      if (!filtersModal) return;
-      filtersModal.classList.remove("is-visible");
-      body.classList.remove("modal-open");
-      filtersModal.addEventListener("transitionend", function handler(e) {
-        if (e.target === filtersModal.querySelector(".filters-modal__panel")) {
-          filtersModal.hidden = true;
-          filtersModal.removeEventListener("transitionend", handler);
-        }
-      });
-    }
-
-    openFiltersBtn?.addEventListener("click", openDrawer);
+    });
 
     closeFilterEls.forEach((element) => {
-      element.addEventListener("click", closeDrawer);
+      element.addEventListener("click", () => {
+        if (!filtersModal) return;
+        filtersModal.hidden = true;
+        body.classList.remove("modal-open");
+      });
     });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && filtersModal && !filtersModal.hidden) {
-        closeDrawer();
+        filtersModal.hidden = true;
+        body.classList.remove("modal-open");
       }
     });
 
