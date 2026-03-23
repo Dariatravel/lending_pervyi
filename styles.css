@@ -34,6 +34,11 @@
   overflow-x: hidden;
 }
 
+.site-concept > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .site-concept .bg-blur,
 .hotel-site-concept .card-preview-page__halo {
   position: absolute;
@@ -500,6 +505,8 @@
   background: transparent;
   border: 0;
   box-shadow: none;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .site-concept .catalog-shell__header,
@@ -508,9 +515,11 @@
 }
 
 .site-concept .catalog-shell__header {
+  display: grid;
   grid-template-columns: 1fr;
   gap: 8px;
   margin-bottom: 8px;
+  min-width: 0;
 }
 
 .site-concept .catalog-shell__header h2 {
@@ -553,6 +562,8 @@
   grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
   gap: clamp(10px, 1.5vw, 20px);
   align-items: start;
+  min-width: 0;
+  width: 100%;
 }
 
 .site-concept .catalog-card {
@@ -2153,6 +2164,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -2165,6 +2177,8 @@ body {
   font-family: "Manrope", "Segoe UI", sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 img,
@@ -2188,6 +2202,10 @@ main {
   width: 100%;
   max-width: 1540px;
   padding: 2.2rem clamp(12px, 3vw, 32px) 4.5rem;
+}
+
+main.page-shell.site-concept {
+  padding: 10px clamp(12px, 3vw, 32px) 22px;
 }
 
 .section {
