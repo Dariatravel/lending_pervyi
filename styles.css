@@ -209,6 +209,9 @@
   max-width: 16ch;
   font-size: clamp(1.9rem, 3.6vw, 3.6rem);
   line-height: 1.03;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .site-concept__hero-text {
@@ -405,8 +408,9 @@
 .hotel-site-concept .faq-list p,
 .hotel-site-concept .review-card p {
   color: var(--muted);
-  line-height: 1.6;
-  font-size: 15px;
+  line-height: 1.45;
+  font-size: 14px;
+  font-family: "Manrope", "Segoe UI", sans-serif;
 }
 
 .site-concept__section-head {
