@@ -163,7 +163,30 @@ def build_homepage() -> None:
   <div class="bg-blur bg-blur--mint" aria-hidden="true"></div>
   <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
 
-  <div class="site-concept__masthead" role="banner">
+  <header class="site-concept__topbar" role="banner">
+    <a class="site-concept__brand" href="#search">
+      <img class="site-concept__brand-mark" src="media/branding/logo-emblem.png" width="40" height="40" alt="Абхазский берег — на главную" decoding="async" />
+      <span class="site-concept__brand-copy">
+        <strong>АБХАЗСКИЙ БЕРЕГ</strong>
+        <span>Каталог проверенного жилья в Абхазии</span>
+      </span>
+    </a>
+
+    <nav class="site-concept__topnav" aria-label="Основная навигация">
+      <a href="#search">Поиск</a>
+      <a href="#regions">Регионы</a>
+      <a href="#stays">Подборки</a>
+      <a href="#guide">Как бронировать</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+
+    <div class="site-concept__topbar-actions">
+      <a class="site-concept__topbar-link" href="/kvartira/">Квартиры и дома</a>
+      <a class="btn-book site-concept__cta" href="#search">Начать поиск</a>
+    </div>
+  </header>
+
+  <div class="site-concept__masthead" aria-hidden="true">
     <div class="site-concept__masthead-bg" aria-hidden="true">
       <picture>
         <source type="image/webp" srcset="media/branding/hero-banner-2400.webp 2400w, media/branding/hero-banner-3200.webp 3200w" sizes="(max-width: 1540px) 100vw, 1540px" />
@@ -171,33 +194,11 @@ def build_homepage() -> None:
       </picture>
       <div class="site-concept__masthead-fade"></div>
     </div>
-    <header class="site-concept__topbar site-concept__topbar--on-banner">
-      <a class="site-concept__brand" href="#search">
-        <img class="site-concept__brand-mark" src="media/branding/logo-emblem.png" width="40" height="40" alt="Абхазский берег — на главную" decoding="async" />
-        <span class="site-concept__brand-copy">
-          <strong>АБХАЗСКИЙ БЕРЕГ</strong>
-          <span>Каталог проверенного жилья в Абхазии</span>
-        </span>
-      </a>
-
-      <nav class="site-concept__topnav" aria-label="Основная навигация">
-        <a href="#search">Поиск</a>
-        <a href="#destinations">Направления</a>
-        <a href="#stays">Подборки</a>
-        <a href="#guide">Как бронировать</a>
-        <a href="#contacts">Контакты</a>
-      </nav>
-
-      <div class="site-concept__topbar-actions">
-        <a class="site-concept__topbar-link" href="/kvartira/">Квартиры и дома</a>
-        <a class="btn-book site-concept__cta" href="#search">Начать поиск</a>
-      </div>
-    </header>
   </div>
 
   <section class="site-concept__hero-card" id="search">
     <div class="site-concept__hero-copy">
-      <div class="site-concept__eyebrow">Концепт на основе логики Суточно, Bronevik, Booking и Airbnb</div>
+      <div class="site-concept__eyebrow">Бронирование и подбор отелей в Абхазии</div>
       <h1>Абхазский берег</h1>
       <p class="site-concept__hero-text">
         Когда-то я сама приехала в Абхазию как турист, а теперь - влюбляю вас в Абхазию, в республику,
@@ -343,7 +344,6 @@ def build_homepage() -> None:
     <div class="site-concept__section-head">
       <div>
         <p class="site-concept__eyebrow">Страничка подбора</p>
-        <h2>Современный вход в каталог, но с живой логикой и фильтрами Abhazbereg.</h2>
       </div>
       <div class="site-concept__filter-pills" aria-hidden="true">
         <span class="is-active">Все</span>

@@ -117,13 +117,6 @@
   background: linear-gradient(180deg, transparent 0%, transparent 55%, rgba(12, 26, 20, 0.2) 100%);
 }
 
-.site-concept__masthead .site-concept__topbar.site-concept__topbar--on-banner {
-  position: relative;
-  z-index: 3;
-  margin: clamp(10px, 1.8vw, 16px);
-  top: auto;
-}
-
 .site-concept__topbar {
   position: sticky;
   top: 14px;
