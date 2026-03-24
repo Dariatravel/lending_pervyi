@@ -1,6 +1,46 @@
 (() => {
   const body = document.body;
   if (!body) return;
+  const METRIKA_ID = 108214677;
+
+  function initMetrika() {
+    window.ym =
+      window.ym ||
+      function metrikaShim(...args) {
+        (window.ym.a = window.ym.a || []).push(args);
+      };
+    window.ym.l = window.ym.l || Date.now();
+
+    if (!document.querySelector(`script[src*="mc.yandex.ru/metrika/tag.js?id=${METRIKA_ID}"]`)) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = `https://mc.yandex.ru/metrika/tag.js?id=${METRIKA_ID}`;
+      document.head.appendChild(script);
+    }
+
+    window.ym(METRIKA_ID, "init", {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true,
+    });
+  }
+
+  function trackAnalytics(goal, params = {}) {
+    try {
+      if (typeof window.ym === "function") {
+        window.ym(METRIKA_ID, "reachGoal", goal, params);
+      }
+
+      if (typeof window.gtag === "function") {
+        window.gtag("event", goal, params);
+      }
+    } catch (error) {
+      console.warn("Analytics tracking failed", goal, error);
+    }
+  }
+
+  initMetrika();
 
   const SUPABASE_CONFIG = window.__ABHAZBEREG_SUPABASE_CONFIG__ || {
     url: "https://chnyazvybzzryduhgopa.supabase.co",
@@ -428,6 +468,7 @@
       if (!filtersModal) return;
       filtersModal.hidden = false;
       body.classList.add("modal-open");
+      trackAnalytics("open_filters");
     });
 
     closeFilterEls.forEach((element) => {
@@ -552,6 +593,28 @@
     if (!video) return;
     if (video.paused) video.play();
     else video.pause();
+  });
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+    if (!link) return;
+
+    const href = (link.getAttribute("href") || "").toLowerCase();
+    if (!href) return;
+
+    if (href.includes("wa.me") || href.includes("whatsapp")) {
+      trackAnalytics("click_whatsapp", { href });
+      return;
+    }
+
+    if (href.includes("t.me") || href.includes("telegram")) {
+      trackAnalytics("click_telegram", { href });
+      return;
+    }
+
+    if (link.classList.contains("catalog-card")) {
+      trackAnalytics("open_hotel_card", { href });
+    }
   });
 
   const filtersController = initFilters();
