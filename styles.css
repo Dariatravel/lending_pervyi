@@ -102,13 +102,10 @@
 .site-concept__brand-mark {
   width: 40px;
   height: 40px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(180deg, #163128 0%, #2f5548 100%);
-  color: #fff;
-  font-family: "Prata", Georgia, serif;
-  font-size: 20px;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 .site-concept__brand-copy {
@@ -122,9 +119,9 @@
 }
 
 .site-concept__brand-copy span {
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
   color: var(--muted);
 }
 
