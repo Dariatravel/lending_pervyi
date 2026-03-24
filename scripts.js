@@ -2,6 +2,7 @@
   const body = document.body;
   if (!body) return;
   const METRIKA_ID = 108214677;
+  const GA4_ID = "G-MZ2NTRDDJ5";
 
   function initMetrika() {
     window.ym =
@@ -26,6 +27,25 @@
     });
   }
 
+  function initGA4() {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag =
+      window.gtag ||
+      function gtagShim() {
+        window.dataLayer.push(arguments);
+      };
+
+    if (!document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${GA4_ID}"]`)) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`;
+      document.head.appendChild(script);
+    }
+
+    window.gtag("js", new Date());
+    window.gtag("config", GA4_ID);
+  }
+
   function trackAnalytics(goal, params = {}) {
     try {
       if (typeof window.ym === "function") {
@@ -41,6 +61,7 @@
   }
 
   initMetrika();
+  initGA4();
 
   const SUPABASE_CONFIG = window.__ABHAZBEREG_SUPABASE_CONFIG__ || {
     url: "https://chnyazvybzzryduhgopa.supabase.co",
