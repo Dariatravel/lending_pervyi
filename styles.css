@@ -92,16 +92,29 @@
 .site-concept__masthead-bg {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(180deg, rgba(12, 28, 22, 0.15) 0%, rgba(12, 28, 22, 0.05) 38%, rgba(12, 28, 22, 0.35) 100%),
-    url("media/branding/hero-banner.jpg") center top / cover no-repeat;
+  overflow: hidden;
 }
 
-.site-concept__masthead-scrim {
+.site-concept__masthead-bg picture {
+  display: block;
+  position: absolute;
+  inset: 0;
+  margin: 0;
+}
+
+.site-concept__masthead-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: translateZ(0);
+}
+
+.site-concept__masthead-fade {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(105deg, rgba(255, 255, 255, 0.06) 0%, transparent 42%, rgba(0, 0, 0, 0.08) 100%);
+  background: linear-gradient(180deg, transparent 0%, transparent 55%, rgba(12, 26, 20, 0.2) 100%);
 }
 
 .site-concept__masthead .site-concept__topbar.site-concept__topbar--on-banner {

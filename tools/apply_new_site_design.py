@@ -164,8 +164,13 @@ def build_homepage() -> None:
   <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
 
   <div class="site-concept__masthead" role="banner">
-    <div class="site-concept__masthead-bg" aria-hidden="true"></div>
-    <div class="site-concept__masthead-scrim" aria-hidden="true"></div>
+    <div class="site-concept__masthead-bg" aria-hidden="true">
+      <picture>
+        <source type="image/webp" srcset="media/branding/hero-banner-2400.webp 2400w, media/branding/hero-banner-3200.webp 3200w" sizes="(max-width: 1540px) 100vw, 1540px" />
+        <img class="site-concept__masthead-photo" src="media/branding/hero-banner-2400.jpg" width="2400" height="796" alt="" decoding="async" fetchpriority="high" />
+      </picture>
+      <div class="site-concept__masthead-fade"></div>
+    </div>
     <header class="site-concept__topbar site-concept__topbar--on-banner">
       <a class="site-concept__brand" href="#search">
         <img class="site-concept__brand-mark" src="media/branding/logo-emblem.png" width="40" height="40" alt="Абхазский берег — на главную" decoding="async" />
@@ -337,7 +342,7 @@ def build_homepage() -> None:
   <section class="site-concept__section-block" id="stays">
     <div class="site-concept__section-head">
       <div>
-        <p class="site-concept__eyebrow">Подобранные варианты</p>
+        <p class="site-concept__eyebrow">Страничка подбора</p>
         <h2>Современный вход в каталог, но с живой логикой и фильтрами Abhazbereg.</h2>
       </div>
       <div class="site-concept__filter-pills" aria-hidden="true">
