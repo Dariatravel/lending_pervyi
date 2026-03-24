@@ -146,7 +146,7 @@
     return `/media/${folder}/${row.slug}.jpg`;
   }
 
-  /** Turn /media/... paths from DB into public Supabase Storage URLs (files are not in the static repo). */
+  /** Turn /media/... paths into public Supabase Storage URLs (covers cards, hotel galleries, videos — not in static repo). */
   function absolutizeKvartiraCoverUrl(url) {
     const n = normalizeMediaUrl(url);
     if (!n) return "";
@@ -156,6 +156,34 @@
       return `${SUPABASE_CONFIG.url}/storage/v1/object/public/site-media/${rel}`;
     }
     return n;
+  }
+
+  /** Hotel card pages (.hotel-site-concept) ship with /media/hotels/... and /media/videos/...; rewrite to Supabase. */
+  function absolutizeHotelSiteConceptMedia() {
+    const root = document.querySelector(".hotel-site-concept");
+    if (!root) return;
+
+    root.querySelectorAll("img[src]").forEach((img) => {
+      const src = img.getAttribute("src") || "";
+      if (!src.startsWith("/media/")) return;
+      const abs = absolutizeKvartiraCoverUrl(src);
+      if (abs && abs !== src) img.setAttribute("src", abs);
+    });
+
+    root.querySelectorAll("video source[src], audio source[src]").forEach((source) => {
+      const src = source.getAttribute("src") || "";
+      if (!src.startsWith("/media/")) return;
+      const abs = absolutizeKvartiraCoverUrl(src);
+      if (abs && abs !== src) source.setAttribute("src", abs);
+    });
+
+    root.querySelectorAll("video").forEach((video) => {
+      try {
+        video.load();
+      } catch (error) {
+        /* ignore */
+      }
+    });
   }
 
   function normalizeMediaUrl(value) {
@@ -702,6 +730,8 @@
       trackAnalytics("open_hotel_card", { href });
     }
   });
+
+  absolutizeHotelSiteConceptMedia();
 
   const filtersController = initFilters();
   initCategoryPicks(filtersController);

@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Prata&amp;display=swap" rel="stylesheet"/>
-<link href="styles.css?v=2026032526" rel="stylesheet"/>
+<link href="styles.css?v=2026032603" rel="stylesheet"/>
 <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -36,21 +36,20 @@
 <div aria-hidden="true" class="bg-blur bg-blur--sand"></div>
 <header class="site-concept__topbar" role="banner">
 <a class="site-concept__brand" href="#search">
-<img alt="Абхазский берег — на главную" class="site-concept__brand-mark" decoding="async" height="40" src="media/branding/logo-emblem.png" width="40"/>
+<img alt="Абхазский берег — на главную" class="site-concept__brand-mark" decoding="async" height="80" src="media/branding/logo-emblem.png" width="80"/>
 <span class="site-concept__brand-copy">
-<strong>АБХАЗСКИЙ БЕРЕГ</strong>
+<strong>Абхазский берег</strong>
 <span>Каталог проверенного жилья в Абхазии</span>
 </span>
 </a>
 <nav aria-label="Основная навигация" class="site-concept__topnav">
-<a href="#search">Поиск</a>
-<a href="#regions">Регионы</a>
-<a href="#stays">Подборки</a>
+<a href="#search">Подбор жилья</a>
+<a href="#regions">Лучшие пляжи Абхазии</a>
+<a href="#stay-categories">Для тех, кто едет впервые</a>
 <a href="#guide">Как бронировать</a>
 <a href="#contacts">Контакты</a>
 </nav>
 <div class="site-concept__topbar-actions">
-<a class="site-concept__topbar-link" href="/kvartira/">Квартиры и дома</a>
 <a class="btn-book site-concept__cta" href="#search">Начать поиск</a>
 </div>
 </header>
@@ -63,7 +62,7 @@
 <div class="site-concept__masthead-fade"></div>
 </div>
 </div>
-<section class="site-concept__hero-card" id="search">
+<section class="site-concept__hero-card">
 <div class="site-concept__hero-copy">
 <div class="site-concept__eyebrow">Бронирование и подбор отелей в Абхазии</div>
 <h1>Абхазский берег</h1>
@@ -73,52 +72,6 @@
         проверенного лично мной жилья, а так же можете воспользоваться бесплатным подбором и консультацией
         в чате. Начнем!
       </p>
-<div class="site-concept__search-surface">
-<div aria-label="Тип поиска" class="site-concept__search-tabs" role="tablist">
-<button class="is-active" type="button">Гостям</button>
-<button type="button">Командировки</button>
-<button type="button">Партнёрам</button>
-</div>
-<div class="site-concept__search-bar">
-<label class="site-concept__search-field site-concept__search-field--wide">
-<span>Куда едем</span>
-<strong>Абхазия, Сухум / Гагра / Пицунда</strong>
-</label>
-<label class="site-concept__search-field">
-<span>Заезд</span>
-<strong>12 июня</strong>
-</label>
-<label class="site-concept__search-field">
-<span>Выезд</span>
-<strong>19 июня</strong>
-</label>
-<label class="site-concept__search-field">
-<span>Гости</span>
-<strong>2 взрослых</strong>
-</label>
-<a class="btn-book site-concept__search-submit" href="#catalog">Найти варианты</a>
-</div>
-<div class="site-concept__search-tags">
-<span>Мгновенное подтверждение</span>
-<span>Проверенные хозяева</span>
-<span>Поддержка 24/7</span>
-<span>Оплата на сайте</span>
-</div>
-</div>
-<div class="site-concept__hero-metrics">
-<article>
-<strong>120 000+</strong>
-<span>объектов по России и ближнему зарубежью как логика агрегатора, но с фокусом на Абхазию</span>
-</article>
-<article>
-<strong>8 зон</strong>
-<span>понятный вход по регионам отдыха вместо длинного однообразного списка</span>
-</article>
-<article>
-<strong>4 формата</strong>
-<span>отели, гостевые дома, домики и квартиры внутри одной экосистемы</span>
-</article>
-</div>
 <div class="site-concept__social-stats" role="list">
 <a aria-label="Telegram: 13 900 подписчиков, открыть канал" class="site-concept__social-stat" href="https://t.me/abhazbooking" rel="noopener noreferrer" role="listitem" target="_blank">
 <span aria-hidden="true" class="site-concept__social-stat-icon site-concept__social-stat-icon--tg">
@@ -170,7 +123,6 @@
 <div class="site-concept__section-head">
 <div>
 <p class="site-concept__eyebrow">Популярные направления</p>
-<h2>Вместо сухого списка городов — визуальный вход в сценарий поездки.</h2>
 </div>
 <a href="#catalog">Смотреть каталог</a>
 </div>
@@ -299,8 +251,9 @@
 </section>
 <section class="site-concept__section-block" id="stays">
 <div class="site-concept__section-head">
-<div>
+<div class="site-concept__section-head__intro">
 <p class="site-concept__eyebrow">Страничка подбора</p>
+<a class="site-concept__eyebrow-link" href="/kvartira/">Квартиры и дома</a>
 </div>
 <div aria-hidden="true" class="site-concept__filter-pills">
 <span class="is-active">Все</span>
@@ -310,15 +263,40 @@
 <span>Премиум</span>
 </div>
 </div>
+<div class="site-concept__search-surface" id="search">
+<div aria-label="Тип поиска" class="site-concept__search-tabs" role="tablist">
+<button class="is-active" type="button">Гостям</button>
+<button type="button">Командировки</button>
+<button type="button">Партнёрам</button>
+</div>
+<div class="site-concept__search-bar">
+<label class="site-concept__search-field site-concept__search-field--wide">
+<span>Куда едем</span>
+<strong>Абхазия, Сухум / Гагра / Пицунда</strong>
+</label>
+<label class="site-concept__search-field">
+<span>Заезд</span>
+<strong>12 июня</strong>
+</label>
+<label class="site-concept__search-field">
+<span>Выезд</span>
+<strong>19 июня</strong>
+</label>
+<label class="site-concept__search-field">
+<span>Гости</span>
+<strong>2 взрослых</strong>
+</label>
+<a class="btn-book site-concept__search-submit" href="#catalog">Найти варианты</a>
+</div>
+<div class="site-concept__search-tags">
+<span>Мгновенное подтверждение</span>
+<span>Проверенные хозяева</span>
+<span>Поддержка 24/7</span>
+<span>Оплата на сайте</span>
+</div>
+</div>
 <section class="section site-concept__catalog" id="catalog">
 <article class="card catalog-shell">
-<div class="catalog-shell__header">
-<div>
-<p class="eyebrow">Основной каталог</p>
-<h2>Подберите размещение по локации, бюджету и сценарию отдыха</h2>
-</div>
-<p class="catalog-shell__text">Сначала можно открыть фильтры и сузить выбор, а затем перейти на детальную страницу нужного объекта.</p>
-</div>
 <div class="filters-launch">
 <button class="btn-filter" id="open-filters" type="button">Фильтры</button>
 <button class="btn-filter btn-filter--ghost" id="clear-filters" type="button">Сбросить</button>

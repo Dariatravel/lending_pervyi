@@ -165,23 +165,22 @@ def build_homepage() -> None:
 
   <header class="site-concept__topbar" role="banner">
     <a class="site-concept__brand" href="#search">
-      <img class="site-concept__brand-mark" src="media/branding/logo-emblem.png" width="40" height="40" alt="Абхазский берег — на главную" decoding="async" />
+      <img class="site-concept__brand-mark" src="media/branding/logo-emblem.png" width="80" height="80" alt="Абхазский берег — на главную" decoding="async" />
       <span class="site-concept__brand-copy">
-        <strong>АБХАЗСКИЙ БЕРЕГ</strong>
+        <strong>Абхазский берег</strong>
         <span>Каталог проверенного жилья в Абхазии</span>
       </span>
     </a>
 
     <nav class="site-concept__topnav" aria-label="Основная навигация">
-      <a href="#search">Поиск</a>
-      <a href="#regions">Регионы</a>
-      <a href="#stays">Подборки</a>
+      <a href="#search">Подбор жилья</a>
+      <a href="#regions">Лучшие пляжи Абхазии</a>
+      <a href="#stay-categories">Для тех, кто едет впервые</a>
       <a href="#guide">Как бронировать</a>
       <a href="#contacts">Контакты</a>
     </nav>
 
     <div class="site-concept__topbar-actions">
-      <a class="site-concept__topbar-link" href="/kvartira/">Квартиры и дома</a>
       <a class="btn-book site-concept__cta" href="#search">Начать поиск</a>
     </div>
   </header>
@@ -196,7 +195,7 @@ def build_homepage() -> None:
     </div>
   </div>
 
-  <section class="site-concept__hero-card" id="search">
+  <section class="site-concept__hero-card">
     <div class="site-concept__hero-copy">
       <div class="site-concept__eyebrow">Бронирование и подбор отелей в Абхазии</div>
       <h1>Абхазский берег</h1>
@@ -206,56 +205,6 @@ def build_homepage() -> None:
         проверенного лично мной жилья, а так же можете воспользоваться бесплатным подбором и консультацией
         в чате. Начнем!
       </p>
-
-      <div class="site-concept__search-surface">
-        <div class="site-concept__search-tabs" role="tablist" aria-label="Тип поиска">
-          <button class="is-active" type="button">Гостям</button>
-          <button type="button">Командировки</button>
-          <button type="button">Партнёрам</button>
-        </div>
-
-        <div class="site-concept__search-bar">
-          <label class="site-concept__search-field site-concept__search-field--wide">
-            <span>Куда едем</span>
-            <strong>Абхазия, Сухум / Гагра / Пицунда</strong>
-          </label>
-          <label class="site-concept__search-field">
-            <span>Заезд</span>
-            <strong>12 июня</strong>
-          </label>
-          <label class="site-concept__search-field">
-            <span>Выезд</span>
-            <strong>19 июня</strong>
-          </label>
-          <label class="site-concept__search-field">
-            <span>Гости</span>
-            <strong>2 взрослых</strong>
-          </label>
-          <a class="btn-book site-concept__search-submit" href="#catalog">Найти варианты</a>
-        </div>
-
-        <div class="site-concept__search-tags">
-          <span>Мгновенное подтверждение</span>
-          <span>Проверенные хозяева</span>
-          <span>Поддержка 24/7</span>
-          <span>Оплата на сайте</span>
-        </div>
-      </div>
-
-      <div class="site-concept__hero-metrics">
-        <article>
-          <strong>120 000+</strong>
-          <span>объектов по России и ближнему зарубежью как логика агрегатора, но с фокусом на Абхазию</span>
-        </article>
-        <article>
-          <strong>8 зон</strong>
-          <span>понятный вход по регионам отдыха вместо длинного однообразного списка</span>
-        </article>
-        <article>
-          <strong>4 формата</strong>
-          <span>отели, гостевые дома, домики и квартиры внутри одной экосистемы</span>
-        </article>
-      </div>
 
       <div class="site-concept__social-stats" role="list">
         <a aria-label="Telegram: 13 900 подписчиков, открыть канал" class="site-concept__social-stat" href="https://t.me/abhazbooking" rel="noopener noreferrer" role="listitem" target="_blank">
@@ -306,11 +255,10 @@ def build_homepage() -> None:
     </div>
   </section>
 
-  <section class="site-concept__section-block" id="destinations">
+  <section class="site-concept__section-block" id="regions">
     <div class="site-concept__section-head">
       <div>
         <p class="site-concept__eyebrow">Популярные направления</p>
-        <h2>Вместо сухого списка городов — визуальный вход в нужный сценарий поездки.</h2>
       </div>
       <a href="#stays">Все подборки</a>
     </div>
@@ -342,8 +290,9 @@ def build_homepage() -> None:
 
   <section class="site-concept__section-block" id="stays">
     <div class="site-concept__section-head">
-      <div>
+      <div class="site-concept__section-head__intro">
         <p class="site-concept__eyebrow">Страничка подбора</p>
+        <a class="site-concept__eyebrow-link" href="/kvartira/">Квартиры и дома</a>
       </div>
       <div class="site-concept__filter-pills" aria-hidden="true">
         <span class="is-active">Все</span>
@@ -353,6 +302,42 @@ def build_homepage() -> None:
         <span>Премиум</span>
       </div>
     </div>
+
+    <div class="site-concept__search-surface" id="search">
+      <div class="site-concept__search-tabs" role="tablist" aria-label="Тип поиска">
+        <button class="is-active" type="button">Гостям</button>
+        <button type="button">Командировки</button>
+        <button type="button">Партнёрам</button>
+      </div>
+
+      <div class="site-concept__search-bar">
+        <label class="site-concept__search-field site-concept__search-field--wide">
+          <span>Куда едем</span>
+          <strong>Абхазия, Сухум / Гагра / Пицунда</strong>
+        </label>
+        <label class="site-concept__search-field">
+          <span>Заезд</span>
+          <strong>12 июня</strong>
+        </label>
+        <label class="site-concept__search-field">
+          <span>Выезд</span>
+          <strong>19 июня</strong>
+        </label>
+        <label class="site-concept__search-field">
+          <span>Гости</span>
+          <strong>2 взрослых</strong>
+        </label>
+        <a class="btn-book site-concept__search-submit" href="#catalog">Найти варианты</a>
+      </div>
+
+      <div class="site-concept__search-tags">
+        <span>Мгновенное подтверждение</span>
+        <span>Проверенные хозяева</span>
+        <span>Поддержка 24/7</span>
+        <span>Оплата на сайте</span>
+      </div>
+    </div>
+
     {catalog_section}
   </section>
 

@@ -83,7 +83,9 @@
 .site-concept__masthead {
   position: relative;
   z-index: 2;
-  min-height: clamp(200px, 36vw, 340px);
+  width: 100%;
+  /* Совпадает с пропорцией hero-banner (2400×796), чтобы при cover не срезать низ/верх */
+  aspect-ratio: 2400 / 796;
   border-radius: clamp(18px, 2vw, 28px);
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(18, 31, 25, 0.18);
@@ -106,7 +108,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
   transform: translateZ(0);
 }
 
@@ -126,8 +128,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 10px 14px;
-  border-radius: 22px;
+  padding: 18px 22px;
+  border-radius: clamp(24px, 2.4vw, 32px);
 }
 
 .site-concept__topbar--on-banner {
@@ -154,27 +156,39 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
-.site-concept__topbar--on-banner .site-concept__topnav a,
-.site-concept__topbar--on-banner .site-concept__topbar-link {
-  color: rgba(255, 255, 255, 0.92);
-  font-weight: 600;
+.site-concept__topbar--on-banner .site-concept__topnav a {
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration-color: rgba(255, 255, 255, 0.55);
 }
 
-.site-concept__topbar--on-banner .site-concept__topnav a:hover,
-.site-concept__topbar--on-banner .site-concept__topbar-link:hover {
-  background: rgba(255, 255, 255, 0.18);
+.site-concept__topbar--on-banner .site-concept__topnav a:hover {
   color: #fff;
+  text-decoration-color: rgba(255, 255, 255, 0.85);
 }
 
 .site-concept__brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 22px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.site-concept__brand:hover,
+.site-concept__brand:focus-visible {
+  text-decoration: none;
+}
+
+.site-concept__brand:focus-visible {
+  outline: 2px solid rgba(100, 121, 107, 0.45);
+  outline-offset: 4px;
+  border-radius: 16px;
 }
 
 .site-concept__brand-mark {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   display: block;
   object-fit: cover;
@@ -183,18 +197,25 @@
 
 .site-concept__brand-copy {
   display: grid;
-  gap: 2px;
+  gap: 4px;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
 }
 
 .site-concept__brand-copy strong {
-  font-size: 13px;
-  letter-spacing: 0.01em;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: 0.03em;
 }
 
 .site-concept__brand-copy span {
-  font-size: 10px;
-  letter-spacing: 0.02em;
-  line-height: 1.25;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
   color: var(--muted);
 }
 
@@ -207,24 +228,23 @@
   min-width: 0;
 }
 
-.site-concept__topnav a,
-.site-concept__topbar-link {
-  padding: 8px 10px;
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 500;
-  border-radius: 999px;
-  transition:
-    background-color 0.18s ease,
-    color 0.18s ease,
-    transform 0.18s ease;
+.site-concept__topnav a {
+  padding: 8px 6px;
+  color: #4f7d6c;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  border-radius: 0;
+  transition: color 0.18s ease;
 }
 
-.site-concept__topnav a:hover,
-.site-concept__topbar-link:hover {
-  background: rgba(233, 243, 237, 0.98);
-  color: var(--text);
-  transform: translateY(-1px);
+.site-concept__topnav a:hover {
+  color: #3d6658;
 }
 
 .site-concept__hero-card,
@@ -247,6 +267,34 @@
   font-weight: 700;
 }
 
+.site-concept__section-head__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.site-concept__section-head__intro .site-concept__eyebrow {
+  margin-bottom: 0;
+}
+
+.site-concept__eyebrow-link {
+  color: #4f7d6c;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.18s ease;
+}
+
+.site-concept__eyebrow-link:hover {
+  color: #3d6658;
+}
+
 .site-concept h1,
 .site-concept h2,
 .hotel-site-concept h1,
@@ -265,8 +313,6 @@
     "eyebrow highlights"
     "title highlights"
     "text highlights"
-    "search search"
-    "metrics metrics"
     "social social";
   align-items: start;
   gap: clamp(12px, 1.5vw, 24px);
@@ -296,12 +342,16 @@
 }
 
 .site-concept__search-surface {
-  grid-area: search;
   padding: 12px;
   background: rgba(255, 255, 255, 0.82);
   border: 1px solid rgba(20, 32, 26, 0.06);
   border-radius: 20px;
   box-shadow: 0 10px 22px rgba(18, 31, 25, 0.06);
+}
+
+#stays > .site-concept__search-surface {
+  margin-top: clamp(4px, 1vw, 10px);
+  margin-bottom: clamp(16px, 2vw, 26px);
 }
 
 .site-concept__search-tabs {
@@ -418,7 +468,6 @@
   color: #fff;
 }
 
-.site-concept__hero-metrics,
 .site-concept__hero-highlights,
 .site-concept__destination-grid,
 .site-concept__guide-grid,
@@ -427,13 +476,6 @@
   gap: 14px;
 }
 
-.site-concept__hero-metrics {
-  grid-area: metrics;
-  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
-  margin-top: 2px;
-}
-
-.site-concept__hero-metrics article,
 .site-concept__mini-card,
 .site-concept__benefit-card,
 .site-concept__guide-card,
@@ -447,12 +489,6 @@
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(20, 32, 26, 0.05);
-}
-
-.site-concept__hero-metrics strong {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 17px;
 }
 
 .site-concept__social-stats {
@@ -616,7 +652,7 @@
   line-height: 1.06;
 }
 
-.site-concept__section-head a {
+.site-concept__section-head a:not(.site-concept__eyebrow-link) {
   color: #294a3d;
   font-weight: 800;
   font-size: 15px;
@@ -1322,8 +1358,6 @@
       "eyebrow"
       "title"
       "text"
-      "search"
-      "metrics"
       "social"
       "highlights";
   }
@@ -1364,7 +1398,6 @@
 
   .site-concept__search-submit,
   .site-concept__cta,
-  .site-concept__topbar-link,
   .hotel-site-concept .button--accent,
   .hotel-site-concept .button--ghost {
     width: 100%;
@@ -1372,6 +1405,23 @@
 
   .site-concept__topbar {
     gap: 12px;
+  }
+
+  .site-concept__brand-mark {
+    width: 56px;
+    height: 56px;
+  }
+
+  .site-concept__brand {
+    gap: 12px;
+  }
+
+  .site-concept__brand-copy strong {
+    font-size: 18px;
+  }
+
+  .site-concept__brand-copy span {
+    font-size: 13px;
   }
 
   .site-concept__topnav {
@@ -1441,10 +1491,10 @@
     border-radius: 16px;
   }
 
-  .site-concept__topnav a,
-  .site-concept__topbar-link {
-    font-size: 12px;
-    padding: 6px 8px;
+  .site-concept__topnav a {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    padding: 6px 4px;
   }
 
   .site-concept__hero-text {
