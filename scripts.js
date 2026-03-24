@@ -142,8 +142,20 @@
 
   function localCardFallback(row) {
     if (!row?.slug) return "";
-    const folder = row.source_kind === "kvartira" ? "cards" : "cards";
+    const folder = row.source_kind === "kvartira" ? "kvartira-cards" : "cards";
     return `/media/${folder}/${row.slug}.jpg`;
+  }
+
+  /** Turn /media/... paths from DB into public Supabase Storage URLs (files are not in the static repo). */
+  function absolutizeKvartiraCoverUrl(url) {
+    const n = normalizeMediaUrl(url);
+    if (!n) return "";
+    if (n.startsWith("http://") || n.startsWith("https://")) return n;
+    if (n.startsWith("/media/")) {
+      const rel = n.slice("/media/".length);
+      return `${SUPABASE_CONFIG.url}/storage/v1/object/public/site-media/${rel}`;
+    }
+    return n;
   }
 
   function normalizeMediaUrl(value) {
@@ -173,12 +185,16 @@
     media.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
     const card = media.find((item) => item.media_role === "card" && normalizeMediaUrl(item.public_url));
     const image = media.find((item) => normalizeMediaUrl(item.public_url) && (item.mime_type || "").startsWith("image/"));
-    return (
+    const raw =
       normalizeMediaUrl(card?.public_url) ||
       normalizeMediaUrl(image?.public_url) ||
       normalizeMediaUrl(row.cover_url) ||
-      localCardFallback(row)
-    );
+      (row.source_kind === "kvartira" ? "" : localCardFallback(row));
+    if (row.source_kind === "kvartira") {
+      const abs = absolutizeKvartiraCoverUrl(raw || localCardFallback(row));
+      return abs || absolutizeKvartiraCoverUrl(localCardFallback(row));
+    }
+    return raw || localCardFallback(row);
   }
 
   function attachImageFallback(image, row) {
@@ -186,7 +202,10 @@
     image.addEventListener(
       "error",
       () => {
-        const fallback = localCardFallback(row);
+        const fallback =
+          row.source_kind === "kvartira"
+            ? absolutizeKvartiraCoverUrl(localCardFallback(row))
+            : localCardFallback(row);
         if (fallback && image.src !== new URL(fallback, window.location.origin).href) {
           image.src = fallback;
           return;

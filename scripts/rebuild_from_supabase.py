@@ -274,10 +274,27 @@ def render_kvartira_card(row: dict[str, Any]) -> str:
 
 
 def replace_catalog_block(file_path: Path, marker: str, html_block: str) -> None:
+    """Replace inner HTML of the catalog-grid div (handles nested <div> inside cards)."""
     text = file_path.read_text(encoding="utf-8")
     start = text.index(marker) + len(marker)
-    end = text.index("</div>", start)
-    updated = text[:start] + html_block + text[end:]
+    depth = 1
+    pos = start
+    end_close = -1
+    while depth > 0:
+        next_open = text.find("<div", pos)
+        next_close = text.find("</div>", pos)
+        if next_close == -1:
+            raise ValueError(f"Unclosed catalog block after {marker!r} in {file_path}")
+        if next_open != -1 and next_open < next_close:
+            depth += 1
+            pos = next_open + 4
+        else:
+            depth -= 1
+            end_close = next_close
+            pos = next_close + len("</div>")
+    if end_close == -1:
+        raise ValueError(f"Could not find closing </div> for catalog grid in {file_path}")
+    updated = text[:start] + html_block + text[end_close:]
     file_path.write_text(updated, encoding="utf-8")
 
 

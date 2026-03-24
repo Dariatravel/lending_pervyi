@@ -193,7 +193,8 @@
     "title highlights"
     "text highlights"
     "search search"
-    "metrics metrics";
+    "metrics metrics"
+    "social social";
   align-items: start;
   gap: clamp(12px, 1.5vw, 24px);
 }
@@ -378,6 +379,82 @@
   display: block;
   margin-bottom: 6px;
   font-size: 17px;
+}
+
+.site-concept__social-stats {
+  grid-area: social;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: clamp(14px, 2vw, 22px);
+  margin-top: 4px;
+}
+
+.site-concept__social-stat {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 38px 16px 18px;
+  margin-top: 22px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(20, 32, 26, 0.06);
+  box-shadow: 0 12px 28px rgba(18, 31, 25, 0.08);
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.site-concept__social-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(18, 31, 25, 0.12);
+}
+
+.site-concept__social-stat:focus-visible {
+  outline: 2px solid #294a3d;
+  outline-offset: 3px;
+}
+
+.site-concept__social-stat-icon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 20px rgba(18, 31, 25, 0.15);
+}
+
+.site-concept__social-stat-icon--tg {
+  background: linear-gradient(160deg, #37aee2 0%, #1e96c8 100%);
+}
+
+.site-concept__social-stat-icon--vk {
+  background: linear-gradient(160deg, #2787f5 0%, #0077ff 100%);
+}
+
+.site-concept__social-stat-icon--max {
+  background: linear-gradient(135deg, #5b7cff 0%, #8b5cf6 55%, #a855f7 100%);
+}
+
+.site-concept__social-stat strong {
+  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.site-concept__social-stat-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  opacity: 0.88;
 }
 
 .site-concept__hero-highlights {
@@ -1060,6 +1137,7 @@
       "text"
       "search"
       "metrics"
+      "social"
       "highlights";
   }
 
