@@ -430,9 +430,32 @@
     }
   }
 
+  function cardCatalogCategoryText(card) {
+    const h3 = card.querySelector("h3");
+    const img = card.querySelector("img");
+    return `${h3?.textContent || ""} ${img?.getAttribute("alt") || ""}`.toLowerCase();
+  }
+
+  /** Rough title-based match for category tiles (main catalog is hotels/guest houses/cabins). */
+  function matchesCatalogCategory(slug, text) {
+    if (!slug) return true;
+    if (slug === "cabin") {
+      return /домик|коттедж|глепинг|bungalo|шале|глэмпинг|glemping|бунгало|шалэ/.test(text);
+    }
+    if (slug === "guesthouse") {
+      return /гостев|пансион/.test(text);
+    }
+    if (slug === "hotel") {
+      return /отель|гостиница|инн|inn|апарт[\s-]*отел/.test(text);
+    }
+    return true;
+  }
+
   function initFilters() {
     const grid = document.getElementById("catalog-grid");
-    if (!grid) return { refresh: () => {} };
+    if (!grid) {
+      return { refresh: () => {}, setCatalogCategory: () => {} };
+    }
 
     const chips = Array.from(document.querySelectorAll(".filter-chip"));
     const visibleCount = document.getElementById("visible-count");
@@ -442,6 +465,7 @@
     const filtersModal = document.getElementById("filters-modal");
     const closeFilterEls = Array.from(document.querySelectorAll("[data-close-filters]"));
     const selected = Object.fromEntries(FILTER_GROUPS.map((group) => [group, new Set()]));
+    let catalogCategorySlug = null;
 
     function getCards() {
       return Array.from(grid.querySelectorAll(".catalog-card"));
@@ -466,12 +490,20 @@
             break;
           }
         }
+        if (ok && catalogCategorySlug && !matchesCatalogCategory(catalogCategorySlug, cardCatalogCategoryText(card))) {
+          ok = false;
+        }
         card.hidden = !ok;
         if (ok) shown += 1;
       });
 
       if (visibleCount) visibleCount.textContent = String(shown);
       if (emptyNote) emptyNote.hidden = shown !== 0;
+    }
+
+    function setCatalogCategory(slug) {
+      catalogCategorySlug = slug && String(slug).trim() ? String(slug).trim() : null;
+      applyFilters();
     }
 
     chips.forEach((chip) => {
@@ -501,6 +533,7 @@
         chip.classList.remove("is-active");
         chip.setAttribute("aria-pressed", "false");
       });
+      catalogCategorySlug = null;
       applyFilters();
     });
 
@@ -527,7 +560,20 @@
     });
 
     applyFilters();
-    return { refresh: applyFilters };
+    return { refresh: applyFilters, setCatalogCategory };
+  }
+
+  function initCategoryPicks(filtersController) {
+    document.querySelectorAll("a.site-concept__category-card[data-catalog-category]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const slug = link.dataset.catalogCategory;
+        if (!slug || slug === "apartment") return;
+        event.preventDefault();
+        filtersController.setCatalogCategory(slug);
+        document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        trackAnalytics("pick_stay_category", { category: slug });
+      });
+    });
   }
 
   async function hydrateHomeCatalog(filtersController) {
@@ -658,6 +704,7 @@
   });
 
   const filtersController = initFilters();
+  initCategoryPicks(filtersController);
   hydrateHomeCatalog(filtersController);
   hydrateKvartiraCatalog();
   hydrateHotelPage();

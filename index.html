@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Prata&amp;display=swap" rel="stylesheet"/>
-<link href="styles.css?v=6751912" rel="stylesheet"/>
+<link href="styles.css?v=2026032520" rel="stylesheet"/>
 <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -34,9 +34,12 @@
 <main class="page-shell site-concept">
 <div aria-hidden="true" class="bg-blur bg-blur--mint"></div>
 <div aria-hidden="true" class="bg-blur bg-blur--sand"></div>
-<header class="site-concept__topbar">
+<div class="site-concept__masthead" role="banner">
+<div aria-hidden="true" class="site-concept__masthead-bg"></div>
+<div aria-hidden="true" class="site-concept__masthead-scrim"></div>
+<header class="site-concept__topbar site-concept__topbar--on-banner">
 <a class="site-concept__brand" href="#search">
-<img alt="" class="site-concept__brand-mark" decoding="async" height="40" src="media/branding/logo-emblem.png" width="40"/>
+<img alt="Абхазский берег — на главную" class="site-concept__brand-mark" decoding="async" height="40" src="media/branding/logo-emblem.png" width="40"/>
 <span class="site-concept__brand-copy">
 <strong>АБХАЗСКИЙ БЕРЕГ</strong>
 <span>Каталог проверенного жилья в Абхазии</span>
@@ -54,14 +57,16 @@
 <a class="btn-book site-concept__cta" href="#search">Начать поиск</a>
 </div>
 </header>
+</div>
 <section class="site-concept__hero-card" id="search">
 <div class="site-concept__hero-copy">
 <div class="site-concept__eyebrow">Концепт на основе логики Суточно, Bronevik, Booking и Airbnb</div>
 <h1>Абхазский берег</h1>
 <p class="site-concept__hero-text">
-        Быстрый поиск, визуальные подборки, честные карточки объектов и удобное бронирование через
-        сайт и мессенджеры. Сохраняем сильную экспертизу Abhazbereg, но упаковываем её в более
-        лёгкий и современный интерфейс.
+        Когда-то я сама приехала в Абхазию как турист, а теперь - влюбляю вас в Абхазию, в республику,
+        которую сложно описать - лишь прочувствовать! На страницах этого сайта вы найдете варианты
+        проверенного лично мной жилья, а так же можете воспользоваться бесплатным подбором и консультацией
+        в чате. Начнем!
       </p>
 <div class="site-concept__search-surface">
 <div aria-label="Тип поиска" class="site-concept__search-tabs" role="tablist">
@@ -133,23 +138,25 @@
 </a>
 </div>
 <div class="site-concept__hero-highlights">
-<article class="site-concept__mini-card">
-<div class="site-concept__mini-badge">Популярно сейчас</div>
-<strong>Абхазия</strong>
-<span>Пляжи, сосновые бухты, горные домики и апартаменты у моря.</span>
+<article class="site-concept__benefit-card">
+<h3 class="site-concept__benefit-title">Выгода 1. Только проверенное жилье</h3>
+<div class="site-concept__benefit-body">
+<p>Все объекты в каталоге жилья проверены лично мной. Я езжу в отели, смотрю номера, территорию, пляжи, общаюсь с владельцами и персоналом, снимаю подробные видео. Если объект не развивается, не заботится о гостях или не соответствует заявленному уровню, я с ними больше не работаю.</p>
+</div>
 </article>
-<article class="site-concept__mini-card site-concept__mini-card--soft">
-<div class="site-concept__mini-badge">Что остаётся важным</div>
-<ul>
-<li>региональная навигация</li>
-<li>честные детали по объекту</li>
-<li>живой контакт и помощь с бронированием</li>
-</ul>
+<article class="site-concept__benefit-card">
+<h3 class="site-concept__benefit-title">Выгода 2. Цены всегда без накруток</h3>
+<div class="site-concept__benefit-body">
+<p>Любые расценки на размещение всегда точь-в-точь с ценами прямого бронирования. Это мое правило.</p>
+<p>Более того, я первая публикую в соцсетях информацию о горящих окошках, снижении цен и раннем бронировании. Если нашли дешевле — напишите!</p>
+</div>
 </article>
-<article class="site-concept__mini-card">
-<div class="site-concept__mini-badge">Сценарий для бизнеса</div>
-<strong>B2B и API</strong>
-<span>Отдельный поток для корпоративных клиентов и партнёрских подключений.</span>
+<article class="site-concept__benefit-card">
+<h3 class="site-concept__benefit-title">Выгода 3. Сопровождение от брони до выезда</h3>
+<div class="site-concept__benefit-body">
+<p>Я оказываю сопровождение по любым вопросам, связанным с самостоятельным путешествием. Я не исчезаю после бронирования, остаюсь на связи.</p>
+<p>В разделе <a href="#journal">Блог</a> вы найдете полезные статьи обо всем, что связано с поездкой в Абхазию, либо напишите мне сразу в чат, я подскажу где что и как.</p>
+</div>
 </article>
 </div>
 </div>
@@ -184,6 +191,105 @@
 <strong>Горные домики</strong>
 </div>
 </article>
+</div>
+</section>
+<section class="site-concept__section-block site-concept__stay-categories" id="stay-categories">
+<h2 class="site-concept__stay-categories-title">Посмотрите категории проживания</h2>
+<div class="site-concept__category-grid" role="list">
+<a class="site-concept__category-card" data-catalog-category="guesthouse" href="#catalog">
+<div class="site-concept__category-visual" aria-hidden="true">
+<svg fill="none" height="100%" viewBox="0 0 200 140" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="cat-gh-bg" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#e8f4ec"/>
+<stop offset="100%" stop-color="#cfe6d8"/>
+</linearGradient>
+</defs>
+<rect fill="url(#cat-gh-bg)" height="140" rx="16" width="200"/>
+<ellipse cx="100" cy="118" fill="#b8d9c4" opacity="0.45" rx="72" ry="10"/>
+<path d="M100 28 152 68H48Z" fill="#3d6b58"/>
+<rect fill="#f7faf7" height="52" rx="4" width="88" x="56" y="68"/>
+<rect fill="#5a8f72" height="28" rx="2" width="22" x="89" y="92"/>
+<circle cx="100" cy="56" fill="#e8f4ec" r="6"/>
+<rect fill="#7aaf8c" height="8" rx="2" width="18" x="68" y="78"/>
+<rect fill="#7aaf8c" height="8" rx="2" width="18" x="114" y="78"/>
+</svg>
+</div>
+<span class="site-concept__category-label">Гостевые дома</span>
+</a>
+<a class="site-concept__category-card" data-catalog-category="hotel" href="#catalog">
+<div class="site-concept__category-visual" aria-hidden="true">
+<svg fill="none" height="100%" viewBox="0 0 200 140" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="cat-hotel-bg" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#e4eef0"/>
+<stop offset="100%" stop-color="#c9ddd9"/>
+</linearGradient>
+</defs>
+<rect fill="url(#cat-hotel-bg)" height="140" rx="16" width="200"/>
+<ellipse cx="100" cy="118" fill="#9ec4bc" opacity="0.35" rx="68" ry="9"/>
+<rect fill="#2d4f44" height="72" rx="4" width="72" x="64" y="36"/>
+<rect fill="#eaf3f0" height="10" rx="1" width="14" x="74" y="46"/>
+<rect fill="#eaf3f0" height="10" rx="1" width="14" x="93" y="46"/>
+<rect fill="#eaf3f0" height="10" rx="1" width="14" x="112" y="46"/>
+<rect fill="#eaf3f0" height="10" rx="1" width="14" x="74" y="62"/>
+<rect fill="#eaf3f0" height="10" rx="1" width="14" x="93" y="62"/>
+<rect fill="#eaf3f0" height="10" rx="1" width="14" x="112" y="62"/>
+<rect fill="#eaf3f0" height="10" rx="1" width="14" x="74" y="78"/>
+<rect fill="#eaf3f0" height="10" rx="1" width="14" x="93" y="78"/>
+<rect fill="#eaf3f0" height="10" rx="1" width="14" x="112" y="78"/>
+<rect fill="#6bb8c9" height="14" opacity="0.85" rx="3" width="52" x="74" y="100"/>
+</svg>
+</div>
+<span class="site-concept__category-label">Отели</span>
+</a>
+<a class="site-concept__category-card" data-catalog-category="cabin" href="#catalog">
+<div class="site-concept__category-visual" aria-hidden="true">
+<svg fill="none" height="100%" viewBox="0 0 200 140" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="cat-cabin-bg" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#f0ebe3"/>
+<stop offset="100%" stop-color="#dccbb8"/>
+</linearGradient>
+</defs>
+<rect fill="url(#cat-cabin-bg)" height="140" rx="16" width="200"/>
+<ellipse cx="100" cy="118" fill="#c4b09a" opacity="0.35" rx="70" ry="9"/>
+<path d="M100 32 158 86H42Z" fill="#8b6f5c"/>
+<path d="M56 86h88v40H56z" fill="#a68976"/>
+<rect fill="#6d5344" height="22" rx="2" width="16" x="92" y="96"/>
+<circle cx="100" cy="58" fill="#f5efe8" r="5"/>
+<path d="M34 78h18l-9-16z" fill="#5d8a6e"/>
+<path d="M148 78h18l-9-16z" fill="#5d8a6e"/>
+</svg>
+</div>
+<span class="site-concept__category-label">Домики</span>
+</a>
+<a class="site-concept__category-card site-concept__category-card--apartment" href="/kvartira/">
+<div class="site-concept__category-visual" aria-hidden="true">
+<svg fill="none" height="100%" viewBox="0 0 200 140" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="cat-apt-bg" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#e8eef6"/>
+<stop offset="100%" stop-color="#d2dde8"/>
+</linearGradient>
+</defs>
+<rect fill="url(#cat-apt-bg)" height="140" rx="16" width="200"/>
+<ellipse cx="100" cy="118" fill="#a8bdd4" opacity="0.35" rx="66" ry="9"/>
+<rect fill="#4a667a" height="64" rx="4" width="96" x="52" y="44"/>
+<rect fill="#eaf1f8" height="8" rx="1" width="18" x="62" y="54"/>
+<rect fill="#eaf1f8" height="8" rx="1" width="18" x="86" y="54"/>
+<rect fill="#eaf1f8" height="8" rx="1" width="18" x="110" y="54"/>
+<rect fill="#eaf1f8" height="8" rx="1" width="18" x="62" y="68"/>
+<rect fill="#eaf1f8" height="8" rx="1" width="18" x="86" y="68"/>
+<rect fill="#eaf1f8" height="8" rx="1" width="18" x="110" y="68"/>
+<rect fill="#eaf1f8" height="8" rx="1" width="18" x="62" y="82"/>
+<rect fill="#eaf1f8" height="8" rx="1" width="18" x="86" y="82"/>
+<rect fill="#eaf1f8" height="8" rx="1" width="18" x="110" y="82"/>
+<rect fill="#7a9aad" height="18" rx="2" width="22" x="89" y="90"/>
+</svg>
+</div>
+<span class="site-concept__category-label">Квартиры и дома «под ключ»</span>
+</a>
 </div>
 </section>
 <section class="site-concept__section-block" id="stays">
@@ -434,6 +540,6 @@
 </article>
 </section>
 </main>
-<script defer="" src="scripts.js?v=2026032401"></script>
+<script defer="" src="scripts.js?v=2026032511"></script>
 </body>
 </html>

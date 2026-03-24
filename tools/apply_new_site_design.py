@@ -163,37 +163,42 @@ def build_homepage() -> None:
   <div class="bg-blur bg-blur--mint" aria-hidden="true"></div>
   <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
 
-  <header class="site-concept__topbar">
-    <a class="site-concept__brand" href="#search">
-      <span class="site-concept__brand-mark">A</span>
-      <span class="site-concept__brand-copy">
-        <strong>Abhazbereg</strong>
-        <span>travel marketplace</span>
-      </span>
-    </a>
+  <div class="site-concept__masthead" role="banner">
+    <div class="site-concept__masthead-bg" aria-hidden="true"></div>
+    <div class="site-concept__masthead-scrim" aria-hidden="true"></div>
+    <header class="site-concept__topbar site-concept__topbar--on-banner">
+      <a class="site-concept__brand" href="#search">
+        <img class="site-concept__brand-mark" src="media/branding/logo-emblem.png" width="40" height="40" alt="Абхазский берег — на главную" decoding="async" />
+        <span class="site-concept__brand-copy">
+          <strong>АБХАЗСКИЙ БЕРЕГ</strong>
+          <span>Каталог проверенного жилья в Абхазии</span>
+        </span>
+      </a>
 
-    <nav class="site-concept__topnav" aria-label="Основная навигация">
-      <a href="#search">Поиск</a>
-      <a href="#destinations">Направления</a>
-      <a href="#stays">Подборки</a>
-      <a href="#guide">Как бронировать</a>
-      <a href="#contacts">Контакты</a>
-    </nav>
+      <nav class="site-concept__topnav" aria-label="Основная навигация">
+        <a href="#search">Поиск</a>
+        <a href="#destinations">Направления</a>
+        <a href="#stays">Подборки</a>
+        <a href="#guide">Как бронировать</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
 
-    <div class="site-concept__topbar-actions">
-      <a class="site-concept__topbar-link" href="/kvartira/">Квартиры и дома</a>
-      <a class="btn-book site-concept__cta" href="#search">Начать поиск</a>
-    </div>
-  </header>
+      <div class="site-concept__topbar-actions">
+        <a class="site-concept__topbar-link" href="/kvartira/">Квартиры и дома</a>
+        <a class="btn-book site-concept__cta" href="#search">Начать поиск</a>
+      </div>
+    </header>
+  </div>
 
   <section class="site-concept__hero-card" id="search">
     <div class="site-concept__hero-copy">
       <div class="site-concept__eyebrow">Концепт на основе логики Суточно, Bronevik, Booking и Airbnb</div>
       <h1>Абхазский берег</h1>
       <p class="site-concept__hero-text">
-        Быстрый поиск, визуальные подборки, честные карточки объектов и удобное бронирование через
-        сайт и мессенджеры. Сохраняем сильную экспертизу Abhazbereg, но упаковываем её в более
-        лёгкий и современный интерфейс.
+        Когда-то я сама приехала в Абхазию как турист, а теперь - влюбляю вас в Абхазию, в республику,
+        которую сложно описать - лишь прочувствовать! На страницах этого сайта вы найдете варианты
+        проверенного лично мной жилья, а так же можете воспользоваться бесплатным подбором и консультацией
+        в чате. Начнем!
       </p>
 
       <div class="site-concept__search-surface">
@@ -271,23 +276,25 @@ def build_homepage() -> None:
       </div>
 
       <div class="site-concept__hero-highlights">
-        <article class="site-concept__mini-card">
-          <div class="site-concept__mini-badge">Популярно сейчас</div>
-          <strong>Абхазия</strong>
-          <span>Пляжи, сосновые бухты, горные домики и апартаменты у моря.</span>
+        <article class="site-concept__benefit-card">
+          <h3 class="site-concept__benefit-title">Выгода 1. Только проверенное жилье</h3>
+          <div class="site-concept__benefit-body">
+            <p>Все объекты в каталоге жилья проверены лично мной. Я езжу в отели, смотрю номера, территорию, пляжи, общаюсь с владельцами и персоналом, снимаю подробные видео. Если объект не развивается, не заботится о гостях или не соответствует заявленному уровню, я с ними больше не работаю.</p>
+          </div>
         </article>
-        <article class="site-concept__mini-card site-concept__mini-card--soft">
-          <div class="site-concept__mini-badge">Что остаётся важным</div>
-          <ul>
-            <li>региональная навигация</li>
-            <li>честные детали по объекту</li>
-            <li>живой контакт и помощь с бронированием</li>
-          </ul>
+        <article class="site-concept__benefit-card">
+          <h3 class="site-concept__benefit-title">Выгода 2. Цены всегда без накруток</h3>
+          <div class="site-concept__benefit-body">
+            <p>Любые расценки на размещение всегда точь-в-точь с ценами прямого бронирования. Это мое правило.</p>
+            <p>Более того, я первая публикую в соцсетях информацию о горящих окошках, снижении цен и раннем бронировании. Если нашли дешевле — напишите!</p>
+          </div>
         </article>
-        <article class="site-concept__mini-card">
-          <div class="site-concept__mini-badge">Сценарий для бизнеса</div>
-          <strong>B2B и API</strong>
-          <span>Отдельный поток для корпоративных клиентов и партнёрских подключений.</span>
+        <article class="site-concept__benefit-card">
+          <h3 class="site-concept__benefit-title">Выгода 3. Сопровождение от брони до выезда</h3>
+          <div class="site-concept__benefit-body">
+            <p>Я оказываю сопровождение по любым вопросам, связанным с самостоятельным путешествием. Я не исчезаю после бронирования, остаюсь на связи.</p>
+            <p>В разделе <a href="#journal">Блог</a> вы найдете полезные статьи обо всем, что связано с поездкой в Абхазию, либо напишите мне сразу в чат, я подскажу где что и как.</p>
+          </div>
         </article>
       </div>
     </div>
