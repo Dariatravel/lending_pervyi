@@ -549,15 +549,15 @@
 }
 
 .site-concept__social-stat-icon--tg {
-  background-image: url("media/branding/icon-tg.png");
+  background-image: url("/media/branding/icon-tg.png");
 }
 
 .site-concept__social-stat-icon--vk {
-  background-image: url("media/branding/icon-vk.png");
+  background-image: url("/media/branding/icon-vk.png");
 }
 
 .site-concept__social-stat-icon--max {
-  background-image: url("media/branding/icon-max.png");
+  background-image: url("/media/branding/icon-max.png");
 }
 
 .site-concept__social-stat strong {
@@ -633,7 +633,13 @@
 .site-concept__mini-card span,
 .site-concept__mini-card li,
 .site-concept__guide-card p,
-.site-concept .catalog-shell__text,
+.site-concept .catalog-shell__text {
+  color: var(--muted);
+  line-height: 1.45;
+  font-size: 14px;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+}
+
 .hotel-site-concept__intro p,
 .hotel-card__description,
 .hotel-site-concept .paragraph-blocks p,
@@ -641,7 +647,7 @@
 .hotel-site-concept .review-card p {
   color: var(--muted);
   line-height: 1.45;
-  font-size: 14px;
+  font-size: 16px;
   font-family: "Manrope", "Segoe UI", sans-serif;
 }
 
@@ -1028,7 +1034,12 @@
 
 .hotel-site-concept__intro h1 {
   margin-bottom: 12px;
-  font-size: clamp(1.15rem, 2.25vw, 2rem);
+  font-size: 18px;
+}
+
+.hotel-site-concept h2,
+.hotel-site-concept h3 {
+  font-size: 18px;
 }
 
 .hotel-site-concept__card {
@@ -1405,7 +1416,7 @@
   }
 
   .hotel-site-concept__intro h1 {
-    font-size: clamp(0.95rem, 3.1vw, 1.03rem);
+    font-size: 18px;
     max-width: none;
   }
 
@@ -2051,7 +2062,7 @@ body {
 
 .hotel-page-v2 .hero h1 {
   margin-bottom: 16px;
-  font-size: clamp(2.35rem, 4.2vw, 3.8rem);
+  font-size: 18px;
 }
 
 .hotel-page-v2 .hero .lead {
@@ -2158,7 +2169,7 @@ body {
 .hotel-page-v2 .card h2,
 .hotel-page-v2 .cta-block h2 {
   margin: 0 0 14px;
-  font-size: clamp(1.55rem, 2.4vw, 2.25rem);
+  font-size: 18px;
 }
 
 .hotel-page-v2 .media-grid {
@@ -2184,6 +2195,7 @@ body {
 .hotel-page-v2 .price-card li {
   color: var(--muted);
   line-height: 1.75;
+  font-size: 16px;
 }
 
 .hotel-page-v2 .price-card ul {
@@ -2275,7 +2287,7 @@ body {
   .landing-v2__hero-copy h1,
   .hotel-page-v2 .hero h1 {
     max-width: none;
-    font-size: 2.45rem;
+    font-size: 18px;
   }
 
   .landing-v2__search-bar,
