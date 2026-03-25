@@ -66,6 +66,7 @@
   const SUPABASE_CONFIG = window.__ABHAZBEREG_SUPABASE_CONFIG__ || {
     url: "https://chnyazvybzzryduhgopa.supabase.co",
     anonKey: "sb_publishable_O-ymNKudqlqBER490d90-Q_uYm8XrUc",
+    storageBucket: "site-media",
   };
   const SUPABASE_MODULE_URL = "https://esm.sh/@supabase/supabase-js@2";
   const FILTER_GROUPS = ["distance", "food", "price", "city", "beach", "room", "stay"];
@@ -212,7 +213,38 @@
     return raw;
   }
 
+  /**
+   * Kvartira covers in Storage often use `slug-cover.jpg`, sometimes `slug.jpg` only.
+   * DB may point at a missing variant — try both after media/cover_url.
+   */
+  function kvartiraCoverCandidates(row) {
+    const media = Array.isArray(row.listing_media) ? [...row.listing_media] : [];
+    media.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
+    const card = media.find((item) => item.media_role === "card" && normalizeMediaUrl(item.public_url));
+    const image = media.find((item) => normalizeMediaUrl(item.public_url) && (item.mime_type || "").startsWith("image/"));
+    const urls = [];
+    const push = (u) => {
+      const n = normalizeMediaUrl(u);
+      if (!n) return;
+      const abs = absolutizeKvartiraCoverUrl(n);
+      if (abs && !urls.includes(abs)) urls.push(abs);
+    };
+    push(card?.public_url);
+    push(image?.public_url);
+    push(row.cover_url);
+    if (row.slug) {
+      push(`/media/kvartira-cards/${row.slug}-cover.jpg`);
+      push(`/media/kvartira-cards/${row.slug}.jpg`);
+    }
+    return urls;
+  }
+
   function pickCoverUrl(row) {
+    if (row.source_kind === "kvartira") {
+      const urls = kvartiraCoverCandidates(row);
+      return urls[0] || "";
+    }
+
     const media = Array.isArray(row.listing_media) ? [...row.listing_media] : [];
     media.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
     const card = media.find((item) => item.media_role === "card" && normalizeMediaUrl(item.public_url));
@@ -221,23 +253,42 @@
       normalizeMediaUrl(card?.public_url) ||
       normalizeMediaUrl(image?.public_url) ||
       normalizeMediaUrl(row.cover_url) ||
-      (row.source_kind === "kvartira" ? "" : localCardFallback(row));
-    if (row.source_kind === "kvartira") {
-      const abs = absolutizeKvartiraCoverUrl(raw || localCardFallback(row));
-      return abs || absolutizeKvartiraCoverUrl(localCardFallback(row));
-    }
+      localCardFallback(row);
     return raw || localCardFallback(row);
   }
 
   function attachImageFallback(image, row) {
     if (!image) return;
+
+    if (row.source_kind === "kvartira") {
+      const candidates = kvartiraCoverCandidates(row);
+      if (candidates.length < 2) {
+        image.addEventListener(
+          "error",
+          () => {
+            image.removeAttribute("src");
+          },
+          { once: true }
+        );
+        return;
+      }
+      let attempt = 0;
+      image.addEventListener("error", function tryKvartiraCover() {
+        attempt += 1;
+        if (attempt < candidates.length) {
+          image.src = candidates[attempt];
+        } else {
+          image.removeAttribute("src");
+          image.removeEventListener("error", tryKvartiraCover);
+        }
+      });
+      return;
+    }
+
     image.addEventListener(
       "error",
       () => {
-        const fallback =
-          row.source_kind === "kvartira"
-            ? absolutizeKvartiraCoverUrl(localCardFallback(row))
-            : localCardFallback(row);
+        const fallback = localCardFallback(row);
         if (fallback && image.src !== new URL(fallback, window.location.origin).href) {
           image.src = fallback;
           return;
@@ -811,12 +862,17 @@
     }
   }
 
+  /** Slugs removed from UI (e.g. Telegram service posts, not real listings). */
+  const KVARTIRA_EXCLUDED_SLUGS = new Set(["general-1409", "villa-suhum-959"]);
+
   async function hydrateKvartiraCatalog() {
     const grid = document.getElementById("kvartira-catalog-grid");
     if (!grid) return;
 
     try {
-      const rows = await fetchListings({ sourceKind: "kvartira" });
+      const rows = (await fetchListings({ sourceKind: "kvartira" })).filter(
+        (row) => row.slug && !KVARTIRA_EXCLUDED_SLUGS.has(row.slug)
+      );
       if (!rows.length) return;
       renderKvartiraCards(rows, grid);
     } catch (error) {
