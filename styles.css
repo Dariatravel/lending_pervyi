@@ -438,14 +438,14 @@
 }
 
 .site-concept__search-field span {
-  font-size: 22px;
+  font-size: 17px;
   color: var(--muted);
 }
 
 .site-concept__search-field strong,
 .site-concept__search-field input,
 .site-concept__search-field select {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--text);
 }
@@ -480,6 +480,11 @@
   background: linear-gradient(180deg, #ff8e69 0%, #e15f3b 100%);
   color: #fff;
   box-shadow: 0 16px 28px rgba(225, 95, 59, 0.22);
+}
+
+.site-concept__search-submit {
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .site-concept__search-submit:hover,
@@ -1613,13 +1618,17 @@
   }
 
   .site-concept__search-field span {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .site-concept__search-field strong,
   .site-concept__search-field input,
   .site-concept__search-field select {
-    font-size: 18px;
+    font-size: 15px;
+  }
+
+  .site-concept__search-submit {
+    font-size: 14px;
   }
 
   .site-concept__topnav a {
