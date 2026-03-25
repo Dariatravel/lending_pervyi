@@ -114,27 +114,15 @@ def detect_food(blob: str) -> list[str]:
 
 
 def detect_price(blob: str) -> list[str]:
-    prices = [int(match) for match in re.findall(r"(\d{3,5})\s*(?:₽|руб)", blob)]
+    prices = [int(match) for match in re.findall(r"(?<!\d)(\d{3,5})(?!\d)", blob)]
     if not prices:
         return []
-    value = min(prices)
-    if value <= 3000:
-        return ["up-to-3000"]
-    if value <= 4000:
-        return ["up-to-4000"]
-    if value <= 5000:
-        return ["up-to-5000"]
-    if value <= 6000:
-        return ["up-to-6000"]
-    if value <= 7000:
-        return ["up-to-7000"]
-    if value <= 8000:
-        return ["up-to-8000"]
-    if value <= 9000:
-        return ["up-to-9000"]
+    value = max(prices)
+    if value < 5000:
+        return ["economy"]
     if value <= 10000:
-        return ["up-to-10000"]
-    return ["over-10000"]
+        return ["midrange"]
+    return ["premium"]
 
 
 def detect_city(blob: str) -> list[str]:
