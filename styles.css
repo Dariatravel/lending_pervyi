@@ -240,7 +240,7 @@
   padding: 8px 6px;
   color: #4f7d6c;
   font-family: "Manrope", "Segoe UI", sans-serif;
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -320,6 +320,7 @@
   grid-template-areas:
     "eyebrow highlights"
     "title highlights"
+    "video highlights"
     "text highlights"
     "social social";
   align-items: start;
@@ -347,6 +348,20 @@
   color: var(--muted);
   line-height: 1.65;
   font-size: 15px;
+}
+
+.site-concept__hero-video {
+  grid-area: video;
+  max-width: 100%;
+}
+
+.site-concept__hero-video iframe {
+  width: 100%;
+  height: clamp(220px, 32vw, 360px);
+  border: 0;
+  border-radius: 18px;
+  display: block;
+  background: transparent;
 }
 
 .site-concept__search-surface {
@@ -1402,6 +1417,7 @@
     grid-template-areas:
       "eyebrow"
       "title"
+      "video"
       "text"
       "social"
       "highlights";
@@ -1545,7 +1561,7 @@
   }
 
   .site-concept__topnav a {
-    font-size: 20px;
+    font-size: 13px;
     letter-spacing: 0.08em;
     line-height: 1.2;
     padding: 2px 0;

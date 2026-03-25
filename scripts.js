@@ -277,6 +277,58 @@
     card.dataset.filterStay = textValue(safeFilters.stay);
   }
 
+  const CITY_LABELS = {
+    sukhum: "Сухум",
+    "new-afon": "Новый Афон",
+    gudauta: "Гудаута",
+    ldzaa: "Лдзаа",
+    pitsunda: "Пицунда",
+    alakhadzy: "Алахадзы",
+    gagra: "Гагра",
+    tsandripsh: "Цандрипш",
+  };
+
+  const DISTANCE_BY_FILTER = {
+    beachfront: "0 минут до пляжа",
+    "up-to-5": "до 5 минут до пляжа",
+    "up-to-10": "до 10 минут до пляжа",
+    "over-10": "более 10 минут до пляжа",
+  };
+
+  function firstValue(value) {
+    if (Array.isArray(value)) return String(value[0] || "").trim();
+    return String(value || "").split("|")[0].trim();
+  }
+
+  function extractCityFromSummary(text) {
+    const cleaned = String(text || "").replace(/🏖|👥|📍/g, "").trim();
+    const match = cleaned.match(/^([А-Яа-яЁёA-Za-z\- ]+?)(?:[.,]|$)/);
+    return match ? match[1].trim() : "";
+  }
+
+  function extractDistanceFromSummary(text) {
+    const cleaned = String(text || "").replace(/\s+/g, " ").trim();
+    const match = cleaned.match(/(\d+\s*(?:-|–)?\s*\d*\s*мин(?:ут[аы]?|\.?)\s*(?:пешком\s*)?(?:до\s*)?пляжа)/i);
+    return match ? match[1].replace(/\s+/g, " ").trim() : "";
+  }
+
+  function extractCapacityFromSummary(text) {
+    const cleaned = String(text || "").replace(/\s+/g, " ").trim();
+    const placement = cleaned.match(/(размещ(?:ение|ается|ение от)?[^.,;!]*чел(?:овек)?[^.,;!]*)/i);
+    if (placement) return placement[1].trim();
+    const capacity = cleaned.match(/(вместимост[^\.,;!]*чел(?:овек)?[^.,;!]*)/i);
+    return capacity ? capacity[1].trim() : "";
+  }
+
+  function formatHotelCardSummary(row) {
+    const source = row?.summary || row?.excerpt || row?.details?.lead || "";
+    const filters = row?.details?.filters || {};
+    const city = extractCityFromSummary(source) || CITY_LABELS[firstValue(filters.city)] || "Абхазия";
+    const distance = extractDistanceFromSummary(source) || DISTANCE_BY_FILTER[firstValue(filters.distance)] || "до пляжа";
+    const capacity = extractCapacityFromSummary(source) || "размещение уточняйте";
+    return `${city}. ${distance}, ${capacity}.`;
+  }
+
   function renderHotelCards(rows, grid) {
     const fragment = document.createDocumentFragment();
 
@@ -294,7 +346,7 @@
       card.appendChild(image);
 
       card.appendChild(createTextNode("h3", row.title || ""));
-      card.appendChild(createTextNode("p", row.summary || row.excerpt || ""));
+      card.appendChild(createTextNode("p", formatHotelCardSummary(row)));
       fragment.appendChild(card);
     });
 

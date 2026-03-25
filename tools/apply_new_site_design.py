@@ -199,6 +199,9 @@ def build_homepage() -> None:
     <div class="site-concept__hero-copy">
       <div class="site-concept__eyebrow">Бронирование и подбор отелей в Абхазии</div>
       <h1>Абхазский берег</h1>
+        <div class="site-concept__hero-video">
+          <iframe src="https://vkvideo.ru/video_ext.php?oid=-220691524&id=456240393&hash=c1f851ea1a68a571&hd=3" width="1280" height="720" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+        </div>
       <p class="site-concept__hero-text">
         Всем привет, меня зовут Дарья. Когда-то я сама приехала в Абхазию как турист, а теперь - влюбляю вас в Абхазию, в республику, которую сложно описать - лишь прочувствовать! На страницах этого сайта вы найдете варианты проверенного лично мной жилья, а так же можете воспользоваться бесплатным подбором и консультацией в чате. Давайте начнем выбирать!
       </p>
