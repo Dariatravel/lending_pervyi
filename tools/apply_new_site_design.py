@@ -304,12 +304,6 @@ def build_homepage() -> None:
     </div>
 
     <div class="site-concept__search-surface" id="search">
-      <div class="site-concept__search-tabs" role="tablist" aria-label="Тип поиска">
-        <button class="is-active" type="button">Гостям</button>
-        <button type="button">Командировки</button>
-        <button type="button">Партнёрам</button>
-      </div>
-
       <div class="site-concept__search-bar">
         <label class="site-concept__search-field site-concept__search-field--wide">
           <span>Куда едем</span>
