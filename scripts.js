@@ -759,14 +759,10 @@
     const effectiveType = String(connection?.effectiveType || "").toLowerCase();
     const saveDataEnabled = Boolean(connection?.saveData);
     const shouldPreferLow = saveDataEnabled || ["slow-2g", "2g", "3g"].includes(effectiveType);
-    const canPlayQuickTime = video.canPlayType("video/quicktime") !== "";
     const preferredSrc = shouldPreferLow ? lowSrc : highSrc;
     const fallbackSrc = shouldPreferLow ? highSrc : lowSrc;
 
-    let selectedSrc = preferredSrc || fallbackSrc;
-    if (selectedSrc === highSrc && highSrc && !canPlayQuickTime && lowSrc) {
-      selectedSrc = lowSrc;
-    }
+    const selectedSrc = preferredSrc || fallbackSrc;
 
     if (!selectedSrc) return;
     video.src = selectedSrc;

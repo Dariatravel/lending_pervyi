@@ -352,17 +352,19 @@
 
 .site-concept__hero-video {
   grid-area: video;
+  width: min(100%, 360px);
   max-width: 100%;
 }
 
 .site-concept__hero-video-player {
   width: 100%;
-  height: clamp(220px, 32vw, 360px);
+  aspect-ratio: 9 / 16;
+  height: auto;
   border: 0;
   border-radius: 18px;
   display: block;
   background: #0f1412;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .site-concept__search-surface {
@@ -597,15 +599,15 @@
 }
 
 .site-concept__social-stat-icon--tg {
-  background-image: url("/media/branding/icon-tg.png");
+  background-image: url("/media/branding/icon-tg-circle.png");
 }
 
 .site-concept__social-stat-icon--vk {
-  background-image: url("/media/branding/icon-vk.png");
+  background-image: url("/media/branding/icon-vk-circle.png");
 }
 
 .site-concept__social-stat-icon--max {
-  background-image: url("/media/branding/icon-max.png");
+  background-image: url("/media/branding/icon-max-circle.png");
 }
 
 .site-concept__social-stat strong {
