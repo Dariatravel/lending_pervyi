@@ -540,7 +540,8 @@
   place-items: center;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-color: transparent;
   box-shadow: 0 4px 10px rgba(18, 31, 25, 0.15);
 }
 
