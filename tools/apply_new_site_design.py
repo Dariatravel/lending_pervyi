@@ -200,7 +200,9 @@ def build_homepage() -> None:
       <div class="site-concept__eyebrow">Бронирование и подбор отелей в Абхазии</div>
       <h1>Абхазский берег</h1>
         <div class="site-concept__hero-video">
-          <iframe src="https://vkvideo.ru/video_ext.php?oid=-220691524&id=456240393&hash=c1f851ea1a68a571&hd=3" width="1280" height="720" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
+          <video class="site-concept__hero-video-player" controls playsinline preload="metadata" data-high-src="/media/videos/hero/darya-intro-original.mov" data-low-src="/media/videos/hero/darya-intro-low.mp4">
+            Ваш браузер не поддерживает воспроизведение видео.
+          </video>
         </div>
       <p class="site-concept__hero-text">
         Всем привет, меня зовут Дарья. Когда-то я сама приехала в Абхазию как турист, а теперь - влюбляю вас в Абхазию, в республику, которую сложно описать - лишь прочувствовать! На страницах этого сайта вы найдете варианты проверенного лично мной жилья, а так же можете воспользоваться бесплатным подбором и консультацией в чате. Давайте начнем выбирать!
@@ -304,25 +306,56 @@ def build_homepage() -> None:
     </div>
 
     <div class="site-concept__search-surface" id="search">
-      <div class="site-concept__search-bar">
+      <form class="site-concept__search-bar" id="home-search-form">
         <label class="site-concept__search-field site-concept__search-field--wide">
           <span>Куда едем</span>
-          <strong>Абхазия, Сухум / Гагра / Пицунда</strong>
+          <select id="search-city" name="city">
+            <option value="">Любой город</option>
+          </select>
         </label>
         <label class="site-concept__search-field">
           <span>Заезд</span>
-          <strong>12 июня</strong>
+          <input id="search-checkin" name="checkin" type="date" />
         </label>
         <label class="site-concept__search-field">
           <span>Выезд</span>
-          <strong>19 июня</strong>
+          <input id="search-checkout" name="checkout" type="date" />
         </label>
         <label class="site-concept__search-field">
           <span>Гости</span>
-          <strong>2 взрослых</strong>
+          <input id="search-guests" max="12" min="1" name="guests" type="number" value="2" />
         </label>
-        <a class="btn-book site-concept__search-submit" href="#catalog">Найти варианты</a>
-      </div>
+        <label class="site-concept__search-field">
+          <span>До пляжа</span>
+          <select id="search-distance" name="distance">
+            <option value="">Любое</option>
+            <option value="beachfront">Береговая зона</option>
+            <option value="up-to-5">До 5 минут</option>
+            <option value="up-to-10">До 10 минут</option>
+            <option value="over-10">Более 10 минут</option>
+          </select>
+        </label>
+        <label class="site-concept__search-field">
+          <span>Пляж</span>
+          <select id="search-beach" name="beach">
+            <option value="">Любой</option>
+            <option value="sand">Песчаный</option>
+            <option value="pine-pebble">Сосновый галечный</option>
+            <option value="mixed">Мелкая галька и песок</option>
+            <option value="pebble">Галечный</option>
+          </select>
+        </label>
+        <label class="site-concept__search-field">
+          <span>Бюджет</span>
+          <select id="search-price" name="price">
+            <option value="">Любой</option>
+            <option value="economy">Эконом и комфорт до 5000</option>
+            <option value="midrange">Средний бюджет до 10000</option>
+            <option value="premium">Премиум-сегмент</option>
+          </select>
+        </label>
+        <button class="btn-book site-concept__search-submit" type="submit">Найти варианты</button>
+      </form>
 
       <div class="site-concept__search-tags">
         <span>Мгновенное подтверждение</span>
@@ -333,6 +366,17 @@ def build_homepage() -> None:
     </div>
 
     {catalog_section}
+  </section>
+
+  <section class="site-concept__section-block site-concept__section-block--subcatalog" id="kvartira-catalog">
+    <div class="site-concept__section-head">
+      <div>
+        <p class="site-concept__eyebrow">Квартиры и дома</p>
+        <h2>Дополнительный каталог размещения</h2>
+      </div>
+      <a href="/kvartira/">Открыть весь раздел</a>
+    </div>
+    <div class="catalog-grid" id="kvartira-catalog-grid"></div>
   </section>
 
   <section class="site-concept__section-block" id="guide">

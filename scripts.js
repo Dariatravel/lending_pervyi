@@ -534,7 +534,12 @@
   function initFilters() {
     const grid = document.getElementById("catalog-grid");
     if (!grid) {
-      return { refresh: () => {}, setCatalogCategory: () => {} };
+      return {
+        refresh: () => {},
+        setCatalogCategory: () => {},
+        setGroupValues: () => {},
+        clearGroups: () => {},
+      };
     }
 
     const chips = Array.from(document.querySelectorAll(".filter-chip"));
@@ -586,6 +591,35 @@
       applyFilters();
     }
 
+    function syncChipState() {
+      chips.forEach((chip) => {
+        const group = chip.dataset.group;
+        const value = chip.dataset.value;
+        const active = Boolean(group && value && selected[group] && selected[group].has(value));
+        chip.classList.toggle("is-active", active);
+        chip.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+    }
+
+    function setGroupValues(group, values) {
+      if (!selected[group]) return;
+      selected[group].clear();
+      (values || []).forEach((value) => {
+        const cleaned = String(value || "").trim();
+        if (cleaned) selected[group].add(cleaned);
+      });
+      syncChipState();
+      applyFilters();
+    }
+
+    function clearGroups(groups) {
+      (groups || FILTER_GROUPS).forEach((group) => {
+        if (selected[group]) selected[group].clear();
+      });
+      syncChipState();
+      applyFilters();
+    }
+
     chips.forEach((chip) => {
       chip.type = "button";
       chip.setAttribute("aria-pressed", "false");
@@ -596,23 +630,17 @@
 
         if (selected[group].has(value)) {
           selected[group].delete(value);
-          chip.classList.remove("is-active");
-          chip.setAttribute("aria-pressed", "false");
         } else {
           selected[group].add(value);
-          chip.classList.add("is-active");
-          chip.setAttribute("aria-pressed", "true");
         }
+        syncChipState();
         applyFilters();
       });
     });
 
     clearBtn?.addEventListener("click", () => {
       FILTER_GROUPS.forEach((group) => selected[group].clear());
-      chips.forEach((chip) => {
-        chip.classList.remove("is-active");
-        chip.setAttribute("aria-pressed", "false");
-      });
+      syncChipState();
       catalogCategorySlug = null;
       applyFilters();
     });
@@ -651,8 +679,98 @@
       }
     });
 
+    syncChipState();
     applyFilters();
-    return { refresh: applyFilters, setCatalogCategory };
+    return { refresh: applyFilters, setCatalogCategory, setGroupValues, clearGroups };
+  }
+
+  function initSearchBar(filtersController) {
+    const form = document.getElementById("home-search-form");
+    if (!form || !filtersController) return;
+
+    const citySelect = document.getElementById("search-city");
+    const distanceSelect = document.getElementById("search-distance");
+    const beachSelect = document.getElementById("search-beach");
+    const priceSelect = document.getElementById("search-price");
+    const guestsInput = document.getElementById("search-guests");
+    const checkinInput = document.getElementById("search-checkin");
+    const checkoutInput = document.getElementById("search-checkout");
+
+    if (citySelect) {
+      const cities = Array.from(document.querySelectorAll('.filter-chip[data-group="city"]'));
+      const existing = new Set(Array.from(citySelect.options).map((o) => o.value));
+      cities.forEach((chip) => {
+        const value = chip.dataset.value || "";
+        if (!value || existing.has(value)) return;
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = chip.textContent?.trim() || value;
+        citySelect.appendChild(option);
+        existing.add(value);
+      });
+    }
+
+    const today = new Date();
+    const plusWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+    const toISODate = (d) => d.toISOString().slice(0, 10);
+    if (checkinInput && !checkinInput.value) checkinInput.value = toISODate(today);
+    if (checkoutInput && !checkoutInput.value) checkoutInput.value = toISODate(plusWeek);
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const city = citySelect?.value || "";
+      const distance = distanceSelect?.value || "";
+      const beach = beachSelect?.value || "";
+      const price = priceSelect?.value || "";
+      const guests = Number(guestsInput?.value || 0);
+
+      filtersController.setGroupValues("city", city ? [city] : []);
+      filtersController.setGroupValues("distance", distance ? [distance] : []);
+      filtersController.setGroupValues("beach", beach ? [beach] : []);
+      filtersController.setGroupValues("price", price ? [price] : []);
+
+      if (Number.isFinite(guests) && guests >= 5) {
+        filtersController.setGroupValues("room", ["five-plus"]);
+      } else {
+        filtersController.setGroupValues("room", []);
+      }
+
+      document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      trackAnalytics("home_search_submit", {
+        city,
+        distance,
+        beach,
+        price,
+        guests: Number.isFinite(guests) ? guests : null,
+      });
+    });
+  }
+
+  function initHeroVideoQuality() {
+    const video = document.querySelector(".site-concept__hero-video-player");
+    if (!video) return;
+
+    const highSrc = video.dataset.highSrc || "";
+    const lowSrc = video.dataset.lowSrc || "";
+    if (!highSrc && !lowSrc) return;
+
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const effectiveType = String(connection?.effectiveType || "").toLowerCase();
+    const saveDataEnabled = Boolean(connection?.saveData);
+    const shouldPreferLow = saveDataEnabled || ["slow-2g", "2g", "3g"].includes(effectiveType);
+    const canPlayQuickTime = video.canPlayType("video/quicktime") !== "";
+    const preferredSrc = shouldPreferLow ? lowSrc : highSrc;
+    const fallbackSrc = shouldPreferLow ? highSrc : lowSrc;
+
+    let selectedSrc = preferredSrc || fallbackSrc;
+    if (selectedSrc === highSrc && highSrc && !canPlayQuickTime && lowSrc) {
+      selectedSrc = lowSrc;
+    }
+
+    if (!selectedSrc) return;
+    video.src = selectedSrc;
+    video.load();
   }
 
   function initCategoryPicks(filtersController) {
@@ -796,8 +914,10 @@
   });
 
   absolutizeHotelSiteConceptMedia();
+  initHeroVideoQuality();
 
   const filtersController = initFilters();
+  initSearchBar(filtersController);
   initCategoryPicks(filtersController);
   hydrateHomeCatalog(filtersController);
   hydrateKvartiraCatalog();
