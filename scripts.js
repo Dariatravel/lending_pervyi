@@ -565,25 +565,37 @@
       applyFilters();
     });
 
-    openFiltersBtn?.addEventListener("click", () => {
+    const openFiltersModal = () => {
       if (!filtersModal) return;
       filtersModal.hidden = false;
+      // Start enter transition on the next frame so CSS transform animates correctly.
+      requestAnimationFrame(() => filtersModal.classList.add("is-visible"));
       body.classList.add("modal-open");
       trackAnalytics("open_filters");
-    });
+    };
+
+    const closeFiltersModal = () => {
+      if (!filtersModal) return;
+      filtersModal.classList.remove("is-visible");
+      body.classList.remove("modal-open");
+      window.setTimeout(() => {
+        if (!filtersModal.classList.contains("is-visible")) {
+          filtersModal.hidden = true;
+        }
+      }, 360);
+    };
+
+    openFiltersBtn?.addEventListener("click", openFiltersModal);
 
     closeFilterEls.forEach((element) => {
       element.addEventListener("click", () => {
-        if (!filtersModal) return;
-        filtersModal.hidden = true;
-        body.classList.remove("modal-open");
+        closeFiltersModal();
       });
     });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && filtersModal && !filtersModal.hidden) {
-        filtersModal.hidden = true;
-        body.classList.remove("modal-open");
+        closeFiltersModal();
       }
     });
 
