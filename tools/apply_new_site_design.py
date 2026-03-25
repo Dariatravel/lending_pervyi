@@ -202,17 +202,15 @@ def build_homepage() -> None:
       <h1>Абхазский берег</h1>
       <p class="site-concept__hero-tagline">живая картотека проверенного жилья в Абхазии</p>
       </div>
-      <div class="site-concept__hero-video-row">
         <div class="site-concept__hero-video">
           <video class="site-concept__hero-video-player" controls playsinline preload="metadata" data-high-src="/media/videos/hero/darya-intro-vertical-high.mp4" data-low-src="/media/videos/hero/darya-intro-vertical-low.mp4">
             Ваш браузер не поддерживает воспроизведение видео.
           </video>
         </div>
-        <blockquote class="site-concept__host-intro">
-          <p class="site-concept__host-intro-text">
-            Всем привет, меня зовут Дарья. Когда-то я сама приехала в Абхазию как турист, а теперь - влюбляю вас в Абхазию, в республику, которую сложно описать - лишь прочувствовать! На страницах этого сайта вы найдете варианты проверенного лично мной жилья, а так же можете воспользоваться бесплатным подбором и консультацией в чате. Давайте начнем выбирать!
-          </p>
-        </blockquote>
+      <div class="site-concept__host-intro">
+        <p class="site-concept__host-intro-text">
+          Всем привет, меня зовут Дарья. Когда-то я сама приехала в Абхазию как турист, а теперь - влюбляю вас в Абхазию, в республику, которую сложно описать - лишь прочувствовать! На страницах этого сайта вы найдете варианты проверенного лично мной жилья, а так же можете воспользоваться бесплатным подбором и консультацией в чате. Давайте начнем выбирать!
+        </p>
       </div>
 
       <div class="site-concept__social-stats" role="list">
