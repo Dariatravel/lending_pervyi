@@ -1437,13 +1437,17 @@
 
   .site-concept__topnav {
     width: 100%;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 2px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 14px;
+    overflow: visible;
+    padding-bottom: 0;
   }
 
   .site-concept__topnav a {
-    white-space: nowrap;
+    white-space: normal;
+    line-height: 1.25;
+    padding: 4px 0;
   }
 
   .site-concept__topbar-actions {
@@ -1504,8 +1508,9 @@
 
   .site-concept__topnav a {
     font-size: 10px;
-    letter-spacing: 0.12em;
-    padding: 6px 4px;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    padding: 2px 0;
   }
 
   .site-concept__hero-text {
