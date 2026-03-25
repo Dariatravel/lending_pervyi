@@ -158,31 +158,35 @@
     return n;
   }
 
-  /** Hotel card pages (.hotel-site-concept) ship with /media/hotels/... and /media/videos/...; rewrite to Supabase. */
+  /** Main site (.site-concept) and hotel pages (.hotel-site-concept) use /media/...; rewrite to Supabase Storage. */
   function absolutizeHotelSiteConceptMedia() {
-    const root = document.querySelector(".hotel-site-concept");
-    if (!root) return;
+    const roots = [
+      document.querySelector(".hotel-site-concept"),
+      document.querySelector(".site-concept"),
+    ].filter(Boolean);
 
-    root.querySelectorAll("img[src]").forEach((img) => {
-      const src = img.getAttribute("src") || "";
-      if (!src.startsWith("/media/")) return;
-      const abs = absolutizeKvartiraCoverUrl(src);
-      if (abs && abs !== src) img.setAttribute("src", abs);
-    });
+    roots.forEach((root) => {
+      root.querySelectorAll("img[src]").forEach((img) => {
+        const src = img.getAttribute("src") || "";
+        if (!src.startsWith("/media/")) return;
+        const abs = absolutizeKvartiraCoverUrl(src);
+        if (abs && abs !== src) img.setAttribute("src", abs);
+      });
 
-    root.querySelectorAll("video source[src], audio source[src]").forEach((source) => {
-      const src = source.getAttribute("src") || "";
-      if (!src.startsWith("/media/")) return;
-      const abs = absolutizeKvartiraCoverUrl(src);
-      if (abs && abs !== src) source.setAttribute("src", abs);
-    });
+      root.querySelectorAll("video source[src], audio source[src]").forEach((source) => {
+        const src = source.getAttribute("src") || "";
+        if (!src.startsWith("/media/")) return;
+        const abs = absolutizeKvartiraCoverUrl(src);
+        if (abs && abs !== src) source.setAttribute("src", abs);
+      });
 
-    root.querySelectorAll("video").forEach((video) => {
-      try {
-        video.load();
-      } catch (error) {
-        /* ignore */
-      }
+      root.querySelectorAll("video").forEach((video) => {
+        try {
+          video.load();
+        } catch (error) {
+          /* ignore */
+        }
+      });
     });
   }
 
@@ -751,8 +755,10 @@
     const video = document.querySelector(".site-concept__hero-video-player");
     if (!video) return;
 
-    const highSrc = video.dataset.highSrc || "";
-    const lowSrc = video.dataset.lowSrc || "";
+    const rawHigh = video.dataset.highSrc || "";
+    const rawLow = video.dataset.lowSrc || "";
+    const highSrc = rawHigh ? absolutizeKvartiraCoverUrl(rawHigh) || rawHigh : "";
+    const lowSrc = rawLow ? absolutizeKvartiraCoverUrl(rawLow) || rawLow : "";
     if (!highSrc && !lowSrc) return;
 
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
@@ -763,10 +769,18 @@
     const fallbackSrc = shouldPreferLow ? highSrc : lowSrc;
 
     const selectedSrc = preferredSrc || fallbackSrc;
-
     if (!selectedSrc) return;
-    video.src = selectedSrc;
-    video.load();
+
+    const applySrc = (url) => {
+      video.src = url;
+      video.load();
+    };
+
+    if (fallbackSrc && fallbackSrc !== selectedSrc) {
+      video.addEventListener("error", () => applySrc(fallbackSrc), { once: true });
+    }
+
+    applySrc(selectedSrc);
   }
 
   function initCategoryPicks(filtersController) {
