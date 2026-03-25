@@ -198,7 +198,10 @@ def build_homepage() -> None:
   <section class="site-concept__hero-card">
     <div class="site-concept__hero-copy">
       <div class="site-concept__eyebrow">Бронирование и подбор отелей в Абхазии</div>
+      <div class="site-concept__hero-title-block">
       <h1>Абхазский берег</h1>
+      <p class="site-concept__hero-tagline">живая картотека проверенного жилья в Абхазии</p>
+      </div>
         <div class="site-concept__hero-video">
           <video class="site-concept__hero-video-player" controls playsinline preload="metadata" data-high-src="/media/videos/hero/darya-intro-vertical-high.mp4" data-low-src="/media/videos/hero/darya-intro-vertical-low.mp4">
             Ваш браузер не поддерживает воспроизведение видео.
