@@ -1146,6 +1146,7 @@
 
 .hotel-site-concept__intro {
   max-width: 820px;
+  padding: 14px 18px;
 }
 
 .hotel-site-concept__intro h1 {
@@ -1227,11 +1228,17 @@
 
 .hotel-card__topline,
 .hotel-card__header,
-.hotel-card__footer,
 .hotel-site-concept .reviews-panel__head {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 16px;
+}
+
+.hotel-card__footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
   gap: 16px;
 }
 
@@ -1332,6 +1339,17 @@
 }
 
 .hotel-site-concept .price-box strong {
+  font-size: 24px;
+  line-height: 1.05;
+}
+
+.hotel-site-concept .price-card__teaser {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 12px;
+}
+
+.hotel-site-concept .price-card__teaser strong {
   font-size: 24px;
   line-height: 1.05;
 }
@@ -2632,6 +2650,11 @@ body {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(237, 245, 239, 0.92)),
     rgba(255, 255, 255, 0.9);
+}
+
+/* Номер в блоке контактов не разрывается переносом строки */
+.contact-phone {
+  white-space: nowrap;
 }
 
 .hotel-page-v2 .contact-buttons {

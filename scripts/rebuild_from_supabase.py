@@ -304,10 +304,8 @@ def update_hotel_page(row: dict[str, Any]) -> None:
     lead = details.get("lead") or summary
     cover = pick_cover_url(row)
     page_url = row.get("page_url") or f"https://абхазберег.рф/hotels/{row['slug']}/"
-    telegram = row.get("telegram_url") or ""
     published = row.get("published_at")
     published_human = human_date(published)
-    media_label = telegram.replace("https://t.me/", "@") if telegram else ""
 
     lead_html = "<br />".join(html.escape(part.strip()) for part in lead.split("\n") if part.strip())
     text = path.read_text(encoding="utf-8")
@@ -328,12 +326,13 @@ def update_hotel_page(row: dict[str, Any]) -> None:
             r'<p class="updated">Обновлено: <time datetime=".*?">.*?</time></p>',
             f'<p class="updated">Обновлено: <time datetime="{html.escape(published, quote=True)}">{published_human}</time></p>',
         )
-    if telegram and media_label:
-        text = replace_once(
-            text,
-            r'<p class="media-note">Источник: <a href=".*?" target="_blank" rel="noopener noreferrer">.*?</a>\.</p>',
-            f'<p class="media-note">Источник: <a href="{html.escape(telegram, quote=True)}" target="_blank" rel="noopener noreferrer">{html.escape(media_label)}</a>.</p>',
-        )
+    # Убрать строку «Источник: @…» из разметки (не показываем на сайте)
+    text = re.sub(
+        r'\s*<p class="media-note">Источник: <a href=".*?" target="_blank" rel="noopener noreferrer">.*?</a>\.</p>',
+        "",
+        text,
+        count=1,
+    )
     path.write_text(text, encoding="utf-8")
 
 

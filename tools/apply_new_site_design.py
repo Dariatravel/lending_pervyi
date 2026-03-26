@@ -153,6 +153,43 @@ def first_strong_price(section: str) -> str:
     return "Уточнить стоимость"
 
 
+def inject_price_teaser(price_section: str, highlight: str) -> str:
+    """Вставка строки «от …» под заголовок блока цен; без повторения слова «Цены» (оно только в h2)."""
+    if not price_section or not highlight or highlight == "Уточнить стоимость":
+        return price_section
+    if "price-card__teaser" in price_section:
+        return price_section
+    teaser = (
+        f'\n          <p class="price-card__teaser">'
+        f'<span class="price-box__label">от</span> '
+        f"<strong>{html.escape(highlight)}</strong>"
+        f"</p>\n"
+    )
+    updated, n = re.subn(
+        r"(<h2[^>]*>.*?</h2>)",
+        r"\1" + teaser,
+        price_section,
+        count=1,
+        flags=re.S,
+    )
+    if n == 0:
+        return price_section
+    # Убрать дублирующий первый пункт списка, если совпадает с акцентной строкой
+    hi = clean_text(highlight)
+    m = re.search(r"<ul[^>]*>\s*<li>(.*?)</li>", updated, flags=re.S)
+    if m:
+        li_plain = clean_text(m.group(1))
+        if li_plain == hi:
+            updated = re.sub(
+                r"<ul([^>]*)>\s*<li>.*?</li>\s*",
+                r"<ul\1>\n",
+                updated,
+                count=1,
+                flags=re.S,
+            )
+    return updated
+
+
 def build_homepage() -> None:
     text = INDEX_FILE.read_text(encoding="utf-8")
     catalog_section = add_class_to_tag(extract_index_section(text, "catalog"), "section", "site-concept__catalog")
@@ -458,16 +495,23 @@ def build_hotels() -> None:
                 content_sections.append(section)
 
         title = clean_text(find_first([r"<h1>(.*?)</h1>"], header_html))
-        lead_text = format_lead_text(
-            find_first(
-                [
-                    r'<p class="lead">(.*?)</p>',
-                    r'<h1>.*?</h1>\s*<p>(.*?)</p>',
-                ],
-                header_html,
+        if not title:
+            title = clean_text(
+                find_first(
+                    [r'<div class="hotel-card__header">\s*<div>\s*<h2>(.*?)</h2>'],
+                    text,
+                )
             )
+        lead_raw = find_first(
+            [
+                r'<p class="lead">(.*?)</p>',
+                r'<h1>.*?</h1>\s*<p>(.*?)</p>',
+            ],
+            header_html,
         )
-        updated_block = find_first([r'(<p class="updated">.*?</p>)'], header_html)
+        if not lead_raw:
+            lead_raw = find_first([r'<p class="location">(.*?)</p>'], text)
+        lead_text = format_lead_text(lead_raw)
         lead_lines = [clean_text(part) for part in re.split(r"[•\n]", lead_text) if clean_text(part)]
 
         all_images = extract_images(media_section)
@@ -515,7 +559,6 @@ def build_hotels() -> None:
               <img src="{main_image[0]}" alt="{main_image[1] or title}" loading="eager" />
               <div class="hotel-card__floating">
                 <span class="pill pill--accent">Проверенный объект</span>
-                <span class="pill">Abhazbereg choice</span>
               </div>
             </div>
             <div class="hotel-card__thumbs">
@@ -549,9 +592,17 @@ def build_hotels() -> None:
             )
 
         details_main = "".join(add_class_to_tag(section, "section", "hotel-site-concept__detail-section") for section in ([media_section] + content_sections if media_section else content_sections))
+        price_section_ready = inject_price_teaser(price_section, price_highlight)
+        if contacts_section and 'id="contacts"' not in contacts_section:
+            contacts_section = re.sub(
+                r"<section\b",
+                '<section id="contacts"',
+                contacts_section,
+                count=1,
+            )
         details_aside = "".join(
             add_class_to_tag(section, "section", "hotel-site-concept__detail-section")
-            for section in [price_section, faq_section, contacts_section]
+            for section in [price_section_ready, faq_section, contacts_section]
             if section
         )
 
@@ -562,10 +613,7 @@ def build_hotels() -> None:
   <div class="card-preview-page__halo card-preview-page__halo--sand" aria-hidden="true"></div>
 
   <section class="hotel-site-concept__intro">
-    <p class="eyebrow"><a href="/">Каталог Abhazbereg</a></p>
-    <h1>{title}</h1>
-    <p>{lead_text}</p>
-    {updated_block}
+    <p class="eyebrow"><a href="/">Каталог Абхазберег</a></p>
   </section>
 
   <article class="hotel-card hotel-site-concept__card">
@@ -609,14 +657,8 @@ def build_hotels() -> None:
       </div>
 
       <div class="hotel-card__footer">
-        <div class="price-box">
-          <span class="price-box__label">от</span>
-          <strong>{price_highlight}</strong>
-          <span class="price-box__note">цены и сезонность смотрите ниже</span>
-        </div>
-
         <div class="hotel-card__actions">
-          <a class="button button--ghost" href="#details">Смотреть детали</a>
+          <a class="button button--ghost" href="#contacts">Что-то нужно уточнить</a>
           <a class="button button--accent" href="{primary_link[0]}" target="_blank" rel="noopener noreferrer">{primary_link[1]}</a>
         </div>
       </div>

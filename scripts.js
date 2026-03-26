@@ -895,7 +895,6 @@
       const heroLead = document.querySelector(".hotel-hero-v2 .lead");
       const updatedTime = document.querySelector(".hotel-hero-v2 .updated time");
       const mediaGrid = document.querySelector(".hotel-media-section .media-grid");
-      const mediaLink = document.querySelector(".hotel-media-section .media-note a");
 
       if (heroTitle && row.title) heroTitle.textContent = row.title;
       if (heroLead) {
@@ -910,10 +909,6 @@
       }
 
       if (mediaGrid) renderHotelMedia(row, mediaGrid);
-      if (mediaLink && row.telegram_url) {
-        mediaLink.href = row.telegram_url;
-        mediaLink.textContent = row.telegram_url.replace("https://t.me/", "@");
-      }
 
       if (row.title) {
         const baseTitle = document.title.includes("—")
