@@ -142,14 +142,140 @@ def extract_reviews(section: str) -> list[tuple[str, str, str]]:
     return reviews[:3]
 
 
-def first_strong_price(section: str) -> str:
-    for raw in re.findall(r"<strong>(.*?)</strong>", section, flags=re.S):
-        text = clean_text(raw)
-        if "₽" in text or "руб" in text.lower():
-            return text
+# Цена «число ₽/…» в начале строки, затем тире и период/условия
+_PRICE_LEADING = re.compile(
+    r"^\s*(\d[\d\s]*\s*(?:₽|руб\.?)(?:/[^\s–—-]+)?)\s*[-–—]\s*(.+)\s*$",
+    re.IGNORECASE | re.DOTALL,
+)
+# Редко: описание — цена в конце (например доп. место)
+_PRICE_TRAILING = re.compile(
+    r"^\s*(.+?)\s*[-–—]\s*(\d[\d\s]*\s*(?:₽|руб\.?)(?:/[^\s–—-]+)?)\s*$",
+    re.IGNORECASE | re.DOTALL,
+)
+_MONTHS_RE = re.compile(
+    r"(январь|февраль|март|апрель|май|июнь|июль|август|сентябрь|октябрь|ноябрь|декабрь)",
+    re.IGNORECASE,
+)
+
+
+def bold_months_in_tail(tail: str) -> str:
+    """Жирным только слова месяцев; остальное (условия, числа) — обычный текст."""
+    out: list[str] = []
+    pos = 0
+    for m in _MONTHS_RE.finditer(tail):
+        out.append(html.escape(tail[pos : m.start()]))
+        out.append(f"<strong>{html.escape(m.group(1))}</strong>")
+        pos = m.end()
+    out.append(html.escape(tail[pos:]))
+    return "".join(out)
+
+
+def format_price_line_to_html(text: str) -> str:
+    """Цена обычным начертанием, месяцы — <strong>; без жирного для условий."""
+    text = (text or "").strip()
+    if not text:
+        return ""
+
+    m = _PRICE_LEADING.match(text)
+    if m:
+        amount, tail = m.group(1).strip(), m.group(2).strip()
+        return (
+            f'<span class="price-card__amount">{html.escape(amount)}</span> - '
+            f"{bold_months_in_tail(tail)}"
+        )
+
+    m = _PRICE_TRAILING.match(text)
+    if m:
+        desc, amount = m.group(1).strip(), m.group(2).strip()
+        return f"{html.escape(desc)} - " f'<span class="price-card__amount">{html.escape(amount)}</span>'
+
+    return html.escape(text)
+
+
+def reformat_price_card_content(section: str) -> str:
+    """Перестраивает пункты списка и тизер «от …»: цена / месяцы без лишнего strong."""
+    if not section or "price-card" not in section:
+        return section
+
+    def li_repl(match: re.Match) -> str:
+        inner = match.group(1)
+        plain = strip_tags(inner).strip()
+        if not plain:
+            return match.group(0)
+        return f"<li>{format_price_line_to_html(plain)}</li>"
+
+    updated = re.sub(r"<li[^>]*>(.*?)</li>", li_repl, section, flags=re.S)
+
+    def teaser_repl(match: re.Match) -> str:
+        inner = match.group(1)
+        plain = strip_tags(inner).strip()
+        if not plain:
+            return match.group(0)
+        formatted = format_price_line_to_html(plain)
+        return (
+            f'<p class="price-card__teaser">'
+            f'<span class="price-box__label">от</span> '
+            f"{formatted}"
+            f"</p>"
+        )
+
+    updated = re.sub(
+        r'<p class="price-card__teaser"[^>]*>\s*<span class="price-box__label">от</span>\s*(.*?)\s*</p>',
+        teaser_repl,
+        updated,
+        flags=re.S,
+    )
+    return updated
+
+
+def _is_standalone_phone_line(plain: str) -> bool:
+    """Строка — только номер (+7/8 и цифры), без цены и текста."""
+    p = plain.strip()
+    if not p:
+        return False
+    if "₽" in p or "руб" in p.lower():
+        return False
+    if not re.fullmatch(r"[\d\s\-+()]+", p):
+        return False
+    digits = re.sub(r"\D", "", p)
+    if len(digits) < 10:
+        return False
+    return digits.startswith("7") or digits.startswith("8")
+
+
+def strip_stray_contacts_from_price_section(section: str) -> str:
+    """Удаляет из блока «Цены» контакты, продублированные из поста (не секция Контакты)."""
+    if not section or "price-card" not in section:
+        return section
+
+    def li_drop(match: re.Match) -> str:
+        inner = match.group(1)
+        plain = strip_tags(inner).strip()
+        if not plain:
+            return match.group(0)
+        if re.search(r"я\s+на\s+связи", plain, flags=re.I):
+            return ""
+        if _is_standalone_phone_line(plain):
+            return ""
+        return match.group(0)
+
+    return re.sub(r"<li[^>]*>(.*?)</li>", li_drop, section, flags=re.S)
+
+
+def first_price_highlight(section: str) -> str:
+    """Первая строка с ценой для «от …» — из списка или существующего тизера."""
     for raw in extract_list_items(section):
         if "₽" in raw or "руб" in raw.lower():
             return raw
+    m = re.search(
+        r'price-card__teaser[^>]*>.*?price-box__label[^>]*>от</span>\s*(.*?)\s*</p>',
+        section,
+        flags=re.S,
+    )
+    if m:
+        t = strip_tags(m.group(1))
+        if "₽" in t or "руб" in t.lower():
+            return clean_text(t)
     return "Уточнить стоимость"
 
 
@@ -162,7 +288,7 @@ def inject_price_teaser(price_section: str, highlight: str) -> str:
     teaser = (
         f'\n          <p class="price-card__teaser">'
         f'<span class="price-box__label">от</span> '
-        f"<strong>{html.escape(highlight)}</strong>"
+        f"{format_price_line_to_html(highlight)}"
         f"</p>\n"
     )
     updated, n = re.subn(
@@ -338,7 +464,6 @@ def build_homepage() -> None:
     <div class="site-concept__section-head">
       <div class="site-concept__section-head__intro">
         <p class="site-concept__eyebrow">Страничка подбора</p>
-        <a class="site-concept__eyebrow-link" href="/kvartira/">Квартиры и дома</a>
       </div>
       <div class="site-concept__filter-pills" aria-hidden="true">
         <span class="is-active">Все</span>
@@ -542,7 +667,9 @@ def build_hotels() -> None:
             important_items = lead_lines[:3]
 
         review_cards = extract_reviews(reviews_section)
-        price_highlight = first_strong_price(price_section)
+        price_section = reformat_price_card_content(price_section)
+        price_section = strip_stray_contacts_from_price_section(price_section)
+        price_highlight = first_price_highlight(price_section)
 
         gallery_html = ""
         if main_image[0]:
@@ -610,7 +737,10 @@ def build_hotels() -> None:
   <div class="card-preview-page__halo card-preview-page__halo--sand" aria-hidden="true"></div>
 
   <section class="hotel-site-concept__intro">
-    <p class="eyebrow"><a href="/">Каталог Абхазберег</a></p>
+    <div class="hotel-site-concept__intro-brand">
+      <p class="eyebrow"><a href="/"><strong>Каталог Абхазберег</strong></a></p>
+      <p class="hotel-site-concept__intro-subline">онлайн-бронирование без накруток</p>
+    </div>
   </section>
 
   <article class="hotel-card hotel-site-concept__card">

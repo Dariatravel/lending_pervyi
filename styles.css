@@ -1256,6 +1256,35 @@ section.site-concept__contacts.section {
   padding: 14px 18px;
 }
 
+.hotel-site-concept__intro-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.hotel-site-concept__intro p.eyebrow {
+  margin-bottom: 0;
+  font-size: 11px;
+  line-height: 1.25;
+  color: #4f7d6c;
+}
+
+.hotel-site-concept__intro .eyebrow a strong {
+  font-weight: 800;
+}
+
+.hotel-site-concept__intro p.hotel-site-concept__intro-subline {
+  margin: 0;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  color: #4f7d6c;
+  text-transform: none;
+}
+
 .hotel-site-concept__intro h1 {
   margin-bottom: 12px;
   font-size: 18px;
@@ -1456,9 +1485,17 @@ section.site-concept__contacts.section {
   margin: 0 0 12px;
 }
 
+.hotel-site-concept .price-card__teaser .price-card__amount {
+  font-size: 24px;
+  line-height: 1.05;
+  font-weight: 400;
+  color: var(--text);
+}
+
 .hotel-site-concept .price-card__teaser strong {
   font-size: 24px;
   line-height: 1.05;
+  font-weight: 700;
 }
 
 .hotel-site-concept .price-card ul {
@@ -1477,7 +1514,13 @@ section.site-concept__contacts.section {
   border: 1px solid rgba(29, 43, 37, 0.08);
 }
 
+.hotel-site-concept .price-card li .price-card__amount {
+  font-weight: 400;
+  color: var(--muted);
+}
+
 .hotel-site-concept .price-card li strong {
+  font-weight: 700;
   color: var(--text);
 }
 
@@ -2762,6 +2805,19 @@ body {
 /* Номер в блоке контактов не разрывается переносом строки */
 .contact-phone {
   white-space: nowrap;
+}
+
+/* Список мессенджеров — отдельная строка, без переноса внутри */
+.contact-messengers {
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+.site-concept__contacts .contact-messengers {
+  font-size: 15px;
+  line-height: 1.42;
+  color: var(--muted);
 }
 
 .hotel-page-v2 .contact-buttons {
