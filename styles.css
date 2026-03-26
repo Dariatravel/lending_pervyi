@@ -316,16 +316,14 @@
 
 .site-concept__hero-copy {
   display: grid;
-  /* Левая колонка по ширине видео/«Обо мне», без лишнего пустого поля до выгод */
-  grid-template-columns: minmax(0, max-content) minmax(260px, 1fr);
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.88fr);
   grid-template-areas:
     "eyebrow eyebrow"
     "title title"
     "media highlights"
     "social social";
   align-items: start;
-  column-gap: clamp(8px, 1vw, 14px);
-  row-gap: clamp(10px, 1.4vw, 18px);
+  gap: clamp(10px, 1.4vw, 18px);
 }
 
 .site-concept__hero-copy > :nth-child(1) {
@@ -369,7 +367,7 @@
   width: min(100%, 330px);
   max-width: 100%;
   margin-inline: 0;
-  justify-self: end;
+  justify-self: center;
   gap: clamp(8px, 1.2vw, 14px);
 }
 
@@ -673,7 +671,6 @@
 .site-concept__hero-highlights {
   grid-area: highlights;
   grid-template-columns: 1fr;
-  min-width: 0;
   align-self: start;
   align-content: start;
   align-items: start;
