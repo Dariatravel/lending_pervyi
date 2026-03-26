@@ -316,14 +316,14 @@
 
 .site-concept__hero-copy {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  grid-template-columns: minmax(0, 1.12fr) minmax(240px, 0.68fr);
   grid-template-areas:
     "eyebrow highlights"
     "title highlights"
     "media highlights"
     "social social";
   align-items: start;
-  gap: clamp(12px, 1.5vw, 24px);
+  gap: clamp(8px, 1.2vw, 16px);
 }
 
 .site-concept__hero-copy > :nth-child(1) {
@@ -333,13 +333,13 @@
 .site-concept__hero-title-block {
   grid-area: title;
   display: grid;
-  gap: clamp(6px, 1vw, 10px);
+  gap: clamp(4px, 0.8vw, 8px);
   align-content: start;
 }
 
 .site-concept__hero-title-block h1 {
   max-width: 16ch;
-  font-size: clamp(1.9rem, 3.6vw, 3.6rem);
+  font-size: clamp(1.65rem, 3.2vw, 3.1rem);
   line-height: 1.03;
   font-family: "Manrope", "Segoe UI", sans-serif;
   font-weight: 800;
@@ -352,8 +352,8 @@
   max-width: min(38ch, 100%);
   font-family: "Manrope", "Segoe UI", sans-serif;
   font-weight: 600;
-  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
-  line-height: 1.35;
+  font-size: clamp(0.88rem, 1.55vw, 1.08rem);
+  line-height: 1.28;
   letter-spacing: -0.015em;
   color: var(--ink);
   opacity: 0.92;
@@ -364,29 +364,29 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: min(100%, 360px);
+  width: min(100%, 300px);
   max-width: 100%;
   margin-inline: auto;
-  gap: clamp(12px, 1.5vw, 18px);
+  gap: clamp(8px, 1.2vw, 14px);
 }
 
 .site-concept__host-intro {
   width: 100%;
   max-width: 100%;
   margin: 0;
-  padding: clamp(16px, 2.2vw, 22px) clamp(18px, 2.8vw, 28px);
+  padding: clamp(12px, 1.6vw, 18px) clamp(14px, 2vw, 22px);
   text-align: center;
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(20, 32, 26, 0.07);
-  border-radius: 18px;
-  box-shadow: 0 10px 28px rgba(18, 31, 25, 0.07);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(18, 31, 25, 0.06);
 }
 
 .site-concept__host-intro-text {
   margin: 0;
   color: var(--muted);
-  line-height: 1.65;
-  font-size: 15px;
+  line-height: 1.5;
+  font-size: 14px;
 }
 
 .site-concept__hero-video {
@@ -399,7 +399,7 @@
   aspect-ratio: 9 / 16;
   height: auto;
   border: 0;
-  border-radius: 18px;
+  border-radius: 16px;
   display: block;
   background: #0f1412;
   object-fit: contain;
@@ -674,6 +674,7 @@
   /* Иначе при высокой левой колонке лишняя высота растягивает строки карточек */
   align-content: start;
   align-items: start;
+  gap: 10px;
 }
 
 .site-concept__mini-card {
@@ -690,6 +691,9 @@
 
 .site-concept__hero-highlights .site-concept__benefit-card {
   height: fit-content;
+  padding: 12px 14px;
+  gap: 8px;
+  border-radius: 14px;
 }
 
 .site-concept__benefit-title {
@@ -702,9 +706,18 @@
   color: var(--text);
 }
 
+.site-concept__hero-highlights .site-concept__benefit-title {
+  font-size: clamp(0.98rem, 1.85vw, 1.2rem);
+  line-height: 1.18;
+}
+
 .site-concept__benefit-body {
   display: grid;
   gap: 10px;
+}
+
+.site-concept__hero-highlights .site-concept__benefit-body {
+  gap: 8px;
 }
 
 .site-concept__benefit-body p {
@@ -713,6 +726,11 @@
   font-size: 14px;
   line-height: 1.55;
   font-family: "Manrope", "Segoe UI", sans-serif;
+}
+
+.site-concept__hero-highlights .site-concept__benefit-body p {
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 .site-concept__benefit-body a {
@@ -724,6 +742,37 @@
 
 .site-concept__benefit-body a:hover {
   color: #163128;
+}
+
+/* Компактнее блок героя: «Абхазский берег», видео, выгоды, соцстаты */
+.site-concept__hero-card {
+  padding: clamp(10px, 1.5vw, 20px);
+}
+
+.site-concept__hero-copy > .site-concept__eyebrow {
+  margin-bottom: 6px;
+}
+
+.site-concept__hero-copy .site-concept__social-stats {
+  gap: clamp(8px, 1.2vw, 14px);
+}
+
+.site-concept__hero-copy .site-concept__social-stat {
+  padding: 28px 12px 12px;
+  margin-top: 16px;
+}
+
+.site-concept__hero-copy .site-concept__social-stat-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.site-concept__hero-copy .site-concept__social-stat strong {
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+}
+
+.site-concept__hero-copy .site-concept__social-stat-label {
+  font-size: 12px;
 }
 
 .site-concept__mini-card strong {
@@ -1094,9 +1143,12 @@
   padding: 0;
 }
 
-.site-concept__reviews .section-heading--compact,
-.site-concept__contacts .contact-shell__intro {
+.site-concept__reviews .section-heading--compact {
   margin-bottom: 18px;
+}
+
+.site-concept__contacts .contact-shell__intro {
+  margin-bottom: 10px;
 }
 
 .site-concept__reviews .section-heading--compact h2,
@@ -1117,13 +1169,34 @@
 
 .site-concept__contacts .contact-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(min(320px, 100%), 420px);
-  gap: clamp(20px, 3vw, 40px);
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(min(240px, 100%), 320px);
+  gap: clamp(12px, 2vw, 22px);
+  align-items: start;
 }
 
 .site-concept__contacts .contact-buttons {
-  margin-top: 0;
+  margin-top: 8px;
+  gap: 8px;
+}
+
+/* Компактнее блок «Контакты» на главной: меньше паддинги секции и карточек соцсетей */
+section.site-concept__contacts.section {
+  padding: clamp(10px, 1.4vw, 18px);
+}
+
+.site-concept__contacts .contact-shell__intro .eyebrow {
+  margin-bottom: 6px;
+}
+
+.site-concept__contacts .contact-shell__intro p:not(.eyebrow) {
+  margin: 0 0 0.45rem;
+  font-size: 15px;
+  line-height: 1.42;
+}
+
+.site-concept__contacts .contact-shell__intro .note {
+  margin-bottom: 0;
+  font-size: 13px;
 }
 
 /* Карточки мессенджеров в блоке контактов — сброс grid-area из героя */
@@ -1133,7 +1206,41 @@
   margin-bottom: 4px;
 }
 
-.site-concept__contacts .contact-buttons .btn-book,
+.site-concept__contacts .contact-social-stats {
+  margin-top: 0;
+  margin-bottom: 0;
+  gap: 8px;
+}
+
+.site-concept__contacts .site-concept__social-stat {
+  padding: 26px 10px 10px;
+  margin-top: 16px;
+  gap: 4px;
+  border-radius: 14px;
+  box-shadow: 0 8px 18px rgba(18, 31, 25, 0.07);
+}
+
+.site-concept__contacts .site-concept__social-stat-icon {
+  width: 38px;
+  height: 38px;
+}
+
+.site-concept__contacts .site-concept__social-stat strong {
+  font-size: clamp(1.05rem, 2vw, 1.4rem);
+}
+
+.site-concept__contacts .site-concept__social-stat-label {
+  font-size: 12px;
+}
+
+.site-concept__contacts .contact-buttons .btn-book {
+  min-height: 44px;
+  border-radius: 14px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.65rem;
+}
+
 .hotel-site-concept .contact-buttons .btn-book {
   min-height: 56px;
   border-radius: 18px;
