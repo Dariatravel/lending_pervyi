@@ -542,9 +542,6 @@ def build_hotels() -> None:
             important_items = lead_lines[:3]
 
         review_cards = extract_reviews(reviews_section)
-        contact_links = extract_links(contacts_section)
-        primary_link = contact_links[0] if contact_links else ("https://t.me/abhazbooking_online", "Забронировать")
-        secondary_link = ("/", "Назад в каталог")
         price_highlight = first_strong_price(price_section)
 
         gallery_html = ""
@@ -658,8 +655,8 @@ def build_hotels() -> None:
 
       <div class="hotel-card__footer">
         <div class="hotel-card__actions">
-          <a class="button button--ghost" href="#contacts">Что-то нужно уточнить</a>
-          <a class="button button--accent" href="{primary_link[0]}" target="_blank" rel="noopener noreferrer">{primary_link[1]}</a>
+          <a class="button button--ghost" href="#contacts">Что-то нужно уточнить?</a>
+          <a class="button button--accent" href="#contacts">Написать мне</a>
         </div>
       </div>
 
