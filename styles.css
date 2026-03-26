@@ -1179,24 +1179,33 @@
   gap: 8px;
 }
 
+@media (min-width: 1161px) {
+  .site-concept__contacts .contact-buttons {
+    margin-top: -10px;
+  }
+}
+
 /* Компактнее блок «Контакты» на главной: меньше паддинги секции и карточек соцсетей */
 section.site-concept__contacts.section {
   padding: clamp(10px, 1.4vw, 18px);
 }
 
 .site-concept__contacts .contact-shell__intro .eyebrow {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  font-size: clamp(0.88rem, 1.15vw, 1rem);
+  letter-spacing: 0.14em;
 }
 
 .site-concept__contacts .contact-shell__intro p:not(.eyebrow) {
-  margin: 0 0 0.45rem;
-  font-size: 15px;
-  line-height: 1.42;
+  margin: 0 0 0.5rem;
+  font-size: clamp(16px, 1.45vw, 18px);
+  line-height: 1.45;
 }
 
 .site-concept__contacts .contact-shell__intro .note {
   margin-bottom: 0;
-  font-size: 13px;
+  font-size: clamp(14px, 1.2vw, 15px);
+  line-height: 1.45;
 }
 
 /* Карточки мессенджеров в блоке контактов — сброс grid-area из героя */
@@ -2815,9 +2824,15 @@ body {
 }
 
 .site-concept__contacts .contact-messengers {
-  font-size: 15px;
+  font-size: clamp(15px, 1.35vw, 17px);
   line-height: 1.42;
   color: var(--muted);
+}
+
+.site-concept__contacts .contact-shell__intro .contact-phone {
+  font-size: clamp(1.28rem, 2.35vw, 1.62rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .hotel-page-v2 .contact-buttons {
