@@ -664,6 +664,9 @@
   grid-area: highlights;
   grid-template-columns: 1fr;
   align-self: stretch;
+  /* Иначе при высокой левой колонке лишняя высота растягивает строки карточек */
+  align-content: start;
+  align-items: start;
 }
 
 .site-concept__mini-card {
@@ -675,6 +678,11 @@
   display: grid;
   gap: 12px;
   align-content: start;
+  min-height: 0;
+}
+
+.site-concept__hero-highlights .site-concept__benefit-card {
+  height: fit-content;
 }
 
 .site-concept__benefit-title {
