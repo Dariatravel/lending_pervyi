@@ -316,14 +316,14 @@
 
 .site-concept__hero-copy {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(240px, 0.68fr);
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.88fr);
   grid-template-areas:
-    "eyebrow highlights"
-    "title highlights"
+    "eyebrow eyebrow"
+    "title title"
     "media highlights"
     "social social";
   align-items: start;
-  gap: clamp(8px, 1.2vw, 16px);
+  gap: clamp(10px, 1.4vw, 18px);
 }
 
 .site-concept__hero-copy > :nth-child(1) {
@@ -364,9 +364,10 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: min(100%, 300px);
+  width: min(100%, 330px);
   max-width: 100%;
-  margin-inline: auto;
+  margin-inline: 0;
+  justify-self: start;
   gap: clamp(8px, 1.2vw, 14px);
 }
 
@@ -670,11 +671,10 @@
 .site-concept__hero-highlights {
   grid-area: highlights;
   grid-template-columns: 1fr;
-  align-self: stretch;
-  /* Иначе при высокой левой колонке лишняя высота растягивает строки карточек */
+  align-self: start;
   align-content: start;
   align-items: start;
-  gap: 10px;
+  gap: 12px;
 }
 
 .site-concept__mini-card {
@@ -691,9 +691,9 @@
 
 .site-concept__hero-highlights .site-concept__benefit-card {
   height: fit-content;
-  padding: 12px 14px;
-  gap: 8px;
-  border-radius: 14px;
+  padding: 15px 17px;
+  gap: 10px;
+  border-radius: 16px;
 }
 
 .site-concept__benefit-title {
@@ -707,8 +707,8 @@
 }
 
 .site-concept__hero-highlights .site-concept__benefit-title {
-  font-size: clamp(0.98rem, 1.85vw, 1.2rem);
-  line-height: 1.18;
+  font-size: clamp(1.02rem, 1.95vw, 1.3rem);
+  line-height: 1.2;
 }
 
 .site-concept__benefit-body {
@@ -729,8 +729,8 @@
 }
 
 .site-concept__hero-highlights .site-concept__benefit-body p {
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .site-concept__benefit-body a {
