@@ -12,3 +12,6 @@ tg_session.session
 telegram_login_qr.png
 tg_login_check.py
 tg_export_topics.py.save
+
+# local Supabase secrets
+.env.supabase.local

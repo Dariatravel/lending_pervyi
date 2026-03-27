@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Концепт карточки отеля</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Prata&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="concept-hotel-card.css" />
+</head>
+<body>
+  <main class="card-preview-page">
+    <div class="card-preview-page__halo card-preview-page__halo--mint" aria-hidden="true"></div>
+    <div class="card-preview-page__halo card-preview-page__halo--sand" aria-hidden="true"></div>
+
+    <section class="card-showcase">
+      <div class="card-showcase__intro">
+        <p class="eyebrow">Концепт карточки отеля</p>
+        <h1>Так может выглядеть карточка объекта в новом агрегаторе.</h1>
+        <p>
+          Логика ближе к Booking и современным travel-маркетплейсам: сильное фото, ясные
+          преимущества, рейтинг, важные удобства, цена и чёткий CTA без визуального мусора.
+        </p>
+      </div>
+
+      <article class="hotel-card">
+        <div class="hotel-card__gallery">
+          <div class="hotel-card__main-photo">
+            <img src="media/cards/fazenda-otel-s-basseynom-i-pitaniem-3190.jpg" alt="Fazenda Family Resort" />
+            <div class="hotel-card__floating">
+              <span class="pill pill--accent">Мгновенное подтверждение</span>
+              <span class="pill">Семейный формат</span>
+            </div>
+          </div>
+
+          <div class="hotel-card__thumbs">
+            <img src="media/cards/bugenvileya-otel.jpg" alt="Бассейн отеля" />
+            <img src="media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574.jpg" alt="Вид у отеля" />
+            <img src="media/cards/parus-vidovoy-otel-s-basseynom-i-stolovoy-2602.jpg" alt="Территория отеля" />
+          </div>
+        </div>
+
+        <div class="hotel-card__content">
+          <div class="hotel-card__topline">
+            <div class="hotel-card__rating">
+              <strong>9,4</strong>
+              <span>Превосходно</span>
+            </div>
+            <button class="save-button" type="button">Сохранить</button>
+          </div>
+
+          <div class="hotel-card__header">
+            <div>
+              <h2>Fazenda Family Resort</h2>
+              <p class="location">Лдзаа, Абхазия • 5 минут до моря • первая береговая зона</p>
+            </div>
+            <div class="partner-badge">
+              <span>Partner Choice</span>
+              <strong>Top pick</strong>
+            </div>
+          </div>
+
+          <p class="hotel-card__description">
+            Семейный отель с бассейном, питанием и зелёной территорией. Подходит для отдыха с
+            детьми, коротких летних поездок и спокойного пляжного сценария без лишней логистики.
+          </p>
+
+          <div class="feature-row">
+            <span>Завтрак включён</span>
+            <span>Подогреваемый бассейн</span>
+            <span>Трансфер</span>
+            <span>Бесплатная отмена</span>
+          </div>
+
+          <div class="benefit-grid">
+            <article>
+              <strong>Почему выбирают</strong>
+              <ul>
+                <li>тихая зелёная территория</li>
+                <li>подтверждённые отзывы гостей</li>
+                <li>понятные условия заселения</li>
+              </ul>
+            </article>
+            <article>
+              <strong>Важно для гостя</strong>
+              <ul>
+                <li>2 взрослых + 1 ребёнок</li>
+                <li>оплата онлайн или при заселении</li>
+                <li>осталось 3 номера на даты</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="hotel-card__footer">
+            <div class="price-box">
+              <span class="price-box__label">от</span>
+              <strong>7 200 ₽</strong>
+              <span class="price-box__note">за ночь • налоги включены</span>
+            </div>
+
+            <div class="hotel-card__actions">
+              <button class="button button--ghost" type="button">Смотреть детали</button>
+              <button class="button button--accent" type="button">Забронировать</button>
+            </div>
+          </div>
+
+          <section class="reviews-panel">
+            <div class="reviews-panel__head">
+              <div class="reviews-score">
+                <strong>9,4</strong>
+                <span>На основе отзывов гостей</span>
+              </div>
+              <div class="reviews-summary">
+                <span>Чаще всего хвалят</span>
+                <div class="reviews-summary__tags">
+                  <em>расположение</em>
+                  <em>семейный отдых</em>
+                  <em>чистоту</em>
+                </div>
+              </div>
+            </div>
+
+            <div class="reviews-grid">
+              <article class="review-card">
+                <div class="review-card__top">
+                  <strong>МАРИНА АХМЕТГАРЕЕВА</strong>
+                  <span>Семья с детьми</span>
+                </div>
+                <p>Добрый вечер. Очень удачно выбрали отель по вашей рекомендации: с маленькими детьми было удобно по расположению, пляж чистый, рядом кафе. Больше всего понравилась природа Абхазии и ощущение спокойствия.</p>
+              </article>
+
+              <article class="review-card">
+                <div class="review-card__top">
+                  <strong>ЮЛИЯ КОЗЛОВА</strong>
+                  <span>Семейный отдых</span>
+                </div>
+                <p>Дарья, спасибо за чудесный отпуск. Нас встретили приветливые люди, море чистое и тёплое, кухня вкусная. Отдыхали в семейном формате, и для нас было важно, что место оказалось действительно удобным для детей.</p>
+              </article>
+
+              <article class="review-card">
+                <div class="review-card__top">
+                  <strong>ОКСАНА</strong>
+                  <span>Пара</span>
+                </div>
+                <p>Хочу выразить огромную благодарность за правильно подобранный отель. До моря буквально рукой подать, персонал гостеприимный, условия комфортные. Всё, что было показано в обзоре, в реальности подтвердилось.</p>
+              </article>
+            </div>
+          </section>
+        </div>
+      </article>
+
+      <section class="card-notes">
+        <article>
+          <p class="eyebrow">Что в этой карточке хорошо</p>
+          <ul>
+            <li>сразу читается класс объекта, рейтинг и цена</li>
+            <li>главные преимущества вынесены над fold-линией</li>
+            <li>блок достаточно премиальный, но остаётся конверсионным</li>
+          </ul>
+        </article>
+
+        <article>
+          <p class="eyebrow">Можно развить дальше</p>
+          <ul>
+            <li>добавить мини-карту</li>
+            <li>встроить честные отзывы и бейджи доверия</li>
+            <li>сделать mobile-версию карточки отдельным вариантом</li>
+          </ul>
+        </article>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

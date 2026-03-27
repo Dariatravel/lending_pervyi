@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Трекер кешбека</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Локальный трекер</p>
+          <h1>Категории кешбека по банкам и месяцам</h1>
+          <p class="hero-text">
+            Ведите один JSON-файл с историей по месяцам. Приложение сохраняет данные
+            в проект, поэтому их можно и смотреть в интерфейсе, и обновлять через меня.
+          </p>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Текущий статус</div>
+          <div id="saveStatus" class="save-status save-status-idle">Данные загружены</div>
+          <p id="monthStatus" class="hero-card-text"></p>
+        </div>
+      </section>
+
+      <section class="toolbar">
+        <label class="field compact">
+          <span>Месяц</span>
+          <input id="monthInput" type="month" />
+        </label>
+        <button id="copyPrevBtn" class="secondary-button" type="button">
+          Скопировать из прошлого месяца
+        </button>
+        <button id="exportBtn" class="secondary-button" type="button">
+          Экспорт JSON
+        </button>
+        <label class="secondary-button file-button">
+          Импорт JSON
+          <input id="importInput" type="file" accept="application/json" />
+        </label>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="section-label">Поиск</p>
+            <h2>Поиск по направлениям кешбека</h2>
+            <p class="hero-card-text">
+              Введите категорию, бренд или банк: например, <strong>аптеки</strong>,
+              <strong>такси</strong>, <strong>одежда</strong>, <strong>Пятёрочка</strong>.
+            </p>
+          </div>
+        </div>
+        <label class="field">
+          <span>Что ищем в этом месяце</span>
+          <input
+            id="categorySearchInput"
+            type="search"
+            placeholder="Например: аптеки, транспорт, одежда, Пятёрочка"
+          />
+        </label>
+        <p id="categorySearchStatus" class="search-status"></p>
+        <div id="categoryDirectory" class="category-directory"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="section-label">Банки</p>
+            <h2>Список используемых банков</h2>
+          </div>
+          <form id="addBankForm" class="inline-form">
+            <input
+              id="bankNameInput"
+              type="text"
+              placeholder="Например, Т-Банк"
+              maxlength="80"
+              required
+            />
+            <button type="submit">Добавить банк</button>
+          </form>
+        </div>
+        <div id="bankList" class="bank-list"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="section-label">Ввод за месяц</p>
+            <h2>Быстрое добавление строками</h2>
+          </div>
+          <button id="bulkImportBtn" type="button">Загрузить в выбранный месяц</button>
+        </div>
+        <label class="field">
+          <span>Формат: Банк | Категория | % | Лимит/условие | Комментарий</span>
+          <textarea
+            id="bulkInput"
+            rows="6"
+            placeholder="Т-Банк | Рестораны | 10 | до 3000 ₽ | Только по выбору месяца&#10;Альфа-Банк | Такси | 7 | без лимита |"
+          ></textarea>
+        </label>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="section-label">Сводка</p>
+            <h2>Лучшие предложения по категориям</h2>
+          </div>
+        </div>
+        <div id="summaryTableWrap" class="summary-wrap"></div>
+      </section>
+
+    </main>
+
+    <template id="emptyStateTemplate">
+      <div class="empty-state">
+        <h3>Пока пусто</h3>
+        <p>
+          Добавьте хотя бы один банк и внесите категории кешбека за выбранный месяц.
+        </p>
+      </div>
+    </template>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
