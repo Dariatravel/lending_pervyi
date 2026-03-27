@@ -15,6 +15,7 @@ import requests
 ROOT = Path("/Users/darya_botova/Documents/New project")
 ENV_PATH = ROOT / ".env.supabase.local"
 INDEX_PATH = ROOT / "index.html"
+KVARTIRA_DIR = ROOT / "kvartira"
 KVARTIRA_PATH = ROOT / "kvartira" / "index.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 
@@ -247,13 +248,13 @@ def render_hotel_card(row: dict[str, Any]) -> str:
 
 
 def render_kvartira_card(row: dict[str, Any]) -> str:
-    href = row.get("telegram_url") or row.get("page_url") or "/kvartira/"
+    href = page_path_from_url(row.get("page_url"), row.get("telegram_url") or "/kvartira/")
     title = html.escape(row.get("title") or "")
     summary = html.escape(row.get("summary") or row.get("excerpt") or ((row.get("details") or {}).get("excerpt") or ""))
     image = pick_cover_url(row)
     badge = '<span class="catalog-card__badge">Видео</span>' if row.get("has_video") else ""
     return (
-        f'<a class="catalog-card" href="{html.escape(href, quote=True)}" target="_blank" rel="noopener noreferrer">'
+        f'<a class="catalog-card" href="{html.escape(href, quote=True)}">'
         f'<div class="catalog-card__media-wrap">{badge}<img src="{html.escape(image, quote=True)}" alt="{title}" loading="lazy" /></div>'
         f"<h3>{title}</h3>"
         f"<p>{summary}</p>"
@@ -261,28 +262,53 @@ def render_kvartira_card(row: dict[str, Any]) -> str:
     )
 
 
+def render_kvartira_catalog_page(rows: list[dict[str, Any]]) -> str:
+    grid = "".join(render_kvartira_card(row) for row in rows)
+    return f"""<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Квартиры и дома — Абхазия 2026</title>
+    <meta name="description" content="Каталог квартир и домов из @abhkvartira: отдельная карточка товара на каждый объект, с фото, видео и описанием из Telegram." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://абхазберег.рф/kvartira/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Квартиры и дома — Абхазия 2026" />
+    <meta property="og:description" content="Отдельные карточки квартир и домов в едином стиле с отелями: фото, видео и описание из Telegram." />
+    <meta property="og:url" content="https://абхазберег.рф/kvartira/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <main>
+      <header class="hero section">
+        <p class="eyebrow"><a href="/">Абхазберег</a></p>
+        <h1>КВАРТИРЫ И ДОМА</h1>
+        <p class="lead">Каталог объектов из группы <a href="https://t.me/abhkvartira" target="_blank" rel="noopener noreferrer">@abhkvartira</a>. Каждая карточка открывает отдельную страницу объекта с фото, видео и описанием.</p>
+      </header>
+
+      <section class="section">
+        <article class="card">
+          <h2>Каталог объектов</h2>
+          <div class="catalog-grid" id="kvartira-catalog-grid">{grid}</div>
+        </article>
+      </section>
+    </main>
+    <script src="../scripts.js" defer></script>
+  </body>
+</html>
+"""
+
+
 def replace_catalog_block(file_path: Path, marker: str, html_block: str) -> None:
-    """Replace inner HTML of the catalog-grid div (handles nested <div> inside cards)."""
     text = file_path.read_text(encoding="utf-8")
     start = text.index(marker) + len(marker)
-    depth = 1
-    pos = start
-    end_close = -1
-    while depth > 0:
-        next_open = text.find("<div", pos)
-        next_close = text.find("</div>", pos)
-        if next_close == -1:
-            raise ValueError(f"Unclosed catalog block after {marker!r} in {file_path}")
-        if next_open != -1 and next_open < next_close:
-            depth += 1
-            pos = next_open + 4
-        else:
-            depth -= 1
-            end_close = next_close
-            pos = next_close + len("</div>")
-    if end_close == -1:
-        raise ValueError(f"Could not find closing </div> for catalog grid in {file_path}")
-    updated = text[:start] + html_block + text[end_close:]
+    end = text.index("</div>", start)
+    updated = text[:start] + html_block + text[end:]
     file_path.write_text(updated, encoding="utf-8")
 
 
@@ -304,8 +330,10 @@ def update_hotel_page(row: dict[str, Any]) -> None:
     lead = details.get("lead") or summary
     cover = pick_cover_url(row)
     page_url = row.get("page_url") or f"https://абхазберег.рф/hotels/{row['slug']}/"
+    telegram = row.get("telegram_url") or ""
     published = row.get("published_at")
     published_human = human_date(published)
+    media_label = telegram.replace("https://t.me/", "@") if telegram else ""
 
     lead_html = "<br />".join(html.escape(part.strip()) for part in lead.split("\n") if part.strip())
     text = path.read_text(encoding="utf-8")
@@ -326,20 +354,68 @@ def update_hotel_page(row: dict[str, Any]) -> None:
             r'<p class="updated">Обновлено: <time datetime=".*?">.*?</time></p>',
             f'<p class="updated">Обновлено: <time datetime="{html.escape(published, quote=True)}">{published_human}</time></p>',
         )
-    # Убрать строку «Источник: @…» из разметки (не показываем на сайте)
-    text = re.sub(
-        r'\s*<p class="media-note">Источник: <a href=".*?" target="_blank" rel="noopener noreferrer">.*?</a>\.</p>',
-        "",
-        text,
-        count=1,
-    )
+    if telegram and media_label:
+        text = replace_once(
+            text,
+            r'<p class="media-note">Источник: <a href=".*?" target="_blank" rel="noopener noreferrer">.*?</a>\.</p>',
+            f'<p class="media-note">Источник: <a href="{html.escape(telegram, quote=True)}" target="_blank" rel="noopener noreferrer">{html.escape(media_label)}</a>.</p>',
+        )
     path.write_text(text, encoding="utf-8")
+
+
+def rebuild_kvartira_pages(rows: list[dict[str, Any]]) -> None:
+    from sync_catalog_from_telegram import render_detail_page  # noqa: PLC0415
+
+    for row in rows:
+        details = row.get("details") or {}
+        page_url = row.get("page_url") or f"https://абхазберег.рф/kvartira/{row['slug']}/"
+        page_path = details.get("page_path")
+        if page_path:
+            path = Path(page_path)
+        else:
+            rel = page_path_from_url(page_url, f"/kvartira/{row['slug']}/").strip("/")
+            path = ROOT / rel / "index.html"
+        path.parent.mkdir(parents=True, exist_ok=True)
+
+        parsed = {
+            "title": row.get("title") or "",
+            "location": row.get("location_text") or row.get("city") or "",
+            "beach": row.get("beach_text") or "",
+            "capacity": row.get("capacity_text") or "",
+            "sections": details.get("sections") or [],
+            "prices": details.get("prices") or [],
+        }
+
+        media_items: list[dict[str, Any]] = []
+        for item in sorted(row.get("listing_media") or [], key=lambda media: media.get("sort_order") or 0):
+            if item.get("media_role") != "gallery":
+                continue
+            mime = str(item.get("mime_type") or "")
+            if mime.startswith("image/") and item.get("public_url"):
+                media_items.append({"kind": "photo", "source_url": item["public_url"]})
+                continue
+            if mime == "application/x-telegram-embed":
+                telegram_post = ((item.get("details") or {}).get("telegram_post") or "").strip()
+                telegram_url = item.get("source_url") or row.get("telegram_url") or ""
+                if telegram_post and telegram_url:
+                    media_items.append(
+                        {
+                            "kind": "video",
+                            "source_url": telegram_url,
+                            "telegram_post": telegram_post,
+                            "telegram_url": telegram_url,
+                        }
+                    )
+
+        page_href = page_path_from_url(page_url, f"/kvartira/{row['slug']}/")
+        html_page = render_detail_page("kvartira", row["slug"], row.get("telegram_url") or "", row.get("published_at") or "", parsed, media_items, page_href)
+        path.write_text(html_page, encoding="utf-8")
 
 
 def rebuild_sitemap(rows: list[dict[str, Any]]) -> None:
     urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
     urls = ["https://абхазберег.рф/", "https://абхазберег.рф/kvartira/"]
-    urls.extend(row["page_url"] for row in rows if row.get("page_url") and row.get("source_kind") == "hotel")
+    urls.extend(row["page_url"] for row in rows if row.get("page_url") and row.get("source_kind") in {"hotel", "kvartira"})
     for url in urls:
         node = ET.SubElement(urlset, "url")
         loc = ET.SubElement(node, "loc")
@@ -358,7 +434,7 @@ def main() -> None:
         f"{base}/rest/v1/listings",
         headers=headers,
         params={
-            "select": "id,slug,source_kind,title,summary,excerpt,city,page_url,telegram_url,published_at,has_video,cover_url,details,is_active,listing_media(id,media_role,sort_order,public_url,storage_path,mime_type)",
+            "select": "id,slug,source_kind,title,summary,excerpt,city,location_text,beach_text,capacity_text,page_url,telegram_url,published_at,has_video,cover_url,details,is_active,listing_media(id,media_role,sort_order,public_url,storage_path,mime_type,source_url,details)",
             "is_active": "eq.true",
             "order": "published_at.desc",
             "limit": "2000",
@@ -370,6 +446,7 @@ def main() -> None:
 
     hotel_rows = [row for row in rows if row.get("source_kind") == "hotel"]
     kvartira_rows = [row for row in rows if row.get("source_kind") == "kvartira"]
+    KVARTIRA_DIR.mkdir(parents=True, exist_ok=True)
 
     # Normalize filters in DB
     session = requests.Session()
@@ -410,14 +487,11 @@ def main() -> None:
         '<div class="catalog-grid" id="catalog-grid">',
         "".join(render_hotel_card(row) for row in hotel_rows),
     )
-    replace_catalog_block(
-        KVARTIRA_PATH,
-        '<div class="catalog-grid" id="kvartira-catalog-grid">',
-        "".join(render_kvartira_card(row) for row in kvartira_rows),
-    )
+    KVARTIRA_PATH.write_text(render_kvartira_catalog_page(kvartira_rows), encoding="utf-8")
 
     for row in hotel_rows:
         update_hotel_page(row)
+    rebuild_kvartira_pages(kvartira_rows)
 
     rebuild_sitemap(rows)
 
