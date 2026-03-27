@@ -414,9 +414,7 @@
     rows.forEach((row) => {
       const card = document.createElement("a");
       card.className = "catalog-card";
-      card.href = row.telegram_url || row.page_url || "/kvartira/";
-      card.target = "_blank";
-      card.rel = "noopener noreferrer";
+      card.href = pathnameFromUrl(row.page_url, row.telegram_url || "/kvartira/");
 
       const mediaWrap = document.createElement("div");
       mediaWrap.className = "catalog-card__media-wrap";
