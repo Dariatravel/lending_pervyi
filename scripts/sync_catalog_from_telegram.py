@@ -324,7 +324,7 @@ def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
             image_index += 1
         else:
             parts.append(
-                f'''            <div class="video-embed video-embed--telegram">\n              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="{html.escape(item["telegram_post"])}" data-width="100%" data-userpic="false" data-single="1"></script>\n              <a class="video-link" href="{html.escape(item["telegram_url"])}?single" target="_blank" rel="noopener noreferrer">Открыть видео в Telegram</a>\n            </div>'''
+                f'''            <div class="video-embed video-embed--telegram">\n              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="{html.escape(item["telegram_post"])}" data-width="100%" data-userpic="false" data-single="1"></script>\n            </div>'''
             )
             video_index += 1
     return '\n'.join(parts)

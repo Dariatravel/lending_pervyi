@@ -44,6 +44,36 @@ def guess_city(text: str) -> str:
     return head[:120]
 
 
+def normalize_storage_path(source: str) -> str:
+    raw = (source or '').strip()
+    if not raw:
+        return ''
+    if raw.startswith('/media/'):
+        return raw[len('/media/'):]
+    parsed = urlparse(raw)
+    if parsed.scheme and parsed.path.startswith('/media/'):
+        return parsed.path[len('/media/'):]
+    return raw.lstrip('/')
+
+
+def local_path_from_source(source: str) -> Optional[Path]:
+    raw = (source or '').strip()
+    if not raw:
+        return None
+    if raw.startswith('/'):
+        return ROOT / raw.lstrip('/')
+    parsed = urlparse(raw)
+    if parsed.scheme and parsed.path.startswith('/'):
+        return ROOT / parsed.path.lstrip('/')
+    return ROOT / raw
+
+
+def public_url_from_storage(storage_path: str) -> str:
+    if not storage_path:
+        return ''
+    return f'/media/{storage_path.lstrip("/")}'
+
+
 def parse_index_cards() -> dict[str, dict]:
     html_text = INDEX_FILE.read_text(encoding='utf-8')
     cards = {}
@@ -83,7 +113,7 @@ def hotel_listing(slug: str, source_id: int, card: dict) -> tuple[dict, list[dic
     location_block = first(r'<article class="card accent">.*?<h2>Локация</h2>(.*?)</article>', html_text)
     location_lines = many(r'<p>(.*?)</p>', location_block)
     photo_paths = re.findall(r'<img src="(/media/hotels/[^"]+)"', html_text, flags=re.I)
-    video_paths = re.findall(r'<source src="(/media/videos/[^"]+)"', html_text, flags=re.I)
+    video_paths = re.findall(r'<(?:video|source)[^>]+src="(/media/[^"]+\.(?:mp4|mov|webm|m4v))"', html_text, flags=re.I)
 
     listing = {
         'source_kind': 'hotel',
@@ -184,7 +214,7 @@ def kvartira_listing(card: dict) -> tuple[dict, list[dict]]:
         'distance_text': '',
         'beach_text': '',
         'capacity_text': '',
-        'page_url': f'{SITE_BASE}/kvartira/',
+        'page_url': f'{SITE_BASE}/kvartira/{slug}/',
         'telegram_url': card['url'],
         'published_at': None,
         'has_video': bool(card.get('has_video')),

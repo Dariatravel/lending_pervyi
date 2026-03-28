@@ -391,8 +391,14 @@ def rebuild_kvartira_pages(rows: list[dict[str, Any]]) -> None:
             if item.get("media_role") != "gallery":
                 continue
             mime = str(item.get("mime_type") or "")
-            if mime.startswith("image/") and item.get("public_url"):
-                media_items.append({"kind": "photo", "source_url": item["public_url"]})
+            source_url = item.get("source_url") or ""
+            public_url = item.get("public_url") or ""
+            preferred_url = source_url if str(source_url).startswith("/media/") else public_url or source_url
+            if mime.startswith("image/") and preferred_url:
+                media_items.append({"kind": "photo", "source_url": preferred_url})
+                continue
+            if mime.startswith("video/") and preferred_url:
+                media_items.append({"kind": "video", "source_url": preferred_url})
                 continue
             if mime == "application/x-telegram-embed":
                 telegram_post = ((item.get("details") or {}).get("telegram_post") or "").strip()

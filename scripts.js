@@ -152,14 +152,11 @@
     const n = normalizeMediaUrl(url);
     if (!n) return "";
     if (n.startsWith("http://") || n.startsWith("https://")) return n;
-    if (n.startsWith("/media/")) {
-      const rel = n.slice("/media/".length);
-      return `${SUPABASE_CONFIG.url}/storage/v1/object/public/site-media/${rel}`;
-    }
+    if (n.startsWith("/media/")) return n;
     return n;
   }
 
-  /** Main site (.site-concept) and hotel pages (.hotel-site-concept) use /media/...; rewrite to Supabase Storage. */
+  /** Локальные медиа уже лежат на сайте, поэтому только инициируем перезагрузку video после гидрации. */
   function absolutizeHotelSiteConceptMedia() {
     const roots = [
       document.querySelector(".hotel-site-concept"),
@@ -167,20 +164,6 @@
     ].filter(Boolean);
 
     roots.forEach((root) => {
-      root.querySelectorAll("img[src]").forEach((img) => {
-        const src = img.getAttribute("src") || "";
-        if (!src.startsWith("/media/")) return;
-        const abs = absolutizeKvartiraCoverUrl(src);
-        if (abs && abs !== src) img.setAttribute("src", abs);
-      });
-
-      root.querySelectorAll("video source[src], audio source[src]").forEach((source) => {
-        const src = source.getAttribute("src") || "";
-        if (!src.startsWith("/media/")) return;
-        const abs = absolutizeKvartiraCoverUrl(src);
-        if (abs && abs !== src) source.setAttribute("src", abs);
-      });
-
       root.querySelectorAll("video").forEach((video) => {
         try {
           video.load();
@@ -480,6 +463,9 @@
   }
 
   function resolveSupabaseMediaUrl(item, row) {
+    if (item && typeof item.source_url === "string" && item.source_url.startsWith("/media/")) {
+      return item.source_url;
+    }
     if (item && item.public_url) return item.public_url;
     const raw = (item && item.storage_path) || (item && item.source_url) || '';
     if (!raw) return '';
@@ -533,16 +519,6 @@
           script.dataset.userpic = "false";
           script.dataset.single = "1";
           wrap.appendChild(script);
-
-          if (item.source_url) {
-            const link = document.createElement("a");
-            link.className = "video-link";
-            link.href = item.source_url;
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
-            link.textContent = "Открыть видео в Telegram";
-            wrap.appendChild(link);
-          }
 
           fragment.appendChild(wrap);
           return;
