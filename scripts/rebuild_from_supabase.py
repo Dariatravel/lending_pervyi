@@ -316,6 +316,51 @@ def replace_once(text: str, pattern: str, replacement: str) -> str:
     return re.sub(pattern, replacement, text, count=1, flags=re.S)
 
 
+def render_media_grid(row: dict[str, Any], title: str) -> str:
+    media_items = sorted(row.get("listing_media") or [], key=lambda media: media.get("sort_order") or 0)
+    parts: list[str] = []
+    image_index = 1
+    video_index = 1
+
+    for item in media_items:
+        if item.get("media_role") != "gallery":
+            continue
+
+        mime = str(item.get("mime_type") or "")
+        source_url = str(item.get("source_url") or "").strip()
+        public_url = str(item.get("public_url") or "").strip()
+        preferred_url = source_url if source_url.startswith("/media/") else (public_url or source_url)
+
+        if mime.startswith("image/") and preferred_url:
+            parts.append(
+                f'            <img src="{html.escape(preferred_url, quote=True)}" alt="{html.escape(title)} фото {image_index}" loading="lazy" />'
+            )
+            image_index += 1
+            continue
+
+        if mime.startswith("video/") and preferred_url:
+            parts.append(
+                f"""            <video class="local-video" controls preload="metadata" playsinline>
+              <source src="{html.escape(preferred_url, quote=True)}" type="{html.escape(mime or 'video/mp4', quote=True)}" />
+            </video>"""
+            )
+            video_index += 1
+            continue
+
+        if mime == "application/x-telegram-embed":
+            details = item.get("details") or {}
+            telegram_post = str(details.get("telegram_post") or "").strip()
+            if telegram_post:
+                parts.append(
+                    f"""            <div class="video-embed video-embed--telegram">
+              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="{html.escape(telegram_post, quote=True)}" data-width="100%" data-userpic="false" data-single="1"></script>
+            </div>"""
+                )
+                video_index += 1
+
+    return "\n".join(parts)
+
+
 def update_hotel_page(row: dict[str, Any]) -> None:
     details = row.get("details") or {}
     page_path = details.get("page_path")
@@ -360,6 +405,17 @@ def update_hotel_page(row: dict[str, Any]) -> None:
             r'<p class="media-note">Источник: <a href=".*?" target="_blank" rel="noopener noreferrer">.*?</a>\.</p>',
             f'<p class="media-note">Источник: <a href="{html.escape(telegram, quote=True)}" target="_blank" rel="noopener noreferrer">{html.escape(media_label)}</a>.</p>',
         )
+
+    gallery_html = render_media_grid(row, title)
+    if gallery_html:
+        text = re.sub(
+            r'(<div class="media-grid">)(.*?)(\s*</div>\s*</article>)',
+            r"\1\n" + gallery_html + r"\3",
+            text,
+            count=1,
+            flags=re.S,
+        )
+
     path.write_text(text, encoding="utf-8")
 
 

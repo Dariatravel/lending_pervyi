@@ -7,6 +7,7 @@ import mimetypes
 import os
 import re
 import shutil
+import subprocess
 import sys
 import time
 from dataclasses import dataclass
@@ -56,6 +57,9 @@ CUTOFF_DATE = '2026-01-01'
 API_ID = 32916166
 API_HASH = 'eefdec49605521b061de4bdf62ef784e'
 SESSION = str(ROOT / 'tg_session')
+MAX_VIDEO_UPLOAD_MB = 48
+VIDEO_BITRATES = ('1800k', '1200k', '900k', '700k', '500k', '350k')
+VIDEO_MAX_WIDTH = 960
 CONTACT_BLOCK = '''      <section class="section cta-block hotel-contact-section hotel-site-concept__detail-section">
         <h2>Контакты</h2>
         <p>Задать вопросы либо проверить наличие номеров можно: <strong>+7 940 900-33-40</strong> (WhatsApp, Telegram, MAX).</p>
@@ -277,6 +281,58 @@ def local_to_public_path(local_path: Path) -> str:
     return f'/{rel}'
 
 
+def resolve_ffmpeg_binary() -> str | None:
+    path = shutil.which('ffmpeg')
+    if path:
+        return path
+    try:
+        import imageio_ffmpeg  # type: ignore
+        return imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception:  # noqa: BLE001
+        return None
+
+
+FFMPEG_BIN = resolve_ffmpeg_binary()
+
+
+def transcode_video(source: Path, target: Path, bitrate: str) -> bool:
+    if not FFMPEG_BIN:
+        return False
+    ensure_dir(target.parent)
+    cmd = [
+        FFMPEG_BIN,
+        '-y',
+        '-i',
+        str(source),
+        '-vf',
+        f"scale='min({VIDEO_MAX_WIDTH},iw)':-2",
+        '-c:v',
+        'libx264',
+        '-preset',
+        'veryfast',
+        '-b:v',
+        bitrate,
+        '-maxrate',
+        bitrate,
+        '-bufsize',
+        f'{int(bitrate[:-1]) * 2}k',
+        '-pix_fmt',
+        'yuv420p',
+        '-movflags',
+        '+faststart',
+        '-c:a',
+        'aac',
+        '-b:a',
+        '96k',
+        str(target),
+    ]
+    try:
+        subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        return target.exists() and target.stat().st_size > 0
+    except Exception:  # noqa: BLE001
+        return False
+
+
 def render_paragraph_block(lines: list[str]) -> str:
     visible = [line for line in lines if line and not should_drop_line(line)]
     return '\n'.join(f'            <p>{html.escape(line)}</p>' for line in visible)
@@ -323,9 +379,16 @@ def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
             parts.append(f'            <img src="{html.escape(item["source_url"])}" alt="{html.escape(title)} фото {image_index}" loading="lazy" />')
             image_index += 1
         else:
-            parts.append(
-                f'''            <div class="video-embed video-embed--telegram">\n              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="{html.escape(item["telegram_post"])}" data-width="100%" data-userpic="false" data-single="1"></script>\n            </div>'''
-            )
+            source_url = str(item.get('source_url') or '').strip()
+            telegram_post = str(item.get('telegram_post') or '').strip()
+            if source_url and source_url.startswith('http') and not telegram_post:
+                parts.append(
+                    f'''            <video class="local-video" controls preload="metadata" playsinline>\n              <source src="{html.escape(source_url)}" type="video/mp4" />\n            </video>'''
+                )
+            elif telegram_post:
+                parts.append(
+                    f'''            <div class="video-embed video-embed--telegram">\n              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="{html.escape(telegram_post)}" data-width="100%" data-userpic="false" data-single="1"></script>\n            </div>'''
+                )
             video_index += 1
     return '\n'.join(parts)
 
@@ -630,19 +693,90 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
             media_sort += 1
             telegram_url = f'https://t.me/{"abhkvartira" if source_kind == "kvartira" else "abhazbooking"}/{msg.id}'
             telegram_post = telegram_url.replace('https://t.me/', '')
-            local_media_items.append({'kind': 'video', 'source_url': telegram_url, 'public_url': '', 'telegram_url': telegram_url, 'telegram_post': telegram_post})
-            media_payload.append(
-                media_row(
-                    existing_listing['id'] if existing_listing else 0,
-                    'gallery',
-                    media_sort,
-                    'application/x-telegram-embed',
-                    telegram_url,
-                    '',
-                    '',
-                    {'telegram_post': telegram_post},
+            video_dir = VIDEOS_DIR / storage_kind_prefix(source_kind) / slug
+            ensure_dir(video_dir)
+            source_file = video_dir / f'video-{video_count:02d}-source.mp4'
+            downloaded = await download_message_media(client, msg, source_file)
+            if not downloaded:
+                continue
+            if downloaded != source_file:
+                shutil.move(str(downloaded), source_file)
+
+            uploaded_public_url = ''
+            uploaded_storage_path = ''
+            chosen_file = source_file
+            chosen_details = {'telegram_post': telegram_post, 'telegram_url': telegram_url}
+            max_bytes = MAX_VIDEO_UPLOAD_MB * 1024 * 1024
+
+            def try_upload(candidate: Path) -> bool:
+                nonlocal uploaded_public_url, uploaded_storage_path, chosen_file
+                if not candidate.exists() or candidate.stat().st_size <= 0:
+                    return False
+                if candidate.stat().st_size > max_bytes:
+                    return False
+                storage_path = f'videos/{storage_kind_prefix(source_kind)}/{slug}/{candidate.name}'
+                try:
+                    public_url = supa.upload_file(candidate, storage_path, 'video/mp4')
+                except Exception:  # noqa: BLE001
+                    return False
+                uploaded_public_url = public_url
+                uploaded_storage_path = storage_path
+                chosen_file = candidate
+                return True
+
+            # 1) Пытаемся загрузить исходник как есть (самый быстрый путь).
+            _ = try_upload(source_file)
+
+            # 2) Если не вышло (обычно из-за размера), понижаем битрейт и пробуем снова.
+            if not uploaded_public_url and FFMPEG_BIN:
+                for bitrate in VIDEO_BITRATES:
+                    candidate = video_dir / f'video-{video_count:02d}-{bitrate}.mp4'
+                    if not candidate.exists() or candidate.stat().st_size == 0:
+                        ok = transcode_video(source_file, candidate, bitrate)
+                        if not ok:
+                            continue
+                    if try_upload(candidate):
+                        break
+
+            if uploaded_public_url:
+                local_media_items.append(
+                    {
+                        'kind': 'video',
+                        'source_url': uploaded_public_url,
+                        'public_url': uploaded_public_url,
+                        'telegram_url': telegram_url,
+                    }
                 )
-            )
+                media_payload.append(
+                    media_row(
+                        existing_listing['id'] if existing_listing else 0,
+                        'gallery',
+                        media_sort,
+                        'video/mp4',
+                        uploaded_public_url,
+                        uploaded_storage_path,
+                        uploaded_public_url,
+                        chosen_details,
+                    )
+                )
+            else:
+                print(
+                    f'[warn] Не удалось загрузить видео в Storage для {slug} (msg={msg.id}), оставляю Telegram-embed',
+                    flush=True,
+                )
+                local_media_items.append({'kind': 'video', 'source_url': telegram_url, 'public_url': '', 'telegram_url': telegram_url, 'telegram_post': telegram_post})
+                media_payload.append(
+                    media_row(
+                        existing_listing['id'] if existing_listing else 0,
+                        'gallery',
+                        media_sort,
+                        'application/x-telegram-embed',
+                        telegram_url,
+                        '',
+                        '',
+                        {'telegram_post': telegram_post},
+                    )
+                )
 
     if not photo_paths and existing_listing and existing_listing.get('cover_url'):
         cover_public = existing_listing['cover_url']
