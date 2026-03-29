@@ -165,6 +165,9 @@
 
     roots.forEach((root) => {
       root.querySelectorAll("video").forEach((video) => {
+        const hasSrc = Boolean(video.getAttribute("src"));
+        const hasSourceChild = Boolean(video.querySelector("source[src]"));
+        if (!hasSrc && !hasSourceChild) return;
         try {
           video.load();
         } catch (error) {
@@ -948,8 +951,8 @@
     }
   });
 
-  absolutizeHotelSiteConceptMedia();
   initHeroVideoQuality();
+  absolutizeHotelSiteConceptMedia();
 
   const filtersController = initFilters();
   initSearchBar(filtersController);
