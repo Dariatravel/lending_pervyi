@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 import time
+import hashlib
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
@@ -171,9 +172,18 @@ class SupabaseClient:
         headers['Content-Type'] = mime_type or 'application/octet-stream'
         headers['x-upsert'] = 'true'
         data = local_path.read_bytes()
-        response = requests.post(url, headers=headers, data=data, timeout=600)
-        response.raise_for_status()
-        return self.public_url(storage_path)
+        last_error: Exception | None = None
+        for attempt in range(6):
+            try:
+                response = requests.post(url, headers=headers, data=data, timeout=600)
+                response.raise_for_status()
+                return self.public_url(storage_path)
+            except Exception as error:  # noqa: BLE001
+                last_error = error
+                time.sleep(1 + attempt)
+        if last_error:
+            raise last_error
+        raise RuntimeError(f'Не удалось загрузить файл в Storage: {storage_path}')
 
     def public_url(self, storage_path: str) -> str:
         encoded = '/'.join(quote(part) for part in storage_path.split('/'))
@@ -258,6 +268,21 @@ def topic_message_score(text: str) -> float:
         score += 1
     score += min(len(cleaned) / 120.0, 8)
     return score
+
+
+def title_key(value: str) -> str:
+    return clean_line(value).strip().lower()
+
+
+def file_sha1(path: Path) -> str:
+    hasher = hashlib.sha1()
+    with path.open('rb') as handle:
+        while True:
+            chunk = handle.read(1024 * 1024)
+            if not chunk:
+                break
+            hasher.update(chunk)
+    return hasher.hexdigest()
 
 
 def first_meaningful_line(lines: Iterable[str]) -> str:
@@ -537,32 +562,19 @@ async def collect_hotel_messages(client: TelegramClient) -> list[Any]:
     return result
 
 
-def build_hotel_clusters(messages: list[Any]) -> list[dict[str, Any]]:
-    candidates = [msg for msg in messages if is_hotel_object_message(msg.message or '')]
-    ids = [msg.id for msg in candidates]
-    by_id = {msg.id: msg for msg in messages}
-    clusters = []
-    for index, msg in enumerate(candidates):
-        prev_id = ids[index - 1] if index > 0 else min(by_id) - 1
-        next_id = ids[index + 1] if index + 1 < len(ids) else max(by_id) + 1
-        region = [item for item in messages if prev_id < item.id < next_id]
-        clusters.append({'canonical': msg, 'region': region})
-    return clusters
-
-
 async def build_hotel_objects(client: TelegramClient) -> list[dict[str, Any]]:
     messages = await collect_hotel_messages(client)
-    clusters = build_hotel_clusters(messages)
+    candidates = [msg for msg in messages if is_hotel_object_message(msg.message or '')]
     result = []
-    for cluster in clusters:
-        canonical = cluster['canonical']
-        region = cluster['region']
-        media_messages = [msg for msg in region if msg.media]
+    for canonical in candidates:
+        if canonical.grouped_id:
+            media_messages = [msg for msg in messages if msg.grouped_id == canonical.grouped_id and msg.media]
+        else:
+            media_messages = [canonical] if canonical.media else []
         result.append({
             'source_kind': 'hotel',
             'canonical': canonical,
             'media_messages': sorted(media_messages, key=lambda item: item.id),
-            'region_ids': [msg.id for msg in region],
             'published_at': canonical.date.date().isoformat(),
             'telegram_url': f'https://t.me/abhazbooking/{canonical.id}',
             'parsed': parse_post(canonical.message or ''),
@@ -670,6 +682,8 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
     media_payload: list[dict[str, Any]] = []
     local_media_items: list[dict[str, Any]] = []
     photo_paths: list[Path] = []
+    photo_hashes: set[str] = set()
+    video_hashes: set[str] = set()
     photo_count = 0
     video_count = 0
     media_sort = 0
@@ -684,6 +698,15 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
                 continue
             if downloaded != photo_path:
                 shutil.move(str(downloaded), photo_path)
+            photo_hash = file_sha1(photo_path)
+            if photo_hash in photo_hashes:
+                try:
+                    photo_path.unlink()
+                except Exception:
+                    pass
+                photo_count -= 1
+                continue
+            photo_hashes.add(photo_hash)
             photo_paths.append(photo_path)
             storage_path, public_url = local_media_entry(source_kind, photo_path)
             local_media_items.append({'kind': 'photo', 'source_url': local_to_public_path(photo_path), 'public_url': public_url, 'telegram_url': object_data['telegram_url']})
@@ -701,6 +724,14 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
                 continue
             if downloaded != source_file:
                 shutil.move(str(downloaded), source_file)
+            video_hash = file_sha1(source_file)
+            if video_hash in video_hashes:
+                try:
+                    source_file.unlink()
+                except Exception:
+                    pass
+                continue
+            video_hashes.add(video_hash)
 
             uploaded_public_url = ''
             uploaded_storage_path = ''
@@ -869,45 +900,81 @@ async def main() -> None:
 
     active_hotel_ids = set()
     processed_hotel_rows = set()
+    failed_hotel_existing_rows = set()
+    failed_hotel_objects: list[dict[str, Any]] = []
     current_pages = []
     slug_pool = {row['slug'] for row in existing_hotels + existing_kvartira}
 
     hotel_exact_by_source = {row['source_message_id']: row for row in existing_hotels}
+    hotel_by_title: dict[str, list[dict[str, Any]]] = {}
+    for row in existing_hotels:
+        hotel_by_title.setdefault(title_key(row.get('title') or ''), []).append(row)
     hotel_canonical_ids = {obj['canonical'].id for obj in hotel_objects}
-    hotel_region_fallback_rows = [
-        row for row in existing_hotels
-        if row['source_message_id'] not in hotel_canonical_ids
-    ]
+    unused_rows = {row['id']: row for row in existing_hotels if row['source_message_id'] not in hotel_canonical_ids}
 
     for index, obj in enumerate(hotel_objects, start=1):
         matched_row = hotel_exact_by_source.get(obj['canonical'].id)
         if matched_row is None:
-            region_ids = set(obj['region_ids'])
-            for row in hotel_region_fallback_rows:
+            key = title_key(obj['parsed'].get('title') or '')
+            for row in hotel_by_title.get(key, []):
                 if row['id'] in processed_hotel_rows:
                     continue
-                if row['source_message_id'] in region_ids:
+                if row['id'] in unused_rows:
                     matched_row = row
                     break
+        try:
+            result = await materialize_object(client, supa, matched_row, obj, slug_pool)
+        except Exception as error:  # noqa: BLE001
+            if matched_row is not None:
+                failed_hotel_existing_rows.add(matched_row['id'])
+            failed_hotel_objects.append(
+                {
+                    'source_id': obj['canonical'].id,
+                    'title': obj['parsed'].get('title') or '',
+                    'error': str(error),
+                }
+            )
+            print(
+                f'[error] hotel materialize failed id={obj["canonical"].id} title="{obj["parsed"].get("title") or ""}": {error}',
+                flush=True,
+            )
+            continue
         if matched_row is not None:
             processed_hotel_rows.add(matched_row['id'])
-        result = await materialize_object(client, supa, matched_row, obj, slug_pool)
         current_pages.append({'slug': result['slug'], 'source_id': result['source_id'], 'title': result['title']})
         active_hotel_ids.add(result['id'])
         if index % 10 == 0 or index == len(hotel_objects):
             print(f'Обновлены отели: {index}/{len(hotel_objects)}', flush=True)
 
     for row in existing_hotels:
-        if row['id'] not in processed_hotel_rows:
+        if row['id'] not in processed_hotel_rows and row['id'] not in failed_hotel_existing_rows:
             cleanup_removed_listing('hotel', row, supa)
 
     kvartira_cards = []
     processed_kv_rows = set()
+    failed_kv_existing_rows = set()
+    failed_kv_objects: list[dict[str, Any]] = []
     for index, obj in enumerate(kvartira_objects, start=1):
         matched_row = kvartira_by_topic.get(obj['topic_id'])
+        try:
+            result = await materialize_object(client, supa, matched_row, obj, slug_pool)
+        except Exception as error:  # noqa: BLE001
+            if matched_row:
+                failed_kv_existing_rows.add(matched_row['id'])
+            failed_kv_objects.append(
+                {
+                    'topic_id': obj['topic_id'],
+                    'title': obj.get('topic_title') or obj['parsed'].get('title') or '',
+                    'error': str(error),
+                }
+            )
+            print(
+                f'[error] kvartira materialize failed topic={obj["topic_id"]} title="{obj.get("topic_title") or obj["parsed"].get("title") or ""}": {error}',
+                flush=True,
+            )
+            continue
         if matched_row:
             processed_kv_rows.add(matched_row['id'])
-        result = await materialize_object(client, supa, matched_row, obj, slug_pool)
         kvartira_cards.append({
             'title': result['title'],
             'slug': result['slug'],
@@ -923,7 +990,7 @@ async def main() -> None:
             print(f'Обновлены квартиры: {index}/{len(kvartira_objects)}', flush=True)
 
     for row in existing_kvartira:
-        if row['id'] not in processed_kv_rows:
+        if row['id'] not in processed_kv_rows and row['id'] not in failed_kv_existing_rows:
             cleanup_removed_listing('kvartira', row, supa)
 
     CURRENT_PAGES_FILE.write_text(json.dumps(sorted(current_pages, key=lambda item: item['source_id']), ensure_ascii=False, indent=2), encoding='utf-8')
@@ -943,9 +1010,15 @@ async def main() -> None:
     print(json.dumps({
         'hotels': len(hotel_objects),
         'kvartira': len(kvartira_objects),
-        'deleted_hotels': len(existing_hotels) - len(processed_hotel_rows),
-        'deleted_kvartira': len(existing_kvartira) - len(processed_kv_rows),
+        'failed_hotels': len(failed_hotel_objects),
+        'failed_kvartira': len(failed_kv_objects),
+        'deleted_hotels': len(existing_hotels) - len(processed_hotel_rows) - len(failed_hotel_existing_rows),
+        'deleted_kvartira': len(existing_kvartira) - len(processed_kv_rows) - len(failed_kv_existing_rows),
     }, ensure_ascii=False))
+    if failed_hotel_objects:
+        print('[warn] Не обновились отели:', json.dumps(failed_hotel_objects[:20], ensure_ascii=False), flush=True)
+    if failed_kv_objects:
+        print('[warn] Не обновились квартиры:', json.dumps(failed_kv_objects[:20], ensure_ascii=False), flush=True)
 
 
 if __name__ == '__main__':
