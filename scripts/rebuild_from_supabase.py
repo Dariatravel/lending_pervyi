@@ -18,6 +18,7 @@ INDEX_PATH = ROOT / "index.html"
 KVARTIRA_DIR = ROOT / "kvartira"
 KVARTIRA_PATH = ROOT / "kvartira" / "index.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
+HOTEL_POSTS_PATH = ROOT / "output" / "abhazbooking_2026_posts.json"
 
 
 FILTER_GROUPS = ("distance", "food", "price", "city", "beach", "room", "stay")
@@ -227,7 +228,40 @@ def human_date(value: str | None) -> str:
     return f"{int(day)} {months[month]} {year}"
 
 
-def render_hotel_card(row: dict[str, Any]) -> str:
+def extract_emoji_line(lines: list[str], prefixes: tuple[str, ...]) -> str:
+    for line in lines:
+        trimmed = line.strip()
+        if any(trimmed.startswith(prefix) for prefix in prefixes):
+            return trimmed
+    return ""
+
+
+def load_hotel_card_meta() -> dict[int, dict[str, str]]:
+    if not HOTEL_POSTS_PATH.exists():
+        return {}
+    try:
+        posts = json.loads(HOTEL_POSTS_PATH.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return {}
+    result: dict[int, dict[str, str]] = {}
+    for item in posts:
+        try:
+            message_id = int(item.get("id"))
+        except Exception:  # noqa: BLE001
+            continue
+        text = str(item.get("text") or "")
+        lines = [line for line in text.splitlines() if line.strip()]
+        location_line = extract_emoji_line(lines, ("📍",))
+        beach_line = extract_emoji_line(lines, ("🏖", "🏝"))
+        if location_line or beach_line:
+            result[message_id] = {
+                "location_line": location_line,
+                "beach_line": beach_line,
+            }
+    return result
+
+
+def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]]) -> str:
     filters = (row.get("details") or {}).get("filters") or {}
     attrs = " ".join(
         f'data-filter-{group}="{html.escape("|".join(filters.get(group) or []), quote=True)}"'
@@ -236,15 +270,54 @@ def render_hotel_card(row: dict[str, Any]) -> str:
     href = page_path_from_url(row.get("page_url"), f"/hotels/{row['slug']}/")
     image = pick_cover_url(row)
     title = html.escape(row.get("title") or "")
-    summary = html.escape(row.get("summary") or row.get("excerpt") or "")
+    summary_fallback = row.get("summary") or row.get("excerpt") or ""
+    card_lines: list[str] = []
+    source_message_id = resolve_source_message_id(row)
+    if source_message_id is not None:
+        meta = post_meta.get(source_message_id) or {}
+        if meta.get("location_line"):
+            card_lines.append(meta["location_line"])
+        if meta.get("beach_line"):
+            card_lines.append(meta["beach_line"])
+
+    if card_lines:
+        summary_html = "<br />".join(html.escape(line) for line in card_lines)
+    else:
+        summary_html = html.escape(summary_fallback)
     alt = title
     return (
         f'<a class="catalog-card" {attrs} href="{html.escape(href, quote=True)}">'
         f'<img alt="{alt}" loading="lazy" src="{html.escape(image, quote=True)}"/>'
         f"<h3>{title}</h3>"
-        f"<p>{summary}</p>"
+        f"<p>{summary_html}</p>"
         f"</a>"
     )
+
+
+def resolve_source_message_id(row: dict[str, Any]) -> int | None:
+    direct = row.get("source_message_id")
+    if isinstance(direct, int) and direct > 0:
+        return direct
+    if isinstance(direct, str) and direct.isdigit():
+        return int(direct)
+
+    # Часть объектов в базе живет без source_message_id, но с id в slug/telegram_url.
+    candidates = [
+        str(row.get("telegram_url") or "").strip(),
+        str(row.get("slug") or "").strip(),
+        str(row.get("page_url") or "").strip(),
+    ]
+    for value in candidates:
+        if not value:
+            continue
+        matches = re.findall(r"(\d{3,6})", value)
+        if not matches:
+            continue
+        try:
+            return int(matches[-1])
+        except ValueError:
+            continue
+    return None
 
 
 def render_kvartira_card(row: dict[str, Any]) -> str:
@@ -496,7 +569,7 @@ def main() -> None:
         f"{base}/rest/v1/listings",
         headers=headers,
         params={
-            "select": "id,slug,source_kind,title,summary,excerpt,city,location_text,beach_text,capacity_text,page_url,telegram_url,published_at,has_video,cover_url,details,is_active,listing_media(id,media_role,sort_order,public_url,storage_path,mime_type,source_url,details)",
+            "select": "id,slug,source_kind,source_message_id,title,summary,excerpt,city,location_text,beach_text,capacity_text,page_url,telegram_url,published_at,has_video,cover_url,details,is_active,listing_media(id,media_role,sort_order,public_url,storage_path,mime_type,source_url,details)",
             "is_active": "eq.true",
             "order": "published_at.desc",
             "limit": "2000",
@@ -534,6 +607,7 @@ def main() -> None:
             raise last_error
 
     updated = 0
+    hotel_post_meta = load_hotel_card_meta()
     for row in rows:
         filters = infer_filters(row)
         details = dict(row.get("details") or {})
@@ -547,7 +621,7 @@ def main() -> None:
     replace_catalog_block(
         INDEX_PATH,
         '<div class="catalog-grid" id="catalog-grid">',
-        "".join(render_hotel_card(row) for row in hotel_rows),
+        "".join(render_hotel_card(row, hotel_post_meta) for row in hotel_rows),
     )
     KVARTIRA_PATH.write_text(render_kvartira_catalog_page(kvartira_rows), encoding="utf-8")
 
