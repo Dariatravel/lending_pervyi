@@ -94,6 +94,130 @@ def extract_paragraphs(section: str) -> list[str]:
     return [clean_text(item) for item in re.findall(r"<p[^>]*>(.*?)</p>", section, flags=re.S) if clean_text(item)]
 
 
+def _has_price_signal(plain: str) -> bool:
+    """Абзац или фрагмент явно про тариф/деньги — убираем из описаний, переносим в «Цены»."""
+    if not plain or not plain.strip():
+        return False
+    t = plain.strip()
+    if "₽" in t:
+        return True
+    if re.search(r"\d[\d\s]*\s*/\s*сут", t, re.I):
+        return True
+    if re.search(r"\d[\d\s]*\s*руб\.?", t, re.I):
+        return True
+    if re.search(r"\bруб\.?\b", t, re.I) and re.search(r"\d", t):
+        return True
+    return False
+
+
+def _is_prices_section_header(plain: str) -> bool:
+    """Заголовок «ЦЕНЫ» с галочкой/эмодзи (✔️ЦЕНЫ:), без текста про суммы."""
+    s = plain.strip()
+    s = re.sub(r"^[^\wА-Яа-яЁё]+", "", s, flags=re.UNICODE)
+    return bool(re.match(r"^ЦЕНЫ\s*:?\s*$", s, re.I))
+
+
+def _is_other_section_header_after_ceny(plain: str) -> bool:
+    """Следующий раздел с галочкой (не «ЦЕНЫ») — конец подблока цен в обзоре."""
+    if _is_prices_section_header(plain):
+        return False
+    s = plain.strip()
+    if not s:
+        return False
+    for ch in ("\u2714", "\u2705", "\u2713", "\u2611"):
+        if s.startswith(ch):
+            return True
+    return s.startswith("✔")
+
+
+def _should_stop_ceny_tail_paragraph(plain: str) -> bool:
+    """Длинный абзац после списка категорий (не тарифная строка) — оставляем в обзоре."""
+    if len(plain) > 200:
+        return True
+    if re.search(r"\bсобач|предварительн\w+\s+соглас", plain, re.I):
+        return True
+    if plain.count(".") >= 2 and len(plain) > 90:
+        return True
+    return False
+
+
+def strip_ceny_subsection_from_section_html(section_html: str) -> tuple[str, list[str]]:
+    """Убирает из текста секции блок от «✔️ЦЕНЫ:» до следующего ✔️-раздела или до длинного абзаца."""
+    extracted: list[str] = []
+    if "ЦЕНЫ" not in section_html:
+        return section_html, extracted
+
+    match = re.search(
+        r'<p[^>]*>[^<]{0,48}ЦЕНЫ\s*:?\s*</p>',
+        section_html,
+        flags=re.I | re.S,
+    )
+    if not match:
+        return section_html, extracted
+
+    start = match.start()
+    after_header = section_html[match.end() :]
+    remove_end = match.end()
+    pos = 0
+    while True:
+        m = re.search(r"<p[^>]*>(.*?)</p>", after_header[pos:], flags=re.S)
+        if not m:
+            break
+        plain = strip_tags(m.group(1)).strip()
+        abs_start = pos + m.start()
+        abs_end = pos + m.end()
+        if _is_other_section_header_after_ceny(plain):
+            break
+        if _should_stop_ceny_tail_paragraph(plain):
+            break
+        if plain:
+            extracted.append(clean_text(plain))
+        remove_end = match.end() + abs_end
+        pos = abs_end
+
+    cleaned = section_html[:start] + section_html[remove_end:]
+    cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
+    return cleaned, extracted
+
+
+def normalize_for_price_dedup(s: str) -> str:
+    return re.sub(r"\s+", " ", strip_tags(s).lower()).strip()
+
+
+def remove_price_clauses(text: str) -> str:
+    """Убирает предложения/части с ценами; если вся строка про цены — пусто."""
+    t = clean_text(text)
+    if not t:
+        return ""
+    if not _has_price_signal(t):
+        return t
+    parts = re.split(r"(?<=[.!?])\s+", t)
+    kept = [p for p in parts if p.strip() and not _has_price_signal(p)]
+    out = " ".join(kept).strip()
+    return out if out else ""
+
+
+def strip_paragraphs_price_from_section_html(section_html: str) -> tuple[str, list[str]]:
+    """Удаляет из HTML секции <p> с ценами и заголовок ✔️ЦЕНЫ:; возвращает строки для переноса в блок «Цены»."""
+    extracted: list[str] = []
+
+    def repl(match: re.Match[str]) -> str:
+        inner = match.group(1)
+        plain = strip_tags(inner).strip()
+        if not plain:
+            return ""
+        if _is_prices_section_header(plain):
+            return ""
+        if _has_price_signal(plain):
+            extracted.append(clean_text(plain))
+            return ""
+        return match.group(0)
+
+    out = re.sub(r"<p[^>]*>(.*?)</p>", repl, section_html, flags=re.S)
+    out = re.sub(r"\n{3,}", "\n\n", out)
+    return out, extracted
+
+
 def extract_list_items(section: str) -> list[str]:
     return [clean_text(item) for item in re.findall(r"<li[^>]*>(.*?)</li>", section, flags=re.S) if clean_text(item)]
 
@@ -226,6 +350,29 @@ def reformat_price_card_content(section: str) -> str:
         flags=re.S,
     )
     return updated
+
+
+def merge_extra_lines_into_price_section(price_section: str, extra_lines: list[str]) -> str:
+    """Добавляет в <ul> блока цен уникальные строки, извлечённые из описаний."""
+    if not price_section or not extra_lines or "price-card" not in price_section:
+        return price_section
+    existing = {normalize_for_price_dedup(x) for x in extract_list_items(price_section)}
+    chunks: list[str] = []
+    for line in extra_lines:
+        plain = clean_text(line)
+        if not plain:
+            continue
+        key = normalize_for_price_dedup(plain)
+        if key in existing:
+            continue
+        existing.add(key)
+        chunks.append(f"<li>{format_price_line_to_html(plain)}</li>")
+    if not chunks:
+        return price_section
+    pos = price_section.find("</ul>")
+    if pos == -1:
+        return price_section
+    return price_section[:pos] + "".join(chunks) + price_section[pos:]
 
 
 def _is_standalone_phone_line(plain: str) -> bool:
@@ -637,7 +784,19 @@ def build_hotels() -> None:
         if not lead_raw:
             lead_raw = find_first([r'<p class="location">(.*?)</p>'], text)
         lead_text = format_lead_text(lead_raw)
+        lead_text_clean = remove_price_clauses(lead_text)
+        if lead_text_clean:
+            lead_text = lead_text_clean
         lead_lines = [clean_text(part) for part in re.split(r"[•\n]", lead_text) if clean_text(part)]
+
+        extra_price_from_prose: list[str] = []
+        content_sections_cleaned: list[str] = []
+        for section in content_sections:
+            s0, e0 = strip_ceny_subsection_from_section_html(section)
+            cleaned, extra = strip_paragraphs_price_from_section_html(s0)
+            extra_price_from_prose.extend(e0 + extra)
+            content_sections_cleaned.append(cleaned)
+        content_sections = content_sections_cleaned
 
         all_images = extract_images(media_section)
         main_image = all_images[0] if all_images else ("", title)
@@ -653,22 +812,26 @@ def build_hotels() -> None:
         description_parts: list[str] = []
         for section in content_sections[:2]:
             for paragraph in extract_paragraphs(section)[:2]:
-                if paragraph not in description_parts:
-                    description_parts.append(paragraph)
-        description = " ".join(description_parts[:2]) or lead_text
+                p = remove_price_clauses(paragraph)
+                if p and p not in description_parts:
+                    description_parts.append(p)
+        description = " ".join(description_parts[:2]) if description_parts else (remove_price_clauses(lead_text) or lead_text)
 
         why_choose_items = []
         important_items = []
         if content_sections:
-            why_choose_items = extract_paragraphs(content_sections[0])[:3]
+            why_choose_items = [remove_price_clauses(x) for x in extract_paragraphs(content_sections[0])[:3]]
+            why_choose_items = [p for p in why_choose_items if p]
         if len(content_sections) > 1:
-            important_items = extract_paragraphs(content_sections[1])[:3]
+            important_items = [remove_price_clauses(x) for x in extract_paragraphs(content_sections[1])[:3]]
+            important_items = [p for p in important_items if p]
         if not important_items and lead_lines:
-            important_items = lead_lines[:3]
+            important_items = [p for p in lead_lines[:3] if not _has_price_signal(p)]
 
         review_cards = extract_reviews(reviews_section)
         price_section = reformat_price_card_content(price_section)
         price_section = strip_stray_contacts_from_price_section(price_section)
+        price_section = merge_extra_lines_into_price_section(price_section, extra_price_from_prose)
         price_highlight = first_price_highlight(price_section)
 
         gallery_html = ""
