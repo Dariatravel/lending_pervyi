@@ -80,19 +80,9 @@
     "title": "\"КРЫЛЬЯ\" домики видовые двухкомнатные"
   },
   {
-    "slug": "lavanda-villa-s-basseynom-2774",
-    "source_id": 2774,
-    "title": "\"ЛАВАНДА\" вилла с бассейном"
-  },
-  {
     "slug": "arina-mini-otel-2792",
     "source_id": 2792,
     "title": "\"АРИНА\" мини-отель"
-  },
-  {
-    "slug": "grant-apartamenty-2801",
-    "source_id": 2801,
-    "title": "\"ГРАНТ\" апартаменты"
   },
   {
     "slug": "grant-kompleks-domikov-s-zavtrakami-2811",
@@ -220,16 +210,6 @@
     "title": "\"КАМЕЛИЯ\" домики"
   },
   {
-    "slug": "mika-gostevoy-dom-ekonom",
-    "source_id": 3094,
-    "title": "\"МИКА\" гостевой дом эконом"
-  },
-  {
-    "slug": "grin-haus-domiki",
-    "source_id": 3104,
-    "title": "\"ГРИН ХАУС\" домики"
-  },
-  {
     "slug": "akva-otel-basseyn-zavtraki",
     "source_id": 3114,
     "title": "\"АКВА\" отель с бассейном и завтраками"
@@ -258,16 +238,6 @@
     "slug": "fyuzhn-tri-domika",
     "source_id": 3162,
     "title": "\"ФЬЮЖН\" три домика с лаунж-зоной"
-  },
-  {
-    "slug": "rita-domiki-apartamenty",
-    "source_id": 3171,
-    "title": "\"РИТА\" домики и апартаменты с питанием"
-  },
-  {
-    "slug": "aduney-gostevoy-dom-3181",
-    "source_id": 3181,
-    "title": "\"АДУНЕЙ\" гостевой дом"
   },
   {
     "slug": "fazenda-otel-s-basseynom-i-pitaniem-3190",
@@ -338,11 +308,6 @@
     "slug": "mechta-apartamenty-s-kuhney-3363",
     "source_id": 3363,
     "title": "\"МЕЧТА\" апартаменты с кухней"
-  },
-  {
-    "slug": "tis-kottedzhi",
-    "source_id": 3372,
-    "title": "\"ТИС\" коттеджи у заповедника"
   },
   {
     "slug": "tis-mini-otel",
@@ -547,7 +512,7 @@
   {
     "slug": "nora-gostevoy-dom-3851",
     "source_id": 3851,
-    "title": "\"НОРА\" гостевой дом"
+    "title": "\"НОРА\" гостевой дом эконом"
   },
   {
     "slug": "tsarskoe-selo-anhua-kottedzhi-3871",
@@ -558,5 +523,45 @@
     "slug": "staryy-prichal-gostevoy-dom-u-morya-3891",
     "source_id": 3891,
     "title": "\"СТАРЫЙ ПРИЧАЛ\" гостевой дом у моря"
+  },
+  {
+    "slug": "atmosfernaya-kvartira-2k-3902",
+    "source_id": 3902,
+    "title": "\"АТМОСФЕРНАЯ\" квартира 2к"
+  },
+  {
+    "slug": "blek-si-otel-s-basseynom-i-pitaniem-3912",
+    "source_id": 3912,
+    "title": "\"БЛЭК СИ\" отель с бассейном и питанием"
+  },
+  {
+    "slug": "domiki-u-mariny-otdyh-u-morya-3922",
+    "source_id": 3922,
+    "title": "\"ДОМИКИ У МАРИНЫ\" отдых у моря"
+  },
+  {
+    "slug": "sozvezdie-mini-otel-3933",
+    "source_id": 3933,
+    "title": "\"СОЗВЕЗДИЕ\" мини-отель"
+  },
+  {
+    "slug": "tihiy-zakat-domiki-s-basseynom-3942",
+    "source_id": 3942,
+    "title": "\"ТИХИЙ ЗАКАТ\" домики с бассейном"
+  },
+  {
+    "slug": "sanrayz-gostevoy-dom-s-zavtrakami-3953",
+    "source_id": 3953,
+    "title": "\"САНРАЙЗ\" гостевой дом с завтраками"
+  },
+  {
+    "slug": "rusana-eko-domiki-3963",
+    "source_id": 3963,
+    "title": "\"РУСАНА\" эко-домики"
+  },
+  {
+    "slug": "ekohoum-kottedzh-otel-3974",
+    "source_id": 3974,
+    "title": "\"ЭКОХОУМ\" коттедж-отель"
   }
 ]
