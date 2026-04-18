@@ -70,6 +70,13 @@
   };
   const SUPABASE_MODULE_URL = "https://esm.sh/@supabase/supabase-js@2";
   const FILTER_GROUPS = ["distance", "food", "price", "city", "beach", "room", "stay"];
+  const BEACH_FILTERS = {
+    SAND_LDZAA: "sand-ldzaa",
+    SAND_SUKHUM: "sand-sukhum",
+    PINE_PEBBLE_LDZAA_PITSUNDA: "pine-pebble-ldzaa-pitsunda",
+    PITSUNDA_BAY_MIXED: "pitsunda-bay-mixed",
+    PEBBLE: "pebble",
+  };
   let supabaseClientPromise = null;
 
   const lightbox = document.createElement("div");
@@ -122,7 +129,7 @@
     let query = client
       .from("listings")
       .select(
-        "id, slug, source_kind, title, summary, excerpt, city, page_url, telegram_url, published_at, has_video, cover_url, details, listing_media(id, media_role, sort_order, public_url, storage_path, mime_type, source_url, details)"
+        "id, slug, source_kind, title, summary, excerpt, city, location_text, beach_text, capacity_text, page_url, telegram_url, published_at, has_video, cover_url, details, listing_media(id, media_role, sort_order, public_url, storage_path, mime_type, source_url, details)"
       )
       .eq("is_active", true)
       .order("published_at", { ascending: false, nullsFirst: false })
@@ -292,6 +299,158 @@
     return "";
   }
 
+  function toFilterArray(value) {
+    if (Array.isArray(value)) return value.map((item) => String(item || "").trim()).filter(Boolean);
+    if (typeof value === "string") return value.split("|").map((item) => item.trim()).filter(Boolean);
+    if (typeof value === "number") return [String(value)];
+    return [];
+  }
+
+  function dedupe(values) {
+    return Array.from(new Set(values.filter(Boolean)));
+  }
+
+  function normalizePriceValue(value) {
+    const raw = String(value || "").trim();
+    const lower = raw.toLowerCase();
+    if (!raw) return "";
+    if (lower.includes("эконом")) return "economy";
+    if (lower.includes("премиум")) return "premium";
+    if (lower.includes("10000") || lower.includes("10 000")) return "midrange";
+    if (lower.includes("5000") || lower.includes("5 000")) return "economy";
+    if (lower.includes("до 5000")) return "economy";
+    if (lower.includes("до 10000")) return "midrange";
+    if (raw === "economy" || raw === "midrange" || raw === "premium") return raw;
+    const upTo = raw.match(/^up-to-(\d{3,5})$/);
+    if (upTo) {
+      const price = Number(upTo[1]);
+      if (price <= 5000) return "economy";
+      if (price <= 10000) return "midrange";
+      return "premium";
+    }
+    return raw;
+  }
+
+  function normalizeBeachValue(value, cityValues) {
+    const raw = String(value || "").trim();
+    const lower = raw.toLowerCase();
+    if (!raw) return "";
+    const cities = new Set((cityValues || []).map((item) => String(item || "").trim()));
+    const isSukhum = cities.has("sukhum");
+    const isLdzaaOrPitsunda = cities.has("ldzaa") || cities.has("pitsunda");
+
+    if (raw === BEACH_FILTERS.SAND_LDZAA || raw === BEACH_FILTERS.SAND_SUKHUM || raw === BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA || raw === BEACH_FILTERS.PITSUNDA_BAY_MIXED || raw === BEACH_FILTERS.PEBBLE) {
+      return raw;
+    }
+    if (raw === "sand") return isSukhum ? BEACH_FILTERS.SAND_SUKHUM : BEACH_FILTERS.SAND_LDZAA;
+    if (raw === "pine-pebble") return BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA;
+    if (raw === "mixed") return isLdzaaOrPitsunda ? BEACH_FILTERS.PITSUNDA_BAY_MIXED : BEACH_FILTERS.PEBBLE;
+    if (lower.includes("песчан") && lower.includes("сухум")) return BEACH_FILTERS.SAND_SUKHUM;
+    if (lower.includes("песчан") && lower.includes("лдзаа")) return BEACH_FILTERS.SAND_LDZAA;
+    if (lower.includes("соснов") && lower.includes("лдзаа")) return BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA;
+    if (lower.includes("соснов") && lower.includes("пицунд")) return BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA;
+    if (lower.includes("пицундск") && lower.includes("бухт")) return BEACH_FILTERS.PITSUNDA_BAY_MIXED;
+    if (lower.includes("галеч")) return BEACH_FILTERS.PEBBLE;
+    if (lower.includes("песчан")) return isSukhum ? BEACH_FILTERS.SAND_SUKHUM : BEACH_FILTERS.SAND_LDZAA;
+    return raw;
+  }
+
+  function normalizeRoomValue(value) {
+    const raw = String(value || "").trim();
+    const lower = raw.toLowerCase();
+    if (!raw || raw === "ac" || raw === "one-room") return "";
+    if (raw === "two-room") return "two-room-plus";
+    if (lower.includes("вид на море")) return "sea-view";
+    if (lower.includes("бассейн")) return "pool";
+    if (lower.includes("балкон")) return "balcony";
+    if (lower.includes("террас")) return "terrace";
+    if (lower.includes("кухн")) return "kitchen";
+    if (lower.includes("пять") && lower.includes("гостей")) return "five-plus";
+    if (lower.includes("две комнат")) return "two-room-plus";
+    return raw;
+  }
+
+  function normalizeStayValue(value) {
+    const raw = String(value || "").trim();
+    const lower = raw.toLowerCase();
+    if (!raw || raw === "kids") return "";
+    if (lower.includes("домики") || lower.includes("коттедж")) return "cottages";
+    if (lower.includes("квартир")) return "apartments";
+    if (lower.includes("дом под ключ")) return "turnkey-house";
+    if (lower.includes("животн")) return "pets";
+    if (lower.includes("без маленьких детей")) return "no-small-kids";
+    return raw;
+  }
+
+  function inferStayByText(row) {
+    const blob = `${row?.title || ""} ${row?.summary || ""} ${row?.excerpt || ""} ${row?.details?.lead || ""}`.toLowerCase();
+    const values = [];
+    if (/(домик|коттедж|шале|бунгало|глэмпинг|glamping)/.test(blob)) values.push("cottages");
+    if (/(квартир|апартамент|студи)/.test(blob)) values.push("apartments");
+    if (/дом под ключ/.test(blob)) values.push("turnkey-house");
+    if (/(с животн|питомц|pet friendly|с собачк)/.test(blob)) values.push("pets");
+    if (/(без маленьких детей|без детей до|только взрослые)/.test(blob)) values.push("no-small-kids");
+    return values;
+  }
+
+  function inferStayByCard(card) {
+    const title = card?.querySelector("h3")?.textContent || "";
+    const summary = card?.querySelector("p")?.textContent || "";
+    const href = card?.getAttribute("href") || "";
+    const blob = `${title} ${summary} ${href}`.toLowerCase();
+    const values = [];
+    if (/(домик|коттедж|шале|бунгало|глэмпинг|glamping)/.test(blob)) values.push("cottages");
+    if (/(квартир|апартамент|студи)/.test(blob)) values.push("apartments");
+    if (/дом под ключ/.test(blob)) values.push("turnkey-house");
+    if (/(с животн|питомц|pet friendly|с собачк)/.test(blob)) values.push("pets");
+    if (/(без маленьких детей|без детей до|только взрослые)/.test(blob)) values.push("no-small-kids");
+    return values;
+  }
+
+  function normalizeFiltersForCard(filters, row) {
+    const source = filters || {};
+    const city = dedupe(toFilterArray(source.city));
+    const distance = dedupe(toFilterArray(source.distance));
+    const food = dedupe(toFilterArray(source.food));
+    const price = dedupe(toFilterArray(source.price).map(normalizePriceValue));
+    const beach = dedupe(toFilterArray(source.beach).map((value) => normalizeBeachValue(value, city)));
+    const room = dedupe(toFilterArray(source.room).map(normalizeRoomValue));
+    const stay = dedupe([...toFilterArray(source.stay).map(normalizeStayValue), ...inferStayByText(row)]);
+
+    return { distance, food, price, city, beach, room, stay };
+  }
+
+  function normalizeCardFilterValues(group, values, card) {
+    const source = toFilterArray(values);
+    if (!source.length) return [];
+
+    if (group === "price") {
+      return dedupe(source.map(normalizePriceValue));
+    }
+
+    if (group === "beach") {
+      const cityValues = toFilterArray(card?.dataset?.filterCity || "");
+      if (!cityValues.length) {
+        const text = `${card?.querySelector("h3")?.textContent || ""} ${card?.querySelector("p")?.textContent || ""}`.toLowerCase();
+        if (text.includes("сухум")) cityValues.push("sukhum");
+        if (text.includes("лдзаа")) cityValues.push("ldzaa");
+        if (text.includes("пицунда")) cityValues.push("pitsunda");
+      }
+      return dedupe(source.map((value) => normalizeBeachValue(value, cityValues)));
+    }
+
+    if (group === "room") {
+      return dedupe(source.map(normalizeRoomValue));
+    }
+
+    if (group === "stay") {
+      const normalized = dedupe(source.map(normalizeStayValue));
+      return dedupe([...normalized, ...inferStayByCard(card)]);
+    }
+
+    return source;
+  }
+
   function pathnameFromUrl(url, fallback) {
     if (!url) return fallback;
     try {
@@ -307,15 +466,15 @@
     return node;
   }
 
-  function applyFilterData(card, filters) {
-    const safeFilters = filters || {};
-    card.dataset.filterDistance = textValue(safeFilters.distance);
-    card.dataset.filterFood = textValue(safeFilters.food);
-    card.dataset.filterPrice = textValue(safeFilters.price);
-    card.dataset.filterCity = textValue(safeFilters.city);
-    card.dataset.filterBeach = textValue(safeFilters.beach);
-    card.dataset.filterRoom = textValue(safeFilters.room);
-    card.dataset.filterStay = textValue(safeFilters.stay);
+  function applyFilterData(card, filters, row) {
+    const normalized = normalizeFiltersForCard(filters, row);
+    card.dataset.filterDistance = textValue(normalized.distance);
+    card.dataset.filterFood = textValue(normalized.food);
+    card.dataset.filterPrice = textValue(normalized.price);
+    card.dataset.filterCity = textValue(normalized.city);
+    card.dataset.filterBeach = textValue(normalized.beach);
+    card.dataset.filterRoom = textValue(normalized.room);
+    card.dataset.filterStay = textValue(normalized.stay);
   }
 
   const CITY_LABELS = {
@@ -361,13 +520,56 @@
     return capacity ? capacity[1].trim() : "";
   }
 
+  function ensureEmojiLine(value, emoji) {
+    const text = String(value || "").replace(/<br\s*\/?>/gi, " ").replace(/\s+/g, " ").trim();
+    if (!text) return "";
+    if (/^[📍🏖🏝]/.test(text)) return text;
+    return `${emoji} ${text}`;
+  }
+
+  function extractHotelSummaryLines(row) {
+    const source = [row?.summary, row?.excerpt, row?.details?.lead]
+      .filter(Boolean)
+      .join("\n")
+      .replace(/<br\s*\/?>/gi, "\n");
+
+    let location = ensureEmojiLine(row?.location_text, "📍");
+    let beach = ensureEmojiLine(row?.beach_text, "🏖");
+    if (location && beach) return { location, beach };
+
+    const lines = source
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean);
+
+    for (const line of lines) {
+      const lower = line.toLowerCase();
+      if (!location && (line.includes("📍") || lower.includes("ул.") || lower.includes("улиц") || lower.includes("пос."))) {
+        location = ensureEmojiLine(line.replace("📍", "").trim(), "📍");
+        continue;
+      }
+      if (!beach && (line.includes("🏖") || line.includes("🏝") || lower.includes("пляж") || lower.includes("мор"))) {
+        beach = ensureEmojiLine(line.replace("🏖", "").replace("🏝", "").trim(), "🏖");
+      }
+    }
+
+    if (!location) {
+      const filters = row?.details?.filters || {};
+      const city = CITY_LABELS[firstValue(filters.city)] || extractCityFromSummary(source) || "Абхазия";
+      location = ensureEmojiLine(city, "📍");
+    }
+    if (!beach) {
+      const filters = row?.details?.filters || {};
+      const distance = DISTANCE_BY_FILTER[firstValue(filters.distance)] || extractDistanceFromSummary(source) || "до пляжа";
+      beach = ensureEmojiLine(distance, "🏖");
+    }
+
+    return { location, beach };
+  }
+
   function formatHotelCardSummary(row) {
-    const source = row?.summary || row?.excerpt || row?.details?.lead || "";
-    const filters = row?.details?.filters || {};
-    const city = extractCityFromSummary(source) || CITY_LABELS[firstValue(filters.city)] || "Абхазия";
-    const distance = extractDistanceFromSummary(source) || DISTANCE_BY_FILTER[firstValue(filters.distance)] || "до пляжа";
-    const capacity = extractCapacityFromSummary(source) || "размещение уточняйте";
-    return `${city}. ${distance}, ${capacity}.`;
+    const { location, beach } = extractHotelSummaryLines(row);
+    return [location, beach].filter(Boolean).join("\n");
   }
 
   function renderHotelCards(rows, grid) {
@@ -377,7 +579,7 @@
       const card = document.createElement("a");
       card.className = "catalog-card";
       card.href = pathnameFromUrl(row.page_url, `/hotels/${row.slug}/`);
-      applyFilterData(card, row.details?.filters);
+      applyFilterData(card, row.details?.filters, row);
 
       const image = document.createElement("img");
       image.loading = "lazy";
@@ -387,7 +589,9 @@
       card.appendChild(image);
 
       card.appendChild(createTextNode("h3", row.title || ""));
-      card.appendChild(createTextNode("p", formatHotelCardSummary(row)));
+      const summary = document.createElement("p");
+      replaceWithLines(summary, formatHotelCardSummary(row));
+      card.appendChild(summary);
       fragment.appendChild(card);
     });
 
@@ -591,7 +795,7 @@
     function parseValues(card, group) {
       const key = `filter${group.charAt(0).toUpperCase()}${group.slice(1)}`;
       const raw = card.dataset[key] || "";
-      return raw.split("|").map((value) => value.trim()).filter(Boolean);
+      return normalizeCardFilterValues(group, raw, card);
     }
 
     function applyFilters() {

@@ -33,6 +33,61 @@ CITY_MAP = {
     "tsandripsh": ("цандрипш",),
 }
 
+OLD_PRICE_MAP = {
+    "up-to-3000": "economy",
+    "up-to-4000": "economy",
+    "up-to-5000": "economy",
+    "up-to-6000": "midrange",
+    "up-to-7000": "midrange",
+    "up-to-8000": "midrange",
+    "up-to-9000": "midrange",
+    "up-to-10000": "midrange",
+}
+
+OLD_BEACH_MAP = {
+    "sand": "sand-ldzaa",
+    "pine-pebble": "pine-pebble-ldzaa-pitsunda",
+    "mixed": "pitsunda-bay-mixed",
+    "pebble": "pebble",
+}
+
+OLD_ROOM_MAP = {
+    "two-room": "two-room-plus",
+}
+
+LABEL_VALUE_MAP = {
+    "price": {
+        "эконом до 5000 руб. за номер": "economy",
+        "эконом и комфорт до 5000 руб.": "economy",
+        "от 5000 до 10000 руб. за номер": "midrange",
+        "средний бюджет до 10000 руб.": "midrange",
+        "премиум-сегмент": "premium",
+    },
+    "beach": {
+        "песчаный пляж лдзаа": "sand-ldzaa",
+        "песчаный пляж сухум": "sand-sukhum",
+        "сосновый галечный берег лдзаа и пицунда": "pine-pebble-ldzaa-pitsunda",
+        "пицундская бухта (мелкая галька и песок)": "pitsunda-bay-mixed",
+        "галечные пляжи": "pebble",
+    },
+    "room": {
+        "вид на море": "sea-view",
+        "бассейн": "pool",
+        "с балконом": "balcony",
+        "с террасой": "terrace",
+        "своя кухня в номере": "kitchen",
+        "пять гостей и более": "five-plus",
+        "две комнаты и более": "two-room-plus",
+    },
+    "stay": {
+        "домики и коттеджи": "cottages",
+        "квартиры": "apartments",
+        "дома под ключ": "turnkey-house",
+        "можно с животными": "pets",
+        "без маленьких детей": "no-small-kids",
+    },
+}
+
 
 def load_env(path: Path) -> dict[str, str]:
     data: dict[str, str] = {}
@@ -69,20 +124,18 @@ def text_blob(row: dict[str, Any]) -> str:
 
 def detect_distance(blob: str) -> list[str]:
     values: list[str] = []
-    beachfront_markers = (
+    beachfront_phrases = (
         "на первой линии",
         "прямо на пляже",
         "выход из отеля сразу на пляж",
         "выход к морю сразу",
-        "до моря 0 минут",
-        "до моря 0 мин",
-        "0 минут до пляжа",
-        "0 мин до пляжа",
         "вышел за калитку и вот оно",
-        "в одном шаге",
-        "100 шагов до",
     )
-    if any(marker in blob for marker in beachfront_markers):
+    beachfront_regex = (
+        r"(?:^|\D)0\s*(?:минут|мин)\s*(?:до\s*)?(?:моря|пляжа)",
+        r"(?:^|\D)100\s*шаг(?:ов|а)?\s*до",
+    )
+    if any(phrase in blob for phrase in beachfront_phrases) or any(re.search(pattern, blob) for pattern in beachfront_regex):
         values.append("beachfront")
 
     minutes = [int(match) for match in re.findall(r"(\d{1,2})\s*(?:минут|минуты|мин|минутах)", blob)]
@@ -116,11 +169,13 @@ def detect_food(blob: str) -> list[str]:
 
 
 def detect_price(blob: str) -> list[str]:
-    prices = [int(match) for match in re.findall(r"(?<!\d)(\d{3,5})(?!\d)", blob)]
+    prices = [int(match) for match in re.findall(r"(?<!\d)(\d{3,5})(?:\s*(?:₽|руб|р\b|р/сут|р\.)|\s*/\s*сут|\s*сутк)", blob)]
+    if not prices:
+        prices = [int(match) for match in re.findall(r"(?<!\d)(\d{3,5})(?!\d)\s*(?:₽|руб|р\b|р\.)", blob)]
     if not prices:
         return []
     value = max(prices)
-    if value < 5000:
+    if value <= 5000:
         return ["economy"]
     if value <= 10000:
         return ["midrange"]
@@ -135,14 +190,23 @@ def detect_city(blob: str) -> list[str]:
     return values
 
 
-def detect_beach(blob: str) -> list[str]:
+def detect_beach(blob: str, city_values: list[str]) -> list[str]:
     values: list[str] = []
-    if any(marker in blob for marker in ("соснов", "сосновый пляж")):
-        values.append("pine-pebble")
+    city_set = set(city_values)
+    is_sukhum = "sukhum" in city_set
+    is_ldzaa_or_pitsunda = "ldzaa" in city_set or "pitsunda" in city_set
+
+    if any(marker in blob for marker in ("соснов", "сосновый пляж")) and is_ldzaa_or_pitsunda:
+        values.append("pine-pebble-ldzaa-pitsunda")
+
+    if any(marker in blob for marker in ("пицундская бухта",)):
+        values.append("pitsunda-bay-mixed")
+
     if "песчан" in blob and "галеч" in blob:
-        values.append("mixed")
+        values.append("pitsunda-bay-mixed" if is_ldzaa_or_pitsunda else "pebble")
     elif "песчан" in blob or "песок" in blob:
-        values.append("sand")
+        values.append("sand-sukhum" if is_sukhum else "sand-ldzaa")
+
     if "галеч" in blob or "гальк" in blob:
         values.append("pebble")
     return sorted(set(values), key=values.index)
@@ -154,39 +218,97 @@ def detect_room(blob: str) -> list[str]:
         values.append("sea-view")
     if "балкон" in blob:
         values.append("balcony")
+    if "террас" in blob:
+        values.append("terrace")
     if "бассейн" in blob:
         values.append("pool")
-    if any(marker in blob for marker in ("однокомнат", "1к", "1-к", "студия")):
-        values.append("one-room")
     if any(marker in blob for marker in ("двухкомнат", "2к", "2-к")):
-        values.append("two-room")
+        values.append("two-room-plus")
+    guest_counts = [int(match) for match in re.findall(r"до\s*(\d{1,2})\s*(?:чел|человек|гостей)", blob)]
+    if guest_counts and max(guest_counts) >= 5:
+        values.append("five-plus")
     if "кухн" in blob:
         values.append("kitchen")
-    if "кондиционер" in blob:
-        values.append("ac")
     return sorted(set(values), key=values.index)
 
 
-def detect_stay(blob: str) -> list[str]:
+def detect_stay(blob: str, row: dict[str, Any]) -> list[str]:
     values: list[str] = []
-    if any(marker in blob for marker in ("с детьми", "для детей", "детская площадка", "семейн")):
-        values.append("kids")
+    if any(marker in blob for marker in ("дом под ключ",)):
+        values.append("turnkey-house")
+    if any(marker in blob for marker in ("домик", "коттедж", "шале", "бунгало", "глэмпинг", "glemping", "glamping")):
+        values.append("cottages")
+    if any(marker in blob for marker in ("квартир", "апартамент", "студи")):
+        values.append("apartments")
     if any(marker in blob for marker in ("с животными", "с питомц", "с собачк", "pet friendly")):
         values.append("pets")
-    return values
+    if any(marker in blob for marker in ("без маленьких детей", "без детей до", "только взрослые")):
+        values.append("no-small-kids")
+
+    source_kind = str(row.get("source_kind") or "")
+    title_blob = str(row.get("title") or "").lower()
+    if source_kind == "kvartira" and "apartments" not in values:
+        values.append("apartments")
+    if "дом под ключ" in title_blob and "turnkey-house" not in values:
+        values.append("turnkey-house")
+    return sorted(set(values), key=values.index)
+
+
+def normalize_existing_filters(row: dict[str, Any], inferred: dict[str, list[str]]) -> dict[str, list[str]]:
+    details = row.get("details") or {}
+    raw = details.get("filters") or {}
+    if not isinstance(raw, dict):
+        return inferred
+
+    normalized: dict[str, list[str]] = {}
+    for group in FILTER_GROUPS:
+        values = raw.get(group) or []
+        if isinstance(values, str):
+            values = [value for value in values.split("|") if value]
+        if not isinstance(values, list):
+            values = []
+        cleaned = [str(value).strip() for value in values if str(value).strip()]
+        cleaned = [LABEL_VALUE_MAP.get(group, {}).get(value.lower(), value) for value in cleaned]
+
+        if group == "price":
+            mapped = [OLD_PRICE_MAP.get(value, value) for value in cleaned]
+            cleaned = mapped
+        elif group == "beach":
+            mapped: list[str] = []
+            for value in cleaned:
+                if value == "sand":
+                    mapped.append("sand-sukhum" if "sukhum" in inferred.get("city", []) else "sand-ldzaa")
+                else:
+                    mapped.append(OLD_BEACH_MAP.get(value, value))
+            cleaned = mapped
+        elif group == "room":
+            mapped = [OLD_ROOM_MAP.get(value, value) for value in cleaned if value not in {"one-room", "ac"}]
+            cleaned = mapped
+        elif group == "stay":
+            cleaned = [value for value in cleaned if value != "kids"]
+
+        normalized[group] = sorted(set(cleaned), key=cleaned.index)
+
+    merged: dict[str, list[str]] = {}
+    for group in FILTER_GROUPS:
+        merged_values = normalized.get(group) or inferred.get(group) or []
+        merged[group] = sorted(set(merged_values), key=merged_values.index)
+    return merged
 
 
 def infer_filters(row: dict[str, Any]) -> dict[str, list[str]]:
     blob = text_blob(row)
-    return {
+    city_values = detect_city(blob)
+    inferred = {
         "distance": detect_distance(blob),
         "food": detect_food(blob),
         "price": detect_price(blob),
-        "city": detect_city(blob),
-        "beach": detect_beach(blob),
+        "city": city_values,
+        "beach": detect_beach(blob, city_values),
         "room": detect_room(blob),
-        "stay": detect_stay(blob),
+        "stay": detect_stay(blob, row),
     }
+    return normalize_existing_filters(row, inferred)
 
 
 def pick_cover_url(row: dict[str, Any]) -> str:
@@ -236,6 +358,32 @@ def extract_emoji_line(lines: list[str], prefixes: tuple[str, ...]) -> str:
     return ""
 
 
+def ensure_prefixed_line(value: str | None, emoji: str) -> str:
+    text = str(value or "").strip()
+    if not text:
+        return ""
+    if text.startswith(("📍", "🏖", "🏝")):
+        return text
+    return f"{emoji} {text}"
+
+
+def extract_lines_from_summary(value: str | None) -> tuple[str, str]:
+    source = str(value or "")
+    if not source.strip():
+        return "", ""
+    raw_lines = [part.strip() for part in re.split(r"<br\s*/?>|\n", source) if part.strip()]
+    location_line = ""
+    beach_line = ""
+    for line in raw_lines:
+        lowered = line.lower()
+        if not location_line and ("📍" in line or "ул." in lowered or "улиц" in lowered or "пос." in lowered):
+            location_line = ensure_prefixed_line(line.replace("📍", "").strip(), "📍")
+            continue
+        if not beach_line and ("🏖" in line or "🏝" in line or "пляж" in lowered or "мор" in lowered):
+            beach_line = ensure_prefixed_line(line.replace("🏖", "").replace("🏝", "").strip(), "🏖")
+    return location_line, beach_line
+
+
 def load_hotel_card_meta() -> dict[int, dict[str, str]]:
     if not HOTEL_POSTS_PATH.exists():
         return {}
@@ -272,13 +420,28 @@ def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]])
     title = html.escape(row.get("title") or "")
     summary_fallback = row.get("summary") or row.get("excerpt") or ""
     card_lines: list[str] = []
+
+    location_line = ensure_prefixed_line(row.get("location_text"), "📍")
+    beach_line = ensure_prefixed_line(row.get("beach_text"), "🏖")
     source_message_id = resolve_source_message_id(row)
     if source_message_id is not None:
         meta = post_meta.get(source_message_id) or {}
-        if meta.get("location_line"):
-            card_lines.append(meta["location_line"])
-        if meta.get("beach_line"):
-            card_lines.append(meta["beach_line"])
+        if not location_line and meta.get("location_line"):
+            location_line = ensure_prefixed_line(meta["location_line"], "📍")
+        if not beach_line and meta.get("beach_line"):
+            beach_line = ensure_prefixed_line(meta["beach_line"], "🏖")
+
+    if not location_line or not beach_line:
+        location_from_summary, beach_from_summary = extract_lines_from_summary(summary_fallback)
+        if not location_line and location_from_summary:
+            location_line = location_from_summary
+        if not beach_line and beach_from_summary:
+            beach_line = beach_from_summary
+
+    if location_line:
+        card_lines.append(location_line)
+    if beach_line:
+        card_lines.append(beach_line)
 
     if card_lines:
         summary_html = "<br />".join(html.escape(line) for line in card_lines)
