@@ -722,7 +722,6 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
           <section class="section hotel-media-section hotel-site-concept__detail-section">
             <article class="card">
               <h2>Фото и видео из поста</h2>
-              <p class="media-note">Источник: <a href="{html.escape(telegram_url)}" target="_blank" rel="noopener noreferrer">{html.escape(telegram_url.replace('https://t.me/', '@'))}</a>.</p>
               <div class="media-grid">
 {media_html}
               </div>
