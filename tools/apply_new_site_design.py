@@ -768,6 +768,14 @@ def _is_room_category_header_line(plain: str) -> bool:
     low = p.lower().rstrip(".: ")
     if low in {"номера", "номер", "домики", "домик", "коттеджи", "коттедж", "апартаменты", "студии"}:
         return True
+    if re.match(
+        r"^(домики|номера|коттеджи|апартаменты)\s+"
+        r"(семейн\w*|комфорт\w*|эконом\w*|стандарт\w*|люкс\w*|студи\w*)$",
+        low,
+    ):
+        return True
+    if re.match(r"^(номера|домики|коттеджи)\s+(эконом|комфорт|стандарт|люкс)$", low):
+        return True
     if re.match(r"^номер(а)?\s+(эконом|комфорт|стандарт|люкс|делюкс|апарт|студи)\b", low):
         return True
     if re.match(r"^(эконом|комфорт|стандарт|люкс)(\s+номер(а)?)?$", low):
@@ -996,6 +1004,11 @@ def format_price_line_to_html(text: str) -> str:
     if m:
         desc, amount = m.group(1).strip(), m.group(2).strip()
         return f"{html.escape(desc)} - " f'<span class="price-card__amount">{html.escape(amount)}</span>'
+
+    m_plus = re.match(r"^(.+?)\s*\+\s*(\d[\d\s]*\s*(?:₽|руб\.?))\s*$", text, re.I)
+    if m_plus:
+        left, right = m_plus.group(1).strip(), m_plus.group(2).strip()
+        return f"{html.escape(left)} + " f'<span class="price-card__amount">{html.escape(right)}</span>'
 
     return html.escape(text)
 

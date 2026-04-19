@@ -174,6 +174,17 @@ def humanize_section_title(label: str) -> str:
     return t
 
 
+def humanize_tariff_subgroup_heading(label: str) -> str:
+    """Подзаголовок в блоке цен («домики семейные» → «Домики семейные», не .title() по словам)."""
+    t = (label or "").strip()
+    if not t:
+        return ""
+    if t.isupper():
+        return humanize_section_title(t)
+    low = t.lower()
+    return low[0].upper() + low[1:]
+
+
 def is_object_post(raw_text: str) -> bool:
     lines = [clean_line(line) for line in raw_text.splitlines() if clean_line(line)]
     if not lines:
@@ -274,11 +285,11 @@ def _strip_leading_section_markers(line: str) -> str:
 
 
 def _is_price_subgroup_heading(line: str) -> bool:
-    """Короткая подпись тарифа в блоке ЦЕНЫ: «номера», «домики» и т.п. (отдельной строкой)."""
+    """Короткая подпись тарифа в блоке ЦЕНЫ: «номера», «домики», «домики семейные» и т.п."""
     low = (line or "").strip().lower().rstrip(".:")
-    if not low or len(low) > 48 or re.search(r"\d", low):
+    if not low or len(low) > 96 or re.search(r"\d", low):
         return False
-    return low in {
+    if low in {
         "номера",
         "номер",
         "домики",
@@ -287,7 +298,18 @@ def _is_price_subgroup_heading(line: str) -> bool:
         "коттедж",
         "апартаменты",
         "студии",
-    }
+    }:
+        return True
+    # Два слова без цифр и ₽: отдельной строкой между подборками тарифов
+    if re.match(
+        r"^(домики|номера|коттеджи|апартаменты)\s+"
+        r"(семейн\w*|комфорт\w*|эконом\w*|стандарт\w*|люкс\w*|студи\w*)$",
+        low,
+    ):
+        return True
+    if re.match(r"^(номера|домики|коттеджи)\s+(эконом|комфорт|стандарт|люкс)$", low):
+        return True
+    return False
 
 
 def _is_room_category_header_for_prices(line: str) -> bool:
@@ -408,12 +430,13 @@ def parse_post(raw_text: str):
                 if _is_room_category_header_for_prices(line):
                     continue
                 if _is_price_subgroup_heading(line):
-                    prices.append({"kind": "heading", "text": sl.strip().title()})
+                    prices.append({"kind": "heading", "text": humanize_tariff_subgroup_heading(sl)})
                     continue
                 if sl.startswith("(") or sl.startswith("（"):
                     prices.append({"kind": "note", "text": line})
                     continue
-                if re.match(r"^доп\.?", sl, re.I):
+                # «Доп. место», не слитное «допместо» (иначе ложное срабатывание ^доп\.?)
+                if re.match(r"^доп\.\s*мест", sl, re.I) or re.match(r"^дополнительн", sl, re.I):
                     prices.append({"kind": "note", "text": line})
                     continue
                 prices.append({"kind": "price", "text": line})
