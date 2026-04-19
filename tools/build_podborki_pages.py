@@ -92,6 +92,7 @@ def load_maps():
                     "title": row.get("title") or "",
                     "url": (row.get("url") or "").replace("https://абхазберег.рф", "")
                     or f"/kvartira/{row['slug']}/",
+                    "image": (row.get("image") or "").strip(),
                 }
     return hotels, kv
 
@@ -221,6 +222,59 @@ def resolve_item_href(
     return None, None
 
 
+def item_card_cover(href: str | None, kv: dict[int, dict]) -> str:
+    """Относительный URL обложки для страницы podborki/.../index.html (два уровня вверх до корня)."""
+    if not href:
+        return ""
+    h = href.strip().rstrip("/")
+    parts = h.split("/")
+    if len(parts) < 3 or parts[0] != "":
+        return ""
+    kind, slug = parts[1], parts[2]
+    if kind == "hotels":
+        return f"../../media/cards/{slug}.jpg"
+    if kind == "kvartira":
+        for row in kv.values():
+            if row.get("slug") == slug:
+                img = (row.get("image") or "").strip()
+                if img.startswith("/"):
+                    return "../.." + img
+                break
+        return f"../../media/kvartira-cards/{slug}-cover.jpg"
+    return ""
+
+
+def render_item_catalog_card(
+    rank: int,
+    href: str | None,
+    title: str,
+    details: list[str],
+    kv: dict[int, dict],
+) -> str:
+    cover = item_card_cover(href, kv)
+    details_html = "<br />".join(esc(d) for d in details if d)
+    badge = (
+        f'<span class="catalog-card__badge catalog-card__badge--rank" '
+        f'aria-label="Место в подборке — {rank}">{rank}</span>'
+    )
+    if cover:
+        media = (
+            f'<div class="catalog-card__media-wrap">{badge}'
+            f'<img src="{esc(cover)}" alt="{esc(title)}" loading="lazy" decoding="async" />'
+            f"</div>"
+        )
+    else:
+        media = (
+            f'<div class="catalog-card__media-wrap">{badge}'
+            f'<div class="catalog-card__media-fallback" role="img" aria-hidden="true">Фото</div>'
+            f"</div>"
+        )
+    inner = f"{media}<h3>{esc(title)}</h3><p>{details_html}</p>"
+    if href:
+        return f'          <a class="catalog-card podborki-catalog-card" href="{esc(href)}">{inner}</a>'
+    return f'          <div class="catalog-card podborki-catalog-card catalog-card--no-link">{inner}</div>'
+
+
 def esc(s: str) -> str:
     return (
         s.replace("&", "&amp;")
@@ -248,20 +302,13 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
         chunk: list[str] = []
         if reg:
             chunk.append(f'        <h2 class="podborki-region">{esc(reg)}</h2>')
-        chunk.append('        <ol class="podborki-ranked-list">')
+        chunk.append('        <div class="catalog-grid podborki-catalog-grid">')
         for it in by_region[reg]:
             rank += 1
-            href, canonical_title = resolve_item_href(it, hotels, kv)
+            href, _canonical_title = resolve_item_href(it, hotels, kv)
             title = it["title"]
-            details_html = "".join(f"<span>{esc(d)}</span>" for d in it["details"] if d)
-            inner = f'<div class="podborki-card__body"><span class="podborki-card__rank">{rank}</span><div><p class="podborki-card__title">{esc(title)}</p><div class="podborki-card__meta">{details_html}</div></div></div>'
-            if href:
-                chunk.append(
-                    f'          <li><a class="podborki-card podborki-card--link" href="{esc(href)}">{inner}</a></li>'
-                )
-            else:
-                chunk.append(f'          <li><div class="podborki-card">{inner}</div></li>')
-        chunk.append("        </ol>")
+            chunk.append(render_item_catalog_card(rank, href, title, it["details"], kv))
+        chunk.append("        </div>")
         blocks.append("\n".join(chunk))
 
     body_blocks = "\n".join(blocks)

@@ -1465,6 +1465,32 @@ section.site-concept__contacts.section {
   margin-top: 22px;
 }
 
+/* Карточки подборок — та же сетка и визуал, что у каталога на главной */
+.podborki-body .podborki-catalog-grid {
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.site-concept .catalog-card .catalog-card__badge--rank {
+  left: 0.65rem;
+  right: auto;
+  min-width: 1.65rem;
+  text-align: center;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.site-concept .catalog-card.catalog-card--no-link {
+  cursor: default;
+}
+
+.site-concept .catalog-card.catalog-card--no-link:hover {
+  transform: none;
+  box-shadow: 0 16px 34px rgba(17, 28, 22, 0.08);
+  border-color: rgba(25, 35, 30, 0.08);
+}
+
 .podborki-ranked-list {
   margin: 0;
   padding: 0;
