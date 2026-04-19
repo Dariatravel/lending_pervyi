@@ -34,7 +34,8 @@
   overflow-x: hidden;
 }
 
-.site-concept > * {
+.site-concept > *,
+.hotel-site-concept > * {
   min-width: 0;
   max-width: 100%;
 }
@@ -1664,6 +1665,8 @@ section.site-concept__contacts.section {
 .hotel-site-concept {
   display: grid;
   gap: 14px;
+  /* Как у .site-concept: декоративные ореолы (.card-preview-page__halo) с отрицательными inset не расширяют страницу по горизонтали */
+  overflow-x: hidden;
 }
 
 .hotel-site-concept__intro {
@@ -1741,7 +1744,7 @@ section.site-concept__contacts.section {
 
 .hotel-site-concept__card {
   display: grid;
-  grid-template-columns: 460px 1fr;
+  grid-template-columns: minmax(280px, 460px) minmax(0, 1fr);
   gap: 18px;
   padding: 18px;
   border-radius: 24px;
@@ -1751,6 +1754,7 @@ section.site-concept__contacts.section {
 .hotel-card__gallery {
   display: grid;
   gap: 12px;
+  min-width: 0;
 }
 
 .hotel-card__main-photo {
@@ -1804,6 +1808,7 @@ section.site-concept__contacts.section {
   align-content: start;
   gap: 16px;
   padding: 6px 6px 6px 2px;
+  min-width: 0;
 }
 
 .hotel-card__topline,
@@ -1952,6 +1957,10 @@ section.site-concept__contacts.section {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
+}
+
+.hotel-site-concept .benefit-grid article {
+  min-width: 0;
 }
 
 .hotel-site-concept .benefit-grid strong,
@@ -2105,6 +2114,7 @@ section.site-concept__contacts.section {
 .hotel-site-concept__detail-aside {
   display: grid;
   gap: 18px;
+  min-width: 0;
 }
 
 .hotel-site-concept__detail-aside {
