@@ -710,7 +710,7 @@
   align-self: start;
   align-content: start;
   align-items: start;
-  gap: 12px;
+  gap: clamp(18px, 2.4vw, 26px);
 }
 
 .site-concept__mini-card {
@@ -728,7 +728,7 @@
 .site-concept__hero-highlights .site-concept__benefit-card {
   height: fit-content;
   padding: 15px 17px;
-  gap: 10px;
+  gap: clamp(14px, 1.8vw, 18px);
   border-radius: 16px;
 }
 
@@ -743,8 +743,8 @@
 }
 
 .site-concept__hero-highlights .site-concept__benefit-title {
-  font-size: clamp(1.02rem, 1.95vw, 1.3rem);
-  line-height: 1.2;
+  font-size: clamp(1.53rem, 2.925vw, 1.95rem);
+  line-height: 1.22;
 }
 
 .site-concept__benefit-body {
@@ -753,7 +753,7 @@
 }
 
 .site-concept__hero-highlights .site-concept__benefit-body {
-  gap: 8px;
+  gap: clamp(10px, 1.4vw, 14px);
 }
 
 .site-concept__benefit-body p {
@@ -765,8 +765,8 @@
 }
 
 .site-concept__hero-highlights .site-concept__benefit-body p {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 21px;
+  line-height: 1.55;
 }
 
 .site-concept__benefit-body a {
