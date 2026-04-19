@@ -805,9 +805,15 @@
 .hotel-site-concept .faq-list p,
 .hotel-site-concept .review-card p {
   color: var(--muted);
-  line-height: 1.45;
-  font-size: 16px;
+  line-height: 1.55;
+  font-size: clamp(0.94rem, 3vw, 1rem);
   font-family: "Manrope", "Segoe UI", sans-serif;
+}
+
+.hotel-site-concept .hotel-card__description {
+  margin: 0;
+  max-width: 65ch;
+  text-wrap: pretty;
 }
 
 .site-concept__section-head {
@@ -1376,7 +1382,7 @@ section.site-concept__contacts.section {
 .hotel-card__content {
   display: grid;
   align-content: start;
-  gap: 12px;
+  gap: 16px;
   padding: 6px 6px 6px 2px;
 }
 
@@ -1397,29 +1403,70 @@ section.site-concept__contacts.section {
 }
 
 .hotel-card__rating {
-  display: inline-grid;
-  gap: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  max-width: min(100%, 42rem);
   padding: 12px 14px;
   border-radius: 18px;
-  background: #143126;
-  color: #fff;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(29, 43, 37, 0.1);
+  box-shadow: 0 8px 22px rgba(18, 31, 25, 0.06);
+  color: var(--text);
 }
 
-.hotel-card__rating strong {
-  font-size: 17px;
-  line-height: 1.08;
+/* Старые страницы: подпись «Локация» шла вторым элементом — поднимаем наверх */
+.hotel-card__rating > span:not(.hotel-card__rating-label) {
+  order: -1;
 }
 
-.hotel-card__rating span,
+.hotel-card__rating-label,
+.hotel-card__rating > span:not(.hotel-card__rating-summary) {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.25;
+}
+
+.hotel-card__rating-summary,
+.hotel-card__rating > strong {
+  font-size: clamp(0.9rem, 2.8vw, 1rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text);
+}
+
 .hotel-site-concept .price-box__label,
 .hotel-site-concept .price-box__note,
 .hotel-site-concept .location {
-  font-size: 13px;
+  font-size: clamp(0.94rem, 3vw, 1rem);
+  line-height: 1.55;
   color: var(--muted);
 }
 
-.hotel-card__rating span {
-  color: rgba(255, 255, 255, 0.92);
+.hotel-site-concept .location {
+  margin: 0;
+  max-width: 65ch;
+  text-wrap: pretty;
+}
+
+.hotel-site-concept .hotel-card__prose {
+  max-width: 65ch;
+  text-wrap: pretty;
+}
+
+.hotel-site-concept .hotel-card__prose p {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(0.94rem, 3vw, 1rem);
+  line-height: 1.55;
+}
+
+.hotel-site-concept .hotel-card__prose p + p {
+  margin-top: 0.75em;
 }
 
 .hotel-site-concept .save-button,
@@ -1439,9 +1486,23 @@ section.site-concept__contacts.section {
   box-shadow: 0 8px 18px rgba(17, 28, 22, 0.04);
 }
 
+.hotel-card__header-main {
+  min-width: 0;
+}
+
 .hotel-card__header h2 {
-  margin-bottom: 6px;
+  margin: 0 0 8px;
   font-size: clamp(1.45rem, 2.1vw, 2rem);
+  line-height: 1.15;
+  text-wrap: pretty;
+}
+
+.hotel-site-concept .feature-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 0;
 }
 
 .hotel-site-concept .partner-badge {

@@ -32,13 +32,55 @@ def format_lead_text(text: str) -> str:
 
 
 def short_location_badge(lead_lines: list[str], title: str) -> str:
+    """Короткая строка для плашки: первое предложение, иначе город до запятой (короткий фрагмент), иначе усечение."""
     if not lead_lines:
         return "Абхазия"
-    location = lead_lines[0].replace("📍", "").strip()
-    first_part = location.split(",")[0].strip()
-    if first_part:
-        return first_part
-    return title.split()[0] if title else "Абхазия"
+    raw = clean_text(lead_lines[0].replace("📍", ""))
+    if not raw:
+        return title.split()[0] if title else "Абхазия"
+    m = re.match(r"^(.+?[.!?])(?:\s|$)", raw)
+    if m and len(m.group(1)) >= 8:
+        return m.group(1).strip()
+    if "," in raw:
+        head = raw.split(",")[0].strip()
+        if len(head) <= 72:
+            return head
+    if len(raw) > 100:
+        return raw[:97].rsplit(" ", 1)[0] + "…"
+    return raw
+
+
+def should_show_location_under_title(lead: str, description: str) -> bool:
+    """Не дублировать подзаголовок, если тот же текст уже в основном описании."""
+    lead_n = re.sub(r"\s+", " ", strip_tags(lead).strip()).lower()
+    desc_n = re.sub(r"\s+", " ", strip_tags(description).strip()).lower()
+    if not lead_n:
+        return False
+    if not desc_n:
+        return True
+    if lead_n in desc_n:
+        return False
+    if len(lead_n) >= 24 and desc_n.startswith(lead_n[: min(len(lead_n), 160)]):
+        return False
+    return True
+
+
+def description_to_prose_html(raw: str) -> str:
+    """Несколько <p> для читаемости на мобильных; без смены семейств шрифтов."""
+    plain = clean_text(raw)
+    if not plain:
+        return ""
+    parts = [p.strip() for p in re.split(r"\n+", plain) if p.strip()]
+    if len(parts) == 1:
+        parts = [
+            s.strip()
+            for s in re.split(r"(?<=[\.\!\?])\s+(?=[А-ЯЁA-Z\(«\"„0-9🏖📍✔])", plain)
+            if s.strip()
+        ]
+    if not parts:
+        parts = [plain]
+    inner = "".join(f"<p>{html.escape(p)}</p>" for p in parts)
+    return f'<div class="hotel-card__prose">{inner}</div>'
 
 
 def replace_main(text: str, new_main: str) -> str:
@@ -753,7 +795,7 @@ def build_hotels() -> None:
         content_sections: list[str] = []
 
         for section in section_matches:
-            if "Фото и видео из поста" in section:
+            if "hotel-media-section" in section:
                 media_section = section
             elif "class=\"card price-card\"" in section:
                 price_section = section
@@ -770,10 +812,16 @@ def build_hotels() -> None:
         if not title:
             title = clean_text(
                 find_first(
-                    [r'<div class="hotel-card__header">\s*<div>\s*<h2>(.*?)</h2>'],
+                    [
+                        r'<div class="hotel-card__header-main">\s*<h2>(.*?)</h2>',
+                        r'<div class="hotel-card__header">\s*<div[^>]*>\s*<h2>(.*?)</h2>',
+                    ],
                     text,
                 )
             )
+        if not title:
+            raw_t = find_first([r"<title>(.*?)</title>"], text)
+            title = clean_text(re.sub(r"\s*[—–]\s*обзор.*$", "", raw_t, flags=re.I))
         lead_raw = find_first(
             [
                 r'<p class="lead">(.*?)</p>',
@@ -894,6 +942,12 @@ def build_hotels() -> None:
         )
 
         city_badge = short_location_badge(lead_lines, title)
+        location_html = (
+            f'<p class="location">{html.escape(lead_text)}</p>'
+            if should_show_location_under_title(lead_text, description)
+            else ""
+        )
+        prose_html = description_to_prose_html(description)
 
         new_main = f"""<main class="hotel-site-concept">
   <div class="card-preview-page__halo card-preview-page__halo--mint" aria-hidden="true"></div>
@@ -912,16 +966,16 @@ def build_hotels() -> None:
     <div class="hotel-card__content">
       <div class="hotel-card__topline">
         <div class="hotel-card__rating">
-          <strong>{city_badge}</strong>
-          <span>Локация объекта</span>
+          <span class="hotel-card__rating-label">Локация объекта</span>
+          <strong class="hotel-card__rating-summary">{html.escape(city_badge)}</strong>
         </div>
         <a class="save-button" href="/">К каталогу</a>
       </div>
 
       <div class="hotel-card__header">
-        <div>
-          <h2>{title}</h2>
-          <p class="location">{lead_text}</p>
+        <div class="hotel-card__header-main">
+          <h2>{html.escape(title)}</h2>
+          {location_html}
         </div>
         <div class="partner-badge">
           <span>Abhazbereg</span>
@@ -929,7 +983,7 @@ def build_hotels() -> None:
         </div>
       </div>
 
-      <p class="hotel-card__description">{description}</p>
+      {prose_html}
 
       <div class="feature-row">
         {feature_row_html}
