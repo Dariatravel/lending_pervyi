@@ -1169,6 +1169,21 @@
   font-weight: 600;
 }
 
+.site-concept__guide-subtitle--short {
+  display: none;
+  margin-top: 12px;
+}
+
+@media (max-width: 620px) {
+  .site-concept__guide-subtitle--full {
+    display: none;
+  }
+
+  .site-concept__guide-subtitle--short {
+    display: block;
+  }
+}
+
 .site-concept__guide-card--accent {
   background: linear-gradient(160deg, rgba(41, 74, 61, 0.1) 0%, rgba(255, 255, 255, 0.88) 48%, rgba(255, 255, 255, 0.72) 100%);
   border: 1px solid rgba(41, 74, 61, 0.28);

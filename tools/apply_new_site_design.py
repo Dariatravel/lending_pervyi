@@ -1068,41 +1068,42 @@ def build_homepage() -> None:
     <div class="site-concept__section-head">
       <div>
         <p class="site-concept__eyebrow">Как бронировать</p>
-        <h2>Как забронировать жильё без лишнего поиска</h2>
-        <p class="site-concept__guide-subtitle">Не нужно разбираться в десятках сайтов и вариантов — просто напишите, и мы подберём под вас.</p>
+        <h2>Как найти жильё в Абхазии без утомительного поиска</h2>
+        <p class="site-concept__guide-subtitle site-concept__guide-subtitle--full">Можно искать самой по сайтам и чатам. А можно просто написать мне — и я помогу быстрее найти нормальный вариант под ваш запрос.</p>
+        <p class="site-concept__guide-subtitle site-concept__guide-subtitle--short">Искать самой или написать мне — я помогу подобрать вариант под ваш запрос.</p>
       </div>
     </div>
 
     <div class="site-concept__guide-grid">
       <article class="site-concept__guide-card">
         <span>01</span>
-        <strong>Определяетесь с направлением</strong>
-        <p>Выбираете курорт — Гагра, Пицунда, Сухум или другой.</p>
+        <strong>Говорите, что вам нужно</strong>
+        <p>Курорт, даты, сколько человек, какой бюджет и что важно именно вам.</p>
       </article>
       <article class="site-concept__guide-card site-concept__guide-card--accent">
         <span>02</span>
-        <strong>Получаете точный подбор</strong>
-        <p>Не список всего подряд, а варианты под ваш запрос и бюджет.</p>
+        <strong>Я подбираю подходящие варианты</strong>
+        <p>Не всё подряд, а только то, что правда стоит смотреть под ваш запрос.</p>
       </article>
       <article class="site-concept__guide-card site-concept__guide-card--accent">
         <span>03</span>
-        <strong>Пишете как удобно</strong>
-        <p>В мессенджер или на сайте — без долгих переписок и ссылок.</p>
+        <strong>Обсуждаем в удобном формате</strong>
+        <p>Можно в мессенджере — спокойно задать вопросы и быстро сузить выбор.</p>
       </article>
       <article class="site-concept__guide-card">
         <span>04</span>
-        <strong>Бронируете спокойно</strong>
-        <p>С поддержкой и понятными условиями, без неожиданностей.</p>
+        <strong>Фиксируем бронь</strong>
+        <p>Когда вариант подходит, помогаю оформить бронирование и всё подтвердить.</p>
       </article>
     </div>
 
     <div class="site-concept__guide-footer">
-      <p class="site-concept__guide-pitch">Самостоятельный поиск — это десятки сайтов, сравнения и переписки.</p>
-      <p class="site-concept__guide-pitch">Здесь проще: вы пишете, мы сразу предлагаем подходящие варианты.</p>
-      <p class="site-concept__guide-pitch site-concept__guide-pitch--muted">Мы уже знаем, где хорошие условия, а где нет — вам не нужно проверять всё самостоятельно.</p>
+      <p class="site-concept__guide-pitch">Самостоятельный поиск — это обычно десятки вкладок, чужие отзывы и переписки, в которых легко запутаться.</p>
+      <p class="site-concept__guide-pitch">Здесь проще: вы пишете, что хотите, а я помогаю выбрать из нормальных вариантов без лишнего шума.</p>
+      <p class="site-concept__guide-pitch site-concept__guide-pitch--muted">Я не просто отправляю ссылки. Я смотрю на ваш запрос как человек, который помогает разобраться и не тратить время зря.</p>
       <div class="site-concept__guide-cta">
         <a class="btn-book site-concept__guide-cta-btn" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">Написать в мессенджер</a>
-        <p class="site-concept__guide-cta-caption">Ответим и предложим варианты в течение 10–30 минут</p>
+        <p class="site-concept__guide-cta-caption">Отвечу, помогу сориентироваться и предложу варианты под ваш запрос</p>
       </div>
     </div>
   </section>
