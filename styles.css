@@ -1425,6 +1425,133 @@ section.site-concept__contacts.section {
   text-transform: uppercase;
 }
 
+/* Тематические подборки (podborki/) */
+.podborki-page {
+  display: grid;
+  gap: clamp(14px, 2vw, 22px);
+}
+
+.podborki-page .site-concept__hero-card,
+.podborki-page .site-concept__section-block {
+  padding: clamp(16px, 2.1vw, 26px);
+}
+
+.podborki-hero h1 {
+  font-size: clamp(1.35rem, 2.6vw, 2.5rem);
+  line-height: 1.1;
+}
+
+.podborki-hero__lead {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.6;
+}
+
+.podborki-region {
+  margin: 0 0 10px;
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3d6658;
+}
+
+.podborki-body .podborki-region:not(:first-child) {
+  margin-top: 22px;
+}
+
+.podborki-ranked-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.podborki-ranked-list > li {
+  margin: 0;
+}
+
+.podborki-card {
+  display: block;
+  border-radius: 14px;
+  border: 1px solid rgba(24, 40, 32, 0.14);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 6px 18px rgba(18, 31, 25, 0.06);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+a.podborki-card--link:hover {
+  border-color: rgba(41, 74, 61, 0.35);
+  box-shadow: 0 10px 26px rgba(18, 31, 25, 0.1);
+}
+
+.podborki-card__body {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 16px;
+}
+
+.podborki-card__rank {
+  flex-shrink: 0;
+  min-width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(41, 74, 61, 0.12);
+  color: #1d4336;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.podborki-card__title {
+  margin: 0 0 6px;
+  font-size: clamp(15px, 1.2vw, 17px);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.podborki-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.podborki-index-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.podborki-index__link {
+  display: block;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(24, 40, 32, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+  transition: border-color 0.15s ease;
+}
+
+.podborki-index__link:hover {
+  border-color: rgba(41, 74, 61, 0.35);
+}
+
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
