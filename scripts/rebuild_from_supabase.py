@@ -361,7 +361,6 @@ def render_kvartira_catalog_page(rows: list[dict[str, Any]]) -> str:
       <header class="hero section">
         <p class="eyebrow"><a href="/">Абхазберег</a></p>
         <h1>КВАРТИРЫ И ДОМА</h1>
-        <p class="lead">Каталог объектов из группы <a href="https://t.me/abhkvartira" target="_blank" rel="noopener noreferrer">@abhkvartira</a>. Каждая карточка открывает отдельную страницу объекта с фото, видео и описанием.</p>
       </header>
 
       <section class="section">
