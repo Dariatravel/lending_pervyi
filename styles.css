@@ -1381,6 +1381,12 @@ section.site-concept__contacts.section {
   padding: clamp(16px, 2.1vw, 26px);
 }
 
+/* Заголовок списка статей: вдвое меньше базового h1 страницы */
+.blog-hero h1 {
+  font-size: clamp(1.3rem, 2.5vw, 2.4rem);
+  line-height: 1.12;
+}
+
 .blog-hero__lead {
   margin: 0;
   max-width: 64ch;
