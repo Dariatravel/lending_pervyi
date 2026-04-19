@@ -1543,11 +1543,15 @@ section.site-concept__contacts.section {
 }
 
 .blog-article__content--telegram {
-  gap: 10px;
+  display: block;
 }
 
 .blog-article__content--telegram p {
-  margin: 0;
+  margin: 0 0 10px;
+}
+
+.blog-article__content--telegram p:last-child {
+  margin-bottom: 0;
 }
 
 .blog-article__content h2 {
