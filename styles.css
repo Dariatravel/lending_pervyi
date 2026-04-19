@@ -2206,7 +2206,7 @@ section.site-concept__contacts.section {
 
 .hotel-site-concept__detail-section .price-card h2.price-card__heading {
   margin: 0 0 16px;
-  font-size: clamp(1.75rem, 2.9vw, 2.85rem);
+  font-size: clamp(0.875rem, 1.45vw, 1.425rem);
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2216,7 +2216,7 @@ section.site-concept__contacts.section {
 
 @media (min-width: 900px) {
   .hotel-site-concept__detail-section .price-card h2.price-card__heading {
-    font-size: clamp(2.2rem, 3.2vw, 3.6rem);
+    font-size: clamp(1.1rem, 1.6vw, 1.8rem);
     margin-bottom: 22px;
   }
 }
