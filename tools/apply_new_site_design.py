@@ -1418,10 +1418,9 @@ def build_homepage() -> None:
 
   <header class="site-concept__topbar" role="banner">
     <a class="site-concept__brand" href="#search">
-      <img class="site-concept__brand-mark" src="media/branding/logo-emblem.png" width="80" height="80" alt="Абхазский берег — на главную" decoding="async" />
+      <img class="site-concept__brand-mark" src="media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ - жилье напрямую — на главную" decoding="async" />
       <span class="site-concept__brand-copy">
-        <strong>Абхазский берег</strong>
-        <span>Каталог проверенного жилья в Абхазии</span>
+        <strong>АБХАЗБЕРЕГ - жилье напрямую</strong>
       </span>
     </a>
 
@@ -1453,7 +1452,7 @@ def build_homepage() -> None:
     <div class="site-concept__hero-copy">
       <div class="site-concept__eyebrow">Бронирование и подбор отелей в Абхазии</div>
       <div class="site-concept__hero-title-block">
-      <h1>Абхазский берег</h1>
+      <h1>АБХАЗБЕРЕГ - жилье напрямую</h1>
       <p class="site-concept__hero-tagline">живая картотека проверенного жилья в Абхазии</p>
       </div>
       <div class="site-concept__hero-media-column">
