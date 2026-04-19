@@ -380,7 +380,7 @@ def render_prices_html(prices: list[str]) -> str:
     if not visible:
         return ''
     items = '\n'.join(f'            <li><strong>{html.escape(line)}</strong></li>' for line in visible)
-    return f'''      <section class="section hotel-price-section hotel-site-concept__detail-section">\n        <article class="card price-card">\n          <h2>Цены</h2>\n          <ul>\n{items}\n          </ul>\n        </article>\n      </section>'''
+    return f'''      <section class="section hotel-price-section hotel-site-concept__detail-section">\n        <article class="card price-card">\n          <h2 class="price-card__heading">ЦЕНЫ:</h2>\n          <ul>\n{items}\n          </ul>\n        </article>\n      </section>'''
 
 
 def render_reviews_html(seed: int) -> str:

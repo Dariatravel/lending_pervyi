@@ -7,6 +7,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 INDEX_FILE = ROOT / "index.html"
 HOTEL_FILES = sorted((ROOT / "hotels").glob("*/index.html"))
+KVARTIRA_FILES = sorted((ROOT / "kvartira").glob("*/index.html"))
+LISTING_PRICE_FILES = sorted(set(HOTEL_FILES) | set(KVARTIRA_FILES))
 
 
 def strip_tags(text: str) -> str:
@@ -358,6 +360,103 @@ def format_price_line_to_html(text: str) -> str:
     return html.escape(text)
 
 
+def is_seasonal_price_line(plain: str) -> bool:
+    """Сезонные строки «цена — месяц»; остальное — особые условия (доп. место, дети, примечания)."""
+    plain = (plain or "").strip()
+    if not plain:
+        return False
+    if plain.startswith("("):
+        return False
+    low = plain.lower()
+    if re.match(r"^\(?указан", low):
+        return False
+    if _PRICE_TRAILING.match(plain):
+        return False
+    if low.startswith("дети") or low.startswith("доп"):
+        return False
+    m = _PRICE_LEADING.match(plain)
+    if m:
+        tail = m.group(2)
+        return bool(_MONTHS_RE.search(tail) or _MONTHS_RE.search(plain))
+    if re.search(r"\d[\d\s]*\s*/\s*сутки", plain, re.I) and _MONTHS_RE.search(plain):
+        return True
+    if ("₽" in plain or "руб" in low) and _MONTHS_RE.search(plain):
+        return True
+    return False
+
+
+def split_price_card_seasons_notes(section: str) -> str:
+    """Заголовок ЦЕНЫ:; два списка — сезоны и особые условия."""
+    if not section or "price-card" not in section:
+        return section
+    if "price-card__seasons" in section:
+        if "price-card__heading" not in section:
+            section = re.sub(
+                r'<h2[^>]*>\s*Цены\s*</h2>',
+                '<h2 class="price-card__heading">ЦЕНЫ:</h2>',
+                section,
+                count=1,
+                flags=re.I,
+            )
+        return section
+
+    section = re.sub(
+        r'<h2[^>]*>\s*Цены\s*</h2>',
+        '<h2 class="price-card__heading">ЦЕНЫ:</h2>',
+        section,
+        count=1,
+        flags=re.I,
+    )
+    if "price-card__heading" not in section:
+        section = re.sub(
+            r'<h2[^>]*>\s*ЦЕНЫ:?\s*</h2>',
+            '<h2 class="price-card__heading">ЦЕНЫ:</h2>',
+            section,
+            count=1,
+            flags=re.I,
+        )
+
+    ul_match = re.search(r"<ul[^>]*>(.*?)</ul>", section, flags=re.S)
+    if not ul_match:
+        return section
+
+    items = re.findall(r"<li[^>]*>(.*?)</li>", ul_match.group(1), flags=re.S)
+    seasons: list[str] = []
+    notes: list[str] = []
+    for raw_inner in items:
+        inner = raw_inner.strip()
+        if not inner:
+            continue
+        plain = strip_tags(inner).strip()
+        if not plain:
+            continue
+        li_html = f"<li>{inner}</li>"
+        if is_seasonal_price_line(plain):
+            seasons.append(li_html)
+        else:
+            notes.append(li_html)
+
+    seasons_block = (
+        f'<ul class="price-card__seasons">\n{"".join(seasons)}\n</ul>' if seasons else '<ul class="price-card__seasons"></ul>'
+    )
+    notes_block = (
+        f'<ul class="price-card__notes" aria-label="Особые условия">\n{"".join(notes)}\n</ul>' if notes else ""
+    )
+    replacement = seasons_block + ("\n" + notes_block if notes_block else "")
+    return section[: ul_match.start()] + replacement + section[ul_match.end() :]
+
+
+def _append_li_chunks_to_ul(html: str, ul_class: str, chunks: list[str]) -> str:
+    if not chunks:
+        return html
+    pat = rf'(<ul class="{re.escape(ul_class)}"[^>]*>)([\s\S]*?)(</ul>)'
+    m = re.search(pat, html)
+    if not m:
+        return html
+    insert = m.group(2).rstrip() + "\n" + "\n".join(chunks) + "\n"
+    return html[: m.start()] + m.group(1) + insert + m.group(3) + html[m.end() :]
+
+
 def reformat_price_card_content(section: str) -> str:
     """Перестраивает пункты списка и тизер «от …»: цена / месяцы без лишнего strong."""
     if not section or "price-card" not in section:
@@ -395,11 +494,12 @@ def reformat_price_card_content(section: str) -> str:
 
 
 def merge_extra_lines_into_price_section(price_section: str, extra_lines: list[str]) -> str:
-    """Добавляет в <ul> блока цен уникальные строки, извлечённые из описаний."""
+    """Добавляет уникальные строки в список сезонов или особых условий."""
     if not price_section or not extra_lines or "price-card" not in price_section:
         return price_section
     existing = {normalize_for_price_dedup(x) for x in extract_list_items(price_section)}
-    chunks: list[str] = []
+    season_chunks: list[str] = []
+    note_chunks: list[str] = []
     for line in extra_lines:
         plain = clean_text(line)
         if not plain:
@@ -408,13 +508,26 @@ def merge_extra_lines_into_price_section(price_section: str, extra_lines: list[s
         if key in existing:
             continue
         existing.add(key)
-        chunks.append(f"<li>{format_price_line_to_html(plain)}</li>")
-    if not chunks:
-        return price_section
-    pos = price_section.find("</ul>")
-    if pos == -1:
-        return price_section
-    return price_section[:pos] + "".join(chunks) + price_section[pos:]
+        li_html = f"<li>{format_price_line_to_html(plain)}</li>"
+        if is_seasonal_price_line(plain):
+            season_chunks.append(li_html)
+        else:
+            note_chunks.append(li_html)
+    updated = price_section
+    if season_chunks:
+        if "price-card__seasons" in updated:
+            updated = _append_li_chunks_to_ul(updated, "price-card__seasons", season_chunks)
+        else:
+            pos = updated.find("</ul>")
+            if pos != -1:
+                updated = updated[:pos] + "\n" + "\n".join(season_chunks) + updated[pos:]
+    if note_chunks:
+        if "price-card__notes" in updated:
+            updated = _append_li_chunks_to_ul(updated, "price-card__notes", note_chunks)
+        else:
+            block = f'<ul class="price-card__notes" aria-label="Особые условия">\n{"".join(note_chunks)}\n</ul>'
+            updated = re.sub(r"(</article>)", block + r"\n\1", updated, count=1, flags=re.S)
+    return updated
 
 
 def _is_standalone_phone_line(plain: str) -> bool:
@@ -454,7 +567,7 @@ def strip_stray_contacts_from_price_section(section: str) -> str:
 def first_price_highlight(section: str) -> str:
     """Первая строка с ценой для «от …» — из списка или существующего тизера."""
     for raw in extract_list_items(section):
-        if "₽" in raw or "руб" in raw.lower():
+        if "₽" in raw or "руб" in raw.lower() or re.search(r"\d[\d\s]*/\s*сутки", raw, re.I):
             return raw
     m = re.search(
         r'price-card__teaser[^>]*>.*?price-box__label[^>]*>от</span>\s*(.*?)\s*</p>',
@@ -463,7 +576,7 @@ def first_price_highlight(section: str) -> str:
     )
     if m:
         t = strip_tags(m.group(1))
-        if "₽" in t or "руб" in t.lower():
+        if "₽" in t or "руб" in t.lower() or re.search(r"\d[\d\s]*/\s*сутки", t, re.I):
             return clean_text(t)
     return "Уточнить стоимость"
 
@@ -491,18 +604,60 @@ def inject_price_teaser(price_section: str, highlight: str) -> str:
         return price_section
     # Убрать дублирующий первый пункт списка, если совпадает с акцентной строкой
     hi = clean_text(highlight)
-    m = re.search(r"<ul[^>]*>\s*<li>(.*?)</li>", updated, flags=re.S)
+    m = re.search(r'<ul class="price-card__seasons"[^>]*>\s*<li>(.*?)</li>', updated, flags=re.S)
+    if not m:
+        m = re.search(r"<ul[^>]*>\s*<li>(.*?)</li>", updated, flags=re.S)
     if m:
         li_plain = clean_text(m.group(1))
         if li_plain == hi:
-            updated = re.sub(
-                r"<ul([^>]*)>\s*<li>.*?</li>\s*",
-                r"<ul\1>\n",
+            new_u = re.sub(
+                r'(<ul class="price-card__seasons"[^>]*>)\s*<li>.*?</li>\s*',
+                r"\1\n",
                 updated,
                 count=1,
                 flags=re.S,
             )
+            if new_u != updated:
+                updated = new_u
+            else:
+                updated = re.sub(
+                    r"(<ul[^>]*>)\s*<li>.*?</li>\s*",
+                    r"\1\n",
+                    updated,
+                    count=1,
+                    flags=re.S,
+                )
     return updated
+
+
+def upgrade_price_card_article(fragment: str) -> str:
+    """Полный проход по блоку цен (для квартир и ручных правок)."""
+    fragment = reformat_price_card_content(fragment)
+    fragment = strip_stray_contacts_from_price_section(fragment)
+    fragment = split_price_card_seasons_notes(fragment)
+    hi = first_price_highlight(fragment)
+    fragment = inject_price_teaser(fragment, hi)
+    return fragment
+
+
+def patch_all_listing_price_cards() -> None:
+    """Обновляет разметку «Цены» на всех страницах отелей и квартир."""
+    for path in LISTING_PRICE_FILES:
+        text = path.read_text(encoding="utf-8")
+        if 'class="card price-card"' not in text:
+            continue
+
+        def repl(m: re.Match[str]) -> str:
+            return upgrade_price_card_article(m.group(0))
+
+        new_text, n = re.subn(
+            r'(?s)<article class="card price-card">.*?</article>',
+            repl,
+            text,
+            count=1,
+        )
+        if n and new_text != text:
+            path.write_text(clean_html_block(new_text) + "\n", encoding="utf-8")
 
 
 def build_homepage() -> None:
@@ -879,6 +1034,7 @@ def build_hotels() -> None:
         review_cards = extract_reviews(reviews_section)
         price_section = reformat_price_card_content(price_section)
         price_section = strip_stray_contacts_from_price_section(price_section)
+        price_section = split_price_card_seasons_notes(price_section)
         price_section = merge_extra_lines_into_price_section(price_section, extra_price_from_prose)
         price_highlight = first_price_highlight(price_section)
 
@@ -1028,4 +1184,5 @@ def build_hotels() -> None:
 if __name__ == "__main__":
     build_homepage()
     build_hotels()
-    print(f"updated index and {len(HOTEL_FILES)} hotel pages")
+    patch_all_listing_price_cards()
+    print(f"updated index, {len(HOTEL_FILES)} hotel pages, price cards on {len(LISTING_PRICE_FILES)} listings")
