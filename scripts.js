@@ -783,10 +783,24 @@
     const video = document.querySelector(".site-concept__hero-video-player");
     if (!video) return;
 
+    const inlineSrc = (video.getAttribute("src") || "").trim();
     const rawHigh = video.dataset.highSrc || "";
     const rawLow = video.dataset.lowSrc || "";
-    const highSrc = rawHigh ? absolutizeKvartiraCoverUrl(rawHigh) || rawHigh : "";
-    const lowSrc = rawLow ? absolutizeKvartiraCoverUrl(rawLow) || rawLow : "";
+    let highSrc = rawHigh ? absolutizeKvartiraCoverUrl(rawHigh) || rawHigh : "";
+    let lowSrc = rawLow ? absolutizeKvartiraCoverUrl(rawLow) || rawLow : "";
+
+    // На GitHub Pages файлы под /media/videos/*.mp4 часто — текстовые Git LFS pointer, не MP4.
+    const isNonHttpMediaVideoPath = (url) =>
+      typeof url === "string" && url.startsWith("/media/videos/");
+    if (isNonHttpMediaVideoPath(highSrc) && inlineSrc.startsWith("https://")) {
+      highSrc = inlineSrc;
+    }
+    if (isNonHttpMediaVideoPath(lowSrc) && inlineSrc.startsWith("https://")) {
+      lowSrc = inlineSrc.includes("vertical-high")
+        ? inlineSrc.replace("vertical-high", "vertical-low")
+        : inlineSrc;
+    }
+
     if (!highSrc && !lowSrc) return;
 
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
