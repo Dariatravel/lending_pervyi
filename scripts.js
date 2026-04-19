@@ -349,8 +349,17 @@
 
   function extractDistanceFromSummary(text) {
     const cleaned = String(text || "").replace(/\s+/g, " ").trim();
-    const match = cleaned.match(/(\d+\s*(?:-|–)?\s*\d*\s*мин(?:ут[аы]?|\.?)\s*(?:пешком\s*)?(?:до\s*)?пляжа)/i);
-    return match ? match[1].replace(/\s+/g, " ").trim() : "";
+    let match = cleaned.match(
+      /(\d+\s*(?:-|–)?\s*\d*\s*мин(?:ут[аы]?|\.?)\s*(?:пешком\s*)?(?:до\s*)?пляжа)/i
+    );
+    if (match) return match[1].replace(/\s+/g, " ").trim();
+    match = cleaned.match(/пляжа\s+в\s+(\d+\s*(?:-|–)?\s*\d*\s*мин(?:ут[аы]?|\.?)(?:\s*пешком)?)/i);
+    if (match) return `${match[1].replace(/\s+/g, " ").trim()} до пляжа`;
+    match = cleaned.match(/(\d+\s*(?:-|–)?\s*\d*\s*мин(?:ут[аы]?|\.?))\s+пешком\s+до\s+пляжа/i);
+    if (match) return `${match[1].replace(/\s+/g, " ").trim()} до пляжа`;
+    match = cleaned.match(/до\s+пляжа\s+(\d+\s*(?:-|–)?\s*\d*\s*мин(?:ут[аы]?|\.?))/i);
+    if (match) return `${match[1].replace(/\s+/g, " ").trim()} до пляжа`;
+    return "";
   }
 
   function extractCapacityFromSummary(text) {
@@ -368,6 +377,64 @@
     const distance = extractDistanceFromSummary(source) || DISTANCE_BY_FILTER[firstValue(filters.distance)] || "до пляжа";
     const capacity = extractCapacityFromSummary(source) || "размещение уточняйте";
     return `${city}. ${distance}, ${capacity}.`;
+  }
+
+  /** Короткие строки 📍 / 🏖 как у карточек отелей на главной (не абзацы из excerpt). */
+  function extractKvartiraPinLine(text) {
+    const t = String(text || "").trim();
+    if (!t.includes("📍")) return "";
+    const idx = t.indexOf("📍");
+    let slice = t.slice(idx);
+    const beachIdx = slice.search(/🏖|🏝/);
+    if (beachIdx !== -1) slice = slice.slice(0, beachIdx).trim();
+    slice = slice.replace(/\s+/g, " ").trim();
+    if (slice.length > 130) slice = `${slice.slice(0, 127).trim()}…`;
+    return slice;
+  }
+
+  function extractKvartiraBeachLine(text, filters) {
+    const t = String(text || "").trim();
+    const idx = t.search(/🏖|🏝/);
+    if (idx !== -1) {
+      let slice = t.slice(idx);
+      slice = slice.split(/\s*✔️/)[0].trim();
+      slice = slice.replace(/\s+/g, " ");
+      if (slice.length > 130) slice = `${slice.slice(0, 127).trim()}…`;
+      return slice;
+    }
+    const dist =
+      extractDistanceFromSummary(t) || DISTANCE_BY_FILTER[firstValue(filters?.distance || {})] || "";
+    if (dist) return `🏖 ${dist}`;
+    return "";
+  }
+
+  function clampKvartiraCardDescription(text) {
+    let t = String(text || "").replace(/\s+/g, " ").trim();
+    if (!t) return "";
+    t = t.replace(/^✔️[^:]*:\s*/i, "");
+    const sentence = t.match(/^(.{12,118}?[.!?])(\s|$)/);
+    if (sentence) return sentence[1].trim();
+    if (t.length <= 118) return t;
+    const cut = t.slice(0, 115);
+    const sp = cut.lastIndexOf(" ");
+    return `${sp > 35 ? cut.slice(0, sp) : cut}…`;
+  }
+
+  function formatKvartiraCardSummary(row) {
+    const source = row?.summary || row?.excerpt || row?.details?.lead || "";
+    const filters = row?.details?.filters || {};
+    let line1 = extractKvartiraPinLine(source);
+    if (!line1) {
+      const fromFilter = CITY_LABELS[firstValue(filters.city)];
+      const fromLead = source.length < 120 ? extractCityFromSummary(source) : "";
+      const city = fromFilter || fromLead;
+      if (city) line1 = `📍${city}.`;
+    }
+    const line2 = extractKvartiraBeachLine(source, filters);
+    if (line1 && line2) return `${line1}\n${line2}`;
+    if (line1) return line1;
+    if (line2) return line2;
+    return clampKvartiraCardDescription(source);
   }
 
   function renderHotelCards(rows, grid) {
@@ -421,7 +488,9 @@
 
       card.appendChild(mediaWrap);
       card.appendChild(createTextNode("h3", row.title || ""));
-      card.appendChild(createTextNode("p", row.summary || row.excerpt || row.details?.excerpt || ""));
+      const desc = document.createElement("p");
+      replaceWithLines(desc, formatKvartiraCardSummary(row));
+      card.appendChild(desc);
       fragment.appendChild(card);
     });
 
