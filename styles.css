@@ -844,6 +844,13 @@
   text-wrap: pretty;
 }
 
+/* Капс-заголовки внутри описания объекта (например "✔️ДОМИКИ:") */
+.hotel-site-concept .paragraph-blocks p.paragraph-blocks__caps {
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
 .site-concept__section-head {
   display: flex;
   justify-content: space-between;
