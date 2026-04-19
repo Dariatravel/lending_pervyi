@@ -1178,18 +1178,8 @@
 }
 
 .site-concept__guide-subtitle--short {
-  display: none;
+  display: block;
   margin-top: 12px;
-}
-
-@media (max-width: 620px) {
-  .site-concept__guide-subtitle--full {
-    display: none;
-  }
-
-  .site-concept__guide-subtitle--short {
-    display: block;
-  }
 }
 
 .site-concept__guide-footer {
