@@ -3423,6 +3423,51 @@ html {
   overflow-x: hidden;
 }
 
+/* Фиксированная кнопка «Наверх» (якорь #top на <html>) */
+.back-to-top {
+  position: fixed;
+  right: clamp(12px, 2.4vw, 22px);
+  bottom: clamp(12px, 2.4vw, 22px);
+  z-index: 9999;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(20, 32, 26, 0.12);
+  box-shadow: 0 8px 24px rgba(18, 31, 25, 0.14);
+  color: #1f4a3b;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.back-to-top:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(18, 31, 25, 0.18);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid #1f4a3b;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: none;
+  }
+}
+
+@media print {
+  .back-to-top {
+    display: none;
+  }
+}
+
 body {
   margin: 0;
   color: var(--ink);
