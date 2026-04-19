@@ -677,6 +677,33 @@
   opacity: 0.88;
 }
 
+/* Три плашки Telegram / VK / MAX в отдельной секции, в ряд на широких экранах */
+.site-concept__social-stats--strip {
+  grid-area: unset;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: min(920px, 100%);
+  grid-template-columns: 1fr;
+  gap: clamp(12px, 2vw, 22px);
+}
+
+@media (min-width: 700px) {
+  .site-concept__social-stats--strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.site-concept__social-strip .site-concept__social-stat {
+  padding: 32px 12px 14px;
+  margin-top: 18px;
+}
+
+.site-concept__social-strip .site-concept__social-stat-icon {
+  width: 44px;
+  height: 44px;
+}
+
 .site-concept__hero-highlights {
   grid-area: highlights;
   grid-template-columns: 1fr;
@@ -1184,20 +1211,14 @@
 
 .site-concept__contacts .contact-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(min(240px, 100%), 320px);
-  gap: clamp(12px, 2vw, 22px);
+  grid-template-columns: 1fr;
+  gap: clamp(12px, 2vw, 18px);
   align-items: start;
 }
 
 .site-concept__contacts .contact-buttons {
-  margin-top: 8px;
+  margin-top: 4px;
   gap: 8px;
-}
-
-@media (min-width: 1161px) {
-  .site-concept__contacts .contact-buttons {
-    margin-top: -10px;
-  }
 }
 
 /* Компактнее блок «Контакты» на главной: меньше паддинги секции и карточек соцсетей */
@@ -1221,40 +1242,6 @@ section.site-concept__contacts.section {
   margin-bottom: 0;
   font-size: clamp(14px, 1.2vw, 15px);
   line-height: 1.45;
-}
-
-/* Карточки мессенджеров в блоке контактов — сброс grid-area из героя */
-.contact-social-stats {
-  grid-area: unset;
-  margin-top: 8px;
-  margin-bottom: 4px;
-}
-
-.site-concept__contacts .contact-social-stats {
-  margin-top: 0;
-  margin-bottom: 0;
-  gap: 8px;
-}
-
-.site-concept__contacts .site-concept__social-stat {
-  padding: 26px 10px 10px;
-  margin-top: 16px;
-  gap: 4px;
-  border-radius: 14px;
-  box-shadow: 0 8px 18px rgba(18, 31, 25, 0.07);
-}
-
-.site-concept__contacts .site-concept__social-stat-icon {
-  width: 38px;
-  height: 38px;
-}
-
-.site-concept__contacts .site-concept__social-stat strong {
-  font-size: clamp(1.05rem, 2vw, 1.4rem);
-}
-
-.site-concept__contacts .site-concept__social-stat-label {
-  font-size: 12px;
 }
 
 .site-concept__contacts .contact-buttons .btn-book {
