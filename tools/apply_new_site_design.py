@@ -89,6 +89,32 @@ def truncate_meta_description(text: str, max_len: int = 158) -> str:
     return cut + "…"
 
 
+def _merge_lead_and_description_for_meta(lead: str, description: str) -> str:
+    """Склеивает лид и описание для meta без повторения предложений, уже входящих в лид."""
+    a = (lead or "").strip()
+    b = (description or "").strip()
+    if not b:
+        return a
+    if not a:
+        return b
+    a_low = a.lower()
+    extra: list[str] = []
+    for sentence in split_sentences(b):
+        s = sentence.strip()
+        if not s:
+            continue
+        s_key = s.lower().rstrip(".")
+        if len(s_key) >= 12 and s_key in a_low:
+            continue
+        extra.append(s)
+    if not extra:
+        return a
+    tail = " ".join(extra)
+    if a[-1:] in ".!?":
+        return f"{a} {tail}".strip()
+    return f"{a}. {tail}".strip()
+
+
 def build_listing_meta_description(lead_text: str, description: str) -> str:
     """Краткое описание для meta/og без эмодзи и служебных ярлыков (аргументы уже проходят sanitize)."""
     a = (lead_text or "").strip()
@@ -99,10 +125,12 @@ def build_listing_meta_description(lead_text: str, description: str) -> str:
         elif len(a) >= 24 and a.lower() in b.lower()[: min(len(b), 200)]:
             merged = b
         else:
-            merged = f"{a} {b}"
+            merged = _merge_lead_and_description_for_meta(a, b)
     else:
         merged = a or b
-    return truncate_meta_description(sanitize_listing_card_intro_text(merged))
+    return truncate_meta_description(
+        strip_gps_coordinate_clause(sanitize_listing_card_intro_text(merged))
+    )
 
 
 def patch_listing_head_meta_descriptions(page_html: str, meta_text: str) -> str:
@@ -127,6 +155,33 @@ def patch_listing_head_meta_descriptions(page_html: str, meta_text: str) -> str:
         flags=re.I,
     )
     return out
+
+
+_GPS_COORD_CLAUSE_RE = re.compile(
+    r"\s*[.;]?\s*Координаты\s*:?\s*\d[\d.\s]*\s*,\s*\d[\d.\s]*",
+    re.IGNORECASE,
+)
+
+
+def strip_gps_coordinate_clause(text: str) -> str:
+    """Убирает из строки карточки фрагмент «Координаты: …, …» (часто дублируется в лиде, prose и benefits)."""
+    if not text:
+        return text
+    t = _GPS_COORD_CLAUSE_RE.sub("", text)
+    t = re.sub(r"\s{2,}", " ", t).strip(" ,.;•")
+    t = re.sub(r"\s+\.", ".", t)
+    return t
+
+
+def _is_coordinates_noise_sentence(text: str) -> bool:
+    """Предложение только про координаты / пару градусов — не для «Важно для гостя» и не как отдельный абзац."""
+    plain = clean_text(text).strip()
+    if not plain:
+        return False
+    low = plain.lower()
+    if "координат" in low:
+        return True
+    return bool(re.search(r"\d{1,2}\.\d{4,}\s*,\s*\d{1,2}\.\d{4,}", plain))
 
 
 def sanitize_listing_card_intro_text(text: str) -> str:
@@ -185,7 +240,7 @@ def should_show_location_under_title(lead: str, description: str) -> bool:
 
 def description_to_prose_html(raw: str) -> str:
     """Несколько <p> для читаемости на мобильных; без смены семейств шрифтов."""
-    plain = sanitize_listing_card_intro_text(raw)
+    plain = strip_gps_coordinate_clause(sanitize_listing_card_intro_text(raw))
     if not plain:
         return ""
     parts = [p.strip() for p in re.split(r"\n+", plain) if p.strip()]
@@ -197,6 +252,9 @@ def description_to_prose_html(raw: str) -> str:
         ]
     if not parts:
         parts = [plain]
+    parts = [p for p in parts if not _is_coordinates_noise_sentence(p)]
+    if not parts:
+        return ""
     inner = "".join(f"<p>{html.escape(p)}</p>" for p in parts)
     return f'<div class="hotel-card__prose">{inner}</div>'
 
@@ -567,6 +625,9 @@ def normalize_benefit_text(text: str) -> str:
         value = value[:1].upper() + value[1:]
     value = re.sub(r"\.\s*\.", ".", value)
     value = re.sub(r"\s{2,}", " ", value).strip()
+    value = strip_gps_coordinate_clause(value).strip()
+    if not value or _is_coordinates_noise_sentence(value):
+        return ""
     if value[-1] not in ".!?":
         value += "."
     return value
@@ -607,6 +668,8 @@ def _is_promise_candidate(text: str) -> bool:
 
 
 def _is_practical_candidate(text: str) -> bool:
+    if _is_coordinates_noise_sentence(text):
+        return False
     low = text.lower()
     return any(hint in low for hint in PRACTICAL_HINTS) or bool(re.search(r"\b\d+\b", low))
 
@@ -1805,6 +1868,7 @@ def build_listing_pages() -> None:
         if lead_text_clean:
             lead_text = lead_text_clean
         lead_text = sanitize_listing_card_intro_text(lead_text)
+        lead_text = strip_gps_coordinate_clause(lead_text)
         lead_lines = [clean_text(part) for part in re.split(r"[•\n]", lead_text) if clean_text(part)]
 
         extra_price_from_prose: list[str] = []
@@ -1838,7 +1902,7 @@ def build_listing_pages() -> None:
                 if paragraph and paragraph not in description_parts:
                     description_parts.append(paragraph)
         description = " ".join(description_parts[:2]) if description_parts else (remove_price_clauses(lead_text) or lead_text)
-        description = sanitize_listing_card_intro_text(description)
+        description = strip_gps_coordinate_clause(sanitize_listing_card_intro_text(description))
 
         why_choose_items, important_items = build_listing_benefits(section_paragraph_groups, lead_lines)
         if not important_items and lead_lines:

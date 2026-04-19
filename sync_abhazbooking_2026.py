@@ -408,7 +408,10 @@ def parse_post(raw_text: str):
         if simple in {"✔", "✔️", ":", "‼", "‼️"}:
             continue
         stripped_for_label = _strip_leading_section_markers(line)
-        is_label = bool(re.match(r"^[A-ZА-ЯЁ0-9 /\"'()-]{3,50}:?$", stripped_for_label))
+        # Строчные буквы в скобках («ЦЕНЫ (при …):») — тоже заголовок секции
+        is_label = bool(
+            re.match(r"^[A-Za-zА-Яа-яЁё0-9 /\"'()-]{3,80}:?$", stripped_for_label)
+        )
         if is_label:
             flush_section()
             current_label = stripped_for_label.rstrip(":")

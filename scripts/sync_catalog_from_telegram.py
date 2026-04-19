@@ -337,11 +337,25 @@ def first_meaningful_line(lines: Iterable[str]) -> str:
     return ''
 
 
+_EXCERPT_GPS_RE = re.compile(
+    r"\s*[.;]?\s*Координаты\s*:?\s*\d[\d.\s]*\s*,\s*\d[\d.\s]*",
+    re.I,
+)
+
+
+def _strip_excerpt_gps_clause(text: str) -> str:
+    """Убирает «Координаты: …» из первой строки описания (не дублировать в лиде карточки)."""
+    if not text:
+        return text
+    t = _EXCERPT_GPS_RE.sub("", text)
+    return re.sub(r"\s{2,}", " ", t).strip(" ,.;")
+
+
 def build_excerpt(parsed: dict[str, Any]) -> str:
     for section in parsed.get('sections', []):
         line = first_meaningful_line(section.get('lines', []))
         if line:
-            return line
+            return _strip_excerpt_gps_clause(line)
     return summary_text(parsed.get('location', ''), parsed.get('beach', ''), parsed.get('capacity', ''))
 
 
