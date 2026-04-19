@@ -1214,7 +1214,7 @@
   margin-top: clamp(20px, 3vw, 32px);
   display: grid;
   gap: 12px;
-  max-width: min(40rem, 100%);
+  max-width: min(56rem, 100%);
 }
 
 .site-concept__guide-pitch {
@@ -1242,7 +1242,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  width: min(100%, 32rem);
+  width: min(100%, 56rem);
 }
 
 .site-concept__guide-messenger-btn {
@@ -1255,6 +1255,7 @@
   text-align: center;
   text-transform: uppercase;
   hyphens: none;
+  white-space: nowrap;
 }
 
 .site-concept__guide-cta-btn {
