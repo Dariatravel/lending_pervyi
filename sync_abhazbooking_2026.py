@@ -480,6 +480,15 @@ def should_drop_line(line: str) -> bool:
         return True
     if re.search(r"\+7[-\s]?\d", line):
         return True
+    low = line.casefold()
+    if "весь каталог квартир" in low:
+        return True
+    if "каталог квартир" in low and "смотреть" in low:
+        return True
+    if "весь каталог жилья" in low:
+        return True
+    if "каталог жилья" in low and ("t.me" in low or "telegram" in low or "abhazbooking" in low):
+        return True
     return False
 
 

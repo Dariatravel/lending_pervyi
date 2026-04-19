@@ -295,6 +295,7 @@ def description_to_prose_html(raw: str) -> str:
     if not parts:
         parts = [plain]
     parts = [p for p in parts if not _is_coordinates_noise_sentence(p)]
+    parts = [p for p in parts if not is_cross_catalog_spam_plain(p)]
     if not parts:
         return ""
     inner = "".join(f"<p>{html.escape(p)}</p>" for p in parts)
@@ -626,10 +627,47 @@ def _is_benefit_heading(text: str) -> bool:
     return bool(re.fullmatch(r"[А-ЯЁA-Z0-9\s\-]{2,24}", value)) and len(value.split()) <= 3
 
 
+def is_cross_catalog_spam_plain(plain: str) -> bool:
+    """Рекламные вставки из канала («весь каталог квартир смотреть тут» и т.п.)."""
+    t = clean_text(plain).casefold()
+    if not t:
+        return False
+    if "весь каталог квартир" in t:
+        return True
+    if "каталог квартир" in t and "смотреть" in t:
+        return True
+    if "весь каталог жилья" in t:
+        return True
+    if "каталог жилья" in t and ("t.me" in t or "telegram" in t or "abhazbooking" in t):
+        return True
+    return False
+
+
+def strip_cross_catalog_spam_from_markup(fragment: str) -> str:
+    """Удаляет <li>/<p>, если текст — перекрёстная реклама каталога квартир/жилья."""
+
+    def drop_li(m: re.Match[str]) -> str:
+        body = m.group(2) or ""
+        if is_cross_catalog_spam_plain(strip_tags(body)):
+            return ""
+        return m.group(0)
+
+    def drop_p(m: re.Match[str]) -> str:
+        body = m.group(2) or ""
+        if is_cross_catalog_spam_plain(strip_tags(body)):
+            return ""
+        return m.group(0)
+
+    out = re.sub(r"<li(\s[^>]*)?>(.*?)</li>", drop_li, fragment, flags=re.I | re.S)
+    return _P_ANY_RE.sub(drop_p, out)
+
+
 def normalize_benefit_text(text: str) -> str:
     value = remove_price_clauses(text)
     value = clean_text(value)
     if not value:
+        return ""
+    if is_cross_catalog_spam_plain(value):
         return ""
     value = re.sub(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", "", value)
     value = value.replace("\ufe0f", "").replace("\u200d", "")
@@ -1928,6 +1966,7 @@ def build_listing_pages() -> None:
             content_sections_cleaned.append(cleaned)
         content_sections = merge_legacy_detail_sections(content_sections_cleaned)
         content_sections = [strip_caps_label_paragraphs(s) for s in content_sections]
+        content_sections = [strip_cross_catalog_spam_from_markup(s) for s in content_sections]
 
         all_images = extract_images(media_section)
         main_image = all_images[0] if all_images else ("", title)
@@ -1964,6 +2003,7 @@ def build_listing_pages() -> None:
         price_section = split_price_card_seasons_notes(price_section)
         price_section = merge_extra_lines_into_price_section(price_section, extra_price_from_prose)
         price_section = cleanup_misplaced_prose_in_price_section(price_section)
+        price_section = strip_cross_catalog_spam_from_markup(price_section)
         price_highlight = first_price_highlight(price_section)
 
         gallery_html = ""
