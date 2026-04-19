@@ -1002,6 +1002,10 @@
     const grid = document.getElementById("kvartira-catalog-grid");
     if (!grid) return;
 
+    // Как и с основным каталогом: если карточки уже отрисованы статикой,
+    // не перезатираем DOM данными из Supabase (иначе виден "мигающий" откат верстки/текста).
+    if (grid.querySelector(".catalog-card")) return;
+
     try {
       const rows = (await fetchListings({ sourceKind: "kvartira" })).filter(
         (row) => row.slug && !KVARTIRA_EXCLUDED_SLUGS.has(row.slug)
