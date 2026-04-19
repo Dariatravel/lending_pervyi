@@ -1199,7 +1199,8 @@
 
 .site-concept__guide-subtitle--short {
   display: block;
-  margin-top: 12px;
+  /* Визуальный зазор под длинным h2 «Как бронировать» без смены типографики */
+  margin-top: clamp(20px, 2.8vw, 32px);
 }
 
 .site-concept__guide-footer {
