@@ -1160,6 +1160,69 @@
   font-size: 18px;
 }
 
+.site-concept__guide-subtitle {
+  margin: 12px 0 0;
+  max-width: 40rem;
+  color: var(--muted);
+  font-size: clamp(15px, 1.35vw, 17px);
+  line-height: 1.55;
+  font-weight: 600;
+}
+
+.site-concept__guide-card--accent {
+  background: linear-gradient(160deg, rgba(41, 74, 61, 0.1) 0%, rgba(255, 255, 255, 0.88) 48%, rgba(255, 255, 255, 0.72) 100%);
+  border: 1px solid rgba(41, 74, 61, 0.28);
+  box-shadow: 0 14px 36px rgba(18, 31, 25, 0.1);
+}
+
+.site-concept__guide-card--accent span {
+  background: #1e4d3f;
+  box-shadow: 0 4px 14px rgba(30, 77, 63, 0.35);
+}
+
+.site-concept__guide-footer {
+  margin-top: clamp(20px, 3vw, 32px);
+  display: grid;
+  gap: 12px;
+  max-width: min(40rem, 100%);
+}
+
+.site-concept__guide-pitch {
+  margin: 0;
+  font-size: clamp(16px, 1.45vw, 18px);
+  line-height: 1.55;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.site-concept__guide-pitch--muted {
+  font-size: clamp(14px, 1.2vw, 15px);
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.site-concept__guide-cta {
+  margin-top: 8px;
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+
+.site-concept__guide-cta-btn {
+  min-height: 52px;
+  padding: 0.55rem 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.site-concept__guide-cta-caption {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+  font-weight: 600;
+}
+
 .site-concept__guide-card--link {
   color: inherit;
   text-decoration: none;
