@@ -392,7 +392,7 @@ _PRICE_TRAILING = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 _MONTHS_RE = re.compile(
-    r"(январь|февраль|март|апрель|май|июнь|июль|август|сентябрь|октябрь|ноябрь|декабрь)",
+    r"(январ[ьяе]?|феврал[ьяе]?|март[ае]?|апрел[ьяе]?|ма[йяе]|июн[ьяе]?|июл[ьяе]?|август[ае]?|сентябр[ьяе]?|октябр[ьяе]?|ноябр[ьяе]?|декабр[ьяе]?)",
     re.IGNORECASE,
 )
 
@@ -463,12 +463,18 @@ def is_seasonal_price_line(plain: str) -> bool:
     if plain.startswith("("):
         return False
     low = plain.lower()
+    # Промо/служебные подписи не являются сезонными ярлыками.
+    if any(token in low for token in ("акция", "подар", "забронируй", "скидк")):
+        return False
     if re.match(r"^\(?указан", low):
         return False
     if _PRICE_TRAILING.match(plain):
         return False
     if low.startswith("дети") or low.startswith("доп"):
         return False
+    # Отдельные ярлыки месяцев/сезона (без цены) должны идти в price-card__seasons.
+    if _MONTHS_RE.search(plain):
+        return True
     m = _PRICE_LEADING.match(plain)
     if m:
         tail = m.group(2)
