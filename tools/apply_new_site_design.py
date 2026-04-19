@@ -42,6 +42,48 @@ HOME_SOCIAL_STATS_STRIP = """  <section class="section site-concept__social-stri
     </div>
   </section>"""
 
+LISTING_PAGE_GUIDE_SECTION = """  <section class="site-concept__section-block" id="guide">
+    <div class="site-concept__section-head">
+      <div>
+        <p class="site-concept__eyebrow">Как бронировать</p>
+        <h2>Как найти жильё в Абхазии без утомительного поиска</h2>
+        <p class="site-concept__guide-subtitle site-concept__guide-subtitle--short">Искать самой или написать мне — я помогу подобрать вариант под ваш запрос.</p>
+      </div>
+    </div>
+
+    <div class="site-concept__guide-grid">
+      <article class="site-concept__guide-card">
+        <span>01</span>
+        <strong>Говорите, что вам нужно</strong>
+        <p>Курорт, даты, сколько человек, какой бюджет и что важно именно вам.</p>
+      </article>
+      <article class="site-concept__guide-card site-concept__guide-card--accent">
+        <span>02</span>
+        <strong>Я подбираю подходящие варианты</strong>
+        <p>Не всё подряд, а только то, что правда стоит смотреть под ваш запрос.</p>
+      </article>
+      <article class="site-concept__guide-card site-concept__guide-card--accent">
+        <span>03</span>
+        <strong>Обсуждаем в удобном формате</strong>
+        <p>Можно в мессенджере — спокойно задать вопросы и быстро сузить выбор.</p>
+      </article>
+      <article class="site-concept__guide-card">
+        <span>04</span>
+        <strong>Фиксируем бронь</strong>
+        <p>Когда вариант подходит, помогаю оформить бронирование и всё подтвердить.</p>
+      </article>
+    </div>
+
+    <div class="site-concept__guide-footer">
+      <p class="site-concept__guide-pitch">Самостоятельный поиск жилья — это десятки сайтов и переписок, где теряется время.</p>
+      <p class="site-concept__guide-pitch">Напишите, что вам нужно — я предложу подходящие варианты; если не подойдёт, продолжите искать сами.</p>
+      <div class="site-concept__guide-cta">
+        <a class="btn-book site-concept__guide-cta-btn" href="#contacts">Написать мне</a>
+        <p class="site-concept__guide-cta-caption">Отвечу, помогу сориентироваться и предложу варианты под ваш запрос</p>
+      </div>
+    </div>
+  </section>"""
+
 
 def listing_catalog_markup(path: Path) -> tuple[str, str, str]:
     """Eyebrow link HTML (for inside <p class=\"eyebrow\">), save-button href, save-button label."""
@@ -1811,6 +1853,13 @@ def build_homepage() -> None:
 
 
 def build_listing_pages() -> None:
+    index_src = INDEX_FILE.read_text(encoding="utf-8")
+    listing_contacts_section = add_class_to_tag(
+        extract_index_section(index_src, "contacts"),
+        "section",
+        "site-concept__contacts",
+    )
+
     for path in LISTING_PRICE_FILES:
         text = path.read_text(encoding="utf-8")
 
@@ -1823,7 +1872,6 @@ def build_listing_pages() -> None:
         price_section = ""
         reviews_section = ""
         faq_section = ""
-        contacts_section = ""
         content_sections: list[str] = []
 
         for section in section_matches:
@@ -1836,7 +1884,7 @@ def build_listing_pages() -> None:
             elif "faq-card" in section:
                 faq_section = section
             elif "cta-block" in section:
-                contacts_section = section
+                continue
             else:
                 content_sections.append(section)
 
@@ -1972,16 +2020,9 @@ def build_listing_pages() -> None:
 
         details_main = "".join(add_class_to_tag(section, "section", "hotel-site-concept__detail-section") for section in ([media_section] + content_sections if media_section else content_sections))
         price_section_ready = inject_price_teaser(price_section, price_highlight)
-        if contacts_section and 'id="contacts"' not in contacts_section:
-            contacts_section = re.sub(
-                r"<section\b",
-                '<section id="contacts"',
-                contacts_section,
-                count=1,
-            )
         details_aside = "".join(
             add_class_to_tag(section, "section", "hotel-site-concept__detail-section")
-            for section in [price_section_ready, faq_section, contacts_section]
+            for section in [price_section_ready, faq_section]
             if section
         )
 
@@ -2064,6 +2105,12 @@ def build_listing_pages() -> None:
       {details_aside}
     </aside>
   </div>
+
+  {LISTING_PAGE_GUIDE_SECTION}
+
+  {HOME_SOCIAL_STATS_STRIP}
+
+  {listing_contacts_section}
 </main>"""
 
         rebuilt = replace_main(text, new_main)

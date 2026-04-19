@@ -72,7 +72,10 @@
 .site-concept .section,
 .hotel-site-concept__card,
 .hotel-site-concept__detail-section,
-.hotel-site-concept__intro {
+.hotel-site-concept__intro,
+.hotel-site-concept > .site-concept__section-block,
+.hotel-site-concept > .section.site-concept__contacts,
+.hotel-site-concept > .section.site-concept__social-strip {
   position: relative;
   z-index: 1;
   background: rgba(255, 255, 255, 0.74);
@@ -260,7 +263,10 @@
 .site-concept__section-block,
 .site-concept .section,
 .hotel-site-concept__intro,
-.hotel-site-concept__detail-section {
+.hotel-site-concept__detail-section,
+.hotel-site-concept > .site-concept__section-block,
+.hotel-site-concept > .section.site-concept__contacts,
+.hotel-site-concept > .section.site-concept__social-strip {
   border-radius: clamp(18px, 2vw, 32px);
   padding: clamp(12px, 2vw, 28px);
 }
@@ -548,7 +554,8 @@
   text-underline-offset: 0.2em;
 }
 
-.hotel-site-concept #contacts {
+.hotel-site-concept #contacts,
+.hotel-site-concept #guide {
   scroll-margin-top: clamp(72px, 12vw, 120px);
 }
 
