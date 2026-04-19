@@ -973,8 +973,66 @@
     }
   });
 
+  function shuffleInPlace(arr) {
+    for (let i = arr.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function createGuestReviewItem(review) {
+    const wrap = document.createElement("div");
+    wrap.className = "review-item";
+    const head = document.createElement("p");
+    head.className = "review-head";
+    head.textContent = review.head || "";
+    const text = document.createElement("p");
+    text.className = "review-text";
+    text.textContent = review.text || "";
+    wrap.append(head, text);
+    return wrap;
+  }
+
+  let guestReviewsPromise = null;
+  function loadGuestReviewsJson() {
+    if (!guestReviewsPromise) {
+      guestReviewsPromise = fetch("/data/guest-reviews.json")
+        .then((res) => {
+          if (!res.ok) throw new Error(`guest-reviews ${res.status}`);
+          return res.json();
+        })
+        .then((data) => (Array.isArray(data) ? data : []));
+    }
+    return guestReviewsPromise;
+  }
+
+  async function initRandomGuestReviews() {
+    const nodes = document.querySelectorAll("[data-random-reviews]");
+    if (!nodes.length) return;
+    let list;
+    try {
+      list = await loadGuestReviewsJson();
+    } catch (error) {
+      console.warn("Не удалось загрузить отзывы гостей", error);
+      return;
+    }
+    if (!list.length) return;
+    for (const el of nodes) {
+      const raw = el.getAttribute("data-review-count") || "4";
+      let n = parseInt(raw, 10);
+      if (!Number.isFinite(n) || n < 1) n = 4;
+      n = Math.min(n, list.length);
+      const copy = list.slice();
+      shuffleInPlace(copy);
+      const picked = copy.slice(0, n);
+      el.replaceChildren(...picked.map(createGuestReviewItem));
+    }
+  }
+
   initHeroVideoQuality();
   absolutizeHotelSiteConceptMedia();
+  void initRandomGuestReviews();
 
   const filtersController = initFilters();
   initSearchBar(filtersController);

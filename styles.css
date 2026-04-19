@@ -1564,6 +1564,15 @@ section.site-concept__contacts.section {
   line-height: 1.75;
 }
 
+.hotel-site-concept .hotel-card__guest-reviews {
+  margin-top: 18px;
+  margin-bottom: 6px;
+}
+
+.hotel-site-concept .hotel-card__guest-reviews .eyebrow {
+  margin: 0 0 10px;
+}
+
 .hotel-site-concept .price-box {
   display: grid;
   gap: 4px;

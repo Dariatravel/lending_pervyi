@@ -10,6 +10,12 @@ HOTEL_FILES = sorted((ROOT / "hotels").glob("*/index.html"))
 KVARTIRA_FILES = sorted((ROOT / "kvartira").glob("*/index.html"))
 LISTING_PRICE_FILES = sorted(set(HOTEL_FILES) | set(KVARTIRA_FILES))
 
+LISTING_GUEST_REVIEWS_BLOCK = """      <section class="hotel-card__guest-reviews" aria-label="Отзывы гостей">
+        <p class="eyebrow">Отзывы гостей</p>
+        <div class="reviews-scroller" data-random-reviews="" data-review-count="4" aria-label="Лента отзывов"></div>
+      </section>
+"""
+
 HOME_SOCIAL_STATS_STRIP = """  <section class="section site-concept__social-strip" aria-label="Наши сообщества в соцсетях">
     <div class="site-concept__social-stats site-concept__social-stats--strip" role="list">
       <a aria-label="Telegram: 13 900 подписчиков, открыть канал" class="site-concept__social-stat" href="https://t.me/abhazbooking" rel="noopener noreferrer" role="listitem" target="_blank">
@@ -1335,14 +1341,16 @@ def build_listing_pages() -> None:
         </article>
       </div>
 
+      {LISTING_GUEST_REVIEWS_BLOCK}
+
+      {reviews_panel}
+
       <div class="hotel-card__footer">
         <div class="hotel-card__actions">
           <a class="button button--ghost" href="#contacts">Что-то нужно уточнить?</a>
           <a class="button button--accent" href="#contacts">Написать мне</a>
         </div>
       </div>
-
-      {reviews_panel}
     </div>
   </article>
 
