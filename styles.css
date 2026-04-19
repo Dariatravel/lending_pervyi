@@ -878,6 +878,15 @@
   }
 }
 
+/* «Как бронировать»: визуальный зазор между длинным h2 и капс-строкой под ним */
+#guide .site-concept__section-head h2 {
+  margin-bottom: clamp(22px, 3.4vw, 42px);
+}
+
+#guide .site-concept__section-head h2 + .site-concept__guide-subtitle {
+  margin-top: 0;
+}
+
 .site-concept__section-head a:not(.site-concept__eyebrow-link) {
   color: #294a3d;
   font-weight: 800;
