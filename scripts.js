@@ -215,6 +215,11 @@
       const abs = absolutizeKvartiraCoverUrl(n);
       if (abs && !urls.includes(abs)) urls.push(abs);
     };
+    /* Главное фото страницы объекта — то же, что в карточке на сайте (галерея photo-01…). */
+    if (row.slug) {
+      push(`/media/kvartira/${row.slug}/photo-01.jpg`);
+      push(`/media/kvartira/${row.slug}/photo-02.jpg`);
+    }
     push(card?.public_url);
     push(image?.public_url);
     push(row.cover_url);
@@ -341,6 +346,12 @@
     return String(value || "").split("|")[0].trim();
   }
 
+  function isLikelyGarbageCityHint(text) {
+    const s = String(text || "").trim().toLowerCase();
+    if (s.length < 3 || s.length > 48) return true;
+    return /^(для|если|когда|чтобы|этот|это|в\s|на\s)/u.test(s);
+  }
+
   function extractCityFromSummary(text) {
     const cleaned = String(text || "").replace(/🏖|👥|📍/g, "").trim();
     const match = cleaned.match(/^([А-Яа-яЁёA-Za-z\- ]+?)(?:[.,]|$)/);
@@ -385,7 +396,7 @@
     if (!t.includes("📍")) return "";
     const idx = t.indexOf("📍");
     let slice = t.slice(idx);
-    const beachIdx = slice.search(/🏖|🏝/);
+    const beachIdx = slice.search(/🏖️|🏖|🏝️|🏝/u);
     if (beachIdx !== -1) slice = slice.slice(0, beachIdx).trim();
     slice = slice.replace(/\s+/g, " ").trim();
     if (slice.length > 130) slice = `${slice.slice(0, 127).trim()}…`;
@@ -394,7 +405,7 @@
 
   function extractKvartiraBeachLine(text, filters) {
     const t = String(text || "").trim();
-    const idx = t.search(/🏖|🏝/);
+    const idx = t.search(/🏖️|🏖|🏝️|🏝/u);
     if (idx !== -1) {
       let slice = t.slice(idx);
       slice = slice.split(/\s*✔️/)[0].trim();
@@ -420,21 +431,63 @@
     return `${sp > 35 ? cut.slice(0, sp) : cut}…`;
   }
 
-  function formatKvartiraCardSummary(row) {
+  /** Текст для первой строки плашки: без блока «до пляжа» и без 📍 — только про жильё. */
+  function stripKvartiraSummaryToProse(raw) {
+    const t = String(raw || "").replace(/\s+/g, " ").trim();
+    if (!t) return "";
+    const labeled = t.match(/✔️[^:]+\:\s*(.+)$/i);
+    if (labeled) return labeled[1].trim();
+    let rest = t;
+    const pin = extractKvartiraPinLine(rest);
+    if (pin) rest = rest.replace(pin, " ").replace(/\s+/g, " ").trim();
+    rest = rest.replace(/^(?:🏖️|🏖|🏝️|🏝)\s*.{3,160}?(\.|$)\s*/u, "").trim();
+    rest = rest.replace(/^\d+\s*[-–]?\s*\d*\s*мин[^\n.]{0,100}\.\s*/i, "").trim();
+    rest = rest.replace(/^[^\p{L}\d]*\d+\s*[-–]?\s*\d*\s*мин[^\n.]{0,100}\.\s*/u, "").trim();
+    return rest.replace(/^✔️[^:]*:\s*/i, "").trim();
+  }
+
+  function normalizeKvartiraPinLine(row) {
     const source = row?.summary || row?.excerpt || row?.details?.lead || "";
     const filters = row?.details?.filters || {};
-    let line1 = extractKvartiraPinLine(source);
-    if (!line1) {
-      const fromFilter = CITY_LABELS[firstValue(filters.city)];
-      const fromLead = source.length < 120 ? extractCityFromSummary(source) : "";
-      const city = fromFilter || fromLead;
-      if (city) line1 = `📍${city}.`;
+    const extracted = extractKvartiraPinLine(source);
+    if (extracted) {
+      let inner = extracted.replace(/^📍\s*/, "").trim();
+      if (!inner.endsWith(".")) inner += ".";
+      return `📍 ${inner}`;
     }
-    const line2 = extractKvartiraBeachLine(source, filters);
-    if (line1 && line2) return `${line1}\n${line2}`;
-    if (line1) return line1;
-    if (line2) return line2;
-    return clampKvartiraCardDescription(source);
+    const fromFilter = CITY_LABELS[firstValue(filters.city)];
+    const fromLeadRaw = source.length < 160 ? extractCityFromSummary(source) : "";
+    const fromLead = isLikelyGarbageCityHint(fromLeadRaw) ? "" : fromLeadRaw;
+    const city = fromFilter || fromLead || "";
+    if (city) return `📍 ${city.replace(/\s+/g, " ").trim()}.`;
+    return "📍 Абхазия.";
+  }
+
+  function normalizeKvartiraBeachLine(row) {
+    const source = row?.summary || row?.excerpt || row?.details?.lead || "";
+    const filters = row?.details?.filters || {};
+    let raw = extractKvartiraBeachLine(source, filters);
+    if (raw) {
+      raw = raw.replace(/^(🏖️|🏖|🏝️|🏝)\s*/u, "").trim();
+      return raw ? `🏖 ${raw}` : "";
+    }
+    const dist = extractDistanceFromSummary(source);
+    if (dist) return `🏖 ${dist}`;
+    const fb = DISTANCE_BY_FILTER[firstValue(filters.distance)];
+    if (fb) return `🏖 ${fb}`;
+    return "🏖 Как добраться до пляжа — в карточке объекта.";
+  }
+
+  /** Единый образец: короткий тизер (если есть) + 📍 город + 🏖 до пляжа. */
+  function formatKvartiraCardSummary(row) {
+    const source = row?.summary || row?.excerpt || row?.details?.lead || "";
+    const teaser = clampKvartiraCardDescription(stripKvartiraSummaryToProse(source));
+    const pin = normalizeKvartiraPinLine(row);
+    const beach = normalizeKvartiraBeachLine(row);
+    const lines = [];
+    if (teaser) lines.push(teaser);
+    lines.push(pin, beach);
+    return lines.join("\n");
   }
 
   function renderHotelCards(rows, grid) {
