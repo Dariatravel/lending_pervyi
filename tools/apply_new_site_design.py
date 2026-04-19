@@ -185,6 +185,324 @@ def extract_paragraphs(section: str) -> list[str]:
     return [clean_text(item) for item in re.findall(r"<p[^>]*>(.*?)</p>", section, flags=re.S) if clean_text(item)]
 
 
+BENEFIT_SECTION_HEADINGS = {
+    "описание",
+    "территория",
+    "территория и услуги",
+    "номера",
+    "номер",
+    "в номерах",
+    "домики",
+    "домик",
+    "дома",
+    "коттеджи",
+    "дом",
+    "квартира",
+    "квартиры",
+    "в квартире",
+    "апартаменты",
+    "апартамент",
+    "размещение",
+    "расположение",
+    "рядом",
+    "удобства",
+    "пляж",
+}
+
+PROMISE_HINTS = (
+    "уют",
+    "тих",
+    "спокойн",
+    "зелен",
+    "сад",
+    "двор",
+    "семейн",
+    "отдых",
+    "подойд",
+    "подходит",
+    "террас",
+    "веранд",
+    "простор",
+    "укром",
+    "сосны",
+    "чайн",
+    "бассейн",
+    "завтрак",
+    "кафе",
+)
+
+PRACTICAL_HINTS = (
+    "минут",
+    "пляж",
+    "море",
+    "этаж",
+    "лифт",
+    "спальн",
+    "кровать",
+    "диван",
+    "кухн",
+    "столов",
+    "сануз",
+    "душ",
+    "стирал",
+    "парков",
+    "wi-fi",
+    "wifi",
+    "интернет",
+    "кондиционер",
+    "сплит",
+    "магазин",
+    "рынок",
+    "остановк",
+    "центр",
+    "балкон",
+    "террас",
+    "веранд",
+    "холодиль",
+    "телевиз",
+    "чайник",
+    "полотен",
+    "бель",
+    "трансфер",
+)
+
+EQUIPMENT_HINTS = (
+    "wi-fi",
+    "wifi",
+    "интернет",
+    "сплит",
+    "кондиционер",
+    "телевиз",
+    "фен",
+    "чайник",
+    "утюг",
+    "гладиль",
+    "холодиль",
+    "мини-бар",
+    "микроволнов",
+    "пылесос",
+    "стираль",
+    "полотен",
+    "бель",
+)
+
+
+def split_sentences(text: str) -> list[str]:
+    plain = clean_text(text)
+    if not plain:
+        return []
+    return [
+        part.strip()
+        for part in re.split(r"(?<=[.!?])\s+", plain)
+        if part.strip()
+    ]
+
+
+def _benefit_key(text: str) -> str:
+    return re.sub(r"[^a-zа-яё0-9]+", " ", clean_text(text).lower()).strip()
+
+
+def _benefit_sentence_keys(text: str) -> set[str]:
+    return {_benefit_key(sentence) for sentence in split_sentences(text) if _benefit_key(sentence)}
+
+
+def _is_benefit_heading(text: str) -> bool:
+    value = clean_text(text)
+    if not value:
+        return True
+    value = re.sub(r"^[^\wА-Яа-яЁё]+", "", value, flags=re.UNICODE).strip(" .:-")
+    low = value.lower()
+    if low in BENEFIT_SECTION_HEADINGS:
+        return True
+    return bool(re.fullmatch(r"[А-ЯЁA-Z0-9\s\-]{2,24}", value)) and len(value.split()) <= 3
+
+
+def normalize_benefit_text(text: str) -> str:
+    value = remove_price_clauses(text)
+    value = clean_text(value)
+    if not value:
+        return ""
+    value = re.sub(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", "", value)
+    value = value.replace("\ufe0f", "").replace("\u200d", "")
+    value = re.sub(r"^[\s\u2714\u2705\u2713\u2611\ufe0f•·\-–—📍🏖🏝👥⭐✨]+", "", value)
+    value = re.sub(
+        r"(?:^|\s)[\u2714\u2705\u2713\u2611]?\ufe0f?\s*(описание|территория(?:\s+и\s+услуги)?|номера|номер|в\s+номерах|домики|домик|дома|коттеджи|дом|квартира|квартиры|в\s+квартире|апартаменты|апартамент|размещение|расположение|рядом|удобства|пляж)\s*:\.?\s*",
+        " ",
+        value,
+        flags=re.I,
+    )
+    while True:
+        match = re.match(r"^([А-ЯЁA-Z][А-Яа-яЁёA-Za-z\s\-]{0,24})\s*:\.?\s*(.+)$", value)
+        if not match:
+            break
+        heading = match.group(1).strip().lower()
+        if heading not in BENEFIT_SECTION_HEADINGS:
+            break
+        value = match.group(2).strip()
+    value = value.strip(" .,-")
+    if not value or _is_benefit_heading(value):
+        return ""
+    if re.fullmatch(r"\d+\s*минут(?:\s+пешком)?", value, flags=re.I):
+        return ""
+    value = re.sub(
+        r"\bидеальный вариант для тех,\s*кто хочет\b",
+        "Подойдет тем, кто хочет",
+        value,
+        flags=re.I,
+    )
+    value = re.sub(
+        r"\b(ДОМИКИ|НОМЕРА|КВАРТИРА|КВАРТИРЫ|АПАРТАМЕНТЫ|КОТТЕДЖИ|ДНЕМ|ВЕЧЕРОМ)\b",
+        lambda match: match.group(1).lower(),
+        value,
+    )
+    if value[:1].islower():
+        value = value[:1].upper() + value[1:]
+    value = re.sub(r"\.\s*\.", ".", value)
+    value = re.sub(r"\s{2,}", " ", value).strip()
+    if value[-1] not in ".!?":
+        value += "."
+    return value
+
+
+def extract_benefit_paragraphs(section: str) -> list[str]:
+    items: list[str] = []
+    seen: set[str] = set()
+    for paragraph in extract_paragraphs(section):
+        normalized = normalize_benefit_text(paragraph)
+        key = _benefit_key(normalized)
+        if not normalized or not key or key in seen:
+            continue
+        seen.add(key)
+        items.append(normalized)
+    return items
+
+
+def _limit_sentences(text: str, limit: int = 2) -> str:
+    parts = split_sentences(text)
+    if not parts:
+        return ""
+    return " ".join(parts[:limit]).strip()
+
+
+def _looks_like_equipment_list(text: str) -> bool:
+    low = text.lower()
+    hits = sum(1 for hint in EQUIPMENT_HINTS if hint in low)
+    if hits >= 2:
+        return True
+    return hits >= 1 and text.count(",") >= 4 and not any(hint in low for hint in PROMISE_HINTS)
+
+
+def _is_promise_candidate(text: str) -> bool:
+    low = text.lower()
+    has_view = bool(re.search(r"красив\w*\s+вид|вид\s+на|видом\s+на|вид\s+из", low))
+    return (has_view or any(hint in low for hint in PROMISE_HINTS)) and not _looks_like_equipment_list(text)
+
+
+def _is_practical_candidate(text: str) -> bool:
+    low = text.lower()
+    return any(hint in low for hint in PRACTICAL_HINTS) or bool(re.search(r"\b\d+\b", low))
+
+
+def _is_location_advantage(text: str) -> bool:
+    low = text.lower()
+    return bool(re.search(r"пляж|море|берег|магазин|рынок|остановк|центр|транспорт|кафе|ресторан", low))
+
+
+def _append_unique_benefit(items: list[str], candidate: str, max_items: int) -> None:
+    normalized = _limit_sentences(candidate, 2)
+    if not normalized:
+        return
+    cand_key = _benefit_key(normalized)
+    if not cand_key:
+        return
+    cand_sentences = _benefit_sentence_keys(normalized)
+    for current in items:
+        current_key = _benefit_key(current)
+        if cand_key == current_key or cand_key in current_key or current_key in cand_key:
+            return
+        current_sentences = _benefit_sentence_keys(current)
+        if cand_sentences and current_sentences and cand_sentences <= current_sentences:
+            return
+    items.append(normalized)
+    del items[max_items:]
+
+
+def build_listing_benefits(section_paragraph_groups: list[list[str]], lead_lines: list[str]) -> tuple[list[str], list[str]]:
+    paragraphs = [item for group in section_paragraph_groups for item in group]
+    why_choose_items: list[str] = []
+    important_items: list[str] = []
+
+    intro_sentences: list[str] = []
+    for paragraph in section_paragraph_groups[0] if section_paragraph_groups else []:
+        if _looks_like_equipment_list(paragraph):
+            continue
+        for sentence in split_sentences(paragraph):
+            normalized = normalize_benefit_text(sentence)
+            if not normalized:
+                continue
+            intro_sentences.append(normalized)
+            if len(intro_sentences) >= 2:
+                break
+        if len(intro_sentences) >= 2:
+            break
+    if intro_sentences:
+        _append_unique_benefit(why_choose_items, " ".join(intro_sentences[:2]), 2)
+
+    for paragraph in paragraphs:
+        if _looks_like_equipment_list(paragraph):
+            continue
+        for sentence in split_sentences(paragraph):
+            normalized = normalize_benefit_text(sentence)
+            if normalized and _is_promise_candidate(normalized):
+                _append_unique_benefit(why_choose_items, normalized, 2)
+                if len(why_choose_items) >= 2:
+                    break
+        if len(why_choose_items) >= 2:
+            break
+
+    if len(why_choose_items) < 2:
+        for paragraph in paragraphs:
+            if _looks_like_equipment_list(paragraph):
+                continue
+            _append_unique_benefit(why_choose_items, paragraph, 2)
+            if len(why_choose_items) >= 2:
+                break
+
+    for lead in lead_lines:
+        normalized = normalize_benefit_text(lead)
+        if not normalized:
+            continue
+        for sentence in split_sentences(normalized):
+            sentence = normalize_benefit_text(sentence)
+            low = sentence.lower() if sentence else ""
+            if sentence and "минут" in low and not re.search(r"пляж|море|центр|магазин|рынок|остановк|берег", low):
+                continue
+            if sentence and _is_practical_candidate(sentence):
+                _append_unique_benefit(important_items, sentence, 3)
+        if len(important_items) >= 3:
+            break
+
+    for paragraph in paragraphs:
+        if _is_location_advantage(paragraph):
+            _append_unique_benefit(important_items, paragraph, 3)
+        if len(important_items) >= 3:
+            break
+
+    for paragraph in paragraphs:
+        if _is_practical_candidate(paragraph) or _looks_like_equipment_list(paragraph):
+            _append_unique_benefit(important_items, paragraph, 3)
+        if len(important_items) >= 3:
+            break
+
+    if len(important_items) < 2:
+        for paragraph in paragraphs:
+            _append_unique_benefit(important_items, paragraph, 3)
+            if len(important_items) >= 3:
+                break
+
+    return why_choose_items[:2], important_items[:3]
+
+
 def _has_price_signal(plain: str) -> bool:
     """Абзац или фрагмент явно про тариф/деньги — убираем из описаний, переносим в «Цены»."""
     if not plain or not plain.strip():
@@ -1205,24 +1523,18 @@ def build_listing_pages() -> None:
         feature_labels = list(dict.fromkeys(section_titles[:4] + [line for line in lead_lines[1:3] if line]))[:4]
         feature_labels = [lbl for lbl in feature_labels if clean_text(lbl).casefold() != "обзор"]
 
+        section_paragraph_groups = [extract_benefit_paragraphs(section) for section in content_sections]
+
         description_parts: list[str] = []
-        for section in content_sections[:2]:
-            for paragraph in extract_paragraphs(section)[:2]:
-                p = remove_price_clauses(paragraph)
-                if p and p not in description_parts:
-                    description_parts.append(p)
+        for paragraphs in section_paragraph_groups[:2]:
+            for paragraph in paragraphs[:2]:
+                if paragraph and paragraph not in description_parts:
+                    description_parts.append(paragraph)
         description = " ".join(description_parts[:2]) if description_parts else (remove_price_clauses(lead_text) or lead_text)
 
-        why_choose_items = []
-        important_items = []
-        if content_sections:
-            why_choose_items = [remove_price_clauses(x) for x in extract_paragraphs(content_sections[0])[:3]]
-            why_choose_items = [p for p in why_choose_items if p]
-        if len(content_sections) > 1:
-            important_items = [remove_price_clauses(x) for x in extract_paragraphs(content_sections[1])[:3]]
-            important_items = [p for p in important_items if p]
+        why_choose_items, important_items = build_listing_benefits(section_paragraph_groups, lead_lines)
         if not important_items and lead_lines:
-            important_items = [p for p in lead_lines[:3] if not _has_price_signal(p)]
+            important_items = [p for p in (normalize_benefit_text(line) for line in lead_lines[:3]) if p]
 
         review_cards = extract_reviews(reviews_section)
         price_section = reformat_price_card_content(price_section)
