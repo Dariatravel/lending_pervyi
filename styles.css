@@ -1861,6 +1861,11 @@ section.site-concept__contacts.section {
   color: var(--text);
 }
 
+/* По запросу: скрываем плашку "Локация объекта" в карточке объекта */
+.hotel-site-concept .hotel-card__rating {
+  display: none;
+}
+
 /* Старые страницы: подпись «Локация» шла вторым элементом — поднимаем наверх */
 .hotel-card__rating > span:not(.hotel-card__rating-label) {
   order: -1;
