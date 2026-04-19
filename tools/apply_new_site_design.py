@@ -1105,7 +1105,8 @@ def build_homepage() -> None:
     </div>
 
     <div class="site-concept__guide-footer">
-      <p class="site-concept__guide-pitch">Самостоятельный поиск жилья — это десятки сайтов и переписок, где теряется время. Напишите, что вам нужно — я предложу подходящие варианты; если не подойдёт, продолжите искать сами.</p>
+      <p class="site-concept__guide-pitch">Самостоятельный поиск жилья — это десятки сайтов и переписок, где теряется время.</p>
+      <p class="site-concept__guide-pitch">Напишите, что вам нужно — я предложу подходящие варианты; если не подойдёт, продолжите искать сами.</p>
       <div class="site-concept__guide-cta">
         <a class="btn-book site-concept__guide-cta-btn" href="#contacts">Написать мне</a>
         <p class="site-concept__guide-cta-caption">Отвечу, помогу сориентироваться и предложу варианты под ваш запрос</p>
