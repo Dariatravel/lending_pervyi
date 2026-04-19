@@ -1641,7 +1641,6 @@ def build_homepage() -> None:
       <div>
         <p class="site-concept__eyebrow">Как бронировать</p>
         <h2>Как найти жильё в Абхазии без утомительного поиска</h2>
-        <p class="site-concept__guide-subtitle site-concept__guide-subtitle--full">Можно искать самой по сайтам и чатам. А можно просто написать мне — и я помогу быстрее найти нормальный вариант под ваш запрос.</p>
         <p class="site-concept__guide-subtitle site-concept__guide-subtitle--short">Искать самой или написать мне — я помогу подобрать вариант под ваш запрос.</p>
       </div>
     </div>

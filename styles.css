@@ -878,13 +878,9 @@
   }
 }
 
-/* «Как бронировать»: визуальный зазор между длинным h2 и капс-строкой под ним */
+/* «Как бронировать»: визуальный зазор под длинным h2 */
 #guide .site-concept__section-head h2 {
   margin-bottom: clamp(22px, 3.4vw, 42px);
-}
-
-#guide .site-concept__section-head h2 + .site-concept__guide-subtitle {
-  margin-top: 0;
 }
 
 .site-concept__section-head a:not(.site-concept__eyebrow-link) {
