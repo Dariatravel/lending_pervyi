@@ -286,6 +286,17 @@ EQUIPMENT_HINTS = (
     "бель",
 )
 
+LEGACY_DETAIL_SECTION_TITLES = {
+    "фото номеров тут",
+    "дополнительное фото номеров тут",
+    "фото домиков тут",
+    "дополнительное фото домиков тут",
+    "фото квартиры тут",
+    "дополнительное фото квартиры тут",
+    "фото апартаментов тут",
+    "дополнительное фото апартаментов тут",
+}
+
 
 def split_sentences(text: str) -> list[str]:
     plain = clean_text(text)
@@ -653,6 +664,47 @@ def strip_paragraphs_price_from_section_html(section_html: str) -> tuple[str, li
 
 def extract_list_items(section: str) -> list[str]:
     return [clean_text(item) for item in re.findall(r"<li[^>]*>(.*?)</li>", section, flags=re.S) if clean_text(item)]
+
+
+def extract_section_heading_text(section_html: str) -> str:
+    return clean_text(find_first([r"<h2[^>]*>(.*?)</h2>"], section_html))
+
+
+def is_legacy_detail_heading(title: str) -> bool:
+    return clean_text(title).casefold() in LEGACY_DETAIL_SECTION_TITLES
+
+
+def merge_section_into_paragraph_blocks(base_section: str, extra_section: str) -> str:
+    extra_block = find_first([r'(?s)<div class="paragraph-blocks">(.*?)</div>'], extra_section)
+    if not extra_block:
+        return base_section
+    extra_inner = re.sub(r'^\s*<p[^>]*>\s*</p>\s*', "", extra_block, flags=re.S)
+    if not extra_inner.strip():
+        return base_section
+
+    def repl(match: re.Match[str]) -> str:
+        current = match.group(1).rstrip()
+        spacer = "\n" if current else ""
+        return f'<div class="paragraph-blocks">{current}{spacer}{extra_inner}\n          </div>'
+
+    return re.sub(
+        r'(?s)<div class="paragraph-blocks">(.*?)</div>',
+        repl,
+        base_section,
+        count=1,
+    )
+
+
+def merge_legacy_detail_sections(content_sections: list[str]) -> list[str]:
+    merged: list[str] = []
+    for section in content_sections:
+        heading = extract_section_heading_text(section)
+        should_merge = bool(merged) and (not heading or is_legacy_detail_heading(heading))
+        if should_merge:
+            merged[-1] = merge_section_into_paragraph_blocks(merged[-1], section)
+        else:
+            merged.append(section)
+    return merged
 
 
 def extract_links(section: str) -> list[tuple[str, str]]:
@@ -1509,7 +1561,7 @@ def build_listing_pages() -> None:
             cleaned, extra = strip_paragraphs_price_from_section_html(s0)
             extra_price_from_prose.extend(e0 + extra)
             content_sections_cleaned.append(cleaned)
-        content_sections = content_sections_cleaned
+        content_sections = merge_legacy_detail_sections(content_sections_cleaned)
 
         all_images = extract_images(media_section)
         main_image = all_images[0] if all_images else ("", title)
@@ -1522,6 +1574,7 @@ def build_listing_pages() -> None:
         ]
         feature_labels = list(dict.fromkeys(section_titles[:4] + [line for line in lead_lines[1:3] if line]))[:4]
         feature_labels = [lbl for lbl in feature_labels if clean_text(lbl).casefold() != "обзор"]
+        feature_labels = [lbl for lbl in feature_labels if not is_legacy_detail_heading(lbl)]
 
         section_paragraph_groups = [extract_benefit_paragraphs(section) for section in content_sections]
 
