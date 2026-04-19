@@ -857,6 +857,19 @@
   line-height: 1.06;
 }
 
+/* Заголовок «Как бронировать»: не сжимать в 24ch; на десктопе — одна строка */
+@media (min-width: 761px) {
+  #guide .site-concept__section-head h2 {
+    max-width: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  #guide .site-concept__section-head h2 {
+    white-space: nowrap;
+  }
+}
+
 .site-concept__section-head a:not(.site-concept__eyebrow-link) {
   color: #294a3d;
   font-weight: 800;
