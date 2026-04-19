@@ -1617,10 +1617,9 @@ def build_homepage() -> None:
       </form>
 
       <div class="site-concept__search-tags">
-        <span>Мгновенное подтверждение</span>
         <span>Проверенные хозяева</span>
-        <span>Поддержка 24/7</span>
-        <span>Оплата на сайте</span>
+        <span>Поддержка от брони до выезда</span>
+        <span>Цены напрямую</span>
       </div>
     </div>
 
