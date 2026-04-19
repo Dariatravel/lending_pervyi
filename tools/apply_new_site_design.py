@@ -75,9 +75,78 @@ def clean_html_block(text: str) -> str:
 
 def format_lead_text(text: str) -> str:
     value = clean_text(text)
-    value = value.replace("📍", "").replace("🏖", " • ").replace("👥", " • ")
     value = re.sub(r"\s*•\s*", " • ", value)
     return re.sub(r"\s+", " ", value).strip(" •")
+
+
+def truncate_meta_description(text: str, max_len: int = 158) -> str:
+    t = re.sub(r"\s+", " ", (text or "").strip())
+    if len(t) <= max_len:
+        return t
+    cut = t[: max_len - 1]
+    if " " in cut:
+        cut = cut.rsplit(" ", 1)[0]
+    return cut + "…"
+
+
+def build_listing_meta_description(lead_text: str, description: str) -> str:
+    """Краткое описание для meta/og без эмодзи и служебных ярлыков (аргументы уже проходят sanitize)."""
+    a = (lead_text or "").strip()
+    b = (description or "").strip()
+    if a and b:
+        if b.lower().startswith(a.lower()[: min(48, len(a))]):
+            merged = b
+        elif len(a) >= 24 and a.lower() in b.lower()[: min(len(b), 200)]:
+            merged = b
+        else:
+            merged = f"{a} {b}"
+    else:
+        merged = a or b
+    return truncate_meta_description(sanitize_listing_card_intro_text(merged))
+
+
+def patch_listing_head_meta_descriptions(page_html: str, meta_text: str) -> str:
+    """Подменяет description и og:description в сохранённом <head> листинга."""
+    esc = html.escape(meta_text, quote=True)
+
+    def repl_desc(m: re.Match[str]) -> str:
+        return f"{m.group(1)}{esc}{m.group(2)}"
+
+    out = re.sub(
+        r'(<meta\s+name="description"\s+content=")[^"]*("\s*/?>)',
+        repl_desc,
+        page_html,
+        count=1,
+        flags=re.I,
+    )
+    out = re.sub(
+        r'(<meta\s+property="og:description"\s+content=")[^"]*("\s*/?>)',
+        repl_desc,
+        out,
+        count=1,
+        flags=re.I,
+    )
+    return out
+
+
+def sanitize_listing_card_intro_text(text: str) -> str:
+    """Убирает эмодзи и служебные ярлыки ✔территория: / ✔номера: / ✔цены: из подзаголовка и превью карточки."""
+    value = remove_price_clauses(text)
+    value = clean_text(value)
+    if not value:
+        return ""
+    value = re.sub(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", "", value)
+    value = value.replace("\ufe0f", "").replace("\u200d", "")
+    value = re.sub(r"^[\s\u2714\u2705\u2713\u2611\ufe0f•·\-–—📍🏖🏝👥⭐✨]+", "", value)
+    for _ in range(12):
+        new = _CARD_INTRO_SECTION_LABEL_RE.sub(" ", value)
+        if new == value:
+            break
+        value = new
+    if re.match(r"(?i)^цен[ыы]\s*:\s*\(", value):
+        value = re.sub(r"(?i)^цен[ыы]\s*:\s*", "", value, count=1)
+    value = re.sub(r"\s{2,}", " ", value).strip(" .,-•")
+    return value
 
 
 def short_location_badge(lead_lines: list[str], title: str) -> str:
@@ -116,7 +185,7 @@ def should_show_location_under_title(lead: str, description: str) -> bool:
 
 def description_to_prose_html(raw: str) -> str:
     """Несколько <p> для читаемости на мобильных; без смены семейств шрифтов."""
-    plain = clean_text(raw)
+    plain = sanitize_listing_card_intro_text(raw)
     if not plain:
         return ""
     parts = [p.strip() for p in re.split(r"\n+", plain) if p.strip()]
@@ -207,7 +276,136 @@ BENEFIT_SECTION_HEADINGS = {
     "рядом",
     "удобства",
     "пляж",
+    "цены",
+    "цена",
+    "условия",
+    "услуги",
+    "в доме",
+    "на территории",
+    "комнаты",
+    "коттедж",
+    "студия",
+    "отель",
+    "домики и апартаменты",
+    "домики и номера",
+    "домики семейные",
+    "домики комфорт",
 }
+
+# Служебные вставки вида «✔территория:.» в подзаголовке и коротком описании карточки
+_CARD_INTRO_SECTION_LABEL_RE = re.compile(
+    r"(?:^|\s)[\u2714\u2705\u2713\u2611]?\ufe0f?\s*"
+    r"(описание|территория(?:\s+и\s+услуги)?|номера|номер|в\s+номерах|"
+    r"домики(?:\s+и\s+(?:апартаменты|номера)|\s+семейные|\s+комфорт)?|"
+    r"домик|дома|коттеджи?|дом|квартира|квартиры|в\s+квартире|"
+    r"апартаменты?|размещение|расположение|рядом|удобства|пляж|"
+    r"условия|услуги|цена|цен[ыы]\*?|в\s+доме|на\s+территории|"
+    r"комнаты|студия|отель)\s*:\.?\s*",
+    flags=re.I,
+)
+
+_CAPS_LABEL_PARA_RE = re.compile(
+    r'<p\s+class="paragraph-blocks__caps"[^>]*>(.*?)</p>',
+    flags=re.I | re.S,
+)
+
+_PARAGRAPH_BLOCKS_WRAPPER_RE = re.compile(
+    r'(<div\s+class="paragraph-blocks"[^>]*>)(.*?)(</div>)',
+    flags=re.I | re.S,
+)
+
+_P_ANY_RE = re.compile(r"<p(\s[^>]*)?>(.*?)</p>", flags=re.I | re.S)
+
+
+def _normalize_section_label_key(raw: str) -> str:
+    t = sanitize_listing_card_intro_text(raw).strip(" .:,-–—•")
+    t = re.sub(r"\*+", "", t)
+    return t.lower().rstrip(":")
+
+
+def _strip_caps_heading_ps(inner: str) -> str:
+    def repl(match: re.Match[str]) -> str:
+        plain = clean_text(strip_tags(match.group(1)))
+        if _normalize_section_label_key(plain) in BENEFIT_SECTION_HEADINGS:
+            return ""
+        return match.group(0)
+
+    return _CAPS_LABEL_PARA_RE.sub(repl, inner)
+
+
+def _strip_plain_label_ps(inner: str) -> str:
+    def repl(m: re.Match[str]) -> str:
+        attrs = m.group(1) or ""
+        body = m.group(2)
+        if "paragraph-blocks__caps" in attrs:
+            return m.group(0)
+        plain = clean_text(strip_tags(body))
+        if not plain or len(plain) > 120:
+            return m.group(0)
+        if _normalize_section_label_key(plain) in BENEFIT_SECTION_HEADINGS:
+            return ""
+        return m.group(0)
+
+    return _P_ANY_RE.sub(repl, inner)
+
+
+def _polish_paragraph_blocks_ps(inner: str) -> str:
+    """Убирает эмодзи и служебные префиксы в обычных абзацах детального текста."""
+
+    def repl(m: re.Match[str]) -> str:
+        attrs = m.group(1) or ""
+        body = m.group(2)
+        if "paragraph-blocks__caps" in attrs:
+            return m.group(0)
+        plain = clean_text(strip_tags(body))
+        if not plain:
+            return m.group(0)
+        cleaned = sanitize_listing_card_intro_text(plain)
+        if cleaned == plain:
+            return m.group(0)
+        return f"<p{attrs}>{html.escape(cleaned)}</p>"
+
+    return _P_ANY_RE.sub(repl, inner)
+
+
+def strip_caps_label_paragraphs(section_html: str) -> str:
+    """Убирает из блока paragraph-blocks служебные строки-ярлыки (caps и короткие <p> только с ярлыком)."""
+
+    def repl_block(m: re.Match[str]) -> str:
+        inner = m.group(2)
+        inner = _strip_caps_heading_ps(inner)
+        inner = _strip_plain_label_ps(inner)
+        inner = _polish_paragraph_blocks_ps(inner)
+        return m.group(1) + inner + m.group(3)
+
+    if "paragraph-blocks" not in section_html:
+        return section_html
+    return _PARAGRAPH_BLOCKS_WRAPPER_RE.sub(repl_block, section_html)
+
+
+_KVARTIRA_CATALOG_CARD_SNIPPET_RE = re.compile(
+    r'(<a class="catalog-card"[^>]*>.*?<h3>.*?</h3>\s*<p>)(.*?)(</p>\s*</a>)',
+    flags=re.I | re.S,
+)
+
+
+def patch_kvartira_catalog_card_blurbs() -> None:
+    """Чистит превью-текст в статической сетке kvartira/index.html (без правок scripts.js)."""
+    path = ROOT / "kvartira" / "index.html"
+    if not path.is_file():
+        return
+    text = path.read_text(encoding="utf-8")
+
+    def repl(m: re.Match[str]) -> str:
+        plain = strip_tags(m.group(2))
+        cleaned = sanitize_listing_card_intro_text(plain)
+        if not cleaned:
+            cleaned = "Абхазия"
+        return m.group(1) + html.escape(cleaned) + m.group(3)
+
+    new_text = _KVARTIRA_CATALOG_CARD_SNIPPET_RE.sub(repl, text)
+    if new_text != text:
+        path.write_text(new_text, encoding="utf-8")
 
 PROMISE_HINTS = (
     "уют",
@@ -336,12 +534,11 @@ def normalize_benefit_text(text: str) -> str:
     value = re.sub(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", "", value)
     value = value.replace("\ufe0f", "").replace("\u200d", "")
     value = re.sub(r"^[\s\u2714\u2705\u2713\u2611\ufe0f•·\-–—📍🏖🏝👥⭐✨]+", "", value)
-    value = re.sub(
-        r"(?:^|\s)[\u2714\u2705\u2713\u2611]?\ufe0f?\s*(описание|территория(?:\s+и\s+услуги)?|номера|номер|в\s+номерах|домики|домик|дома|коттеджи|дом|квартира|квартиры|в\s+квартире|апартаменты|апартамент|размещение|расположение|рядом|удобства|пляж)\s*:\.?\s*",
-        " ",
-        value,
-        flags=re.I,
-    )
+    for _ in range(12):
+        new = _CARD_INTRO_SECTION_LABEL_RE.sub(" ", value)
+        if new == value:
+            break
+        value = new
     while True:
         match = re.match(r"^([А-ЯЁA-Z][А-Яа-яЁёA-Za-z\s\-]{0,24})\s*:\.?\s*(.+)$", value)
         if not match:
@@ -1552,6 +1749,7 @@ def build_listing_pages() -> None:
         lead_text_clean = remove_price_clauses(lead_text)
         if lead_text_clean:
             lead_text = lead_text_clean
+        lead_text = sanitize_listing_card_intro_text(lead_text)
         lead_lines = [clean_text(part) for part in re.split(r"[•\n]", lead_text) if clean_text(part)]
 
         extra_price_from_prose: list[str] = []
@@ -1562,6 +1760,7 @@ def build_listing_pages() -> None:
             extra_price_from_prose.extend(e0 + extra)
             content_sections_cleaned.append(cleaned)
         content_sections = merge_legacy_detail_sections(content_sections_cleaned)
+        content_sections = [strip_caps_label_paragraphs(s) for s in content_sections]
 
         all_images = extract_images(media_section)
         main_image = all_images[0] if all_images else ("", title)
@@ -1584,6 +1783,7 @@ def build_listing_pages() -> None:
                 if paragraph and paragraph not in description_parts:
                     description_parts.append(paragraph)
         description = " ".join(description_parts[:2]) if description_parts else (remove_price_clauses(lead_text) or lead_text)
+        description = sanitize_listing_card_intro_text(description)
 
         why_choose_items, important_items = build_listing_benefits(section_paragraph_groups, lead_lines)
         if not important_items and lead_lines:
@@ -1748,6 +1948,8 @@ def build_listing_pages() -> None:
 </main>"""
 
         rebuilt = replace_main(text, new_main)
+        meta_desc = build_listing_meta_description(lead_text, description)
+        rebuilt = patch_listing_head_meta_descriptions(rebuilt, meta_desc)
         path.write_text(clean_html_block(rebuilt) + "\n", encoding="utf-8")
 
 
@@ -1755,6 +1957,7 @@ if __name__ == "__main__":
     build_homepage()
     build_listing_pages()
     patch_all_listing_price_cards()
+    patch_kvartira_catalog_card_blurbs()
     print(
         f"updated index, {len(LISTING_PRICE_FILES)} listing pages (hotels + kvartira), "
         f"price cards on {len(LISTING_PRICE_FILES)} listings"
