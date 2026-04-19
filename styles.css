@@ -1141,6 +1141,13 @@
   grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
 }
 
+/* Все четыре плашки «Как бронировать» — один визуал (как ранее у accent) */
+.site-concept__guide-card {
+  background: linear-gradient(160deg, rgba(41, 74, 61, 0.1) 0%, rgba(255, 255, 255, 0.88) 48%, rgba(255, 255, 255, 0.72) 100%);
+  border: 1px solid rgba(41, 74, 61, 0.28);
+  box-shadow: 0 14px 36px rgba(18, 31, 25, 0.1);
+}
+
 .site-concept__guide-card span {
   display: inline-flex;
   width: 42px;
@@ -1149,7 +1156,8 @@
   justify-content: center;
   margin-bottom: 14px;
   border-radius: 50%;
-  background: #143126;
+  background: #1e4d3f;
+  box-shadow: 0 4px 14px rgba(30, 77, 63, 0.35);
   color: #fff;
   font-weight: 800;
 }
@@ -1182,17 +1190,6 @@
   .site-concept__guide-subtitle--short {
     display: block;
   }
-}
-
-.site-concept__guide-card--accent {
-  background: linear-gradient(160deg, rgba(41, 74, 61, 0.1) 0%, rgba(255, 255, 255, 0.88) 48%, rgba(255, 255, 255, 0.72) 100%);
-  border: 1px solid rgba(41, 74, 61, 0.28);
-  box-shadow: 0 14px 36px rgba(18, 31, 25, 0.1);
-}
-
-.site-concept__guide-card--accent span {
-  background: #1e4d3f;
-  box-shadow: 0 4px 14px rgba(30, 77, 63, 0.35);
 }
 
 .site-concept__guide-footer {
