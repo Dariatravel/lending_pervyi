@@ -446,12 +446,24 @@
       card.href = pathnameFromUrl(row.page_url, `/hotels/${row.slug}/`);
       applyFilterData(card, row.details?.filters);
 
+      const mediaWrap = document.createElement("div");
+      mediaWrap.className = "catalog-card__media-wrap";
+
+      if (row.has_video) {
+        const badge = document.createElement("span");
+        badge.className = "catalog-card__badge";
+        badge.textContent = "Видео";
+        mediaWrap.appendChild(badge);
+      }
+
       const image = document.createElement("img");
       image.loading = "lazy";
       image.alt = row.title || "";
       image.src = pickCoverUrl(row);
       attachImageFallback(image, row);
-      card.appendChild(image);
+      mediaWrap.appendChild(image);
+
+      card.appendChild(mediaWrap);
 
       card.appendChild(createTextNode("h3", row.title || ""));
       card.appendChild(createTextNode("p", formatHotelCardSummary(row)));
