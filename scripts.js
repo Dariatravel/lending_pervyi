@@ -842,6 +842,14 @@
     const grid = document.getElementById("catalog-grid");
     if (!grid) return;
 
+    // Главная уже содержит полную сетку карточек из статической сборки (разметка с 📍 / 🏖 и <br>).
+    // Повторная отрисовка из Supabase заменяет DOM и даёт «мигание»: сначала верстка из HTML/CSS,
+    // затем упрощённые карточки из formatHotelCardSummary. Не перезаписываем готовую сетку.
+    if (grid.querySelector(".catalog-card")) {
+      filtersController.refresh();
+      return;
+    }
+
     try {
       const rows = await fetchListings({ sourceKind: "hotel" });
       if (!rows.length) return;
