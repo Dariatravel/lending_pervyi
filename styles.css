@@ -1470,14 +1470,25 @@ section.site-concept__contacts.section {
 }
 
 .blog-article__cover {
-  width: 100%;
+  width: auto;
+  max-width: min(100%, 460px);
+  height: auto;
   border-radius: 16px;
   display: block;
+  margin: 0 auto;
 }
 
 .blog-article__content {
   display: grid;
   gap: 12px;
+}
+
+.blog-article__content--telegram {
+  gap: 10px;
+}
+
+.blog-article__content--telegram p {
+  margin: 0;
 }
 
 .blog-article__content h2 {
