@@ -858,6 +858,17 @@
   letter-spacing: 0.01em;
 }
 
+/* Тот же ритм абзацев и разделителей, что у детального описания */
+.hotel-site-concept .hotel-card__prose p {
+  margin: 0;
+  padding: 0.8rem 0;
+  border-bottom: 1px dashed rgba(120, 145, 123, 0.26);
+}
+
+.hotel-site-concept .hotel-card__prose p:last-child {
+  border-bottom: 0;
+}
+
 .site-concept__section-head {
   display: flex;
   justify-content: space-between;
@@ -2198,7 +2209,7 @@ a.podborki-card--link:hover {
 .hotel-site-concept .price-card__teaser .price-card__amount {
   font-size: 24px;
   line-height: 1.05;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text);
 }
 
@@ -2261,8 +2272,8 @@ a.podborki-card--link:hover {
 }
 
 .hotel-site-concept .price-card li .price-card__amount {
-  font-weight: 400;
-  color: var(--muted);
+  font-weight: 700;
+  color: var(--text);
 }
 
 .hotel-site-concept .price-card li strong {

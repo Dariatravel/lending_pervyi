@@ -470,18 +470,9 @@ def _polish_paragraph_blocks_ps(inner: str) -> str:
 
 
 def strip_caps_label_paragraphs(section_html: str) -> str:
-    """Убирает из блока paragraph-blocks служебные строки-ярлыки (caps и короткие <p> только с ярлыком)."""
+    """Текст карточки должен совпадать с постом Telegram — не вырезаем капс-заголовки и ярлыки секций."""
 
-    def repl_block(m: re.Match[str]) -> str:
-        inner = m.group(2)
-        inner = _strip_caps_heading_ps(inner)
-        inner = _strip_plain_label_ps(inner)
-        inner = _polish_paragraph_blocks_ps(inner)
-        return m.group(1) + inner + m.group(3)
-
-    if "paragraph-blocks" not in section_html:
-        return section_html
-    return _PARAGRAPH_BLOCKS_WRAPPER_RE.sub(repl_block, section_html)
+    return section_html
 
 
 _KVARTIRA_CATALOG_CARD_SNIPPET_RE = re.compile(
@@ -1129,8 +1120,28 @@ def bold_months_in_tail(tail: str) -> str:
     return "".join(out)
 
 
+def bold_digits_outside_tags(fragment: str) -> str:
+    """Оборачивает числовые группы в <strong>, не затрагивая уже вставленные теги."""
+    if not fragment:
+        return ""
+    parts = re.split(r"(<[^>]+>)", fragment)
+    out: list[str] = []
+    for part in parts:
+        if part.startswith("<") and part.endswith(">"):
+            out.append(part)
+            continue
+        out.append(
+            re.sub(
+                r"(\d[\d\s\u00a0,.]*\d|\d+)",
+                r"<strong>\1</strong>",
+                part,
+            )
+        )
+    return "".join(out)
+
+
 def format_price_line_to_html(text: str) -> str:
-    """Цена обычным начертанием, месяцы — <strong>; без жирного для условий."""
+    """Строка тарифа как в посте: суммы и числа — жирным, месяцы — <strong> в хвосте."""
     text = (text or "").strip()
     if not text:
         return ""
@@ -1138,22 +1149,25 @@ def format_price_line_to_html(text: str) -> str:
     m = _PRICE_LEADING.match(text)
     if m:
         amount, tail = m.group(1).strip(), m.group(2).strip()
+        tail_html = bold_digits_outside_tags(bold_months_in_tail(tail))
         return (
             f'<span class="price-card__amount">{html.escape(amount)}</span> - '
-            f"{bold_months_in_tail(tail)}"
+            f"{tail_html}"
         )
 
     m = _PRICE_TRAILING.match(text)
     if m:
         desc, amount = m.group(1).strip(), m.group(2).strip()
-        return f"{html.escape(desc)} - " f'<span class="price-card__amount">{html.escape(amount)}</span>'
+        desc_html = bold_digits_outside_tags(html.escape(desc))
+        return f"{desc_html} - " f'<span class="price-card__amount">{html.escape(amount)}</span>'
 
     m_plus = re.match(r"^(.+?)\s*\+\s*(\d[\d\s]*\s*(?:₽|руб\.?))\s*$", text, re.I)
     if m_plus:
         left, right = m_plus.group(1).strip(), m_plus.group(2).strip()
-        return f"{html.escape(left)} + " f'<span class="price-card__amount">{html.escape(right)}</span>'
+        left_html = bold_digits_outside_tags(html.escape(left))
+        return f"{left_html} + " f'<span class="price-card__amount">{html.escape(right)}</span>'
 
-    return html.escape(text)
+    return bold_digits_outside_tags(html.escape(text))
 
 
 def _is_prose_paragraph_keep_with_price_mention(plain: str) -> bool:

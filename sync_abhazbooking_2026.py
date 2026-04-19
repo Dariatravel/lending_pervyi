@@ -1,4 +1,5 @@
 import html
+import importlib.util
 import json
 import re
 import shutil
@@ -470,6 +471,34 @@ def parse_post(raw_text: str):
     }
 
 
+def is_caps_lock_heading_line(line: str) -> bool:
+    """Строка-«шапка» абзаца из поста: все буквы в ВЕРХНЕМ регистре (как в Telegram)."""
+    t = (line or "").strip()
+    if len(t) < 3 or len(t) > 200:
+        return False
+    letters = [c for c in t if c.isalpha()]
+    if len(letters) < 3:
+        return False
+    return all(ch.isupper() for ch in letters)
+
+
+def paragraph_line_to_html(line: str) -> str:
+    """Одна строка поста → <p>; капслок-заголовки — с классом и <strong>."""
+    if not line or not str(line).strip():
+        return ""
+    raw = str(line).strip()
+    if should_drop_line(raw):
+        return ""
+    esc = html.escape(raw)
+    if is_caps_lock_heading_line(raw):
+        return f'            <p class="paragraph-blocks__caps"><strong>{esc}</strong></p>'
+    return f"            <p>{esc}</p>"
+
+
+def render_paragraph_lines_html(lines: list[str]) -> str:
+    return "\n".join(block for line in lines if (block := paragraph_line_to_html(line)))
+
+
 def should_drop_line(line: str) -> bool:
     upper = line.upper()
     if "@ABHAZBOOKING_ONLINE" in upper:
@@ -562,16 +591,21 @@ def render_sections(sections):
     if not sections:
         return ""
     for section in sections:
-        label = html.escape(humanize_section_title(section["label"]))
-        visible_lines = [line for line in section["lines"] if not should_drop_line(line)]
+        label_raw = (section.get("label") or "").strip()
+        if label_raw.casefold() == "обзор":
+            label_raw = ""
+        label_html = html.escape(label_raw) if label_raw else ""
+        visible_lines = [line for line in section.get("lines", []) if not should_drop_line(line)]
         if not visible_lines:
             continue
-        paragraphs = "\n".join(f"            <p>{html.escape(line)}</p>" for line in visible_lines)
+        paragraphs = render_paragraph_lines_html(section.get("lines", []))
+        if not paragraphs.strip():
+            continue
+        heading = f"          <h2>{label_html}</h2>\n" if label_html else ""
         parts.append(
             f"""      <section class="section">
         <article class="card">
-          <h2>{label}</h2>
-          <div class="paragraph-blocks">
+{heading}          <div class="paragraph-blocks">
 {paragraphs}
           </div>
         </article>
@@ -580,10 +614,30 @@ def render_sections(sections):
     return "\n\n".join(parts)
 
 
+_PRICE_LINE_HTML_FN = None
+
+
+def _format_price_line_html(text: str) -> str:
+    """Единое форматирование строк цены (жирные цифры и т.д.) — как на сайте."""
+    global _PRICE_LINE_HTML_FN
+    if _PRICE_LINE_HTML_FN is None:
+        root = Path(__file__).resolve().parent
+        spec = importlib.util.spec_from_file_location(
+            "apply_new_site_design",
+            root / "tools" / "apply_new_site_design.py",
+        )
+        mod = importlib.util.module_from_spec(spec)
+        assert spec.loader is not None
+        spec.loader.exec_module(mod)
+        _PRICE_LINE_HTML_FN = mod.format_price_line_to_html
+    return _PRICE_LINE_HTML_FN(text)
+
+
 def render_prices(prices):
     if not prices:
         return ""
     items: list[str] = []
+    fmt = _format_price_line_html
     for entry in prices:
         if isinstance(entry, dict):
             kind = str(entry.get("kind") or "price")
@@ -593,9 +647,9 @@ def render_prices(prices):
             if kind == "heading":
                 items.append(f"            <li><strong>{html.escape(text)}</strong></li>")
             else:
-                items.append(f"            <li>{html.escape(text)}</li>")
+                items.append(f"            <li>{fmt(text)}</li>")
         else:
-            items.append(f"            <li>{html.escape(str(entry))}</li>")
+            items.append(f"            <li>{fmt(str(entry))}</li>")
     ul_body = "\n".join(items)
     return f"""      <section class="section">
         <article class="card price-card">

@@ -33,8 +33,8 @@ from sync_abhazbooking_2026 import (  # noqa: E402
     city_label,
     clean_line,
     format_human_date,
-    humanize_section_title,
     parse_post,
+    render_paragraph_lines_html,
     render_reviews,
     should_drop_line,
     summary_text,
@@ -417,21 +417,35 @@ def transcode_video(source: Path, target: Path, bitrate: str) -> bool:
 
 
 def render_paragraph_block(lines: list[str]) -> str:
-    visible = [line for line in lines if line and not should_drop_line(line)]
-    return '\n'.join(f'            <p>{html.escape(line)}</p>' for line in visible)
+    return render_paragraph_lines_html(lines)
 
 
 def _section_heading_markup(label: str) -> str:
     t = (label or '').strip()
     if not t or t.casefold() == 'обзор':
         return ''
-    return f'          <h2>{html.escape(humanize_section_title(t))}</h2>\n'
+    return f'          <h2>{html.escape(t)}</h2>\n'
 
 
-def render_sections_html(sections: list[dict[str, Any]]) -> str:
+def render_sections_html(sections: list[dict[str, Any]], parsed: dict[str, Any] | None = None) -> str:
     parts: list[str] = []
+    first = True
     for section in sections:
-        block = render_paragraph_block(section.get('lines', []))
+        lines = list(section.get('lines', []))
+        if first and parsed is not None:
+            prepend: list[str] = []
+            loc = (parsed.get('location') or '').strip()
+            beach = (parsed.get('beach') or '').strip()
+            cap = (parsed.get('capacity') or '').strip()
+            if loc:
+                prepend.append(f'📍 {loc}')
+            if beach:
+                prepend.append(f'🏖️ {beach}')
+            if cap:
+                prepend.append(f'👥 {cap}')
+            lines = prepend + lines
+            first = False
+        block = render_paragraph_block(lines)
         if not block:
             continue
         heading = _section_heading_markup(str(section.get('label', '')))
@@ -475,14 +489,17 @@ def render_prices_html(prices: Any) -> str:
 
     has_heading = any(e['kind'] == 'heading' for e in norm)
 
+    mod = _apply_design_mod()
+    fmt = mod.format_price_line_to_html
+
     def seasons_ul(lines: list[str]) -> str:
-        lis = '\n'.join(f'            <li><strong>{html.escape(line)}</strong></li>' for line in lines)
+        lis = '\n'.join(f'            <li>{fmt(line)}</li>' for line in lines)
         return f'          <ul class="price-card__seasons">\n{lis}\n          </ul>'
 
     def notes_ul(note_lines: list[str]) -> str:
         if not note_lines:
             return ''
-        nitems = '\n'.join(f'            <li><strong>{html.escape(n)}</strong></li>' for n in note_lines)
+        nitems = '\n'.join(f'            <li>{fmt(n)}</li>' for n in note_lines)
         return (
             f'\n          <ul class="price-card__notes" aria-label="Особые условия">\n{nitems}\n          </ul>'
         )
@@ -727,7 +744,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
               </div>
             </article>
           </section>
-{render_sections_html(sections)}
+{render_sections_html(sections, parsed)}
         </div>
         <aside class="hotel-site-concept__detail-aside">
 {render_prices_html(prices)}
