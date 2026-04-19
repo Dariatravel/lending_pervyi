@@ -11,6 +11,21 @@ KVARTIRA_FILES = sorted((ROOT / "kvartira").glob("*/index.html"))
 LISTING_PRICE_FILES = sorted(set(HOTEL_FILES) | set(KVARTIRA_FILES))
 
 
+def listing_catalog_markup(path: Path) -> tuple[str, str, str]:
+    """Eyebrow link HTML (for inside <p class=\"eyebrow\">), save-button href, save-button label."""
+    if "kvartira" in path.parts:
+        return (
+            '<a href="/kvartira/"><strong>Каталог квартир</strong></a>',
+            "/kvartira/",
+            "К каталогу квартир",
+        )
+    return (
+        '<a href="/"><strong>Каталог Абхазберег</strong></a>',
+        "/",
+        "К каталогу",
+    )
+
+
 def strip_tags(text: str) -> str:
     text = re.sub(r"<br\s*/?>", "\n", text or "", flags=re.I)
     text = re.sub(r"<[^>]+>", "", text)
@@ -185,6 +200,23 @@ def _should_stop_ceny_tail_paragraph(plain: str) -> bool:
     return False
 
 
+def _is_room_category_header_line(plain: str) -> bool:
+    """Подписи категорий номеров из поста — не строки тарифа, не блок «Цены»."""
+    p = (plain or "").strip()
+    if not p or len(p) > 96:
+        return False
+    if re.search(r"\d", p):
+        return False
+    low = p.lower().rstrip(".: ")
+    if re.match(r"^номер(а)?\s+(эконом|комфорт|стандарт|люкс|делюкс|апарт|студи)\b", low):
+        return True
+    if re.match(r"^(эконом|комфорт|стандарт|люкс)(\s+номер(а)?)?$", low):
+        return True
+    if low in {"номера эконом", "номера комфорт", "номер эконом", "номер комфорт"}:
+        return True
+    return False
+
+
 def strip_ceny_subsection_from_section_html(section_html: str) -> tuple[str, list[str]]:
     """Убирает из текста секции блок от «✔️ЦЕНЫ:» до следующего ✔️-раздела или до длинного абзаца."""
     extracted: list[str] = []
@@ -214,8 +246,11 @@ def strip_ceny_subsection_from_section_html(section_html: str) -> tuple[str, lis
             break
         if _should_stop_ceny_tail_paragraph(plain):
             break
+        if _is_prose_paragraph_keep_with_price_mention(plain):
+            break
         if plain:
-            extracted.append(clean_text(plain))
+            if not _is_room_category_header_line(plain):
+                extracted.append(clean_text(plain))
         remove_end = match.end() + abs_end
         pos = abs_end
 
@@ -233,6 +268,8 @@ def remove_price_clauses(text: str) -> str:
     t = clean_text(text)
     if not t:
         return ""
+    if _is_prose_paragraph_keep_with_price_mention(t):
+        return t
     if not _has_price_signal(t):
         return t
     parts = re.split(r"(?<=[.!?])\s+", t)
@@ -253,6 +290,8 @@ def strip_paragraphs_price_from_section_html(section_html: str) -> tuple[str, li
         if _is_prices_section_header(plain):
             return ""
         if _has_price_signal(plain):
+            if _is_prose_paragraph_keep_with_price_mention(plain):
+                return match.group(0)
             extracted.append(clean_text(plain))
             return ""
         return match.group(0)
@@ -360,6 +399,30 @@ def format_price_line_to_html(text: str) -> str:
     return html.escape(text)
 
 
+def _is_prose_paragraph_keep_with_price_mention(plain: str) -> bool:
+    """Длинное описание локации/питания/инфраструктуры с разовым «от N₽/завтрак» — остаётся в тексте, не в «Цены»."""
+    plain = (plain or "").strip()
+    if len(plain) < 85 or "₽" not in plain:
+        return False
+    if is_seasonal_price_line(plain):
+        return False
+    if _PRICE_LEADING.match(plain) or _PRICE_TRAILING.match(plain):
+        return False
+    if re.search(r"\d[\d\s]*\s*/\s*сут", plain, re.I):
+        return False
+    low = plain.lower()
+    if re.match(r"^доп(\.|олнительн)", low) or re.match(r"^дети\b", low):
+        return False
+    food_or_walk = re.search(
+        r"столов|кафе|завтрак|обед|ужин|меню|пита|рыноч|рынок|магазин|шашлык|чебур|экскурс|"
+        r"ходьб|пеш[а-я]*|доступност|минут[^.]{0,40}до|окрест|инфраструкт|рядом\s+работ",
+        low,
+    )
+    if food_or_walk:
+        return True
+    return False
+
+
 def is_seasonal_price_line(plain: str) -> bool:
     """Сезонные строки «цена — месяц»; остальное — особые условия (доп. место, дети, примечания)."""
     plain = (plain or "").strip()
@@ -431,6 +494,8 @@ def split_price_card_seasons_notes(section: str) -> str:
         if not plain:
             continue
         li_html = f"<li>{inner}</li>"
+        if _is_room_category_header_line(plain):
+            continue
         if is_seasonal_price_line(plain):
             seasons.append(li_html)
         else:
@@ -493,6 +558,94 @@ def reformat_price_card_content(section: str) -> str:
     return updated
 
 
+def cleanup_misplaced_prose_in_price_section(section: str) -> str:
+    """Убирает из блока «Цены» тизер и пункты, которые на самом деле описание инфраструктуры/питания."""
+    if not section or "price-card" not in section:
+        return section
+
+    def drop_teaser(m: re.Match[str]) -> str:
+        full = m.group(0)
+        plain = clean_text(strip_tags(full))
+        if plain.lower().startswith("от "):
+            plain = plain[3:].strip()
+        if _is_prose_paragraph_keep_with_price_mention(plain):
+            return ""
+        return full
+
+    section = re.sub(r'<p class="price-card__teaser"[^>]*>.*?</p>', drop_teaser, section, flags=re.S)
+
+    def drop_li(match: re.Match[str]) -> str:
+        inner = match.group(1)
+        plain = clean_text(strip_tags(inner))
+        if not plain:
+            return match.group(0)
+        if _is_room_category_header_line(plain):
+            return ""
+        if _is_prose_paragraph_keep_with_price_mention(plain):
+            return ""
+        return match.group(0)
+
+    return re.sub(r"<li[^>]*>(.*?)</li>", drop_li, section, flags=re.S)
+
+
+def reflow_price_card_list_items(fragment: str) -> str:
+    """Убирает подписи категорий номеров; подмешивает в список цену из тизера, если её не было в ul; пересобирает сезоны/примечания."""
+    if "price-card" not in fragment:
+        return fragment
+    m = re.search(r'(<article class="card price-card">)([\s\S]*?)(</article>)', fragment, re.S)
+    if not m:
+        return fragment
+    art_open, inner, art_close = m.group(1), m.group(2), m.group(3)
+    h2_m = re.search(r"(<h2[^>]*>.*?</h2>)", inner, flags=re.S)
+    h2 = h2_m.group(1) if h2_m else ""
+    teaser_m = re.search(r'(<p class="price-card__teaser"[^>]*>.*?</p>)', inner, flags=re.S)
+    teaser_plain = ""
+    if teaser_m:
+        t_inner = re.search(
+            r'price-box__label[^>]*>от</span>\s*(.*?)\s*</p>',
+            teaser_m.group(1),
+            flags=re.S,
+        )
+        if t_inner:
+            teaser_plain = clean_text(strip_tags(t_inner.group(1)))
+    if teaser_plain and _is_prose_paragraph_keep_with_price_mention(teaser_plain):
+        teaser_plain = ""
+
+    lis_plain_order: list[str] = []
+    for raw_inner in re.findall(r"<li[^>]*>(.*?)</li>", inner, flags=re.S):
+        plain = clean_text(strip_tags(raw_inner))
+        if not plain or _is_room_category_header_line(plain):
+            continue
+        lis_plain_order.append(plain)
+
+    plains_norm = {normalize_for_price_dedup(p) for p in lis_plain_order}
+    if teaser_plain:
+        tn = normalize_for_price_dedup(teaser_plain)
+        if tn not in plains_norm and (
+            is_seasonal_price_line(teaser_plain)
+            or ("₽" in teaser_plain and _MONTHS_RE.search(teaser_plain))
+        ):
+            lis_plain_order.insert(0, teaser_plain)
+
+    seasons: list[str] = []
+    notes: list[str] = []
+    for plain in lis_plain_order:
+        li_html = f"<li>{format_price_line_to_html(plain)}</li>"
+        if is_seasonal_price_line(plain):
+            seasons.append(li_html)
+        else:
+            notes.append(li_html)
+
+    seasons_block = (
+        f'<ul class="price-card__seasons">\n{"".join(seasons)}\n</ul>' if seasons else "<ul class=\"price-card__seasons\"></ul>"
+    )
+    notes_block = (
+        f'<ul class="price-card__notes" aria-label="Особые условия">\n{"".join(notes)}\n</ul>' if notes else ""
+    )
+    new_inner = f"\n{h2}\n{seasons_block}\n{notes_block}\n"
+    return fragment[: m.start()] + art_open + new_inner + art_close + fragment[m.end() :]
+
+
 def merge_extra_lines_into_price_section(price_section: str, extra_lines: list[str]) -> str:
     """Добавляет уникальные строки в список сезонов или особых условий."""
     if not price_section or not extra_lines or "price-card" not in price_section:
@@ -503,6 +656,10 @@ def merge_extra_lines_into_price_section(price_section: str, extra_lines: list[s
     for line in extra_lines:
         plain = clean_text(line)
         if not plain:
+            continue
+        if _is_prose_paragraph_keep_with_price_mention(plain):
+            continue
+        if _is_room_category_header_line(plain):
             continue
         key = normalize_for_price_dedup(plain)
         if key in existing:
@@ -567,6 +724,9 @@ def strip_stray_contacts_from_price_section(section: str) -> str:
 def first_price_highlight(section: str) -> str:
     """Первая строка с ценой для «от …» — из списка или существующего тизера."""
     for raw in extract_list_items(section):
+        plain_li = clean_text(strip_tags(raw))
+        if _is_prose_paragraph_keep_with_price_mention(plain_li):
+            continue
         if "₽" in raw or "руб" in raw.lower() or re.search(r"\d[\d\s]*/\s*сутки", raw, re.I):
             return raw
     m = re.search(
@@ -587,6 +747,10 @@ def inject_price_teaser(price_section: str, highlight: str) -> str:
         return price_section
     if "price-card__teaser" in price_section:
         return price_section
+    m0 = re.search(r'<ul class="price-card__seasons"[^>]*>\s*<li>(.*?)</li>', price_section, flags=re.S)
+    if m0:
+        if normalize_for_price_dedup(highlight) == normalize_for_price_dedup(strip_tags(m0.group(1))):
+            return price_section
     teaser = (
         f'\n          <p class="price-card__teaser">'
         f'<span class="price-box__label">от</span> '
@@ -602,31 +766,6 @@ def inject_price_teaser(price_section: str, highlight: str) -> str:
     )
     if n == 0:
         return price_section
-    # Убрать дублирующий первый пункт списка, если совпадает с акцентной строкой
-    hi = clean_text(highlight)
-    m = re.search(r'<ul class="price-card__seasons"[^>]*>\s*<li>(.*?)</li>', updated, flags=re.S)
-    if not m:
-        m = re.search(r"<ul[^>]*>\s*<li>(.*?)</li>", updated, flags=re.S)
-    if m:
-        li_plain = clean_text(m.group(1))
-        if li_plain == hi:
-            new_u = re.sub(
-                r'(<ul class="price-card__seasons"[^>]*>)\s*<li>.*?</li>\s*',
-                r"\1\n",
-                updated,
-                count=1,
-                flags=re.S,
-            )
-            if new_u != updated:
-                updated = new_u
-            else:
-                updated = re.sub(
-                    r"(<ul[^>]*>)\s*<li>.*?</li>\s*",
-                    r"\1\n",
-                    updated,
-                    count=1,
-                    flags=re.S,
-                )
     return updated
 
 
@@ -634,6 +773,8 @@ def upgrade_price_card_article(fragment: str) -> str:
     """Полный проход по блоку цен (для квартир и ручных правок)."""
     fragment = reformat_price_card_content(fragment)
     fragment = strip_stray_contacts_from_price_section(fragment)
+    fragment = cleanup_misplaced_prose_in_price_section(fragment)
+    fragment = reflow_price_card_list_items(fragment)
     fragment = split_price_card_seasons_notes(fragment)
     hi = first_price_highlight(fragment)
     fragment = inject_price_teaser(fragment, hi)
@@ -933,8 +1074,8 @@ def build_homepage() -> None:
     INDEX_FILE.write_text(clean_html_block(rebuilt) + "\n", encoding="utf-8")
 
 
-def build_hotels() -> None:
-    for path in HOTEL_FILES:
+def build_listing_pages() -> None:
+    for path in LISTING_PRICE_FILES:
         text = path.read_text(encoding="utf-8")
 
         header_html = extract_header(text)
@@ -1011,6 +1152,7 @@ def build_hotels() -> None:
             if clean_text(raw)
         ]
         feature_labels = list(dict.fromkeys(section_titles[:4] + [line for line in lead_lines[1:3] if line]))[:4]
+        feature_labels = [lbl for lbl in feature_labels if clean_text(lbl).casefold() != "обзор"]
 
         description_parts: list[str] = []
         for section in content_sections[:2]:
@@ -1034,8 +1176,11 @@ def build_hotels() -> None:
         review_cards = extract_reviews(reviews_section)
         price_section = reformat_price_card_content(price_section)
         price_section = strip_stray_contacts_from_price_section(price_section)
+        price_section = cleanup_misplaced_prose_in_price_section(price_section)
+        price_section = reflow_price_card_list_items(price_section)
         price_section = split_price_card_seasons_notes(price_section)
         price_section = merge_extra_lines_into_price_section(price_section, extra_price_from_prose)
+        price_section = cleanup_misplaced_prose_in_price_section(price_section)
         price_highlight = first_price_highlight(price_section)
 
         gallery_html = ""
@@ -1058,6 +1203,14 @@ def build_hotels() -> None:
           </div>"""
 
         feature_row_html = "".join(f"<span>{item}</span>" for item in feature_labels)
+        feature_row_markup = (
+            f"""      <div class="feature-row">
+        {feature_row_html}
+      </div>
+"""
+            if feature_row_html
+            else ""
+        )
         why_choose_html = "".join(f"<li>{item}</li>" for item in why_choose_items)
         important_html = "".join(f"<li>{item}</li>" for item in important_items)
         reviews_html = "".join(
@@ -1104,6 +1257,7 @@ def build_hotels() -> None:
             else ""
         )
         prose_html = description_to_prose_html(description)
+        eyebrow_link, save_href, save_label = listing_catalog_markup(path)
 
         new_main = f"""<main class="hotel-site-concept">
   <div class="card-preview-page__halo card-preview-page__halo--mint" aria-hidden="true"></div>
@@ -1111,7 +1265,7 @@ def build_hotels() -> None:
 
   <section class="hotel-site-concept__intro">
     <div class="hotel-site-concept__intro-brand">
-      <p class="eyebrow"><a href="/"><strong>Каталог Абхазберег</strong></a></p>
+      <p class="eyebrow">{eyebrow_link}</p>
       <p class="hotel-site-concept__intro-subline">онлайн-бронирование без накруток</p>
     </div>
   </section>
@@ -1125,7 +1279,7 @@ def build_hotels() -> None:
           <span class="hotel-card__rating-label">Локация объекта</span>
           <strong class="hotel-card__rating-summary">{html.escape(city_badge)}</strong>
         </div>
-        <a class="save-button" href="/">К каталогу</a>
+        <a class="save-button" href="{html.escape(save_href)}">{html.escape(save_label)}</a>
       </div>
 
       <div class="hotel-card__header">
@@ -1141,9 +1295,7 @@ def build_hotels() -> None:
 
       {prose_html}
 
-      <div class="feature-row">
-        {feature_row_html}
-      </div>
+      {feature_row_markup}
 
       <div class="benefit-grid">
         <article>
@@ -1183,6 +1335,9 @@ def build_hotels() -> None:
 
 if __name__ == "__main__":
     build_homepage()
-    build_hotels()
+    build_listing_pages()
     patch_all_listing_price_cards()
-    print(f"updated index, {len(HOTEL_FILES)} hotel pages, price cards on {len(LISTING_PRICE_FILES)} listings")
+    print(
+        f"updated index, {len(LISTING_PRICE_FILES)} listing pages (hotels + kvartira), "
+        f"price cards on {len(LISTING_PRICE_FILES)} listings"
+    )

@@ -242,6 +242,43 @@ def extract_existing_pages():
     return result
 
 
+_INFRA_RUBLE_IN_DESC_RE = re.compile(
+    r"столов|кафе|завтрак|обед|ужин|меню|пита|рыноч|рынок|магазин|шашлык|чебур|экскурс|"
+    r"ходьб|пеш[а-я]*|доступност|минут|окрест|инфраструкт|рядом\s+работ",
+    re.I,
+)
+
+
+def _is_room_category_header_for_prices(line: str) -> bool:
+    """Подписи «номера эконом/комфорт» в секции цен поста — не тарифные строки."""
+    s = (line or "").strip()
+    if not s or len(s) > 96:
+        return False
+    if re.search(r"\d", s):
+        return False
+    low = s.lower().rstrip(".: ")
+    if re.match(r"^номер(а)?\s+(эконом|комфорт|стандарт|люкс|делюкс|апарт|студи)\b", low):
+        return True
+    if re.match(r"^(эконом|комфорт|стандарт|люкс)(\s+номер(а)?)?$", low):
+        return True
+    if low in {"номера эконом", "номера комфорт", "номер эконом", "номер комфорт"}:
+        return True
+    return False
+
+
+def _line_with_ruble_belongs_in_description(line: str) -> bool:
+    """Не тащить в «цены» длинные фразы про столовые/кафе с разовым «от N₽/завтрак»."""
+    s = (line or "").strip()
+    low = s.lower()
+    if len(s) < 85 or ("₽" not in s and "руб" not in low):
+        return False
+    if re.search(r"\d[\d\s]*\s*/\s*сут", s, re.I):
+        return False
+    if re.match(r"^доп(\.|олнительн)", low) or re.match(r"^дети\b", low):
+        return False
+    return bool(_INFRA_RUBLE_IN_DESC_RE.search(s))
+
+
 def parse_post(raw_text: str):
     lines = [clean_line(line) for line in raw_text.splitlines() if clean_line(line)]
     idx = 0
@@ -274,7 +311,7 @@ def parse_post(raw_text: str):
 
     remainder = lines[idx:]
     sections = []
-    current_label = "Обзор"
+    current_label = ""
     current_lines = []
 
     def flush_section():
@@ -300,15 +337,22 @@ def parse_post(raw_text: str):
     for section in sections:
         label_upper = section["label"].upper()
         if "ЦЕН" in label_upper or "СТОИМОСТ" in label_upper:
-            prices.extend(section["lines"])
+            for line in section["lines"]:
+                if _is_room_category_header_for_prices(line):
+                    continue
+                prices.append(line)
         else:
             normal_sections.append(section)
 
     for section in normal_sections:
         leftovers = []
         for line in section["lines"]:
-            if "₽" in line or "РУБ" in line.upper():
-                prices.append(line)
+            has_rub = "₽" in line or "РУБ" in line.upper() or bool(re.search(r"\bруб\.?\b", line, re.I))
+            if has_rub:
+                if _line_with_ruble_belongs_in_description(line):
+                    leftovers.append(line)
+                else:
+                    prices.append(line)
             else:
                 leftovers.append(line)
         section["lines"] = leftovers
