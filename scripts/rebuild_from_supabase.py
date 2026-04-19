@@ -335,10 +335,89 @@ def render_kvartira_card(row: dict[str, Any]) -> str:
     )
 
 
+KVARTIRA_CATALOG_PAGE_SUFFIX = """
+      <section class="site-concept__section-block" id="guide">
+        <div class="site-concept__section-head">
+          <div>
+            <p class="site-concept__eyebrow">Как бронировать</p>
+            <h2>Выбирай жилье в Абхазии без утомительного поиска и без переплаты</h2>
+            <p class="site-concept__guide-subtitle site-concept__guide-subtitle--short">Искать самой или написать мне — я помогу подобрать вариант под ваш запрос.</p>
+          </div>
+        </div>
+
+        <div class="site-concept__guide-grid">
+          <article class="site-concept__guide-card">
+            <span>01</span>
+            <strong>Говорите, что вам нужно</strong>
+            <p>Курорт, даты, сколько человек, какой бюджет и что важно именно вам.</p>
+          </article>
+          <article class="site-concept__guide-card site-concept__guide-card--accent">
+            <span>02</span>
+            <strong>Я подбираю подходящие варианты</strong>
+            <p>Не всё подряд, а только то, что правда стоит смотреть под ваш запрос.</p>
+          </article>
+          <article class="site-concept__guide-card site-concept__guide-card--accent">
+            <span>03</span>
+            <strong>Обсуждаем в удобном формате</strong>
+            <p>Можно в мессенджере — спокойно задать вопросы и быстро сузить выбор.</p>
+          </article>
+          <article class="site-concept__guide-card">
+            <span>04</span>
+            <strong>Фиксируем бронь</strong>
+            <p>Когда вариант подходит, помогаю оформить бронирование и всё подтвердить.</p>
+          </article>
+        </div>
+
+        <div class="site-concept__guide-footer">
+          <p class="site-concept__guide-pitch">Самостоятельный поиск жилья — это десятки сайтов и переписок, где теряется время.</p>
+          <p class="site-concept__guide-pitch">Напишите, что вам нужно — я предложу подходящие варианты; если не подойдёт, продолжите искать сами.</p>
+          <div class="site-concept__guide-cta">
+            <div class="site-concept__guide-messenger-grid" role="group" aria-label="Написать в мессенджер">
+              <a class="btn-book site-concept__guide-messenger-btn" href="https://max.ru/u/f9LHodD0cOLVw3RTEObQAuqGut5qrEnsCdmW7cdV4PgfGrp9ldI_eY2boY8" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>
+              <a class="btn-book site-concept__guide-messenger-btn" href="http://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК</a>
+              <a class="btn-book site-concept__guide-messenger-btn" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В TELEGRAM</a>
+              <a class="btn-book site-concept__guide-messenger-btn" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В WHATSAPP</a>
+            </div>
+            <p class="site-concept__guide-cta-caption">Отвечу, помогу сориентироваться и предложу варианты под ваш запрос</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section site-concept__reviews" id="reviews">
+        <article class="card review-shell">
+          <div class="section-heading section-heading--compact">
+            <p class="eyebrow">Отзывы гостей</p>
+          </div>
+          <div aria-label="Лента отзывов" class="reviews-scroller" data-random-reviews="" data-review-count="6"></div>
+        </article>
+      </section>
+
+      <section class="section site-concept__contacts" id="contacts">
+        <article class="cta-block contact-shell">
+          <div class="contact-shell__intro">
+            <p class="eyebrow">Контакты и бронирование</p>
+            <p>
+              Проверить наличие номеров и задать вопросы можно по номеру<br />
+              <strong class="contact-phone">+7 940 900-33-40</strong><br />
+              <span class="contact-messengers">(WhatsApp, Telegram, MAX, VK)</span>
+            </p>
+            <p class="note">Только сообщения, обычный звонок не пройдёт.</p>
+          </div>
+          <div class="contact-buttons">
+            <a class="btn-book" href="https://max.ru/u/f9LHodD0cOLVw3RTEObQAuqGut5qrEnsCdmW7cdV4PgfGrp9ldI_eY2boY8" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>
+            <a class="btn-book" href="http://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК</a>
+            <a class="btn-book" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В TELEGRAM</a>
+            <a class="btn-book" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В WHATSAPP</a>
+          </div>
+        </article>
+      </section>
+"""
+
+
 def render_kvartira_catalog_page(rows: list[dict[str, Any]]) -> str:
     grid = "".join(render_kvartira_card(row) for row in rows)
     return f"""<!doctype html>
-<html lang="ru">
+<html lang="ru" id="top">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -353,11 +432,13 @@ def render_kvartira_catalog_page(rows: list[dict[str, Any]]) -> str:
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../styles.css?v=2026041910" />
+    <link rel="stylesheet" href="../styles.css?v=2026041911" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
-    <main>
+    <main class="page-shell site-concept kvartira-page">
+      <div class="bg-blur bg-blur--mint" aria-hidden="true"></div>
+      <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
       <header class="hero section">
         <p class="eyebrow"><a href="/">Абхазберег</a></p>
         <h1>КВАРТИРЫ И ДОМА</h1>
@@ -368,9 +449,10 @@ def render_kvartira_catalog_page(rows: list[dict[str, Any]]) -> str:
           <h2>Каталог объектов</h2>
           <div class="catalog-grid" id="kvartira-catalog-grid">{grid}</div>
         </article>
-      </section>
+      </section>{KVARTIRA_CATALOG_PAGE_SUFFIX}
     </main>
     <script src="../scripts.js" defer></script>
+    <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
   </body>
 </html>
 """
