@@ -1427,7 +1427,7 @@ def build_homepage() -> None:
     <nav class="site-concept__topnav" aria-label="Основная навигация">
       <a href="#search">Подбор жилья</a>
       <a href="#regions">Лучшие пляжи Абхазии</a>
-      <a href="#stay-categories">Для тех, кто едет впервые</a>
+      <a href="https://xn--80aacbklan7f0b.xn--p1ai/blog/pamyatka-turistu-abkhazia/">Для тех, кто едет впервые</a>
       <a href="#guide">Как бронировать</a>
       <a href="/blog/">Блог</a>
       <a href="#contacts">Контакты</a>
