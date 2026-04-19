@@ -744,7 +744,7 @@
 }
 
 .site-concept__hero-highlights .site-concept__benefit-title {
-  font-size: clamp(1.53rem, 2.925vw, 1.95rem);
+  font-size: clamp(1.22rem, 2.34vw, 1.56rem);
   line-height: 1.22;
 }
 
@@ -766,7 +766,7 @@
 }
 
 .site-concept__hero-highlights .site-concept__benefit-body p {
-  font-size: 21px;
+  font-size: 17px;
   line-height: 1.55;
 }
 
