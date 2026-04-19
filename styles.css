@@ -320,7 +320,7 @@
   grid-template-areas:
     "eyebrow eyebrow"
     "title title"
-    "media highlights"
+    "highlights media"
     "social social";
   align-items: start;
   gap: clamp(10px, 1.4vw, 18px);
@@ -1886,9 +1886,9 @@ section.site-concept__contacts.section {
     grid-template-areas:
       "eyebrow"
       "title"
+      "highlights"
       "media"
-      "social"
-      "highlights";
+      "social";
   }
 
   .site-concept__destination-grid {
