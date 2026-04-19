@@ -2187,6 +2187,24 @@ a.podborki-card--link:hover {
   gap: 10px;
 }
 
+.hotel-site-concept .price-card__tariff-group {
+  display: grid;
+  gap: 8px;
+}
+
+.hotel-site-concept .price-card__tariff-group + .price-card__tariff-group {
+  margin-top: 18px;
+}
+
+.hotel-site-concept .price-card__group {
+  margin: 0;
+  font-size: clamp(0.78rem, 2.1vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 .hotel-site-concept .price-card__notes {
   margin-top: 14px;
   padding-top: 14px;

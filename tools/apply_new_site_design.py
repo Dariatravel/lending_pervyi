@@ -766,6 +766,8 @@ def _is_room_category_header_line(plain: str) -> bool:
     if re.search(r"\d", p):
         return False
     low = p.lower().rstrip(".: ")
+    if low in {"номера", "номер", "домики", "домик", "коттеджи", "коттедж", "апартаменты", "студии"}:
+        return True
     if re.match(r"^номер(а)?\s+(эконом|комфорт|стандарт|люкс|делюкс|апарт|студи)\b", low):
         return True
     if re.match(r"^(эконом|комфорт|стандарт|люкс)(\s+номер(а)?)?$", low):
@@ -1193,6 +1195,46 @@ def cleanup_misplaced_prose_in_price_section(section: str) -> str:
     return re.sub(r"<li[^>]*>(.*?)</li>", drop_li, section, flags=re.S)
 
 
+def _reflow_price_card_inner_tariff_groups(inner: str) -> str:
+    """Форматирует строки в каждом ul сезонов/примечаний, не смешивая тарифные группы."""
+
+    def repl_season_ul(match: re.Match[str]) -> str:
+        open_tag, ul_body, close_tag = match.group(1), match.group(2), match.group(3)
+        lis_out: list[str] = []
+        for raw_inner in re.findall(r"<li[^>]*>(.*?)</li>", ul_body, flags=re.S):
+            plain = clean_text(strip_tags(raw_inner))
+            if not plain or _is_room_category_header_line(plain):
+                continue
+            lis_out.append(f"<li>{format_price_line_to_html(plain)}</li>")
+        body = "\n".join(f"            {x}" for x in lis_out)
+        return f"{open_tag}\n{body}\n          {close_tag}"
+
+    updated = re.sub(
+        r'(<ul class="price-card__seasons"[^>]*>)([\s\S]*?)(</ul>)',
+        repl_season_ul,
+        inner,
+        flags=re.S,
+    )
+
+    def repl_notes_ul(match: re.Match[str]) -> str:
+        open_tag, ul_body, close_tag = match.group(1), match.group(2), match.group(3)
+        lis_out: list[str] = []
+        for raw_inner in re.findall(r"<li[^>]*>(.*?)</li>", ul_body, flags=re.S):
+            plain = clean_text(strip_tags(raw_inner))
+            if not plain:
+                continue
+            lis_out.append(f"<li>{format_price_line_to_html(plain)}</li>")
+        body = "\n".join(f"            {x}" for x in lis_out)
+        return f"{open_tag}\n{body}\n          {close_tag}"
+
+    return re.sub(
+        r'(<ul class="price-card__notes"[^>]*>)([\s\S]*?)(</ul>)',
+        repl_notes_ul,
+        updated,
+        flags=re.S,
+    )
+
+
 def reflow_price_card_list_items(fragment: str) -> str:
     """Убирает подписи категорий номеров; подмешивает в список цену из тизера, если её не было в ul; пересобирает сезоны/примечания."""
     if "price-card" not in fragment:
@@ -1201,6 +1243,9 @@ def reflow_price_card_list_items(fragment: str) -> str:
     if not m:
         return fragment
     art_open, inner, art_close = m.group(1), m.group(2), m.group(3)
+    if "price-card__tariff-group" in inner:
+        new_inner = _reflow_price_card_inner_tariff_groups(inner)
+        return fragment[: m.start()] + art_open + new_inner + art_close + fragment[m.end() :]
     h2_m = re.search(r"(<h2[^>]*>.*?</h2>)", inner, flags=re.S)
     h2 = h2_m.group(1) if h2_m else ""
     teaser_m = re.search(r'(<p class="price-card__teaser"[^>]*>.*?</p>)', inner, flags=re.S)

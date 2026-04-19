@@ -164,6 +164,16 @@ def clean_line(text: str) -> str:
     return text
 
 
+def humanize_section_title(label: str) -> str:
+    """Заголовок секции для HTML: ВЕРХНИЙ РЕГИСТР из поста → нормальная капитализация (для русского лучше, чем .title())."""
+    t = (label or "").strip()
+    if not t:
+        return ""
+    if t.isupper():
+        return t.capitalize()
+    return t
+
+
 def is_object_post(raw_text: str) -> bool:
     lines = [clean_line(line) for line in raw_text.splitlines() if clean_line(line)]
     if not lines:
@@ -248,6 +258,37 @@ _INFRA_RUBLE_IN_DESC_RE = re.compile(
     re.I,
 )
 
+# Префикс «галочка» в постах (✔️ТЕРРИТОРИЯ:) — убираем до проверки заголовка секции
+_SECTION_LEAD_MARK_RE = re.compile(
+    r"^[\u2714\u2705\u2713\u2611✓]\ufe0f?(?:\u20e3)?\s*",
+    flags=re.UNICODE,
+)
+# Локация / пляж / размещение часто в одной строке с эмодзи (📍Пицунда …), а не на следующей
+_META_PIN_RE = re.compile(r"📍\s*(.+)", re.S)
+_META_BEACH_RE = re.compile(r"(?:🏖️|🏖|🏝️|🏝)\s*(.+)", re.S)
+_META_CAP_RE = re.compile(r"👥\s*(.+)", re.S)
+
+
+def _strip_leading_section_markers(line: str) -> str:
+    return _SECTION_LEAD_MARK_RE.sub("", (line or "").strip(), count=1).strip()
+
+
+def _is_price_subgroup_heading(line: str) -> bool:
+    """Короткая подпись тарифа в блоке ЦЕНЫ: «номера», «домики» и т.п. (отдельной строкой)."""
+    low = (line or "").strip().lower().rstrip(".:")
+    if not low or len(low) > 48 or re.search(r"\d", low):
+        return False
+    return low in {
+        "номера",
+        "номер",
+        "домики",
+        "домик",
+        "коттеджи",
+        "коттедж",
+        "апартаменты",
+        "студии",
+    }
+
 
 def _is_room_category_header_for_prices(line: str) -> bool:
     """Подписи «номера эконом/комфорт» в секции цен поста — не тарифные строки."""
@@ -295,17 +336,35 @@ def parse_post(raw_text: str):
 
     while idx < len(lines):
         line = lines[idx]
-        if "📍" in line and idx + 1 < len(lines):
-            location = lines[idx + 1]
-            idx += 2
+        if "📍" in line:
+            m_pin = _META_PIN_RE.search(line)
+            if m_pin and m_pin.group(1).strip():
+                location = clean_line(m_pin.group(1))
+            elif idx + 1 < len(lines):
+                location = lines[idx + 1]
+                idx += 2
+                continue
+            idx += 1
             continue
-        if ("🏖" in line or "🏝" in line) and idx + 1 < len(lines):
-            beach = lines[idx + 1]
-            idx += 2
+        if "🏖" in line or "🏝" in line:
+            m_b = _META_BEACH_RE.search(line)
+            if m_b and m_b.group(1).strip():
+                beach = clean_line(m_b.group(1))
+            elif idx + 1 < len(lines):
+                beach = lines[idx + 1]
+                idx += 2
+                continue
+            idx += 1
             continue
-        if "👥" in line and idx + 1 < len(lines):
-            capacity = lines[idx + 1]
-            idx += 2
+        if "👥" in line:
+            m_c = _META_CAP_RE.search(line)
+            if m_c and m_c.group(1).strip():
+                capacity = clean_line(m_c.group(1))
+            elif idx + 1 < len(lines):
+                capacity = lines[idx + 1]
+                idx += 2
+                continue
+            idx += 1
             continue
         break
 
@@ -322,25 +381,42 @@ def parse_post(raw_text: str):
 
     for line in remainder:
         simple = line.strip()
+        if not simple:
+            continue
         if simple in {"✔", "✔️", ":", "‼", "‼️"}:
             continue
-        is_label = bool(re.match(r"^[A-ZА-ЯЁ0-9 /\"'()-]{3,50}:?$", simple))
+        stripped_for_label = _strip_leading_section_markers(line)
+        is_label = bool(re.match(r"^[A-ZА-ЯЁ0-9 /\"'()-]{3,50}:?$", stripped_for_label))
         if is_label:
             flush_section()
-            current_label = simple.rstrip(":")
+            current_label = stripped_for_label.rstrip(":")
             continue
         current_lines.append(simple)
     flush_section()
 
-    prices = []
+    prices: list[dict[str, str]] = []
     normal_sections = []
     for section in sections:
         label_upper = section["label"].upper()
         if "ЦЕН" in label_upper or "СТОИМОСТ" in label_upper:
             for line in section["lines"]:
+                sl = line.strip()
+                if not sl:
+                    continue
+                if should_drop_line(line):
+                    continue
                 if _is_room_category_header_for_prices(line):
                     continue
-                prices.append(line)
+                if _is_price_subgroup_heading(line):
+                    prices.append({"kind": "heading", "text": sl.strip().title()})
+                    continue
+                if sl.startswith("(") or sl.startswith("（"):
+                    prices.append({"kind": "note", "text": line})
+                    continue
+                if re.match(r"^доп\.?", sl, re.I):
+                    prices.append({"kind": "note", "text": line})
+                    continue
+                prices.append({"kind": "price", "text": line})
         else:
             normal_sections.append(section)
 
@@ -352,7 +428,7 @@ def parse_post(raw_text: str):
                 if _line_with_ruble_belongs_in_description(line):
                     leftovers.append(line)
                 else:
-                    prices.append(line)
+                    prices.append({"kind": "price", "text": line})
             else:
                 leftovers.append(line)
         section["lines"] = leftovers
@@ -451,7 +527,7 @@ def render_sections(sections):
     if not sections:
         return ""
     for section in sections:
-        label = html.escape(section["label"].title())
+        label = html.escape(humanize_section_title(section["label"]))
         visible_lines = [line for line in section["lines"] if not should_drop_line(line)]
         if not visible_lines:
             continue
@@ -472,12 +548,25 @@ def render_sections(sections):
 def render_prices(prices):
     if not prices:
         return ""
-    items = "\n".join(f"            <li>{html.escape(line)}</li>" for line in prices)
+    items: list[str] = []
+    for entry in prices:
+        if isinstance(entry, dict):
+            kind = str(entry.get("kind") or "price")
+            text = str(entry.get("text") or entry.get("label") or "").strip()
+            if not text:
+                continue
+            if kind == "heading":
+                items.append(f"            <li><strong>{html.escape(text)}</strong></li>")
+            else:
+                items.append(f"            <li>{html.escape(text)}</li>")
+        else:
+            items.append(f"            <li>{html.escape(str(entry))}</li>")
+    ul_body = "\n".join(items)
     return f"""      <section class="section">
         <article class="card price-card">
           <h2>Цены</h2>
           <ul>
-{items}
+{ul_body}
           </ul>
           <p class="note">Уточняйте актуальную стоимость и наличие у менеджера перед бронированием.</p>
         </article>
