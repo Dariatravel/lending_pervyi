@@ -8,9 +8,16 @@ from __future__ import annotations
 import html
 import json
 import re
+import sys
 from pathlib import Path
 
 from bs4 import BeautifulSoup
+
+_TOOLS = Path(__file__).resolve().parent
+if str(_TOOLS) not in sys.path:
+    sys.path.insert(0, str(_TOOLS))
+
+from podborki_hotel_match import load_hotel_catalog, match_podborki_title_to_hotel
 
 REPO = Path(__file__).resolve().parents[1]
 PODBORKI = REPO / "podborki"
@@ -115,9 +122,55 @@ def upgrade_file(path: Path, kv_img: dict[str, str]) -> bool:
     return True
 
 
+def repair_no_link_cards(path: Path, catalog: list[dict[str, str]]) -> bool:
+    """Карточки без href → ссылка и обложка по совпадению названия с каталогом отелей."""
+    raw = path.read_text(encoding="utf-8")
+    if "catalog-card--no-link" not in raw:
+        return False
+    soup = BeautifulSoup(raw, "html.parser")
+    changed = False
+    for div in soup.select("div.catalog-card.podborki-catalog-card.catalog-card--no-link"):
+        h3 = div.find("h3")
+        if not h3:
+            continue
+        title_plain = h3.get_text(strip=True)
+        row = match_podborki_title_to_hotel(title_plain, catalog)
+        if not row:
+            continue
+        slug = row["slug"]
+        href = f"/hotels/{slug}/"
+        cover = f"../../media/cards/{slug}.jpg"
+        media = div.find("div", class_=lambda c: c and "catalog-card__media-wrap" in str(c))
+        if not media:
+            continue
+        for fb in media.select(".catalog-card__media-fallback"):
+            fb.decompose()
+        if not media.find("img"):
+            img = soup.new_tag(
+                "img",
+                src=cover,
+                alt=title_plain,
+                loading="lazy",
+                decoding="async",
+            )
+            media.append(img)
+        div.name = "a"
+        div["href"] = href
+        classes = div.get("class", [])
+        if isinstance(classes, str):
+            classes = [classes]
+        div["class"] = [c for c in classes if c != "catalog-card--no-link"]
+        changed = True
+    if changed:
+        path.write_text(str(soup), encoding="utf-8")
+    return changed
+
+
 def main() -> None:
     kv_img = load_kv_images_by_slug()
-    n = 0
+    catalog = load_hotel_catalog()
+    n_upgrade = 0
+    n_repair = 0
     for sub in sorted(PODBORKI.iterdir()):
         if not sub.is_dir():
             continue
@@ -125,9 +178,12 @@ def main() -> None:
         if not idx.is_file():
             continue
         if upgrade_file(idx, kv_img):
-            print("OK", idx.relative_to(REPO))
-            n += 1
-    print("Обновлено страниц подборок:", n)
+            print("OK ol→grid", idx.relative_to(REPO))
+            n_upgrade += 1
+        if repair_no_link_cards(idx, catalog):
+            print("OK repair", idx.relative_to(REPO))
+            n_repair += 1
+    print("Секций ol→grid:", n_upgrade, "| починено без ссылки:", n_repair)
 
 
 if __name__ == "__main__":

@@ -8,14 +8,21 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 import unicodedata
 from pathlib import Path
+
+_TOOLS_DIR = Path(__file__).resolve().parent
+if str(_TOOLS_DIR) not in sys.path:
+    sys.path.insert(0, str(_TOOLS_DIR))
 
 REPO = Path(__file__).resolve().parents[1]
 PODBORKI_ROOT = Path("/Users/darya_botova/Documents/ПОДБОРКИ")
 OUT_DIR = REPO / "podborki"
 CURRENT_PAGES = REPO / "output" / "current_pages.json"
 KVARTIRA_CARDS = REPO / "kvartira_cards.json"
+
+from podborki_hotel_match import load_hotel_catalog, match_podborki_title_to_hotel
 
 _SLUG_CYR = str.maketrans(
     {
@@ -290,6 +297,7 @@ def display_title(raw: str) -> str:
 
 def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> str:
     title_clean = display_title(page_title)
+    hotel_catalog = load_hotel_catalog()
     sections: list[str] = []
     by_region: dict[str | None, list[dict]] = {}
     for it in items:
@@ -306,6 +314,10 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
         for it in by_region[reg]:
             rank += 1
             href, _canonical_title = resolve_item_href(it, hotels, kv)
+            if not href:
+                guessed = match_podborki_title_to_hotel(it["title"], hotel_catalog)
+                if guessed:
+                    href = f"/hotels/{guessed['slug']}/"
             title = it["title"]
             chunk.append(render_item_catalog_card(rank, href, title, it["details"], kv))
         chunk.append("        </div>")
