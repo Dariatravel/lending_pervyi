@@ -22,7 +22,11 @@ OUT_DIR = REPO / "podborki"
 CURRENT_PAGES = REPO / "output" / "current_pages.json"
 KVARTIRA_CARDS = REPO / "kvartira_cards.json"
 
-from podborki_hotel_match import load_hotel_catalog, match_podborki_title_to_hotel
+from podborki_hotel_match import (
+    guess_podborki_href_from_title,
+    load_hotel_catalog,
+    load_kvartira_catalog,
+)
 
 _SLUG_CYR = str.maketrans(
     {
@@ -298,6 +302,7 @@ def display_title(raw: str) -> str:
 def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> str:
     title_clean = display_title(page_title)
     hotel_catalog = load_hotel_catalog()
+    kv_catalog = load_kvartira_catalog()
     sections: list[str] = []
     by_region: dict[str | None, list[dict]] = {}
     for it in items:
@@ -315,9 +320,7 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
             rank += 1
             href, _canonical_title = resolve_item_href(it, hotels, kv)
             if not href:
-                guessed = match_podborki_title_to_hotel(it["title"], hotel_catalog)
-                if guessed:
-                    href = f"/hotels/{guessed['slug']}/"
+                href = guess_podborki_href_from_title(it["title"], hotel_catalog, kv_catalog)
             title = it["title"]
             chunk.append(render_item_catalog_card(rank, href, title, it["details"], kv))
         chunk.append("        </div>")

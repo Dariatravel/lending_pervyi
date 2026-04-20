@@ -17,7 +17,11 @@ _TOOLS = Path(__file__).resolve().parent
 if str(_TOOLS) not in sys.path:
     sys.path.insert(0, str(_TOOLS))
 
-from podborki_hotel_match import load_hotel_catalog, match_podborki_title_to_hotel
+from podborki_hotel_match import (
+    guess_podborki_href_from_title,
+    load_hotel_catalog,
+    load_kvartira_catalog,
+)
 
 REPO = Path(__file__).resolve().parents[1]
 PODBORKI = REPO / "podborki"
@@ -122,11 +126,13 @@ def upgrade_file(path: Path, kv_img: dict[str, str]) -> bool:
     return True
 
 
-def repair_no_link_cards(path: Path, catalog: list[dict[str, str]]) -> bool:
-    """Карточки без href → ссылка и обложка по совпадению названия с каталогом отелей."""
+def repair_no_link_cards(path: Path) -> bool:
+    """Карточки без href → ссылка и обложка по названию (отель или квартира)."""
     raw = path.read_text(encoding="utf-8")
     if "catalog-card--no-link" not in raw:
         return False
+    hotel_catalog = load_hotel_catalog()
+    kv_catalog = load_kvartira_catalog()
     soup = BeautifulSoup(raw, "html.parser")
     changed = False
     for div in soup.select("div.catalog-card.podborki-catalog-card.catalog-card--no-link"):
@@ -134,12 +140,19 @@ def repair_no_link_cards(path: Path, catalog: list[dict[str, str]]) -> bool:
         if not h3:
             continue
         title_plain = h3.get_text(strip=True)
-        row = match_podborki_title_to_hotel(title_plain, catalog)
-        if not row:
+        href = guess_podborki_href_from_title(title_plain, hotel_catalog, kv_catalog)
+        if not href:
             continue
-        slug = row["slug"]
-        href = f"/hotels/{slug}/"
-        cover = f"../../media/cards/{slug}.jpg"
+        m = re.match(r"/(hotels|kvartira)/([^/]+)/?", href.strip())
+        if not m:
+            continue
+        kind, slug = m.group(1), m.group(2)
+        if kind == "hotels":
+            cover = f"../../media/cards/{slug}.jpg"
+        else:
+            row = next((r for r in kv_catalog if r.get("slug") == slug), None)
+            img = (row.get("image") if row else "") or f"/media/kvartira-cards/{slug}-cover.jpg"
+            cover = f"../..{img}" if img.startswith("/") else img
         media = div.find("div", class_=lambda c: c and "catalog-card__media-wrap" in str(c))
         if not media:
             continue
@@ -168,7 +181,6 @@ def repair_no_link_cards(path: Path, catalog: list[dict[str, str]]) -> bool:
 
 def main() -> None:
     kv_img = load_kv_images_by_slug()
-    catalog = load_hotel_catalog()
     n_upgrade = 0
     n_repair = 0
     for sub in sorted(PODBORKI.iterdir()):
@@ -180,7 +192,7 @@ def main() -> None:
         if upgrade_file(idx, kv_img):
             print("OK ol→grid", idx.relative_to(REPO))
             n_upgrade += 1
-        if repair_no_link_cards(idx, catalog):
+        if repair_no_link_cards(idx):
             print("OK repair", idx.relative_to(REPO))
             n_repair += 1
     print("Секций ol→grid:", n_upgrade, "| починено без ссылки:", n_repair)
