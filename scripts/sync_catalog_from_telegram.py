@@ -33,11 +33,13 @@ from sync_abhazbooking_2026 import (  # noqa: E402
     clean_line,
     format_human_date,
     parse_post,
+    render_paragraph_lines_html,
     render_reviews,
     should_drop_line,
     summary_text,
 )
 from rebuild_from_supabase import infer_filters  # noqa: E402
+from tools.apply_new_site_design import format_price_line_to_html  # noqa: E402
 
 ROOT_INDEX = ROOT / 'index.html'
 HOTELS_DIR = ROOT / 'hotels'
@@ -301,6 +303,60 @@ def build_excerpt(parsed: dict[str, Any]) -> str:
     return summary_text(parsed.get('location', ''), parsed.get('beach', ''), parsed.get('capacity', ''))
 
 
+def _dedupe_preserve_order(lines: Iterable[str]) -> list[str]:
+    seen: set[str] = set()
+    result: list[str] = []
+    for raw in lines:
+        line = clean_line(str(raw))
+        if not line:
+            continue
+        key = re.sub(r"\s+", " ", line).strip().lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        result.append(line)
+    return result
+
+
+def compose_top_meta_lines(parsed: dict[str, Any]) -> list[str]:
+    lines: list[str] = []
+    if parsed.get('location'):
+        lines.append(f'📍 {clean_line(parsed["location"])}')
+    if parsed.get('beach'):
+        lines.append(f'🏖️ {clean_line(parsed["beach"])}')
+    if parsed.get('capacity'):
+        lines.append(f'👥 {clean_line(parsed["capacity"])}')
+    return _dedupe_preserve_order(lines)
+
+
+def _normalize_section_label(label: str) -> str:
+    cleaned = clean_line(label)
+    cleaned = re.sub(r'^[^\wА-Яа-яЁё]*[✔✅☑]+\s*', '', cleaned)
+    cleaned = re.sub(r'^[^\wА-Яа-яЁё]+', '', cleaned)
+    cleaned = cleaned.strip()
+    if cleaned and not cleaned.endswith(':'):
+        cleaned = f'{cleaned}:'
+    return cleaned
+
+
+def collect_description_lines(sections: list[dict[str, Any]]) -> list[str]:
+    merged: list[str] = []
+    for section in sections or []:
+        label = _normalize_section_label(str(section.get('label', '')))
+        if label and label.lower() not in {'обзор', 'обзор:'}:
+            merged.append(label)
+        for line in section.get('lines', []) or []:
+            cleaned = clean_line(str(line))
+            if cleaned and not should_drop_line(cleaned):
+                merged.append(cleaned)
+    return _dedupe_preserve_order(merged)
+
+
+def collect_prices_lines(prices: list[str]) -> list[str]:
+    visible = [clean_line(str(line)) for line in (prices or []) if line and not should_drop_line(str(line))]
+    return _dedupe_preserve_order(visible)
+
+
 def local_to_public_path(local_path: Path) -> str:
     rel = local_path.relative_to(ROOT).as_posix()
     return f'/{rel}'
@@ -358,28 +414,28 @@ def transcode_video(source: Path, target: Path, bitrate: str) -> bool:
         return False
 
 
-def render_paragraph_block(lines: list[str]) -> str:
-    visible = [line for line in lines if line and not should_drop_line(line)]
-    return '\n'.join(f'            <p>{html.escape(line)}</p>' for line in visible)
-
-
 def render_sections_html(sections: list[dict[str, Any]]) -> str:
-    parts: list[str] = []
-    for section in sections:
-        block = render_paragraph_block(section.get('lines', []))
-        if not block:
-            continue
-        parts.append(
-            f'''      <section class="section hotel-site-concept__detail-section">\n        <article class="card">\n          <h2>{html.escape(section.get("label", "Обзор").title())}</h2>\n          <div class="paragraph-blocks">\n{block}\n          </div>\n        </article>\n      </section>'''
-        )
-    return ''.join(parts)
+    description_lines = collect_description_lines(sections)
+    block = render_paragraph_lines_html(description_lines, indent='            ')
+    if not block:
+        return ''
+    return (
+        '      <section class="section hotel-site-concept__detail-section">\n'
+        '        <article class="card">\n'
+        '          <h2>Описание</h2>\n'
+        '          <div class="paragraph-blocks">\n'
+        f'{block}\n'
+        '          </div>\n'
+        '        </article>\n'
+        '      </section>'
+    )
 
 
 def render_prices_html(prices: list[str]) -> str:
-    visible = [line for line in prices if line and not should_drop_line(line)]
+    visible = collect_prices_lines(prices)
     if not visible:
         return ''
-    items = '\n'.join(f'            <li><strong>{html.escape(line)}</strong></li>' for line in visible)
+    items = '\n'.join(f'            <li>{format_price_line_to_html(line)}</li>' for line in visible)
     return f'''      <section class="section hotel-price-section hotel-site-concept__detail-section">\n        <article class="card price-card">\n          <h2>Цены</h2>\n          <ul>\n{items}\n          </ul>\n        </article>\n      </section>'''
 
 
@@ -388,11 +444,7 @@ def render_reviews_html(seed: int) -> str:
 
 
 def human_lead(parsed: dict[str, Any]) -> str:
-    lead = summary_text(parsed.get('location', ''), parsed.get('beach', ''), parsed.get('capacity', ''))
-    excerpt = build_excerpt(parsed)
-    if excerpt and excerpt != lead:
-        return f'{lead} {excerpt}'
-    return lead
+    return summary_text(parsed.get('location', ''), parsed.get('beach', ''), parsed.get('capacity', ''))
 
 
 def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
@@ -434,7 +486,8 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     title = normalize_title(parsed.get('title', '')).upper()
     city = html.escape(city_label(parsed.get('location', '')))
     lead = human_lead(parsed)
-    description = build_excerpt(parsed)
+    top_meta_lines = compose_top_meta_lines(parsed)
+    top_meta_text = ' · '.join(top_meta_lines)
     sections = parsed.get('sections', [])
     prices = parsed.get('prices', [])
     top_gallery = render_top_gallery(media_items, title)
@@ -447,11 +500,12 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     important_lines = sections[1]['lines'][:3] if len(sections) > 1 else []
     why_html = ''.join(f'<li>{html.escape(line)}</li>' for line in why_lines if not should_drop_line(line))
     important_html = ''.join(f'<li>{html.escape(line)}</li>' for line in important_lines if not should_drop_line(line))
+    description_html = '<p class="hotel-card__description"></p>'
     breadcrumb = '/kvartira/' if source_kind == 'kvartira' else '/'
     breadcrumb_label = 'Каталог квартир' if source_kind == 'kvartira' else 'Каталог Abhazbereg'
     card_cta = 'К каталогу квартир' if source_kind == 'kvartira' else 'К каталогу'
     page_title_suffix = 'обзор, фото, видео и цены'
-    return f'''<!doctype html>\n<html lang="ru">\n  <head>\n    <meta charset="UTF-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <title>{html.escape(title)} — {page_title_suffix}</title>\n    <meta name="description" content="{html.escape(summary_text(parsed.get('location', ''), parsed.get('beach', ''), parsed.get('capacity', '')))}" />\n    <meta name="robots" content="index, follow, max-image-preview:large" />\n    <link rel="canonical" href="https://абхазберег.рф{page_href}" />\n    <meta property="og:type" content="article" />\n    <meta property="og:title" content="{html.escape(title)} — обзор и цены" />\n    <meta property="og:description" content="{html.escape(summary_text(parsed.get('location', ''), parsed.get('beach', ''), parsed.get('capacity', '')))}" />\n    <meta property="og:url" content="https://абхазберег.рф{page_href}" />\n    <meta property="og:image" content="https://абхазберег.рф{html.escape(media_items[0]['source_url']) if media_items else ''}" />\n    <link rel="preconnect" href="https://fonts.googleapis.com" />\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />\n    <link rel="stylesheet" href="../../styles.css" />\n  </head>\n  <body>\n    <div class="grain" aria-hidden="true"></div>\n    <main class="hotel-site-concept">\n      <div class="card-preview-page__halo card-preview-page__halo--mint" aria-hidden="true"></div>\n      <div class="card-preview-page__halo card-preview-page__halo--sand" aria-hidden="true"></div>\n\n      <section class="hotel-site-concept__intro">\n        <p class="eyebrow"><a href="{breadcrumb}">{breadcrumb_label}</a></p>\n        <h1>{html.escape(title)}</h1>\n        <p>{html.escape(lead)}</p>\n        <p class="updated">Обновлено: <time datetime="{date_text}">{format_human_date(date_text)}</time></p>\n      </section>\n\n      <article class="hotel-card hotel-site-concept__card">\n{top_gallery}\n        <div class="hotel-card__content">\n          <div class="hotel-card__topline">\n            <div class="hotel-card__rating">\n              <strong>{city}</strong>\n              <span>Локация объекта</span>\n            </div>\n            <a class="save-button" href="{breadcrumb}">{card_cta}</a>\n          </div>\n\n          <div class="hotel-card__header">\n            <div>\n              <h2>{html.escape(title)}</h2>\n              <p class="location">{html.escape(lead)}</p>\n            </div>\n            <div class="partner-badge">\n              <span>Abhazbereg</span>\n              <strong>Проверено</strong>\n            </div>\n          </div>\n\n          <p class="hotel-card__description">{html.escape(description)}</p>\n\n          <div class="feature-row">{feature_html}</div>\n\n          <div class="benefit-grid">\n            <article>\n              <strong>Почему выбирают</strong>\n              <ul>{why_html}</ul>\n            </article>\n            <article>\n              <strong>Важно для гостя</strong>\n              <ul>{important_html}</ul>\n            </article>\n          </div>\n\n          <div class="hotel-card__footer">\n            <div class="price-box">\n              <span class="price-box__label">от</span>\n              <strong>{html.escape(prices[0]) if prices else 'по запросу'}</strong>\n              <span class="price-box__note">цены и сезонность смотрите ниже</span>\n            </div>\n\n            <div class="hotel-card__actions">\n              <a class="button button--ghost" href="#details">Смотреть детали</a>\n              <a class="button button--accent" href="https://max.ru/u/f9LHodD0cOLVw3RTEObQAuqGut5qrEnsCdmW7cdV4PgfGrp9ldI_eY2boY8" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В MAX</a>\n            </div>\n          </div>\n        </div>\n      </article>\n\n      <div class="hotel-site-concept__detail-grid" id="details">\n        <div class="hotel-site-concept__detail-main">\n          <section class="section hotel-media-section hotel-site-concept__detail-section">\n            <article class="card">\n              <h2>Фото и видео из поста</h2>\n              <p class="media-note">Источник: <a href="{html.escape(telegram_url)}" target="_blank" rel="noopener noreferrer">{html.escape(telegram_url.replace('https://t.me/', '@'))}</a>.</p>\n              <div class="media-grid">\n{media_html}\n              </div>\n            </article>\n          </section>\n{render_sections_html(sections)}\n        </div>\n        <aside class="hotel-site-concept__detail-aside">\n{render_prices_html(prices)}\n{FAQ_BLOCK}\n{CONTACT_BLOCK}\n        </aside>\n      </div>\n\n      <section class="section hotel-site-concept__detail-section">\n        <article class="card">\n          <h2>Отзывы</h2>\n          <div class="reviews-scroller" aria-label="Лента отзывов">\n{render_reviews_html(sum(ord(ch) for ch in slug))}\n          </div>\n        </article>\n      </section>\n    </main>\n    <script src="../../scripts.js" defer></script>\n  </body>\n</html>'''
+    return f'''<!doctype html>\n<html lang="ru">\n  <head>\n    <meta charset="UTF-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    <title>{html.escape(title)} — {page_title_suffix}</title>\n    <meta name="description" content="{html.escape(summary_text(parsed.get('location', ''), parsed.get('beach', ''), parsed.get('capacity', '')))}" />\n    <meta name="robots" content="index, follow, max-image-preview:large" />\n    <link rel="canonical" href="https://абхазберег.рф{page_href}" />\n    <meta property="og:type" content="article" />\n    <meta property="og:title" content="{html.escape(title)} — обзор и цены" />\n    <meta property="og:description" content="{html.escape(summary_text(parsed.get('location', ''), parsed.get('beach', ''), parsed.get('capacity', '')))}" />\n    <meta property="og:url" content="https://абхазберег.рф{page_href}" />\n    <meta property="og:image" content="https://абхазберег.рф{html.escape(media_items[0]['source_url']) if media_items else ''}" />\n    <link rel="preconnect" href="https://fonts.googleapis.com" />\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />\n    <link rel="stylesheet" href="../../styles.css" />\n  </head>\n  <body>\n    <div class="grain" aria-hidden="true"></div>\n    <main class="hotel-site-concept">\n      <div class="card-preview-page__halo card-preview-page__halo--mint" aria-hidden="true"></div>\n      <div class="card-preview-page__halo card-preview-page__halo--sand" aria-hidden="true"></div>\n\n      <section class="hotel-site-concept__intro">\n        <p class="eyebrow"><a href="{breadcrumb}">{breadcrumb_label}</a></p>\n        <h1>{html.escape(title)}</h1>\n        <p>{html.escape(lead)}</p>\n        <p class="updated">Обновлено: <time datetime="{date_text}">{format_human_date(date_text)}</time></p>\n      </section>\n\n      <article class="hotel-card hotel-site-concept__card">\n{top_gallery}\n        <div class="hotel-card__content">\n          <div class="hotel-card__topline">\n            <div class="hotel-card__rating">\n              <strong>{city}</strong>\n              <span>Локация объекта</span>\n            </div>\n            <a class="save-button" href="{breadcrumb}">{card_cta}</a>\n          </div>\n\n          <div class="hotel-card__header">\n            <div>\n              <h2>{html.escape(title)}</h2>\n              <p class="location">{html.escape(top_meta_text or lead)}</p>\n            </div>\n            <div class="partner-badge">\n              <span>Abhazbereg</span>\n              <strong>Проверено</strong>\n            </div>\n          </div>\n\n          {description_html}\n\n          <div class="feature-row">{feature_html}</div>\n\n          <div class="benefit-grid">\n            <article>\n              <strong>Почему выбирают</strong>\n              <ul>{why_html}</ul>\n            </article>\n            <article>\n              <strong>Важно для гостя</strong>\n              <ul>{important_html}</ul>\n            </article>\n          </div>\n\n          <div class="hotel-card__footer">\n            <div class="price-box">\n              <span class="price-box__label">от</span>\n              <strong>{html.escape(prices[0]) if prices else 'по запросу'}</strong>\n              <span class="price-box__note">цены и сезонность смотрите ниже</span>\n            </div>\n\n            <div class="hotel-card__actions">\n              <a class="button button--ghost" href="#details">Смотреть детали</a>\n              <a class="button button--accent" href="https://max.ru/u/f9LHodD0cOLVw3RTEObQAuqGut5qrEnsCdmW7cdV4PgfGrp9ldI_eY2boY8" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В MAX</a>\n            </div>\n          </div>\n        </div>\n      </article>\n\n      <div class="hotel-site-concept__detail-grid" id="details">\n        <div class="hotel-site-concept__detail-main">\n          <section class="section hotel-media-section hotel-site-concept__detail-section">\n            <article class="card">\n              <h2>Фото и видео из поста</h2>\n              <p class="media-note">Источник: <a href="{html.escape(telegram_url)}" target="_blank" rel="noopener noreferrer">{html.escape(telegram_url.replace('https://t.me/', '@'))}</a>.</p>\n              <div class="media-grid">\n{media_html}\n              </div>\n            </article>\n          </section>\n{render_sections_html(sections)}\n        </div>\n        <aside class="hotel-site-concept__detail-aside">\n{render_prices_html(prices)}\n{FAQ_BLOCK}\n{CONTACT_BLOCK}\n        </aside>\n      </div>\n\n      <section class="section hotel-site-concept__detail-section">\n        <article class="card">\n          <h2>Отзывы</h2>\n          <div class="reviews-scroller" aria-label="Лента отзывов">\n{render_reviews_html(sum(ord(ch) for ch in slug))}\n          </div>\n        </article>\n      </section>\n    </main>\n    <script src="../../scripts.js" defer></script>\n  </body>\n</html>'''
 
 
 def parse_city_value(location: str) -> str:
