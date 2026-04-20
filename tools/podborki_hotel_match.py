@@ -22,6 +22,17 @@ _H2_HOTEL = re.compile(
 )
 
 
+def _title_from_hotel_page(path: Path) -> str:
+    raw = path.read_text(encoding="utf-8")
+    m = _H2_HOTEL.search(raw)
+    if not m:
+        m = re.search(r"<h2[^>]*>(.*?)</h2>", raw, re.I | re.S)
+    if not m:
+        return ""
+    inner = re.sub(r"<[^>]+>", "", m.group(1))
+    return unescape(inner).strip()
+
+
 def normalize_podborki_title(s: str) -> str:
     t = unescape(s or "")
     t = re.sub(r"\s+", " ", t.strip().lower())
@@ -36,15 +47,70 @@ def extract_quoted_brand(title: str) -> str:
     return ""
 
 
-def _title_from_hotel_page(path: Path) -> str:
-    raw = path.read_text(encoding="utf-8")
-    m = _H2_HOTEL.search(raw)
+def room_layout_hint(title: str) -> str | None:
+    """Число комнат '1'..'4' или studio. Если в строке подборки нет явной разметки — None."""
+    t = normalize_podborki_title(title)
+    if re.search(r"\bстуд(ия|ии|ию|ией)?\b", t) or "студия" in t:
+        return "studio"
+    m = re.search(r"(\d)\s*[-]?\s*[хx]\s*комнат", t)
+    if m:
+        return m.group(1)
+    m = re.search(r"(\d)\s*[-]\s*к\b", t)
+    if m:
+        return m.group(1)
+    m = re.search(r"\b(\d)\s*к\b", t)
+    if m:
+        return m.group(1)
+    m = re.search(r"(\d)к(?=\s|$|\.|,)", t)
+    if m:
+        return m.group(1)
+    return None
+
+
+def catalog_row_satisfies_room_hint(
+    hint: str | None, row_title: str, slug: str
+) -> bool:
+    if hint is None:
+        return True
+    blob = normalize_podborki_title(f"{row_title} {slug.replace('-', ' ')}")
+    if hint == "studio":
+        return "студ" in blob
+    n = hint
+    needles = [
+        f"{n}-к",
+        f"{n} к",
+        f"{n}к",
+        f"-{n}k-",
+        f"-{n}k",
+        f"{n}k-",
+        f"{n}k",
+        f"{n}х комнат",
+        f"{n} х комнат",
+    ]
+    return any(x in blob for x in needles)
+
+
+def podborki_href_matches_title(title: str, href: str) -> bool:
+    """Соответствует ли ссылка тексту карточки (бренд + для квартир — число комнат)."""
+    href = (href or "").strip()
+    m = re.match(r"/(hotels|kvartira)/([^/]+)/?", href)
     if not m:
-        m = re.search(r"<h2[^>]*>(.*?)</h2>", raw, re.I | re.S)
-    if not m:
-        return ""
-    inner = re.sub(r"<[^>]+>", "", m.group(1))
-    return unescape(inner).strip()
+        return True
+    kind, slug = m.group(1), m.group(2)
+    path = REPO / kind / slug / "index.html"
+    row_title = ""
+    if path.is_file():
+        row_title = _title_from_hotel_page(path)
+    hint = room_layout_hint(title)
+    if kind == "kvartira" and hint and row_title:
+        if not catalog_row_satisfies_room_hint(hint, row_title, slug):
+            return False
+    brand = extract_quoted_brand(title)
+    if brand:
+        blob = normalize_podborki_title(f"{row_title} {slug.replace('-', ' ')}")
+        if brand not in blob:
+            return False
+    return True
 
 
 def load_hotel_catalog() -> list[dict[str, str]]:
@@ -162,10 +228,15 @@ def match_podborki_title_to_kvartira(
 ) -> dict[str, str] | None:
     pn = normalize_podborki_title(podborki_title)
     brand = extract_quoted_brand(podborki_title)
+    room_hint = room_layout_hint(podborki_title)
     scored: list[tuple[int, dict[str, str]]] = []
 
     for row in catalog:
         slug = row.get("slug") or ""
+        if room_hint and not catalog_row_satisfies_room_hint(
+            room_hint, row.get("title") or "", slug
+        ):
+            continue
         ht = normalize_podborki_title(row.get("title") or "")
         slug_spaced = slug.replace("-", " ").lower()
 

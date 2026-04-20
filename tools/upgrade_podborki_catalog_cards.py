@@ -21,6 +21,7 @@ from podborki_hotel_match import (
     guess_podborki_href_from_title,
     load_hotel_catalog,
     load_kvartira_catalog,
+    podborki_href_matches_title,
 )
 
 REPO = Path(__file__).resolve().parents[1]
@@ -179,9 +180,91 @@ def repair_no_link_cards(path: Path) -> bool:
     return changed
 
 
+def sync_mismatched_catalog_cards(path: Path, kv_img: dict[str, str]) -> bool:
+    """
+    Карточки, у которых href/обложка не согласованы с текстом заголовка (например 2к vs 3к),
+    перепривязываются через guess_* или переводятся в catalog-card--no-link с плашкой «Фото».
+    """
+    raw = path.read_text(encoding="utf-8")
+    if "podborki-catalog-card" not in raw:
+        return False
+    hotel_catalog = load_hotel_catalog()
+    kv_catalog = load_kvartira_catalog()
+    soup = BeautifulSoup(raw, "html.parser")
+    changed = False
+    for a in soup.select("a.catalog-card.podborki-catalog-card"):
+        href = (a.get("href") or "").strip()
+        if not href:
+            continue
+        h3 = a.find("h3")
+        if not h3:
+            continue
+        title_plain = h3.get_text(strip=True)
+        if podborki_href_matches_title(title_plain, href):
+            continue
+        new_href = guess_podborki_href_from_title(
+            title_plain, hotel_catalog, kv_catalog
+        )
+        if new_href and podborki_href_matches_title(title_plain, new_href):
+            a["href"] = new_href
+            cover = cover_src_for_href(new_href, kv_img)
+            media = a.find(
+                "div",
+                class_=lambda c: c and "catalog-card__media-wrap" in str(c),
+            )
+            if media and cover:
+                for fb in media.select(".catalog-card__media-fallback"):
+                    fb.decompose()
+                img_el = media.find("img")
+                if img_el:
+                    img_el["src"] = cover
+                    img_el["alt"] = title_plain
+                else:
+                    img_el = soup.new_tag(
+                        "img",
+                        src=cover,
+                        alt=title_plain,
+                        loading="lazy",
+                        decoding="async",
+                    )
+                    media.append(img_el)
+            changed = True
+        else:
+            a.name = "div"
+            del a["href"]
+            classes = a.get("class", [])
+            if isinstance(classes, str):
+                classes = [classes]
+            if "catalog-card--no-link" not in classes:
+                a["class"] = classes + ["catalog-card--no-link"]
+            media = a.find(
+                "div",
+                class_=lambda c: c and "catalog-card__media-wrap" in str(c),
+            )
+            if media:
+                for img in media.find_all("img"):
+                    img.decompose()
+                if not media.select(".catalog-card__media-fallback"):
+                    fb = soup.new_tag(
+                        "div",
+                        **{
+                            "class": "catalog-card__media-fallback",
+                            "role": "img",
+                            "aria-hidden": "true",
+                        },
+                    )
+                    fb.string = "Фото"
+                    media.append(fb)
+            changed = True
+    if changed:
+        path.write_text(str(soup), encoding="utf-8")
+    return changed
+
+
 def main() -> None:
     kv_img = load_kv_images_by_slug()
     n_upgrade = 0
+    n_sync = 0
     n_repair = 0
     for sub in sorted(PODBORKI.iterdir()):
         if not sub.is_dir():
@@ -192,10 +275,20 @@ def main() -> None:
         if upgrade_file(idx, kv_img):
             print("OK ol→grid", idx.relative_to(REPO))
             n_upgrade += 1
+        if sync_mismatched_catalog_cards(idx, kv_img):
+            print("OK sync href/обложка", idx.relative_to(REPO))
+            n_sync += 1
         if repair_no_link_cards(idx):
             print("OK repair", idx.relative_to(REPO))
             n_repair += 1
-    print("Секций ol→grid:", n_upgrade, "| починено без ссылки:", n_repair)
+    print(
+        "Секций ol→grid:",
+        n_upgrade,
+        "| синхронизировано карточек:",
+        n_sync,
+        "| починено без ссылки:",
+        n_repair,
+    )
 
 
 if __name__ == "__main__":
