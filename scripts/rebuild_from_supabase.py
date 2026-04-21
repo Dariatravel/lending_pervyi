@@ -53,6 +53,7 @@ OLD_BEACH_MAP = {
 
 OLD_ROOM_MAP = {
     "two-room": "two-room-plus",
+    "beachfront": "beachfront-room",
 }
 
 LABEL_VALUE_MAP = {
@@ -72,6 +73,8 @@ LABEL_VALUE_MAP = {
     },
     "room": {
         "вид на море": "sea-view",
+        "прямо на берегу": "beachfront-room",
+        "берег моря. отели на берегу": "beachfront-room",
         "бассейн": "pool",
         "с балконом": "balcony",
         "с террасой": "terrace",
@@ -216,6 +219,8 @@ def detect_room(blob: str) -> list[str]:
     values: list[str] = []
     if any(marker in blob for marker in ("вид на море", "с видом на море")):
         values.append("sea-view")
+    if any(marker in blob for marker in ("прямо на берегу", "отели на берегу", "на берегу моря", "на первой линии")):
+        values.append("beachfront-room")
     if "балкон" in blob:
         values.append("balcony")
     if "террас" in blob:

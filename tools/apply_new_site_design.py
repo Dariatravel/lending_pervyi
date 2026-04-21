@@ -295,7 +295,7 @@ def bold_months_in_tail(tail: str) -> str:
 
 
 def format_price_line_to_html(text: str) -> str:
-    """Цена обычным начертанием, месяцы — <strong>; без жирного для условий."""
+    """Сумма жирным, месяцы жирным; условия обычным текстом."""
     text = (text or "").strip()
     if not text:
         return ""
@@ -304,14 +304,14 @@ def format_price_line_to_html(text: str) -> str:
     if m:
         amount, tail = m.group(1).strip(), m.group(2).strip()
         return (
-            f'<span class="price-card__amount">{html.escape(amount)}</span> - '
+            f'<strong class="price-card__amount">{html.escape(amount)}</strong> - '
             f"{bold_months_in_tail(tail)}"
         )
 
     m = _PRICE_TRAILING.match(text)
     if m:
         desc, amount = m.group(1).strip(), m.group(2).strip()
-        return f"{html.escape(desc)} - " f'<span class="price-card__amount">{html.escape(amount)}</span>'
+        return f"{html.escape(desc)} - " f'<strong class="price-card__amount">{html.escape(amount)}</strong>'
 
     return html.escape(text)
 
