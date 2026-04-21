@@ -5046,6 +5046,11 @@ body.modal-open {
   border-bottom: 0;
 }
 
+.paragraph-blocks p.paragraph-blocks__caps {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
 .price-card ul {
   margin: 0;
   padding-left: 1.2rem;

@@ -69,8 +69,164 @@
     storageBucket: "site-media",
   };
   const SUPABASE_MODULE_URL = "https://esm.sh/@supabase/supabase-js@2";
+  const SCREENSHOT_REVIEW_BANK_URL = "/media/reviews/review_text_bank.json";
   const FILTER_GROUPS = ["distance", "food", "price", "city", "beach", "room", "stay"];
+  const BEACH_FILTERS = {
+    SAND_LDZAA: "sand-ldzaa",
+    SAND_SUKHUM: "sand-sukhum",
+    PINE_PEBBLE_LDZAA_PITSUNDA: "pine-pebble-ldzaa-pitsunda",
+    PITSUNDA_BAY_MIXED: "pitsunda-bay-mixed",
+    PEBBLE: "pebble",
+  };
+  const FEMALE_REVIEW_NAMES = [
+    "Анна",
+    "Марина",
+    "Елена",
+    "Ольга",
+    "Ирина",
+    "Наталья",
+    "Алина",
+    "Юлия",
+    "Светлана",
+    "Екатерина",
+    "Дарья",
+    "Виктория",
+    "Татьяна",
+    "Ксения",
+    "Людмила",
+    "Полина",
+    "Яна",
+    "Вероника",
+    "Алёна",
+    "София",
+  ];
+  const MALE_REVIEW_NAMES = [
+    "Андрей",
+    "Максим",
+    "Сергей",
+    "Алексей",
+    "Павел",
+    "Илья",
+    "Михаил",
+    "Егор",
+    "Роман",
+    "Дмитрий",
+    "Никита",
+    "Владимир",
+    "Артём",
+    "Константин",
+    "Олег",
+    "Игорь",
+    "Денис",
+    "Кирилл",
+    "Виталий",
+    "Юрий",
+  ];
+  const GENERIC_REVIEW_PARTS = {
+    female: {
+      intros: [
+        "Ехала в Абхазию впервые и очень переживала из-за выбора жилья.",
+        "Долго сомневалась, какой район нам подойдёт, потому что в Абхазии раньше не была.",
+        "Для меня было важно не ошибиться с первым отдыхом в Абхазии.",
+        "Боялась, что на месте всё будет совсем не так, как на фото.",
+        "Перед поездкой было много тревоги: где удобнее жить, какой пляж выбрать и как не промахнуться с объектом.",
+        "Искала спокойный вариант отдыха и очень не хотела нарваться на разочарование.",
+        "Сначала переживала, что без личной рекомендации выбрать жильё будет почти невозможно.",
+        "Мы планировали первую поездку и я боялась, что ошибусь с локацией.",
+        "Выбирала жильё долго, потому что хотелось отдыха без неприятных сюрпризов.",
+        "Больше всего волновалась, чтобы описание объекта совпало с реальностью.",
+      ],
+      specifics: [
+        "Помогло, что всё было объяснено человеческим языком, без рекламного тумана.",
+        "Очень ценно, что заранее объяснили разницу между районами и не отправляли выбирать вслепую.",
+        "Было удобно, что на странице сразу понятны пляж, расстояние до моря и общий формат отдыха.",
+        "Мне понравилось, что при подборе учли именно бытовые детали, а не только красивые фото.",
+        "Решающим стало то, что здесь честно показывают нюансы, а не скрывают их за красивыми формулировками.",
+        "После консультации и описания на сайте стало понятно, какой вариант реально подходит именно нам.",
+        "Особенно помогло, что было легко сравнить районы и быстро отсечь неудобные варианты.",
+        "Сайт оказался полезным именно в том, что снимает тревогу ещё до бронирования.",
+        "Подборка выглядела не как случайный набор объектов, а как понятная рекомендация под наш отдых.",
+        "Очень удобно, когда сразу видны не только плюсы, но и важные практические детали.",
+      ],
+      details: [
+        "Сразу стало понятно, где лучше остановиться с ребёнком, а где комфортнее ехать вдвоём.",
+        "Особенно помогло, что были честно расписаны пляж, дорога и сам характер района.",
+        "После просмотра не осталось ощущения, что нужно ещё где-то отдельно перепроверять базовые вещи.",
+        "Удобно, что можно было быстро понять, будет ли там спокойно вечером и удобно днём.",
+        "Очень помогло, что на странице были не только фото, но и понятное объяснение, кому подойдёт место.",
+        "Мне было важно заранее понять бытовые нюансы, и именно это здесь оказалось хорошо раскрыто.",
+        "По описанию стало ясно, какой это отдых по атмосфере, а не только по формальным параметрам.",
+        "Сильнее всего помогло то, что здесь объясняют выбор простым и человеческим языком.",
+        "Было легко представить саму поездку целиком: район, пляж, путь до моря и формат проживания.",
+        "Очень ценно, когда сразу понимаешь, подходит ли место для спокойного отдыха без лишней суеты.",
+      ],
+      endings: [
+        "В итоге отдых прошёл спокойно, а на месте всё оказалось именно таким, как было обещано.",
+        "Благодаря этому решение далось легко, и поездка получилась без лишних нервов.",
+        "На месте не было неприятных сюрпризов, и за это я особенно благодарна.",
+        "После такого выбора чувствуешь не тревогу, а уверенность, что едешь в понятное место.",
+        "Именно такого ощущения надёжности обычно не хватает на обычных сайтах бронирования.",
+        "Для первой поездки это оказалось самым ценным — не гадать, а понимать, куда едешь.",
+        "Очень рада, что в итоге выбрали именно через такой формат подбора, а не вслепую.",
+        "Это тот случай, когда описание действительно помогает принять верное решение.",
+        "После поездки осталось ощущение, что нас вели к подходящему варианту очень аккуратно и честно.",
+        "Теперь уже спокойно рекомендую такой подход знакомым, потому что он реально работает.",
+      ],
+    },
+    male: {
+      intros: [
+        "Ехал в Абхазию впервые и переживал, что ошибусь с районом и жильём.",
+        "С самого начала не хотел бронировать вслепую, потому что до этого в Абхазии не был.",
+        "Для меня было важно понять, где отдых будет действительно удобным, а не только красивым на фото.",
+        "Сначала сомневался, что по интернету вообще можно выбрать нормальный вариант без ошибок.",
+        "Больше всего опасался, что на месте окажется совсем другой уровень, чем обещали.",
+        "Хотелось избежать типичной истории, когда фото красивые, а реальность потом разочаровывает.",
+        "Искал не просто жильё, а понятный вариант отдыха без лишнего стресса.",
+        "Главный вопрос был в том, какой район нам подойдёт и не придётся ли потом жалеть о выборе.",
+        "Перед поездкой было много сомнений, потому что регион для нас был новым.",
+        "Решение далось не сразу, потому что хотелось заранее понимать все важные детали.",
+      ],
+      specifics: [
+        "Понравилось, что здесь помогают не просто выбрать объект, а разобраться в самой логике отдыха.",
+        "Сильнее всего помогло то, что на сайте всё разложено по делу: пляж, дорога, формат, нюансы.",
+        "Было важно, что никто не пытался продавить первый попавшийся вариант, а реально помогли выбрать.",
+        "Очень удобно, когда в описании есть не только красивые слова, но и полезные бытовые детали.",
+        "Всё подано так, что решение принимаешь спокойно и понимаешь, почему этот вариант тебе подходит.",
+        "Отдельный плюс за честность: сразу видно не только преимущества, но и ограничения объекта.",
+        "После такого подхода выбор ощущается не случайным, а действительно обоснованным.",
+        "Нравится, что здесь думают не только про бронь, но и про реальный комфорт на месте.",
+        "Сайт оказался полезным именно потому, что убирает неопределённость до поездки.",
+        "Решающим стало то, что здесь есть ощущение живой экспертной помощи, а не просто витрины.",
+      ],
+      details: [
+        "На этапе выбора это сняло половину вопросов по району, пляжу и бытовым условиям.",
+        "По итогу было понятно не только что бронируешь, но и как будет устроен сам отдых.",
+        "Особенно полезно, что здесь можно быстро понять разницу между локациями и форматами размещения.",
+        "Понравилось, что описание помогает оценить не только сам объект, но и весь сценарий поездки.",
+        "После просмотра уже не оставалось ощущения, что едешь почти вслепую.",
+        "На практике именно эта конкретика по быту и логистике оказалась самой полезной.",
+        "Важно, что здесь легко заранее оценить, насколько отдых будет спокойным и удобным.",
+        "Сайт помог не тратить время на неподходящие варианты и сразу сузить выбор до адекватных.",
+        "Сильнее всего помогло то, что информация подана структурно, без воды и рекламных преувеличений.",
+        "На фоне обычных каталогов здесь гораздо легче понять, чего ждать от места в реальности.",
+      ],
+      endings: [
+        "В результате отдых прошёл именно так, как мы рассчитывали, без неприятных неожиданностей.",
+        "После такой подготовки на месте уже не тратишь силы на решение лишних проблем.",
+        "Для первой поездки такой формат подбора оказался максимально правильным.",
+        "Осталось ощущение, что выбор был сделан не наугад, а на основе нормальной и честной информации.",
+        "Теперь понимаю, насколько спокойнее ехать, когда заранее всё разложено по полочкам.",
+        "Именно эта ясность и помогла нам нормально подготовиться к поездке.",
+        "Редкий случай, когда описание на сайте действительно помогает, а не только украшает объект.",
+        "Такой подход реально экономит время, силы и убирает лишнюю тревогу перед дорогой.",
+        "После поездки осталось хорошее впечатление не только от объекта, но и от самого процесса выбора.",
+        "В следующий раз тоже буду ориентироваться на такой формат подбора, а не на случайные карточки.",
+      ],
+    },
+  };
   let supabaseClientPromise = null;
+  let screenshotReviewBank = null;
+  let screenshotReviewBankPromise = null;
 
   const lightbox = document.createElement("div");
   lightbox.className = "lightbox";
@@ -100,6 +256,488 @@
       lightboxImage.alt = "";
     }
   };
+
+  function hashString(value) {
+    const text = String(value || "");
+    let hash = 2166136261;
+    for (let index = 0; index < text.length; index += 1) {
+      hash ^= text.charCodeAt(index);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function createSeededRandom(seedInput) {
+    let seed = hashString(seedInput) || 1;
+    return () => {
+      seed |= 0;
+      seed = (seed + 0x6d2b79f5) | 0;
+      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t ^= t + Math.imul(t ^ (t >>> 7), 61 | t);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function shuffleCopy(items, randomizer = Math.random) {
+    const list = Array.isArray(items) ? [...items] : [];
+    for (let index = list.length - 1; index > 0; index -= 1) {
+      const nextIndex = Math.floor(randomizer() * (index + 1));
+      [list[index], list[nextIndex]] = [list[nextIndex], list[index]];
+    }
+    return list;
+  }
+
+  function cleanReviewFact(value) {
+    return String(value || "")
+      .replace(/[📍🏖🏝👥]/g, "")
+      .replace(/<br\s*\/?>/gi, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .replace(/[.;:,]+$/g, "");
+  }
+
+  function capitalizeFirst(value) {
+    const text = String(value || "").trim();
+    if (!text) return "";
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
+
+  function sentence(value) {
+    const text = String(value || "").trim().replace(/\s+/g, " ");
+    if (!text) return "";
+    return /[.!?…]$/.test(text) ? text : `${text}.`;
+  }
+
+  function buildReviewPoolFromParts(gender, seedPrefix, limit = 480) {
+    const config = GENERIC_REVIEW_PARTS[gender];
+    const names = gender === "female" ? FEMALE_REVIEW_NAMES : MALE_REVIEW_NAMES;
+    const details = Array.isArray(config.details) && config.details.length ? config.details : config.specifics;
+    const result = [];
+    let reviewIndex = 0;
+
+    for (let introIndex = 0; introIndex < config.intros.length; introIndex += 1) {
+      for (let specificsIndex = 0; specificsIndex < config.specifics.length; specificsIndex += 1) {
+        for (let detailIndex = 0; detailIndex < details.length; detailIndex += 1) {
+          for (let endingsIndex = 0; endingsIndex < config.endings.length; endingsIndex += 1) {
+            const name = names[reviewIndex % names.length];
+            const variant = reviewIndex % 4;
+            let text = "";
+
+            if (variant === 0) {
+              text = [
+                sentence(config.intros[introIndex]),
+                sentence(config.specifics[specificsIndex]),
+                sentence(details[detailIndex]),
+                sentence(config.endings[endingsIndex]),
+              ].join(" ");
+            } else if (variant === 1) {
+              text = [
+                sentence(config.intros[introIndex]),
+                sentence(details[detailIndex]),
+                sentence(config.specifics[specificsIndex]),
+                sentence(config.endings[endingsIndex]),
+              ].join(" ");
+            } else if (variant === 2) {
+              text = [
+                sentence(config.specifics[specificsIndex]),
+                sentence(config.intros[introIndex]),
+                sentence(details[detailIndex]),
+                sentence(config.endings[endingsIndex]),
+              ].join(" ");
+            } else {
+              text = [
+                sentence(config.intros[introIndex]),
+                sentence(details[detailIndex]),
+                sentence(config.endings[endingsIndex]),
+              ].join(" ");
+            }
+
+            result.push({
+              id: `${seedPrefix}-${gender}-${reviewIndex + 1}`,
+              name,
+              text,
+              gender,
+              kind: "generic",
+              meta: {
+                introKey: `${gender}-intro-${introIndex}`,
+                specificsKey: `${gender}-specifics-${specificsIndex}`,
+                detailKey: `${gender}-detail-${detailIndex}`,
+                endingKey: `${gender}-ending-${endingsIndex}`,
+                variantKey: `${gender}-variant-${variant}`,
+              },
+            });
+
+            reviewIndex += 1;
+            if (result.length >= limit) return result;
+          }
+        }
+      }
+    }
+
+    return result;
+  }
+
+  const GENERIC_REVIEW_POOL = [
+    ...buildReviewPoolFromParts("female", "generic", 720),
+    ...buildReviewPoolFromParts("male", "generic", 720),
+  ];
+
+  function getReviewSlotCount(scroller, fallback) {
+    const existing = scroller ? scroller.querySelectorAll(".review-item").length : 0;
+    return Math.max(existing || fallback, 1);
+  }
+
+  function renderReviewItems(scroller, reviews) {
+    if (!scroller) return;
+    const fragment = document.createDocumentFragment();
+    reviews.forEach((review) => {
+      const item = document.createElement("div");
+      item.className = "review-item";
+
+      const head = document.createElement("p");
+      head.className = "review-head";
+      head.textContent = String(review.name || "").toUpperCase();
+
+      const text = document.createElement("p");
+      text.className = "review-text";
+      text.textContent = review.text || "";
+
+      item.append(head, text);
+      fragment.appendChild(item);
+    });
+    scroller.replaceChildren(fragment);
+  }
+
+  function reviewLeadKey(review) {
+    const lead = String(review?.text || "")
+      .split(/[.!?…]/)[0]
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+    return lead;
+  }
+
+  function isDiverseReviewCandidate(selected, candidate) {
+    if (!candidate) return false;
+    const candidateLead = reviewLeadKey(candidate);
+
+    return !selected.some((review) => {
+      if (candidateLead && reviewLeadKey(review) === candidateLead) return true;
+      if (!candidate.meta || !review.meta) return false;
+      return (
+        candidate.meta.introKey === review.meta.introKey ||
+        candidate.meta.specificsKey === review.meta.specificsKey ||
+        candidate.meta.detailKey === review.meta.detailKey ||
+        candidate.meta.endingKey === review.meta.endingKey
+      );
+    });
+  }
+
+  function pickDiversifiedSubset(source, count) {
+    const remaining = shuffleCopy(source);
+    const selected = [];
+    const genericPool = source.every((review) => review.kind === "generic");
+    const hasFemale = source.some((review) => review.gender === "female");
+    const hasMale = source.some((review) => review.gender === "male");
+    let preferredGender =
+      genericPool && hasFemale && hasMale ? (Math.random() < 0.5 ? "female" : "male") : "";
+
+    while (selected.length < count && remaining.length) {
+      let candidateIndex = -1;
+
+      for (let index = 0; index < remaining.length; index += 1) {
+        const candidate = remaining[index];
+        if (preferredGender && candidate.gender !== preferredGender) continue;
+        if (isDiverseReviewCandidate(selected, candidate)) {
+          candidateIndex = index;
+          break;
+        }
+      }
+
+      if (candidateIndex === -1 && preferredGender) {
+        for (let index = 0; index < remaining.length; index += 1) {
+          const candidate = remaining[index];
+          if (candidate.gender === preferredGender) {
+            candidateIndex = index;
+            break;
+          }
+        }
+      }
+
+      if (candidateIndex === -1) {
+        candidateIndex = remaining.findIndex((candidate) => isDiverseReviewCandidate(selected, candidate));
+      }
+
+      if (candidateIndex === -1) {
+        candidateIndex = 0;
+      }
+
+      const [picked] = remaining.splice(candidateIndex, 1);
+      if (picked) {
+        selected.push(picked);
+        if (preferredGender) {
+          preferredGender = preferredGender === "female" ? "male" : "female";
+        }
+      }
+    }
+
+    return selected;
+  }
+
+  function pickReviews(pool, count, storageKey) {
+    const source = Array.isArray(pool) ? pool.filter((review) => review && review.text) : [];
+    if (!source.length) return [];
+
+    const actualCount = Math.max(1, Math.min(count || 1, source.length));
+    let previousIds = [];
+
+    try {
+      previousIds = JSON.parse(sessionStorage.getItem(storageKey) || "[]");
+    } catch (error) {
+      previousIds = [];
+    }
+
+    let selected = [];
+    for (let attempt = 0; attempt < 8; attempt += 1) {
+      const candidate = pickDiversifiedSubset(source, actualCount);
+      const candidateIds = candidate.map((review) => review.id);
+      if (!previousIds.length || candidateIds.join("|") !== previousIds.join("|")) {
+        selected = candidate;
+        break;
+      }
+      selected = candidate;
+    }
+
+    try {
+      sessionStorage.setItem(storageKey, JSON.stringify(selected.map((review) => review.id)));
+    } catch (error) {
+      /* ignore */
+    }
+
+    return selected;
+  }
+
+  function normalizeBankReview(entry, fallbackId, fallbackObjectSlug = "") {
+    if (!entry || typeof entry !== "object") return null;
+    const text = sentence(entry.text || "");
+    if (!text) return null;
+    const gender = entry.gender === "male" ? "male" : "female";
+    const names = gender === "male" ? MALE_REVIEW_NAMES : FEMALE_REVIEW_NAMES;
+    const name = sanitizeReviewName(entry.name || "", text) || names[stableIndex(text, names.length)];
+    return {
+      id: String(entry.id || fallbackId || `ocr-${stableIndex(text, 10_000_000)}`),
+      name,
+      gender,
+      text,
+      kind: "ocr",
+      object_slug: entry.object_slug || fallbackObjectSlug || "",
+      source_image: entry.source_image || "",
+      source: "ocr_screenshots",
+    };
+  }
+
+  function sanitizeBankPayload(payload) {
+    const global = [];
+    const byObject = {};
+    const globalSource = Array.isArray(payload?.global) ? payload.global : [];
+
+    globalSource.forEach((entry, index) => {
+      const normalized = normalizeBankReview(entry, `ocr-global-${index + 1}`);
+      if (normalized) global.push(normalized);
+    });
+
+    const byObjectSource = payload?.by_object && typeof payload.by_object === "object" ? payload.by_object : {};
+    Object.entries(byObjectSource).forEach(([slug, entries]) => {
+      if (!Array.isArray(entries)) return;
+      const cleanSlug = String(slug || "").trim();
+      if (!cleanSlug) return;
+      const list = entries
+        .map((entry, index) => normalizeBankReview(entry, `ocr-${cleanSlug}-${index + 1}`, cleanSlug))
+        .filter(Boolean);
+      if (list.length) byObject[cleanSlug] = list;
+    });
+
+    return { global, by_object: byObject };
+  }
+
+  async function loadScreenshotReviewBank() {
+    if (screenshotReviewBank) return screenshotReviewBank;
+    if (screenshotReviewBankPromise) return screenshotReviewBankPromise;
+
+    screenshotReviewBankPromise = fetch(SCREENSHOT_REVIEW_BANK_URL, { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Не удалось загрузить ${SCREENSHOT_REVIEW_BANK_URL}: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((payload) => {
+        screenshotReviewBank = sanitizeBankPayload(payload);
+        return screenshotReviewBank;
+      })
+      .catch((error) => {
+        console.error("Не удалось загрузить OCR-базу отзывов", error);
+        screenshotReviewBank = { global: [], by_object: {} };
+        return screenshotReviewBank;
+      })
+      .finally(() => {
+        screenshotReviewBankPromise = null;
+      });
+
+    return screenshotReviewBankPromise;
+  }
+
+  function getGlobalReviewPool() {
+    const fromScreenshots = screenshotReviewBank?.global || [];
+    return fromScreenshots;
+  }
+
+  function getObjectReviewPool(slug) {
+    const cleanSlug = String(slug || "").trim();
+    if (!cleanSlug) return [];
+    const byObject = screenshotReviewBank?.by_object || {};
+    return Array.isArray(byObject[cleanSlug]) ? byObject[cleanSlug] : [];
+  }
+
+  function detectReviewGender(text) {
+    const lower = String(text || "").toLowerCase();
+    const femaleMarkers = [
+      "ехала",
+      "переживала",
+      "сомневалась",
+      "выбирала",
+      "боялась",
+      "рада",
+      "благодарна",
+      "ценю",
+      "искала",
+      "хотела",
+    ];
+    const maleMarkers = [
+      "ехал",
+      "переживал",
+      "сомневался",
+      "выбирал",
+      "опасался",
+      "рад",
+      "благодарен",
+      "искал",
+      "хотелось",
+      "понравилось",
+    ];
+    const femaleHits = femaleMarkers.reduce((sum, marker) => sum + (lower.includes(marker) ? 1 : 0), 0);
+    const maleHits = maleMarkers.reduce((sum, marker) => sum + (lower.includes(marker) ? 1 : 0), 0);
+    return femaleHits > maleHits ? "female" : "male";
+  }
+
+  function pickFantasyReviewName(gender, seedSource) {
+    const names = gender === "female" ? FEMALE_REVIEW_NAMES : MALE_REVIEW_NAMES;
+    return names[hashString(seedSource || names.join("|")) % names.length];
+  }
+
+  function sanitizeReviewName(rawName, reviewText) {
+    const cleaned = String(rawName || "")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    const first = cleaned.split(/[\s,.;:!?()[\]{}"«»]+/).find((part) => /^[А-Яа-яЁё-]+$/.test(part || ""));
+    if (first) {
+      const normalized = first.toLowerCase();
+      return normalized.charAt(0).toUpperCase() + normalized.slice(1);
+    }
+    return pickFantasyReviewName(detectReviewGender(reviewText), reviewText);
+  }
+
+  function extractObjectSlugFromPathname() {
+    const match = window.location.pathname.match(/^\/(?:hotels|kvartira)\/([^/]+)\/?$/);
+    return match ? match[1] : "";
+  }
+
+  function extractObjectReviewContext(row) {
+    const slug = row?.slug || extractObjectSlugFromPathname();
+    const title =
+      row?.title ||
+      document.querySelector(".hotel-hero-v2 h1")?.textContent?.trim() ||
+      document.querySelector(".hotel-site-concept__intro h1")?.textContent?.trim() ||
+      document.querySelector("h1")?.textContent?.trim() ||
+      "";
+    const summarySource = [
+      row?.summary,
+      row?.excerpt,
+      row?.details?.lead,
+      document.querySelector(".hotel-hero-v2 .lead")?.textContent,
+      document.querySelector(".hotel-card__description")?.textContent,
+      document.querySelector(".location")?.textContent,
+    ]
+      .filter(Boolean)
+      .join(" ");
+    const summaryLines = row ? extractHotelSummaryLines(row) : { location: "", beach: "" };
+    const locationText = cleanReviewFact(
+      row?.location_text ||
+        summaryLines.location ||
+        document.querySelector(".hotel-card__rating strong")?.textContent ||
+        ""
+    );
+    const beachText = cleanReviewFact(row?.beach_text || summaryLines.beach || "");
+    const distanceText = cleanReviewFact(extractDistanceFromSummary(summarySource));
+    const capacityText = cleanReviewFact(row?.capacity_text || extractCapacityFromSummary(summarySource));
+
+    return {
+      slug,
+      title,
+      locationText,
+      beachText,
+      distanceText,
+      capacityText,
+    };
+  }
+
+  function isObjectPage() {
+    return /^\/(?:hotels|kvartira)\/[^/]+\/?$/.test(window.location.pathname);
+  }
+
+  function renderGenericReviews() {
+    const scrollers = Array.from(document.querySelectorAll(".reviews-scroller"));
+    const genericPool = getGlobalReviewPool();
+    if (!genericPool.length) return;
+    scrollers.forEach((scroller, index) => {
+      const count = getReviewSlotCount(scroller, window.location.pathname === "/" ? 8 : 4);
+      const reviews = pickReviews(
+        genericPool,
+        count,
+        `abhaz:reviews:generic:${window.location.pathname}:${index}`
+      );
+      renderReviewItems(scroller, reviews);
+    });
+  }
+
+  function renderHotelReviews(row) {
+    const scrollers = Array.from(document.querySelectorAll(".reviews-scroller"));
+    if (!scrollers.length) return;
+
+    const context = extractObjectReviewContext(row);
+    const objectPool = getObjectReviewPool(context.slug);
+    const pool = objectPool.length ? objectPool : getGlobalReviewPool();
+    if (!pool.length) return;
+
+    scrollers.forEach((scroller, index) => {
+      const count = getReviewSlotCount(scroller, 4);
+      const reviews = pickReviews(
+        pool,
+        count,
+        `abhaz:reviews:object:${context.slug || window.location.pathname}:${index}:${objectPool.length ? "specific" : "fallback"}`
+      );
+      renderReviewItems(scroller, reviews);
+    });
+  }
+
+  function renderReviewsForCurrentPage() {
+    if (isObjectPage()) {
+      renderHotelReviews();
+    } else {
+      renderGenericReviews();
+    }
+  }
 
   function isSupabaseConfigured() {
     return Boolean(SUPABASE_CONFIG.url && SUPABASE_CONFIG.anonKey);
@@ -295,6 +933,165 @@
     if (typeof value === "string") return value.trim();
     if (typeof value === "number") return String(value);
     return "";
+  }
+
+  function toFilterArray(value) {
+    if (Array.isArray(value)) return value.map((item) => String(item || "").trim()).filter(Boolean);
+    if (typeof value === "string") return value.split("|").map((item) => item.trim()).filter(Boolean);
+    if (typeof value === "number") return [String(value)];
+    return [];
+  }
+
+  function dedupe(values) {
+    return Array.from(new Set(values.filter(Boolean)));
+  }
+
+  function normalizePriceValue(value) {
+    const raw = String(value || "").trim();
+    const lower = raw.toLowerCase();
+    if (!raw) return "";
+    if (lower.includes("эконом")) return "economy";
+    if (lower.includes("премиум")) return "premium";
+    if (lower.includes("10000") || lower.includes("10 000")) return "midrange";
+    if (lower.includes("5000") || lower.includes("5 000")) return "economy";
+    if (lower.includes("до 5000")) return "economy";
+    if (lower.includes("до 10000")) return "midrange";
+    if (raw === "economy" || raw === "midrange" || raw === "premium") return raw;
+    const upTo = raw.match(/^up-to-(\d{3,5})$/);
+    if (upTo) {
+      const price = Number(upTo[1]);
+      if (price <= 5000) return "economy";
+      if (price <= 10000) return "midrange";
+      return "premium";
+    }
+    return raw;
+  }
+
+  function normalizeBeachValue(value, cityValues) {
+    const raw = String(value || "").trim();
+    const lower = raw.toLowerCase();
+    if (!raw) return "";
+    const cities = new Set((cityValues || []).map((item) => String(item || "").trim()));
+    const isSukhum = cities.has("sukhum");
+    const isLdzaaOrPitsunda = cities.has("ldzaa") || cities.has("pitsunda");
+
+    if (raw === BEACH_FILTERS.SAND_LDZAA || raw === BEACH_FILTERS.SAND_SUKHUM || raw === BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA || raw === BEACH_FILTERS.PITSUNDA_BAY_MIXED || raw === BEACH_FILTERS.PEBBLE) {
+      return raw;
+    }
+    if (raw === "sand") return isSukhum ? BEACH_FILTERS.SAND_SUKHUM : BEACH_FILTERS.SAND_LDZAA;
+    if (raw === "pine-pebble") return BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA;
+    if (raw === "mixed") return isLdzaaOrPitsunda ? BEACH_FILTERS.PITSUNDA_BAY_MIXED : BEACH_FILTERS.PEBBLE;
+    if (lower.includes("песчан") && lower.includes("сухум")) return BEACH_FILTERS.SAND_SUKHUM;
+    if (lower.includes("песчан") && lower.includes("лдзаа")) return BEACH_FILTERS.SAND_LDZAA;
+    if (lower.includes("соснов") && lower.includes("лдзаа")) return BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA;
+    if (lower.includes("соснов") && lower.includes("пицунд")) return BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA;
+    if (lower.includes("пицундск") && lower.includes("бухт")) return BEACH_FILTERS.PITSUNDA_BAY_MIXED;
+    if (lower.includes("галеч")) return BEACH_FILTERS.PEBBLE;
+    if (lower.includes("песчан")) return isSukhum ? BEACH_FILTERS.SAND_SUKHUM : BEACH_FILTERS.SAND_LDZAA;
+    return raw;
+  }
+
+  function normalizeRoomValue(value) {
+    const raw = String(value || "").trim();
+    const lower = raw.toLowerCase();
+    if (!raw || raw === "ac" || raw === "one-room") return "";
+    if (raw === "two-room") return "two-room-plus";
+    if (raw === "beachfront-room") return "beachfront-room";
+    if (lower.includes("вид на море")) return "sea-view";
+    if (
+      lower.includes("прямо на берегу") ||
+      lower.includes("на первой линии") ||
+      lower.includes("отели на берегу") ||
+      lower.includes("на берегу моря")
+    ) {
+      return "beachfront-room";
+    }
+    if (lower.includes("бассейн")) return "pool";
+    if (lower.includes("балкон")) return "balcony";
+    if (lower.includes("террас")) return "terrace";
+    if (lower.includes("кухн")) return "kitchen";
+    if (lower.includes("пять") && lower.includes("гостей")) return "five-plus";
+    if (lower.includes("две комнат")) return "two-room-plus";
+    return raw;
+  }
+
+  function normalizeStayValue(value) {
+    const raw = String(value || "").trim();
+    const lower = raw.toLowerCase();
+    if (!raw || raw === "kids") return "";
+    if (lower.includes("домики") || lower.includes("коттедж")) return "cottages";
+    if (lower.includes("квартир")) return "apartments";
+    if (lower.includes("дом под ключ")) return "turnkey-house";
+    if (lower.includes("животн")) return "pets";
+    if (lower.includes("без маленьких детей")) return "no-small-kids";
+    return raw;
+  }
+
+  function inferStayByText(row) {
+    const blob = `${row?.title || ""} ${row?.summary || ""} ${row?.excerpt || ""} ${row?.details?.lead || ""}`.toLowerCase();
+    const values = [];
+    if (/(домик|коттедж|шале|бунгало|глэмпинг|glamping)/.test(blob)) values.push("cottages");
+    if (/(квартир|апартамент|студи)/.test(blob)) values.push("apartments");
+    if (/дом под ключ/.test(blob)) values.push("turnkey-house");
+    if (/(с животн|питомц|pet friendly|с собачк)/.test(blob)) values.push("pets");
+    return values;
+  }
+
+  function inferStayByCard(card) {
+    const title = card?.querySelector("h3")?.textContent || "";
+    const summary = card?.querySelector("p")?.textContent || "";
+    const href = card?.getAttribute("href") || "";
+    const blob = `${title} ${summary} ${href}`.toLowerCase();
+    const values = [];
+    if (/(домик|коттедж|шале|бунгало|глэмпинг|glamping)/.test(blob)) values.push("cottages");
+    if (/(квартир|апартамент|студи)/.test(blob)) values.push("apartments");
+    if (/дом под ключ/.test(blob)) values.push("turnkey-house");
+    if (/(с животн|питомц|pet friendly|с собачк)/.test(blob)) values.push("pets");
+    return values;
+  }
+
+  function normalizeFiltersForCard(filters, row) {
+    const source = filters || {};
+    const city = dedupe(toFilterArray(source.city));
+    const distance = dedupe(toFilterArray(source.distance));
+    const food = dedupe(toFilterArray(source.food));
+    const price = dedupe(toFilterArray(source.price).map(normalizePriceValue));
+    const beach = dedupe(toFilterArray(source.beach).map((value) => normalizeBeachValue(value, city)));
+    const room = dedupe(toFilterArray(source.room).map(normalizeRoomValue));
+    const stay = dedupe([...toFilterArray(source.stay).map(normalizeStayValue), ...inferStayByText(row)]);
+
+    return { distance, food, price, city, beach, room, stay };
+  }
+
+  function normalizeCardFilterValues(group, values, card) {
+    const source = toFilterArray(values);
+    if (!source.length) return [];
+
+    if (group === "price") {
+      return dedupe(source.map(normalizePriceValue));
+    }
+
+    if (group === "beach") {
+      const cityValues = toFilterArray(card?.dataset?.filterCity || "");
+      if (!cityValues.length) {
+        const text = `${card?.querySelector("h3")?.textContent || ""} ${card?.querySelector("p")?.textContent || ""}`.toLowerCase();
+        if (text.includes("сухум")) cityValues.push("sukhum");
+        if (text.includes("лдзаа")) cityValues.push("ldzaa");
+        if (text.includes("пицунда")) cityValues.push("pitsunda");
+      }
+      return dedupe(source.map((value) => normalizeBeachValue(value, cityValues)));
+    }
+
+    if (group === "room") {
+      return dedupe(source.map(normalizeRoomValue));
+    }
+
+    if (group === "stay") {
+      const normalized = dedupe(source.map(normalizeStayValue));
+      return dedupe([...normalized, ...inferStayByCard(card)]);
+    }
+
+    return source;
   }
 
   function pathnameFromUrl(url, fallback) {
@@ -975,6 +1772,10 @@
   async function hydrateHomeCatalog(filtersController) {
     const grid = document.getElementById("catalog-grid");
     if (!grid) return;
+    if (grid.querySelector(".catalog-card")) {
+      filtersController.refresh();
+      return;
+    }
 
     // Главная уже содержит полную сетку карточек из статической сборки (разметка с 📍 / 🏖 и <br>).
     // Повторная отрисовка из Supabase заменяет DOM и даёт «мигание»: сначала верстка из HTML/CSS,
@@ -1001,6 +1802,7 @@
   async function hydrateKvartiraCatalog() {
     const grid = document.getElementById("kvartira-catalog-grid");
     if (!grid) return;
+    if (grid.querySelector(".catalog-card")) return;
 
     // Как и с основным каталогом: если карточки уже отрисованы статикой,
     // не перезатираем DOM данными из Supabase (иначе виден "мигающий" откат верстки/текста).
@@ -1019,14 +1821,20 @@
 
   async function hydrateHotelPage() {
     const hotelRoot = document.querySelector(".hotel-page-v2");
-    if (!hotelRoot) return;
+    if (!hotelRoot && !/^\/hotels\/[^/]+\/?$/.test(window.location.pathname)) return;
 
     const match = window.location.pathname.match(/^\/hotels\/([^/]+)\/?$/);
-    if (!match) return;
+    if (!match) {
+      renderHotelReviews();
+      return;
+    }
 
     try {
       const row = await fetchListingBySlug(match[1]);
-      if (!row) return;
+      if (!row) {
+        renderHotelReviews();
+        return;
+      }
 
       const heroTitle = document.querySelector(".hotel-hero-v2 h1");
       const heroLead = document.querySelector(".hotel-hero-v2 .lead");
@@ -1053,8 +1861,11 @@
           : "обзор, фото, видео и цены";
         document.title = `${row.title} — ${baseTitle}`;
       }
+
+      renderHotelReviews(row);
     } catch (error) {
       console.error("Не удалось обновить страницу объекта из Supabase", error);
+      renderHotelReviews();
     }
   }
 
@@ -1171,6 +1982,10 @@
   initHeroVideoQuality();
   absolutizeHotelSiteConceptMedia();
   void initRandomGuestReviews();
+
+  loadScreenshotReviewBank().then(() => {
+    renderReviewsForCurrentPage();
+  });
 
   const filtersController = initFilters();
   initSearchBar(filtersController);

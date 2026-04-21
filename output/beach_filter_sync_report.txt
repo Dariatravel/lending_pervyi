@@ -1,0 +1,41 @@
+Отчет применения фильтра Пляж по листу СОЦСЕТИ
+
+Итог запуска:
+- Строк в СОЦСЕТИ: 199
+- Разобрано ссылок Telegram: 175
+- Без ссылки Telegram: 21
+- Ссылка не распознана: 3
+- Обновлено объектов в Supabase: 35
+- Без изменений: 116
+- Не найдено в Supabase по channel+message_id: 24
+
+Ссылки, которые не распознались (3):
+- описание спрятала в вк видео, скрыт доступ
+- t.me/villalubov
+- t.me/abhmulberry
+
+Ссылки, которые не найдены в Supabase (24):
+- https://t.me/abhazbooking/3650
+- t.me/abhazbooking/4081
+- https://t.me/abhazbooking/2542
+- https://t.me/abhazbooking/4113?single
+- https://t.me/abhazbooking/2422
+- https://t.me/abhazbooking/667
+- https://t.me/abhazbooking/4123
+- https://t.me/abhazbooking/4133
+- https://t.me/abhazbooking/2512
+- https://t.me/abhazbooking/1396
+- https://t.me/abhazbooking/2869
+- https://t.me/abhazbooking/4152?single
+- https://t.me/abhkvartira/469/1025
+- https://t.me/abhazbooking/4061
+- https://t.me/abhazbooking/4052
+- https://t.me/abhazbooking/4071?single
+- https://t.me/abhazbooking/3697?single
+- https://t.me/abhkvartira/1410/1411
+- https://t.me/abhkvartira/1103/1104
+- https://t.me/abhazbooking/4162
+- https://t.me/abhazbooking/4041
+- https://t.me/abhazbooking/4092
+- https://t.me/abhkvartira/652/1185
+- https://t.me/abhazbooking/4032

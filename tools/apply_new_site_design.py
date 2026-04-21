@@ -1141,7 +1141,7 @@ def bold_digits_outside_tags(fragment: str) -> str:
 
 
 def format_price_line_to_html(text: str) -> str:
-    """Строка тарифа как в посте: суммы и числа — жирным, месяцы — <strong> в хвосте."""
+    """Сумма жирным, месяцы жирным; условия обычным текстом."""
     text = (text or "").strip()
     if not text:
         return ""
@@ -1151,15 +1151,14 @@ def format_price_line_to_html(text: str) -> str:
         amount, tail = m.group(1).strip(), m.group(2).strip()
         tail_html = bold_digits_outside_tags(bold_months_in_tail(tail))
         return (
-            f'<span class="price-card__amount">{html.escape(amount)}</span> - '
-            f"{tail_html}"
+            f'<strong class="price-card__amount">{html.escape(amount)}</strong> - '
+            f"{bold_months_in_tail(tail)}"
         )
 
     m = _PRICE_TRAILING.match(text)
     if m:
         desc, amount = m.group(1).strip(), m.group(2).strip()
-        desc_html = bold_digits_outside_tags(html.escape(desc))
-        return f"{desc_html} - " f'<span class="price-card__amount">{html.escape(amount)}</span>'
+        return f"{html.escape(desc)} - " f'<strong class="price-card__amount">{html.escape(amount)}</strong>'
 
     m_plus = re.match(r"^(.+?)\s*\+\s*(\d[\d\s]*\s*(?:₽|руб\.?))\s*$", text, re.I)
     if m_plus:

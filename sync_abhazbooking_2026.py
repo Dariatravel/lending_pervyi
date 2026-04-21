@@ -359,34 +359,25 @@ def parse_post(raw_text: str):
 
     while idx < len(lines):
         line = lines[idx]
-        if "📍" in line:
-            m_pin = _META_PIN_RE.search(line)
-            if m_pin and m_pin.group(1).strip():
-                location = clean_line(m_pin.group(1))
-            elif idx + 1 < len(lines):
-                location = lines[idx + 1]
-                idx += 2
+        consumed = False
+        for marker, key in (("📍", "location"), ("🏖", "beach"), ("🏝", "beach"), ("👥", "capacity")):
+            if marker not in line:
                 continue
-            idx += 1
-            continue
-        if "🏖" in line or "🏝" in line:
-            m_b = _META_BEACH_RE.search(line)
-            if m_b and m_b.group(1).strip():
-                beach = clean_line(m_b.group(1))
-            elif idx + 1 < len(lines):
-                beach = lines[idx + 1]
-                idx += 2
-                continue
-            idx += 1
-            continue
-        if "👥" in line:
-            m_c = _META_CAP_RE.search(line)
-            if m_c and m_c.group(1).strip():
-                capacity = clean_line(m_c.group(1))
-            elif idx + 1 < len(lines):
-                capacity = lines[idx + 1]
-                idx += 2
-                continue
+            value = line.split(marker, 1)[1].strip(" :,-")
+            if not value and idx + 1 < len(lines):
+                next_line = lines[idx + 1]
+                if not any(mark in next_line for mark in ("📍", "🏖", "🏝", "👥")):
+                    value = next_line.strip(" :,-")
+                    idx += 1
+            if value:
+                if key == "location" and not location:
+                    location = value
+                elif key == "beach" and not beach:
+                    beach = value
+                elif key == "capacity" and not capacity:
+                    capacity = value
+            consumed = True
+        if consumed:
             idx += 1
             continue
         break
@@ -408,14 +399,17 @@ def parse_post(raw_text: str):
             continue
         if simple in {"✔", "✔️", ":", "‼", "‼️"}:
             continue
-        stripped_for_label = _strip_leading_section_markers(line)
-        # Строчные буквы в скобках («ЦЕНЫ (при …):») — тоже заголовок секции
-        is_label = bool(
-            re.match(r"^[A-Za-zА-Яа-яЁё0-9 /\"'()-]{3,80}:?$", stripped_for_label)
+        plain_letters = re.findall(r"[A-Za-zА-Яа-яЁё]", simple)
+        caps_only = (
+            len(plain_letters) >= 3
+            and any(ch.isupper() for ch in plain_letters)
+            and not any(ch.islower() for ch in plain_letters)
         )
+        starts_check = bool(re.match(r"^[^\wА-Яа-яЁё]*[✔✅☑]\s*.+", simple))
+        is_label = starts_check or (simple.endswith(":") and caps_only)
         if is_label:
             flush_section()
-            current_label = stripped_for_label.rstrip(":")
+            current_label = simple
             continue
         current_lines.append(simple)
     flush_section()
@@ -503,9 +497,15 @@ def should_drop_line(line: str) -> bool:
     upper = line.upper()
     if "@ABHAZBOOKING_ONLINE" in upper:
         return True
+    if "@ABHKVARTIRA" in upper or "@ABHAZBOOKING" in upper:
+        return True
     if "ТОЛЬКО ЭТОТ КОНТАКТ" in upper or "БУДЬТЕ ВНИМАТЕЛЬНЫ" in upper:
         return True
-    if "WHATSAPP" in upper or "MAX" in upper and "Я НА СВЯЗИ" in upper:
+    if "WHATSAPP" in upper or ("MAX" in upper and "Я НА СВЯЗИ" in upper):
+        return True
+    if "ПО БРОНИРОВАНИЮ" in upper or "НАЛИЧИЮ НОМЕРОВ ПИШ" in upper:
+        return True
+    if "ПИШИТЕ В СООБЩЕНИЯ" in upper and ("БРОНИРОВАН" in upper or "НАЛИЧ" in upper):
         return True
     if re.search(r"\+7[-\s]?\d", line):
         return True
@@ -519,6 +519,36 @@ def should_drop_line(line: str) -> bool:
     if "каталог жилья" in low and ("t.me" in low or "telegram" in low or "abhazbooking" in low):
         return True
     return False
+
+
+def _is_caps_line(line: str) -> bool:
+    plain = clean_line(line)
+    letters = re.findall(r"[A-Za-zА-Яа-яЁё]", plain)
+    if len(letters) < 3:
+        return False
+    if not any(ch.isupper() for ch in letters):
+        return False
+    if any(ch.islower() for ch in letters):
+        return False
+    return True
+
+
+def paragraph_line_to_html(line: str) -> str:
+    plain = clean_line(line)
+    if not plain or should_drop_line(plain):
+        return ""
+    if _is_caps_line(plain):
+        return f'<p class="paragraph-blocks__caps"><strong>{html.escape(plain)}</strong></p>'
+    return f"<p>{html.escape(plain)}</p>"
+
+
+def render_paragraph_lines_html(lines: list[str], indent: str = "            ") -> str:
+    parts: list[str] = []
+    for line in lines:
+        chunk = paragraph_line_to_html(line)
+        if chunk:
+            parts.append(f"{indent}{chunk}")
+    return "\n".join(parts)
 
 
 def build_slug(title: str, message_id: int, existing_slugs: set[str]) -> str:
