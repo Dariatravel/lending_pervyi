@@ -937,7 +937,24 @@
 
   function toFilterArray(value) {
     if (Array.isArray(value)) return value.map((item) => String(item || "").trim()).filter(Boolean);
-    if (typeof value === "string") return value.split("|").map((item) => item.trim()).filter(Boolean);
+    if (typeof value === "string") {
+      const raw = value.trim();
+      if (!raw) return [];
+      const chunks = raw.split("|").map((item) => item.trim());
+      const nonEmpty = chunks.filter(Boolean);
+      // Recover malformed values like "b|e|a|c|h|f|r|o|n|t|||o|v|e|r|-|1|0".
+      if (nonEmpty.length >= 4 && nonEmpty.every((item) => item.length === 1)) {
+        if (raw.includes("|||")) {
+          return raw
+            .split("|||")
+            .map((part) => part.split("|").join("").trim())
+            .filter(Boolean);
+        }
+        const merged = raw.split("|").join("").trim();
+        return merged ? [merged] : [];
+      }
+      return nonEmpty;
+    }
     if (typeof value === "number") return [String(value)];
     return [];
   }
@@ -1522,7 +1539,50 @@
     function parseValues(card, group) {
       const key = `filter${group.charAt(0).toUpperCase()}${group.slice(1)}`;
       const raw = card.dataset[key] || "";
-      return raw.split("|").map((value) => value.trim()).filter(Boolean);
+      return normalizeCardFilterValues(group, raw, card);
+    }
+
+    function normalizeSelectedFilterValues(group, value, chipText) {
+      const raw = String(value || "").trim();
+      const label = String(chipText || "").toLowerCase();
+      if (!raw) return [];
+
+      if (group === "price") {
+        const normalized = normalizePriceValue(raw);
+        return normalized ? [normalized] : [];
+      }
+
+      if (group === "room") {
+        const normalized = normalizeRoomValue(raw);
+        return normalized ? [normalized] : [];
+      }
+
+      if (group === "stay") {
+        const normalized = normalizeStayValue(raw);
+        return normalized ? [normalized] : [];
+      }
+
+      if (group === "beach") {
+        if (raw === "sand" || label.includes("песчаный")) {
+          if (label.includes("сухум")) return [BEACH_FILTERS.SAND_SUKHUM];
+          if (label.includes("лдзаа")) return [BEACH_FILTERS.SAND_LDZAA];
+          return [BEACH_FILTERS.SAND_LDZAA, BEACH_FILTERS.SAND_SUKHUM];
+        }
+        if (raw === "pine-pebble" || label.includes("соснов")) return [BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA];
+        if (raw === "mixed" || label.includes("бухта")) return [BEACH_FILTERS.PITSUNDA_BAY_MIXED];
+        if (raw === "pebble" || label.includes("галеч")) return [BEACH_FILTERS.PEBBLE];
+        const normalized = normalizeBeachValue(raw, []);
+        return normalized ? [normalized] : [];
+      }
+
+      return [raw];
+    }
+
+    function isSelectedChip(group, value, chipText) {
+      if (!group || !selected[group]) return false;
+      const normalizedValues = normalizeSelectedFilterValues(group, value, chipText);
+      if (!normalizedValues.length) return false;
+      return normalizedValues.some((normalized) => selected[group].has(normalized));
     }
 
     function applyFilters() {
@@ -1558,7 +1618,7 @@
       chips.forEach((chip) => {
         const group = chip.dataset.group;
         const value = chip.dataset.value;
-        const active = Boolean(group && value && selected[group] && selected[group].has(value));
+        const active = Boolean(group && value && isSelectedChip(group, value, chip.textContent));
         chip.classList.toggle("is-active", active);
         chip.setAttribute("aria-pressed", active ? "true" : "false");
       });
@@ -1568,8 +1628,10 @@
       if (!selected[group]) return;
       selected[group].clear();
       (values || []).forEach((value) => {
-        const cleaned = String(value || "").trim();
-        if (cleaned) selected[group].add(cleaned);
+        const normalizedValues = normalizeSelectedFilterValues(group, value, "");
+        normalizedValues.forEach((normalized) => {
+          if (normalized) selected[group].add(normalized);
+        });
       });
       syncChipState();
       applyFilters();
@@ -1591,10 +1653,16 @@
         const value = chip.dataset.value;
         if (!group || !value || !selected[group]) return;
 
-        if (selected[group].has(value)) {
-          selected[group].delete(value);
+        const normalizedValues = normalizeSelectedFilterValues(group, value, chip.textContent);
+        if (!normalizedValues.length) return;
+        const currentlyActive = normalizedValues.every((normalized) => selected[group].has(normalized));
+
+        if (currentlyActive) {
+          normalizedValues.forEach((normalized) => selected[group].delete(normalized));
         } else {
-          selected[group].add(value);
+          normalizedValues.forEach((normalized) => {
+            if (normalized) selected[group].add(normalized);
+          });
         }
         syncChipState();
         applyFilters();
