@@ -62,6 +62,7 @@ API_HASH = 'eefdec49605521b061de4bdf62ef784e'
 SESSION = str(ROOT / 'tg_session')
 MAX_VIDEO_UPLOAD_MB = 48
 VIDEO_BITRATES = ('1800k', '1200k', '900k', '700k', '500k', '350k')
+MAX_LOCAL_SOURCE_KEEP_MB = 95
 VIDEO_MAX_WIDTH = 960
 CONTACT_BLOCK = '''      <section class="section cta-block hotel-contact-section hotel-site-concept__detail-section" id="contacts">
         <h2>Контакты</h2>
@@ -414,6 +415,23 @@ def transcode_video(source: Path, target: Path, bitrate: str) -> bool:
         return target.exists() and target.stat().st_size > 0
     except Exception:  # noqa: BLE001
         return False
+
+
+def cleanup_large_source_file(source_file: Path, chosen_file: Path) -> None:
+    """Удаляем тяжёлый source.mp4 после успешной загрузки web-варианта.
+
+    Это защищает репозиторий от случайного попадания файлов >100MB в коммит.
+    """
+    try:
+        if source_file == chosen_file:
+            return
+        if not source_file.exists():
+            return
+        limit_bytes = MAX_LOCAL_SOURCE_KEEP_MB * 1024 * 1024
+        if source_file.stat().st_size > limit_bytes:
+            source_file.unlink()
+    except Exception:
+        return
 
 
 def render_paragraph_block(lines: list[str]) -> str:
@@ -1102,6 +1120,7 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
                         break
 
             if uploaded_public_url:
+                cleanup_large_source_file(source_file, chosen_file)
                 local_media_items.append(
                     {
                         'kind': 'video',
