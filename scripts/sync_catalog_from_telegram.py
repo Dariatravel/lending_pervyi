@@ -656,7 +656,25 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         save_label = 'К каталогу'
     page_title_suffix = 'обзор, фото, видео и цены'
     summary = summary_text(parsed.get('location', ''), parsed.get('beach', ''), parsed.get('capacity', ''))
-    og_image = f'https://абхазберег.рф{html.escape(media_items[0]["source_url"]) if media_items else ""}'
+    def absolute_site_url(raw: str) -> str:
+        value = (raw or '').strip()
+        if not value:
+            return ''
+        if value.startswith('http://') or value.startswith('https://'):
+            return value
+        if value.startswith('/'):
+            return f'https://абхазберег.рф{value}'
+        return f'https://абхазберег.рф/{value}'
+
+    first_photo_url = next(
+        (
+            str(item.get('source_url') or '').strip()
+            for item in media_items
+            if item.get('kind') == 'photo' and str(item.get('source_url') or '').strip()
+        ),
+        '',
+    )
+    og_image = absolute_site_url(first_photo_url or '/media/branding/site-cover.jpg')
     return f'''<!doctype html>
 <html lang="ru">
   <head>
@@ -828,7 +846,17 @@ def media_row(listing_id: int, media_role: str, sort_order: int, mime_type: str,
 async def download_message_media(client: TelegramClient, message, destination: Path) -> Path | None:
     ensure_dir(destination.parent)
     if destination.exists() and destination.stat().st_size > 0:
-        return destination
+        try:
+            head = destination.read_bytes()[:80]
+            is_lfs_pointer = head.startswith(b'version https://git-lfs.github.com/spec/v1')
+        except OSError:
+            is_lfs_pointer = False
+        if not is_lfs_pointer:
+            return destination
+        try:
+            destination.unlink()
+        except OSError:
+            pass
     try:
         result = await client.download_media(message, file=str(destination))
     except FileReferenceExpiredError:
