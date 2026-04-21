@@ -447,22 +447,8 @@ def _section_heading_markup(label: str) -> str:
 
 def render_sections_html(sections: list[dict[str, Any]], parsed: dict[str, Any] | None = None) -> str:
     parts: list[str] = []
-    first = True
     for section in sections:
         lines = list(section.get('lines', []))
-        if first and parsed is not None:
-            prepend: list[str] = []
-            loc = (parsed.get('location') or '').strip()
-            beach = (parsed.get('beach') or '').strip()
-            cap = (parsed.get('capacity') or '').strip()
-            if loc:
-                prepend.append(f'📍 {loc}')
-            if beach:
-                prepend.append(f'🏖️ {beach}')
-            if cap:
-                prepend.append(f'👥 {cap}')
-            lines = prepend + lines
-            first = False
         block = render_paragraph_block(lines)
         if not block:
             continue
@@ -595,6 +581,20 @@ def human_lead(parsed: dict[str, Any]) -> str:
     return lead
 
 
+def build_top_meta_lines(parsed: dict[str, Any]) -> list[str]:
+    lines: list[str] = []
+    location = str(parsed.get('location') or '').strip()
+    beach = str(parsed.get('beach') or '').strip()
+    capacity = str(parsed.get('capacity') or '').strip()
+    if location:
+        lines.append(f'📍 {location}')
+    if beach:
+        lines.append(f'🏖️ {beach}')
+    if capacity:
+        lines.append(f'👥 {capacity}')
+    return lines
+
+
 def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
     parts: list[str] = []
     image_index = 1
@@ -641,11 +641,16 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     lead_text = mod.format_lead_text(lead)
     lead_lines = [mod.clean_text(part) for part in re.split(r'[•\n]', lead_text) if mod.clean_text(part)]
     city_badge = mod.short_location_badge(lead_lines, title)
-    location_html = (
-        f'<p class="location">{html.escape(lead_text)}</p>'
-        if mod.should_show_location_under_title(lead_text, description)
-        else ''
-    )
+    top_meta_lines = build_top_meta_lines(parsed)
+    if top_meta_lines:
+        top_meta_html = '<br>'.join(html.escape(line) for line in top_meta_lines[:3])
+        location_html = f'<p class="location">{top_meta_html}</p>'
+    else:
+        location_html = (
+            f'<p class="location">{html.escape(lead_text)}</p>'
+            if mod.should_show_location_under_title(lead_text, description)
+            else ''
+        )
     prose_html = mod.description_to_prose_html(description)
     reviews_panel = _reviews_panel_for_slug(mod, slug)
     top_gallery = render_top_gallery(media_items, title)
