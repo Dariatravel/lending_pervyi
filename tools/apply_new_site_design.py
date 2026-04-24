@@ -1990,10 +1990,6 @@ def build_listing_pages() -> None:
             for raw in re.findall(r"<h2>(.*?)</h2>", " ".join(content_sections), flags=re.S)
             if clean_text(raw)
         ]
-        feature_labels = list(dict.fromkeys(section_titles[:4] + [line for line in lead_lines[1:3] if line]))[:4]
-        feature_labels = [lbl for lbl in feature_labels if clean_text(lbl).casefold() != "обзор"]
-        feature_labels = [lbl for lbl in feature_labels if not is_legacy_detail_heading(lbl)]
-
         section_paragraph_groups = [extract_benefit_paragraphs(section) for section in content_sections]
 
         description_parts: list[str] = []
@@ -2038,15 +2034,6 @@ def build_listing_pages() -> None:
             </div>
           </div>"""
 
-        feature_row_html = "".join(f"<span>{item}</span>" for item in feature_labels)
-        feature_row_markup = (
-            f"""      <div class="feature-row">
-        {feature_row_html}
-      </div>
-"""
-            if feature_row_html
-            else ""
-        )
         why_choose_html = "".join(f"<li>{item}</li>" for item in why_choose_items)
         important_html = "".join(f"<li>{item}</li>" for item in important_items)
         reviews_html = "".join(
@@ -2085,7 +2072,6 @@ def build_listing_pages() -> None:
             if should_show_location_under_title(lead_text, description)
             else ""
         )
-        prose_html = description_to_prose_html(description)
         eyebrow_link, save_href, save_label = listing_catalog_markup(path)
 
         new_main = f"""<main class="hotel-site-concept">
@@ -2121,10 +2107,6 @@ def build_listing_pages() -> None:
           <strong>Проверено</strong>
         </div>
       </div>
-
-      {prose_html}
-
-      {feature_row_markup}
 
       <div class="benefit-grid">
         <article>

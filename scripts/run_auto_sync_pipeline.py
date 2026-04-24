@@ -1,0 +1,323 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import subprocess
+import sys
+from dataclasses import asdict, dataclass
+from datetime import datetime
+from pathlib import Path
+from typing import Sequence
+
+ROOT = Path(__file__).resolve().parents[1]
+OUTPUT_DIR = ROOT / "output" / "auto-sync"
+ENV_PATH = ROOT / ".env.supabase.local"
+DEFAULT_GOOGLE_CREDS = [
+    Path("/Users/darya_botova/Downloads/sonorous-bounty-488706-q9-32a19387de8d.json"),
+    Path("/Users/darya_botova/Documents/ПОДБОРКИ/telegram_export/credentials.json"),
+]
+
+
+@dataclass
+class StepResult:
+    name: str
+    command: str
+    log_file: str
+    return_code: int
+    status: str
+
+
+def _timestamp() -> str:
+    return datetime.now().strftime("%Y%m%d-%H%M%S")
+
+
+def _load_env(path: Path) -> dict[str, str]:
+    data: dict[str, str] = {}
+    if not path.exists():
+        return data
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        data[key.strip()] = value.strip()
+    return data
+
+
+def _has_google_creds() -> bool:
+    raw = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON", "").strip()
+    if raw and Path(raw).exists():
+        return True
+    return any(path.exists() for path in DEFAULT_GOOGLE_CREDS)
+
+
+def _run_step(
+    *,
+    name: str,
+    cmd: Sequence[str],
+    env: dict[str, str],
+    log_path: Path,
+    dry_run: bool,
+) -> StepResult:
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    command_str = " ".join(cmd)
+    if dry_run:
+        log_path.write_text(f"[dry-run] {command_str}\n", encoding="utf-8")
+        return StepResult(
+            name=name,
+            command=command_str,
+            log_file=str(log_path),
+            return_code=0,
+            status="dry-run",
+        )
+
+    with log_path.open("w", encoding="utf-8") as log:
+        process = subprocess.run(
+            cmd,
+            cwd=ROOT,
+            env=env,
+            stdout=log,
+            stderr=subprocess.STDOUT,
+            check=False,
+            text=True,
+        )
+    return StepResult(
+        name=name,
+        command=command_str,
+        log_file=str(log_path),
+        return_code=process.returncode,
+        status="ok" if process.returncode == 0 else "failed",
+    )
+
+
+def _build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description=(
+            "Автопайплайн обновления каталога: Telegram синк -> фильтры из Google Sheet "
+            "-> проверка медиапривязки."
+        )
+    )
+    parser.add_argument(
+        "--mode",
+        choices=("full", "targeted"),
+        default="full",
+        help="full = полный синк, targeted = точечный по ID.",
+    )
+    parser.add_argument(
+        "--target-hotel-source-ids",
+        default="",
+        help="Список source_id отелей через запятую (для targeted).",
+    )
+    parser.add_argument(
+        "--target-kv-topic-ids",
+        default="",
+        help="Список topic_id квартир через запятую (для targeted).",
+    )
+    parser.add_argument(
+        "--force-media-refresh",
+        action="store_true",
+        help="Перезагружать медиа даже если файл уже есть.",
+    )
+    parser.add_argument(
+        "--skip-filters",
+        action="store_true",
+        help="Не применять фильтры из Google Sheets.",
+    )
+    parser.add_argument(
+        "--strict-filters",
+        action="store_true",
+        help="Падать, если шаг применения фильтров завершился ошибкой.",
+    )
+    parser.add_argument(
+        "--skip-verify",
+        action="store_true",
+        help="Пропустить verify_object_media.py",
+    )
+    parser.add_argument(
+        "--verify-check-files",
+        action="store_true",
+        help="Добавить в verify проверку наличия локальных photo-01.jpg.",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Показать команды без запуска.",
+    )
+    return parser
+
+
+def main() -> int:
+    parser = _build_parser()
+    args = parser.parse_args()
+
+    env_file_data = _load_env(ENV_PATH)
+    if "SUPABASE_URL" not in env_file_data or "SUPABASE_SERVICE_ROLE_KEY" not in env_file_data:
+        print(
+            "Ошибка: в .env.supabase.local должны быть SUPABASE_URL и SUPABASE_SERVICE_ROLE_KEY.",
+            file=sys.stderr,
+        )
+        return 2
+
+    run_id = _timestamp()
+    run_dir = OUTPUT_DIR / run_id
+    run_dir.mkdir(parents=True, exist_ok=True)
+    summary_path = run_dir / "summary.json"
+    summary_txt_path = run_dir / "summary.txt"
+
+    base_env = os.environ.copy()
+    base_env.update(env_file_data)
+
+    if args.mode == "targeted":
+        if not args.target_hotel_source_ids and not args.target_kv_topic_ids:
+            print(
+                "Ошибка: для --mode targeted укажите --target-hotel-source-ids и/или --target-kv-topic-ids.",
+                file=sys.stderr,
+            )
+            return 2
+        base_env["TARGET_HOTEL_SOURCE_IDS"] = args.target_hotel_source_ids
+        base_env["TARGET_KV_TOPIC_IDS"] = args.target_kv_topic_ids
+    else:
+        base_env.pop("TARGET_HOTEL_SOURCE_IDS", None)
+        base_env.pop("TARGET_KV_TOPIC_IDS", None)
+
+    if args.force_media_refresh:
+        base_env["FORCE_MEDIA_REFRESH"] = "1"
+
+    python = sys.executable
+    steps: list[StepResult] = []
+
+    print(f"[auto-sync] run_id={run_id}")
+    sync_result = _run_step(
+        name="sync_catalog_from_telegram",
+        cmd=[python, str(ROOT / "scripts" / "sync_catalog_from_telegram.py")],
+        env=base_env,
+        log_path=run_dir / "01-sync.log",
+        dry_run=args.dry_run,
+    )
+    steps.append(sync_result)
+    print(f"[auto-sync] {sync_result.name}: {sync_result.status}")
+
+    if sync_result.return_code != 0 and not args.dry_run:
+        payload = {
+            "run_id": run_id,
+            "status": "failed",
+            "failed_step": sync_result.name,
+            "steps": [asdict(step) for step in steps],
+        }
+        summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        summary_txt_path.write_text(
+            f"run_id: {run_id}\nstatus: failed\nfailed_step: {sync_result.name}\n",
+            encoding="utf-8",
+        )
+        return sync_result.return_code
+
+    if args.skip_filters:
+        steps.append(
+            StepResult(
+                name="apply_all_filters_from_sheet",
+                command="SKIPPED (--skip-filters)",
+                log_file=str(run_dir / "02-filters.log"),
+                return_code=0,
+                status="skipped",
+            )
+        )
+    else:
+        if not _has_google_creds():
+            msg = "SKIPPED (нет Google service account JSON)"
+            status = "skipped"
+            rc = 0
+            if args.strict_filters and not args.dry_run:
+                msg = "FAILED (нет Google service account JSON)"
+                status = "failed"
+                rc = 2
+            (run_dir / "02-filters.log").write_text(msg + "\n", encoding="utf-8")
+            filter_step = StepResult(
+                name="apply_all_filters_from_sheet",
+                command=msg,
+                log_file=str(run_dir / "02-filters.log"),
+                return_code=rc,
+                status=status,
+            )
+        else:
+            filter_step = _run_step(
+                name="apply_all_filters_from_sheet",
+                cmd=[python, str(ROOT / "scripts" / "apply_all_filters_from_sheet.py")],
+                env=base_env,
+                log_path=run_dir / "02-filters.log",
+                dry_run=args.dry_run,
+            )
+            if filter_step.return_code != 0 and not args.strict_filters and not args.dry_run:
+                filter_step.status = "warn"
+        steps.append(filter_step)
+        print(f"[auto-sync] {filter_step.name}: {filter_step.status}")
+        if filter_step.return_code != 0 and args.strict_filters and not args.dry_run:
+            payload = {
+                "run_id": run_id,
+                "status": "failed",
+                "failed_step": filter_step.name,
+                "steps": [asdict(step) for step in steps],
+            }
+            summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+            summary_txt_path.write_text(
+                f"run_id: {run_id}\nstatus: failed\nfailed_step: {filter_step.name}\n",
+                encoding="utf-8",
+            )
+            return filter_step.return_code
+
+    if args.skip_verify:
+        steps.append(
+            StepResult(
+                name="verify_object_media",
+                command="SKIPPED (--skip-verify)",
+                log_file=str(run_dir / "03-verify.log"),
+                return_code=0,
+                status="skipped",
+            )
+        )
+    else:
+        verify_cmd = [python, str(ROOT / "tools" / "verify_object_media.py")]
+        if args.verify_check_files:
+            verify_cmd.append("--check-files")
+        verify_step = _run_step(
+            name="verify_object_media",
+            cmd=verify_cmd,
+            env=base_env,
+            log_path=run_dir / "03-verify.log",
+            dry_run=args.dry_run,
+        )
+        steps.append(verify_step)
+        print(f"[auto-sync] {verify_step.name}: {verify_step.status}")
+        if verify_step.return_code != 0 and not args.dry_run:
+            payload = {
+                "run_id": run_id,
+                "status": "failed",
+                "failed_step": verify_step.name,
+                "steps": [asdict(step) for step in steps],
+            }
+            summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+            summary_txt_path.write_text(
+                f"run_id: {run_id}\nstatus: failed\nfailed_step: {verify_step.name}\n",
+                encoding="utf-8",
+            )
+            return verify_step.return_code
+
+    payload = {
+        "run_id": run_id,
+        "status": "ok",
+        "steps": [asdict(step) for step in steps],
+    }
+    summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    lines = [f"run_id: {run_id}", "status: ok", ""]
+    for step in steps:
+        lines.append(f"- {step.name}: {step.status} (rc={step.return_code})")
+        lines.append(f"  log: {step.log_file}")
+    summary_txt_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"[auto-sync] completed, отчёт: {summary_txt_path}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -64,6 +64,23 @@ MAX_VIDEO_UPLOAD_MB = 48
 VIDEO_BITRATES = ('1800k', '1200k', '900k', '700k', '500k', '350k')
 MAX_LOCAL_SOURCE_KEEP_MB = 95
 VIDEO_MAX_WIDTH = 960
+FORCE_MEDIA_REFRESH = os.getenv('FORCE_MEDIA_REFRESH', '').strip().lower() in {'1', 'true', 'yes', 'on'}
+def _parse_int_set(raw: str) -> set[int]:
+    result: set[int] = set()
+    for part in (raw or '').split(','):
+        token = part.strip()
+        if not token:
+            continue
+        try:
+            result.add(int(token))
+        except ValueError:
+            continue
+    return result
+
+
+TARGET_HOTEL_SOURCE_IDS = _parse_int_set(os.getenv('TARGET_HOTEL_SOURCE_IDS', ''))
+TARGET_KV_TOPIC_IDS = _parse_int_set(os.getenv('TARGET_KV_TOPIC_IDS', ''))
+TARGET_SYNC_MODE = bool(TARGET_HOTEL_SOURCE_IDS or TARGET_KV_TOPIC_IDS)
 CONTACT_BLOCK = '''      <section class="section cta-block hotel-contact-section hotel-site-concept__detail-section" id="contacts">
         <h2>Контакты</h2>
         <p>Задать вопросы либо проверить наличие номеров можно: <strong>+7 940 900-33-40</strong> (WhatsApp, Telegram, MAX).</p>
@@ -651,20 +668,9 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
             if mod.should_show_location_under_title(lead_text, description)
             else ''
         )
-    prose_html = mod.description_to_prose_html(description)
     reviews_panel = _reviews_panel_for_slug(mod, slug)
     top_gallery = render_top_gallery(media_items, title)
     media_html = render_media_items(media_items, title)
-    feature_values = [section.get('label', '').strip().title() for section in sections[:3] if section.get('label')]
-    feature_values = [v for v in feature_values if v.casefold() != 'обзор']
-    if parsed.get('beach'):
-        feature_values.append(parsed['beach'])
-    feature_html = ''.join(f'<span>{html.escape(item)}</span>' for item in feature_values[:4])
-    feature_row_section = (
-        f'\n\n      <div class="feature-row">\n        {feature_html}\n      </div>\n'
-        if feature_html
-        else ''
-    )
     why_lines = sections[0]['lines'][:3] if sections else []
     important_lines = sections[1]['lines'][:3] if len(sections) > 1 else []
     why_html = ''.join(f'<li>{html.escape(line)}</li>' for line in why_lines if not should_drop_line(line))
@@ -752,7 +758,6 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
             </div>
           </div>
 
-          {prose_html}{feature_row_section}
           <div class="benefit-grid">
             <article>
               <strong>Почему выбирают</strong>
@@ -868,7 +873,7 @@ def media_row(listing_id: int, media_role: str, sort_order: int, mime_type: str,
 
 async def download_message_media(client: TelegramClient, message, destination: Path) -> Path | None:
     ensure_dir(destination.parent)
-    if destination.exists() and destination.stat().st_size > 0:
+    if destination.exists() and destination.stat().st_size > 0 and not FORCE_MEDIA_REFRESH:
         try:
             head = destination.read_bytes()[:80]
             is_lfs_pointer = head.startswith(b'version https://git-lfs.github.com/spec/v1')
@@ -887,7 +892,20 @@ async def download_message_media(client: TelegramClient, message, destination: P
         refreshed = await client.get_messages(chat, ids=message.id)
         if not refreshed:
             return None
-        result = await client.download_media(refreshed, file=str(destination))
+        try:
+            result = await client.download_media(refreshed, file=str(destination))
+        except Exception as error:  # noqa: BLE001
+            print(
+                f'[warn] Не удалось скачать media msg={message.id} -> {destination.name}: {error}',
+                flush=True,
+            )
+            return None
+    except Exception as error:  # noqa: BLE001
+        print(
+            f'[warn] Не удалось скачать media msg={message.id} -> {destination.name}: {error}',
+            flush=True,
+        )
+        return None
     if not result:
         return None
     return Path(result)
@@ -922,6 +940,8 @@ async def build_hotel_objects(client: TelegramClient) -> list[dict[str, Any]]:
     candidates = [msg for msg in messages if is_hotel_object_message(msg.message or '')]
     result = []
     for canonical in candidates:
+        if TARGET_HOTEL_SOURCE_IDS and canonical.id not in TARGET_HOTEL_SOURCE_IDS:
+            continue
         if canonical.grouped_id:
             media_messages = [msg for msg in messages if msg.grouped_id == canonical.grouped_id and msg.media]
         else:
@@ -968,6 +988,8 @@ async def build_kvartira_objects(client: TelegramClient) -> tuple[list[dict[str,
     for topic in topics:
         topic_dump.append({'topic_id': topic.id, 'title': topic.title, 'top_message_id': topic.top_message})
         if topic.id == 1 or clean_line(topic.title).lower() == 'general':
+            continue
+        if TARGET_KV_TOPIC_IDS and topic.id not in TARGET_KV_TOPIC_IDS:
             continue
         thread_messages = await fetch_topic_messages(client, entity, topic.id)
         text_candidates = [msg for msg in thread_messages if is_kvartira_object_message(msg.message or '')]
@@ -1245,12 +1267,26 @@ async def main() -> None:
     client = TelegramClient(SESSION, API_ID, API_HASH)
     await client.connect()
 
-    hotel_objects = await build_hotel_objects(client)
-    kvartira_objects, topic_dump = await build_kvartira_objects(client)
-    print(f'Найдено объектов: hotels={len(hotel_objects)}, kvartira={len(kvartira_objects)}', flush=True)
+    run_hotels = True
+    run_kvartira = True
+    if TARGET_HOTEL_SOURCE_IDS and not TARGET_KV_TOPIC_IDS:
+        run_kvartira = False
+    elif TARGET_KV_TOPIC_IDS and not TARGET_HOTEL_SOURCE_IDS:
+        run_hotels = False
 
-    existing_hotels = supa.fetch_listings('hotel')
-    existing_kvartira = supa.fetch_listings('kvartira')
+    hotel_objects: list[dict[str, Any]] = []
+    kvartira_objects: list[dict[str, Any]] = []
+    topic_dump: list[dict[str, Any]] = []
+    if run_hotels:
+        hotel_objects = await build_hotel_objects(client)
+    if run_kvartira:
+        kvartira_objects, topic_dump = await build_kvartira_objects(client)
+    print(f'Найдено объектов: hotels={len(hotel_objects)}, kvartira={len(kvartira_objects)}', flush=True)
+    if TARGET_SYNC_MODE:
+        print('[info] Включен точечный режим синка: удаление неактивных объектов отключено.', flush=True)
+
+    existing_hotels = supa.fetch_listings('hotel') if run_hotels else []
+    existing_kvartira = supa.fetch_listings('kvartira') if run_kvartira else []
 
     kvartira_by_topic = {row.get('source_topic_id'): row for row in existing_kvartira}
 
@@ -1302,9 +1338,12 @@ async def main() -> None:
         if index % 10 == 0 or index == len(hotel_objects):
             print(f'Обновлены отели: {index}/{len(hotel_objects)}', flush=True)
 
-    for row in existing_hotels:
-        if row['id'] not in processed_hotel_rows and row['id'] not in failed_hotel_existing_rows:
-            cleanup_removed_listing('hotel', row, supa)
+    deleted_hotels_count = 0
+    if run_hotels and not TARGET_SYNC_MODE:
+        for row in existing_hotels:
+            if row['id'] not in processed_hotel_rows and row['id'] not in failed_hotel_existing_rows:
+                cleanup_removed_listing('hotel', row, supa)
+                deleted_hotels_count += 1
 
     kvartira_cards = []
     processed_kv_rows = set()
@@ -1345,22 +1384,26 @@ async def main() -> None:
         if index % 10 == 0 or index == len(kvartira_objects):
             print(f'Обновлены квартиры: {index}/{len(kvartira_objects)}', flush=True)
 
-    for row in existing_kvartira:
-        if row['id'] not in processed_kv_rows and row['id'] not in failed_kv_existing_rows:
-            cleanup_removed_listing('kvartira', row, supa)
+    deleted_kvartira_count = 0
+    if run_kvartira and not TARGET_SYNC_MODE:
+        for row in existing_kvartira:
+            if row['id'] not in processed_kv_rows and row['id'] not in failed_kv_existing_rows:
+                cleanup_removed_listing('kvartira', row, supa)
+                deleted_kvartira_count += 1
 
-    CURRENT_PAGES_FILE.write_text(json.dumps(sorted(current_pages, key=lambda item: item['source_id']), ensure_ascii=False, indent=2), encoding='utf-8')
-    POSTS_FILE.write_text(json.dumps([
-        {
-            'id': obj['canonical'].id,
-            'date': obj['published_at'],
-            'text': obj['canonical'].message or '',
-            'html': '',
-        }
-        for obj in hotel_objects
-    ], ensure_ascii=False, indent=2), encoding='utf-8')
-    TOPICS_FILE.write_text(json.dumps(topic_dump, ensure_ascii=False, indent=2), encoding='utf-8')
-    KV_CARDS_FILE.write_text(json.dumps(sorted(kvartira_cards, key=lambda item: item['message_id'], reverse=True), ensure_ascii=False, indent=2), encoding='utf-8')
+    if not TARGET_SYNC_MODE:
+        CURRENT_PAGES_FILE.write_text(json.dumps(sorted(current_pages, key=lambda item: item['source_id']), ensure_ascii=False, indent=2), encoding='utf-8')
+        POSTS_FILE.write_text(json.dumps([
+            {
+                'id': obj['canonical'].id,
+                'date': obj['published_at'],
+                'text': obj['canonical'].message or '',
+                'html': '',
+            }
+            for obj in hotel_objects
+        ], ensure_ascii=False, indent=2), encoding='utf-8')
+        TOPICS_FILE.write_text(json.dumps(topic_dump, ensure_ascii=False, indent=2), encoding='utf-8')
+        KV_CARDS_FILE.write_text(json.dumps(sorted(kvartira_cards, key=lambda item: item['message_id'], reverse=True), ensure_ascii=False, indent=2), encoding='utf-8')
 
     await client.disconnect()
     print(json.dumps({
@@ -1368,8 +1411,8 @@ async def main() -> None:
         'kvartira': len(kvartira_objects),
         'failed_hotels': len(failed_hotel_objects),
         'failed_kvartira': len(failed_kv_objects),
-        'deleted_hotels': len(existing_hotels) - len(processed_hotel_rows) - len(failed_hotel_existing_rows),
-        'deleted_kvartira': len(existing_kvartira) - len(processed_kv_rows) - len(failed_kv_existing_rows),
+        'deleted_hotels': deleted_hotels_count,
+        'deleted_kvartira': deleted_kvartira_count,
     }, ensure_ascii=False))
     if failed_hotel_objects:
         print('[warn] Не обновились отели:', json.dumps(failed_hotel_objects[:20], ensure_ascii=False), flush=True)
