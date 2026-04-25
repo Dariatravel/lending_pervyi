@@ -1,5 +1,15 @@
 [
   {
+    "slug": "manon-otel-so-skazochnym-vidom-2512",
+    "source_id": 2512,
+    "title": "\"МАНОН\" отель со сказочным видом"
+  },
+  {
+    "slug": "bonzhur-mini-otel-2542",
+    "source_id": 2542,
+    "title": "\"БОНЖУР\" мини-отель"
+  },
+  {
     "slug": "pegas-otel-na-pervoy-linii-vid-na-more-2574",
     "source_id": 2574,
     "title": "\"ПЕГАС\" отель на первой линии, вид на море"
@@ -118,6 +128,11 @@
     "slug": "kastl-otel-s-teplym-basseynom-i-vidom-na-more-2859",
     "source_id": 2859,
     "title": "\"КАСТЛ\" отель с теплым бассейном и видом на море"
+  },
+  {
+    "slug": "mimi-domiki-s-vidom-na-gory-2869",
+    "source_id": 2869,
+    "title": "\"МИМИ\" домики с видом на горы"
   },
   {
     "slug": "v-gostyah-u-belochki-domiki-i-nomera-2879",
@@ -243,6 +258,11 @@
     "slug": "miraslava-mini-otel-3143",
     "source_id": 3143,
     "title": "\"МИРАСЛАВА\" мини-отель"
+  },
+  {
+    "slug": "grey-haus-domiki",
+    "source_id": 3153,
+    "title": "\"ГРЕЙ ХАУС\" домики с бассейном"
   },
   {
     "slug": "fyuzhn-tri-domika-s-launzh-zonoy-3162",
@@ -678,5 +698,10 @@
     "slug": "tihaya-obitel-dom-pod-klyuch-4230",
     "source_id": 4230,
     "title": "\"ТИХАЯ ОБИТЕЛЬ\" дом под ключ"
+  },
+  {
+    "slug": "lemar-domiki-v-tsentre-4239",
+    "source_id": 4239,
+    "title": "\"ЛЕМАР\" домики в центре"
   }
 ]

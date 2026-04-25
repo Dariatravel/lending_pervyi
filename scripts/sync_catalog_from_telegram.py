@@ -267,12 +267,53 @@ def ensure_dir(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
 
 
+def load_json_array(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    try:
+        data = json.loads(path.read_text(encoding='utf-8'))
+        if isinstance(data, list):
+            return [row for row in data if isinstance(row, dict)]
+    except Exception:  # noqa: BLE001
+        return []
+    return []
+
+
+def merge_rows_by_key(
+    existing: list[dict[str, Any]],
+    updates: list[dict[str, Any]],
+    key: str,
+) -> list[dict[str, Any]]:
+    merged: dict[Any, dict[str, Any]] = {}
+    order: list[Any] = []
+    for row in existing:
+        k = row.get(key)
+        if k is None:
+            continue
+        if k not in merged:
+            order.append(k)
+        merged[k] = row
+    for row in updates:
+        k = row.get(key)
+        if k is None:
+            continue
+        if k not in merged:
+            order.append(k)
+        merged[k] = row
+    return [merged[k] for k in order if k in merged]
+
+
 def normalize_title(raw: str) -> str:
     return clean_line(raw).strip()
 
 
 def is_service_text(text: str) -> bool:
     sample = clean_line(text).lower()
+    if not sample:
+        return False
+    lines = [ln.strip() for ln in sample.splitlines() if ln.strip()]
+    head = '\n'.join(lines[:4])
+    head_flat = ' '.join(lines[:4])
     markers = (
         'кто я и почему выгодно бронировать',
         'отзывы гостей',
@@ -281,7 +322,11 @@ def is_service_text(text: str) -> bool:
         'здесь вы найдете квартиры',
         'общение в группе',
     )
-    return any(marker in sample for marker in markers)
+    return any(
+        head.startswith(marker)
+        or head_flat.startswith(marker)
+        for marker in markers
+    )
 
 
 def is_hotel_object_message(text: str) -> bool:
@@ -925,6 +970,14 @@ def local_media_entry(source_kind: str, local_path: Path) -> tuple[str, str]:
 
 async def collect_hotel_messages(client: TelegramClient) -> list[Any]:
     entity = await client.get_entity('abhazbooking')
+    if TARGET_HOTEL_SOURCE_IDS:
+        result = []
+        for source_id in sorted(TARGET_HOTEL_SOURCE_IDS):
+            msg = await client.get_messages(entity, ids=source_id)
+            if msg and getattr(msg, 'id', None):
+                result.append(msg)
+        return result
+
     result = []
     async for msg in client.iter_messages(entity, reverse=True):
         if not msg.date:
@@ -937,7 +990,10 @@ async def collect_hotel_messages(client: TelegramClient) -> list[Any]:
 
 async def build_hotel_objects(client: TelegramClient) -> list[dict[str, Any]]:
     messages = await collect_hotel_messages(client)
-    candidates = [msg for msg in messages if is_hotel_object_message(msg.message or '')]
+    if TARGET_HOTEL_SOURCE_IDS:
+        candidates = [msg for msg in messages if msg]
+    else:
+        candidates = [msg for msg in messages if is_hotel_object_message(msg.message or '')]
     result = []
     for canonical in candidates:
         if TARGET_HOTEL_SOURCE_IDS and canonical.id not in TARGET_HOTEL_SOURCE_IDS:
@@ -992,6 +1048,10 @@ async def build_kvartira_objects(client: TelegramClient) -> tuple[list[dict[str,
         if TARGET_KV_TOPIC_IDS and topic.id not in TARGET_KV_TOPIC_IDS:
             continue
         thread_messages = await fetch_topic_messages(client, entity, topic.id)
+        if not thread_messages and getattr(topic, 'top_message', None):
+            top = await client.get_messages(entity, ids=topic.top_message)
+            if top:
+                thread_messages = [top]
         text_candidates = [msg for msg in thread_messages if is_kvartira_object_message(msg.message or '')]
         if not text_candidates:
             text_candidates = [msg for msg in thread_messages if msg.message and not is_service_text(msg.message)]
@@ -1391,8 +1451,18 @@ async def main() -> None:
                 cleanup_removed_listing('kvartira', row, supa)
                 deleted_kvartira_count += 1
 
-    if not TARGET_SYNC_MODE:
-        CURRENT_PAGES_FILE.write_text(json.dumps(sorted(current_pages, key=lambda item: item['source_id']), ensure_ascii=False, indent=2), encoding='utf-8')
+    existing_current_pages = load_json_array(CURRENT_PAGES_FILE)
+    existing_kv_cards = load_json_array(KV_CARDS_FILE)
+    if TARGET_SYNC_MODE:
+        merged_current_pages = existing_current_pages
+        merged_kv_cards = existing_kv_cards
+        if run_hotels and current_pages:
+            merged_current_pages = merge_rows_by_key(existing_current_pages, current_pages, 'source_id')
+        if run_kvartira and kvartira_cards:
+            merged_kv_cards = merge_rows_by_key(existing_kv_cards, kvartira_cards, 'message_id')
+    else:
+        merged_current_pages = current_pages
+        merged_kv_cards = kvartira_cards
         POSTS_FILE.write_text(json.dumps([
             {
                 'id': obj['canonical'].id,
@@ -1403,7 +1473,15 @@ async def main() -> None:
             for obj in hotel_objects
         ], ensure_ascii=False, indent=2), encoding='utf-8')
         TOPICS_FILE.write_text(json.dumps(topic_dump, ensure_ascii=False, indent=2), encoding='utf-8')
-        KV_CARDS_FILE.write_text(json.dumps(sorted(kvartira_cards, key=lambda item: item['message_id'], reverse=True), ensure_ascii=False, indent=2), encoding='utf-8')
+
+    CURRENT_PAGES_FILE.write_text(
+        json.dumps(sorted(merged_current_pages, key=lambda item: item.get('source_id', 0)), ensure_ascii=False, indent=2),
+        encoding='utf-8',
+    )
+    KV_CARDS_FILE.write_text(
+        json.dumps(sorted(merged_kv_cards, key=lambda item: item.get('message_id', 0), reverse=True), ensure_ascii=False, indent=2),
+        encoding='utf-8',
+    )
 
     await client.disconnect()
     print(json.dumps({

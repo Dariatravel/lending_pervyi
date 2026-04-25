@@ -33,6 +33,12 @@ def _title_from_hotel_page(path: Path) -> str:
     return unescape(inner).strip()
 
 
+def _slug_rank(slug: str) -> tuple[int, int]:
+    """Приоритет slug: сначала современные с message-id на конце, затем более длинные."""
+    has_id_tail = 1 if re.search(r"-\d{3,6}$", slug or "") else 0
+    return has_id_tail, len(slug or "")
+
+
 def normalize_podborki_title(s: str) -> str:
     t = unescape(s or "")
     t = re.sub(r"\s+", " ", t.strip().lower())
@@ -45,6 +51,33 @@ def extract_quoted_brand(title: str) -> str:
     if m:
         return m.group(1).strip().lower()
     return ""
+
+
+def _brand_variants(brand: str) -> list[str]:
+    """Варианты бренда для мягкого сопоставления (город/индексы в кавычках могут отличаться)."""
+    b = normalize_podborki_title(brand)
+    if not b:
+        return []
+    variants = [b]
+    # "ЧЕРНОМОРСКАЯ-1" -> "черноморская"
+    variants.append(re.sub(r"[-\s]*\d+$", "", b).strip())
+    words = [w for w in re.split(r"\s+", b) if w]
+    if len(words) >= 2:
+        variants.append(" ".join(words[:2]))
+    if words:
+        variants.append(words[0])
+    out: list[str] = []
+    for v in variants:
+        if v and v not in out:
+            out.append(v)
+    return out
+
+
+def _brand_in_blob(brand: str, blob: str) -> bool:
+    for v in _brand_variants(brand):
+        if len(v) >= 3 and v in blob:
+            return True
+    return False
 
 
 def room_layout_hint(title: str) -> str | None:
@@ -101,14 +134,10 @@ def podborki_href_matches_title(title: str, href: str) -> bool:
     row_title = ""
     if path.is_file():
         row_title = _title_from_hotel_page(path)
-    hint = room_layout_hint(title)
-    if kind == "kvartira" and hint and row_title:
-        if not catalog_row_satisfies_room_hint(hint, row_title, slug):
-            return False
     brand = extract_quoted_brand(title)
     if brand:
         blob = normalize_podborki_title(f"{row_title} {slug.replace('-', ' ')}")
-        if brand not in blob:
+        if not _brand_in_blob(brand, blob):
             return False
     return True
 
@@ -132,7 +161,23 @@ def load_hotel_catalog() -> list[dict[str, str]]:
             t = _title_from_hotel_page(idx)
             if t:
                 by_slug[slug] = t
-    return [{"slug": s, "title": t} for s, t in sorted(by_slug.items())]
+    rows = [{"slug": s, "title": t} for s, t in sorted(by_slug.items())]
+    # В репозитории могут оставаться исторические дубли slug с одинаковым title.
+    # Для матчей подборок оставляем один канонический вариант.
+    by_title: dict[str, dict[str, str]] = {}
+    for row in rows:
+        key = normalize_podborki_title(row.get("title") or "")
+        if not key:
+            continue
+        prev = by_title.get(key)
+        if not prev:
+            by_title[key] = row
+            continue
+        if _slug_rank(row["slug"]) > _slug_rank(prev["slug"]):
+            by_title[key] = row
+    dedup = list(by_title.values())
+    dedup.sort(key=lambda x: x["slug"])
+    return dedup
 
 
 def load_kvartira_catalog() -> list[dict[str, str]]:
@@ -179,7 +224,8 @@ def match_podborki_title_to_hotel(
 
         score = 0
         if brand:
-            if brand in ht or brand in slug_spaced:
+            blob = f"{ht} {slug_spaced}"
+            if _brand_in_blob(brand, blob):
                 score += 120
             else:
                 continue
@@ -233,16 +279,18 @@ def match_podborki_title_to_kvartira(
 
     for row in catalog:
         slug = row.get("slug") or ""
-        if room_hint and not catalog_row_satisfies_room_hint(
-            room_hint, row.get("title") or "", slug
-        ):
-            continue
+        has_room_match = True
+        if room_hint:
+            has_room_match = catalog_row_satisfies_room_hint(
+                room_hint, row.get("title") or "", slug
+            )
         ht = normalize_podborki_title(row.get("title") or "")
         slug_spaced = slug.replace("-", " ").lower()
 
         score = 0
         if brand:
-            if brand in ht or brand in slug_spaced:
+            blob = f"{ht} {slug_spaced}"
+            if _brand_in_blob(brand, blob):
                 score += 120
             else:
                 continue
@@ -255,6 +303,9 @@ def match_podborki_title_to_kvartira(
         pw = set(_WORD.findall(pn))
         hw = set(_WORD.findall(ht))
         score += 14 * len(pw & hw)
+        if room_hint and not has_room_match:
+            # Если в таблице/подборке рассинхрон по комнатности, не роняем карточку в no-link.
+            score -= 20
 
         if "квартир" in pn or "студи" in pn:
             if "квартир" in ht or "студи" in ht:
