@@ -4,6 +4,7 @@ import html
 import json
 import re
 import time
+import unicodedata
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
@@ -32,6 +33,134 @@ CITY_MAP = {
     "gagra": ("гагра", "старая гагра", "новая гагра", "багрипш"),
     "tsandripsh": ("цандрипш",),
 }
+
+PODBORKI_ROOT = Path("/Users/darya_botova/Documents/ПОДБОРКИ")
+_PODBORKI_TITLE_FILTERS_CACHE: dict[str, dict[str, set[str]]] | None = None
+_PODBORKI_FILTER_BY_FOLDER_SLUG: dict[str, tuple[str, str]] = {
+    "bereg-morya-oteli-na-beregu": ("distance", "beachfront"),
+    "varianty-do-5-tr-ekonom": ("price", "economy"),
+    "varianty-5-12-tr-srednyak": ("price", "midrange"),
+    "varianty-dorozhe-12-tr-premium": ("price", "premium"),
+    "alahadzy-vse-varianty": ("city", "alakhadzy"),
+    "gagra-vse-varianty": ("city", "gagra"),
+    "gudauta-vse-varianty": ("city", "gudauta"),
+    "ldzaa-vse-varianty": ("city", "ldzaa"),
+    "novyy-afon-vse-varianty": ("city", "new-afon"),
+    "pitsunda-vse-varianty": ("city", "pitsunda"),
+    "suhum-vse-varianty": ("city", "sukhum"),
+    "peschanyy-ldzaa": ("beach", "sand"),
+    "peschanyy-plyazh-suhum": ("beach", "sand"),
+    "sosnovyy-plyazh": ("beach", "pine-pebble"),
+    "vid-na-more-pryamoy-bokovoy": ("room", "sea-view"),
+    "basseyn-vse-varianty": ("room", "pool"),
+    "balkony": ("room", "balcony"),
+    "veranda": ("room", "terrace"),
+    "svoya-kuhnya-v-nomere": ("room", "kitchen"),
+    "pyatero-gostey-i-bolee": ("room", "five-plus"),
+    "dvuhkomnatnye-i-bolee": ("room", "two-room"),
+    "domiki-vse-varianty": ("stay", "cottages"),
+    "kvartiry-vse-varianty": ("stay", "apartments"),
+    "doma-pod-klyuch-vse-varianty": ("stay", "turnkey-house"),
+    "sobaki-varianty": ("stay", "pets"),
+    "pitanie-v-otele-ili-svoe-kafe": ("food", "cafe"),
+}
+_PODBORKI_SOURCE_SLUG_ALIASES: dict[str, str] = {
+    "peschanyy-plyazh-ldzaa": "peschanyy-ldzaa",
+    "sosnovyy-plyazh-ldzaa-i-pitsunda": "sosnovyy-plyazh",
+    "vid-na-more": "vid-na-more-pryamoy-bokovoy",
+    "pitanie-i-svoe-kafe": "pitanie-v-otele-ili-svoe-kafe",
+}
+
+
+def _slugify_folder_name(text: str) -> str:
+    s = unicodedata.normalize("NFKC", text or "").lower().replace("ё", "е")
+    s = re.sub(r"[^a-z0-9а-я]+", "-", s)
+    # грубая транслитерация достаточно для известных папок
+    tr = str.maketrans(
+        {
+            "а": "a",
+            "б": "b",
+            "в": "v",
+            "г": "g",
+            "д": "d",
+            "е": "e",
+            "ж": "zh",
+            "з": "z",
+            "и": "i",
+            "й": "y",
+            "к": "k",
+            "л": "l",
+            "м": "m",
+            "н": "n",
+            "о": "o",
+            "п": "p",
+            "р": "r",
+            "с": "s",
+            "т": "t",
+            "у": "u",
+            "ф": "f",
+            "х": "h",
+            "ц": "ts",
+            "ч": "ch",
+            "ш": "sh",
+            "щ": "sch",
+            "ъ": "",
+            "ы": "y",
+            "ь": "",
+            "э": "e",
+            "ю": "yu",
+            "я": "ya",
+        }
+    )
+    s = s.translate(tr)
+    s = re.sub(r"-{2,}", "-", s).strip("-")
+    return s
+
+
+def _norm_title(text: str) -> str:
+    t = (text or "").strip().lower()
+    t = t.replace("«", '"').replace("»", '"').replace("“", '"').replace("”", '"')
+    t = t.replace("ё", "е")
+    t = re.sub(r"\s+", " ", t)
+    return t
+
+
+def load_podborki_title_filters() -> dict[str, dict[str, set[str]]]:
+    global _PODBORKI_TITLE_FILTERS_CACHE
+    if _PODBORKI_TITLE_FILTERS_CACHE is not None:
+        return _PODBORKI_TITLE_FILTERS_CACHE
+
+    out: dict[str, dict[str, set[str]]] = {}
+    if not PODBORKI_ROOT.is_dir():
+        _PODBORKI_TITLE_FILTERS_CACHE = out
+        return out
+
+    for txt in sorted(PODBORKI_ROOT.glob("*/подборка_*.txt")):
+        name = txt.name
+        if "_сайт" in name or "_макс_канал" in name or "_вк_пост" in name:
+            continue
+        src_slug = _slugify_folder_name(txt.parent.name)
+        slug = _PODBORKI_SOURCE_SLUG_ALIASES.get(src_slug, src_slug)
+        mapping = _PODBORKI_FILTER_BY_FOLDER_SLUG.get(slug)
+        if not mapping:
+            continue
+        group, value = mapping
+        try:
+            rows = txt.read_text(encoding="utf-8").splitlines()
+        except OSError:
+            continue
+        for line in rows:
+            s = line.strip()
+            if not s:
+                continue
+            if not (s.startswith('"') or s.startswith("«") or s.startswith("“")):
+                continue
+            title_key = _norm_title(s)
+            by_group = out.setdefault(title_key, {})
+            by_group.setdefault(group, set()).add(value)
+
+    _PODBORKI_TITLE_FILTERS_CACHE = out
+    return out
 
 
 def load_env(path: Path) -> dict[str, str]:
@@ -154,12 +283,16 @@ def detect_room(blob: str) -> list[str]:
         values.append("sea-view")
     if "балкон" in blob:
         values.append("balcony")
+    if "террас" in blob or "веранд" in blob:
+        values.append("terrace")
     if "бассейн" in blob:
         values.append("pool")
     if any(marker in blob for marker in ("однокомнат", "1к", "1-к", "студия")):
         values.append("one-room")
-    if any(marker in blob for marker in ("двухкомнат", "2к", "2-к")):
+    if any(marker in blob for marker in ("двухкомнат", "2к", "2-к", "трехкомнат", "3к", "3-к", "четырехкомнат", "4к", "4-к")):
         values.append("two-room")
+    if re.search(r"до\s*(?:[5-9]|1[0-2])\s*чел", blob):
+        values.append("five-plus")
     if "кухн" in blob:
         values.append("kitchen")
     if "кондиционер" in blob:
@@ -169,16 +302,24 @@ def detect_room(blob: str) -> list[str]:
 
 def detect_stay(blob: str) -> list[str]:
     values: list[str] = []
+    if any(marker in blob for marker in ("домик", "домики", "коттедж", "коттеджи")):
+        values.append("cottages")
+    if any(marker in blob for marker in ("квартир", "апартамент", "студия")):
+        values.append("apartments")
+    if "дом под ключ" in blob:
+        values.append("turnkey-house")
     if any(marker in blob for marker in ("с детьми", "для детей", "детская площадка", "семейн")):
         values.append("kids")
     if any(marker in blob for marker in ("с животными", "с питомц", "с собачк", "pet friendly")):
         values.append("pets")
+    if any(marker in blob for marker in ("без детей", "без маленьких детей")):
+        values.append("no-small-kids")
     return values
 
 
 def infer_filters(row: dict[str, Any]) -> dict[str, list[str]]:
     blob = text_blob(row)
-    return {
+    filters = {
         "distance": detect_distance(blob),
         "food": detect_food(blob),
         "price": detect_price(blob),
@@ -187,6 +328,16 @@ def infer_filters(row: dict[str, Any]) -> dict[str, list[str]]:
         "room": detect_room(blob),
         "stay": detect_stay(blob),
     }
+    title_key = _norm_title(str(row.get("title") or ""))
+    if title_key:
+        by_group = load_podborki_title_filters().get(title_key, {})
+        for group, values in by_group.items():
+            current = list(filters.get(group) or [])
+            for v in values:
+                if v not in current:
+                    current.append(v)
+            filters[group] = current
+    return filters
 
 
 def pick_cover_url(row: dict[str, Any]) -> str:
