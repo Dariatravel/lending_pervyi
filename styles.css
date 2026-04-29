@@ -5031,6 +5031,18 @@ body.modal-open {
   border-color: rgba(199, 119, 90, 0.35);
 }
 
+.filters-modal__footer {
+  padding: 0.9rem 1.25rem 1.1rem;
+  border-top: 1px solid var(--line);
+  background: rgba(255, 250, 242, 0.98);
+  flex-shrink: 0;
+}
+
+.filters-modal__apply {
+  width: 100%;
+  justify-content: center;
+}
+
 .grid-two {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

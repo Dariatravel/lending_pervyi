@@ -1529,8 +1529,23 @@
     const openFiltersBtn = document.getElementById("open-filters");
     const filtersModal = document.getElementById("filters-modal");
     const closeFilterEls = Array.from(document.querySelectorAll("[data-close-filters]"));
+    const filtersPanel = filtersModal?.querySelector(".filters-modal__panel");
+    let applyFiltersBtn = document.getElementById("apply-filters");
     const selected = Object.fromEntries(FILTER_GROUPS.map((group) => [group, new Set()]));
     let catalogCategorySlug = null;
+
+    if (!applyFiltersBtn && filtersPanel) {
+      const footer = document.createElement("div");
+      footer.className = "filters-modal__footer";
+      const button = document.createElement("button");
+      button.type = "button";
+      button.id = "apply-filters";
+      button.className = "btn-book filters-modal__apply";
+      button.textContent = "Применить";
+      footer.appendChild(button);
+      filtersPanel.appendChild(footer);
+      applyFiltersBtn = button;
+    }
 
     function getCards() {
       return Array.from(grid.querySelectorAll(".catalog-card"));
@@ -1702,6 +1717,11 @@
       element.addEventListener("click", () => {
         closeFiltersModal();
       });
+    });
+
+    applyFiltersBtn?.addEventListener("click", () => {
+      applyFilters();
+      closeFiltersModal();
     });
 
     document.addEventListener("keydown", (event) => {
