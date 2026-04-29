@@ -5290,6 +5290,13 @@ body.modal-open {
   margin-top: 0;
 }
 
+/* В карточках объектов: номер в блоке Контакты всегда с новой строки */
+.hotel-contact-section p > strong {
+  display: block;
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
 .grain {
   pointer-events: none;
   position: fixed;
