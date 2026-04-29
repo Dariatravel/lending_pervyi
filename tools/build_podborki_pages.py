@@ -459,7 +459,6 @@ def main() -> None:
     <section class="site-concept__hero-card podborki-hero">
       <p class="site-concept__eyebrow">Каталог</p>
       <h1>Подборки жилья</h1>
-      <p class="podborki-hero__lead">Тематические списки с ранжированием — откройте подборку, чтобы пройти по объектам по порядку.</p>
     </section>
     <section class="site-concept__section-block">
       <ul class="podborki-index-list">
