@@ -5267,6 +5267,21 @@ body.modal-open {
   text-align: center;
 }
 
+/* Единый стиль заголовков разделов в карточках объектов */
+.hotel-card__header h2,
+.hotel-site-concept__detail-section .card h2,
+.hotel-site-concept__detail-section > h2,
+.hotel-site-concept__detail-section > .cta-block h2,
+.hotel-site-concept__detail-section .price-card h2.price-card__heading {
+  margin: 0 0 14px;
+  font-size: clamp(1.02rem, 1.45vw, 1.24rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
 .grain {
   pointer-events: none;
   position: fixed;
