@@ -15,3 +15,6 @@ tg_export_topics.py.save
 
 # local Supabase secrets
 .env.supabase.local
+
+# generated heavy telegram source videos (intermediate, not for git)
+media/videos/**/video-*-source.mp4

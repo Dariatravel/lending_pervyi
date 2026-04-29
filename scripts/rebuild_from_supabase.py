@@ -162,6 +162,64 @@ def load_podborki_title_filters() -> dict[str, dict[str, set[str]]]:
     _PODBORKI_TITLE_FILTERS_CACHE = out
     return out
 
+OLD_PRICE_MAP = {
+    "up-to-3000": "economy",
+    "up-to-4000": "economy",
+    "up-to-5000": "economy",
+    "up-to-6000": "midrange",
+    "up-to-7000": "midrange",
+    "up-to-8000": "midrange",
+    "up-to-9000": "midrange",
+    "up-to-10000": "midrange",
+}
+
+OLD_BEACH_MAP = {
+    "sand": "sand-ldzaa",
+    "pine-pebble": "pine-pebble-ldzaa-pitsunda",
+    "mixed": "pitsunda-bay-mixed",
+    "pebble": "pebble",
+}
+
+OLD_ROOM_MAP = {
+    "two-room": "two-room-plus",
+    "beachfront": "beachfront-room",
+}
+
+LABEL_VALUE_MAP = {
+    "price": {
+        "эконом до 5000 руб. за номер": "economy",
+        "эконом и комфорт до 5000 руб.": "economy",
+        "от 5000 до 10000 руб. за номер": "midrange",
+        "средний бюджет до 10000 руб.": "midrange",
+        "премиум-сегмент": "premium",
+    },
+    "beach": {
+        "песчаный пляж лдзаа": "sand-ldzaa",
+        "песчаный пляж сухум": "sand-sukhum",
+        "сосновый галечный берег лдзаа и пицунда": "pine-pebble-ldzaa-pitsunda",
+        "пицундская бухта (мелкая галька и песок)": "pitsunda-bay-mixed",
+        "галечные пляжи": "pebble",
+    },
+    "room": {
+        "вид на море": "sea-view",
+        "прямо на берегу": "beachfront-room",
+        "берег моря. отели на берегу": "beachfront-room",
+        "бассейн": "pool",
+        "с балконом": "balcony",
+        "с террасой": "terrace",
+        "своя кухня в номере": "kitchen",
+        "пять гостей и более": "five-plus",
+        "две комнаты и более": "two-room-plus",
+    },
+    "stay": {
+        "домики и коттеджи": "cottages",
+        "квартиры": "apartments",
+        "дома под ключ": "turnkey-house",
+        "можно с животными": "pets",
+        "без маленьких детей": "no-small-kids",
+    },
+}
+
 
 def load_env(path: Path) -> dict[str, str]:
     data: dict[str, str] = {}
@@ -281,6 +339,8 @@ def detect_room(blob: str) -> list[str]:
     values: list[str] = []
     if any(marker in blob for marker in ("вид на море", "с видом на море")):
         values.append("sea-view")
+    if any(marker in blob for marker in ("прямо на берегу", "отели на берегу", "на берегу моря", "на первой линии")):
+        values.append("beachfront-room")
     if "балкон" in blob:
         values.append("balcony")
     if "террас" in blob or "веранд" in blob:

@@ -1,0 +1,189 @@
+Объекты с пустыми фильтрами по группам
+
+[distance] count=11
+- amor-apartamenty-studiya-gagra-1322 | "АМОР" апартаменты - студия | https://абхазберег.рф/kvartira/amor-apartamenty-studiya-gagra-1322/
+- bi-heppi-kottedzh-suhum-1130 | "БИ ХЭППИ" коттедж | https://абхазберег.рф/kvartira/bi-heppi-kottedzh-suhum-1130/
+- dyshi-glubzhe-domiki-v-gorah-1335 | "ДЫШИ ГЛУБЖЕ" домики в горах | https://абхазберег.рф/kvartira/dyshi-glubzhe-domiki-v-gorah-1335/
+- karalina-apartamenty-studiya-pitsunda-1274 | "КАРАЛИНА" апартаменты | https://абхазберег.рф/kvartira/karalina-apartamenty-studiya-pitsunda-1274/
+- kvartira-2k-afina-suhum-717 | Квартира 2К "Афина" | https://абхазберег.рф/kvartira/kvartira-2k-afina-suhum-717/
+- mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440 | "МАНДАРИНОВЫЙ ДВОРИК" дом под ключ | https://абхазберег.рф/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/
+- monro-kvartira-3k-suhum-1386 | "МОНРО" квартира 3-к | https://абхазберег.рф/kvartira/monro-kvartira-3k-suhum-1386/
+- nasta-apartamenty-studiya-ldzaa-1264 | "НАСТА" апартаменты | https://абхазберег.рф/kvartira/nasta-apartamenty-studiya-ldzaa-1264/
+- peschanyy-bereg-novye-apartamenty-suhum-mokko-1407 | "ПЕСЧАНЫЙ БЕРЕГ" апартаменты | https://абхазберег.рф/kvartira/peschanyy-bereg-novye-apartamenty-suhum-mokko-1407/
+- pitiunt-kvartira-4k-pitsunda-1428 | "ПИТИУНТ" квартира 4к | https://абхазберег.рф/kvartira/pitiunt-kvartira-4k-pitsunda-1428/
+- sia-lend-baza-otdyha-3800 | "СИА ЛЕНД" база отдыха | https://t.me/abhazbooking/3800
+
+[food] count=12
+- amor-apartamenty-studiya-gagra-1322 | "АМОР" апартаменты - студия | https://абхазберег.рф/kvartira/amor-apartamenty-studiya-gagra-1322/
+- bi-heppi-kottedzh-suhum-1130 | "БИ ХЭППИ" коттедж | https://абхазберег.рф/kvartira/bi-heppi-kottedzh-suhum-1130/
+- dyshi-glubzhe-domiki-v-gorah-1335 | "ДЫШИ ГЛУБЖЕ" домики в горах | https://абхазберег.рф/kvartira/dyshi-glubzhe-domiki-v-gorah-1335/
+- karalina-apartamenty-studiya-pitsunda-1274 | "КАРАЛИНА" апартаменты | https://абхазберег.рф/kvartira/karalina-apartamenty-studiya-pitsunda-1274/
+- kashtak-domiki-3668 | "КАШТАК" домики | https://t.me/abhazbooking/3668
+- kvartira-2k-afina-suhum-717 | Квартира 2К "Афина" | https://абхазберег.рф/kvartira/kvartira-2k-afina-suhum-717/
+- mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440 | "МАНДАРИНОВЫЙ ДВОРИК" дом под ключ | https://абхазберег.рф/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/
+- monro-kvartira-3k-suhum-1386 | "МОНРО" квартира 3-к | https://абхазберег.рф/kvartira/monro-kvartira-3k-suhum-1386/
+- nasta-apartamenty-studiya-ldzaa-1264 | "НАСТА" апартаменты | https://абхазберег.рф/kvartira/nasta-apartamenty-studiya-ldzaa-1264/
+- peschanyy-bereg-novye-apartamenty-suhum-mokko-1407 | "ПЕСЧАНЫЙ БЕРЕГ" апартаменты | https://абхазберег.рф/kvartira/peschanyy-bereg-novye-apartamenty-suhum-mokko-1407/
+- pitiunt-kvartira-4k-pitsunda-1428 | "ПИТИУНТ" квартира 4к | https://абхазберег.рф/kvartira/pitiunt-kvartira-4k-pitsunda-1428/
+- villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716 | "ВИЛЛА ЛЮБОВЬ" выход из отеля сразу на пляж | https://t.me/abhazbooking/2716
+
+[price] count=55
+- akva-otel-basseyn-zavtraki | "АКВА" отель с бассейном и завтраками | https://t.me/abhazbooking/3114
+- amor-apartamenty-studiya-gagra-1322 | "АМОР" апартаменты - студия | https://абхазберег.рф/kvartira/amor-apartamenty-studiya-gagra-1322/
+- apsa-park-otel-v-zapovednike-2611 | "АПСА ПАРК-ОТЕЛЬ" в заповеднике | https://t.me/abhazbooking/2611
+- assir-gostevoy-dom-2840 | "АССИР" гостевой дом | https://t.me/abhazbooking/2840
+- banan-i-funduk-gostevoy-dom-2849 | "БАНАН И ФУНДУК" гостевой дом | https://t.me/abhazbooking/2849
+- bi-heppi-kottedzh-suhum-1130 | "БИ ХЭППИ" коттедж | https://абхазберег.рф/kvartira/bi-heppi-kottedzh-suhum-1130/
+- bugenvileya-otel | "БУГЕНВИЛЛЕЯ" отель с бассейном | https://t.me/abhazbooking/3044
+- bungalo-glemping-3623 | "БУНГАЛО" глэмпинг | https://t.me/abhazbooking/3623
+- damira-otel-v-tsentre-goroda-2830 | "ДАМИРА" отель в центре города | https://t.me/abhazbooking/2830
+- dyshi-glubzhe-domiki | "ДЫШИ ГЛУБЖЕ" домики в горах | https://t.me/abhazbooking/3459
+- dyshi-glubzhe-domiki-v-gorah-1335 | "ДЫШИ ГЛУБЖЕ" домики в горах | https://абхазберег.рф/kvartira/dyshi-glubzhe-domiki-v-gorah-1335/
+- fyuzhn-tri-domika | "ФЬЮЖН" три домика с лаунж-зоной | https://t.me/abhazbooking/3162
+- grant-kompleks-domikov-s-zavtrakami-2811 | "ГРАНТ" комплекс домиков с завтраками | https://t.me/abhazbooking/2811
+- grant-otel-nomera-2820 | "ГРАНТ" отель номера | https://t.me/abhazbooking/2820
+- grass-otel-kottedzhi-v-gorah-abhazii-s-basse-2928 | "ГРАСС ОТЕЛЬ" коттеджи в горах Абхазии с бассейном | https://t.me/abhazbooking/2928
+- grey-haus-domiki | "ГРЕЙ ХАУС" домики с бассейном | https://t.me/abhazbooking/3153
+- kameliya-3084 | "КАМЕЛИЯ" домики | https://t.me/abhazbooking/3084
+- karalina-apartamenty-3124 | "КАРАЛИНА" апартаменты | https://t.me/abhazbooking/3124
+- karalina-apartamenty-studiya-pitsunda-1274 | "КАРАЛИНА" апартаменты | https://абхазберег.рф/kvartira/karalina-apartamenty-studiya-pitsunda-1274/
+- kira-gostevoy-kompleks-2725 | "КИРА" гостевой комплекс | https://t.me/abhazbooking/2725
+- kvartira-2k-afina-suhum-717 | Квартира 2К "Афина" | https://абхазберег.рф/kvartira/kvartira-2k-afina-suhum-717/
+- lazurit-novyy-otel-s-zavtrakami-2583 | "ЛАЗУРИТ" новый отель с завтраками | https://t.me/abhazbooking/2583
+- magnoliya-kvartira-3k-gagra-1253 | "МАГНОЛИЯ" квартира 3к | https://абхазберег.рф/kvartira/magnoliya-kvartira-3k-gagra-1253/
+- mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440 | "МАНДАРИНОВЫЙ ДВОРИК" дом под ключ | https://абхазберег.рф/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/
+- mechta-apartamenty-ldzaa-1176 | "МЕЧТА" апартаменты с кухней | https://абхазберег.рф/kvartira/mechta-apartamenty-ldzaa-1176/
+- melana-kvartira-3k-pitsunda-1015 | "МЕЛАНА" квартира 3к Дорогие гости, кто искал жильё на большую семью, этот вариант для вас ⭐ | https://абхазберег.рф/kvartira/melana-kvartira-3k-pitsunda-1015/
+- mira-dom-suhum-1345 | "МИРА" дом под ключ | https://абхазберег.рф/kvartira/mira-dom-suhum-1345/
+- mira-domiki-i-nomera-u-ozera-2956 | "МИРА" домики и номера у озера | https://t.me/abhazbooking/2956
+- miya-dom-ldzaa-1183 | "МИЯ" дом у моря | https://абхазберег.рф/kvartira/miya-dom-ldzaa-1183/
+- monro-kvartira-3k-suhum-1386 | "МОНРО" квартира 3-к | https://абхазберег.рф/kvartira/monro-kvartira-3k-suhum-1386/
+- more-more-gostevoy-kompleks-3583 | "МОРЕ-МОРЕ" гостевой комплекс | https://t.me/abhazbooking/3583
+- moreon-kvartira-2k-pitsunda-1391 | "МОРЕОН" квартира | https://абхазберег.рф/kvartira/moreon-kvartira-2k-pitsunda-1391/
+- morskaya-laguna-gostinitsa-s-zavtrakami-3418 | "МОРСКАЯ ЛАГУНА" гостиница с завтраками | https://t.me/abhazbooking/3418
+- na-vysote-kvartira-pitsunda-1053 | "НА ВЫСОТЕ" квартира 2к | https://абхазберег.рф/kvartira/na-vysote-kvartira-pitsunda-1053/
+- nasta-apartamenty-studiya-ldzaa-1264 | "НАСТА" апартаменты | https://абхазберег.рф/kvartira/nasta-apartamenty-studiya-ldzaa-1264/
+- nasta-gostevoy-dom | "НАСТА" гостевой дом | https://t.me/abhazbooking/3249
+- palma-kvartira-3k-ldzaa-1080 | "ПАЛЬМА" квартира 3к | https://абхазберег.рф/kvartira/palma-kvartira-3k-ldzaa-1080/
+- parus-vidovoy-otel-s-basseynom-i-stolovoy-2602 | "ПАРУС" видовой отель с бассейном и столовой | https://t.me/abhazbooking/2602
+- peschanyy-bereg-novye-apartamenty-suhum-mokko-1407 | "ПЕСЧАНЫЙ БЕРЕГ" апартаменты | https://абхазберег.рф/kvartira/peschanyy-bereg-novye-apartamenty-suhum-mokko-1407/
+- pitiunt-kvartira-4k-pitsunda-1428 | "ПИТИУНТ" квартира 4к | https://абхазберег.рф/kvartira/pitiunt-kvartira-4k-pitsunda-1428/
+- pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889 | "ПШАДА" отель с питанием у соснового пляжа | https://t.me/abhazbooking/2889
+- radonovyy-istochnik-otel-v-gorah-3064 | "РАДОНОВЫЙ ИСТОЧНИК" отель в горах | https://t.me/abhazbooking/3064
+- rancho-elivel-mini-otel-2938 | "РАНЧО ЭЛИВЕЛ" мини-отель | https://t.me/abhazbooking/2938
+- rita-domiki-apartamenty | "РИТА" домики и апартаменты с питанием | https://t.me/abhazbooking/3171
+- rivera-gostinitsa-vidovaya-2706 | "РИВЬЕРА" гостиница видовая | https://t.me/abhazbooking/2706
+- san-amra-novyy-otel-na-plyazhe-ldzaa-2631 | "САН АМРА" люкс номера с видом на море | https://t.me/abhazbooking/2631
+- san-pino-domiki-derevyannye-s-basseynom-3005 | "САН ПИНО" домики деревянные с бассейном | https://t.me/abhazbooking/3005
+- saya-domiki-3134 | "САЯ" домики | https://t.me/abhazbooking/3134
+- simona-gostevoy-dom-3592 | "СИМОНА" гостевой дом | https://t.me/abhazbooking/3592
+- siti-gagra-kvartira-2k-gagra-1242 | "СИТИ ГАГРА" квартира 2к | https://абхазберег.рф/kvartira/siti-gagra-kvartira-2k-gagra-1242/
+- suhum-dom-1153 | "СУХУМ" дом под ключ Целый полноценный дом для тех, кто хочет тишины и отсутствия соседей. | https://абхазберег.рф/kvartira/suhum-dom-1153/
+- tsentralnyy-dom-suhum-1220 | "ЦЕНТРАЛЬНЫЙ" дом под ключ | https://абхазберег.рф/kvartira/tsentralnyy-dom-suhum-1220/
+- v-gostyah-u-belochki-domiki-i-nomera-2879 | "В ГОСТЯХ У БЕЛОЧКИ" домики и номера | https://t.me/abhazbooking/2879
+- v-sinope-domiki | "В СИНОПЕ" домики | https://t.me/abhazbooking/3438
+- viktoriya-kvartira-2k-pitsunda-951 | "ВИКТОРИЯ" квартира 2к | https://абхазберег.рф/kvartira/viktoriya-kvartira-2k-pitsunda-951/
+
+[city] count=18
+- amor-apartamenty-studiya-gagra-1322 | "АМОР" апартаменты - студия | https://абхазберег.рф/kvartira/amor-apartamenty-studiya-gagra-1322/
+- atmosfernaya-kvartira-2k-3902 | "АТМОСФЕРНАЯ" квартира 2к | https://t.me/abhazbooking/3902
+- belaya-loshad-glemping-s-basseynom-3650 | "БЕЛАЯ ЛОШАДЬ" глэмпинг с бассейном | https://t.me/abhazbooking/3652
+- bi-heppi-kottedzh-suhum-1130 | "БИ ХЭППИ" коттедж | https://абхазберег.рф/kvartira/bi-heppi-kottedzh-suhum-1130/
+- dyshi-glubzhe-domiki-v-gorah-1335 | "ДЫШИ ГЛУБЖЕ" домики в горах | https://абхазберег.рф/kvartira/dyshi-glubzhe-domiki-v-gorah-1335/
+- grass-otel-kottedzhi-v-gorah-abhazii-s-basse-2928 | "ГРАСС ОТЕЛЬ" коттеджи в горах Абхазии с бассейном | https://t.me/abhazbooking/2928
+- karalina-apartamenty-studiya-pitsunda-1274 | "КАРАЛИНА" апартаменты | https://абхазберег.рф/kvartira/karalina-apartamenty-studiya-pitsunda-1274/
+- kvartira-2k-afina-suhum-717 | Квартира 2К "Афина" | https://абхазберег.рф/kvartira/kvartira-2k-afina-suhum-717/
+- mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440 | "МАНДАРИНОВЫЙ ДВОРИК" дом под ключ | https://абхазберег.рф/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/
+- mechta-apartamenty-s-kuhney-3363 | "МЕЧТА" апартаменты с кухней | https://t.me/abhazbooking/3363
+- monro-kvartira-3k-suhum-1386 | "МОНРО" квартира 3-к | https://абхазберег.рф/kvartira/monro-kvartira-3k-suhum-1386/
+- mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074 | "МУЛБЕРРИ" отель на пляже с бассейном и кафе | https://t.me/abhazbooking/3074
+- mziya-gostevye-nomera-3659 | "МЗИЯ" гостевые номера | https://t.me/abhazbooking/3659
+- nasta-apartamenty-studiya-ldzaa-1264 | "НАСТА" апартаменты | https://абхазберег.рф/kvartira/nasta-apartamenty-studiya-ldzaa-1264/
+- peschanyy-bereg-novye-apartamenty-suhum-mokko-1407 | "ПЕСЧАНЫЙ БЕРЕГ" апартаменты | https://абхазберег.рф/kvartira/peschanyy-bereg-novye-apartamenty-suhum-mokko-1407/
+- pitiunt-kvartira-4k-pitsunda-1428 | "ПИТИУНТ" квартира 4к | https://абхазберег.рф/kvartira/pitiunt-kvartira-4k-pitsunda-1428/
+- radonovyy-istochnik-otel-v-gorah-3064 | "РАДОНОВЫЙ ИСТОЧНИК" отель в горах | https://t.me/abhazbooking/3064
+- villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716 | "ВИЛЛА ЛЮБОВЬ" выход из отеля сразу на пляж | https://t.me/abhazbooking/2716
+
+[beach] count=19
+- amor-apartamenty-studiya-gagra-1322 | "АМОР" апартаменты - студия | https://абхазберег.рф/kvartira/amor-apartamenty-studiya-gagra-1322/
+- atmosfernaya-kvartira-2k-3902 | "АТМОСФЕРНАЯ" квартира 2к | https://t.me/abhazbooking/3902
+- banan-i-funduk-gostevoy-dom-2849 | "БАНАН И ФУНДУК" гостевой дом | https://t.me/abhazbooking/2849
+- bi-heppi-kottedzh-suhum-1130 | "БИ ХЭППИ" коттедж | https://абхазберег.рф/kvartira/bi-heppi-kottedzh-suhum-1130/
+- dyshi-glubzhe-domiki-v-gorah-1335 | "ДЫШИ ГЛУБЖЕ" домики в горах | https://абхазберег.рф/kvartira/dyshi-glubzhe-domiki-v-gorah-1335/
+- dyuna-domiki-3717 | "ДЮНА" домики | https://t.me/abhazbooking/3717
+- karalina-apartamenty-studiya-pitsunda-1274 | "КАРАЛИНА" апартаменты | https://абхазберег.рф/kvartira/karalina-apartamenty-studiya-pitsunda-1274/
+- kvartira-2k-afina-suhum-717 | Квартира 2К "Афина" | https://абхазберег.рф/kvartira/kvartira-2k-afina-suhum-717/
+- lazurnyy-bereg-butik-otel-s-pitaniem-2592 | "ЛАЗУРНЫЙ БЕРЕГ" бутик-отель с питанием | https://t.me/abhazbooking/2592
+- mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440 | "МАНДАРИНОВЫЙ ДВОРИК" дом под ключ | https://абхазберег.рф/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/
+- monro-kvartira-3k-suhum-1386 | "МОНРО" квартира 3-к | https://абхазберег.рф/kvartira/monro-kvartira-3k-suhum-1386/
+- na-plyazhe-apartamenty-3k-ldzaa-1073 | "НА ПЛЯЖЕ" квартира 3К видовая | https://абхазберег.рф/kvartira/na-plyazhe-apartamenty-3k-ldzaa-1073/
+- nasta-apartamenty-studiya-ldzaa-1264 | "НАСТА" апартаменты | https://абхазберег.рф/kvartira/nasta-apartamenty-studiya-ldzaa-1264/
+- palma-kvartira-3k-ldzaa-1080 | "ПАЛЬМА" квартира 3к | https://абхазберег.рф/kvartira/palma-kvartira-3k-ldzaa-1080/
+- peschanyy-bereg-novye-apartamenty-suhum-mokko-1407 | "ПЕСЧАНЫЙ БЕРЕГ" апартаменты | https://абхазберег.рф/kvartira/peschanyy-bereg-novye-apartamenty-suhum-mokko-1407/
+- pitiunt-kvartira-4k-pitsunda-1428 | "ПИТИУНТ" квартира 4к | https://абхазберег.рф/kvartira/pitiunt-kvartira-4k-pitsunda-1428/
+- sanset-kvartira-1k-ldzaa-1101 | "САНСЕТ" квартира видовая | https://абхазберег.рф/kvartira/sanset-kvartira-1k-ldzaa-1101/
+- tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142 | "ТИХАЯ БУХТА" апартаменты стандарт на 5 спальных мест с видом на гору | https://абхазберег.рф/kvartira/tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142/
+- yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152 | "ЮЖНОЕ УТРО" апартаменты на 6 спальных мест с видом на море 📍Лдзаа | https://абхазберег.рф/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/
+
+[room] count=19
+- amor-apartamenty-studiya-gagra-1322 | "АМОР" апартаменты - студия | https://абхазберег.рф/kvartira/amor-apartamenty-studiya-gagra-1322/
+- belaya-rechka | "БЕЛАЯ РЕЧКА" гостевой дом с кафе | https://t.me/abhazbooking/3517
+- bi-heppi-kottedzh-suhum-1130 | "БИ ХЭППИ" коттедж | https://абхазберег.рф/kvartira/bi-heppi-kottedzh-suhum-1130/
+- dyshi-glubzhe-domiki-v-gorah-1335 | "ДЫШИ ГЛУБЖЕ" домики в горах | https://абхазберег.рф/kvartira/dyshi-glubzhe-domiki-v-gorah-1335/
+- karalina-apartamenty-studiya-pitsunda-1274 | "КАРАЛИНА" апартаменты | https://абхазберег.рф/kvartira/karalina-apartamenty-studiya-pitsunda-1274/
+- karin-gostevoy-dom | "КАРИН" гостевой дом | https://t.me/abhazbooking/3267
+- kvartira-2k-afina-suhum-717 | Квартира 2К "Афина" | https://абхазберег.рф/kvartira/kvartira-2k-afina-suhum-717/
+- limari-domiki | "ЛИМАРИ" домики | https://t.me/abhazbooking/3496
+- mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440 | "МАНДАРИНОВЫЙ ДВОРИК" дом под ключ | https://абхазберег.рф/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/
+- marta-gostevye-nomera-3574 | "МАРТА" гостевые номера | https://t.me/abhazbooking/3574
+- monro-kvartira-3k-suhum-1386 | "МОНРО" квартира 3-к | https://абхазберег.рф/kvartira/monro-kvartira-3k-suhum-1386/
+- nasta-apartamenty-studiya-ldzaa-1264 | "НАСТА" апартаменты | https://абхазберег.рф/kvartira/nasta-apartamenty-studiya-ldzaa-1264/
+- nikopsiya-domiki-3015 | "НИКОПСИЯ" домики | https://t.me/abhazbooking/3015
+- nora-gostevoy-dom-3851 | "НОРА" гостевой дом эконом | https://t.me/abhazbooking/3851
+- peschanyy-bereg-novye-apartamenty-suhum-mokko-1407 | "ПЕСЧАНЫЙ БЕРЕГ" апартаменты | https://абхазберег.рф/kvartira/peschanyy-bereg-novye-apartamenty-suhum-mokko-1407/
+- pitiunt-kvartira-4k-pitsunda-1428 | "ПИТИУНТ" квартира 4к | https://абхазберег.рф/kvartira/pitiunt-kvartira-4k-pitsunda-1428/
+- sanrayz-gostevoy-dom-s-zavtrakami-3953 | "САНРАЙЗ" гостевой дом с завтраками | https://t.me/abhazbooking/3953
+- sofiya-otel-u-sosnovogo-plyazha-3842 | "СОФИЯ" отель у соснового пляжа | https://t.me/abhazbooking/3842
+- tsarskoe-selo-anhua-kottedzhi-3871 | "ЦАРСКОЕ СЕЛО АНХУА" коттеджи | https://t.me/abhazbooking/3871
+
+[stay] count=40
+- aduney-gostevoy-dom-3181 | "АДУНЕЙ" гостевой дом | https://t.me/abhazbooking/3181
+- amor-apartamenty-studiya-gagra-1322 | "АМОР" апартаменты - студия | https://абхазберег.рф/kvartira/amor-apartamenty-studiya-gagra-1322/
+- amzara-otel-s-vinodelney-u-zapovednika-2668 | "АМЗАРА" отель с винодельней у заповедника | https://t.me/abhazbooking/2668
+- aselina-studiya-i-kottedzhi-s-kuhney-ldzaa-989 | "АСЕЛИНА" коттеджи и студия с кухней | https://абхазберег.рф/kvartira/aselina-studiya-i-kottedzhi-s-kuhney-ldzaa-989/
+- assir-gostevoy-dom-2840 | "АССИР" гостевой дом | https://t.me/abhazbooking/2840
+- belaya-rechka | "БЕЛАЯ РЕЧКА" гостевой дом с кафе | https://t.me/abhazbooking/3517
+- belveder-gostevoy-dom-3602 | "БЕЛЬВЕДЕР" гостевой дом | https://t.me/abhazbooking/3602
+- bi-heppi-kottedzh-suhum-1130 | "БИ ХЭППИ" коттедж | https://абхазберег.рф/kvartira/bi-heppi-kottedzh-suhum-1130/
+- dyshi-glubzhe-domiki-v-gorah-1335 | "ДЫШИ ГЛУБЖЕ" домики в горах | https://абхазберег.рф/kvartira/dyshi-glubzhe-domiki-v-gorah-1335/
+- grant-otel-nomera-2820 | "ГРАНТ" отель номера | https://t.me/abhazbooking/2820
+- karalina-apartamenty-studiya-pitsunda-1274 | "КАРАЛИНА" апартаменты | https://абхазберег.рф/kvartira/karalina-apartamenty-studiya-pitsunda-1274/
+- karin-gostevoy-dom | "КАРИН" гостевой дом | https://t.me/abhazbooking/3267
+- kvartira-2k-afina-suhum-717 | Квартира 2К "Афина" | https://абхазберег.рф/kvartira/kvartira-2k-afina-suhum-717/
+- laym-mini-otel-s-basseynom-u-zapovednika-3554 | "ЛАЙМ" мини-отель с бассейном у заповедника | https://t.me/abhazbooking/3554
+- lazurit-novyy-otel-s-zavtrakami-2583 | "ЛАЗУРИТ" новый отель с завтраками | https://t.me/abhazbooking/2583
+- lazurnyy-bereg-butik-otel-s-pitaniem-2592 | "ЛАЗУРНЫЙ БЕРЕГ" бутик-отель с питанием | https://t.me/abhazbooking/2592
+- liliya-uyutnyy-otel-s-zavtrakami-3832 | "ЛИЛИЯ" уютный отель с завтраками | https://t.me/abhazbooking/3832
+- mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440 | "МАНДАРИНОВЫЙ ДВОРИК" дом под ключ | https://абхазберег.рф/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/
+- marta-gostevye-nomera-3574 | "МАРТА" гостевые номера | https://t.me/abhazbooking/3574
+- mayak-gostevoy-dom-3810 | "МАЯК" гостевой дом | https://t.me/abhazbooking/3810
+- mechta-apartamenty-ldzaa-1176 | "МЕЧТА" апартаменты с кухней | https://абхазберег.рф/kvartira/mechta-apartamenty-ldzaa-1176/
+- monro-kvartira-3k-suhum-1386 | "МОНРО" квартира 3-к | https://абхазберег.рф/kvartira/monro-kvartira-3k-suhum-1386/
+- mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074 | "МУЛБЕРРИ" отель на пляже с бассейном и кафе | https://t.me/abhazbooking/3074
+- nasta-apartamenty-studiya-ldzaa-1264 | "НАСТА" апартаменты | https://абхазберег.рф/kvartira/nasta-apartamenty-studiya-ldzaa-1264/
+- peschanyy-bereg-novye-apartamenty-suhum-mokko-1407 | "ПЕСЧАНЫЙ БЕРЕГ" апартаменты | https://абхазберег.рф/kvartira/peschanyy-bereg-novye-apartamenty-suhum-mokko-1407/
+- pitiunt-kvartira-4k-pitsunda-1428 | "ПИТИУНТ" квартира 4к | https://абхазберег.рф/kvartira/pitiunt-kvartira-4k-pitsunda-1428/
+- radonovyy-istochnik-otel-v-gorah-3064 | "РАДОНОВЫЙ ИСТОЧНИК" отель в горах | https://t.me/abhazbooking/3064
+- san-amra-novyy-otel-na-plyazhe-ldzaa-2631 | "САН АМРА" люкс номера с видом на море | https://t.me/abhazbooking/2631
+- sanrayz-gostevoy-dom-s-zavtrakami-3953 | "САНРАЙЗ" гостевой дом с завтраками | https://t.me/abhazbooking/3953
+- simona-gostevoy-dom-3592 | "СИМОНА" гостевой дом | https://t.me/abhazbooking/3592
+- sirius-otel | "СИРИУС" отель у соснового пляжа | https://t.me/abhazbooking/3390
+- sizon-gostevoy-dom-3449 | "СИЗОН" гостевой дом | https://t.me/abhazbooking/3449
+- sozvezdie-mini-otel-3933 | "СОЗВЕЗДИЕ" мини-отель | https://t.me/abhazbooking/3933
+- tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142 | "ТИХАЯ БУХТА" апартаменты стандарт на 5 спальных мест с видом на гору | https://абхазберег.рф/kvartira/tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142/
+- tis-mini-otel | "ТИС" мини-отель у заповедника | https://t.me/abhazbooking/3381
+- villa-leona-otel-s-basseynom-pitaniem-i-sobs-2755 | "ВИЛЛА ЛЕОНА" отель с бассейном, питанием и собственным пляжем | https://t.me/abhazbooking/2755
+- villa-suhum-959 | "ВИЛЛА СУХУМ" коттеджи с кухней | https://абхазберег.рф/kvartira/villa-suhum-959/
+- voshodyaschaya-zvezda-otel-s-basseynom-3428 | "ВОСХОДЯЩАЯ ЗВЕЗДА" отель с бассейном | https://t.me/abhazbooking/3428
+- yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152 | "ЮЖНОЕ УТРО" апартаменты на 6 спальных мест с видом на море 📍Лдзаа | https://абхазберег.рф/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/
+- zhasmin-mini-otel-3736 | "ЖАСМИН" мини-отель | https://t.me/abhazbooking/3736

@@ -1,0 +1,27 @@
+{
+  "run_id": "20260424-214857",
+  "status": "ok",
+  "steps": [
+    {
+      "name": "sync_catalog_from_telegram",
+      "command": "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/darya_botova/Documents/New project/scripts/sync_catalog_from_telegram.py",
+      "log_file": "/Users/darya_botova/Documents/New project/output/auto-sync/20260424-214857/01-sync.log",
+      "return_code": 0,
+      "status": "dry-run"
+    },
+    {
+      "name": "apply_all_filters_from_sheet",
+      "command": "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/darya_botova/Documents/New project/scripts/apply_all_filters_from_sheet.py",
+      "log_file": "/Users/darya_botova/Documents/New project/output/auto-sync/20260424-214857/02-filters.log",
+      "return_code": 0,
+      "status": "dry-run"
+    },
+    {
+      "name": "verify_object_media",
+      "command": "/Library/Developer/CommandLineTools/usr/bin/python3 /Users/darya_botova/Documents/New project/tools/verify_object_media.py",
+      "log_file": "/Users/darya_botova/Documents/New project/output/auto-sync/20260424-214857/03-verify.log",
+      "return_code": 0,
+      "status": "dry-run"
+    }
+  ]
+}

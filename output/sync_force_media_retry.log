@@ -1,0 +1,60 @@
+Найдено объектов: hotels=43, kvartira=51
+[error] hotel materialize failed id=3153 title=""ГРЕЙ ХАУС" домики с бассейном": Request was unsuccessful 6 time(s)
+Обновлены отели: 10/43
+Обновлены отели: 20/43
+Обновлены отели: 30/43
+Обновлены отели: 40/43
+Обновлены отели: 43/43
+[error] kvartira materialize failed topic=1442 title=""АТМОСФЕРНАЯ" квартира 2к 📍Пицунда": Connection to Telegram failed 5 time(s)
+[error] kvartira materialize failed topic=1430 title=""МАНДАРИНОВЫЙ ДВОРИК" дом под ключ📍Новый Афон": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=1410 title=""ПИТИУНТ" квартира 4к 📍Пицунда": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=1396 title=""ПЕСЧАНЫЙ БЕРЕГ" новые апартаменты📍Сухум Мокко": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=136 title=""МОРЕОН" квартира 2К 📍Пицунда": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=469 title=""МОНРО" квартира 3к📍 Сухум": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=1368 title=""ЛЕТНЯЯ" квартира 3к📍 Сухум": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=748 title=""БИРЮЗА" этаж под ключ 📍Гагра": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=202 title=""ЭСМА" студия 5ти местная📍 Гудаута": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=120 title=""МИРА" дом 📍Сухум": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=1325 title=""ДЫШИ ГЛУБЖЕ" домики в горах": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=620 title=""АМОР" апартаменты - студия 📍Гагра": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=1304 title=""АКВАМАРИН" дом под ключ 📍Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=1294 title=""КЛАССИКА" квартира 3к📍Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=143 title=""ПАРКОВАЯ" квартира 2к📍 Сухум": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=412 title=""ФЕНИКС" дом на большую семью 📍Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=500 title=""КАРАЛИНА" апартаменты-студия📍 Пицунда": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=676 title=""НАСТА" апартаменты-студия📍 Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=758 title=""МАГНОЛИЯ" квартира 3к📍Гагра": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=824 title=""СИТИ ГАГРА" квартира 2к 📍 Гагра": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=780 title=""СОЛНЕЧНАЯ" квартира 2к📍Пицунда": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=408 title=""ЦЕНТРАЛЬНЫЙ" дом📍Сухум": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=652 title=""ЧЕРНОМОРСКАЯ" квартира📍 Сухум": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=7 title=""МИЯ" дом 📍Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=19 title=""МЕЧТА" апартаменты 📍Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=769 title=""ФЛОРА" дом 📍Алахадзе": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=6 title=""СУХУМ" дом": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=1132 title=""ЮЖНОЕ УТРО" апартаменты на 6 спальных мест с видом на море 📍Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=1131 title=""ТИХАЯ БУХТА" апартаменты на 5 спальных мест с видом на гору 📍Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=1120 title=""БИ ХЭППИ" коттедж📍Сухум": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=379 title=""РИММА" две 1К квартриры📍Сухум": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=535 title=""САНСЕТ" квартира 1к📍Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=1082 title=""ПЕРЛ" дом под ключ📍 Гудаута": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=22 title=""ПАЛЬМА" квартира 3К 📍Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=791 title=""НА ПЛЯЖЕ" апартаменты 3к📍Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=353 title=""МОН АМУР" квартира 1К 📍 Гагра": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=15 title=""НА ВЫСОТЕ" квартира 📍Пицунда": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=433 title=""МОККО" апартаменты 📍Сухум": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=29 title=""МЕЛАНА" квартира 3к📍Пицунда": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=719 title=""КУРОРТНАЯ" квартира 2к📍Багрипш/Гагра": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=642 title=""АСЕЛИНА" студия и коттеджи с кухней📍Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=157 title=""КИПАРИСОВАЯ" квартира 1к📍Гагры": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=42 title=""КАМИЛЛА" квартира 2к📍Пицунда": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=55 title="ВИЛЛА 📍Сухум": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=696 title=""ВИКТОРИЯ" квартира 2к📍 Пицунда": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=295 title=""АРГО" квартира 1к📍Пицунда": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=484 title=""АКИРТАВА" квартира 3к📍 Сухум": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=329 title=""АМИНА" дом📍Сухум": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=686 title=""АНИСА" квартира 1к📍Лдзаа": Cannot send requests while disconnected
+[error] kvartira materialize failed topic=708 title="Квартира 2К "Афина" 📍Сухум": Cannot send requests while disconnected
+{"hotels": 43, "kvartira": 51, "failed_hotels": 1, "failed_kvartira": 50, "deleted_hotels": 90, "deleted_kvartira": 0}
+[warn] Не обновились отели: [{"source_id": 3153, "title": "\"ГРЕЙ ХАУС\" домики с бассейном", "error": "Request was unsuccessful 6 time(s)"}]
+[warn] Не обновились квартиры: [{"topic_id": 1442, "title": "\"АТМОСФЕРНАЯ\" квартира 2к 📍Пицунда", "error": "Connection to Telegram failed 5 time(s)"}, {"topic_id": 1430, "title": "\"МАНДАРИНОВЫЙ ДВОРИК\" дом под ключ📍Новый Афон", "error": "Cannot send requests while disconnected"}, {"topic_id": 1410, "title": "\"ПИТИУНТ\" квартира 4к 📍Пицунда", "error": "Cannot send requests while disconnected"}, {"topic_id": 1396, "title": "\"ПЕСЧАНЫЙ БЕРЕГ\" новые апартаменты📍Сухум Мокко", "error": "Cannot send requests while disconnected"}, {"topic_id": 136, "title": "\"МОРЕОН\" квартира 2К 📍Пицунда", "error": "Cannot send requests while disconnected"}, {"topic_id": 469, "title": "\"МОНРО\" квартира 3к📍 Сухум", "error": "Cannot send requests while disconnected"}, {"topic_id": 1368, "title": "\"ЛЕТНЯЯ\" квартира 3к📍 Сухум", "error": "Cannot send requests while disconnected"}, {"topic_id": 748, "title": "\"БИРЮЗА\" этаж под ключ 📍Гагра", "error": "Cannot send requests while disconnected"}, {"topic_id": 202, "title": "\"ЭСМА\" студия 5ти местная📍 Гудаута", "error": "Cannot send requests while disconnected"}, {"topic_id": 120, "title": "\"МИРА\" дом 📍Сухум", "error": "Cannot send requests while disconnected"}, {"topic_id": 1325, "title": "\"ДЫШИ ГЛУБЖЕ\" домики в горах", "error": "Cannot send requests while disconnected"}, {"topic_id": 620, "title": "\"АМОР\" апартаменты - студия 📍Гагра", "error": "Cannot send requests while disconnected"}, {"topic_id": 1304, "title": "\"АКВАМАРИН\" дом под ключ 📍Лдзаа", "error": "Cannot send requests while disconnected"}, {"topic_id": 1294, "title": "\"КЛАССИКА\" квартира 3к📍Лдзаа", "error": "Cannot send requests while disconnected"}, {"topic_id": 143, "title": "\"ПАРКОВАЯ\" квартира 2к📍 Сухум", "error": "Cannot send requests while disconnected"}, {"topic_id": 412, "title": "\"ФЕНИКС\" дом на большую семью 📍Лдзаа", "error": "Cannot send requests while disconnected"}, {"topic_id": 500, "title": "\"КАРАЛИНА\" апартаменты-студия📍 Пицунда", "error": "Cannot send requests while disconnected"}, {"topic_id": 676, "title": "\"НАСТА\" апартаменты-студия📍 Лдзаа", "error": "Cannot send requests while disconnected"}, {"topic_id": 758, "title": "\"МАГНОЛИЯ\" квартира 3к📍Гагра", "error": "Cannot send requests while disconnected"}, {"topic_id": 824, "title": "\"СИТИ ГАГРА\" квартира 2к 📍 Гагра", "error": "Cannot send requests while disconnected"}]

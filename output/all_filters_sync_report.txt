@@ -1,0 +1,37 @@
+Готово. Массовый перенос фильтров из СОЦСЕТИ в Supabase выполнен.
+
+Строк в СОЦСЕТИ: 199
+Разобрано ссылок Telegram: 175
+Без ссылки Telegram: 21
+Ссылка не распознана: 3
+Обновлено объектов в Supabase: 0
+Без изменений: 170
+Не найдено в Supabase по channel+message_id: 5
+
+Отчёт по группам фильтров:
+- distance: заполнено по таблице (непустые) у 169 объектов, изменено у 0 объектов
+  значения: up-to-5:79, up-to-10:47, beachfront:25, over-10:24
+- food: заполнено по таблице (непустые) у 170 объектов, изменено у 0 объектов
+  значения: no-food:139, cafe:31, breakfast:16, full-board:3, half-board:1
+- price: заполнено по таблице (непустые) у 124 объектов, изменено у 0 объектов
+  значения: midrange:86, economy:23, premium:19
+- city: заполнено по таблице (непустые) у 168 объектов, изменено у 0 объектов
+  значения: ldzaa:57, sukhum:32, pitsunda:30, gagra:22, alakhadzy:12, gudauta:8, new-afon:7, tsandripsh:5
+- beach: заполнено по таблице (непустые) у 169 объектов, изменено у 0 объектов
+  значения: pebble:84, pine-pebble-ldzaa-pitsunda:40, pitsunda-bay-mixed:29, sand-sukhum:16, sand-ldzaa:5
+- room: заполнено по таблице (непустые) у 161 объектов, изменено у 0 объектов
+  значения: five-plus:76, kitchen:65, two-room-plus:57, balcony:53, terrace:47, pool:36, beachfront-room:23, sea-view:22
+- stay: заполнено по таблице (непустые) у 137 объектов, изменено у 0 объектов
+  значения: pets:79, cottages:58, apartments:30, turnkey-house:12, no-small-kids:1
+
+Нераспознанные ссылки Telegram (из таблицы):
+- описание спрятала в вк видео, скрыт доступ
+- t.me/villalubov
+- t.me/abhmulberry
+
+Ссылки, не найденные в Supabase:
+- https://t.me/abhazbooking/2542
+- https://t.me/abhazbooking/2422
+- https://t.me/abhazbooking/667
+- https://t.me/abhazbooking/2512
+- https://t.me/abhazbooking/1396

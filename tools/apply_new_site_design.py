@@ -1141,7 +1141,7 @@ def bold_digits_outside_tags(fragment: str) -> str:
 
 
 def format_price_line_to_html(text: str) -> str:
-    """Строка тарифа как в посте: суммы и числа — жирным, месяцы — <strong> в хвосте."""
+    """Сумма жирным, месяцы жирным; условия обычным текстом."""
     text = (text or "").strip()
     if not text:
         return ""
@@ -1151,15 +1151,14 @@ def format_price_line_to_html(text: str) -> str:
         amount, tail = m.group(1).strip(), m.group(2).strip()
         tail_html = bold_digits_outside_tags(bold_months_in_tail(tail))
         return (
-            f'<span class="price-card__amount">{html.escape(amount)}</span> - '
-            f"{tail_html}"
+            f'<strong class="price-card__amount">{html.escape(amount)}</strong> - '
+            f"{bold_months_in_tail(tail)}"
         )
 
     m = _PRICE_TRAILING.match(text)
     if m:
         desc, amount = m.group(1).strip(), m.group(2).strip()
-        desc_html = bold_digits_outside_tags(html.escape(desc))
-        return f"{desc_html} - " f'<span class="price-card__amount">{html.escape(amount)}</span>'
+        return f"{html.escape(desc)} - " f'<strong class="price-card__amount">{html.escape(amount)}</strong>'
 
     m_plus = re.match(r"^(.+?)\s*\+\s*(\d[\d\s]*\s*(?:₽|руб\.?))\s*$", text, re.I)
     if m_plus:
@@ -1991,10 +1990,6 @@ def build_listing_pages() -> None:
             for raw in re.findall(r"<h2>(.*?)</h2>", " ".join(content_sections), flags=re.S)
             if clean_text(raw)
         ]
-        feature_labels = list(dict.fromkeys(section_titles[:4] + [line for line in lead_lines[1:3] if line]))[:4]
-        feature_labels = [lbl for lbl in feature_labels if clean_text(lbl).casefold() != "обзор"]
-        feature_labels = [lbl for lbl in feature_labels if not is_legacy_detail_heading(lbl)]
-
         section_paragraph_groups = [extract_benefit_paragraphs(section) for section in content_sections]
 
         description_parts: list[str] = []
@@ -2039,15 +2034,6 @@ def build_listing_pages() -> None:
             </div>
           </div>"""
 
-        feature_row_html = "".join(f"<span>{item}</span>" for item in feature_labels)
-        feature_row_markup = (
-            f"""      <div class="feature-row">
-        {feature_row_html}
-      </div>
-"""
-            if feature_row_html
-            else ""
-        )
         why_choose_html = "".join(f"<li>{item}</li>" for item in why_choose_items)
         important_html = "".join(f"<li>{item}</li>" for item in important_items)
         reviews_html = "".join(
@@ -2086,7 +2072,6 @@ def build_listing_pages() -> None:
             if should_show_location_under_title(lead_text, description)
             else ""
         )
-        prose_html = description_to_prose_html(description)
         eyebrow_link, save_href, save_label = listing_catalog_markup(path)
 
         new_main = f"""<main class="hotel-site-concept">
@@ -2122,10 +2107,6 @@ def build_listing_pages() -> None:
           <strong>Проверено</strong>
         </div>
       </div>
-
-      {prose_html}
-
-      {feature_row_markup}
 
       <div class="benefit-grid">
         <article>

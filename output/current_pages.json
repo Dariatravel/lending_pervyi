@@ -25,7 +25,7 @@
     "title": "\"АПСА ПАРК-ОТЕЛЬ\" в заповеднике"
   },
   {
-    "slug": "san-amra-novyy-otel-na-plyazhe-ldzaa-2631",
+    "slug": "san-amra-lyuks-nomera-s-vidom-na-more-2631",
     "source_id": 2631,
     "title": "\"САН АМРА\" люкс номера с видом на море"
   },
@@ -70,7 +70,7 @@
     "title": "\"САБИНА\" домики у моря"
   },
   {
-    "slug": "villa-leona-otel-s-basseynom-pitaniem-i-sobs-2755",
+    "slug": "villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755",
     "source_id": 2755,
     "title": "\"ВИЛЛА ЛЕОНА\" отель с бассейном, питанием и собственным пляжем"
   },
@@ -83,6 +83,11 @@
     "slug": "arina-mini-otel-2792",
     "source_id": 2792,
     "title": "\"АРИНА\" мини-отель"
+  },
+  {
+    "slug": "grant-apartamenty-2801",
+    "source_id": 2801,
+    "title": "\"ГРАНТ\" апартаменты"
   },
   {
     "slug": "grant-kompleks-domikov-s-zavtrakami-2811",
@@ -110,7 +115,7 @@
     "title": "\"БАНАН И ФУНДУК\" гостевой дом"
   },
   {
-    "slug": "kastl-otel-s-teplym-basseynom-i-vidom-na-mor-2859",
+    "slug": "kastl-otel-s-teplym-basseynom-i-vidom-na-more-2859",
     "source_id": 2859,
     "title": "\"КАСТЛ\" отель с теплым бассейном и видом на море"
   },
@@ -140,7 +145,7 @@
     "title": "\"МОРЕОН\" домики"
   },
   {
-    "slug": "grass-otel-kottedzhi-v-gorah-abhazii-s-basse-2928",
+    "slug": "grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928",
     "source_id": 2928,
     "title": "\"ГРАСС ОТЕЛЬ\" коттеджи в горах Абхазии с бассейном"
   },
@@ -160,12 +165,12 @@
     "title": "\"РИВЬЕРА\" домики на пляже"
   },
   {
-    "slug": "amor-domiki-gagra",
+    "slug": "amor-domiki-v-tsentre-gagry-2986",
     "source_id": 2986,
     "title": "\"АМОР\" домики в центре Гагры"
   },
   {
-    "slug": "alma-domiki",
+    "slug": "alma-domiki-na-beregu-2996",
     "source_id": 2996,
     "title": "\"АЛМА\" домики на берегу"
   },
@@ -180,17 +185,17 @@
     "title": "\"НИКОПСИЯ\" домики"
   },
   {
-    "slug": "delfin-domiki",
+    "slug": "delfin-domiki-3024",
     "source_id": 3024,
     "title": "\"ДЕЛЬФИН\" домики"
   },
   {
-    "slug": "bugenvileya-otel",
+    "slug": "bugenvilleya-otel-s-basseynom-3044",
     "source_id": 3044,
     "title": "\"БУГЕНВИЛЛЕЯ\" отель с бассейном"
   },
   {
-    "slug": "boho-kottedzhi-u-morya",
+    "slug": "boho-kompleks-polnogo-schastya-u-morya-3054",
     "source_id": 3054,
     "title": "\"БОХО\" комплекс полного счастья у моря!"
   },
@@ -205,12 +210,22 @@
     "title": "\"МУЛБЕРРИ\" отель на пляже с бассейном и кафе"
   },
   {
-    "slug": "kameliya-3084",
+    "slug": "kameliya-domiki-3084",
     "source_id": 3084,
     "title": "\"КАМЕЛИЯ\" домики"
   },
   {
-    "slug": "akva-otel-basseyn-zavtraki",
+    "slug": "mika-gostevoy-dom-ekonom-3094",
+    "source_id": 3094,
+    "title": "\"МИКА\" гостевой дом эконом"
+  },
+  {
+    "slug": "grin-haus-domiki-3104",
+    "source_id": 3104,
+    "title": "\"ГРИН ХАУС\" домики"
+  },
+  {
+    "slug": "akva-otel-s-basseynom-i-zavtrakami-3114",
     "source_id": 3114,
     "title": "\"АКВА\" отель с бассейном и завтраками"
   },
@@ -230,14 +245,19 @@
     "title": "\"МИРАСЛАВА\" мини-отель"
   },
   {
-    "slug": "grey-haus-domiki",
-    "source_id": 3153,
-    "title": "\"ГРЕЙ ХАУС\" домики с бассейном"
-  },
-  {
-    "slug": "fyuzhn-tri-domika",
+    "slug": "fyuzhn-tri-domika-s-launzh-zonoy-3162",
     "source_id": 3162,
     "title": "\"ФЬЮЖН\" три домика с лаунж-зоной"
+  },
+  {
+    "slug": "rita-domiki-i-apartamenty-s-pitaniem-3171",
+    "source_id": 3171,
+    "title": "\"РИТА\" домики и апартаменты с питанием"
+  },
+  {
+    "slug": "aduney-gostevoy-dom-3181",
+    "source_id": 3181,
+    "title": "\"АДУНЕЙ\" гостевой дом"
   },
   {
     "slug": "fazenda-otel-s-basseynom-i-pitaniem-3190",
@@ -250,32 +270,32 @@
     "title": "\"У МОРЯ\" домики"
   },
   {
-    "slug": "fazenda-kottedzhi",
+    "slug": "fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219",
     "source_id": 3219,
     "title": "\"ФАЗЕНДА\" двухэтажные коттеджи с бассейном и питанием"
   },
   {
-    "slug": "abyrlash-otel",
+    "slug": "abyrlash-otel-na-plyazhe-3239",
     "source_id": 3239,
     "title": "\"АБЫРЛАШ\" отель на пляже"
   },
   {
-    "slug": "nasta-gostevoy-dom",
+    "slug": "nasta-gostevoy-dom-3249",
     "source_id": 3249,
     "title": "\"НАСТА\" гостевой дом"
   },
   {
-    "slug": "nasta-apartamenty",
+    "slug": "nasta-apartamenty-3258",
     "source_id": 3258,
     "title": "\"НАСТА\" апартаменты"
   },
   {
-    "slug": "karin-gostevoy-dom",
+    "slug": "karin-gostevoy-dom-3267",
     "source_id": 3267,
     "title": "\"КАРИН\" гостевой дом"
   },
   {
-    "slug": "rayskiy-bereg",
+    "slug": "rayskiy-bereg-mini-otel-3277",
     "source_id": 3277,
     "title": "\"РАЙСКИЙ БЕРЕГ\" мини-отель"
   },
@@ -300,7 +320,7 @@
     "title": "\"МАДЛЕНА\" домики"
   },
   {
-    "slug": "demi-mokko-domiki",
+    "slug": "demi-mokko-dva-domika-3353",
     "source_id": 3353,
     "title": "\"ДЕМИ МОККО\" два домика"
   },
@@ -310,14 +330,19 @@
     "title": "\"МЕЧТА\" апартаменты с кухней"
   },
   {
-    "slug": "tis-mini-otel",
+    "slug": "tis-kottedzhi-u-zapovednika-3372",
+    "source_id": 3372,
+    "title": "\"ТИС\" коттеджи у заповедника"
+  },
+  {
+    "slug": "tis-mini-otel-u-zapovednika-3381",
     "source_id": 3381,
     "title": "\"ТИС\" мини-отель у заповедника"
   },
   {
-    "slug": "sirius-otel",
+    "slug": "sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390",
     "source_id": 3390,
-    "title": "\"СИРИУС\" отель у соснового пляжа"
+    "title": "\"СИРИУС\" отель у соснового пляжа 💥 ОТКРЫТЫЕ БАССЕЙНА С 1 ИЮЛЯ 💦"
   },
   {
     "slug": "sisayd-domiki-3409",
@@ -335,7 +360,7 @@
     "title": "\"ВОСХОДЯЩАЯ ЗВЕЗДА\" отель с бассейном"
   },
   {
-    "slug": "v-sinope-domiki",
+    "slug": "v-sinope-domiki-3438",
     "source_id": 3438,
     "title": "\"В СИНОПЕ\" домики"
   },
@@ -345,27 +370,27 @@
     "title": "\"СИЗОН\" гостевой дом"
   },
   {
-    "slug": "dyshi-glubzhe-domiki",
+    "slug": "dyshi-glubzhe-domiki-v-gorah-3459",
     "source_id": 3459,
     "title": "\"ДЫШИ ГЛУБЖЕ\" домики в горах"
   },
   {
-    "slug": "amor-apartamenty",
+    "slug": "amor-apartamenty-s-kuhney-i-basseynom-3487",
     "source_id": 3487,
     "title": "\"АМОР\" апартаменты с кухней и бассейном"
   },
   {
-    "slug": "limari-domiki",
+    "slug": "limari-domiki-3496",
     "source_id": 3496,
     "title": "\"ЛИМАРИ\" домики"
   },
   {
-    "slug": "belaya-rechka",
+    "slug": "belaya-rechka-gostevoy-dom-s-kafe-3517",
     "source_id": 3517,
     "title": "\"БЕЛАЯ РЕЧКА\" гостевой дом с кафе"
   },
   {
-    "slug": "leon-domiki",
+    "slug": "leon-domiki-3536",
     "source_id": 3536,
     "title": "\"ЛЕОН\" домики"
   },
@@ -563,5 +588,95 @@
     "slug": "ekohoum-kottedzh-otel-3974",
     "source_id": 3974,
     "title": "\"ЭКОХОУМ\" коттедж-отель"
+  },
+  {
+    "slug": "esma-domiki-s-basseynom-v-tsentre-4032",
+    "source_id": 4032,
+    "title": "\"ЭСМА\" домики с бассейном в центре"
+  },
+  {
+    "slug": "soluna-domiki-i-nomera-s-zavtrakami-4041",
+    "source_id": 4041,
+    "title": "\"СОЛУНА\" домики и номера с завтраками"
+  },
+  {
+    "slug": "oazis-villa-4052",
+    "source_id": 4052,
+    "title": "\"ОАЗИС\" вилла"
+  },
+  {
+    "slug": "oazis-apartamenty-s-kuhney-4061",
+    "source_id": 4061,
+    "title": "\"ОАЗИС\" апартаменты с кухней"
+  },
+  {
+    "slug": "palma-gostevoy-dom-4071",
+    "source_id": 4071,
+    "title": "\"ПАЛЬМА\" гостевой дом"
+  },
+  {
+    "slug": "belyy-dom-domiki-i-apartamenty-4081",
+    "source_id": 4081,
+    "title": "\"БЕЛЫЙ ДОМ\" домики и апартаменты"
+  },
+  {
+    "slug": "full-haus-domiki-s-basseynom-4092",
+    "source_id": 4092,
+    "title": "\"ФУЛЛ ХАУС\" домики с бассейном"
+  },
+  {
+    "slug": "zhemchuzhina-gostevoy-dom-4113",
+    "source_id": 4113,
+    "title": "\"ЖЕМЧУЖИНА\" гостевой дом"
+  },
+  {
+    "slug": "lk-otel-s-basseynom-4123",
+    "source_id": 4123,
+    "title": "\"ЛК-ОТЕЛЬ\" с бассейном"
+  },
+  {
+    "slug": "mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133",
+    "source_id": 4133,
+    "title": "\"МАНДАРИН\" отель у соснового пляжа с завтраками"
+  },
+  {
+    "slug": "mokko-briz-dva-domika-4152",
+    "source_id": 4152,
+    "title": "\"МОККО БРИЗ\" два домика"
+  },
+  {
+    "slug": "sekret-garden-apartamenty-4162",
+    "source_id": 4162,
+    "title": "\"СЕКРЕТ ГАРДЕН\" апартаменты"
+  },
+  {
+    "slug": "assir-pitsunda-gostevoy-dom-v-tsentre-4173",
+    "source_id": 4173,
+    "title": "\"АССИР ПИЦУНДА\" гостевой дом в центре"
+  },
+  {
+    "slug": "sanset-eko-domiki-4182",
+    "source_id": 4182,
+    "title": "\"САНСЕТ\" эко-домики"
+  },
+  {
+    "slug": "diar-domiki-s-basseynom-4192",
+    "source_id": 4192,
+    "title": "\"ДИАР\" домики с бассейном"
+  },
+  {
+    "slug": "alpika-mini-apart-otel-4202",
+    "source_id": 4202,
+    "title": "\"АЛЬПИКА\" мини апарт-отель"
+  },
+  {
+    "slug": "mare-dolche-eko-kompleks-4219",
+    "source_id": 4219,
+    "title": "\"МАРЕ ДОЛЬЧЕ\" эко-комплекс"
+  },
+  {
+    "slug": "tihaya-obitel-dom-pod-klyuch-4230",
+    "source_id": 4230,
+    "title": "\"ТИХАЯ ОБИТЕЛЬ\" дом под ключ"
   }
 ]
