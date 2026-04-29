@@ -1410,6 +1410,19 @@ section.site-concept__contacts.section {
   padding: 0.4rem 0.65rem;
 }
 
+.site-concept__region-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.site-concept__region-links .btn-book {
+  min-height: 40px;
+  padding: 0.4rem 0.75rem;
+  font-size: 12px;
+}
+
 .hotel-site-concept .contact-buttons .btn-book {
   min-height: 56px;
   border-radius: 18px;
@@ -1423,6 +1436,61 @@ section.site-concept__contacts.section {
 .blog-page .site-concept__hero-card,
 .blog-page .site-concept__section-block {
   padding: clamp(16px, 2.1vw, 26px);
+}
+
+.content-page {
+  display: grid;
+  gap: clamp(14px, 2vw, 22px);
+}
+
+.content-page .site-concept__hero-card,
+.content-page .site-concept__section-block {
+  padding: clamp(16px, 2.1vw, 26px);
+}
+
+.content-page h1 {
+  font-size: clamp(1.35rem, 2.6vw, 2.4rem);
+  line-height: 1.12;
+}
+
+.content-page .content-lead {
+  margin: 0;
+  max-width: 70ch;
+  color: var(--muted);
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.6;
+}
+
+.content-page .content-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.content-page .content-stack p {
+  margin: 0;
+}
+
+.content-page .content-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.content-page .content-table th,
+.content-page .content-table td {
+  border: 1px solid rgba(100, 121, 107, 0.2);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.content-page .content-table th {
+  background: rgba(41, 74, 61, 0.1);
+  font-weight: 800;
 }
 
 /* Заголовок списка статей: вдвое меньше базового h1 страницы */
