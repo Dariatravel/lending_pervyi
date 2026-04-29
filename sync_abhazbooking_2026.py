@@ -764,7 +764,7 @@ def render_page(slug: str, message_id: int, date_text: str, parsed: dict, photo_
 
       <section class="section">
         <article class="card">
-          <h2>Фото и видео из поста</h2>
+          <h2>Фото и видео</h2>
           <p class="media-note">Источник: <a href="https://t.me/abhazbooking/{message_id}" target="_blank" rel="noopener noreferrer">@abhazbooking/{message_id}</a>.</p>
           <div class="media-grid">
 {media_html}
@@ -780,7 +780,7 @@ def render_page(slug: str, message_id: int, date_text: str, parsed: dict, photo_
         <article class="card">
           <h2>Кратко</h2>
           <p>{html.escape(lead)}</p>
-          <p>Данные перенесены из поста канала и актуальны на дату публикации страницы.</p>
+          <p>Данные актуальны на дату публикации страницы.</p>
         </article>
       </section>
 

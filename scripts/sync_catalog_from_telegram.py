@@ -784,7 +784,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="hotel-site-concept__detail-main">
           <section class="section hotel-media-section hotel-site-concept__detail-section">
             <article class="card">
-              <h2>Фото и видео из поста</h2>
+              <h2>Фото и видео</h2>
               <div class="media-grid">
 {media_html}
               </div>

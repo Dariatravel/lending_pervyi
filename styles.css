@@ -5174,6 +5174,20 @@ body.modal-open {
   border: 1px solid rgba(120, 145, 123, 0.12);
 }
 
+/* Унифицируем заголовок медиа-блока: без формулировки "из поста" */
+.hotel-media-section .card > h2 {
+  position: relative;
+  color: transparent;
+}
+
+.hotel-media-section .card > h2::after {
+  content: "Фото и видео";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--ink);
+}
+
 .media-grid img.media-grid__zoomable,
 .video-embed .local-video-preview {
   cursor: zoom-in;
