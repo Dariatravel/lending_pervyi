@@ -1647,9 +1647,6 @@ def build_homepage() -> None:
       <a href="#contacts">Контакты</a>
     </nav>
 
-    <div class="site-concept__topbar-actions">
-      <a class="btn-book site-concept__cta" href="#search">онлайн-подбор жилья</a>
-    </div>
   </header>
 
   <div class="site-concept__masthead" aria-hidden="true">

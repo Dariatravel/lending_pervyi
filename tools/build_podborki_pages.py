@@ -362,9 +362,6 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
         <a href="/blog/">Блог</a>
         <a href="/#contacts">Контакты</a>
       </nav>
-      <div class="site-concept__topbar-actions">
-        <a class="btn-book site-concept__cta" href="/#contacts">онлайн-подбор</a>
-      </div>
     </header>
 
     <section class="site-concept__hero-card podborki-hero">
@@ -458,9 +455,6 @@ def main() -> None:
         <a href="/blog/">Блог</a>
         <a href="/#contacts">Контакты</a>
       </nav>
-      <div class="site-concept__topbar-actions">
-        <a class="btn-book site-concept__cta" href="/#contacts">онлайн-подбор</a>
-      </div>
     </header>
     <section class="site-concept__hero-card podborki-hero">
       <p class="site-concept__eyebrow">Каталог</p>
