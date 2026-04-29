@@ -18,6 +18,26 @@
   --shadow-sm: 0 12px 28px rgba(80, 92, 79, 0.1);
 }
 
+/* По задаче: заголовки такого типа уменьшаем примерно вдвое на всех страницах */
+.podborki-hero h1 {
+  font-size: clamp(0.68rem, 1.3vw, 1.25rem);
+}
+
+.hotel-card__header h2 {
+  font-size: clamp(0.72rem, 1.05vw, 1rem);
+}
+
+.hotel-site-concept .section h2,
+.hotel-site-concept .faq-card h2,
+.hotel-site-concept .price-card h2 {
+  font-size: 9px;
+  line-height: 1.2;
+}
+
+.hotel-site-concept .paragraph-blocks p.paragraph-blocks__caps {
+  font-size: 0.5em;
+}
+
 /* Initial aggregator concept reintroduced for homepage and hotel pages */
 .site-concept,
 .hotel-site-concept {
