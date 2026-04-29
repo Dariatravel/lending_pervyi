@@ -2,987 +2,134 @@
   "version": 1,
   "banks": [
     {
-      "id": "bank-tbank-my",
-      "name": "Т-Банк мой"
-    },
-    {
-      "id": "bank-tbank-mom",
-      "name": "Т-Банк мама"
-    },
-    {
-      "id": "bank-raiffeisen",
-      "name": "Райффайзенбанк"
-    },
-    {
       "id": "bank-alfa",
       "name": "Альфа-Банк"
     },
     {
-      "id": "bank-yandex",
-      "name": "Яндекс Банк"
+      "id": "bank-mts",
+      "name": "МТС Банк"
+    },
+    {
+      "id": "bank-rshb",
+      "name": "РСХБ"
     },
     {
       "id": "bank-vtb",
       "name": "ВТБ"
     },
     {
-      "id": "bank-ozon",
-      "name": "Ozon Банк"
-    },
-    {
-      "id": "bank-mts",
-      "name": "МТС Банк"
+      "id": "bank-tbank",
+      "name": "Т-Банк"
     }
   ],
   "months": {
-    "2026-03": {
+    "2026-05": {
       "banks": {
-        "bank-tbank-my": {
-          "categories": [
-            {
-              "id": "category-city-supermarkets",
-              "name": "Супермаркеты в Городе",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-all-purchases",
-              "name": "Все покупки",
-              "rate": 1,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-clothes-shoes",
-              "name": "Одежда и обувь",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-train-tickets",
-              "name": "Ж/д билеты",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-taxi",
-              "name": "Такси",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            }
-          ]
-        },
-        "bank-tbank-mom": {
-          "categories": [
-            {
-              "id": "category-mom-all-purchases",
-              "name": "Все покупки",
-              "rate": 1,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-mom-taxi",
-              "name": "Такси",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-mom-sports",
-              "name": "Спорттовары",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-mom-education",
-              "name": "Образование",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-mom-travel-trains",
-              "name": "Поезда в Т-Путешествиях",
-              "rate": 8,
-              "limit": "",
-              "note": ""
-            }
-          ]
-        },
-        "bank-raiffeisen": {
-          "categories": [
-            {
-              "id": "category-raif-products-tasty-coffee",
-              "name": "Продукты / Tasty Coffee",
-              "rate": 50,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-products-chibbis",
-              "name": "Продукты / Чиббис",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-products-globus-online",
-              "name": "Продукты / Globus онлайн",
-              "rate": 8,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-products-metro-online",
-              "name": "Продукты / Metro онлайн",
-              "rate": 8,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-products-lenta-delivery",
-              "name": "Продукты / Лента Доставка",
-              "rate": 25,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-products-kuulklever",
-              "name": "Продукты / КуулКлевер",
-              "rate": 10,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-products-perekrestok-delivery",
-              "name": "Продукты / Перекресток Доставка",
-              "rate": 15,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-restaurants-domino-pizza",
-              "name": "Рестораны и кафе / Domino Pizza",
-              "rate": 3,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-restaurants-anderson",
-              "name": "Рестораны и кафе / АндерСон",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-restaurants-shtolle",
-              "name": "Рестораны и кафе / Штолле",
-              "rate": 25,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-home-lemana-pro",
-              "name": "Дом и ремонт / Лемана ПРО",
-              "rate": 3,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-auto-delimobil",
-              "name": "Авто / Делимобиль",
-              "rate": 90,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-pharmacy-zdravcity",
-              "name": "Аптеки / Здравсити",
-              "rate": 3,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-pharmacy-magnit",
-              "name": "Аптеки / Магнит Аптека",
-              "rate": 10,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-health-medcenter",
-              "name": "Здоровье / МедЦентрСервис",
-              "rate": 15,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-health-family-doctor",
-              "name": "Здоровье / Семейный доктор",
-              "rate": 7,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-health-medsi",
-              "name": "Здоровье / МЕДСИ",
-              "rate": 6,
-              "limit": "",
-              "note": "до 6%"
-            },
-            {
-              "id": "category-raif-fashion-elena-miro",
-              "name": "Одежда и аксессуары / Elena Miro",
-              "rate": 10,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-fashion-wolford",
-              "name": "Одежда и аксессуары / Wolford",
-              "rate": 10,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-fashion-bootwood",
-              "name": "Одежда и аксессуары / BOOTWOOD",
-              "rate": 7,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-fashion-motherbear",
-              "name": "Одежда и аксессуары / MOTHERBEAR",
-              "rate": 7,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-fashion-5-karmanov",
-              "name": "Одежда и аксессуары / 5 карманов",
-              "rate": 6,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-fashion-kari",
-              "name": "Одежда и аксессуары / Kari",
-              "rate": 8,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-fashion-lamoda",
-              "name": "Одежда и аксессуары / Lamoda",
-              "rate": 10,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-electronics-citilink",
-              "name": "Электроника / Ситилинк",
-              "rate": 3,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-electronics-audiomania",
-              "name": "Электроника / Аудиомания",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-electronics-drhead",
-              "name": "Электроника / Dr.Head онлайн",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-electronics-galaxystore",
-              "name": "Электроника / Galaxystore онлайн",
-              "rate": 3,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-electronics-restore",
-              "name": "Электроника / Restore:",
-              "rate": 3,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-electronics-wmf",
-              "name": "Электроника / WMF",
-              "rate": 12,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-electronics-krups",
-              "name": "Электроника / Krups",
-              "rate": 12,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-electronics-rowenta",
-              "name": "Электроника / Rowenta",
-              "rate": 12,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-electronics-moulinex",
-              "name": "Электроника / Moulinex",
-              "rate": 12,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-electronics-tefal",
-              "name": "Электроника / Tefal",
-              "rate": 12,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-122trip-hotels",
-              "name": "Туризм / OneTwoTrip Отели",
-              "rate": 8,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-aviakassa-hotels",
-              "name": "Туризм / Авиакасса отели",
-              "rate": 10,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-leveltravel-hotels",
-              "name": "Туризм / Level.Travel Отели",
-              "rate": 11,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-122trip-trains",
-              "name": "Туризм / OneTwoTrip ж/д",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-aviakassa-trains",
-              "name": "Туризм / Авиакасса Ж/д",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-aviakassa-avia",
-              "name": "Туризм / Авиакасса Авиа",
-              "rate": 4,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-leveltravel-tours",
-              "name": "Туризм / Level.Travel Туры",
-              "rate": 6,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-travelata",
-              "name": "Туризм / Travelata",
-              "rate": 6,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-yandex",
-              "name": "Туризм / Яндекс Путешествия",
-              "rate": 10,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-122trip-avia",
-              "name": "Туризм / OneTwoTrip Авиа",
-              "rate": 2,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-onlinetours",
-              "name": "Туризм / Onlinetours",
-              "rate": 7.5,
-              "limit": "",
-              "note": "до 7.5%"
-            },
-            {
-              "id": "category-raif-travel-otello",
-              "name": "Туризм / Отелло",
-              "rate": 10,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-tripster",
-              "name": "Туризм / Tripster",
-              "rate": 20,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-travel-ostrovok",
-              "name": "Туризм / Островок отели",
-              "rate": 10,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-beauty-yves-rocher",
-              "name": "Красота / Yves Rocher онлайн",
-              "rate": 15,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-beauty-ile-de-beaute",
-              "name": "Красота / Иль Де Ботэ онлайн",
-              "rate": 10,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-beauty-fitmost",
-              "name": "Красота / Фитмост",
-              "rate": 15,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-beauty-aravia",
-              "name": "Красота / Aravia онлайн",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-beauty-kiko",
-              "name": "Красота / KIKO MILANO",
-              "rate": 7,
-              "limit": "",
-              "note": "до 7%"
-            },
-            {
-              "id": "category-raif-beauty-rive-gauche",
-              "name": "Красота / РИВ ГОШ",
-              "rate": 8,
-              "limit": "",
-              "note": "до 8%"
-            },
-            {
-              "id": "category-raif-other-gptunnel",
-              "name": "Разное / GPTunneL",
-              "rate": 20,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-services-gruzovichkof",
-              "name": "Услуги / Грузовичкоф",
-              "rate": 7,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-raif-services-yandex360",
-              "name": "Услуги / Яндекс 360",
-              "rate": 20,
-              "limit": "",
-              "note": ""
-            }
-          ]
-        },
         "bank-alfa": {
           "categories": [
             {
-              "id": "category-alfa-all-purchases",
+              "id": "category-alfa-may-all-purchases",
               "name": "За все покупки",
               "rate": 1,
               "limit": "",
-              "note": "категория марта"
+              "note": ""
             },
             {
-              "id": "category-alfa-home-repair",
+              "id": "category-alfa-may-home-repair",
               "name": "Дом и ремонт",
               "rate": 5,
               "limit": "",
-              "note": "категория марта"
-            },
-            {
-              "id": "category-alfa-delivery",
-              "name": "Деливери",
-              "rate": 7,
-              "limit": "",
-              "note": "категория марта"
-            },
-            {
-              "id": "category-alfa-perekrestok-delivery",
-              "name": "Перекрёсток Доставка",
-              "rate": 14,
-              "limit": "",
-              "note": "категория марта"
-            },
-            {
-              "id": "category-alfa-entertainment",
-              "name": "Развлечения",
-              "rate": 5,
-              "limit": "",
-              "note": "выпало дополнительно"
-            },
-            {
-              "id": "category-alfa-pharmacy",
-              "name": "Аптеки",
-              "rate": 4,
-              "limit": "",
-              "note": "выпало дополнительно"
-            },
-            {
-              "id": "category-alfa-services-hotels",
-              "name": "Сервисы Альфа-Банка / Отели в Тревел",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%"
-            },
-            {
-              "id": "category-alfa-services-avia",
-              "name": "Сервисы Альфа-Банка / Авиа в Тревел",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%"
-            },
-            {
-              "id": "category-alfa-services-afisha",
-              "name": "Сервисы Альфа-Банка / Альфа-Афиша",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%"
-            },
-            {
-              "id": "category-alfa-services-fuel",
-              "name": "Сервисы Альфа-Банка / Альфа-Заправки",
-              "rate": 3,
-              "limit": "",
-              "note": "до 3%"
-            },
-            {
-              "id": "category-alfa-services-train",
-              "name": "Сервисы Альфа-Банка / ж/д в Тревел",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%"
-            },
-            {
-              "id": "category-alfa-best-zolla",
-              "name": "Лучший кешбэк / Zolla",
-              "rate": 15,
-              "limit": "",
-              "note": "до 15%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-best-befree",
-              "name": "Лучший кешбэк / Befree",
-              "rate": 50,
-              "limit": "",
-              "note": "до 50%; Челябинская область; до 27 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-new-familia",
-              "name": "Новое / Familia",
-              "rate": 6,
-              "limit": "",
-              "note": "до 6%; Челябинская область; до 31 марта; оплата картой на кассе"
-            },
-            {
-              "id": "category-alfa-new-tezenis",
-              "name": "Новое / Tezenis",
-              "rate": 20,
-              "limit": "",
-              "note": "до 20%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-new-intimissimi",
-              "name": "Новое / Intimissimi",
-              "rate": 20,
-              "limit": "",
-              "note": "до 20%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-new-iuman",
-              "name": "Новое / IUMAN",
-              "rate": 20,
-              "limit": "",
-              "note": "до 20%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-new-idol",
-              "name": "Новое / IDOL",
-              "rate": 15,
-              "limit": "",
-              "note": "до 15%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-new-adamas",
-              "name": "Новое / ADAMAS",
-              "rate": 7,
-              "limit": "",
-              "note": "до 7%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-new-askent",
-              "name": "Новое / ASKENT",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 31 мая; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-new-bootwood",
-              "name": "Новое / Bootwood",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 10 мая; покупки по карте"
-            },
-            {
-              "id": "category-alfa-new-motherbear",
-              "name": "Новое / Motherbear",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 10 мая; покупки по карте"
-            },
-            {
-              "id": "category-alfa-new-wolford",
-              "name": "Новое / Wolford",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 10 мая; покупки по карте"
-            },
-            {
-              "id": "category-alfa-new-lio",
-              "name": "Новое / lio",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-new-playstation",
-              "name": "Новое / Пополнение PlayStation",
-              "rate": 10,
-              "limit": "",
-              "note": "Челябинская область; до 30 апреля; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-new-elena-miro",
-              "name": "Новое / ELENA MIRO",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 10 мая; покупки по карте"
-            },
-            {
-              "id": "category-alfa-products-samokat",
-              "name": "Продукты / Самокат",
-              "rate": 20,
-              "limit": "",
-              "note": "до 20%; Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-products-pyaterochka-delivery",
-              "name": "Продукты / Пятёрочка Доставка",
-              "rate": 50,
-              "limit": "",
-              "note": "до 50%; Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-products-chizhik-delivery",
-              "name": "Продукты / Чижик доставка",
-              "rate": 15,
-              "limit": "",
-              "note": "до 15%; Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-products-tasty-coffee",
-              "name": "Продукты / Tasty Coffee",
-              "rate": 45,
-              "limit": "",
-              "note": "до 45%; Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-products-metro",
-              "name": "Продукты / METRO",
-              "rate": 8,
-              "limit": "",
-              "note": "до 8%; Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-products-pyaterochka",
-              "name": "Продукты / Пятёрочка",
-              "rate": 30,
-              "limit": "",
-              "note": "Челябинская область; до 27 апреля; оплата картой на кассе"
-            },
-            {
-              "id": "category-alfa-entertainment-okko",
-              "name": "Развлечения / Okko",
-              "rate": 30,
-              "limit": "",
-              "note": "Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-entertainment-stoloto",
-              "name": "Развлечения / Столото",
-              "rate": 9,
-              "limit": "",
-              "note": "до 9%; Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-entertainment-vk-music",
-              "name": "Развлечения / VK Музыка",
-              "rate": 10,
-              "limit": "",
-              "note": "Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-entertainment-vk-dating",
-              "name": "Развлечения / VK Знакомства",
-              "rate": 13,
-              "limit": "",
-              "note": "Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-entertainment-gorbilet",
-              "name": "Развлечения / Горбилет",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 30 апреля; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-entertainment-steam",
-              "name": "Развлечения / Пополнение Steam",
-              "rate": 7,
-              "limit": "",
-              "note": "до 7%; Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-entertainment-sts",
-              "name": "Развлечения / СТС MEDIA",
-              "rate": 50,
-              "limit": "",
-              "note": "Челябинская область; до 30 июня; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-entertainment-afisha",
-              "name": "Развлечения / Альфа-Афиша",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-health-sberhealth",
-              "name": "Здоровье / СберЗдоровье",
-              "rate": 40,
-              "limit": "",
-              "note": "до 40%; Челябинская область; до 31 мая; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-health-magnit-pharmacy",
-              "name": "Здоровье / Магнит Аптека",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 31 марта; оплата картой на кассе"
-            },
-            {
-              "id": "category-alfa-health-ochkarik",
-              "name": "Здоровье / Очкарик",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 30 апреля; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-jewelry-tous",
-              "name": "Ювелирные изделия / TOUS",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 7 апреля; покупки по карте"
-            },
-            {
-              "id": "category-alfa-jewelry-bronnitskiy",
-              "name": "Ювелирные изделия / Бронницкий ювелир",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-jewelry-adamas",
-              "name": "Ювелирные изделия / ADAMAS",
-              "rate": 7,
-              "limit": "",
-              "note": "до 7%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-electronics-kenwood",
-              "name": "Электроника и техника / Kenwood",
-              "rate": 12,
-              "limit": "",
-              "note": "до 12%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-electronics-braun",
-              "name": "Электроника и техника / Braun",
-              "rate": 12,
-              "limit": "",
-              "note": "до 12%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-electronics-nutribullet",
-              "name": "Электроника и техника / Nutribullet",
-              "rate": 12,
-              "limit": "",
-              "note": "до 12%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-electronics-delonghi",
-              "name": "Электроника и техника / Delonghi",
-              "rate": 12,
-              "limit": "",
-              "note": "до 12%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-electronics-mircli",
-              "name": "Электроника и техника / MirCli",
-              "rate": 5,
-              "limit": "",
-              "note": "до 5%; Челябинская область; до 31 марта; покупки по карте"
-            },
-            {
-              "id": "category-alfa-electronics-wollmer",
-              "name": "Электроника и техника / WOLLMER",
-              "rate": 10,
-              "limit": "",
-              "note": "до 10%; Челябинская область; до 30 апреля; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-beauty-yves-rocher",
-              "name": "Косметика и парфюмерия / Yves Rocher",
-              "rate": 20,
-              "limit": "",
-              "note": "до 20%; Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-beauty-aravia",
-              "name": "Косметика и парфюмерия / ARAVIA",
-              "rate": 5,
-              "limit": "",
-              "note": "до 5%; Челябинская область; до 31 марта; оплата картой онлайн"
-            },
-            {
-              "id": "category-alfa-beauty-gold-apple",
-              "name": "Косметика и парфюмерия / Золотое яблоко",
-              "rate": 6,
-              "limit": "",
-              "note": "Челябинская область; до 14 мая"
-            },
-            {
-              "id": "category-alfa-beauty-kiko",
-              "name": "Косметика и парфюмерия / Kiko Milano",
-              "rate": 7,
-              "limit": "",
-              "note": "до 7%; Челябинская область; до 10 мая; покупки по карте"
-            }
-          ]
-        },
-        "bank-yandex": {
-          "categories": [
-            {
-              "id": "category-yandex-all-purchases",
-              "name": "Все покупки",
-              "rate": 2,
-              "limit": "",
               "note": ""
             },
             {
-              "id": "category-yandex-supermarkets",
-              "name": "Супермаркеты",
+              "id": "category-alfa-may-jewelry",
+              "name": "Ювелирные изделия",
               "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-yandex-cafes-restaurants",
-              "name": "Кафе, бары и рестораны",
-              "rate": 3,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-yandex-clothes-shoes",
+              "id": "category-alfa-may-clothes-shoes",
               "name": "Одежда и обувь",
               "rate": 5,
               "limit": "",
-              "note": "Свои Плюсы этой недели; еще 7 дней"
+              "note": ""
+            }
+          ]
+        },
+        "bank-mts": {
+          "categories": [
+            {
+              "id": "category-mts-may-sports",
+              "name": "Спорт товары",
+              "rate": 7,
+              "limit": "1000 руб",
+              "note": ""
             },
             {
-              "id": "category-yandex-taxi-econom",
-              "name": "Яндекс Такси / Эконом",
+              "id": "category-mts-may-beauty",
+              "name": "Красота",
+              "rate": 5,
+              "limit": "1000 руб",
+              "note": ""
+            },
+            {
+              "id": "category-mts-may-air-tickets",
+              "name": "Авиабилеты",
+              "rate": 5,
+              "limit": "1000 руб",
+              "note": ""
+            },
+            {
+              "id": "category-mts-may-flowers",
+              "name": "Цветы",
+              "rate": 5,
+              "limit": "1000 руб",
+              "note": ""
+            },
+            {
+              "id": "category-mts-may-dentistry",
+              "name": "Стоматология",
+              "rate": 5,
+              "limit": "1000 руб",
+              "note": ""
+            }
+          ]
+        },
+        "bank-rshb": {
+          "categories": [
+            {
+              "id": "category-rshb-may-marketplaces",
+              "name": "Маркетплейсы",
               "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-yandex-taxi-comfort",
-              "name": "Яндекс Такси / Комфорт",
+              "id": "category-rshb-may-cafes-restaurants",
+              "name": "Кафе и рестораны",
               "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-yandex-taxi-comfort-plus",
-              "name": "Яндекс Такси / Комфорт+",
+              "id": "category-rshb-may-electronics-appliances",
+              "name": "Бытовая техника и электроника",
               "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-yandex-taxi-ultima",
-              "name": "Яндекс Такси / Ultima",
+              "id": "category-rshb-may-alcohol",
+              "name": "Алкоголь",
               "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-yandex-food-delivery",
-              "name": "Яндекс Еда и Деливери",
-              "rate": 20,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-yandex-osago",
-              "name": "Полис ОСАГО",
-              "rate": 15,
+              "id": "category-rshb-may-pets",
+              "name": "Животные",
+              "rate": 5,
               "limit": "",
               "note": ""
             }
@@ -991,215 +138,71 @@
         "bank-vtb": {
           "categories": [
             {
-              "id": "category-vtb-yandex-services",
+              "id": "category-vtb-may-yandex-services",
               "name": "Сервисы Яндекса",
               "rate": 10,
               "limit": "",
               "note": "5-10%; за подписку ВТБ Плюс"
             },
             {
-              "id": "category-vtb-beauty",
-              "name": "Красота",
-              "rate": 8,
-              "limit": "кешбэк до 1 000 ₽ в месяц",
+              "id": "category-vtb-may-train-tickets",
+              "name": "Ж/д билеты",
+              "rate": 5,
+              "limit": "кешбэк до 1000 ₽",
               "note": "за подписку ВТБ Плюс"
             },
             {
-              "id": "category-vtb-cafes-restaurants",
-              "name": "Кафе и рестораны",
-              "rate": 5,
+              "id": "category-vtb-may-theaters-cinema",
+              "name": "Театры и кино",
+              "rate": 15,
+              "limit": "кешбэк до 1000 ₽",
+              "note": ""
+            },
+            {
+              "id": "category-vtb-may-pharmacies",
+              "name": "Аптеки",
+              "rate": 7,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-vtb-transport",
-              "name": "Транспорт",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-vtb-extra-clothes-shoes",
-              "name": "Доп. категория / Одежда и обувь",
-              "rate": 5,
-              "limit": "остаток 40 000 ₽",
-              "note": "хранить остаток 30 дней"
-            },
-            {
-              "id": "category-vtb-extra-all-purchases",
-              "name": "Доп. категория / Все покупки",
-              "rate": 1,
-              "limit": "остаток 50 000 ₽",
-              "note": "хранить остаток 30 дней"
-            },
-            {
-              "id": "category-vtb-extra-supermarkets",
-              "name": "Доп. категория / Супермаркеты",
-              "rate": 1.5,
-              "limit": "остаток 50 000 ₽",
-              "note": "спецпредложение; хранить остаток 30 дней"
-            },
-            {
-              "id": "category-vtb-extra-pharmacies",
-              "name": "Доп. категория / Аптеки",
-              "rate": 5,
-              "limit": "остаток 15 000 ₽",
-              "note": "хранить остаток 30 дней"
-            },
-            {
-              "id": "category-vtb-extra-fuel",
-              "name": "Доп. категория / АЗС",
-              "rate": 3,
-              "limit": "остаток 15 000 ₽",
-              "note": "хранить остаток 30 дней"
-            },
-            {
-              "id": "category-vtb-extra-books-stationery",
-              "name": "Доп. категория / Книги и канцтовары",
-              "rate": 10,
-              "limit": "остаток 15 000 ₽",
-              "note": "хранить остаток 30 дней"
-            },
-            {
-              "id": "category-vtb-extra-transport",
-              "name": "Доп. категория / Транспорт",
-              "rate": 10,
-              "limit": "остаток 10 000 ₽",
-              "note": "хранить остаток 30 дней"
-            },
-            {
-              "id": "category-vtb-extra-toll-roads",
-              "name": "Доп. категория / Платные дороги",
-              "rate": 5,
-              "limit": "остаток 10 000 ₽",
-              "note": "хранить остаток 30 дней"
+              "id": "category-vtb-may-aromatny-mir",
+              "name": "Ароматный Мир",
+              "rate": 7,
+              "limit": "кешбэк до 500 ₽",
+              "note": "оплата на кассе в розничных магазинах Москвы, Московской области, Санкт-Петербурга, Ленинградской области; кроме подарочных карт и сертификатов"
             }
           ]
         },
-        "bank-ozon": {
+        "bank-tbank": {
           "categories": [
             {
-              "id": "category-ozon-all-purchases",
+              "id": "category-tbank-may-all-purchases",
               "name": "Все покупки",
               "rate": 1,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-ozon-jewelry",
-              "name": "Ювелирные изделия",
-              "rate": 3,
+              "id": "category-tbank-may-dolyami",
+              "name": "Долями",
+              "rate": 10,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-ozon-air-tickets",
-              "name": "Авиабилеты",
-              "rate": 5,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-ozon-transport",
-              "name": "Транспорт",
+              "id": "category-tbank-may-pharmacies",
+              "name": "Аптеки",
               "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-ozon-electronics-appliances",
-              "name": "Электроника и бытовая техника",
+              "id": "category-tbank-may-restaurants",
+              "name": "Рестораны",
               "rate": 5,
               "limit": "",
               "note": ""
-            },
-            {
-              "id": "category-ozon-pyaterochka-delivery",
-              "name": "Партнеры / Пятёрочка Доставка",
-              "rate": 50,
-              "limit": "",
-              "note": "на первую покупку онлайн от 1 000 ₽; до 31 марта"
-            }
-          ]
-        },
-        "bank-mts": {
-          "categories": [
-            {
-              "id": "category-mts-bonus-supermarkets",
-              "name": "Супермаркеты",
-              "rate": 5,
-              "limit": "",
-              "note": "Ваши бонусы на март; с МТС Premium"
-            },
-            {
-              "id": "category-mts-bonus-all",
-              "name": "За всё",
-              "rate": 5,
-              "limit": "",
-              "note": "Ваши бонусы на март"
-            },
-            {
-              "id": "category-mts-bonus-fastfood-restaurants",
-              "name": "Фастфуд и рестораны",
-              "rate": 7,
-              "limit": "",
-              "note": "Ваши бонусы на март"
-            },
-            {
-              "id": "category-mts-bonus-taxi",
-              "name": "Такси",
-              "rate": 5,
-              "limit": "",
-              "note": "Ваши бонусы на март"
-            },
-            {
-              "id": "category-mts-bonus-home-repair",
-              "name": "Дом и ремонт",
-              "rate": 5,
-              "limit": "",
-              "note": "Ваши бонусы на март"
-            },
-            {
-              "id": "category-mts-credit-supermarkets",
-              "name": "Супермаркеты",
-              "rate": 5,
-              "limit": "",
-              "note": "МТС Деньги Кредитная; с подпиской МТС Premium"
-            },
-            {
-              "id": "category-mts-credit-restaurants-delivery",
-              "name": "Рестораны и доставка еды",
-              "rate": 5,
-              "limit": "",
-              "note": "МТС Деньги Кредитная"
-            },
-            {
-              "id": "category-mts-credit-fastfood",
-              "name": "Фастфуд",
-              "rate": 3,
-              "limit": "",
-              "note": "МТС Деньги Кредитная"
-            },
-            {
-              "id": "category-mts-credit-clothes",
-              "name": "Одежда",
-              "rate": 5,
-              "limit": "",
-              "note": "МТС Деньги Кредитная"
-            },
-            {
-              "id": "category-mts-credit-kids",
-              "name": "Детские товары",
-              "rate": 5,
-              "limit": "",
-              "note": "МТС Деньги Кредитная"
-            },
-            {
-              "id": "category-mts-credit-all",
-              "name": "За всё",
-              "rate": 1,
-              "limit": "",
-              "note": "МТС Деньги Кредитная"
             }
           ]
         }

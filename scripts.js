@@ -308,6 +308,41 @@
     return /[.!?…]$/.test(text) ? text : `${text}.`;
   }
 
+  function cleanReviewTextForDisplay(value) {
+    let text = String(value || "").replace(/\s+/g, " ").trim();
+    if (!text) return "";
+
+    // Частые артефакты OCR из интерфейсов агрегаторов.
+    text = text.replace(/(?:раскрыть\s+детали|что\s+было\s+хорошо|подписаться)/gi, " ");
+    text = text.replace(/оценка\s*wi[\s-]*fi[^.?!]*[.?!]?/gi, " ");
+    text = text.replace(/\b\d+\s*уровня\b/gi, " ");
+
+    // Чистим префиксы итеративно, пока они встречаются в начале.
+    const prefixPatterns = [
+      /^\s*\d{1,2}\s*(?:превосходно|отлично|хорошо|супер)\s*/i,
+      /^\s*\d{1,2}\s+[а-яё]+\s*/i, // "29 августа ..."
+      /^\s*\d{1,2}[./-]\d{1,2}[./-]\d{2,4}\s*/i, // "12.08.2025 ..."
+      /^\s*[А-ЯЁ][а-яё]+(?:\s+[А-ЯЁ][а-яё]+){0,2}\s+\d{1,2}[./-]\d{1,2}[./-]\d{2,4}\s*/i,
+      /^\s*[А-ЯЁ][а-яё]+[:,]?\s*добрый\s+(?:день|вечер|утро),?\s*дарья!?\.?\s*/i,
+      /^\s*добрый\s+(?:день|вечер|утро),?\s*дарья!?\.?\s*/i,
+    ];
+
+    let changed = true;
+    while (changed) {
+      changed = false;
+      for (const pattern of prefixPatterns) {
+        const next = text.replace(pattern, "");
+        if (next !== text) {
+          text = next.trim();
+          changed = true;
+        }
+      }
+    }
+
+    text = text.replace(/\s+/g, " ").trim();
+    return text;
+  }
+
   function buildReviewPoolFromParts(gender, seedPrefix, limit = 480) {
     const config = GENERIC_REVIEW_PARTS[gender];
     const names = gender === "female" ? FEMALE_REVIEW_NAMES : MALE_REVIEW_NAMES;
@@ -519,7 +554,7 @@
 
   function normalizeBankReview(entry, fallbackId, fallbackObjectSlug = "") {
     if (!entry || typeof entry !== "object") return null;
-    const text = sentence(entry.text || "");
+    const text = sentence(cleanReviewTextForDisplay(entry.text || ""));
     if (!text) return null;
     const gender = entry.gender === "male" ? "male" : "female";
     const names = gender === "male" ? MALE_REVIEW_NAMES : FEMALE_REVIEW_NAMES;
@@ -560,6 +595,30 @@
     return { global, by_object: byObject };
   }
 
+  function normalizeSlugForMatch(value) {
+    return String(value || "")
+      .toLowerCase()
+      .trim()
+      .replace(/^\/+|\/+$/g, "")
+      .replace(/-+/g, "-")
+      .replace(/-\d{3,6}$/g, "");
+  }
+
+  function slugMatchScore(sourceSlug, targetSlug) {
+    if (!sourceSlug || !targetSlug) return 0;
+    if (sourceSlug === targetSlug) return 10_000 + sourceSlug.length;
+    if (sourceSlug.startsWith(targetSlug)) return 5_000 + targetSlug.length;
+    if (targetSlug.startsWith(sourceSlug)) return 4_000 + sourceSlug.length;
+
+    const sourceTokens = sourceSlug.split("-").filter(Boolean);
+    const targetTokens = targetSlug.split("-").filter(Boolean);
+    const sourceSet = new Set(sourceTokens);
+    const common = targetTokens.filter((token) => sourceSet.has(token));
+    if (!common.length) return 0;
+    const ratio = common.length / Math.max(sourceTokens.length, targetTokens.length);
+    return Math.round(ratio * 1000) + common.length;
+  }
+
   async function loadScreenshotReviewBank() {
     if (screenshotReviewBank) return screenshotReviewBank;
     if (screenshotReviewBankPromise) return screenshotReviewBankPromise;
@@ -596,7 +655,25 @@
     const cleanSlug = String(slug || "").trim();
     if (!cleanSlug) return [];
     const byObject = screenshotReviewBank?.by_object || {};
-    return Array.isArray(byObject[cleanSlug]) ? byObject[cleanSlug] : [];
+    if (Array.isArray(byObject[cleanSlug])) return byObject[cleanSlug];
+
+    const normalizedTarget = normalizeSlugForMatch(cleanSlug);
+    if (!normalizedTarget) return [];
+
+    let bestKey = "";
+    let bestScore = 0;
+
+    Object.keys(byObject).forEach((candidateKey) => {
+      const candidateNorm = normalizeSlugForMatch(candidateKey);
+      const score = slugMatchScore(candidateNorm, normalizedTarget);
+      if (score > bestScore) {
+        bestScore = score;
+        bestKey = candidateKey;
+      }
+    });
+
+    if (!bestKey || bestScore < 1200) return [];
+    return Array.isArray(byObject[bestKey]) ? byObject[bestKey] : [];
   }
 
   function detectReviewGender(text) {
@@ -2024,9 +2101,9 @@
     const head = document.createElement("p");
     head.className = "review-head";
     head.textContent = review.head || "";
-    const text = document.createElement("p");
-    text.className = "review-text";
-    text.textContent = review.text || "";
+      const text = document.createElement("p");
+      text.className = "review-text";
+      text.textContent = cleanReviewTextForDisplay(review.text || "");
     wrap.append(head, text);
     return wrap;
   }

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import json
 import mimetypes
 from http import HTTPStatus
@@ -9,13 +10,28 @@ from urllib.parse import urlparse
 
 
 BASE_DIR = Path(__file__).resolve().parent
-DATA_FILE = BASE_DIR / "cashback-data.json"
-HOST = "127.0.0.1"
-PORT = 8765
+DEFAULT_DATA_FILE = BASE_DIR / "cashback-data.json"
+DATA_FILE = Path(
+    os.environ.get(
+        "CASHBACK_DATA_FILE",
+        str(
+            Path(os.environ.get("RAILWAY_VOLUME_MOUNT_PATH", BASE_DIR))
+            / "cashback-data.json"
+        ),
+    )
+).resolve()
+HOST = "0.0.0.0"
+PORT = int(os.environ.get("PORT", "8765"))
 
 
 def ensure_data_file() -> None:
+    DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
+
     if DATA_FILE.exists():
+        return
+
+    if DEFAULT_DATA_FILE.exists() and DEFAULT_DATA_FILE.resolve() != DATA_FILE:
+        DATA_FILE.write_text(DEFAULT_DATA_FILE.read_text(encoding="utf-8"), encoding="utf-8")
         return
 
     DATA_FILE.write_text(
