@@ -5,6 +5,11 @@
     "title": "\"МАНОН\" отель со сказочным видом"
   },
   {
+    "slug": "bonzhur-mini-otel-2542",
+    "source_id": 2542,
+    "title": "\"БОНЖУР\" мини-отель"
+  },
+  {
     "slug": "pegas-otel-na-pervoy-linii-vid-na-more-2574",
     "source_id": 2574,
     "title": "\"ПЕГАС\" отель на первой линии, вид на море"
@@ -123,6 +128,11 @@
     "slug": "kastl-otel-s-teplym-basseynom-i-vidom-na-more-2859",
     "source_id": 2859,
     "title": "\"КАСТЛ\" отель с теплым бассейном и видом на море"
+  },
+  {
+    "slug": "mimi-domiki-s-vidom-na-gory-2869",
+    "source_id": 2869,
+    "title": "\"МИМИ\" домики с видом на горы"
   },
   {
     "slug": "v-gostyah-u-belochki-domiki-i-nomera-2879",
