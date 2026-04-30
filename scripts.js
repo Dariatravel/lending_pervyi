@@ -2016,7 +2016,16 @@
         const href = card.getAttribute("href") || "";
         const cardPath = pathnameFromUrl(href, href);
         if (!videoPaths.has(cardPath)) return;
-        const mediaWrap = card.querySelector(".catalog-card__media-wrap");
+        let mediaWrap = card.querySelector(".catalog-card__media-wrap");
+        if (!mediaWrap) {
+          const firstImage = card.querySelector("img");
+          if (firstImage) {
+            mediaWrap = document.createElement("div");
+            mediaWrap.className = "catalog-card__media-wrap";
+            firstImage.parentNode?.insertBefore(mediaWrap, firstImage);
+            mediaWrap.appendChild(firstImage);
+          }
+        }
         if (!mediaWrap || mediaWrap.querySelector(".catalog-card__badge")) return;
 
         const badge = document.createElement("span");
