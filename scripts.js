@@ -1188,6 +1188,68 @@
     return source;
   }
 
+  function inferCardFilterValues(group, card) {
+    const title = (card?.querySelector("h3")?.textContent || "").toLowerCase();
+    const summary = (card?.querySelector("p")?.textContent || "").toLowerCase();
+    const href = (card?.getAttribute("href") || "").toLowerCase();
+    const blob = `${title} ${summary} ${href}`;
+
+    if (group === "city") {
+      const values = [];
+      if (blob.includes("сухум")) values.push("sukhum");
+      if (blob.includes("новый афон")) values.push("new-afon");
+      if (blob.includes("гудаута")) values.push("gudauta");
+      if (blob.includes("лдзаа")) values.push("ldzaa");
+      if (blob.includes("пицунда")) values.push("pitsunda");
+      if (blob.includes("алахадз")) values.push("alakhadzy");
+      if (blob.includes("гагра")) values.push("gagra");
+      if (blob.includes("цандрипш")) values.push("tsandripsh");
+      return dedupe(values);
+    }
+
+    if (group === "distance") {
+      if (/0\s*(мин|минут)/.test(blob) || /на первой линии|прямо на пляже|на берегу/.test(blob)) {
+        return ["beachfront"];
+      }
+      const minuteMatch = blob.match(/(\d{1,2})\s*(мин|минут)/);
+      if (!minuteMatch) return [];
+      const value = Number(minuteMatch[1]);
+      if (value <= 5) return ["up-to-5"];
+      if (value <= 10) return ["up-to-10"];
+      return ["over-10"];
+    }
+
+    if (group === "beach") {
+      const cities = inferCardFilterValues("city", card);
+      if (blob.includes("соснов")) return [BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA];
+      if (blob.includes("пицунд") && blob.includes("бухт")) return [BEACH_FILTERS.PITSUNDA_BAY_MIXED];
+      if (blob.includes("песч")) {
+        return [cities.includes("sukhum") ? BEACH_FILTERS.SAND_SUKHUM : BEACH_FILTERS.SAND_LDZAA];
+      }
+      if (blob.includes("галеч")) return [BEACH_FILTERS.PEBBLE];
+      return [];
+    }
+
+    if (group === "stay") {
+      return dedupe(inferStayByCard(card));
+    }
+
+    if (group === "room") {
+      const values = [];
+      if (blob.includes("вид на море")) values.push("sea-view");
+      if (blob.includes("прямо на берегу") || blob.includes("на первой линии")) values.push("beachfront-room");
+      if (blob.includes("бассейн")) values.push("pool");
+      if (blob.includes("балкон")) values.push("balcony");
+      if (blob.includes("террас")) values.push("terrace");
+      if (blob.includes("кухн")) values.push("kitchen");
+      if (/(пять|5)\s*гост/.test(blob)) values.push("five-plus");
+      if (blob.includes("2к") || blob.includes("две комнат")) values.push("two-room-plus");
+      return dedupe(values);
+    }
+
+    return [];
+  }
+
   function pathnameFromUrl(url, fallback) {
     if (!url) return fallback;
     try {
@@ -1631,7 +1693,9 @@
     function parseValues(card, group) {
       const key = `filter${group.charAt(0).toUpperCase()}${group.slice(1)}`;
       const raw = card.dataset[key] || "";
-      return normalizeCardFilterValues(group, raw, card);
+      const normalized = normalizeCardFilterValues(group, raw, card);
+      if (normalized.length) return normalized;
+      return inferCardFilterValues(group, card);
     }
 
     function normalizeSelectedFilterValues(group, value, chipText) {
