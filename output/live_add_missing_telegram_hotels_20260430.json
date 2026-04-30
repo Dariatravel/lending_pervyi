@@ -1,0 +1,37 @@
+[
+  {
+    "id": 4308,
+    "status": "created",
+    "slug": "neanila-eko-domiki-4308",
+    "photos": 9,
+    "has_video": true
+  },
+  {
+    "id": 4279,
+    "status": "created",
+    "slug": "bereg-svyatoy-sofii-otel-4279",
+    "photos": 8,
+    "has_video": true
+  },
+  {
+    "id": 4270,
+    "status": "created",
+    "slug": "studio-san-amra-studiya-na-plyazhe-4270",
+    "photos": 8,
+    "has_video": true
+  },
+  {
+    "id": 4259,
+    "status": "created",
+    "slug": "svetlyy-dvorik-gostevoy-dom-ekonom-4259",
+    "photos": 9,
+    "has_video": true
+  },
+  {
+    "id": 4239,
+    "status": "updated",
+    "slug": "lemar-domiki-v-tsentre-4239",
+    "photos": 9,
+    "has_video": false
+  }
+]
