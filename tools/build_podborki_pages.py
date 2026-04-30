@@ -70,6 +70,12 @@ SPECIAL_BOOKING_SLUGS = {
     "villalubov": "villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716",
 }
 
+# Фиксированные названия для конкретных подборок:
+# сохраняются даже после повторной генерации из исходных txt.
+TITLE_OVERRIDES = {
+    "novyy-afon-vse-varianty": "Варианты размещения в г. Новый Афон",
+}
+
 
 def slugify_segment(s: str) -> str:
     s = unicodedata.normalize("NFKC", s).lower().translate(_SLUG_CYR)
@@ -300,7 +306,7 @@ def display_title(raw: str) -> str:
 
 
 def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> str:
-    title_clean = display_title(page_title)
+    title_clean = TITLE_OVERRIDES.get(slug, display_title(page_title))
     hotel_catalog = load_hotel_catalog()
     kv_catalog = load_kvartira_catalog()
     sections: list[str] = []
@@ -416,7 +422,7 @@ def main() -> None:
         dest = OUT_DIR / slug / "index.html"
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text(html, encoding="utf-8")
-        index_entries.append((slug, display_title(page_title)))
+        index_entries.append((slug, TITLE_OVERRIDES.get(slug, display_title(page_title))))
         print("OK", slug, len(items), "объектов")
 
     # index
