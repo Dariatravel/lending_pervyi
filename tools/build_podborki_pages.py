@@ -70,6 +70,11 @@ SPECIAL_BOOKING_SLUGS = {
     "villalubov": "villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716",
 }
 
+# Алиасы старых message_id квартир из файлов подборок -> актуальные message_id в kvartira_cards.json
+KVARTIRA_MESSAGE_ID_ALIASES = {
+    1025: 1378,  # "МОНРО": в подборках старый пост, на сайте актуальная карточка 1378
+}
+
 # Фиксированные названия для конкретных подборок:
 # сохраняются даже после повторной генерации из исходных txt.
 TITLE_OVERRIDES = {
@@ -228,6 +233,7 @@ def resolve_item_href(
     if kind == "kvartira" and ids:
         for sid in reversed(ids):
             mid = int(sid)
+            mid = KVARTIRA_MESSAGE_ID_ALIASES.get(mid, mid)
             if mid in kv:
                 k = kv[mid]
                 return k["url"].rstrip("/") + "/", k.get("title")
