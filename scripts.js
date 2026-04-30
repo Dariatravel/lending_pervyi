@@ -2018,6 +2018,37 @@
     }
   }
 
+  function initMobileReviewsPlacement() {
+    const reviewsPanel = document.querySelector(".hotel-site-concept .reviews-panel");
+    const priceSection = document.querySelector(".hotel-site-concept .hotel-price-section");
+    if (!reviewsPanel || !priceSection) return;
+
+    let placeholder = document.querySelector("[data-reviews-placeholder]");
+    if (!placeholder) {
+      placeholder = document.createElement("div");
+      placeholder.hidden = true;
+      placeholder.setAttribute("data-reviews-placeholder", "");
+      reviewsPanel.parentNode?.insertBefore(placeholder, reviewsPanel);
+    }
+
+    const syncPlacement = () => {
+      const isMobile = window.matchMedia("(max-width: 760px)").matches;
+      if (isMobile) {
+        if (reviewsPanel.previousElementSibling !== priceSection) {
+          priceSection.insertAdjacentElement("afterend", reviewsPanel);
+        }
+        return;
+      }
+
+      if (placeholder.nextElementSibling !== reviewsPanel) {
+        placeholder.insertAdjacentElement("afterend", reviewsPanel);
+      }
+    };
+
+    syncPlacement();
+    window.addEventListener("resize", syncPlacement, { passive: true });
+  }
+
   async function hydrateHotelPage() {
     const hotelRoot = document.querySelector(".hotel-page-v2");
     if (!hotelRoot && !/^\/hotels\/[^/]+\/?$/.test(window.location.pathname)) return;
@@ -2192,4 +2223,5 @@
   hydrateHomeCatalog(filtersController);
   hydrateKvartiraCatalog();
   hydrateHotelPage();
+  initMobileReviewsPlacement();
 })();
