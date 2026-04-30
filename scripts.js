@@ -1934,10 +1934,42 @@
     });
   }
 
+  async function addHotelVideoBadges(grid) {
+    if (!grid) return;
+    try {
+      const rows = await fetchListings({ sourceKind: "hotel" });
+      if (!rows.length) return;
+
+      const videoPaths = new Set(
+        rows
+          .filter((row) => row?.has_video)
+          .map((row) => pathnameFromUrl(row.page_url, row.slug ? `/hotels/${row.slug}/` : ""))
+          .filter(Boolean)
+      );
+      if (!videoPaths.size) return;
+
+      grid.querySelectorAll(".catalog-card").forEach((card) => {
+        const href = card.getAttribute("href") || "";
+        const cardPath = pathnameFromUrl(href, href);
+        if (!videoPaths.has(cardPath)) return;
+        const mediaWrap = card.querySelector(".catalog-card__media-wrap");
+        if (!mediaWrap || mediaWrap.querySelector(".catalog-card__badge")) return;
+
+        const badge = document.createElement("span");
+        badge.className = "catalog-card__badge";
+        badge.textContent = "Видео";
+        mediaWrap.appendChild(badge);
+      });
+    } catch (error) {
+      console.error("Не удалось добавить плашки Видео на карточки отелей", error);
+    }
+  }
+
   async function hydrateHomeCatalog(filtersController) {
     const grid = document.getElementById("catalog-grid");
     if (!grid) return;
     if (grid.querySelector(".catalog-card")) {
+      addHotelVideoBadges(grid);
       filtersController.refresh();
       return;
     }
@@ -1946,6 +1978,7 @@
     // Повторная отрисовка из Supabase заменяет DOM и даёт «мигание»: сначала верстка из HTML/CSS,
     // затем упрощённые карточки из formatHotelCardSummary. Не перезаписываем готовую сетку.
     if (grid.querySelector(".catalog-card")) {
+      addHotelVideoBadges(grid);
       filtersController.refresh();
       return;
     }
@@ -1954,6 +1987,7 @@
       const rows = await fetchListings({ sourceKind: "hotel" });
       if (!rows.length) return;
       renderHotelCards(rows, grid);
+      addHotelVideoBadges(grid);
       filtersController.refresh();
     } catch (error) {
       console.error("Не удалось загрузить каталог отелей из Supabase", error);
