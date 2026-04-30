@@ -70,6 +70,11 @@ SPECIAL_BOOKING_SLUGS = {
     "villalubov": "villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716",
 }
 
+# Алиасы старых message_id из файлов подборок -> актуальные source_message_id карточек отелей
+BOOKING_MESSAGE_ID_ALIASES = {
+    1694: 4279,  # "БЕРЕГ СВЯТОЙ СОФИИ"
+}
+
 # Алиасы старых message_id квартир из файлов подборок -> актуальные message_id в kvartira_cards.json
 KVARTIRA_MESSAGE_ID_ALIASES = {
     1025: 1378,  # "МОНРО": в подборках старый пост, на сайте актуальная карточка 1378
@@ -227,6 +232,7 @@ def resolve_item_href(
     ids = item["link_ids"]
     if kind == "booking" and ids:
         hid = int(ids[0])
+        hid = BOOKING_MESSAGE_ID_ALIASES.get(hid, hid)
         if hid in hotels:
             h = hotels[hid]
             return f"/hotels/{h['slug']}/", h.get("title")
