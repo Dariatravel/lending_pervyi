@@ -367,7 +367,7 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
     <section class="site-concept__hero-card podborki-hero">
       <p class="site-concept__eyebrow"><a href="/podborki/">Подборки</a></p>
       <h1>{esc(title_clean)}</h1>
-      <p class="podborki-hero__lead">Порядок в списке отражает приоритет подборки. Откройте карточку, чтобы посмотреть фото, видео и условия на сайте.</p>
+      
     </section>
 
     <section class="site-concept__section-block podborki-body" aria-label="Список объектов">
