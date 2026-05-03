@@ -78,6 +78,89 @@
     PITSUNDA_BAY_MIXED: "pitsunda-bay-mixed",
     PEBBLE: "pebble",
   };
+  const FILTER_CONFIG = {
+    distance: {
+      label: "До пляжа",
+      values: {
+        beachfront: "Береговая зона",
+        "up-to-5": "До 5 минут",
+        "up-to-10": "До 10 минут",
+        "over-10": "Более 10 минут",
+      },
+    },
+    food: {
+      label: "Питание",
+      values: {
+        breakfast: "Завтрак",
+        "half-board": "Полупансион",
+        "full-board": "Завтрак, обед, ужин",
+        cafe: "Есть кафе/столовая",
+        "no-food": "Без питания",
+      },
+    },
+    price: {
+      label: "Бюджет",
+      values: {
+        economy: "До 5000 руб.",
+        midrange: "До 10000 руб.",
+        premium: "Премиум-сегмент",
+      },
+    },
+    city: {
+      label: "Город",
+      values: {
+        sukhum: "Сухум",
+        "new-afon": "Новый Афон",
+        gudauta: "Гудаута",
+        ldzaa: "Лдзаа",
+        pitsunda: "Пицунда",
+        alakhadzy: "Алахадзы",
+        gagra: "Гагра",
+        tsandripsh: "Цандрипш",
+      },
+    },
+    beach: {
+      label: "Пляж",
+      values: {
+        [BEACH_FILTERS.SAND_LDZAA]: "Песчаный пляж Лдзаа",
+        [BEACH_FILTERS.SAND_SUKHUM]: "Песчаный пляж Сухум",
+        [BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA]: "Сосновый галечный берег",
+        [BEACH_FILTERS.PITSUNDA_BAY_MIXED]: "Пицундская бухта",
+        [BEACH_FILTERS.PEBBLE]: "Галечные пляжи",
+      },
+    },
+    room: {
+      label: "Номер",
+      values: {
+        "sea-view": "Вид на море",
+        "beachfront-room": "Прямо на берегу",
+        pool: "Бассейн",
+        balcony: "С балконом",
+        terrace: "С террасой",
+        kitchen: "Своя кухня",
+        "five-plus": "5+ гостей",
+        "two-room-plus": "Две комнаты и более",
+      },
+    },
+    stay: {
+      label: "Размещение",
+      values: {
+        cottages: "Домики и коттеджи",
+        apartments: "Квартиры",
+        "turnkey-house": "Дома под ключ",
+        pets: "Можно с животными",
+        "no-small-kids": "Без маленьких детей",
+      },
+    },
+    category: {
+      label: "Тип",
+      values: {
+        hotel: "Отели",
+        guesthouse: "Гостевые дома",
+        cabin: "Домики",
+      },
+    },
+  };
   const FEMALE_REVIEW_NAMES = [
     "Анна",
     "Марина",
@@ -1655,6 +1738,258 @@
     return true;
   }
 
+  function normalizeSelectedFilterValues(group, value, chipText) {
+    const raw = String(value || "").trim();
+    const label = String(chipText || "").toLowerCase();
+    if (!raw) return [];
+
+    if (group === "price") {
+      const normalized = normalizePriceValue(raw);
+      return normalized ? [normalized] : [];
+    }
+
+    if (group === "room") {
+      const normalized = normalizeRoomValue(raw);
+      return normalized ? [normalized] : [];
+    }
+
+    if (group === "stay") {
+      const normalized = normalizeStayValue(raw);
+      return normalized ? [normalized] : [];
+    }
+
+    if (group === "beach") {
+      if (raw === "sand" || label.includes("песчаный")) {
+        if (label.includes("сухум")) return [BEACH_FILTERS.SAND_SUKHUM];
+        if (label.includes("лдзаа")) return [BEACH_FILTERS.SAND_LDZAA];
+        return [BEACH_FILTERS.SAND_LDZAA, BEACH_FILTERS.SAND_SUKHUM];
+      }
+      if (raw === "pine-pebble" || label.includes("соснов")) return [BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA];
+      if (raw === "mixed" || label.includes("бухта")) return [BEACH_FILTERS.PITSUNDA_BAY_MIXED];
+      if (raw === "pebble" || label.includes("галеч")) return [BEACH_FILTERS.PEBBLE];
+      const normalized = normalizeBeachValue(raw, []);
+      return normalized ? [normalized] : [];
+    }
+
+    return [raw];
+  }
+
+  function normalizeGroupValues(group, values) {
+    return dedupe(
+      (values || []).flatMap((value) => normalizeSelectedFilterValues(group, value, ""))
+    );
+  }
+
+  function createEmptyFilterState() {
+    return {
+      groups: Object.fromEntries(FILTER_GROUPS.map((group) => [group, new Set()])),
+      category: null,
+    };
+  }
+
+  function cloneFilterState(source) {
+    const next = createEmptyFilterState();
+    FILTER_GROUPS.forEach((group) => {
+      const values = source?.groups?.[group];
+      next.groups[group] = new Set(values ? Array.from(values) : []);
+    });
+    next.category = source?.category || null;
+    return next;
+  }
+
+  function getActiveFilterItems(state) {
+    const items = [];
+    FILTER_GROUPS.forEach((group) => {
+      state.groups[group].forEach((value) => {
+        items.push({
+          group,
+          value,
+          label: FILTER_CONFIG[group]?.values?.[value] || value,
+        });
+      });
+    });
+    if (state.category) {
+      items.push({
+        group: "category",
+        value: state.category,
+        label: FILTER_CONFIG.category.values[state.category] || state.category,
+      });
+    }
+    return items;
+  }
+
+  function getActiveFilterCount(state) {
+    return getActiveFilterItems(state).length;
+  }
+
+  function toggleFilterValueInState(state, group, value, chipText) {
+    if (!state.groups[group]) return state;
+    const next = cloneFilterState(state);
+    const normalizedValues = normalizeSelectedFilterValues(group, value, chipText);
+    if (!normalizedValues.length) return next;
+    const currentlyActive = normalizedValues.every((normalized) => next.groups[group].has(normalized));
+    normalizedValues.forEach((normalized) => {
+      if (!normalized) return;
+      if (currentlyActive) {
+        next.groups[group].delete(normalized);
+      } else {
+        next.groups[group].add(normalized);
+      }
+    });
+    return next;
+  }
+
+  function createFilterStore(initialState) {
+    let state = cloneFilterState(initialState || createEmptyFilterState());
+    const listeners = new Set();
+
+    function emit() {
+      const snapshot = cloneFilterState(state);
+      listeners.forEach((listener) => listener(snapshot));
+    }
+
+    function replace(nextState) {
+      state = cloneFilterState(nextState);
+      emit();
+    }
+
+    return {
+      getState: () => cloneFilterState(state),
+      replace,
+      subscribe(listener) {
+        listeners.add(listener);
+        return () => listeners.delete(listener);
+      },
+      applyPatch(patch) {
+        const next = cloneFilterState(state);
+        Object.entries(patch || {}).forEach(([group, values]) => {
+          if (group === "category") {
+            const category = String(values || "").trim();
+            next.category = category || null;
+            return;
+          }
+          if (!next.groups[group]) return;
+          next.groups[group] = new Set(normalizeGroupValues(group, Array.isArray(values) ? values : [values]));
+        });
+        replace(next);
+      },
+      setGroupValues(group, values) {
+        this.applyPatch({ [group]: values || [] });
+      },
+      setCatalogCategory(slug) {
+        this.applyPatch({ category: slug || "" });
+      },
+      clearGroups(groups) {
+        const next = cloneFilterState(state);
+        (groups || [...FILTER_GROUPS, "category"]).forEach((group) => {
+          if (group === "category") {
+            next.category = null;
+          } else if (next.groups[group]) {
+            next.groups[group].clear();
+          }
+        });
+        replace(next);
+      },
+      removeValue(group, value) {
+        const next = cloneFilterState(state);
+        if (group === "category") {
+          next.category = null;
+        } else if (next.groups[group]) {
+          next.groups[group].delete(value);
+        }
+        replace(next);
+      },
+    };
+  }
+
+  function cardFilterDatasetKey(group) {
+    return `filter${group.charAt(0).toUpperCase()}${group.slice(1)}`;
+  }
+
+  function parseCardFilterValues(card, group) {
+    const raw = card.dataset[cardFilterDatasetKey(group)] || "";
+    const normalized = normalizeCardFilterValues(group, raw, card);
+    if (normalized.length) return normalized;
+    return inferCardFilterValues(group, card);
+  }
+
+  function buildCardIndex(grid) {
+    return Array.from(grid.querySelectorAll(".catalog-card")).map((card) => ({
+      element: card,
+      categoryText: cardCatalogCategoryText(card),
+      filters: Object.fromEntries(
+        FILTER_GROUPS.map((group) => [group, new Set(parseCardFilterValues(card, group))])
+      ),
+    }));
+  }
+
+  function cardMatchesFilterState(entry, state) {
+    for (const group of FILTER_GROUPS) {
+      const selectedValues = state.groups[group];
+      if (!selectedValues || selectedValues.size === 0) continue;
+      const cardValues = entry.filters[group] || new Set();
+      const hit = Array.from(selectedValues).some((value) => cardValues.has(value));
+      if (!hit) return false;
+    }
+
+    if (state.category && !matchesCatalogCategory(state.category, entry.categoryText)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  function countMatchingCards(state, cardIndex) {
+    return cardIndex.reduce((count, entry) => count + (cardMatchesFilterState(entry, state) ? 1 : 0), 0);
+  }
+
+  function applyCatalogFilters(state, cardIndex) {
+    let shown = 0;
+    cardIndex.forEach((entry) => {
+      const ok = cardMatchesFilterState(entry, state);
+      entry.element.hidden = !ok;
+      if (ok) shown += 1;
+    });
+    return shown;
+  }
+
+  function readFilterStateFromUrl() {
+    const state = createEmptyFilterState();
+    const params = new URLSearchParams(window.location.search);
+    FILTER_GROUPS.forEach((group) => {
+      const raw = params.get(group);
+      if (!raw) return;
+      state.groups[group] = new Set(normalizeGroupValues(group, raw.split(",")));
+    });
+    const category = params.get("category");
+    state.category = category && FILTER_CONFIG.category.values[category] ? category : null;
+    return state;
+  }
+
+  function writeFilterStateToUrl(state) {
+    if (!window.history?.replaceState) return;
+    const params = new URLSearchParams(window.location.search);
+    FILTER_GROUPS.forEach((group) => {
+      const values = Array.from(state.groups[group] || []);
+      if (values.length) {
+        params.set(group, values.join(","));
+      } else {
+        params.delete(group);
+      }
+    });
+    if (state.category) {
+      params.set("category", state.category);
+    } else {
+      params.delete("category");
+    }
+    const query = params.toString();
+    const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
+    const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    if (nextUrl !== currentUrl) {
+      window.history.replaceState({}, "", nextUrl);
+    }
+  }
+
   function initFilters() {
     const grid = document.getElementById("catalog-grid");
     if (!grid) {
@@ -1663,147 +1998,186 @@
         setCatalogCategory: () => {},
         setGroupValues: () => {},
         clearGroups: () => {},
+        applyPatch: () => {},
+        getState: createEmptyFilterState,
       };
     }
 
     const chips = Array.from(document.querySelectorAll(".filter-chip"));
     const visibleCount = document.getElementById("visible-count");
     const emptyNote = document.getElementById("filter-empty");
+    const activeFilters = document.getElementById("active-filters");
     const clearBtn = document.getElementById("clear-filters");
     const openFiltersBtn = document.getElementById("open-filters");
+    const filtersCount = document.getElementById("filters-count");
     const filtersModal = document.getElementById("filters-modal");
     const closeFilterEls = Array.from(document.querySelectorAll("[data-close-filters]"));
     const filtersPanel = filtersModal?.querySelector(".filters-modal__panel");
     let applyFiltersBtn = document.getElementById("apply-filters");
-    const selected = Object.fromEntries(FILTER_GROUPS.map((group) => [group, new Set()]));
-    let catalogCategorySlug = null;
+    let clearModalBtn = document.getElementById("clear-filters-modal");
+    let cardIndex = buildCardIndex(grid);
+    let draftState = createEmptyFilterState();
+    let lastFocusedElement = null;
+    const store = createFilterStore(readFilterStateFromUrl());
 
-    if (!applyFiltersBtn && filtersPanel) {
+    if (filtersPanel && (!applyFiltersBtn || !clearModalBtn)) {
       const footer = document.createElement("div");
       footer.className = "filters-modal__footer";
-      const button = document.createElement("button");
-      button.type = "button";
-      button.id = "apply-filters";
-      button.className = "btn-book filters-modal__apply";
-      button.textContent = "Применить";
-      footer.appendChild(button);
+
+      if (!clearModalBtn) {
+        clearModalBtn = document.createElement("button");
+        clearModalBtn.type = "button";
+        clearModalBtn.id = "clear-filters-modal";
+        clearModalBtn.className = "btn-filter btn-filter--ghost filters-modal__clear";
+        clearModalBtn.textContent = "Сбросить";
+        footer.appendChild(clearModalBtn);
+      }
+
+      if (!applyFiltersBtn) {
+        applyFiltersBtn = document.createElement("button");
+        applyFiltersBtn.type = "button";
+        applyFiltersBtn.id = "apply-filters";
+        applyFiltersBtn.className = "btn-book filters-modal__apply";
+        applyFiltersBtn.textContent = "Показать варианты";
+        footer.appendChild(applyFiltersBtn);
+      }
+
       filtersPanel.appendChild(footer);
-      applyFiltersBtn = button;
     }
 
-    function getCards() {
-      return Array.from(grid.querySelectorAll(".catalog-card"));
-    }
-
-    function parseValues(card, group) {
-      const key = `filter${group.charAt(0).toUpperCase()}${group.slice(1)}`;
-      const raw = card.dataset[key] || "";
-      const normalized = normalizeCardFilterValues(group, raw, card);
-      if (normalized.length) return normalized;
-      return inferCardFilterValues(group, card);
-    }
-
-    function normalizeSelectedFilterValues(group, value, chipText) {
-      const raw = String(value || "").trim();
-      const label = String(chipText || "").toLowerCase();
-      if (!raw) return [];
-
-      if (group === "price") {
-        const normalized = normalizePriceValue(raw);
-        return normalized ? [normalized] : [];
-      }
-
-      if (group === "room") {
-        const normalized = normalizeRoomValue(raw);
-        return normalized ? [normalized] : [];
-      }
-
-      if (group === "stay") {
-        const normalized = normalizeStayValue(raw);
-        return normalized ? [normalized] : [];
-      }
-
-      if (group === "beach") {
-        if (raw === "sand" || label.includes("песчаный")) {
-          if (label.includes("сухум")) return [BEACH_FILTERS.SAND_SUKHUM];
-          if (label.includes("лдзаа")) return [BEACH_FILTERS.SAND_LDZAA];
-          return [BEACH_FILTERS.SAND_LDZAA, BEACH_FILTERS.SAND_SUKHUM];
-        }
-        if (raw === "pine-pebble" || label.includes("соснов")) return [BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA];
-        if (raw === "mixed" || label.includes("бухта")) return [BEACH_FILTERS.PITSUNDA_BAY_MIXED];
-        if (raw === "pebble" || label.includes("галеч")) return [BEACH_FILTERS.PEBBLE];
-        const normalized = normalizeBeachValue(raw, []);
-        return normalized ? [normalized] : [];
-      }
-
-      return [raw];
-    }
-
-    function isSelectedChip(group, value, chipText) {
-      if (!group || !selected[group]) return false;
+    function isSelectedChip(state, group, value, chipText) {
+      if (!group || !state.groups[group]) return false;
       const normalizedValues = normalizeSelectedFilterValues(group, value, chipText);
       if (!normalizedValues.length) return false;
-      return normalizedValues.some((normalized) => selected[group].has(normalized));
+      return normalizedValues.some((normalized) => state.groups[group].has(normalized));
     }
 
-    function applyFilters() {
-      let shown = 0;
-      getCards().forEach((card) => {
-        let ok = true;
-        for (const group of FILTER_GROUPS) {
-          if (selected[group].size === 0) continue;
-          const values = parseValues(card, group);
-          const hit = values.some((value) => selected[group].has(value));
-          if (!hit) {
-            ok = false;
-            break;
-          }
-        }
-        if (ok && catalogCategorySlug && !matchesCatalogCategory(catalogCategorySlug, cardCatalogCategoryText(card))) {
-          ok = false;
-        }
-        card.hidden = !ok;
-        if (ok) shown += 1;
-      });
-
-      if (visibleCount) visibleCount.textContent = String(shown);
-      if (emptyNote) emptyNote.hidden = shown !== 0;
-    }
-
-    function setCatalogCategory(slug) {
-      catalogCategorySlug = slug && String(slug).trim() ? String(slug).trim() : null;
-      applyFilters();
-    }
-
-    function syncChipState() {
+    function syncChipState(state) {
       chips.forEach((chip) => {
         const group = chip.dataset.group;
         const value = chip.dataset.value;
-        const active = Boolean(group && value && isSelectedChip(group, value, chip.textContent));
+        const active = Boolean(group && value && isSelectedChip(state, group, value, chip.textContent));
         chip.classList.toggle("is-active", active);
         chip.setAttribute("aria-pressed", active ? "true" : "false");
       });
     }
 
-    function setGroupValues(group, values) {
-      if (!selected[group]) return;
-      selected[group].clear();
-      (values || []).forEach((value) => {
-        const normalizedValues = normalizeSelectedFilterValues(group, value, "");
-        normalizedValues.forEach((normalized) => {
-          if (normalized) selected[group].add(normalized);
-        });
+    function renderActiveFilters(state) {
+      const items = getActiveFilterItems(state);
+      if (!activeFilters) return;
+      activeFilters.hidden = items.length === 0;
+      if (!items.length) {
+        activeFilters.replaceChildren();
+        return;
+      }
+
+      const fragment = document.createDocumentFragment();
+      items.forEach((item) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "active-filter-chip";
+        button.textContent = item.label;
+        button.setAttribute("aria-label", `Убрать фильтр ${item.label}`);
+        button.addEventListener("click", () => store.removeValue(item.group, item.value));
+        fragment.appendChild(button);
       });
-      syncChipState();
-      applyFilters();
+      activeFilters.replaceChildren(fragment);
     }
 
-    function clearGroups(groups) {
-      (groups || FILTER_GROUPS).forEach((group) => {
-        if (selected[group]) selected[group].clear();
-      });
-      syncChipState();
-      applyFilters();
+    function renderEmptyState(state, shown) {
+      if (!emptyNote) return;
+      emptyNote.hidden = shown !== 0;
+      if (shown !== 0) return;
+
+      const activeItems = getActiveFilterItems(state);
+      emptyNote.replaceChildren();
+      const text = document.createElement("span");
+      text.textContent = activeItems.length
+        ? `Ничего не нашли по ${activeItems.length} фильтрам. Попробуйте расширить расстояние до пляжа или бюджет.`
+        : "По выбранным параметрам пока нет подходящих объектов.";
+      emptyNote.appendChild(text);
+
+      if (!activeItems.length) return;
+      const lastItem = activeItems[activeItems.length - 1];
+      const removeLast = document.createElement("button");
+      removeLast.type = "button";
+      removeLast.className = "filter-empty__action";
+      removeLast.textContent = "Убрать последний фильтр";
+      removeLast.addEventListener("click", () => store.removeValue(lastItem.group, lastItem.value));
+
+      const clearAll = document.createElement("button");
+      clearAll.type = "button";
+      clearAll.className = "filter-empty__action";
+      clearAll.textContent = "Сбросить всё";
+      clearAll.addEventListener("click", () => store.clearGroups());
+
+      emptyNote.append(removeLast, clearAll);
+    }
+
+    function renderFilterSummary(state, shown) {
+      const activeCount = getActiveFilterCount(state);
+      if (visibleCount) visibleCount.textContent = String(shown);
+      if (filtersCount) {
+        filtersCount.textContent = String(activeCount);
+        filtersCount.hidden = activeCount === 0;
+      }
+      if (openFiltersBtn) {
+        openFiltersBtn.setAttribute(
+          "aria-label",
+          activeCount ? `Открыть фильтры, выбрано ${activeCount}` : "Открыть фильтры"
+        );
+      }
+      if (clearBtn) clearBtn.hidden = activeCount === 0;
+      renderActiveFilters(state);
+      renderEmptyState(state, shown);
+    }
+
+    function renderStoreState(state) {
+      const shown = applyCatalogFilters(state, cardIndex);
+      renderFilterSummary(state, shown);
+      if (!filtersModal || filtersModal.hidden) syncChipState(state);
+      writeFilterStateToUrl(state);
+    }
+
+    function renderDraftState() {
+      syncChipState(draftState);
+      const shown = countMatchingCards(draftState, cardIndex);
+      if (applyFiltersBtn) {
+        applyFiltersBtn.textContent = `Показать ${shown} вариантов`;
+      }
+      if (clearModalBtn) {
+        clearModalBtn.disabled = getActiveFilterCount(draftState) === 0;
+      }
+    }
+
+    function openFiltersModal() {
+      if (!filtersModal) return;
+      lastFocusedElement = document.activeElement;
+      draftState = store.getState();
+      renderDraftState();
+      filtersModal.hidden = false;
+      // Start enter transition on the next frame so CSS transform animates correctly.
+      requestAnimationFrame(() => filtersModal.classList.add("is-visible"));
+      body.classList.add("modal-open");
+      openFiltersBtn?.setAttribute("aria-expanded", "true");
+      window.setTimeout(() => filtersPanel?.focus(), 80);
+      trackAnalytics("open_filters");
+    }
+
+    function closeFiltersModal() {
+      if (!filtersModal) return;
+      filtersModal.classList.remove("is-visible");
+      body.classList.remove("modal-open");
+      openFiltersBtn?.setAttribute("aria-expanded", "false");
+      window.setTimeout(() => {
+        if (!filtersModal.classList.contains("is-visible")) {
+          filtersModal.hidden = true;
+          syncChipState(store.getState());
+        }
+      }, 360);
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+        lastFocusedElement.focus();
+      }
     }
 
     chips.forEach((chip) => {
@@ -1812,52 +2186,15 @@
       chip.addEventListener("click", () => {
         const group = chip.dataset.group;
         const value = chip.dataset.value;
-        if (!group || !value || !selected[group]) return;
-
-        const normalizedValues = normalizeSelectedFilterValues(group, value, chip.textContent);
-        if (!normalizedValues.length) return;
-        const currentlyActive = normalizedValues.every((normalized) => selected[group].has(normalized));
-
-        if (currentlyActive) {
-          normalizedValues.forEach((normalized) => selected[group].delete(normalized));
-        } else {
-          normalizedValues.forEach((normalized) => {
-            if (normalized) selected[group].add(normalized);
-          });
-        }
-        syncChipState();
-        applyFilters();
+        if (!group || !value) return;
+        draftState = toggleFilterValueInState(draftState, group, value, chip.textContent);
+        renderDraftState();
       });
     });
 
-    clearBtn?.addEventListener("click", () => {
-      FILTER_GROUPS.forEach((group) => selected[group].clear());
-      syncChipState();
-      catalogCategorySlug = null;
-      applyFilters();
-    });
-
-    const openFiltersModal = () => {
-      if (!filtersModal) return;
-      filtersModal.hidden = false;
-      // Start enter transition on the next frame so CSS transform animates correctly.
-      requestAnimationFrame(() => filtersModal.classList.add("is-visible"));
-      body.classList.add("modal-open");
-      trackAnalytics("open_filters");
-    };
-
-    const closeFiltersModal = () => {
-      if (!filtersModal) return;
-      filtersModal.classList.remove("is-visible");
-      body.classList.remove("modal-open");
-      window.setTimeout(() => {
-        if (!filtersModal.classList.contains("is-visible")) {
-          filtersModal.hidden = true;
-        }
-      }, 360);
-    };
-
+    clearBtn?.addEventListener("click", () => store.clearGroups());
     openFiltersBtn?.addEventListener("click", openFiltersModal);
+    openFiltersBtn?.setAttribute("aria-expanded", "false");
 
     closeFilterEls.forEach((element) => {
       element.addEventListener("click", () => {
@@ -1866,8 +2203,13 @@
     });
 
     applyFiltersBtn?.addEventListener("click", () => {
-      applyFilters();
+      store.replace(draftState);
       closeFiltersModal();
+    });
+
+    clearModalBtn?.addEventListener("click", () => {
+      draftState = createEmptyFilterState();
+      renderDraftState();
     });
 
     document.addEventListener("keydown", (event) => {
@@ -1876,9 +2218,20 @@
       }
     });
 
-    syncChipState();
-    applyFilters();
-    return { refresh: applyFilters, setCatalogCategory, setGroupValues, clearGroups };
+    store.subscribe(renderStoreState);
+    renderStoreState(store.getState());
+
+    return {
+      refresh: () => {
+        cardIndex = buildCardIndex(grid);
+        renderStoreState(store.getState());
+      },
+      setCatalogCategory: store.setCatalogCategory.bind(store),
+      setGroupValues: store.setGroupValues.bind(store),
+      clearGroups: store.clearGroups.bind(store),
+      applyPatch: store.applyPatch.bind(store),
+      getState: store.getState.bind(store),
+    };
   }
 
   function initSearchBar(filtersController) {
@@ -1913,6 +2266,23 @@
     if (checkinInput && !checkinInput.value) checkinInput.value = toISODate(today);
     if (checkoutInput && !checkoutInput.value) checkoutInput.value = toISODate(plusWeek);
 
+    const initialState = typeof filtersController.getState === "function" ? filtersController.getState() : null;
+    const firstSelected = (group) => Array.from(initialState?.groups?.[group] || [])[0] || "";
+    if (citySelect) citySelect.value = firstSelected("city");
+    if (distanceSelect) distanceSelect.value = firstSelected("distance");
+    if (priceSelect) priceSelect.value = firstSelected("price");
+    if (beachSelect) {
+      const beach = firstSelected("beach");
+      const beachFallbacks = {
+        [BEACH_FILTERS.SAND_LDZAA]: "sand",
+        [BEACH_FILTERS.SAND_SUKHUM]: "sand",
+        [BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA]: "pine-pebble",
+        [BEACH_FILTERS.PITSUNDA_BAY_MIXED]: "mixed",
+        [BEACH_FILTERS.PEBBLE]: "pebble",
+      };
+      beachSelect.value = beachFallbacks[beach] || beach;
+    }
+
     form.addEventListener("submit", (event) => {
       event.preventDefault();
 
@@ -1922,16 +2292,13 @@
       const price = priceSelect?.value || "";
       const guests = Number(guestsInput?.value || 0);
 
-      filtersController.setGroupValues("city", city ? [city] : []);
-      filtersController.setGroupValues("distance", distance ? [distance] : []);
-      filtersController.setGroupValues("beach", beach ? [beach] : []);
-      filtersController.setGroupValues("price", price ? [price] : []);
-
-      if (Number.isFinite(guests) && guests >= 5) {
-        filtersController.setGroupValues("room", ["five-plus"]);
-      } else {
-        filtersController.setGroupValues("room", []);
-      }
+      filtersController.applyPatch({
+        city: city ? [city] : [],
+        distance: distance ? [distance] : [],
+        beach: beach ? [beach] : [],
+        price: price ? [price] : [],
+        room: Number.isFinite(guests) && guests >= 5 ? ["five-plus"] : [],
+      });
 
       document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth", block: "start" });
       trackAnalytics("home_search_submit", {

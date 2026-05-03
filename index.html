@@ -316,16 +316,20 @@
     <section class="section site-concept__catalog" id="catalog">
 <article class="card catalog-shell">
 <div class="filters-launch">
-<button class="btn-filter" id="open-filters" type="button">Фильтры</button>
+<button class="btn-filter" id="open-filters" type="button">Фильтры <span class="filters-count" hidden="" id="filters-count">0</span></button>
 <button class="btn-filter btn-filter--ghost" id="clear-filters" type="button">Сбросить</button>
 <p class="filter-result">Показано объектов: <strong id="visible-count">0</strong></p>
 </div>
-<p class="filter-empty" hidden="" id="filter-empty">По выбранным параметрам пока нет подходящих объектов.</p>
+<div class="active-filters" hidden="" id="active-filters" aria-label="Выбранные фильтры"></div>
+<div class="filter-empty" hidden="" id="filter-empty">По выбранным параметрам пока нет подходящих объектов.</div>
 <div class="filters-modal" hidden="" id="filters-modal">
 <div class="filters-modal__backdrop" data-close-filters=""></div>
-<div aria-labelledby="filters-title" aria-modal="true" class="filters-modal__panel" role="dialog">
+<div aria-describedby="filters-description" aria-labelledby="filters-title" aria-modal="true" class="filters-modal__panel" role="dialog" tabindex="-1">
 <div class="filters-modal__header">
+<div>
 <h3 id="filters-title">Расширенные фильтры</h3>
+<p id="filters-description">Выберите параметры, которые важны для отдыха.</p>
+</div>
 <button aria-label="Закрыть" class="filters-modal__close" data-close-filters="" type="button">✕</button>
 </div>
 <div class="filters-grid">
@@ -402,6 +406,10 @@
 <button class="filter-chip" data-group="stay" data-value="no-small-kids" type="button">Без маленьких детей</button>
 </div>
 </details>
+</div>
+<div class="filters-modal__footer">
+<button class="btn-filter btn-filter--ghost filters-modal__clear" id="clear-filters-modal" type="button">Сбросить</button>
+<button class="btn-book filters-modal__apply" id="apply-filters" type="button">Показать варианты</button>
 </div>
 </div>
 </div>
