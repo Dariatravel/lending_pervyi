@@ -1917,6 +1917,107 @@
     return { rebuild, passes, countPrimaryShown, countAllMatching, applyHiddenForSelection };
   }
 
+  /** Склонение для строки «ничего не нашли по N фильтру/фильтрам» над пустым каталогом. */
+  function parametrovSklonenieRuForFilters(n) {
+    const k = Number(n);
+    if (!Number.isFinite(k) || k <= 0) return "выбранным фильтрам";
+    const mod100 = k % 100;
+    const mod10 = k % 10;
+    if (mod100 >= 11 && mod100 <= 14) return `${k} фильтрам`;
+    if (mod10 === 1) return `${k} фильтру`;
+    return `${k} фильтрам`;
+  }
+
+  /** Плашки снятия фильтров, подпись кнопки «Фильтры», текст пустого блока результатов. */
+  function attachCatalogFilterSummaryChrome(spec) {
+    const d = spec;
+
+    function renderActiveRemovalChips() {
+      if (!d.activeFiltersList || !d.activeFiltersWrap) return;
+      d.activeFiltersList.replaceChildren();
+
+      d.filterGroups.forEach((group) => {
+        [...d.filt.committedSel[group]].forEach((token) => {
+          const label = d.resolveTokenLabel(group, token);
+          if (!label) return;
+          const chip = document.createElement("button");
+          chip.type = "button";
+          chip.className = "filter-pill-removable";
+          chip.setAttribute("data-remove-group", group);
+          chip.setAttribute("data-remove-token", token);
+          chip.setAttribute("aria-label", `Снять фильтр «${label}»`);
+          chip.innerHTML = `${label}<span class="filter-pill-removable__x" aria-hidden="true">\u00d7</span>`;
+          d.activeFiltersList.appendChild(chip);
+        });
+      });
+
+      if (d.filt.committedCat && d.categoryLabels[d.filt.committedCat]) {
+        const pill = document.createElement("button");
+        pill.type = "button";
+        pill.className = "filter-pill-removable filter-pill-removable--muted";
+        pill.setAttribute("data-remove-category", "1");
+        pill.setAttribute("aria-label", `Снять «${d.categoryLabels[d.filt.committedCat]}»`);
+        pill.innerHTML =
+          `${d.categoryLabels[d.filt.committedCat]}<span class="filter-pill-removable__x" aria-hidden="true">\u00d7</span>`;
+        d.activeFiltersList.appendChild(pill);
+      }
+
+      d.activeFiltersWrap.hidden = d.countPins(d.filt.committedSel, d.filt.committedCat) === 0;
+    }
+
+    function syncOpenBadge() {
+      const pins = d.countPins(d.filt.committedSel, d.filt.committedCat);
+      const cap = pins > 99 ? "99+" : String(pins);
+
+      if (d.openFiltersLabel) {
+        d.openFiltersLabel.textContent = pins ? `Фильтры · ${cap}` : "Фильтры";
+      }
+      if (d.openFiltersBadge) {
+        d.openFiltersBadge.textContent = cap;
+        d.openFiltersBadge.setAttribute("hidden", "");
+      }
+      if (d.openFiltersBtn) {
+        d.openFiltersBtn.setAttribute("aria-label", pins ? `Открыть фильтры · активно условий: ${pins}` : "Открыть фильтры");
+      }
+    }
+
+    function updateEmptyLead(primaryShown, totalMatching, pins) {
+      if (!d.emptyLeadEl || !d.emptyNoteEl) return;
+      if (primaryShown > 0) return;
+
+      const emptyHint = d.emptyNoteEl.querySelector(".filter-empty__hint");
+      const kvFallback = Boolean(totalMatching > 0 && totalMatching !== primaryShown);
+
+      if (totalMatching === 0) {
+        if (pins === 0) {
+          d.emptyLeadEl.textContent =
+            "По выбранным параметрам пока нет подходящих объектов. Ослабьте один из фильтров или сбросьте их.";
+        } else {
+          const filterWordParams = parametrovSklonenieRuForFilters(pins);
+          d.emptyLeadEl.textContent = `Ничего не нашли по ${filterWordParams}. Ослабьте условие, снимите последний параметр или сбросьте всё.`;
+        }
+        if (emptyHint) {
+          emptyHint.textContent = "Попробуйте смягчить условие: город, расстояние до пляжа или бюджет.";
+          emptyHint.removeAttribute("hidden");
+        }
+        return;
+      }
+
+      if (kvFallback) {
+        const search = typeof window.location !== "undefined" ? window.location.search || "" : "";
+        d.emptyLeadEl.textContent =
+          "В основном каталоге ниже подходящих объектов размещения сейчас не видно, но есть совпадения среди квартир и домов.";
+        if (emptyHint) {
+          emptyHint.innerHTML =
+            `Откройте <a href="/kvartira/${search}">раздел «Квартиры»</a> с теми же параметрами в адресе (или перейдите из меню сайта).`;
+          emptyHint.removeAttribute("hidden");
+        }
+      }
+    }
+
+    return { renderActiveRemovalChips, syncOpenBadge, updateEmptyLead };
+  }
+
   function initFilters() {
     const FILTER_SHEET_MOBILE_QUERY = "(max-width: 900px)";
 
@@ -2149,38 +2250,20 @@
       return n;
     }
 
-    function renderActiveRemovalChips() {
-      if (!activeFiltersList || !activeFiltersWrap) return;
-      activeFiltersList.replaceChildren();
-
-      FILTER_GROUPS.forEach((group) => {
-        [...filt.committedSel[group]].forEach((token) => {
-          const label = labelForToken(group, token);
-          if (!label) return;
-          const chip = document.createElement("button");
-          chip.type = "button";
-          chip.className = "filter-pill-removable";
-          chip.setAttribute("data-remove-group", group);
-          chip.setAttribute("data-remove-token", token);
-          chip.setAttribute("aria-label", `Снять фильтр «${label}»`);
-          chip.innerHTML = `${label}<span class="filter-pill-removable__x" aria-hidden="true">\u00d7</span>`;
-          activeFiltersList.appendChild(chip);
-        });
-      });
-
-      if (filt.committedCat && CATALOG_CATEGORY_LABELS[filt.committedCat]) {
-        const pill = document.createElement("button");
-        pill.type = "button";
-        pill.className = "filter-pill-removable filter-pill-removable--muted";
-        pill.setAttribute("data-remove-category", "1");
-        pill.setAttribute("aria-label", `Снять «${CATALOG_CATEGORY_LABELS[filt.committedCat]}»`);
-        pill.innerHTML =
-          `${CATALOG_CATEGORY_LABELS[filt.committedCat]}<span class="filter-pill-removable__x" aria-hidden="true">\u00d7</span>`;
-        activeFiltersList.appendChild(pill);
-      }
-
-      activeFiltersWrap.hidden = countActivePins(filt.committedSel, filt.committedCat) === 0;
-    }
+    const { renderActiveRemovalChips, syncOpenBadge, updateEmptyLead } = attachCatalogFilterSummaryChrome({
+      filt,
+      filterGroups: FILTER_GROUPS,
+      categoryLabels: CATALOG_CATEGORY_LABELS,
+      resolveTokenLabel: labelForToken,
+      countPins: countActivePins,
+      activeFiltersWrap,
+      activeFiltersList,
+      openFiltersLabel,
+      openFiltersBadge,
+      openFiltersBtn,
+      emptyLeadEl: emptyLead,
+      emptyNoteEl: emptyNote,
+    });
 
     function pushRecent(group, token) {
       if (group === "catalog" && token) {
@@ -2210,74 +2293,12 @@
       recentStack = [];
     }
 
-    function syncOpenBadge() {
-      const pins = countActivePins(filt.committedSel, filt.committedCat);
-      const cap = pins > 99 ? "99+" : String(pins);
-
-      if (openFiltersLabel) {
-        openFiltersLabel.textContent = pins ? `Фильтры · ${cap}` : "Фильтры";
-      }
-      if (openFiltersBadge) {
-        openFiltersBadge.textContent = cap;
-        openFiltersBadge.setAttribute("hidden", "");
-      }
-      if (openFiltersBtn) {
-        openFiltersBtn.setAttribute("aria-label", pins ? `Открыть фильтры · активно условий: ${pins}` : "Открыть фильтры");
-      }
-    }
-
-    function updateEmptyLead(primaryShown, totalMatching, pins) {
-      if (!emptyLead || !emptyNote) return;
-      if (primaryShown > 0) return;
-
-      const emptyHint = emptyNote.querySelector(".filter-empty__hint");
-      const kvFallback = Boolean(totalMatching > 0 && totalMatching !== primaryShown);
-
-      if (totalMatching === 0) {
-        if (pins === 0) {
-          emptyLead.textContent =
-            "По выбранным параметрам пока нет подходящих объектов. Ослабьте один из фильтров или сбросьте их.";
-        } else {
-          const filterWordParams = parametrovSklonenie(pins);
-          emptyLead.textContent = `Ничего не нашли по ${filterWordParams}. Ослабьте условие, снимите последний параметр или сбросьте всё.`;
-        }
-        if (emptyHint) {
-          emptyHint.textContent = "Попробуйте смягчить условие: город, расстояние до пляжа или бюджет.";
-          emptyHint.removeAttribute("hidden");
-        }
-        return;
-      }
-
-      // Есть совпадения среди скрытых квартир: не вводим в заблуждение текстом про «нет объектов».
-      if (kvFallback) {
-        const search = typeof window.location !== "undefined" ? window.location.search || "" : "";
-        emptyLead.textContent =
-          "В основном каталоге ниже подходящих объектов размещения сейчас не видно, но есть совпадения среди квартир и домов.";
-        if (emptyHint) {
-          emptyHint.innerHTML =
-            `Откройте <a href="/kvartira/${search}">раздел «Квартиры»</a> с теми же параметрами в адресе (или перейдите из меню сайта).`;
-          emptyHint.removeAttribute("hidden");
-        }
-      }
-    }
-
     function variantsWord(n) {
       const mod10 = n % 10;
       const mod100 = n % 100;
       if (mod10 === 1 && mod100 !== 11) return "вариант";
       if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return "варианта";
       return "вариантов";
-    }
-
-    /** Склонение для фраз «по N фильтру / фильтрам» (локаль главной строки «ничего не нашли»). */
-    function parametrovSklonenie(n) {
-      const k = Number(n);
-      if (!Number.isFinite(k) || k <= 0) return "выбранным фильтрам";
-      const mod100 = k % 100;
-      const mod10 = k % 10;
-      if (mod100 >= 11 && mod100 <= 14) return `${k} фильтрам`;
-      if (mod10 === 1) return `${k} фильтру`;
-      return `${k} фильтрам`;
     }
 
     function syncApplyFooterText() {
