@@ -1733,7 +1733,7 @@ def build_homepage() -> None:
       <div>
         <p class="site-concept__eyebrow">Популярные направления</p>
       </div>
-      <a href="#stays">Все подборки</a>
+      <a href="/podborki/">Все подборки</a>
     </div>
 
     <div class="site-concept__destination-grid">
