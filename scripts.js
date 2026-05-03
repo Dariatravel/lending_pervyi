@@ -1839,6 +1839,84 @@
     return { openFiltersModal, closeFiltersModal };
   }
 
+  /** Индекс `data-filter` по карточкам главной каталог-сетки (и квартирного блока, если смёржен в getCards). */
+  function buildCatalogCardIndexRecords(cards, groupOrder, parseCardGroup) {
+    return cards.map((card) => ({
+      el: card,
+      byGroup: Object.fromEntries(
+        groupOrder.map((group) => [group, new Set(parseCardGroup(card, group).filter(Boolean))])
+      ),
+    }));
+  }
+
+  /** AND между группами, OR выбора внутри группы; опционально slug каталога типа размещения по тексту карточки. */
+  function catalogIndexedEntryPassesFilters(entry, selected, slug, filterGroups, matchesCatalogSlug, catalogTextForCard) {
+    for (const group of filterGroups) {
+      if (!selected[group] || selected[group].size === 0) continue;
+      const bucket = entry.byGroup[group];
+      let ok = false;
+      for (const choice of selected[group]) {
+        if (bucket.has(choice)) {
+          ok = true;
+          break;
+        }
+      }
+      if (!ok) return false;
+    }
+    if (slug && !matchesCatalogSlug(slug, catalogTextForCard(entry.el))) {
+      return false;
+    }
+    return true;
+  }
+
+  function attachCatalogCardFilterMatching(deps) {
+    let entries = [];
+
+    function rebuild() {
+      entries = buildCatalogCardIndexRecords(deps.collectCards(), deps.filterGroups, deps.parseCardGroup);
+    }
+
+    function passes(entry, selected, catSlug) {
+      return catalogIndexedEntryPassesFilters(
+        entry,
+        selected,
+        catSlug,
+        deps.filterGroups,
+        deps.matchesCatalogSlug,
+        deps.catalogTextForCard
+      );
+    }
+
+    function countPrimaryShown(selected, catSlug) {
+      let shown = 0;
+      entries.forEach((entry) => {
+        if (!passes(entry, selected, catSlug)) return;
+        if (deps.isPrimaryCard(entry.el)) shown += 1;
+      });
+      return shown;
+    }
+
+    function countAllMatching(selected, catSlug) {
+      let n = 0;
+      entries.forEach((entry) => {
+        if (passes(entry, selected, catSlug)) n += 1;
+      });
+      return n;
+    }
+
+    function applyHiddenForSelection(selected, catSlug) {
+      let primaryShown = 0;
+      entries.forEach((entry) => {
+        const ok = passes(entry, selected, catSlug);
+        entry.el.hidden = !ok;
+        if (ok && deps.isPrimaryCard(entry.el)) primaryShown += 1;
+      });
+      return primaryShown;
+    }
+
+    return { rebuild, passes, countPrimaryShown, countAllMatching, applyHiddenForSelection };
+  }
+
   function initFilters() {
     const FILTER_SHEET_MOBILE_QUERY = "(max-width: 900px)";
 
@@ -1872,7 +1950,6 @@
     const filt = createFilterStore(FILTER_GROUPS);
     let recentStack = [];
     let suppressUrlSync = false;
-    let cardIndexItems = [];
 
     const chipCaptionBySig = new Map();
     Array.from(document.querySelectorAll(".filter-chip")).forEach((chipEl) => {
@@ -1947,6 +2024,15 @@
       return inferCardFilterValues(group, card);
     }
 
+    const catalogMatch = attachCatalogCardFilterMatching({
+      collectCards: getCards,
+      filterGroups: FILTER_GROUPS,
+      parseCardGroup: parseValues,
+      matchesCatalogSlug: matchesCatalogCategory,
+      catalogTextForCard: cardCatalogCategoryText,
+      isPrimaryCard: isPrimaryCatalogCard,
+    });
+
     function normalizeSelectedFilterValues(group, value, chipText) {
       const raw = String(value || "").trim();
       const label = String(chipText || "").toLowerCase();
@@ -2003,17 +2089,7 @@
     }
 
     function rebuildCardIndex() {
-      cardIndexItems = buildCardCatalogIndex(getCards(), FILTER_GROUPS, parseValues);
-    }
-
-    /** Построить индекс карточек один раз после загрузки/обновления сетки. */
-    function buildCardCatalogIndex(cards, groupOrder, parseCardGroup) {
-      return cards.map((card) => ({
-        el: card,
-        byGroup: Object.fromEntries(
-          groupOrder.map((group) => [group, new Set(parseCardGroup(card, group).filter(Boolean))])
-        ),
-      }));
+      catalogMatch.rebuild();
     }
 
     function notifySubscribers(reason, snapshot) {
@@ -2036,50 +2112,16 @@
       });
     }
 
-    function cardPassesFilters(entry, selected, slug) {
-      for (const group of FILTER_GROUPS) {
-        if (!selected[group] || selected[group].size === 0) continue;
-        const bucket = entry.byGroup[group];
-        let ok = false;
-        for (const choice of selected[group]) {
-          if (bucket.has(choice)) {
-            ok = true;
-            break;
-          }
-        }
-        if (!ok) return false;
-      }
-      if (slug && !matchesCatalogCategory(slug, cardCatalogCategoryText(entry.el))) {
-        return false;
-      }
-      return true;
-    }
-
     function countShownOnly(selected, slug) {
-      let shown = 0;
-      cardIndexItems.forEach((entry) => {
-        if (!cardPassesFilters(entry, selected, slug)) return;
-        if (isPrimaryCatalogCard(entry.el)) shown += 1;
-      });
-      return shown;
+      return catalogMatch.countPrimaryShown(selected, slug);
     }
 
     function countTotalMatching(selected, slug) {
-      let n = 0;
-      cardIndexItems.forEach((entry) => {
-        if (cardPassesFilters(entry, selected, slug)) n += 1;
-      });
-      return n;
+      return catalogMatch.countAllMatching(selected, slug);
     }
 
     function applyVisibilityCommitted() {
-      let shown = 0;
-      cardIndexItems.forEach((entry) => {
-        const ok = cardPassesFilters(entry, filt.committedSel, filt.committedCat);
-        entry.el.hidden = !ok;
-        if (ok && isPrimaryCatalogCard(entry.el)) shown += 1;
-      });
-      return shown;
+      return catalogMatch.applyHiddenForSelection(filt.committedSel, filt.committedCat);
     }
 
     function labelForToken(group, token) {
