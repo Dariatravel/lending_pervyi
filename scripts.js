@@ -1732,6 +1732,113 @@
     return store;
   }
 
+  /** Сборка фильтров в query и обратное чтение при загрузке; не трогает DOM каталога. */
+  function attachCatalogFilterUrlLayers(ctx) {
+    const {
+      isSuppressed,
+      filt,
+      filterGroups,
+      catalogParamKey,
+      categoryLabels,
+      normalizeSelectedFilterTokens,
+      rebuildRecentStackFromSelectionsFn,
+    } = ctx;
+
+    function syncCommittedToLocation() {
+      if (isSuppressed()) return;
+      const params = new URLSearchParams();
+      if (filt.committedCat && categoryLabels[filt.committedCat]) {
+        params.set(catalogParamKey, filt.committedCat);
+      }
+      filterGroups.forEach((group) => {
+        const parts = [...filt.committedSel[group]].filter(Boolean).sort();
+        if (!parts.length) return;
+        params.set(group, parts.join(","));
+      });
+
+      const nextSearch = params.toString() ? `?${params}` : "";
+      const next = `${window.location.pathname}${nextSearch}${window.location.hash || ""}`;
+      const current = `${window.location.pathname}${window.location.search}${window.location.hash || ""}`;
+      if (next !== current) window.history.replaceState(null, "", next);
+    }
+
+    function absorbLocationIntoCommitted() {
+      const params = new URLSearchParams(window.location.search || "");
+      if (!params.toString()) return;
+
+      filterGroups.forEach((group) => {
+        filt.committedSel[group].clear();
+        const blob = params.get(group);
+        if (!blob) return;
+        blob
+          .split(",")
+          .map((segment) => String(segment || "").trim())
+          .filter(Boolean)
+          .forEach((rawToken) => {
+            normalizeSelectedFilterTokens(group, rawToken, "").forEach((token) => {
+              if (token) filt.committedSel[group].add(token);
+            });
+          });
+      });
+
+      const cat = String(params.get(catalogParamKey) || "").trim();
+      if (cat === "hotel" || cat === "guesthouse" || cat === "cabin") filt.committedCat = cat;
+      else filt.committedCat = null;
+
+      rebuildRecentStackFromSelectionsFn();
+    }
+
+    return { syncCommittedToLocation, absorbLocationIntoCommitted };
+  }
+
+  /** Нижний лист / боковая панель фильтров на главной каталог-панели. */
+  function attachFiltersDrawerInteractions(spec) {
+    const { state } = spec;
+
+    function openFiltersModal() {
+      if (!spec.filtersModal) return;
+      state.reopenFocusEl = document.activeElement;
+      state.isOpen = true;
+      if (spec.mobileDraftHint) spec.mobileDraftHint.hidden = !spec.isMobileFiltersLayout();
+      spec.filt.syncDraftFromCommitted();
+      const previewN = spec.countShownDraft(spec.filt.draftSel, spec.filt.draftCat);
+      spec.onDraftPreviewCount(previewN);
+      spec.filtersModal.hidden = false;
+      requestAnimationFrame(() => spec.filtersModal.classList.add("is-visible"));
+      spec.body.classList.add("modal-open");
+      spec.syncChipUi(spec.filt.draftSel, spec.filt.draftCat);
+      spec.syncApplyFooterText();
+      spec.trackAnalytics("open_filters");
+    }
+
+    function closeFiltersModal(opts) {
+      const restoreCommittedDraft = !(opts && opts.restoreCommittedDraft === false);
+      if (!spec.filtersModal) return;
+      if (restoreCommittedDraft && state.isOpen && spec.isMobileFiltersLayout()) {
+        spec.rollbackDraftFromCommitted();
+      }
+      spec.filtersModal.classList.remove("is-visible");
+      spec.body.classList.remove("modal-open");
+      state.isOpen = false;
+      if (spec.mobileDraftHint) spec.mobileDraftHint.hidden = true;
+      spec.syncChipUi(spec.filt.committedSel, spec.filt.committedCat);
+
+      window.setTimeout(() => {
+        if (!spec.filtersModal.classList.contains("is-visible")) {
+          spec.filtersModal.hidden = true;
+        }
+      }, 360);
+
+      const focusTarget = state.reopenFocusEl || spec.openFiltersBtn;
+      state.reopenFocusEl = null;
+      if (focusTarget instanceof HTMLElement && typeof focusTarget.focus === "function") {
+        window.requestAnimationFrame(() => focusTarget.focus({ preventScroll: true }));
+      }
+    }
+
+    return { openFiltersModal, closeFiltersModal };
+  }
+
   function initFilters() {
     const FILTER_SHEET_MOBILE_QUERY = "(max-width: 900px)";
 
@@ -1797,12 +1904,12 @@
     const mobileDraftHint = document.getElementById("filters-draft-hint-mobile");
     const filtersDraftPreview = document.getElementById("filters-draft-preview");
 
-    let modalIsOpen = false;
-    let reopenFocusEl = null;
     let draftPreviewCount = 0;
 
+    const filtersDrawerState = { reopenFocusEl: null, isOpen: false };
+
     function pickWorkingSets() {
-      if (modalIsOpen && isMobileFiltersLayout()) {
+      if (filtersDrawerState.isOpen && isMobileFiltersLayout()) {
         return { selected: filt.draftSel, categorySlug: filt.draftCat, isDraftFlow: true };
       }
       return { selected: filt.committedSel, categorySlug: filt.committedCat, isDraftFlow: false };
@@ -2133,10 +2240,10 @@
 
     function syncApplyFooterText() {
       if (!applyFiltersBtn) return;
-      const mobile = modalIsOpen && isMobileFiltersLayout();
+      const mobile = filtersDrawerState.isOpen && isMobileFiltersLayout();
 
       if (filtersDraftPreview) {
-        if (mobile && modalIsOpen) {
+        if (mobile) {
           filtersDraftPreview.removeAttribute("hidden");
           const previewN = draftPreviewCount;
           filtersDraftPreview.textContent = `Найдено ${previewN} ${variantsWord(previewN)} по выбранным условиям`;
@@ -2145,7 +2252,7 @@
         }
       }
 
-      if (!mobile || !modalIsOpen) {
+      if (!mobile || !filtersDrawerState.isOpen) {
         applyFiltersBtn.textContent = "Готово";
         applyFiltersBtn.removeAttribute("aria-label");
         return;
@@ -2156,50 +2263,6 @@
       applyFiltersBtn.removeAttribute("aria-label");
     }
 
-    function syncUrlFromState() {
-      if (suppressUrlSync) return;
-      const params = new URLSearchParams();
-      if (filt.committedCat && CATALOG_CATEGORY_LABELS[filt.committedCat]) {
-        params.set(FILTER_CONFIG.catalogParamKey, filt.committedCat);
-      }
-      FILTER_GROUPS.forEach((group) => {
-        const parts = [...filt.committedSel[group]].filter(Boolean).sort();
-        if (!parts.length) return;
-        params.set(group, parts.join(","));
-      });
-
-      const nextSearch = params.toString() ? `?${params}` : "";
-      const next = `${window.location.pathname}${nextSearch}${window.location.hash || ""}`;
-      const current = `${window.location.pathname}${window.location.search}${window.location.hash || ""}`;
-      if (next !== current) window.history.replaceState(null, "", next);
-    }
-
-    function absorbUrlIntoCommitted() {
-      const params = new URLSearchParams(window.location.search || "");
-      if (!params.toString()) return;
-
-      FILTER_GROUPS.forEach((group) => {
-        filt.committedSel[group].clear();
-        const blob = params.get(group);
-        if (!blob) return;
-        blob
-          .split(",")
-          .map((segment) => String(segment || "").trim())
-          .filter(Boolean)
-          .forEach((rawToken) => {
-            normalizeSelectedFilterValues(group, rawToken, "").forEach((token) => {
-              if (token) filt.committedSel[group].add(token);
-            });
-          });
-      });
-
-      const cat = String(params.get(FILTER_CONFIG.catalogParamKey) || "").trim();
-      if (cat === "hotel" || cat === "guesthouse" || cat === "cabin") filt.committedCat = cat;
-      else filt.committedCat = null;
-
-      rebuildRecentStackFromSelections();
-    }
-
     function rebuildRecentStackFromSelections() {
       recentStack = [];
       if (filt.committedCat) pushRecent("catalog", filt.committedCat);
@@ -2207,6 +2270,16 @@
         [...filt.committedSel[group]].forEach((token) => pushRecent(group, token));
       });
     }
+
+    const catalogUrl = attachCatalogFilterUrlLayers({
+      isSuppressed: () => suppressUrlSync,
+      filt,
+      filterGroups: FILTER_GROUPS,
+      catalogParamKey: FILTER_CONFIG.catalogParamKey,
+      categoryLabels: CATALOG_CATEGORY_LABELS,
+      normalizeSelectedFilterTokens: normalizeSelectedFilterValues,
+      rebuildRecentStackFromSelectionsFn: rebuildRecentStackFromSelections,
+    });
 
     function toggleTokensInSelection(selection, group, normalizedValues, enable, trackRecent, treatAsCategory) {
       if (treatAsCategory) return;
@@ -2250,13 +2323,13 @@
       syncOpenBadge();
       renderActiveRemovalChips();
       updateEmptyLead(primaryShown, totalMatching, pins);
-      syncUrlFromState();
+      catalogUrl.syncCommittedToLocation();
 
       syncApplyFooterText();
 
-      const chipSource = modalIsOpen && isMobileFiltersLayout() ? filt.draftSel : filt.committedSel;
+      const chipSource = filtersDrawerState.isOpen && isMobileFiltersLayout() ? filt.draftSel : filt.committedSel;
       const chipCatUnused =
-        modalIsOpen && isMobileFiltersLayout()
+        filtersDrawerState.isOpen && isMobileFiltersLayout()
           ? filt.draftCat
           : filt.committedCat;
       syncChipUi(chipSource, chipCatUnused);
@@ -2282,9 +2355,9 @@
 
       toggleTokensInSelection(selected, group, normalizedValues, nextActive, !isDraftFlow, false);
 
-      const chipSel = modalIsOpen && isMobileFiltersLayout() ? filt.draftSel : filt.committedSel;
+      const chipSel = filtersDrawerState.isOpen && isMobileFiltersLayout() ? filt.draftSel : filt.committedSel;
       const chipCatUnused =
-        modalIsOpen && isMobileFiltersLayout()
+        filtersDrawerState.isOpen && isMobileFiltersLayout()
           ? filt.draftCat
           : filt.committedCat;
       syncChipUi(chipSel, chipCatUnused);
@@ -2432,45 +2505,23 @@
       return true;
     }
 
-    function openFiltersModal() {
-      if (!filtersModal) return;
-      reopenFocusEl = document.activeElement;
-      modalIsOpen = true;
-      if (mobileDraftHint) mobileDraftHint.hidden = !isMobileFiltersLayout();
-      filt.syncDraftFromCommitted();
-      draftPreviewCount = countShownOnly(filt.draftSel, filt.draftCat);
-      filtersModal.hidden = false;
-      requestAnimationFrame(() => filtersModal.classList.add("is-visible"));
-      body.classList.add("modal-open");
-      syncChipUi(filt.draftSel, filt.draftCat);
-      syncApplyFooterText();
-      trackAnalytics("open_filters");
-    }
-
-    function closeFiltersModal(opts) {
-      const restoreCommittedDraft = !(opts && opts.restoreCommittedDraft === false);
-      if (!filtersModal) return;
-      if (restoreCommittedDraft && modalIsOpen && isMobileFiltersLayout()) {
-        rollbackDraftFromCommitted();
-      }
-      filtersModal.classList.remove("is-visible");
-      body.classList.remove("modal-open");
-      modalIsOpen = false;
-      if (mobileDraftHint) mobileDraftHint.hidden = true;
-      syncChipUi(filt.committedSel, filt.committedCat);
-
-      window.setTimeout(() => {
-        if (!filtersModal.classList.contains("is-visible")) {
-          filtersModal.hidden = true;
-        }
-      }, 360);
-
-      const focusTarget = reopenFocusEl || openFiltersBtn;
-      reopenFocusEl = null;
-      if (focusTarget instanceof HTMLElement && typeof focusTarget.focus === "function") {
-        window.requestAnimationFrame(() => focusTarget.focus({ preventScroll: true }));
-      }
-    }
+    const { openFiltersModal, closeFiltersModal } = attachFiltersDrawerInteractions({
+      state: filtersDrawerState,
+      filt,
+      filtersModal,
+      body,
+      mobileDraftHint,
+      openFiltersBtn,
+      isMobileFiltersLayout,
+      rollbackDraftFromCommitted,
+      syncChipUi,
+      syncApplyFooterText,
+      trackAnalytics,
+      countShownDraft: (selected, slug) => countShownOnly(selected, slug),
+      onDraftPreviewCount(n) {
+        draftPreviewCount = n;
+      },
+    });
 
     /** Привязка чипов, кнопок и модалки — после объявления всех обработчиков состояния. */
     function wireFilterUiInteractions() {
@@ -2511,7 +2562,7 @@
       });
 
       modalResetDraftBtn?.addEventListener("click", () => {
-        const usingDraftFlow = modalIsOpen && isMobileFiltersLayout();
+        const usingDraftFlow = filtersDrawerState.isOpen && isMobileFiltersLayout();
         if (!usingDraftFlow) {
           clearBtn?.click();
           return;
@@ -2536,7 +2587,7 @@
     function bootstrapFiltersFromUrlAndDom() {
       rebuildCardIndex();
       suppressUrlSync = true;
-      absorbUrlIntoCommitted();
+      catalogUrl.absorbLocationIntoCommitted();
       suppressUrlSync = false;
       rollbackDraftFromCommitted();
       rebuildRecentStackFromSelections();
