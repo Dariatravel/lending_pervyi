@@ -4790,6 +4790,12 @@ body.modal-open {
   overflow: hidden;
 }
 
+/* Поверх модалки фильтров (z-index ~1000); иначе перекрывает оверлей */
+body.modal-open .back-to-top {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .catalog-shell__header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
