@@ -72,6 +72,7 @@
   const SCREENSHOT_REVIEW_BANK_URL = "/media/reviews/review_text_bank.json";
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
   const FILTER_CONFIG = {
+    /** Отдельный URL-парам (hotel / guesthouse / cabin), не смешиваем с группами `data-filter-*` на карточках. Состояние категории живёт рядом с группами в createFilterStore (committedCat / draftCat). */
     catalogParamKey: "catalog",
     groupOrder: ["distance", "food", "price", "city", "beach", "room", "stay"],
     /** OR внутри группы / AND между группами — см. matcher в initFilters */
@@ -2471,71 +2472,79 @@
       }
     }
 
-    chips.forEach((chip) => {
-      chip.type = "button";
-      chip.setAttribute("aria-pressed", "false");
-      chip.addEventListener("click", () => toggleChipAcrossModes(chip));
-    });
+    /** Привязка чипов, кнопок и модалки — после объявления всех обработчиков состояния. */
+    function wireFilterUiInteractions() {
+      chips.forEach((chip) => {
+        chip.type = "button";
+        chip.setAttribute("aria-pressed", "false");
+        chip.addEventListener("click", () => toggleChipAcrossModes(chip));
+      });
 
-    clearBtn?.addEventListener("click", () => {
-      clearSelectionGroups(filt.committedSel, FILTER_GROUPS, true);
-      filt.committedCat = null;
-      clearRecentFully();
-      rollbackDraftFromCommitted();
-      syncChipUi(filt.committedSel, filt.committedCat);
-      applyCommittedToDom();
-      trackAnalytics("clear_filters_catalog");
-    });
+      clearBtn?.addEventListener("click", () => {
+        clearSelectionGroups(filt.committedSel, FILTER_GROUPS, true);
+        filt.committedCat = null;
+        clearRecentFully();
+        rollbackDraftFromCommitted();
+        syncChipUi(filt.committedSel, filt.committedCat);
+        applyCommittedToDom();
+        trackAnalytics("clear_filters_catalog");
+      });
 
-    emptyResetBtn?.addEventListener("click", () => {
-      clearBtn?.click();
-    });
-
-    emptyRemoveLastBtn?.addEventListener("click", () => {
-      removeLastCommittedFilterToken();
-    });
-
-    openFiltersBtn?.addEventListener("click", () => openFiltersModal());
-
-    closeFilterEls.forEach((element) => {
-      element.addEventListener("click", () => closeFiltersModal({}));
-    });
-
-    applyFiltersBtn?.addEventListener("click", () => {
-      if (!filtersModal?.classList.contains("is-visible")) return;
-      if (isMobileFiltersLayout()) applyCommittedFromDraft();
-      closeFiltersModal({ restoreCommittedDraft: false });
-    });
-
-    modalResetDraftBtn?.addEventListener("click", () => {
-      const usingDraftFlow = modalIsOpen && isMobileFiltersLayout();
-      if (!usingDraftFlow) {
+      emptyResetBtn?.addEventListener("click", () => {
         clearBtn?.click();
-        return;
-      }
-      resetModalDraftOnly();
-    });
+      });
 
-    document.addEventListener(
-      "keydown",
-      (event) => {
-        if (event.key === "Escape" && filtersModal && !filtersModal.hidden) {
-          event.preventDefault();
-          closeFiltersModal({});
+      emptyRemoveLastBtn?.addEventListener("click", () => {
+        removeLastCommittedFilterToken();
+      });
+
+      openFiltersBtn?.addEventListener("click", () => openFiltersModal());
+
+      closeFilterEls.forEach((element) => {
+        element.addEventListener("click", () => closeFiltersModal({}));
+      });
+
+      applyFiltersBtn?.addEventListener("click", () => {
+        if (!filtersModal?.classList.contains("is-visible")) return;
+        if (isMobileFiltersLayout()) applyCommittedFromDraft();
+        closeFiltersModal({ restoreCommittedDraft: false });
+      });
+
+      modalResetDraftBtn?.addEventListener("click", () => {
+        const usingDraftFlow = modalIsOpen && isMobileFiltersLayout();
+        if (!usingDraftFlow) {
+          clearBtn?.click();
+          return;
         }
-      },
-      false
-    );
+        resetModalDraftOnly();
+      });
 
-    bindActiveRemovalDelegation();
+      document.addEventListener(
+        "keydown",
+        (event) => {
+          if (event.key === "Escape" && filtersModal && !filtersModal.hidden) {
+            event.preventDefault();
+            closeFiltersModal({});
+          }
+        },
+        false
+      );
 
-    rebuildCardIndex();
-    suppressUrlSync = true;
-    absorbUrlIntoCommitted();
-    suppressUrlSync = false;
-    rollbackDraftFromCommitted();
-    rebuildRecentStackFromSelections();
-    applyCommittedToDom();
+      bindActiveRemovalDelegation();
+    }
+
+    function bootstrapFiltersFromUrlAndDom() {
+      rebuildCardIndex();
+      suppressUrlSync = true;
+      absorbUrlIntoCommitted();
+      suppressUrlSync = false;
+      rollbackDraftFromCommitted();
+      rebuildRecentStackFromSelections();
+      applyCommittedToDom();
+    }
+
+    wireFilterUiInteractions();
+    bootstrapFiltersFromUrlAndDom();
 
     return {
       refresh: () => {
