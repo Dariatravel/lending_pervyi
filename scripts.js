@@ -70,7 +70,26 @@
   };
   const SUPABASE_MODULE_URL = "https://esm.sh/@supabase/supabase-js@2";
   const SCREENSHOT_REVIEW_BANK_URL = "/media/reviews/review_text_bank.json";
-  const FILTER_GROUPS = ["distance", "food", "price", "city", "beach", "room", "stay"];
+  /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
+  const FILTER_CONFIG = {
+    catalogParamKey: "catalog",
+    groupOrder: ["distance", "food", "price", "city", "beach", "room", "stay"],
+    /** OR внутри группы / AND между группами — см. matcher в initFilters */
+    combineWithinGroup: "any",
+    combineAcrossGroups: "all",
+    groupLabels: {
+      distance: "Расстояние до пляжа",
+      food: "Питание",
+      price: "Бюджет",
+      city: "Город",
+      beach: "Пляж",
+      room: "Номер и удобства",
+      stay: "Формат размещения",
+    },
+  };
+
+  const FILTER_GROUPS = FILTER_CONFIG.groupOrder;
+
   const BEACH_FILTERS = {
     SAND_LDZAA: "sand-ldzaa",
     SAND_SUKHUM: "sand-sukhum",
@@ -1666,12 +1685,16 @@
 
     const grid = document.getElementById("catalog-grid");
     if (!grid) {
+      const noopUnsub = () => {};
       return {
         refresh: () => {},
         setCatalogCategory: () => {},
         setGroupValues: () => {},
         clearGroups: () => {},
         applySearchFromForm: () => {},
+        applyPatch: () => {},
+        subscribe: () => noopUnsub,
+        getCommittedSnapshot: () => null,
       };
     }
 
@@ -1720,6 +1743,8 @@
     let modalIsOpen = false;
     let reopenFocusEl = null;
     let draftPreviewCount = 0;
+    /** Подписчики на применённые к каталогу изменения (аналог событий store после commit). */
+    const subscribers = new Set();
 
     function cloneGroupSelections(source) {
       const clone = {};
@@ -1824,12 +1849,37 @@
     }
 
     function rebuildCardIndex() {
-      cardIndexItems = getCards().map((card) => ({
+      cardIndexItems = buildCardCatalogIndex(getCards(), FILTER_GROUPS, parseValues);
+    }
+
+    /** Построить индекс карточек один раз после загрузки/обновления сетки. */
+    function buildCardCatalogIndex(cards, groupOrder, parseCardGroup) {
+      return cards.map((card) => ({
         el: card,
         byGroup: Object.fromEntries(
-          FILTER_GROUPS.map((group) => [group, new Set(parseValues(card, group).filter(Boolean))])
+          groupOrder.map((group) => [group, new Set(parseCardGroup(card, group).filter(Boolean))])
         ),
       }));
+    }
+
+    function notifySubscribers(reason, snapshot) {
+      const payload =
+        snapshot && typeof snapshot === "object"
+          ? { reason, ...snapshot }
+          : {
+              reason,
+              pins: countActivePins(committedSelected, catalogCategorySlug),
+              primaryShown: 0,
+              totalMatching: countTotalMatching(committedSelected, catalogCategorySlug),
+            };
+
+      subscribers.forEach((fn) => {
+        try {
+          fn(payload);
+        } catch (_) {
+          /* ignore listener errors */
+        }
+      });
     }
 
     function cardPassesFilters(entry, selected, slug) {
@@ -1889,6 +1939,8 @@
       const slugSig = `${group}:${token}`.toLowerCase();
       if (chipCaptionBySig.has(slugSig)) return chipCaptionBySig.get(slugSig);
       if (token && group === "city" && CITY_LABELS[token]) return CITY_LABELS[token];
+      if (group === "room" && token === "five-plus") return "5+ гостей";
+      if (group === "room" && token === "two-room-plus") return "Две комнаты и более";
       if (token === "economy") return "Бюджет: до 5000 ₽ в сутки";
       if (token === "midrange") return "Бюджет: до 10000 ₽ в сутки";
       if (token === "premium") return "Бюджет: премиум";
@@ -1984,9 +2036,8 @@
           emptyLead.textContent =
             "По выбранным параметрам пока нет подходящих объектов. Ослабьте один из фильтров или сбросьте их.";
         } else {
-          const noun = pins % 10 === 1 && pins % 100 !== 11 ? "условию" : "условиям";
-          emptyLead.textContent =
-            `Пока ни один объект не попадает под выбранные ${pins} активных ${noun}. Ослабьте фильтр или снимите последний выбор.`;
+          const filterWordParams = parametrovSklonenie(pins);
+          emptyLead.textContent = `Ничего не нашли по ${filterWordParams}. Ослабьте условие, снимите последний параметр или сбросьте всё.`;
         }
         if (emptyHint) {
           emptyHint.textContent = "Попробуйте смягчить условие: город, расстояние до пляжа или бюджет.";
@@ -2016,6 +2067,17 @@
       return "вариантов";
     }
 
+    /** Склонение для фраз «по N фильтру / фильтрам» (локаль главной строки «ничего не нашли»). */
+    function parametrovSklonenie(n) {
+      const k = Number(n);
+      if (!Number.isFinite(k) || k <= 0) return "выбранным фильтрам";
+      const mod100 = k % 100;
+      const mod10 = k % 10;
+      if (mod100 >= 11 && mod100 <= 14) return `${k} фильтрам`;
+      if (mod10 === 1) return `${k} фильтру`;
+      return `${k} фильтрам`;
+    }
+
     function syncApplyFooterText() {
       if (!applyFiltersBtn) return;
       const mobile = modalIsOpen && isMobileFiltersLayout();
@@ -2036,7 +2098,7 @@
       if (suppressUrlSync) return;
       const params = new URLSearchParams();
       if (catalogCategorySlug && CATALOG_CATEGORY_LABELS[catalogCategorySlug]) {
-        params.set("catalog", catalogCategorySlug);
+        params.set(FILTER_CONFIG.catalogParamKey, catalogCategorySlug);
       }
       FILTER_GROUPS.forEach((group) => {
         const parts = [...committedSelected[group]].filter(Boolean).sort();
@@ -2069,7 +2131,7 @@
           });
       });
 
-      const cat = String(params.get("catalog") || "").trim();
+      const cat = String(params.get(FILTER_CONFIG.catalogParamKey) || "").trim();
       if (cat === "hotel" || cat === "guesthouse" || cat === "cabin") catalogCategorySlug = cat;
       else catalogCategorySlug = null;
 
@@ -2137,6 +2199,8 @@
           ? draftCategorySlug
           : catalogCategorySlug;
       syncChipUi(chipSource, chipCatUnused);
+
+      notifySubscribers("commit", { pins, primaryShown, totalMatching });
     }
 
     function toggleChipAcrossModes(chip) {
@@ -2235,15 +2299,30 @@
       applyCommittedToDom();
     }
 
-    function applySearchFromForm(patch) {
-      const { city = [], distance = [], beach = [], price = [], room = [] } = patch || {};
+    /** Один метод для верхнего поиска: перезаписывает указанные группы и один раз применяет каталог. */
+    function applyPatch(patch) {
+      const {
+        city = [],
+        distance = [],
+        beach = [],
+        price = [],
+        room = [],
+      } = patch || {};
 
-      [["city", city], ["distance", distance], ["beach", beach], ["price", price], ["room", room]].forEach(([groupKey, vals]) => {
+      const batch = [
+        ["city", city],
+        ["distance", distance],
+        ["beach", beach],
+        ["price", price],
+        ["room", room],
+      ];
+
+      batch.forEach(([groupKey, vals]) => {
         if (!committedSelected[groupKey]) return;
         committedSelected[groupKey].clear();
         (vals || []).forEach((raw) => {
           normalizeSelectedFilterValues(groupKey, raw, "").forEach((token) => {
-            if (token) toggleTokensInSelection(committedSelected, groupKey, [token], true, true, false);
+            if (token) toggleTokensInSelection(committedSelected, groupKey, [token], true, false, false);
           });
         });
       });
@@ -2252,6 +2331,10 @@
       rollbackDraftFromCommitted();
       syncChipUi(committedSelected, catalogCategorySlug);
       applyCommittedToDom();
+    }
+
+    function applySearchFromForm(patch) {
+      applyPatch(patch);
     }
 
     function bindActiveRemovalDelegation() {
@@ -2382,6 +2465,7 @@
       "keydown",
       (event) => {
         if (event.key === "Escape" && filtersModal && !filtersModal.hidden) {
+          event.preventDefault();
           closeFiltersModal({});
         }
       },
@@ -2407,6 +2491,20 @@
       setGroupValues,
       clearGroups,
       applySearchFromForm,
+      applyPatch,
+      subscribe(listener) {
+        if (typeof listener !== "function") {
+          return () => {};
+        }
+        subscribers.add(listener);
+        return () => subscribers.delete(listener);
+      },
+      getCommittedSnapshot() {
+        return {
+          catalogCategory: catalogCategorySlug,
+          groups: Object.fromEntries(FILTER_GROUPS.map((group) => [group, [...committedSelected[group]]])),
+        };
+      },
     };
   }
 
@@ -2454,7 +2552,7 @@
       const room =
         Number.isFinite(guests) && guests >= 5 ? ["five-plus"] : [];
 
-      filtersController.applySearchFromForm({
+      filtersController.applyPatch({
         city: city ? [city] : [],
         distance: distance ? [distance] : [],
         beach: beach ? [beach] : [],

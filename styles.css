@@ -623,6 +623,14 @@
   font-size: 9px;
 }
 
+.site-concept__search-dates-note {
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.42;
+  color: var(--muted);
+  max-width: 74ch;
+}
+
 .site-concept__hero-highlights,
 .site-concept__destination-grid,
 .site-concept__guide-grid,
@@ -4814,7 +4822,7 @@ body.modal-open .back-to-top {
 
 .catalog-shell__header {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 480px);
   align-items: end;
   gap: 1rem 1.5rem;
   margin-bottom: 1rem;
@@ -4831,6 +4839,19 @@ body.modal-open .back-to-top {
   align-items: center;
   gap: 0.75rem;
   margin: 0 0 1rem;
+}
+
+@media (max-width: 640px) {
+  .catalog-shell > .filters-launch {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
+  }
+
+  .catalog-shell > .filters-launch .filter-result {
+    order: 4;
+    margin-top: -0.1rem;
+  }
 }
 
 .btn-filter,
@@ -5114,7 +5135,7 @@ body.modal-open .back-to-top {
   position: relative;
   z-index: 1;
   box-sizing: border-box;
-  width: min(420px, 85vw);
+  width: min(480px, 90vw);
   height: 100vh;
   height: 100dvh;
   display: flex;
@@ -5142,8 +5163,8 @@ body.modal-open .back-to-top {
     margin-top: auto;
     width: 100%;
     max-width: none;
-    height: min(92dvh, 100%);
-    max-height: 92dvh;
+    height: min(86dvh, 100%);
+    max-height: 86dvh;
     border-left: 0;
     border-radius: 20px 20px 0 0;
     border-top: 1px solid var(--line);
@@ -5201,7 +5222,7 @@ body.modal-open .back-to-top {
 .filters-grid {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   flex: 1 1 auto;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -5271,6 +5292,11 @@ body.modal-open .back-to-top {
   overflow-wrap: anywhere;
 }
 
+.filter-chip:focus-visible {
+  outline: 2px solid rgba(199, 119, 90, 0.55);
+  outline-offset: 2px;
+}
+
 .filter-chip:hover {
   background: rgba(244, 236, 223, 0.88);
 }
@@ -5279,6 +5305,14 @@ body.modal-open .back-to-top {
   background: var(--accent-soft);
   color: #6d4333;
   border-color: rgba(199, 119, 90, 0.35);
+  padding-inline-start: 0.52rem;
+}
+
+.filter-chip.is-active::before {
+  content: "\2714";
+  margin-right: 0.38rem;
+  font-size: 0.76em;
+  opacity: 0.75;
 }
 
 .filters-modal__footer {
@@ -5286,6 +5320,7 @@ body.modal-open .back-to-top {
   border-top: 1px solid var(--line);
   background: rgba(255, 250, 242, 0.98);
   flex-shrink: 0;
+  box-shadow: 0 -10px 28px rgba(17, 30, 22, 0.06);
 }
 
 .filters-modal__apply {
