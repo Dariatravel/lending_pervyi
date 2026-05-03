@@ -1744,13 +1744,13 @@ def build_homepage() -> None:
           <strong>Для пляжного отдыха</strong>
         </div>
       </a>
-      <article class="site-concept__destination-card">
+      <a href="/podborki/sosnovyy-plyazh/" class="site-concept__destination-card">
         <img src="/media/cards/fazenda-otel-s-basseynom-i-pitaniem-3190.jpg" alt="Семейный отдых" />
         <div class="site-concept__destination-content">
           <span>Сервис и семейный формат</span>
           <strong>Пицунда и Лдзаа</strong>
         </div>
-      </article>
+      </a>
       <article class="site-concept__destination-card">
         <img src="/media/cards/krylya-domiki-vidovye-dvuhkomnatnye-2765.jpg" alt="Горы и панорамы" />
         <div class="site-concept__destination-content">
