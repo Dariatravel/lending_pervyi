@@ -1971,17 +1971,11 @@
       }
       if (!mobile || !modalIsOpen) {
         applyFiltersBtn.textContent = "Готово";
-        applyFiltersBtn.setAttribute(
-          "aria-label",
-          isMobileFiltersLayout() ? "Готово, закрыть окно фильтров" : "Закрыть панель фильтров"
-        );
+        applyFiltersBtn.removeAttribute("aria-label");
         return;
       }
       applyFiltersBtn.textContent = `Показать ${countShown} ${variantsWord(countShown)}`;
-      applyFiltersBtn.setAttribute(
-        "aria-label",
-        `Применить и показать ${countShown} ${variantsWord(countShown)}, затем закрыть окно`
-      );
+      applyFiltersBtn.removeAttribute("aria-label");
     }
 
     function syncUrlFromState() {
