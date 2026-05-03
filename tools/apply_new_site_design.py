@@ -2049,7 +2049,6 @@ def build_listing_pages() -> None:
                 '<section class="reviews-panel">'
                 '<div class="reviews-panel__head">'
                 '<div class="reviews-summary"><span>Отзывы гостей</span>'
-                '<div class="reviews-summary__tags"><em>текстом</em><em>по объекту</em><em>без скриншотов</em></div>'
                 "</div></div>"
                 f'<div class="reviews-grid">{reviews_html}</div>'
                 "</section>"

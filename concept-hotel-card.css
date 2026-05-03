@@ -379,23 +379,6 @@ button {
   gap: 8px;
 }
 
-.reviews-summary__tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
-}
-
-.reviews-summary__tags em {
-  padding: 9px 12px;
-  border-radius: 999px;
-  background: #eef6f1;
-  color: #456555;
-  font-style: normal;
-  font-size: 12px;
-  font-weight: 700;
-}
-
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
