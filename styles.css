@@ -941,6 +941,11 @@
   margin-top: clamp(14px, 2vw, 24px);
 }
 
+/* Секция «Квартиры и дома» на главной: не показываем блок, карточки остаются в DOM для фильтров/поиска */
+#kvartira-catalog {
+  display: none !important;
+}
+
 .site-concept__stay-categories {
   text-align: center;
 }

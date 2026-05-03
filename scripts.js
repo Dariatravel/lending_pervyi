@@ -1675,6 +1675,8 @@
       };
     }
 
+    const kvGrid = document.getElementById("kvartira-catalog-grid");
+
     function isMobileFiltersLayout() {
       return window.matchMedia(FILTER_SHEET_MOBILE_QUERY).matches;
     }
@@ -1735,7 +1737,27 @@
     }
 
     function getCards() {
-      return Array.from(grid.querySelectorAll(".catalog-card"));
+      const hotelCards = Array.from(grid.querySelectorAll(".catalog-card"));
+      const kvCards = kvGrid ? Array.from(kvGrid.querySelectorAll(".catalog-card")) : [];
+      if (!kvCards.length) return hotelCards;
+      const seen = new Set();
+      const merged = [];
+      hotelCards.forEach((el) => {
+        if (seen.has(el)) return;
+        seen.add(el);
+        merged.push(el);
+      });
+      kvCards.forEach((el) => {
+        if (seen.has(el)) return;
+        seen.add(el);
+        merged.push(el);
+      });
+      return merged;
+    }
+
+    /** Считаем только карточки в основном гриде (#catalog-grid) — они видимы после скрытия блока «Квартиры». */
+    function isPrimaryCatalogCard(cardEl) {
+      return Boolean(cardEl && grid.contains(cardEl));
     }
 
     function parseValues(card, group) {
@@ -1832,9 +1854,18 @@
     function countShownOnly(selected, slug) {
       let shown = 0;
       cardIndexItems.forEach((entry) => {
-        if (cardPassesFilters(entry, selected, slug)) shown += 1;
+        if (!cardPassesFilters(entry, selected, slug)) return;
+        if (isPrimaryCatalogCard(entry.el)) shown += 1;
       });
       return shown;
+    }
+
+    function countTotalMatching(selected, slug) {
+      let n = 0;
+      cardIndexItems.forEach((entry) => {
+        if (cardPassesFilters(entry, selected, slug)) n += 1;
+      });
+      return n;
     }
 
     function applyVisibilityCommitted() {
@@ -1842,7 +1873,7 @@
       cardIndexItems.forEach((entry) => {
         const ok = cardPassesFilters(entry, committedSelected, catalogCategorySlug);
         entry.el.hidden = !ok;
-        if (ok) shown += 1;
+        if (ok && isPrimaryCatalogCard(entry.el)) shown += 1;
       });
       return shown;
     }
@@ -1941,16 +1972,39 @@
       }
     }
 
-    function updateEmptyLead(shown, pins) {
-      if (!emptyLead) return;
-      if (shown > 0) return;
-      if (pins === 0) {
+    function updateEmptyLead(primaryShown, totalMatching, pins) {
+      if (!emptyLead || !emptyNote) return;
+      if (primaryShown > 0) return;
+
+      const emptyHint = emptyNote.querySelector(".filter-empty__hint");
+      const kvFallback = Boolean(totalMatching > 0 && totalMatching !== primaryShown);
+
+      if (totalMatching === 0) {
+        if (pins === 0) {
+          emptyLead.textContent =
+            "По выбранным параметрам пока нет подходящих объектов. Ослабьте один из фильтров или сбросьте их.";
+        } else {
+          const noun = pins % 10 === 1 && pins % 100 !== 11 ? "условию" : "условиям";
+          emptyLead.textContent =
+            `Пока ни один объект не попадает под выбранные ${pins} активных ${noun}. Ослабьте фильтр или снимите последний выбор.`;
+        }
+        if (emptyHint) {
+          emptyHint.textContent = "Попробуйте смягчить условие: город, расстояние до пляжа или бюджет.";
+          emptyHint.removeAttribute("hidden");
+        }
+        return;
+      }
+
+      // Есть совпадения среди скрытых квартир: не вводим в заблуждение текстом про «нет объектов».
+      if (kvFallback) {
+        const search = typeof window.location !== "undefined" ? window.location.search || "" : "";
         emptyLead.textContent =
-          "По выбранным параметрам пока нет подходящих объектов. Ослабьте один из фильтров или сбросьте их.";
-      } else {
-        const noun = pins % 10 === 1 && pins % 100 !== 11 ? "условию" : "условиям";
-        emptyLead.textContent =
-          `Пока ни один объект не попадает под выбранные ${pins} активных ${noun}. Ослабьте фильтр или снимите последний выбор.`;
+          "В основном каталоге ниже подходящих объектов размещения сейчас не видно, но есть совпадения среди квартир и домов.";
+        if (emptyHint) {
+          emptyHint.innerHTML =
+            `Откройте <a href="/kvartira/${search}">раздел «Квартиры»</a> с теми же параметрами в адресе (или перейдите из меню сайта).`;
+          emptyHint.removeAttribute("hidden");
+        }
       }
     }
 
@@ -2062,15 +2116,17 @@
     }
 
     function applyCommittedToDom() {
-      const shown = applyVisibilityCommitted();
-      if (visibleCount) visibleCount.textContent = String(shown);
-      if (emptyNote) emptyNote.hidden = shown !== 0;
+      const primaryShown = applyVisibilityCommitted();
+      const pins = countActivePins(committedSelected, catalogCategorySlug);
+      const totalMatching = countTotalMatching(committedSelected, catalogCategorySlug);
+      if (visibleCount) visibleCount.textContent = String(primaryShown);
+      if (emptyNote) emptyNote.hidden = primaryShown !== 0;
 
       draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
 
       syncOpenBadge();
       renderActiveRemovalChips();
-      updateEmptyLead(shown, countActivePins(committedSelected, catalogCategorySlug));
+      updateEmptyLead(primaryShown, totalMatching, pins);
       syncUrlFromState();
 
       syncApplyFooterText();
@@ -2543,23 +2599,30 @@
   /** Slugs removed from UI (e.g. Telegram service posts, not real listings). */
   const KVARTIRA_EXCLUDED_SLUGS = new Set(["general-1409", "villa-suhum-959"]);
 
-  async function hydrateKvartiraCatalog() {
+  async function hydrateKvartiraCatalog(filtersController) {
     const grid = document.getElementById("kvartira-catalog-grid");
-    if (!grid) return;
-    if (grid.querySelector(".catalog-card")) return;
+    if (!grid || !filtersController) return;
 
     // Как и с основным каталогом: если карточки уже отрисованы статикой,
     // не перезатираем DOM данными из Supabase (иначе виден "мигающий" откат верстки/текста).
-    if (grid.querySelector(".catalog-card")) return;
+    if (grid.querySelector(".catalog-card")) {
+      filtersController.refresh();
+      return;
+    }
 
     try {
       const rows = (await fetchListings({ sourceKind: "kvartira" })).filter(
         (row) => row.slug && !KVARTIRA_EXCLUDED_SLUGS.has(row.slug)
       );
-      if (!rows.length) return;
+      if (!rows.length) {
+        filtersController.refresh();
+        return;
+      }
       renderKvartiraCards(rows, grid);
+      filtersController.refresh();
     } catch (error) {
       console.error("Не удалось загрузить каталог квартир из Supabase", error);
+      filtersController.refresh();
     }
   }
 
@@ -2766,7 +2829,7 @@
   initSearchBar(filtersController);
   initCategoryPicks(filtersController);
   hydrateHomeCatalog(filtersController);
-  hydrateKvartiraCatalog();
+  hydrateKvartiraCatalog(filtersController);
   hydrateHotelPage();
   initMobileReviewsPlacement();
 })();
