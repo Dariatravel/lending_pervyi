@@ -1768,7 +1768,7 @@ def build_homepage() -> None:
       </div>
       <div class="site-concept__filter-pills" aria-hidden="true">
         <span class="is-active">Все</span>
-        <span>Семейные</span>
+        <span>Двухкомнатные</span>
         <span>С бассейном</span>
         <span>У моря</span>
         <span>Премиум</span>
