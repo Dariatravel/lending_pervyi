@@ -1751,13 +1751,13 @@ def build_homepage() -> None:
           <strong>Пицунда и Лдзаа</strong>
         </div>
       </a>
-      <article class="site-concept__destination-card">
+      <a href="/podborki/gory-oteli-v-gorah/" class="site-concept__destination-card">
         <img src="/media/cards/krylya-domiki-vidovye-dvuhkomnatnye-2765.jpg" alt="Горы и панорамы" />
         <div class="site-concept__destination-content">
           <span>Тишина и виды</span>
           <strong>Горные домики</strong>
         </div>
-      </article>
+      </a>
     </div>
   </section>
 
