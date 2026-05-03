@@ -1057,6 +1057,16 @@
   box-shadow: 0 20px 40px rgba(18, 31, 25, 0.16);
 }
 
+a.site-concept__destination-card {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.site-concept__destination-card:focus-visible {
+  outline: 3px solid rgba(22, 49, 40, 0.55);
+  outline-offset: 3px;
+}
+
 .site-concept__destination-card img {
   width: 100%;
   height: 100%;

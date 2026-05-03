@@ -1737,13 +1737,13 @@ def build_homepage() -> None:
     </div>
 
     <div class="site-concept__destination-grid">
-      <article class="site-concept__destination-card site-concept__destination-card--wide">
+      <a href="/podborki/bereg-morya-oteli-na-beregu/" class="site-concept__destination-card site-concept__destination-card--wide">
         <img src="/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574.jpg" alt="Отдых у моря" />
         <div class="site-concept__destination-content">
           <span>Море и первая линия</span>
           <strong>Для пляжного отдыха</strong>
         </div>
-      </article>
+      </a>
       <article class="site-concept__destination-card">
         <img src="/media/cards/fazenda-otel-s-basseynom-i-pitaniem-3190.jpg" alt="Семейный отдых" />
         <div class="site-concept__destination-content">
