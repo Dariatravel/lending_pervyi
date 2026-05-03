@@ -1656,6 +1656,14 @@
   }
 
   function initFilters() {
+    const FILTER_SHEET_MOBILE_QUERY = "(max-width: 900px)";
+
+    const CATALOG_CATEGORY_LABELS = {
+      hotel: "Тип размещения: отели",
+      guesthouse: "Тип размещения: гостевые дома",
+      cabin: "Тип размещения: домики и коттеджи",
+    };
+
     const grid = document.getElementById("catalog-grid");
     if (!grid) {
       return {
@@ -1663,32 +1671,67 @@
         setCatalogCategory: () => {},
         setGroupValues: () => {},
         clearGroups: () => {},
+        applySearchFromForm: () => {},
       };
     }
+
+    function isMobileFiltersLayout() {
+      return window.matchMedia(FILTER_SHEET_MOBILE_QUERY).matches;
+    }
+
+    let committedSelected = Object.fromEntries(FILTER_GROUPS.map((group) => [group, new Set()]));
+    let catalogCategorySlug = null;
+    let recentStack = [];
+    let suppressUrlSync = false;
+    let cardIndexItems = [];
+
+    const chipCaptionBySig = new Map();
+    Array.from(document.querySelectorAll(".filter-chip")).forEach((chipEl) => {
+      const grp = chipEl.dataset.group || "";
+      const val = chipEl.dataset.value || "";
+      if (!grp || !val) return;
+      const sig = `${grp}:${String(val).trim()}`.toLowerCase();
+      if (!chipCaptionBySig.has(sig)) {
+        chipCaptionBySig.set(sig, (chipEl.textContent || "").replace(/\s+/g, " ").trim() || val);
+      }
+    });
 
     const chips = Array.from(document.querySelectorAll(".filter-chip"));
     const visibleCount = document.getElementById("visible-count");
     const emptyNote = document.getElementById("filter-empty");
+    const emptyLead = document.getElementById("filter-empty-message");
+    const emptyRemoveLastBtn = document.getElementById("filter-empty-remove-last");
+    const emptyResetBtn = document.getElementById("filter-empty-reset");
     const clearBtn = document.getElementById("clear-filters");
+    const activeFiltersWrap = document.getElementById("active-filters");
+    const activeFiltersList = document.getElementById("active-filters-list");
     const openFiltersBtn = document.getElementById("open-filters");
+    const openFiltersBadge = document.getElementById("open-filters-badge");
     const filtersModal = document.getElementById("filters-modal");
     const closeFilterEls = Array.from(document.querySelectorAll("[data-close-filters]"));
-    const filtersPanel = filtersModal?.querySelector(".filters-modal__panel");
-    let applyFiltersBtn = document.getElementById("apply-filters");
-    const selected = Object.fromEntries(FILTER_GROUPS.map((group) => [group, new Set()]));
-    let catalogCategorySlug = null;
+    const applyFiltersBtn = document.getElementById("apply-filters");
+    const modalResetDraftBtn = document.getElementById("filters-modal-reset");
+    const mobileDraftHint = document.getElementById("filters-draft-hint-mobile");
 
-    if (!applyFiltersBtn && filtersPanel) {
-      const footer = document.createElement("div");
-      footer.className = "filters-modal__footer";
-      const button = document.createElement("button");
-      button.type = "button";
-      button.id = "apply-filters";
-      button.className = "btn-book filters-modal__apply";
-      button.textContent = "Применить";
-      footer.appendChild(button);
-      filtersPanel.appendChild(footer);
-      applyFiltersBtn = button;
+    let draftSelected = cloneGroupSelections(committedSelected);
+    let draftCategorySlug = catalogCategorySlug;
+    let modalIsOpen = false;
+    let reopenFocusEl = null;
+    let draftPreviewCount = 0;
+
+    function cloneGroupSelections(source) {
+      const clone = {};
+      FILTER_GROUPS.forEach((group) => {
+        clone[group] = new Set(source[group] || []);
+      });
+      return clone;
+    }
+
+    function pickWorkingSets() {
+      if (modalIsOpen && isMobileFiltersLayout()) {
+        return { selected: draftSelected, categorySlug: draftCategorySlug, isDraftFlow: true };
+      }
+      return { selected: committedSelected, categorySlug: catalogCategorySlug, isDraftFlow: false };
     }
 
     function getCards() {
@@ -1739,146 +1782,582 @@
       return [raw];
     }
 
-    function isSelectedChip(group, value, chipText) {
-      if (!group || !selected[group]) return false;
+    function isSelectedChip(selection, group, value, chipText) {
+      if (!group || !value || !selection[group]) return false;
       const normalizedValues = normalizeSelectedFilterValues(group, value, chipText);
       if (!normalizedValues.length) return false;
-      return normalizedValues.some((normalized) => selected[group].has(normalized));
+      return normalizedValues.every((normalized) => selection[group].has(normalized));
     }
 
-    function applyFilters() {
-      let shown = 0;
-      getCards().forEach((card) => {
-        let ok = true;
-        for (const group of FILTER_GROUPS) {
-          if (selected[group].size === 0) continue;
-          const values = parseValues(card, group);
-          const hit = values.some((value) => selected[group].has(value));
-          if (!hit) {
-            ok = false;
-            break;
-          }
-        }
-        if (ok && catalogCategorySlug && !matchesCatalogCategory(catalogCategorySlug, cardCatalogCategoryText(card))) {
-          ok = false;
-        }
-        card.hidden = !ok;
-        if (ok) shown += 1;
-      });
-
-      if (visibleCount) visibleCount.textContent = String(shown);
-      if (emptyNote) emptyNote.hidden = shown !== 0;
-    }
-
-    function setCatalogCategory(slug) {
-      catalogCategorySlug = slug && String(slug).trim() ? String(slug).trim() : null;
-      applyFilters();
-    }
-
-    function syncChipState() {
+    function syncChipUi(selection, categorySlugUnused) {
+      void categorySlugUnused;
       chips.forEach((chip) => {
+        chip.type = "button";
         const group = chip.dataset.group;
         const value = chip.dataset.value;
-        const active = Boolean(group && value && isSelectedChip(group, value, chip.textContent));
+        const active = Boolean(group && value && isSelectedChip(selection, group, value, chip.textContent));
         chip.classList.toggle("is-active", active);
         chip.setAttribute("aria-pressed", active ? "true" : "false");
       });
     }
 
-    function setGroupValues(group, values) {
-      if (!selected[group]) return;
-      selected[group].clear();
-      (values || []).forEach((value) => {
-        const normalizedValues = normalizeSelectedFilterValues(group, value, "");
-        normalizedValues.forEach((normalized) => {
-          if (normalized) selected[group].add(normalized);
+    function rebuildCardIndex() {
+      cardIndexItems = getCards().map((card) => ({
+        el: card,
+        byGroup: Object.fromEntries(
+          FILTER_GROUPS.map((group) => [group, new Set(parseValues(card, group).filter(Boolean))])
+        ),
+      }));
+    }
+
+    function cardPassesFilters(entry, selected, slug) {
+      for (const group of FILTER_GROUPS) {
+        if (!selected[group] || selected[group].size === 0) continue;
+        const bucket = entry.byGroup[group];
+        let ok = false;
+        for (const choice of selected[group]) {
+          if (bucket.has(choice)) {
+            ok = true;
+            break;
+          }
+        }
+        if (!ok) return false;
+      }
+      if (slug && !matchesCatalogCategory(slug, cardCatalogCategoryText(entry.el))) {
+        return false;
+      }
+      return true;
+    }
+
+    function countShownOnly(selected, slug) {
+      let shown = 0;
+      cardIndexItems.forEach((entry) => {
+        if (cardPassesFilters(entry, selected, slug)) shown += 1;
+      });
+      return shown;
+    }
+
+    function applyVisibilityCommitted() {
+      let shown = 0;
+      cardIndexItems.forEach((entry) => {
+        const ok = cardPassesFilters(entry, committedSelected, catalogCategorySlug);
+        entry.el.hidden = !ok;
+        if (ok) shown += 1;
+      });
+      return shown;
+    }
+
+    function labelForToken(group, token) {
+      if (token && group === "beach") {
+        if (token === BEACH_FILTERS.SAND_LDZAA) return "Песчаный пляж Лдзаа";
+        if (token === BEACH_FILTERS.SAND_SUKHUM) return "Песчаный пляж Сухум";
+        if (token === BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA) return "Сосновый галечный берег Лдзаа и Пицунда";
+        if (token === BEACH_FILTERS.PITSUNDA_BAY_MIXED) return "Пицундская бухта";
+        if (token === BEACH_FILTERS.PEBBLE) return "Галечные пляжи";
+      }
+      const slugSig = `${group}:${token}`.toLowerCase();
+      if (chipCaptionBySig.has(slugSig)) return chipCaptionBySig.get(slugSig);
+      if (token && group === "city" && CITY_LABELS[token]) return CITY_LABELS[token];
+      if (token === "economy") return "Бюджет: до 5000 ₽ в сутки";
+      if (token === "midrange") return "Бюджет: до 10000 ₽ в сутки";
+      if (token === "premium") return "Бюджет: премиум";
+      return token ? String(token) : "";
+    }
+
+    function countActivePins(selected, slug) {
+      let n = FILTER_GROUPS.reduce((acc, group) => acc + selected[group].size, 0);
+      if (slug) n += 1;
+      return n;
+    }
+
+    function renderActiveRemovalChips() {
+      if (!activeFiltersList || !activeFiltersWrap) return;
+      activeFiltersList.replaceChildren();
+
+      FILTER_GROUPS.forEach((group) => {
+        [...committedSelected[group]].forEach((token) => {
+          const label = labelForToken(group, token);
+          if (!label) return;
+          const chip = document.createElement("button");
+          chip.type = "button";
+          chip.className = "filter-pill-removable";
+          chip.setAttribute("data-remove-group", group);
+          chip.setAttribute("data-remove-token", token);
+          chip.setAttribute("aria-label", `Снять фильтр «${label}»`);
+          chip.innerHTML = `${label}<span class="filter-pill-removable__x" aria-hidden="true">\u00d7</span>`;
+          activeFiltersList.appendChild(chip);
         });
       });
-      syncChipState();
-      applyFilters();
+
+      if (catalogCategorySlug && CATALOG_CATEGORY_LABELS[catalogCategorySlug]) {
+        const pill = document.createElement("button");
+        pill.type = "button";
+        pill.className = "filter-pill-removable filter-pill-removable--muted";
+        pill.setAttribute("data-remove-category", "1");
+        pill.setAttribute("aria-label", `Снять «${CATALOG_CATEGORY_LABELS[catalogCategorySlug]}»`);
+        pill.innerHTML =
+          `${CATALOG_CATEGORY_LABELS[catalogCategorySlug]}<span class="filter-pill-removable__x" aria-hidden="true">\u00d7</span>`;
+        activeFiltersList.appendChild(pill);
+      }
+
+      activeFiltersWrap.hidden = countActivePins(committedSelected, catalogCategorySlug) === 0;
+    }
+
+    function pushRecent(group, token) {
+      if (group === "catalog" && token) {
+        recentStack = recentStack.filter((item) => !(item.group === "catalog"));
+        recentStack.push({ group: "catalog", token });
+        return;
+      }
+      if (!token || !FILTER_GROUPS.includes(group)) return;
+      recentStack = recentStack.filter((item) => !(item.group === group && item.token === token));
+      recentStack.push({ group, token });
+    }
+
+    function popLastRecent() {
+      return recentStack.pop() || null;
+    }
+
+    function syncRecentRemoval(group, normalized, adding) {
+      if (group === "catalog") return;
+      if (adding) {
+        pushRecent(group, normalized);
+        return;
+      }
+      recentStack = recentStack.filter((item) => !(item.group === group && item.token === normalized));
+    }
+
+    function clearRecentFully() {
+      recentStack = [];
+    }
+
+    function syncOpenBadge() {
+      if (!openFiltersBadge) return;
+      const pins = countActivePins(committedSelected, catalogCategorySlug);
+      openFiltersBadge.textContent = pins > 99 ? "99+" : String(pins);
+      openFiltersBadge.hidden = pins === 0;
+      if (openFiltersBtn) {
+        openFiltersBtn.setAttribute("aria-label", pins ? `Открыть фильтры · активно условий: ${pins}` : "Открыть фильтры");
+      }
+    }
+
+    function updateEmptyLead(shown, pins) {
+      if (!emptyLead) return;
+      if (shown > 0) return;
+      if (pins === 0) {
+        emptyLead.textContent =
+          "По выбранным параметрам пока нет подходящих объектов. Ослабьте один из фильтров или сбросьте их.";
+      } else {
+        const noun = pins % 10 === 1 && pins % 100 !== 11 ? "условию" : "условиям";
+        emptyLead.textContent =
+          `Пока ни один объект не попадает под выбранные ${pins} активных ${noun}. Ослабьте фильтр или снимите последний выбор.`;
+      }
+    }
+
+    function variantsWord(n) {
+      const mod10 = n % 10;
+      const mod100 = n % 100;
+      if (mod10 === 1 && mod100 !== 11) return "вариант";
+      if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return "варианта";
+      return "вариантов";
+    }
+
+    function syncApplyFooterText() {
+      if (!applyFiltersBtn) return;
+      const mobile = modalIsOpen && isMobileFiltersLayout();
+      let countShown;
+      if (mobile && modalIsOpen) {
+        countShown = draftPreviewCount;
+      }
+      if (!mobile || !modalIsOpen) {
+        applyFiltersBtn.textContent = "Готово";
+        applyFiltersBtn.setAttribute(
+          "aria-label",
+          isMobileFiltersLayout() ? "Готово, закрыть окно фильтров" : "Закрыть панель фильтров"
+        );
+        return;
+      }
+      applyFiltersBtn.textContent = `Показать ${countShown} ${variantsWord(countShown)}`;
+      applyFiltersBtn.setAttribute(
+        "aria-label",
+        `Применить и показать ${countShown} ${variantsWord(countShown)}, затем закрыть окно`
+      );
+    }
+
+    function syncUrlFromState() {
+      if (suppressUrlSync) return;
+      const params = new URLSearchParams();
+      if (catalogCategorySlug && CATALOG_CATEGORY_LABELS[catalogCategorySlug]) {
+        params.set("catalog", catalogCategorySlug);
+      }
+      FILTER_GROUPS.forEach((group) => {
+        const parts = [...committedSelected[group]].filter(Boolean).sort();
+        if (!parts.length) return;
+        params.set(group, parts.join(","));
+      });
+
+      const nextSearch = params.toString() ? `?${params}` : "";
+      const next = `${window.location.pathname}${nextSearch}${window.location.hash || ""}`;
+      const current = `${window.location.pathname}${window.location.search}${window.location.hash || ""}`;
+      if (next !== current) window.history.replaceState(null, "", next);
+    }
+
+    function absorbUrlIntoCommitted() {
+      const params = new URLSearchParams(window.location.search || "");
+      if (!params.toString()) return;
+
+      FILTER_GROUPS.forEach((group) => {
+        committedSelected[group].clear();
+        const blob = params.get(group);
+        if (!blob) return;
+        blob
+          .split(",")
+          .map((segment) => String(segment || "").trim())
+          .filter(Boolean)
+          .forEach((rawToken) => {
+            normalizeSelectedFilterValues(group, rawToken, "").forEach((token) => {
+              if (token) committedSelected[group].add(token);
+            });
+          });
+      });
+
+      const cat = String(params.get("catalog") || "").trim();
+      if (cat === "hotel" || cat === "guesthouse" || cat === "cabin") catalogCategorySlug = cat;
+      else catalogCategorySlug = null;
+
+      rebuildRecentStackFromSelections();
+    }
+
+    function rebuildRecentStackFromSelections() {
+      recentStack = [];
+      if (catalogCategorySlug) pushRecent("catalog", catalogCategorySlug);
+      FILTER_GROUPS.forEach((group) => {
+        [...committedSelected[group]].forEach((token) => pushRecent(group, token));
+      });
+    }
+
+    function toggleTokensInSelection(selection, group, normalizedValues, enable, trackRecent, treatAsCategory) {
+      if (treatAsCategory) return;
+      if (!normalizedValues.length || !selection[group]) return;
+
+      normalizedValues.forEach((normalized) => {
+        if (!normalized) return;
+        if (enable) {
+          selection[group].add(normalized);
+          if (trackRecent !== false) syncRecentRemoval(group, normalized, true);
+        } else {
+          selection[group].delete(normalized);
+          if (trackRecent !== false) syncRecentRemoval(group, normalized, false);
+        }
+      });
+    }
+
+    function applyCommittedFromDraft() {
+      committedSelected = cloneGroupSelections(draftSelected);
+      catalogCategorySlug = draftCategorySlug;
+      rebuildRecentStackFromSelections();
+      applyCommittedToDom();
+    }
+
+    function rollbackDraftFromCommitted() {
+      draftSelected = cloneGroupSelections(committedSelected);
+      draftCategorySlug = catalogCategorySlug;
+      draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
+      syncApplyFooterText();
+      syncChipUi(draftSelected, draftCategorySlug);
+    }
+
+    function applyCommittedToDom() {
+      const shown = applyVisibilityCommitted();
+      if (visibleCount) visibleCount.textContent = String(shown);
+      if (emptyNote) emptyNote.hidden = shown !== 0;
+
+      draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
+
+      syncOpenBadge();
+      renderActiveRemovalChips();
+      updateEmptyLead(shown, countActivePins(committedSelected, catalogCategorySlug));
+      syncUrlFromState();
+
+      syncApplyFooterText();
+
+      const chipSource = modalIsOpen && isMobileFiltersLayout() ? draftSelected : committedSelected;
+      const chipCatUnused =
+        modalIsOpen && isMobileFiltersLayout()
+          ? draftCategorySlug
+          : catalogCategorySlug;
+      syncChipUi(chipSource, chipCatUnused);
+    }
+
+    function toggleChipAcrossModes(chip) {
+      const group = chip.dataset.group;
+      const value = chip.dataset.value;
+      if (!group || !value) return;
+
+      const normalizedValues = normalizeSelectedFilterValues(group, value, chip.textContent);
+      if (!normalizedValues.length) return;
+
+      const fullyActiveBefore = normalizedValues.every((normalized) =>
+        normalized ? pickWorkingSets().selected[group].has(normalized) : false
+      );
+      const nextActive = !fullyActiveBefore;
+
+      const { selected, isDraftFlow } = pickWorkingSets();
+      if (!selected[group]) return;
+
+      toggleTokensInSelection(selected, group, normalizedValues, nextActive, !isDraftFlow, false);
+
+      const chipSel = modalIsOpen && isMobileFiltersLayout() ? draftSelected : committedSelected;
+      const chipCatUnused =
+        modalIsOpen && isMobileFiltersLayout()
+          ? draftCategorySlug
+          : catalogCategorySlug;
+      syncChipUi(chipSel, chipCatUnused);
+
+      if (!isDraftFlow) {
+        applyCommittedToDom();
+        return;
+      }
+
+      draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
+      syncApplyFooterText();
+    }
+
+    function clearSelectionGroups(selection, groups, trackRecentClear) {
+      (groups || FILTER_GROUPS).forEach((group) => {
+        if (!selection[group]) return;
+        [...selection[group]].forEach((token) => {
+          selection[group].delete(token);
+          if (trackRecentClear !== false) syncRecentRemoval(group, token, false);
+        });
+      });
+    }
+
+    function resetModalDraftOnly() {
+      clearSelectionGroups(draftSelected, FILTER_GROUPS, true);
+      draftCategorySlug = null;
+      draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
+      syncChipUi(draftSelected, draftCategorySlug);
+      syncApplyFooterText();
+    }
+
+    function setCatalogCategory(slug) {
+      const nextSlug = slug && String(slug).trim() ? String(slug).trim() : null;
+      if (pickWorkingSets().isDraftFlow) {
+        draftCategorySlug = nextSlug;
+        draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
+        syncChipUi(draftSelected, draftCategorySlug);
+        syncApplyFooterText();
+        return;
+      }
+
+      catalogCategorySlug = nextSlug;
+      if (nextSlug) pushRecent("catalog", nextSlug);
+      else recentStack = recentStack.filter((item) => item.group !== "catalog");
+      rollbackDraftFromCommitted();
+      applyCommittedToDom();
+    }
+
+    function setGroupValues(group, values) {
+      if (!committedSelected[group]) return;
+      committedSelected[group].clear();
+      (values || []).forEach((value) => {
+        normalizeSelectedFilterValues(group, value, "").forEach((token) => {
+          if (token && committedSelected[group]) toggleTokensInSelection(committedSelected, group, [token], true, true, false);
+        });
+      });
+
+      if (pickWorkingSets().isDraftFlow) {
+        draftSelected = cloneGroupSelections(committedSelected);
+        draftCategorySlug = catalogCategorySlug;
+      }
+      rollbackDraftFromCommitted();
+      applyCommittedToDom();
     }
 
     function clearGroups(groups) {
-      (groups || FILTER_GROUPS).forEach((group) => {
-        if (selected[group]) selected[group].clear();
-      });
-      syncChipState();
-      applyFilters();
+      clearSelectionGroups(committedSelected, groups || FILTER_GROUPS, true);
+      if (!groups || groups === FILTER_GROUPS) {
+        catalogCategorySlug = null;
+        clearRecentFully();
+      }
+      rollbackDraftFromCommitted();
+      applyCommittedToDom();
     }
 
-    chips.forEach((chip) => {
-      chip.type = "button";
-      chip.setAttribute("aria-pressed", "false");
-      chip.addEventListener("click", () => {
-        const group = chip.dataset.group;
-        const value = chip.dataset.value;
-        if (!group || !value || !selected[group]) return;
+    function applySearchFromForm(patch) {
+      const { city = [], distance = [], beach = [], price = [], room = [] } = patch || {};
 
-        const normalizedValues = normalizeSelectedFilterValues(group, value, chip.textContent);
-        if (!normalizedValues.length) return;
-        const currentlyActive = normalizedValues.every((normalized) => selected[group].has(normalized));
-
-        if (currentlyActive) {
-          normalizedValues.forEach((normalized) => selected[group].delete(normalized));
-        } else {
-          normalizedValues.forEach((normalized) => {
-            if (normalized) selected[group].add(normalized);
+      [["city", city], ["distance", distance], ["beach", beach], ["price", price], ["room", room]].forEach(([groupKey, vals]) => {
+        if (!committedSelected[groupKey]) return;
+        committedSelected[groupKey].clear();
+        (vals || []).forEach((raw) => {
+          normalizeSelectedFilterValues(groupKey, raw, "").forEach((token) => {
+            if (token) toggleTokensInSelection(committedSelected, groupKey, [token], true, true, false);
           });
-        }
-        syncChipState();
-        applyFilters();
+        });
       });
-    });
 
-    clearBtn?.addEventListener("click", () => {
-      FILTER_GROUPS.forEach((group) => selected[group].clear());
-      syncChipState();
-      catalogCategorySlug = null;
-      applyFilters();
-    });
+      rebuildRecentStackFromSelections();
+      rollbackDraftFromCommitted();
+      syncChipUi(committedSelected, catalogCategorySlug);
+      applyCommittedToDom();
+    }
 
-    const openFiltersModal = () => {
+    function bindActiveRemovalDelegation() {
+      activeFiltersList?.addEventListener("click", (event) => {
+        const categoryBtn = event.target.closest("[data-remove-category]");
+        if (categoryBtn) {
+          setCatalogCategory(null);
+          return;
+        }
+        const tokenBtn = event.target.closest("[data-remove-group]");
+        if (!tokenBtn || !tokenBtn.dataset.removeToken) return;
+
+        const group = tokenBtn.getAttribute("data-remove-group") || "";
+        const token = tokenBtn.getAttribute("data-remove-token") || "";
+        if (!group || !token || !committedSelected[group]) return;
+
+        normalizeSelectedFilterValues(group, token, "").forEach((norm) => {
+          if (!norm || !committedSelected[group]) return;
+          committedSelected[group].delete(norm);
+          syncRecentRemoval(group, norm, false);
+        });
+
+        rollbackDraftFromCommitted();
+        applyCommittedToDom();
+      });
+    }
+
+    function removeLastCommittedFilterToken() {
+      const last = popLastRecent();
+      if (!last) return false;
+      if (last.group === "catalog") {
+        catalogCategorySlug = null;
+      } else if (committedSelected[last.group]) {
+        committedSelected[last.group].delete(last.token);
+      }
+      rollbackDraftFromCommitted();
+      applyCommittedToDom();
+      return true;
+    }
+
+    function openFiltersModal() {
       if (!filtersModal) return;
+      reopenFocusEl = document.activeElement;
+      modalIsOpen = true;
+      if (mobileDraftHint) mobileDraftHint.hidden = !isMobileFiltersLayout();
+      draftSelected = cloneGroupSelections(committedSelected);
+      draftCategorySlug = catalogCategorySlug;
+      draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
       filtersModal.hidden = false;
-      // Start enter transition on the next frame so CSS transform animates correctly.
       requestAnimationFrame(() => filtersModal.classList.add("is-visible"));
       body.classList.add("modal-open");
+      syncChipUi(draftSelected, draftCategorySlug);
+      syncApplyFooterText();
       trackAnalytics("open_filters");
-    };
+    }
 
-    const closeFiltersModal = () => {
+    function closeFiltersModal(opts) {
+      const restoreCommittedDraft = !(opts && opts.restoreCommittedDraft === false);
       if (!filtersModal) return;
+      if (restoreCommittedDraft && modalIsOpen && isMobileFiltersLayout()) {
+        rollbackDraftFromCommitted();
+      }
       filtersModal.classList.remove("is-visible");
       body.classList.remove("modal-open");
+      modalIsOpen = false;
+      if (mobileDraftHint) mobileDraftHint.hidden = true;
+      syncChipUi(committedSelected, catalogCategorySlug);
+
       window.setTimeout(() => {
         if (!filtersModal.classList.contains("is-visible")) {
           filtersModal.hidden = true;
         }
       }, 360);
-    };
 
-    openFiltersBtn?.addEventListener("click", openFiltersModal);
+      const focusTarget = reopenFocusEl || openFiltersBtn;
+      reopenFocusEl = null;
+      if (focusTarget instanceof HTMLElement && typeof focusTarget.focus === "function") {
+        window.requestAnimationFrame(() => focusTarget.focus({ preventScroll: true }));
+      }
+    }
+
+    chips.forEach((chip) => {
+      chip.type = "button";
+      chip.setAttribute("aria-pressed", "false");
+      chip.addEventListener("click", () => toggleChipAcrossModes(chip));
+    });
+
+    clearBtn?.addEventListener("click", () => {
+      clearSelectionGroups(committedSelected, FILTER_GROUPS, true);
+      catalogCategorySlug = null;
+      clearRecentFully();
+      rollbackDraftFromCommitted();
+      syncChipUi(committedSelected, catalogCategorySlug);
+      applyCommittedToDom();
+      trackAnalytics("clear_filters_catalog");
+    });
+
+    emptyResetBtn?.addEventListener("click", () => {
+      clearBtn?.click();
+    });
+
+    emptyRemoveLastBtn?.addEventListener("click", () => {
+      removeLastCommittedFilterToken();
+    });
+
+    openFiltersBtn?.addEventListener("click", () => openFiltersModal());
 
     closeFilterEls.forEach((element) => {
-      element.addEventListener("click", () => {
-        closeFiltersModal();
-      });
+      element.addEventListener("click", () => closeFiltersModal({}));
     });
 
     applyFiltersBtn?.addEventListener("click", () => {
-      applyFilters();
-      closeFiltersModal();
+      if (!filtersModal?.classList.contains("is-visible")) return;
+      if (isMobileFiltersLayout()) applyCommittedFromDraft();
+      closeFiltersModal({ restoreCommittedDraft: false });
     });
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && filtersModal && !filtersModal.hidden) {
-        closeFiltersModal();
+    modalResetDraftBtn?.addEventListener("click", () => {
+      const usingDraftFlow = modalIsOpen && isMobileFiltersLayout();
+      if (!usingDraftFlow) {
+        clearBtn?.click();
+        return;
       }
+      resetModalDraftOnly();
     });
 
-    syncChipState();
-    applyFilters();
-    return { refresh: applyFilters, setCatalogCategory, setGroupValues, clearGroups };
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key === "Escape" && filtersModal && !filtersModal.hidden) {
+          closeFiltersModal({});
+        }
+      },
+      false
+    );
+
+    bindActiveRemovalDelegation();
+
+    rebuildCardIndex();
+    suppressUrlSync = true;
+    absorbUrlIntoCommitted();
+    suppressUrlSync = false;
+    rollbackDraftFromCommitted();
+    rebuildRecentStackFromSelections();
+    applyCommittedToDom();
+
+    return {
+      refresh: () => {
+        rebuildCardIndex();
+        applyCommittedToDom();
+      },
+      setCatalogCategory,
+      setGroupValues,
+      clearGroups,
+      applySearchFromForm,
+    };
   }
 
   function initSearchBar(filtersController) {
@@ -1922,16 +2401,16 @@
       const price = priceSelect?.value || "";
       const guests = Number(guestsInput?.value || 0);
 
-      filtersController.setGroupValues("city", city ? [city] : []);
-      filtersController.setGroupValues("distance", distance ? [distance] : []);
-      filtersController.setGroupValues("beach", beach ? [beach] : []);
-      filtersController.setGroupValues("price", price ? [price] : []);
+      const room =
+        Number.isFinite(guests) && guests >= 5 ? ["five-plus"] : [];
 
-      if (Number.isFinite(guests) && guests >= 5) {
-        filtersController.setGroupValues("room", ["five-plus"]);
-      } else {
-        filtersController.setGroupValues("room", []);
-      }
+      filtersController.applySearchFromForm({
+        city: city ? [city] : [],
+        distance: distance ? [distance] : [],
+        beach: beach ? [beach] : [],
+        price: price ? [price] : [],
+        room,
+      });
 
       document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth", block: "start" });
       trackAnalytics("home_search_submit", {
