@@ -18,6 +18,14 @@
   --shadow-sm: 0 12px 28px rgba(80, 92, 79, 0.1);
 }
 
+/*
+  UA-стиль [hidden] без !important; авторские display:flex/grid на карточках перебивают
+  скрытие и ломают фильтры каталога (счётчик верный, а лишние карточки остаются в сетке).
+*/
+[hidden]:not([hidden='until-found']) {
+  display: none !important;
+}
+
 /* По задаче: заголовки такого типа уменьшаем примерно вдвое на всех страницах */
 .podborki-hero h1 {
   font-size: clamp(0.68rem, 1.3vw, 1.25rem);
