@@ -4955,6 +4955,11 @@ body.modal-open .back-to-top {
   display: none;
 }
 
+/* Legacy: счётчик перенесён в подпись кнопки (Фильтры · N), DOM-бейдж оставлен для совместимости. */
+.btn-filter__badge--legacy {
+  display: none !important;
+}
+
 .active-filters {
   display: flex;
   flex-wrap: wrap;
@@ -5068,6 +5073,19 @@ body.modal-open .back-to-top {
   font-size: 0.82rem;
   line-height: 1.4;
   color: var(--muted);
+}
+
+.filters-modal__draft-count {
+  margin: 0 0 0.75rem;
+  padding: 0.55rem 0.72rem;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #4a3b33;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(199, 119, 90, 0.18);
 }
 
 .filters-modal__footer-actions {
@@ -5245,11 +5263,17 @@ body.modal-open .back-to-top {
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.55rem;
+  padding: 0.48rem 0.62rem;
+  border-radius: 11px;
   min-width: 0;
   font-size: clamp(0.82rem, 2.8vw, 1rem);
   font-family: "Manrope", "Segoe UI", sans-serif;
   font-weight: 700;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(31, 47, 40, 0.06);
+  transition: background 0.18s ease, border-color 0.18s ease;
 }
 
 .filter-group summary::-webkit-details-marker {
@@ -5264,6 +5288,16 @@ body.modal-open .back-to-top {
 
 .filter-group:not([open]) summary::after {
   content: "⌄";
+}
+
+.filter-group[open] summary {
+  background: rgba(244, 236, 223, 0.55);
+  border-color: rgba(199, 119, 90, 0.16);
+}
+
+.filter-group summary:focus-visible {
+  outline: 2px solid rgba(199, 119, 90, 0.45);
+  outline-offset: 2px;
 }
 
 .filter-chips {
@@ -5316,11 +5350,23 @@ body.modal-open .back-to-top {
 }
 
 .filters-modal__footer {
+  position: relative;
+  z-index: 2;
   padding: 0.9rem 1.25rem 1.1rem;
   border-top: 1px solid var(--line);
   background: rgba(255, 250, 242, 0.98);
   flex-shrink: 0;
-  box-shadow: 0 -10px 28px rgba(17, 30, 22, 0.06);
+  box-shadow:
+    0 -1px 0 rgba(255, 255, 255, 0.65) inset,
+    0 -12px 32px rgba(17, 30, 22, 0.08);
+}
+
+@supports (backdrop-filter: blur(6px)) {
+  .filters-modal__footer {
+    background: rgba(255, 250, 242, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
 }
 
 .filters-modal__apply {

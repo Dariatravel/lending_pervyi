@@ -1731,12 +1731,14 @@
     const activeFiltersWrap = document.getElementById("active-filters");
     const activeFiltersList = document.getElementById("active-filters-list");
     const openFiltersBtn = document.getElementById("open-filters");
+    const openFiltersLabel = document.getElementById("open-filters-label");
     const openFiltersBadge = document.getElementById("open-filters-badge");
     const filtersModal = document.getElementById("filters-modal");
     const closeFilterEls = Array.from(document.querySelectorAll("[data-close-filters]"));
     const applyFiltersBtn = document.getElementById("apply-filters");
     const modalResetDraftBtn = document.getElementById("filters-modal-reset");
     const mobileDraftHint = document.getElementById("filters-draft-hint-mobile");
+    const filtersDraftPreview = document.getElementById("filters-draft-preview");
 
     let draftSelected = cloneGroupSelections(committedSelected);
     let draftCategorySlug = catalogCategorySlug;
@@ -2015,10 +2017,16 @@
     }
 
     function syncOpenBadge() {
-      if (!openFiltersBadge) return;
       const pins = countActivePins(committedSelected, catalogCategorySlug);
-      openFiltersBadge.textContent = pins > 99 ? "99+" : String(pins);
-      openFiltersBadge.hidden = pins === 0;
+      const cap = pins > 99 ? "99+" : String(pins);
+
+      if (openFiltersLabel) {
+        openFiltersLabel.textContent = pins ? `Фильтры · ${cap}` : "Фильтры";
+      }
+      if (openFiltersBadge) {
+        openFiltersBadge.textContent = cap;
+        openFiltersBadge.setAttribute("hidden", "");
+      }
       if (openFiltersBtn) {
         openFiltersBtn.setAttribute("aria-label", pins ? `Открыть фильтры · активно условий: ${pins}` : "Открыть фильтры");
       }
@@ -2081,15 +2089,24 @@
     function syncApplyFooterText() {
       if (!applyFiltersBtn) return;
       const mobile = modalIsOpen && isMobileFiltersLayout();
-      let countShown;
-      if (mobile && modalIsOpen) {
-        countShown = draftPreviewCount;
+
+      if (filtersDraftPreview) {
+        if (mobile && modalIsOpen) {
+          filtersDraftPreview.removeAttribute("hidden");
+          const previewN = draftPreviewCount;
+          filtersDraftPreview.textContent = `Найдено ${previewN} ${variantsWord(previewN)} по выбранным условиям`;
+        } else {
+          filtersDraftPreview.setAttribute("hidden", "");
+        }
       }
+
       if (!mobile || !modalIsOpen) {
         applyFiltersBtn.textContent = "Готово";
         applyFiltersBtn.removeAttribute("aria-label");
         return;
       }
+
+      const countShown = draftPreviewCount;
       applyFiltersBtn.textContent = `Показать ${countShown} ${variantsWord(countShown)}`;
       applyFiltersBtn.removeAttribute("aria-label");
     }
@@ -2183,6 +2200,7 @@
       const totalMatching = countTotalMatching(committedSelected, catalogCategorySlug);
       if (visibleCount) visibleCount.textContent = String(primaryShown);
       if (emptyNote) emptyNote.hidden = primaryShown !== 0;
+      if (clearBtn) clearBtn.hidden = pins === 0;
 
       draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
 

@@ -20,7 +20,7 @@
 <link href="media/branding/favicon-abhazbereg.png" rel="icon" type="image/png"/>
 <link href="media/branding/favicon-abhazbereg.png" rel="shortcut icon" type="image/png"/>
 <link href="media/branding/apple-touch-icon.png" rel="apple-touch-icon"/>
-<link href="styles.css?v=202605031945" rel="stylesheet"/>
+<link href="styles.css?v=202605032045" rel="stylesheet"/>
 <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -319,8 +319,8 @@
 <div class="filters-launch">
 <button class="btn-filter btn-filter--primary" id="open-filters" type="button">
 <span class="btn-filter__inner">
-<span class="btn-filter__text">Фильтры</span>
-<span aria-hidden="true" class="btn-filter__badge" hidden="" id="open-filters-badge">0</span>
+<span class="btn-filter__text" id="open-filters-label">Фильтры</span>
+<span aria-hidden="true" class="btn-filter__badge btn-filter__badge--legacy" hidden="" id="open-filters-badge"></span>
 </span>
 </button>
 <button class="btn-filter btn-filter--ghost" id="clear-filters" type="button">Сбросить всё</button>
@@ -588,6 +588,7 @@
 </div>
 <div class="filters-modal__footer">
 <p aria-live="polite" class="filters-modal__hint" hidden="" id="filters-draft-hint-mobile">Подбор учётом фильтров — после кнопки «Показать».</p>
+<p aria-live="polite" class="filters-modal__draft-count" hidden="" id="filters-draft-preview"></p>
 <div class="filters-modal__footer-actions">
 <button class="btn-filter btn-filter--ghost filters-modal__reset-draft" id="filters-modal-reset" type="button">Очистить в окне</button>
 <button class="btn-book filters-modal__apply" id="apply-filters" type="button">Показать варианты</button>
@@ -595,7 +596,7 @@
 </div>
 </div>
 </div>
-<script defer src="scripts.js?v=202605031945"></script>
+<script defer src="scripts.js?v=202605032045"></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
