@@ -935,13 +935,77 @@ async def collect_hotel_messages(client: TelegramClient) -> list[Any]:
     return result
 
 
+async def _hotel_album_media_messages(
+    client: TelegramClient,
+    entity: Any,
+    canonical: Any,
+    *,
+    channel_messages: list[Any] | None,
+) -> list[Any]:
+    """Собирает сообщения одного альбома: из полного списка канала или узким окном по id."""
+    if not getattr(canonical, 'grouped_id', None) or not canonical.grouped_id:
+        return [canonical] if canonical.media else []
+    gid = canonical.grouped_id
+    if channel_messages is not None:
+        media_messages = [msg for msg in channel_messages if msg.grouped_id == gid and msg.media]
+        return sorted(media_messages, key=lambda item: item.id)
+    window = 80
+    min_id = max(1, canonical.id - window)
+    max_id = canonical.id + window
+    found: list[Any] = []
+    async for m in client.iter_messages(entity, min_id=min_id, max_id=max_id):
+        if m.grouped_id == gid and m.media:
+            found.append(m)
+    if not found and canonical.media:
+        return [canonical]
+    return sorted(found, key=lambda item: item.id)
+
+
 async def build_hotel_objects(client: TelegramClient) -> list[dict[str, Any]]:
+    entity = await client.get_entity('abhazbooking')
+    if TARGET_HOTEL_SOURCE_IDS:
+        ids_sorted = sorted(TARGET_HOTEL_SOURCE_IDS)
+        print(
+            f'[info] Точечный режим отелей: get_messages по id ({len(ids_sorted)} шт.), без полного скана канала.',
+            flush=True,
+        )
+        raw_list = await client.get_messages(entity, ids=ids_sorted)
+        result: list[dict[str, Any]] = []
+        for req_id, canonical in zip(ids_sorted, raw_list):
+            if canonical is None:
+                print(f'[warn] Сообщение отеля id={req_id} не найдено в канале.', flush=True)
+                continue
+            if canonical.date and canonical.date.date().isoformat() < CUTOFF_DATE:
+                print(
+                    f'[warn] Сообщение отеля id={req_id} старше CUTOFF_DATE={CUTOFF_DATE}, пропуск.',
+                    flush=True,
+                )
+                continue
+            text = canonical.message or ''
+            if not is_hotel_object_message(text) and req_id not in TARGET_HOTEL_SOURCE_IDS:
+                continue
+            if not is_hotel_object_message(text) and req_id in TARGET_HOTEL_SOURCE_IDS:
+                print(
+                    f'[info] Сообщение id={req_id} принято по TARGET (не проходит типичные маркеры отеля).',
+                    flush=True,
+                )
+            media_messages = await _hotel_album_media_messages(
+                client, entity, canonical, channel_messages=None
+            )
+            result.append({
+                'source_kind': 'hotel',
+                'canonical': canonical,
+                'media_messages': media_messages,
+                'published_at': canonical.date.date().isoformat(),
+                'telegram_url': f'https://t.me/abhazbooking/{canonical.id}',
+                'parsed': parse_post(text),
+            })
+        return result
+
     messages = await collect_hotel_messages(client)
     candidates = [msg for msg in messages if is_hotel_object_message(msg.message or '')]
     result = []
     for canonical in candidates:
-        if TARGET_HOTEL_SOURCE_IDS and canonical.id not in TARGET_HOTEL_SOURCE_IDS:
-            continue
         if canonical.grouped_id:
             media_messages = [msg for msg in messages if msg.grouped_id == canonical.grouped_id and msg.media]
         else:
@@ -967,21 +1031,40 @@ async def fetch_topic_messages(client: TelegramClient, entity, topic_id: int) ->
 
 async def build_kvartira_objects(client: TelegramClient) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     entity = await client.get_entity('abhkvartira')
-    offset_date = None
-    offset_id = 0
-    offset_topic = 0
-    topics = []
-    while True:
-        response = await client(message_functions.GetForumTopicsRequest(peer=entity, offset_date=offset_date, offset_id=offset_id, offset_topic=offset_topic, limit=100, q=None))
-        if not response.topics:
-            break
-        topics.extend(response.topics)
-        if len(response.topics) < 100:
-            break
-        last = response.topics[-1]
-        offset_date = last.date
-        offset_id = last.id
-        offset_topic = last.id
+    topics: list[Any] = []
+    if TARGET_KV_TOPIC_IDS:
+        ids_sorted = sorted(TARGET_KV_TOPIC_IDS)
+        peer = await client.get_input_entity(entity)
+        print(
+            f'[info] Точечный режим квартир: GetForumTopicsByID ({len(ids_sorted)} тем), без полного списка форума.',
+            flush=True,
+        )
+        response = await client(
+            message_functions.GetForumTopicsByIDRequest(peer=peer, topics=ids_sorted)
+        )
+        topics = list(response.topics)
+        found_ids = {t.id for t in topics}
+        for tid in ids_sorted:
+            if tid not in found_ids:
+                print(
+                    f'[warn] Тема форума id={tid} не вернулась из GetForumTopicsByID (нет доступа или неверный id).',
+                    flush=True,
+                )
+    else:
+        offset_date = None
+        offset_id = 0
+        offset_topic = 0
+        while True:
+            response = await client(message_functions.GetForumTopicsRequest(peer=entity, offset_date=offset_date, offset_id=offset_id, offset_topic=offset_topic, limit=100, q=None))
+            if not response.topics:
+                break
+            topics.extend(response.topics)
+            if len(response.topics) < 100:
+                break
+            last = response.topics[-1]
+            offset_date = last.date
+            offset_id = last.id
+            offset_topic = last.id
 
     objects = []
     topic_dump = []
@@ -995,6 +1078,12 @@ async def build_kvartira_objects(client: TelegramClient) -> tuple[list[dict[str,
         text_candidates = [msg for msg in thread_messages if is_kvartira_object_message(msg.message or '')]
         if not text_candidates:
             text_candidates = [msg for msg in thread_messages if msg.message and not is_service_text(msg.message)]
+        if (
+            not text_candidates
+            and TARGET_KV_TOPIC_IDS
+            and topic.id in TARGET_KV_TOPIC_IDS
+        ):
+            text_candidates = [msg for msg in thread_messages if msg.message]
         if not text_candidates:
             continue
         canonical = max(text_candidates, key=lambda item: (topic_message_score(item.message or ''), item.id))
