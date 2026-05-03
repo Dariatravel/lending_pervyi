@@ -976,11 +976,16 @@ async def build_hotel_objects(client: TelegramClient) -> list[dict[str, Any]]:
                 print(f'[warn] Сообщение отеля id={req_id} не найдено в канале.', flush=True)
                 continue
             if canonical.date and canonical.date.date().isoformat() < CUTOFF_DATE:
+                if req_id not in TARGET_HOTEL_SOURCE_IDS:
+                    print(
+                        f'[warn] Сообщение отеля id={req_id} старше CUTOFF_DATE={CUTOFF_DATE}, пропуск.',
+                        flush=True,
+                    )
+                    continue
                 print(
-                    f'[warn] Сообщение отеля id={req_id} старше CUTOFF_DATE={CUTOFF_DATE}, пропуск.',
+                    f'[info] Сообщение отеля id={req_id} старше CUTOFF_DATE={CUTOFF_DATE}, но включено по TARGET_HOTEL_SOURCE_IDS.',
                     flush=True,
                 )
-                continue
             text = canonical.message or ''
             if not is_hotel_object_message(text) and req_id not in TARGET_HOTEL_SOURCE_IDS:
                 continue
