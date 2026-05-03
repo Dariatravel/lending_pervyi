@@ -1691,7 +1691,6 @@
       Object.fromEntries(groupOrder.map((group) => [group, new Set()]));
 
     const store = {
-      groupOrder,
       subscribers: new Set(),
       committedSel: emptySelections(),
       committedCat: null,
