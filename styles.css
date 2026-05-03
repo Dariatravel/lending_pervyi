@@ -2401,22 +2401,6 @@ a.podborki-card--link:hover {
   }
 }
 
-.hotel-site-concept .reviews-summary__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.hotel-site-concept .reviews-summary__tags em {
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: #eff6f2;
-  color: #426152;
-  font-style: normal;
-  font-size: 12px;
-  font-weight: 700;
-}
-
 .hotel-site-concept .review-card__top {
   display: flex;
   justify-content: space-between;
@@ -5049,6 +5033,7 @@ body.modal-open {
   display: none;
 }
 
+/* Вне секций с backdrop-filter (иначе fixed привязывается к предку и «плывёт» при скролле — см. #filters-modal в конце body). */
 .filters-modal {
   position: fixed;
   inset: 0;
