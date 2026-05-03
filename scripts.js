@@ -1674,6 +1674,64 @@
     return true;
   }
 
+  /**
+   * Стор выбора фильтров: committed + мобильный draft, без DOM.
+   * initFilters синхронизирует видимость карточек, URL и UI с полями стора.
+   */
+  function createFilterStore(groupOrder) {
+    function cloneSelections(source) {
+      const clone = {};
+      groupOrder.forEach((g) => {
+        clone[g] = new Set(source[g] || []);
+      });
+      return clone;
+    }
+
+    const emptySelections = () =>
+      Object.fromEntries(groupOrder.map((group) => [group, new Set()]));
+
+    const store = {
+      groupOrder,
+      subscribers: new Set(),
+      committedSel: emptySelections(),
+      committedCat: null,
+      draftSel: emptySelections(),
+      draftCat: null,
+
+      cloneSelections,
+
+      subscribe(listener) {
+        if (typeof listener !== "function") {
+          return () => {};
+        }
+        store.subscribers.add(listener);
+        return () => store.subscribers.delete(listener);
+      },
+
+      replaceCommittedFromDraft() {
+        store.committedSel = cloneSelections(store.draftSel);
+        store.committedCat = store.draftCat;
+      },
+
+      syncDraftFromCommitted() {
+        store.draftSel = cloneSelections(store.committedSel);
+        store.draftCat = store.committedCat;
+      },
+
+      getCommittedSnapshot() {
+        return {
+          catalogCategory: store.committedCat,
+          groups: Object.fromEntries(
+            groupOrder.map((group) => [group, [...store.committedSel[group]]])
+          ),
+        };
+      },
+    };
+
+    store.syncDraftFromCommitted();
+    return store;
+  }
+
   function initFilters() {
     const FILTER_SHEET_MOBILE_QUERY = "(max-width: 900px)";
 
@@ -1704,8 +1762,7 @@
       return window.matchMedia(FILTER_SHEET_MOBILE_QUERY).matches;
     }
 
-    let committedSelected = Object.fromEntries(FILTER_GROUPS.map((group) => [group, new Set()]));
-    let catalogCategorySlug = null;
+    const filt = createFilterStore(FILTER_GROUPS);
     let recentStack = [];
     let suppressUrlSync = false;
     let cardIndexItems = [];
@@ -1740,27 +1797,15 @@
     const mobileDraftHint = document.getElementById("filters-draft-hint-mobile");
     const filtersDraftPreview = document.getElementById("filters-draft-preview");
 
-    let draftSelected = cloneGroupSelections(committedSelected);
-    let draftCategorySlug = catalogCategorySlug;
     let modalIsOpen = false;
     let reopenFocusEl = null;
     let draftPreviewCount = 0;
-    /** Подписчики на применённые к каталогу изменения (аналог событий store после commit). */
-    const subscribers = new Set();
-
-    function cloneGroupSelections(source) {
-      const clone = {};
-      FILTER_GROUPS.forEach((group) => {
-        clone[group] = new Set(source[group] || []);
-      });
-      return clone;
-    }
 
     function pickWorkingSets() {
       if (modalIsOpen && isMobileFiltersLayout()) {
-        return { selected: draftSelected, categorySlug: draftCategorySlug, isDraftFlow: true };
+        return { selected: filt.draftSel, categorySlug: filt.draftCat, isDraftFlow: true };
       }
-      return { selected: committedSelected, categorySlug: catalogCategorySlug, isDraftFlow: false };
+      return { selected: filt.committedSel, categorySlug: filt.committedCat, isDraftFlow: false };
     }
 
     function getCards() {
@@ -1870,12 +1915,12 @@
           ? { reason, ...snapshot }
           : {
               reason,
-              pins: countActivePins(committedSelected, catalogCategorySlug),
+              pins: countActivePins(filt.committedSel, filt.committedCat),
               primaryShown: 0,
-              totalMatching: countTotalMatching(committedSelected, catalogCategorySlug),
+              totalMatching: countTotalMatching(filt.committedSel, filt.committedCat),
             };
 
-      subscribers.forEach((fn) => {
+      filt.subscribers.forEach((fn) => {
         try {
           fn(payload);
         } catch (_) {
@@ -1923,7 +1968,7 @@
     function applyVisibilityCommitted() {
       let shown = 0;
       cardIndexItems.forEach((entry) => {
-        const ok = cardPassesFilters(entry, committedSelected, catalogCategorySlug);
+        const ok = cardPassesFilters(entry, filt.committedSel, filt.committedCat);
         entry.el.hidden = !ok;
         if (ok && isPrimaryCatalogCard(entry.el)) shown += 1;
       });
@@ -1960,7 +2005,7 @@
       activeFiltersList.replaceChildren();
 
       FILTER_GROUPS.forEach((group) => {
-        [...committedSelected[group]].forEach((token) => {
+        [...filt.committedSel[group]].forEach((token) => {
           const label = labelForToken(group, token);
           if (!label) return;
           const chip = document.createElement("button");
@@ -1974,18 +2019,18 @@
         });
       });
 
-      if (catalogCategorySlug && CATALOG_CATEGORY_LABELS[catalogCategorySlug]) {
+      if (filt.committedCat && CATALOG_CATEGORY_LABELS[filt.committedCat]) {
         const pill = document.createElement("button");
         pill.type = "button";
         pill.className = "filter-pill-removable filter-pill-removable--muted";
         pill.setAttribute("data-remove-category", "1");
-        pill.setAttribute("aria-label", `Снять «${CATALOG_CATEGORY_LABELS[catalogCategorySlug]}»`);
+        pill.setAttribute("aria-label", `Снять «${CATALOG_CATEGORY_LABELS[filt.committedCat]}»`);
         pill.innerHTML =
-          `${CATALOG_CATEGORY_LABELS[catalogCategorySlug]}<span class="filter-pill-removable__x" aria-hidden="true">\u00d7</span>`;
+          `${CATALOG_CATEGORY_LABELS[filt.committedCat]}<span class="filter-pill-removable__x" aria-hidden="true">\u00d7</span>`;
         activeFiltersList.appendChild(pill);
       }
 
-      activeFiltersWrap.hidden = countActivePins(committedSelected, catalogCategorySlug) === 0;
+      activeFiltersWrap.hidden = countActivePins(filt.committedSel, filt.committedCat) === 0;
     }
 
     function pushRecent(group, token) {
@@ -2017,7 +2062,7 @@
     }
 
     function syncOpenBadge() {
-      const pins = countActivePins(committedSelected, catalogCategorySlug);
+      const pins = countActivePins(filt.committedSel, filt.committedCat);
       const cap = pins > 99 ? "99+" : String(pins);
 
       if (openFiltersLabel) {
@@ -2114,11 +2159,11 @@
     function syncUrlFromState() {
       if (suppressUrlSync) return;
       const params = new URLSearchParams();
-      if (catalogCategorySlug && CATALOG_CATEGORY_LABELS[catalogCategorySlug]) {
-        params.set(FILTER_CONFIG.catalogParamKey, catalogCategorySlug);
+      if (filt.committedCat && CATALOG_CATEGORY_LABELS[filt.committedCat]) {
+        params.set(FILTER_CONFIG.catalogParamKey, filt.committedCat);
       }
       FILTER_GROUPS.forEach((group) => {
-        const parts = [...committedSelected[group]].filter(Boolean).sort();
+        const parts = [...filt.committedSel[group]].filter(Boolean).sort();
         if (!parts.length) return;
         params.set(group, parts.join(","));
       });
@@ -2134,7 +2179,7 @@
       if (!params.toString()) return;
 
       FILTER_GROUPS.forEach((group) => {
-        committedSelected[group].clear();
+        filt.committedSel[group].clear();
         const blob = params.get(group);
         if (!blob) return;
         blob
@@ -2143,23 +2188,23 @@
           .filter(Boolean)
           .forEach((rawToken) => {
             normalizeSelectedFilterValues(group, rawToken, "").forEach((token) => {
-              if (token) committedSelected[group].add(token);
+              if (token) filt.committedSel[group].add(token);
             });
           });
       });
 
       const cat = String(params.get(FILTER_CONFIG.catalogParamKey) || "").trim();
-      if (cat === "hotel" || cat === "guesthouse" || cat === "cabin") catalogCategorySlug = cat;
-      else catalogCategorySlug = null;
+      if (cat === "hotel" || cat === "guesthouse" || cat === "cabin") filt.committedCat = cat;
+      else filt.committedCat = null;
 
       rebuildRecentStackFromSelections();
     }
 
     function rebuildRecentStackFromSelections() {
       recentStack = [];
-      if (catalogCategorySlug) pushRecent("catalog", catalogCategorySlug);
+      if (filt.committedCat) pushRecent("catalog", filt.committedCat);
       FILTER_GROUPS.forEach((group) => {
-        [...committedSelected[group]].forEach((token) => pushRecent(group, token));
+        [...filt.committedSel[group]].forEach((token) => pushRecent(group, token));
       });
     }
 
@@ -2180,29 +2225,27 @@
     }
 
     function applyCommittedFromDraft() {
-      committedSelected = cloneGroupSelections(draftSelected);
-      catalogCategorySlug = draftCategorySlug;
+      filt.replaceCommittedFromDraft();
       rebuildRecentStackFromSelections();
       applyCommittedToDom();
     }
 
     function rollbackDraftFromCommitted() {
-      draftSelected = cloneGroupSelections(committedSelected);
-      draftCategorySlug = catalogCategorySlug;
-      draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
+      filt.syncDraftFromCommitted();
+      draftPreviewCount = countShownOnly(filt.draftSel, filt.draftCat);
       syncApplyFooterText();
-      syncChipUi(draftSelected, draftCategorySlug);
+      syncChipUi(filt.draftSel, filt.draftCat);
     }
 
     function applyCommittedToDom() {
       const primaryShown = applyVisibilityCommitted();
-      const pins = countActivePins(committedSelected, catalogCategorySlug);
-      const totalMatching = countTotalMatching(committedSelected, catalogCategorySlug);
+      const pins = countActivePins(filt.committedSel, filt.committedCat);
+      const totalMatching = countTotalMatching(filt.committedSel, filt.committedCat);
       if (visibleCount) visibleCount.textContent = String(primaryShown);
       if (emptyNote) emptyNote.hidden = primaryShown !== 0;
       if (clearBtn) clearBtn.hidden = pins === 0;
 
-      draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
+      draftPreviewCount = countShownOnly(filt.draftSel, filt.draftCat);
 
       syncOpenBadge();
       renderActiveRemovalChips();
@@ -2211,11 +2254,11 @@
 
       syncApplyFooterText();
 
-      const chipSource = modalIsOpen && isMobileFiltersLayout() ? draftSelected : committedSelected;
+      const chipSource = modalIsOpen && isMobileFiltersLayout() ? filt.draftSel : filt.committedSel;
       const chipCatUnused =
         modalIsOpen && isMobileFiltersLayout()
-          ? draftCategorySlug
-          : catalogCategorySlug;
+          ? filt.draftCat
+          : filt.committedCat;
       syncChipUi(chipSource, chipCatUnused);
 
       notifySubscribers("commit", { pins, primaryShown, totalMatching });
@@ -2239,11 +2282,11 @@
 
       toggleTokensInSelection(selected, group, normalizedValues, nextActive, !isDraftFlow, false);
 
-      const chipSel = modalIsOpen && isMobileFiltersLayout() ? draftSelected : committedSelected;
+      const chipSel = modalIsOpen && isMobileFiltersLayout() ? filt.draftSel : filt.committedSel;
       const chipCatUnused =
         modalIsOpen && isMobileFiltersLayout()
-          ? draftCategorySlug
-          : catalogCategorySlug;
+          ? filt.draftCat
+          : filt.committedCat;
       syncChipUi(chipSel, chipCatUnused);
 
       if (!isDraftFlow) {
@@ -2251,7 +2294,7 @@
         return;
       }
 
-      draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
+      draftPreviewCount = countShownOnly(filt.draftSel, filt.draftCat);
       syncApplyFooterText();
     }
 
@@ -2266,24 +2309,24 @@
     }
 
     function resetModalDraftOnly() {
-      clearSelectionGroups(draftSelected, FILTER_GROUPS, true);
-      draftCategorySlug = null;
-      draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
-      syncChipUi(draftSelected, draftCategorySlug);
+      clearSelectionGroups(filt.draftSel, FILTER_GROUPS, true);
+      filt.draftCat = null;
+      draftPreviewCount = countShownOnly(filt.draftSel, filt.draftCat);
+      syncChipUi(filt.draftSel, filt.draftCat);
       syncApplyFooterText();
     }
 
     function setCatalogCategory(slug) {
       const nextSlug = slug && String(slug).trim() ? String(slug).trim() : null;
       if (pickWorkingSets().isDraftFlow) {
-        draftCategorySlug = nextSlug;
-        draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
-        syncChipUi(draftSelected, draftCategorySlug);
+        filt.draftCat = nextSlug;
+        draftPreviewCount = countShownOnly(filt.draftSel, filt.draftCat);
+        syncChipUi(filt.draftSel, filt.draftCat);
         syncApplyFooterText();
         return;
       }
 
-      catalogCategorySlug = nextSlug;
+      filt.committedCat = nextSlug;
       if (nextSlug) pushRecent("catalog", nextSlug);
       else recentStack = recentStack.filter((item) => item.group !== "catalog");
       rollbackDraftFromCommitted();
@@ -2291,26 +2334,22 @@
     }
 
     function setGroupValues(group, values) {
-      if (!committedSelected[group]) return;
-      committedSelected[group].clear();
+      if (!filt.committedSel[group]) return;
+      filt.committedSel[group].clear();
       (values || []).forEach((value) => {
         normalizeSelectedFilterValues(group, value, "").forEach((token) => {
-          if (token && committedSelected[group]) toggleTokensInSelection(committedSelected, group, [token], true, true, false);
+          if (token && filt.committedSel[group]) toggleTokensInSelection(filt.committedSel, group, [token], true, true, false);
         });
       });
 
-      if (pickWorkingSets().isDraftFlow) {
-        draftSelected = cloneGroupSelections(committedSelected);
-        draftCategorySlug = catalogCategorySlug;
-      }
       rollbackDraftFromCommitted();
       applyCommittedToDom();
     }
 
     function clearGroups(groups) {
-      clearSelectionGroups(committedSelected, groups || FILTER_GROUPS, true);
+      clearSelectionGroups(filt.committedSel, groups || FILTER_GROUPS, true);
       if (!groups || groups === FILTER_GROUPS) {
-        catalogCategorySlug = null;
+        filt.committedCat = null;
         clearRecentFully();
       }
       rollbackDraftFromCommitted();
@@ -2336,18 +2375,18 @@
       ];
 
       batch.forEach(([groupKey, vals]) => {
-        if (!committedSelected[groupKey]) return;
-        committedSelected[groupKey].clear();
+        if (!filt.committedSel[groupKey]) return;
+        filt.committedSel[groupKey].clear();
         (vals || []).forEach((raw) => {
           normalizeSelectedFilterValues(groupKey, raw, "").forEach((token) => {
-            if (token) toggleTokensInSelection(committedSelected, groupKey, [token], true, false, false);
+            if (token) toggleTokensInSelection(filt.committedSel, groupKey, [token], true, false, false);
           });
         });
       });
 
       rebuildRecentStackFromSelections();
       rollbackDraftFromCommitted();
-      syncChipUi(committedSelected, catalogCategorySlug);
+      syncChipUi(filt.committedSel, filt.committedCat);
       applyCommittedToDom();
     }
 
@@ -2367,11 +2406,11 @@
 
         const group = tokenBtn.getAttribute("data-remove-group") || "";
         const token = tokenBtn.getAttribute("data-remove-token") || "";
-        if (!group || !token || !committedSelected[group]) return;
+        if (!group || !token || !filt.committedSel[group]) return;
 
         normalizeSelectedFilterValues(group, token, "").forEach((norm) => {
-          if (!norm || !committedSelected[group]) return;
-          committedSelected[group].delete(norm);
+          if (!norm || !filt.committedSel[group]) return;
+          filt.committedSel[group].delete(norm);
           syncRecentRemoval(group, norm, false);
         });
 
@@ -2384,9 +2423,9 @@
       const last = popLastRecent();
       if (!last) return false;
       if (last.group === "catalog") {
-        catalogCategorySlug = null;
-      } else if (committedSelected[last.group]) {
-        committedSelected[last.group].delete(last.token);
+        filt.committedCat = null;
+      } else if (filt.committedSel[last.group]) {
+        filt.committedSel[last.group].delete(last.token);
       }
       rollbackDraftFromCommitted();
       applyCommittedToDom();
@@ -2398,13 +2437,12 @@
       reopenFocusEl = document.activeElement;
       modalIsOpen = true;
       if (mobileDraftHint) mobileDraftHint.hidden = !isMobileFiltersLayout();
-      draftSelected = cloneGroupSelections(committedSelected);
-      draftCategorySlug = catalogCategorySlug;
-      draftPreviewCount = countShownOnly(draftSelected, draftCategorySlug);
+      filt.syncDraftFromCommitted();
+      draftPreviewCount = countShownOnly(filt.draftSel, filt.draftCat);
       filtersModal.hidden = false;
       requestAnimationFrame(() => filtersModal.classList.add("is-visible"));
       body.classList.add("modal-open");
-      syncChipUi(draftSelected, draftCategorySlug);
+      syncChipUi(filt.draftSel, filt.draftCat);
       syncApplyFooterText();
       trackAnalytics("open_filters");
     }
@@ -2419,7 +2457,7 @@
       body.classList.remove("modal-open");
       modalIsOpen = false;
       if (mobileDraftHint) mobileDraftHint.hidden = true;
-      syncChipUi(committedSelected, catalogCategorySlug);
+      syncChipUi(filt.committedSel, filt.committedCat);
 
       window.setTimeout(() => {
         if (!filtersModal.classList.contains("is-visible")) {
@@ -2441,11 +2479,11 @@
     });
 
     clearBtn?.addEventListener("click", () => {
-      clearSelectionGroups(committedSelected, FILTER_GROUPS, true);
-      catalogCategorySlug = null;
+      clearSelectionGroups(filt.committedSel, FILTER_GROUPS, true);
+      filt.committedCat = null;
       clearRecentFully();
       rollbackDraftFromCommitted();
-      syncChipUi(committedSelected, catalogCategorySlug);
+      syncChipUi(filt.committedSel, filt.committedCat);
       applyCommittedToDom();
       trackAnalytics("clear_filters_catalog");
     });
@@ -2511,17 +2549,10 @@
       applySearchFromForm,
       applyPatch,
       subscribe(listener) {
-        if (typeof listener !== "function") {
-          return () => {};
-        }
-        subscribers.add(listener);
-        return () => subscribers.delete(listener);
+        return filt.subscribe(listener);
       },
       getCommittedSnapshot() {
-        return {
-          catalogCategory: catalogCategorySlug,
-          groups: Object.fromEntries(FILTER_GROUPS.map((group) => [group, [...committedSelected[group]]])),
-        };
+        return filt.getCommittedSnapshot();
       },
     };
   }
