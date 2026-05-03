@@ -260,6 +260,11 @@
     "title": "\"МИРАСЛАВА\" мини-отель"
   },
   {
+    "slug": "grey-haus-domiki",
+    "source_id": 3153,
+    "title": "\"ГРЕЙ ХАУС\" домики с бассейном"
+  },
+  {
     "slug": "fyuzhn-tri-domika-s-launzh-zonoy-3162",
     "source_id": 3162,
     "title": "\"ФЬЮЖН\" три домика с лаунж-зоной"
@@ -693,5 +698,30 @@
     "slug": "tihaya-obitel-dom-pod-klyuch-4230",
     "source_id": 4230,
     "title": "\"ТИХАЯ ОБИТЕЛЬ\" дом под ключ"
+  },
+  {
+    "slug": "lemar-domiki-v-tsentre-4239",
+    "source_id": 4239,
+    "title": "\"ЛЕМАР\" домики в центре"
+  },
+  {
+    "slug": "svetlyy-dvorik-gostevoy-dom-ekonom-4259",
+    "source_id": 4259,
+    "title": "\"СВЕТЛЫЙ ДВОРИК\" гостевой дом эконом"
+  },
+  {
+    "slug": "studio-san-amra-studiya-na-plyazhe-4270",
+    "source_id": 4270,
+    "title": "\"СТУДИО САН АМРА\" студия на пляже"
+  },
+  {
+    "slug": "bereg-svyatoy-sofii-otel-4279",
+    "source_id": 4279,
+    "title": "\"БЕРЕГ СВЯТОЙ СОФИИ\" отель"
+  },
+  {
+    "slug": "neanila-eko-domiki-4308",
+    "source_id": 4308,
+    "title": "\"НЕАНИЛА\" эко домики"
   }
 ]

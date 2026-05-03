@@ -7,7 +7,7 @@
     "url": "https://абхазберег.рф/kvartira/mimoza-3k-kvartira-1499/",
     "telegram_url": "https://t.me/abhkvartira/1499",
     "image": "/media/kvartira-cards/mimoza-3k-kvartira-1499-cover.jpg",
-    "has_video": false,
+    "has_video": true,
     "excerpt": "Очень просторно и светло"
   },
   {
@@ -259,7 +259,7 @@
     "message_id": 1220,
     "url": "https://абхазберег.рф/kvartira/tsentralnyy-dom-suhum-1220/",
     "telegram_url": "https://t.me/abhkvartira/1220",
-    "image": "",
+    "image": "/media/kvartira-cards/tsentralnyy-dom-suhum-1220-cover.jpg",
     "has_video": true,
     "excerpt": "Дом расположен в самом центре Сухума , внутри квартала, вокруг не шумно. Во дворе дома просторная площадка, где всегда тень от деревьев и прохлада для отдыха и перекусов"
   },
@@ -314,7 +314,7 @@
     "message_id": 1153,
     "url": "https://абхазберег.рф/kvartira/suhum-dom-1153/",
     "telegram_url": "https://t.me/abhkvartira/1153",
-    "image": "",
+    "image": "/media/kvartira-cards/suhum-dom-1153-cover.jpg",
     "has_video": true,
     "excerpt": "Дом расположен на тихой улице под Сухумом"
   },
@@ -370,7 +370,7 @@
     "url": "https://абхазберег.рф/kvartira/semeynaya-kvartira-2k-1104/",
     "telegram_url": "https://t.me/abhkvartira/1104",
     "image": "/media/kvartira-cards/semeynaya-kvartira-2k-1104-cover.jpg",
-    "has_video": false,
+    "has_video": true,
     "excerpt": "Уютнaя двухкoмнатнaя квартира в центре города, площадь 50м. Cделaн евроремонт, всё необхoдимoе ecть для вaшегo проживaния и отдыxа. Все бытовые приборы, телевизор, гладильная доска и утюг, пылесос и робот-пылесос, стиральная машинка, сплит-система. На кухне микроволновка, большой холодильник, чайник, плитка. Есть посуда и постельные принадлежности, смарт-тв и вай-фай"
   },
   {
@@ -425,7 +425,7 @@
     "url": "https://абхазберег.рф/kvartira/mon-amur-kvartira-1k-gagra-1062/",
     "telegram_url": "https://t.me/abhkvartira/1055",
     "image": "/media/kvartira-cards/mon-amur-kvartira-1k-gagra-1062-cover.jpg",
-    "has_video": true,
+    "has_video": false,
     "excerpt": "Центральная часть Новой Гагры"
   },
   {
@@ -435,7 +435,7 @@
     "message_id": 1053,
     "url": "https://абхазберег.рф/kvartira/na-vysote-kvartira-pitsunda-1053/",
     "telegram_url": "https://t.me/abhkvartira/1053",
-    "image": "",
+    "image": "/media/kvartira-cards/na-vysote-kvartira-pitsunda-1053-cover.jpg",
     "has_video": true,
     "excerpt": "Квартира в центре города"
   },
