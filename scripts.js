@@ -774,7 +774,10 @@
   }
 
   function renderGenericReviews() {
-    const scrollers = Array.from(document.querySelectorAll(".reviews-scroller"));
+    /* Не трогаем блоки с ручными отзывами из /data/guest-reviews.json (data-random-reviews). */
+    const scrollers = Array.from(
+      document.querySelectorAll(".reviews-scroller:not([data-random-reviews])")
+    );
     const genericPool = getGlobalReviewPool();
     if (!genericPool.length) return;
     scrollers.forEach((scroller, index) => {
@@ -789,7 +792,9 @@
   }
 
   function renderHotelReviews(row) {
-    const scrollers = Array.from(document.querySelectorAll(".reviews-scroller"));
+    const scrollers = Array.from(
+      document.querySelectorAll(".reviews-scroller:not([data-random-reviews])")
+    );
     if (!scrollers.length) return;
 
     const context = extractObjectReviewContext(row);
@@ -2041,12 +2046,6 @@
   async function hydrateHomeCatalog(filtersController) {
     const grid = document.getElementById("catalog-grid");
     if (!grid) return;
-    if (grid.querySelector(".catalog-card")) {
-      addHotelVideoBadges(grid);
-      filtersController.refresh();
-      return;
-    }
-
     // Главная уже содержит полную сетку карточек из статической сборки (разметка с 📍 / 🏖 и <br>).
     // Повторная отрисовка из Supabase заменяет DOM и даёт «мигание»: сначала верстка из HTML/CSS,
     // затем упрощённые карточки из formatHotelCardSummary. Не перезаписываем готовую сетку.
