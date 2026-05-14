@@ -623,14 +623,6 @@
   font-size: 9px;
 }
 
-.site-concept__search-dates-note {
-  margin: 0.6rem 0 0;
-  font-size: 0.8rem;
-  line-height: 1.42;
-  color: var(--muted);
-  max-width: 74ch;
-}
-
 .site-concept__hero-highlights,
 .site-concept__destination-grid,
 .site-concept__guide-grid,
