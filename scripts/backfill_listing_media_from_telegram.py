@@ -14,6 +14,10 @@
   python3 scripts/backfill_listing_media_from_telegram.py
   python3 scripts/backfill_listing_media_from_telegram.py --dry-run
 
+Если в БД уже есть listing_media с путями `/media/...`, но файл не попал на CDN:
+  python3 scripts/upload_local_media_to_storage.py --dry-run
+  python3 scripts/upload_local_media_to_storage.py
+
 Квартиры: topic_id в базе = source_topic_id. Отели: source_message_id.
 """
 from __future__ import annotations
