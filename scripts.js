@@ -2403,7 +2403,8 @@
       const pins = countActivePins(filt.committedSel, filt.committedCat);
       const totalMatching = countTotalMatching(filt.committedSel, filt.committedCat);
       const displayedPrimaryShown = syncCatalogInitialLimit(primaryShown, pins);
-      if (visibleCount) visibleCount.textContent = String(displayedPrimaryShown);
+      const resultCount = pins === 0 ? totalMatching : displayedPrimaryShown;
+      if (visibleCount) visibleCount.textContent = String(resultCount);
       if (emptyNote) emptyNote.hidden = displayedPrimaryShown !== 0;
       if (clearBtn) clearBtn.hidden = pins === 0;
 
@@ -2423,7 +2424,7 @@
           : filt.committedCat;
       syncChipUi(chipSource, chipCatUnused);
 
-      notifySubscribers("commit", { pins, primaryShown: displayedPrimaryShown, totalMatching });
+      notifySubscribers("commit", { pins, primaryShown: displayedPrimaryShown, totalMatching, resultCount });
     }
 
     function toggleChipAcrossModes(chip) {
