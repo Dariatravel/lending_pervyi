@@ -2338,14 +2338,14 @@ a.podborki-card--link:hover {
 .hotel-site-concept .price-card__teaser .price-card__amount {
   font-size: 24px;
   line-height: 1.05;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--text);
 }
 
 .hotel-site-concept .price-card__teaser strong {
   font-size: 24px;
   line-height: 1.05;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .hotel-site-concept .price-card ul {
@@ -2372,7 +2372,7 @@ a.podborki-card--link:hover {
 .hotel-site-concept .price-card__group {
   margin: 0;
   font-size: clamp(0.78rem, 2.1vw, 0.9rem);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
@@ -2401,13 +2401,17 @@ a.podborki-card--link:hover {
 }
 
 .hotel-site-concept .price-card li .price-card__amount {
-  font-weight: 700;
+  font-weight: 400;
   color: var(--text);
 }
 
 .hotel-site-concept .price-card li strong {
-  font-weight: 700;
+  font-weight: 400;
   color: var(--text);
+}
+
+.hotel-site-concept .price-card li b {
+  font-weight: 400;
 }
 
 @media (min-width: 900px) {
@@ -3716,6 +3720,11 @@ body {
 .hotel-page-v2 .price-card li:first-child {
   border-top: 0;
   padding-top: 0;
+}
+
+.hotel-page-v2 .price-card strong,
+.hotel-page-v2 .price-card .price-card__amount {
+  font-weight: 400;
 }
 
 .hotel-page-v2 .hotel-contact-section {
