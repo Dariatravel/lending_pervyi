@@ -1,0 +1,413 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import html
+import json
+import re
+import xml.etree.ElementTree as ET
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Callable
+
+ROOT = Path(__file__).resolve().parents[1]
+PODBORKI_DIR = ROOT / "podborki"
+META_PATH = ROOT / "podbori_txt" / "_collection_meta.json"
+INDEX_PATH = ROOT / "index.html"
+KVARTIRA_INDEX_PATH = ROOT / "kvartira" / "index.html"
+SITEMAP_PATH = ROOT / "sitemap.xml"
+REPORT_PATH = ROOT / "output" / "podborki_from_filters_report.txt"
+CSS_VERSION = "202605160130"
+CANONICAL_ORIGIN = "https://xn--80aacbklan7f0b.xn--p1ai"
+
+CITY_LABELS = {
+    "ldzaa": "ЛДЗАА",
+    "pitsunda": "ПИЦУНДА",
+    "gagra": "ГАГРА",
+    "alakhadzy": "АЛАХАДЗЫ",
+    "gudauta": "ГУДАУТА",
+    "new-afon": "НОВЫЙ АФОН",
+    "sukhum": "СУХУМ",
+    "tsandripsh": "ЦАНДРИПШ",
+}
+CITY_ORDER = list(CITY_LABELS)
+
+
+@dataclass(frozen=True)
+class Card:
+    href: str
+    title: str
+    summary: str
+    image: str
+    alt: str
+    filters: dict[str, set[str]]
+
+
+@dataclass(frozen=True)
+class Selection:
+    slug: str
+    title: str
+    predicate: Callable[[Card], bool]
+    group_by_city: bool = True
+
+
+def strip_tags(value: str) -> str:
+    return re.sub(r"<[^>]+>", "", value)
+
+
+def parse_attrs(raw: str) -> dict[str, str]:
+    return {m.group(1): html.unescape(m.group(2)) for m in re.finditer(r'([\w:-]+)="([^"]*)"', raw)}
+
+
+def filter_values(attrs: dict[str, str], group: str) -> set[str]:
+    raw = attrs.get(f"data-filter-{group}", "")
+    return {part.strip() for part in raw.split("|") if part.strip()}
+
+
+def normalize_image(src: str) -> str:
+    src = html.unescape(src or "").strip()
+    if not src:
+        return ""
+    if src.startswith("http://") or src.startswith("https://"):
+        return src
+    if src.startswith("/"):
+        return "../.." + src
+    if src.startswith("../"):
+        return src
+    return "../../" + src.lstrip("./")
+
+
+def parse_catalog_cards(path: Path, prefix: str) -> list[Card]:
+    text = path.read_text(encoding="utf-8")
+    cards: list[Card] = []
+    rx = re.compile(r'<a\s+class="catalog-card"(?P<attrs>[^>]*)>(?P<body>.*?)</a>', re.I | re.S)
+    for match in rx.finditer(text):
+        attrs = parse_attrs(match.group("attrs"))
+        href = attrs.get("href", "")
+        if not href.startswith(prefix):
+            continue
+        body = match.group("body")
+        h3m = re.search(r"<h3>(.*?)</h3>", body, re.I | re.S)
+        pm = re.search(r"<p>(.*?)</p>", body, re.I | re.S)
+        im = re.search(r"<img\b([^>]*)>", body, re.I | re.S)
+        img_attrs = parse_attrs(im.group(1)) if im else {}
+        title = html.unescape(strip_tags(h3m.group(1))).strip() if h3m else ""
+        summary = html.unescape(strip_tags(pm.group(1))).strip() if pm else ""
+        image = normalize_image(img_attrs.get("src", ""))
+        alt = img_attrs.get("alt", "").strip() or title
+        cards.append(
+            Card(
+                href=href,
+                title=title,
+                summary=summary,
+                image=image,
+                alt=alt or title,
+                filters={
+                    group: filter_values(attrs, group)
+                    for group in ("distance", "food", "price", "city", "beach", "room", "stay")
+                },
+            )
+        )
+    return cards
+
+
+def load_cards() -> list[Card]:
+    cards = parse_catalog_cards(INDEX_PATH, "/hotels/")
+    if KVARTIRA_INDEX_PATH.is_file():
+        cards.extend(parse_catalog_cards(KVARTIRA_INDEX_PATH, "/kvartira/"))
+    deduped: dict[str, Card] = {}
+    for card in cards:
+        deduped[card.href] = card
+    return list(deduped.values())
+
+
+def has(group: str, *values: str) -> Callable[[Card], bool]:
+    expected = set(values)
+    return lambda card: bool(card.filters.get(group, set()) & expected)
+
+
+def any_of(*predicates: Callable[[Card], bool]) -> Callable[[Card], bool]:
+    return lambda card: any(predicate(card) for predicate in predicates)
+
+
+def keyword(*needles: str) -> Callable[[Card], bool]:
+    lowered = tuple(needle.lower() for needle in needles)
+    return lambda card: any(needle in f"{card.title} {card.summary}".lower() for needle in lowered)
+
+
+def selections() -> list[Selection]:
+    return [
+        Selection("doma-pod-klyuch-vse-varianty", "Варианты домов под ключ", has("stay", "turnkey-house")),
+        Selection("gagra-vse-varianty", "Варианты размещения в г. Гагра", has("city", "gagra"), False),
+        Selection("gudauta-vse-varianty", "Варианты размещения в г. Гудаута", has("city", "gudauta"), False),
+        Selection("novyy-afon-vse-varianty", "Варианты размещения в г. Новый Афон", has("city", "new-afon"), False),
+        Selection("pitsunda-vse-varianty", "Варианты размещения в г. Пицунда", has("city", "pitsunda"), False),
+        Selection("suhum-vse-varianty", "Варианты размещения в г. Сухуме", has("city", "sukhum"), False),
+        Selection("alahadzy-vse-varianty", "Варианты размещения в пос. Алахадзы", has("city", "alakhadzy"), False),
+        Selection("varianty-do-5-tr-ekonom", "Варианты размещения до 5 тыс.руб в сезон", has("price", "economy")),
+        Selection("varianty-5-12-tr-srednyak", "Варианты размещения от 5 до 12 тыс.руб в сезон", has("price", "midrange")),
+        Selection("balkony", "Варианты размещения с балконом", has("room", "balcony")),
+        Selection("veranda", "Варианты размещения с верандой", has("room", "terrace")),
+        Selection("dvuhkomnatnye-i-bolee", "Варианты размещения с двумя/тремя комнатами", has("room", "two-room-plus")),
+        Selection("sobaki-varianty", "Варианты размещения с животными", has("stay", "pets")),
+        Selection("svoya-kuhnya-v-nomere", "Варианты размещения с собственной кухней", has("room", "kitchen")),
+        Selection("domiki-vse-varianty", "Варианты с отдельными домиками", has("stay", "cottages")),
+        Selection("kvartiry-vse-varianty", "Варианты частных квартир", has("stay", "apartments")),
+        Selection("gory-oteli-v-gorah", "Горы - отели в горах", keyword("гор", "ущель", "источник")),
+        Selection("ldzaa-vse-varianty", "Именно в Лдзаа есть такие варианты", has("city", "ldzaa"), False),
+        Selection("sosnovyy-plyazh", "На пляже с соснами у меня есть варианты", has("beach", "pine-pebble-ldzaa-pitsunda")),
+        Selection("vid-na-more-pryamoy-bokovoy", "Объекты, номера в которых имеют вид на море (прямой или боковой)", has("room", "sea-view")),
+        Selection("basseyn-vse-varianty", "Отели с бассейном", has("room", "pool")),
+        Selection("pitanie-v-otele-ili-svoe-kafe", "Отели с питанием / собственным кафе", has("food", "cafe", "breakfast", "half-board", "full-board")),
+        Selection("bereg-morya-oteli-na-beregu", "Отели, которые расположены прямо на пляже, у берега", any_of(has("distance", "beachfront"), has("room", "beachfront-room"))),
+        Selection("peschanyy-plyazh-suhum", "Песчаные пляжи в Сухуме (Мокко, Марнеро, Келасур)", has("beach", "sand-sukhum")),
+        Selection("peschanyy-ldzaa", "Песчаный пляж в Лдзаа", has("beach", "sand-ldzaa")),
+        Selection("varianty-dorozhe-12-tr-premium", "Премиум-варианты размещения в Абхазии", has("price", "premium")),
+        Selection("pyatero-gostey-i-bolee", "С размещением 5+ гостей варианты", has("room", "five-plus")),
+    ]
+
+
+def city_key(card: Card) -> str:
+    for city in CITY_ORDER:
+        if city in card.filters.get("city", set()):
+            return city
+    return "other"
+
+
+def city_label(key: str) -> str:
+    return CITY_LABELS.get(key, "ДРУГИЕ ЛОКАЦИИ")
+
+
+def card_sort_key(card: Card) -> tuple[int, str]:
+    return (CITY_ORDER.index(city_key(card)) if city_key(card) in CITY_ORDER else 99, card.title.lower())
+
+
+def render_card(card: Card, rank: int) -> str:
+    if card.image:
+        media_inner = f'<img src="{html.escape(card.image)}" alt="{html.escape(card.alt)}" loading="lazy" decoding="async" />'
+    else:
+        media_inner = '<div class="catalog-card__media-fallback" role="img" aria-hidden="true">Фото</div>'
+    return (
+        f'          <a class="catalog-card podborki-catalog-card" href="{html.escape(card.href)}">'
+        f'<div class="catalog-card__media-wrap">'
+        f'<span class="catalog-card__badge catalog-card__badge--rank" aria-label="Место в подборке — {rank}">{rank}</span>'
+        f"{media_inner}</div><h3>{html.escape(card.title)}</h3><p>{html.escape(card.summary) or ' '}</p></a>"
+    )
+
+
+def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[str, str]]) -> str:
+    page_meta = meta.get(selection.slug, {})
+    h1 = page_meta.get("h1") or selection.title
+    page_title = page_meta.get("page_title") or f"{h1} — подборка | АБХАЗБЕРЕГ"
+    description = page_meta.get("meta_description") or f"{h1}: подборка проверенных вариантов размещения в Абхазии."
+    parts: list[str] = []
+    rank = 0
+    if selection.group_by_city:
+        grouped: dict[str, list[Card]] = {}
+        for card in sorted(cards, key=card_sort_key):
+            grouped.setdefault(city_key(card), []).append(card)
+        for key in [*CITY_ORDER, "other"]:
+            group_cards = grouped.get(key, [])
+            if not group_cards:
+                continue
+            parts.append(f'        <h2 class="podborki-region">{city_label(key)}</h2>')
+            parts.append('        <div class="catalog-grid podborki-catalog-grid">')
+            for card in group_cards:
+                rank += 1
+                parts.append(render_card(card, rank))
+            parts.append("        </div>")
+    else:
+        parts.append('        <div class="catalog-grid podborki-catalog-grid">')
+        for card in sorted(cards, key=card_sort_key):
+            rank += 1
+            parts.append(render_card(card, rank))
+        parts.append("        </div>")
+    body_html = "\n".join(parts)
+    return f"""<!DOCTYPE html>
+<html lang="ru" id="top">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{html.escape(page_title)}</title>
+  <meta name="description" content="{html.escape(description)}" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/{selection.slug}/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="../../media/branding/favicon-abhazbereg.png" />
+  <link rel="stylesheet" href="../../styles.css?v={CSS_VERSION}" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <main class="page-shell site-concept podborki-page">
+    <div class="bg-blur bg-blur--mint" aria-hidden="true"></div>
+    <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
+
+    <header class="site-concept__topbar" role="banner">
+      <a class="site-concept__brand" href="/">
+        <img class="site-concept__brand-mark" src="../../media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <span class="site-concept__brand-copy">
+          <strong>АБХАЗБЕРЕГ - жилье напрямую</strong>
+        </span>
+      </a>
+      <nav class="site-concept__topnav" aria-label="Основная навигация">
+        <a href="/">Главная</a>
+        <a href="/podborki/">Подборки</a>
+        <a href="/kvartira/">Квартиры и дома</a>
+        <a href="/blog/">Блог</a>
+        <a href="/#contacts">Контакты</a>
+      </nav>
+    </header>
+
+    <section class="site-concept__hero-card podborki-hero">
+      <p class="site-concept__eyebrow"><a href="/podborki/">Подборки</a></p>
+      <h1>{html.escape(h1)}</h1>
+    </section>
+
+    <section class="site-concept__section-block podborki-body" aria-label="Список объектов">
+{body_html}
+    </section>
+  </main>
+  <script src="../../scripts.js" defer></script>
+  <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
+</body>
+</html>
+"""
+
+
+def render_index(items: list[tuple[str, str]]) -> str:
+    links = "\n".join(
+        f'        <li><a class="podborki-index__link" href="/podborki/{html.escape(slug)}/">{html.escape(title)}</a></li>'
+        for slug, title in sorted(items, key=lambda row: row[1].lower())
+    )
+    return f"""<!DOCTYPE html>
+<html lang="ru" id="top">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Подборки жилья в Абхазии — АБХАЗБЕРЕГ</title>
+  <meta name="description" content="Тематические подборки отелей, домов и квартир в Абхазии: море, бюджет, удобства, локации." />
+  <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="../media/branding/favicon-abhazbereg.png" />
+  <link rel="stylesheet" href="../styles.css?v={CSS_VERSION}" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <main class="page-shell site-concept podborki-page">
+    <div class="bg-blur bg-blur--mint" aria-hidden="true"></div>
+    <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
+    <header class="site-concept__topbar" role="banner">
+      <a class="site-concept__brand" href="/">
+        <img class="site-concept__brand-mark" src="../media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <span class="site-concept__brand-copy"><strong>АБХАЗБЕРЕГ - жилье напрямую</strong></span>
+      </a>
+      <nav class="site-concept__topnav" aria-label="Основная навигация">
+        <a href="/">Главная</a>
+        <a href="/podborki/" aria-current="page">Подборки</a>
+        <a href="/kvartira/">Квартиры и дома</a>
+        <a href="/blog/">Блог</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </header>
+    <section class="site-concept__hero-card podborki-hero">
+      <p class="site-concept__eyebrow">Каталог</p>
+      <h1>Подборки жилья</h1>
+    </section>
+    <section class="site-concept__section-block podborki-index-panel">
+      <div class="podborki-index-head">
+        <p class="site-concept__eyebrow">Быстрый выбор</p>
+        <h2>Выберите подборку под свой формат отдыха</h2>
+        <p>Собрали варианты по городам, бюджету, пляжам и удобствам, чтобы не листать весь каталог вручную.</p>
+      </div>
+      <ul class="podborki-index-list">
+{links}
+      </ul>
+    </section>
+    <section class="section site-concept__reviews" id="reviews">
+      <article class="card review-shell">
+        <div class="section-heading section-heading--compact">
+          <p class="eyebrow">Отзывы гостей</p>
+        </div>
+        <div aria-label="Лента отзывов" class="reviews-scroller" data-random-reviews="" data-review-count="6"></div>
+      </article>
+    </section>
+
+    <section class="section site-concept__contacts" id="contacts">
+      <article class="cta-block contact-shell">
+        <div class="contact-shell__intro">
+          <p class="eyebrow">Контакты и бронирование</p>
+          <p>
+            Проверить наличие номеров и задать вопросы можно по номеру<br />
+            <strong class="contact-phone">+7 940 900-33-40</strong><br />
+            <span class="contact-messengers">(WhatsApp, Telegram, MAX, VK)</span>
+          </p>
+          <p class="note">Только сообщения, обычный звонок не пройдёт.</p>
+        </div>
+        <div class="contact-buttons">
+          <a class="btn-book" href="https://max.ru/u/f9LHodD0cOLVw3RTEObQAuqGut5qrEnsCdmW7cdV4PgfGrp9ldI_eY2boY8" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>
+          <a class="btn-book" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК</a>
+          <a class="btn-book" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В TELEGRAM</a>
+          <a class="btn-book" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В WHATSAPP</a>
+        </div>
+      </article>
+    </section>
+  </main>
+  <script src="../scripts.js" defer></script>
+  <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
+</body>
+</html>
+"""
+
+
+def update_sitemap(slugs: list[str]) -> None:
+    ET.register_namespace("", "http://www.sitemaps.org/schemas/sitemap/0.9")
+    tree = ET.parse(SITEMAP_PATH)
+    root = tree.getroot()
+    ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    existing = {loc.text for loc in root.findall("sm:url/sm:loc", ns) if loc.text}
+    urls = [f"{CANONICAL_ORIGIN}/podborki/"] + [f"{CANONICAL_ORIGIN}/podborki/{slug}/" for slug in slugs]
+    for url in urls:
+        if url in existing:
+            continue
+        node = ET.SubElement(root, "{http://www.sitemaps.org/schemas/sitemap/0.9}url")
+        loc = ET.SubElement(node, "{http://www.sitemaps.org/schemas/sitemap/0.9}loc")
+        loc.text = url
+    tree.write(SITEMAP_PATH, encoding="utf-8", xml_declaration=True)
+
+
+def main() -> int:
+    meta = json.loads(META_PATH.read_text(encoding="utf-8")) if META_PATH.is_file() else {}
+    cards = load_cards()
+    report = [
+        "Подборки пересобраны по data-filter-* из каталога.",
+        "Источник data-filter-* — Google Sheet СОЦСЕТИ через apply_all_filters_from_sheet.py.",
+        "",
+        f"Карточек в каталоге: {len(cards)}",
+        "",
+    ]
+    index_items: list[tuple[str, str]] = []
+    slugs: list[str] = []
+    for selection in selections():
+        selected = [card for card in cards if selection.predicate(card)]
+        selected = sorted(selected, key=card_sort_key)
+        out_dir = PODBORKI_DIR / selection.slug
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "index.html").write_text(render_page(selection, selected, meta), encoding="utf-8")
+        title = meta.get(selection.slug, {}).get("h1") or selection.title
+        index_items.append((selection.slug, title))
+        slugs.append(selection.slug)
+        report.append(f"- {selection.slug}: {len(selected)}")
+    PODBORKI_DIR.mkdir(parents=True, exist_ok=True)
+    (PODBORKI_DIR / "index.html").write_text(render_index(index_items), encoding="utf-8")
+    update_sitemap(slugs)
+    REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    REPORT_PATH.write_text("\n".join(report) + "\n", encoding="utf-8")
+    print("\n".join(report))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

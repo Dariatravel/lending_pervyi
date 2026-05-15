@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="../media/branding/favicon-abhazbereg.png" />
-  <link rel="stylesheet" href="../styles.css?v=202605031315" />
+  <link rel="stylesheet" href="../styles.css?v=202605160130" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -27,14 +27,19 @@
         <a href="/podborki/" aria-current="page">Подборки</a>
         <a href="/kvartira/">Квартиры и дома</a>
         <a href="/blog/">Блог</a>
-        <a href="/#contacts">Контакты</a>
+        <a href="#contacts">Контакты</a>
       </nav>
     </header>
     <section class="site-concept__hero-card podborki-hero">
       <p class="site-concept__eyebrow">Каталог</p>
       <h1>Подборки жилья</h1>
     </section>
-    <section class="site-concept__section-block">
+    <section class="site-concept__section-block podborki-index-panel">
+      <div class="podborki-index-head">
+        <p class="site-concept__eyebrow">Быстрый выбор</p>
+        <h2>Выберите подборку под свой формат отдыха</h2>
+        <p>Собрали варианты по городам, бюджету, пляжам и удобствам, чтобы не листать весь каталог вручную.</p>
+      </div>
       <ul class="podborki-index-list">
         <li><a class="podborki-index__link" href="/podborki/doma-pod-klyuch-vse-varianty/">Варианты домов под ключ</a></li>
         <li><a class="podborki-index__link" href="/podborki/gagra-vse-varianty/">Варианты размещения в г. Гагра</a></li>
@@ -64,6 +69,34 @@
         <li><a class="podborki-index__link" href="/podborki/varianty-dorozhe-12-tr-premium/">Премиум-варианты размещения в Абхазии</a></li>
         <li><a class="podborki-index__link" href="/podborki/pyatero-gostey-i-bolee/">С размещением 5+ гостей варианты</a></li>
       </ul>
+    </section>
+    <section class="section site-concept__reviews" id="reviews">
+      <article class="card review-shell">
+        <div class="section-heading section-heading--compact">
+          <p class="eyebrow">Отзывы гостей</p>
+        </div>
+        <div aria-label="Лента отзывов" class="reviews-scroller" data-random-reviews="" data-review-count="6"></div>
+      </article>
+    </section>
+
+    <section class="section site-concept__contacts" id="contacts">
+      <article class="cta-block contact-shell">
+        <div class="contact-shell__intro">
+          <p class="eyebrow">Контакты и бронирование</p>
+          <p>
+            Проверить наличие номеров и задать вопросы можно по номеру<br />
+            <strong class="contact-phone">+7 940 900-33-40</strong><br />
+            <span class="contact-messengers">(WhatsApp, Telegram, MAX, VK)</span>
+          </p>
+          <p class="note">Только сообщения, обычный звонок не пройдёт.</p>
+        </div>
+        <div class="contact-buttons">
+          <a class="btn-book" href="https://max.ru/u/f9LHodD0cOLVw3RTEObQAuqGut5qrEnsCdmW7cdV4PgfGrp9ldI_eY2boY8" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>
+          <a class="btn-book" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК</a>
+          <a class="btn-book" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В TELEGRAM</a>
+          <a class="btn-book" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В WHATSAPP</a>
+        </div>
+      </article>
     </section>
   </main>
   <script src="../scripts.js" defer></script>
