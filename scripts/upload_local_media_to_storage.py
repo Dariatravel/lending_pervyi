@@ -142,6 +142,8 @@ def main() -> int:
 
     cover_by_listing: dict[int, str] = {}
 
+    with_local = sum(1 for _r, lp, _sp, _b in candidates if lp.is_file())
+
     for row, local_path, storage_path, bucket in candidates:
         mid = int(row["id"])
         lid = int(row["listing_id"])
@@ -157,23 +159,23 @@ def main() -> int:
             or "image/jpeg"
         )
         new_pub = public_url(sb_url, bucket, storage_path)
-        on_cdn = False if args.dry_run else exists_on_cdn(sb_url, bucket, storage_path)
 
         if local_path.is_file():
-            if not on_cdn and not args.dry_run:
+            # Не делаем HEAD на CDN: тысячи запросов тормозят прогон. Upsert перезапишет объект при необходимости.
+            if not args.dry_run:
                 new_pub = upload_local(sess, sb_url, bucket, storage_path, local_path, str(mime))
                 uploaded += 1
-            elif on_cdn and not args.dry_run:
-                skipped_already += 1
-            elif args.dry_run and args.verbose:
-                action = "на CDN уже" if on_cdn else "загрузить"
-                print(f"[dry-run] {storage_path}: локальный файл есть ({action})", flush=True)
+                if uploaded % 50 == 0:
+                    print(f"[progress] загружено файлов: {uploaded} / ~{with_local}", flush=True)
+            elif args.verbose:
+                print(f"[dry-run] {storage_path}: есть локальный файл → загрузка", flush=True)
         else:
-            if on_cdn and not args.dry_run:
-                skipped_already += 1
+            if args.dry_run:
+                need_telegram.append((lid, storage_path or "", str(local_path)))
+                continue
+            if exists_on_cdn(sb_url, bucket, storage_path):
                 new_pub = public_url(sb_url, bucket, storage_path)
-            elif on_cdn and args.dry_run and args.verbose:
-                print(f"[dry-run] {storage_path}: только CDN", flush=True)
+                skipped_already += 1
             else:
                 need_telegram.append((lid, storage_path or "", str(local_path)))
                 continue
