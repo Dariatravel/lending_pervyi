@@ -563,13 +563,18 @@ def resolve_source_message_id(row: dict[str, Any]) -> int | None:
 
 
 def render_kvartira_card(row: dict[str, Any]) -> str:
+    filters = (row.get("details") or {}).get("filters") or {}
+    attrs = " ".join(
+        f'data-filter-{group}="{html.escape("|".join(filters.get(group) or []), quote=True)}"'
+        for group in FILTER_GROUPS
+    )
     href = page_path_from_url(row.get("page_url"), row.get("telegram_url") or "/kvartira/")
     title = html.escape(row.get("title") or "")
     summary = html.escape(row.get("summary") or row.get("excerpt") or ((row.get("details") or {}).get("excerpt") or ""))
     image = pick_cover_url(row)
     badge = '<span class="catalog-card__badge">Видео</span>' if row.get("has_video") else ""
     return (
-        f'<a class="catalog-card" href="{html.escape(href, quote=True)}">'
+        f'<a class="catalog-card" {attrs} href="{html.escape(href, quote=True)}">'
         f'<div class="catalog-card__media-wrap">{badge}<img src="{html.escape(image, quote=True)}" alt="{title}" loading="lazy" /></div>'
         f"<h3>{title}</h3>"
         f"<p>{summary}</p>"

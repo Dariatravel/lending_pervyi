@@ -65,6 +65,13 @@ VIDEO_BITRATES = ('1800k', '1200k', '900k', '700k', '500k', '350k')
 MAX_LOCAL_SOURCE_KEEP_MB = 95
 VIDEO_MAX_WIDTH = 960
 FORCE_MEDIA_REFRESH = os.getenv('FORCE_MEDIA_REFRESH', '').strip().lower() in {'1', 'true', 'yes', 'on'}
+# По умолчанию фото (как и видео) уходят в Supabase Storage, чтобы прод работал без /media из git.
+SKIP_IMAGE_UPLOAD_TO_SUPABASE = os.getenv('SKIP_IMAGE_UPLOAD_TO_SUPABASE', '').strip().lower() in {
+    '1',
+    'true',
+    'yes',
+    'on',
+}
 def _parse_int_set(raw: str) -> set[int]:
     result: set[int] = set()
     for part in (raw or '').split(','):
@@ -379,6 +386,23 @@ def build_excerpt(parsed: dict[str, Any]) -> str:
 def local_to_public_path(local_path: Path) -> str:
     rel = local_path.relative_to(ROOT).as_posix()
     return f'/{rel}'
+
+
+def upload_local_image_public_url(supa: SupabaseClient, local_path: Path, storage_path: str) -> str:
+    """
+    Загрузка JPEG/WebP PNG в bucket; при ошибке или SKIP_IMAGE_UPLOAD_TO_SUPABASE — URL как /media/... в репо.
+    """
+    if SKIP_IMAGE_UPLOAD_TO_SUPABASE:
+        return local_to_public_path(local_path)
+    mime = mimetypes.guess_type(local_path.name)[0] or 'image/jpeg'
+    try:
+        return supa.upload_file(local_path, storage_path, mime)
+    except Exception as error:  # noqa: BLE001
+        print(
+            f'[warn] Не удалось загрузить фото в Storage ({storage_path}): {error} — используем локальный путь.',
+            flush=True,
+        )
+        return local_to_public_path(local_path)
 
 
 def resolve_ffmpeg_binary() -> str | None:
@@ -1179,9 +1203,10 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
                 continue
             photo_hashes.add(photo_hash)
             photo_paths.append(photo_path)
-            storage_path, public_url = local_media_entry(source_kind, photo_path)
-            local_media_items.append({'kind': 'photo', 'source_url': local_to_public_path(photo_path), 'public_url': public_url, 'telegram_url': object_data['telegram_url']})
-            media_payload.append(media_row(existing_listing['id'] if existing_listing else 0, 'gallery', media_sort, 'image/jpeg', local_to_public_path(photo_path), storage_path, public_url))
+            storage_path, _legacy_public = local_media_entry(source_kind, photo_path)
+            public_url = upload_local_image_public_url(supa, photo_path, storage_path)
+            local_media_items.append({'kind': 'photo', 'source_url': public_url, 'public_url': public_url, 'telegram_url': object_data['telegram_url']})
+            media_payload.append(media_row(existing_listing['id'] if existing_listing else 0, 'gallery', media_sort, 'image/jpeg', public_url, storage_path, public_url))
         elif msg.video or (msg.file and str(getattr(msg.file, 'mime_type', '')).startswith('video/')):
             video_count += 1
             media_sort += 1
@@ -1290,9 +1315,13 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
         cover_local = ''
         if first_photo:
             cover_path = copy_cover(first_photo, source_kind, slug)
-            cover_storage, cover_public = local_media_entry(source_kind, cover_path)
-            cover_local = local_to_public_path(cover_path)
-            media_payload.insert(0, media_row(existing_listing['id'] if existing_listing else 0, 'card', 0, 'image/jpeg', cover_local, cover_storage, cover_public))
+            cover_storage, _legacy_cover = local_media_entry(source_kind, cover_path)
+            cover_public = upload_local_image_public_url(supa, cover_path, cover_storage)
+            cover_local = cover_public
+            media_payload.insert(
+                0,
+                media_row(existing_listing['id'] if existing_listing else 0, 'card', 0, 'image/jpeg', cover_public, cover_storage, cover_public),
+            )
 
     if source_kind == 'hotel':
         page_dir = HOTELS_DIR / slug
@@ -1325,6 +1354,14 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
         cover_url=cover_public,
         page_path=page_path,
     )
+
+    if existing_listing:
+        prev_details = existing_listing.get('details') if isinstance(existing_listing.get('details'), dict) else {}
+        prev_filters = prev_details.get('filters')
+        if isinstance(prev_filters, dict) and prev_filters:
+            details = payload.get('details')
+            if isinstance(details, dict):
+                details['filters'] = {gk: list(gv) if isinstance(gv, list) else gv for gk, gv in prev_filters.items()}
 
     if existing_listing:
         supa.patch_listing(existing_listing['id'], {k: v for k, v in payload.items() if k != 'id'})
