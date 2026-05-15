@@ -47,7 +47,6 @@ LISTING_PAGE_GUIDE_SECTION = """  <section class="site-concept__section-block" i
       <div>
         <p class="site-concept__eyebrow">Как бронировать</p>
         <h2>Как найти жильё в Абхазии без утомительного поиска</h2>
-        <p class="site-concept__guide-subtitle site-concept__guide-subtitle--short">Искать самой или написать мне — я помогу подобрать вариант под ваш запрос.</p>
       </div>
     </div>
 
@@ -79,7 +78,6 @@ LISTING_PAGE_GUIDE_SECTION = """  <section class="site-concept__section-block" i
       <p class="site-concept__guide-pitch">Напишите, что вам нужно — я предложу подходящие варианты; если не подойдёт, продолжите искать сами.</p>
       <div class="site-concept__guide-cta">
         <a class="btn-book site-concept__guide-cta-btn" href="#contacts">Написать мне</a>
-        <p class="site-concept__guide-cta-caption">Отвечу, помогу сориентироваться и предложу варианты под ваш запрос</p>
       </div>
     </div>
   </section>"""
@@ -1818,7 +1816,6 @@ def build_homepage() -> None:
       <div>
         <p class="site-concept__eyebrow">Как бронировать</p>
         <h2>Как найти жильё в Абхазии без утомительного поиска</h2>
-        <p class="site-concept__guide-subtitle site-concept__guide-subtitle--short">Искать самой или написать мне — я помогу подобрать вариант под ваш запрос.</p>
       </div>
     </div>
 
@@ -1850,7 +1847,6 @@ def build_homepage() -> None:
       <p class="site-concept__guide-pitch">Напишите, что вам нужно — я предложу подходящие варианты; если не подойдёт, продолжите искать сами.</p>
       <div class="site-concept__guide-cta">
         <a class="btn-book site-concept__guide-cta-btn" href="#contacts">Написать мне</a>
-        <p class="site-concept__guide-cta-caption">Отвечу, помогу сориентироваться и предложу варианты под ваш запрос</p>
       </div>
     </div>
   </section>

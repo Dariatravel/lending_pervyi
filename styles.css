@@ -1364,21 +1364,6 @@ a.site-concept__destination-card:focus-visible {
   font-size: 18px;
 }
 
-.site-concept__guide-subtitle {
-  margin: 12px 0 0;
-  max-width: 40rem;
-  color: var(--muted);
-  font-size: clamp(15px, 1.35vw, 17px);
-  line-height: 1.55;
-  font-weight: 600;
-}
-
-.site-concept__guide-subtitle--short {
-  display: block;
-  /* Визуальный зазор под длинным h2 «Как бронировать» без смены типографики */
-  margin-top: clamp(20px, 2.8vw, 32px);
-}
-
 .site-concept__guide-footer {
   margin-top: clamp(20px, 3vw, 32px);
   display: grid;
@@ -1432,14 +1417,6 @@ a.site-concept__destination-card:focus-visible {
   padding: 0.55rem 1.5rem;
   font-weight: 800;
   letter-spacing: 0.03em;
-}
-
-.site-concept__guide-cta-caption {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.45;
-  color: var(--muted);
-  font-weight: 600;
 }
 
 .site-concept__guide-card--link {
