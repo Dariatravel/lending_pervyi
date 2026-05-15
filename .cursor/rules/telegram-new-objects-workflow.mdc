@@ -1,0 +1,51 @@
+---
+description: Как добавлять новые объекты из Telegram по шаблону сайта
+alwaysApply: true
+---
+
+# Новые объекты из Telegram
+
+Добавлять новые объекты по готовому пайплайну, а не ручной версткой карточек.
+
+## Источники
+
+- Отели: канал `@abhazbooking`, идентификатор — `message_id` из ссылки `https://t.me/abhazbooking/<id>`.
+- Квартиры: канал/форум `@abhkvartira`, основной идентификатор — `topic_id` из ссылки темы; `message_id` берется из сообщения внутри темы.
+- Для массового добавления источник очереди — Google Sheet `СОЦСЕТИ`, колонка I (`tg_link`) плюс заполненные фильтры.
+
+## Основной способ
+
+Если строки уже добавлены в `СОЦСЕТИ`, запускать:
+
+```bash
+python3 scripts/sync_new_objects_from_sheet.py
+```
+
+Скрипт вызывает `backfill_missing_from_sheet_links.py`, затем фильтры из таблицы, пересборку каталога и проверку медиа.
+
+## Точечный способ
+
+Для одного/нескольких известных ID:
+
+```bash
+TARGET_HOTEL_SOURCE_IDS="4318,4357" python3 scripts/sync_catalog_from_telegram.py
+TARGET_KV_TOPIC_IDS="12345" python3 scripts/sync_catalog_from_telegram.py
+python3 scripts/apply_all_filters_from_sheet.py
+python3 scripts/rebuild_from_supabase.py
+python3 tools/verify_object_media.py
+```
+
+При ошибках Telethon (`database is locked`, timeout) запускать маленькими партиями, лучше по одному ID.
+
+## Шаблон контента
+
+- Текст страницы должен повторять Telegram-пост: адрес, пляж, размещение, секции, абзацы и цены в исходном порядке.
+- Контакты, служебные предупреждения и рекламные строки из поста не переносить.
+- Детальные секции и цены рендерятся через `parse_post`, `render_sections_html`, `render_prices_html` в `scripts/sync_catalog_from_telegram.py`.
+- Не править вручную `benefit-grid`, заголовок и локацию, если нет явного расхождения с постом.
+
+## Медиа и фильтры
+
+- Фото и видео должны попадать в Supabase Storage (`site-media`); после синка `index.html` должен использовать `supabase.co/storage`, а не локальные `/media/...`.
+- Фильтры (`data-filter-*`, `details.filters`) брать только из Google Sheet через `scripts/apply_all_filters_from_sheet.py`.
+- После любого добавления запускать `scripts/rebuild_from_supabase.py`, чтобы главная и `kvartira/index.html` подтянули новые URL и фильтры.
