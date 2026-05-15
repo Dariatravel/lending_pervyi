@@ -149,7 +149,7 @@ def _reviews_panel_for_slug(mod: Any, slug: str) -> str:
                 </div>
                 <p>{html.escape(body)}</p>
               </article>"""
-        for author, kind, body in cards
+        for author, kind, body in cards[:2]
     )
     return (
         '<section class="reviews-panel">'
