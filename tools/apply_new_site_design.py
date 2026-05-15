@@ -1640,7 +1640,6 @@ def build_homepage() -> None:
 
     <nav class="site-concept__topnav" aria-label="Основная навигация">
       <a href="#search">Подбор жилья</a>
-      <a href="#regions">Лучшие пляжи Абхазии</a>
       <a href="https://xn--80aacbklan7f0b.xn--p1ai/blog/kak-vybrat-kurort-abkhaziya-pervyy-raz/#contacts">Для тех, кто едет впервые</a>
       <a href="#guide">Как бронировать</a>
       <a href="/blog/">Блог</a>
@@ -1725,39 +1724,6 @@ def build_homepage() -> None:
           </div>
         </article>
       </div>
-    </div>
-  </section>
-
-  <section class="site-concept__section-block" id="regions">
-    <div class="site-concept__section-head">
-      <div>
-        <p class="site-concept__eyebrow">Популярные направления</p>
-      </div>
-      <a href="/podborki/">Все подборки</a>
-    </div>
-
-    <div class="site-concept__destination-grid">
-      <a href="/podborki/bereg-morya-oteli-na-beregu/" class="site-concept__destination-card site-concept__destination-card--wide">
-        <img src="/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574.jpg" alt="Отдых у моря" />
-        <div class="site-concept__destination-content">
-          <span>Море и первая линия</span>
-          <strong>Для пляжного отдыха</strong>
-        </div>
-      </a>
-      <a href="/podborki/sosnovyy-plyazh/" class="site-concept__destination-card">
-        <img src="/media/cards/fazenda-otel-s-basseynom-i-pitaniem-3190.jpg" alt="Семейный отдых" />
-        <div class="site-concept__destination-content">
-          <span>Сервис и семейный формат</span>
-          <strong>Пицунда и Лдзаа</strong>
-        </div>
-      </a>
-      <a href="/podborki/gory-oteli-v-gorah/" class="site-concept__destination-card">
-        <img src="/media/cards/krylya-domiki-vidovye-dvuhkomnatnye-2765.jpg" alt="Горы и панорамы" />
-        <div class="site-concept__destination-content">
-          <span>Тишина и виды</span>
-          <strong>Горные домики</strong>
-        </div>
-      </a>
     </div>
   </section>
 
