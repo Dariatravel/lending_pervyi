@@ -2081,8 +2081,11 @@
     const modalResetDraftBtn = document.getElementById("filters-modal-reset");
     const mobileDraftHint = document.getElementById("filters-draft-hint-mobile");
     const filtersDraftPreview = document.getElementById("filters-draft-preview");
+    const catalogExpandBtn = document.getElementById("catalog-expand-button");
 
     let draftPreviewCount = 0;
+    let catalogExpanded = false;
+    const CATALOG_INITIAL_LIMIT = 20;
 
     const filtersDrawerState = { reopenFocusEl: null, isOpen: false };
 
@@ -2250,6 +2253,28 @@
       return n;
     }
 
+    function syncCatalogInitialLimit(primaryShown, pins) {
+      const primaryCards = Array.from(grid.querySelectorAll(".catalog-card"));
+      const shouldLimit = pins === 0 && !catalogExpanded && primaryShown > CATALOG_INITIAL_LIMIT;
+      let visiblePrimary = 0;
+
+      primaryCards.forEach((card) => {
+        if (card.hidden) return;
+        visiblePrimary += 1;
+        if (shouldLimit && visiblePrimary > CATALOG_INITIAL_LIMIT) {
+          card.hidden = true;
+        }
+      });
+
+      const displayed = shouldLimit ? CATALOG_INITIAL_LIMIT : visiblePrimary;
+
+      if (catalogExpandBtn) {
+        catalogExpandBtn.hidden = !(pins === 0 && !catalogExpanded && primaryShown > CATALOG_INITIAL_LIMIT);
+      }
+
+      return displayed;
+    }
+
     const { renderActiveRemovalChips, syncOpenBadge, updateEmptyLead } = attachCatalogFilterSummaryChrome({
       filt,
       filterGroups: FILTER_GROUPS,
@@ -2377,15 +2402,16 @@
       const primaryShown = applyVisibilityCommitted();
       const pins = countActivePins(filt.committedSel, filt.committedCat);
       const totalMatching = countTotalMatching(filt.committedSel, filt.committedCat);
-      if (visibleCount) visibleCount.textContent = String(primaryShown);
-      if (emptyNote) emptyNote.hidden = primaryShown !== 0;
+      const displayedPrimaryShown = syncCatalogInitialLimit(primaryShown, pins);
+      if (visibleCount) visibleCount.textContent = String(displayedPrimaryShown);
+      if (emptyNote) emptyNote.hidden = displayedPrimaryShown !== 0;
       if (clearBtn) clearBtn.hidden = pins === 0;
 
       draftPreviewCount = countShownOnly(filt.draftSel, filt.draftCat);
 
       syncOpenBadge();
       renderActiveRemovalChips();
-      updateEmptyLead(primaryShown, totalMatching, pins);
+      updateEmptyLead(displayedPrimaryShown, totalMatching, pins);
       catalogUrl.syncCommittedToLocation();
 
       syncApplyFooterText();
@@ -2397,7 +2423,7 @@
           : filt.committedCat;
       syncChipUi(chipSource, chipCatUnused);
 
-      notifySubscribers("commit", { pins, primaryShown, totalMatching });
+      notifySubscribers("commit", { pins, primaryShown: displayedPrimaryShown, totalMatching });
     }
 
     function toggleChipAcrossModes(chip) {
@@ -2631,6 +2657,12 @@
           return;
         }
         resetModalDraftOnly();
+      });
+
+      catalogExpandBtn?.addEventListener("click", () => {
+        catalogExpanded = true;
+        applyCommittedToDom();
+        catalogExpandBtn.setAttribute("hidden", "");
       });
 
       document.addEventListener(
