@@ -1624,7 +1624,7 @@ def build_homepage() -> None:
     reviews_section = add_class_to_tag(extract_index_section(text, "reviews"), "section", "site-concept__reviews")
     contacts_section = add_class_to_tag(extract_index_section(text, "contacts"), "section", "site-concept__contacts")
 
-    new_main = f"""<main class="page-shell site-concept">
+    new_main = f"""<main class="page-shell site-concept site-concept--home">
   <div class="bg-blur bg-blur--mint" aria-hidden="true"></div>
   <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
 

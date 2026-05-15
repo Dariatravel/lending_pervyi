@@ -165,56 +165,63 @@
 }
 
 @media (min-width: 761px) {
-  .site-concept > .site-concept__topbar {
+  .site-concept.site-concept--home > .site-concept__topbar {
     position: absolute;
     top: clamp(18px, 2vw, 30px);
     left: clamp(18px, 2vw, 30px);
-    right: clamp(18px, 2vw, 30px);
+    right: auto;
     z-index: 8;
+    width: max-content;
+    max-width: calc(100% - clamp(36px, 4vw, 60px));
+    justify-content: flex-start;
+    gap: clamp(18px, 2vw, 34px);
     padding: clamp(12px, 1.25vw, 18px) clamp(16px, 1.9vw, 28px);
     background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.46), rgba(255, 252, 244, 0.22)),
-      rgba(255, 255, 255, 0.16);
-    border: 1px solid rgba(255, 255, 255, 0.48);
+      linear-gradient(135deg, rgba(255, 255, 255, 0.38), rgba(255, 252, 244, 0.18)),
+      rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.42);
     box-shadow:
-      0 18px 42px rgba(11, 27, 21, 0.14),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px) saturate(1.04);
-    -webkit-backdrop-filter: blur(10px) saturate(1.04);
+      0 28px 64px rgba(11, 27, 21, 0.18),
+      0 8px 20px rgba(11, 27, 21, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.46);
+    backdrop-filter: blur(9px) saturate(1.04);
+    -webkit-backdrop-filter: blur(9px) saturate(1.04);
   }
 
-  .site-concept > .site-concept__topbar .site-concept__brand-mark {
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__brand-mark {
     width: clamp(56px, 5.2vw, 78px);
     height: clamp(56px, 5.2vw, 78px);
     box-shadow: 0 10px 26px rgba(12, 31, 24, 0.16);
   }
 
-  .site-concept > .site-concept__topbar .site-concept__brand {
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__brand {
+    flex: 0 0 auto;
     gap: clamp(14px, 1.5vw, 22px);
   }
 
-  .site-concept > .site-concept__topbar .site-concept__brand-copy strong {
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__brand-copy strong {
     color: #20362d;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.58);
   }
 
-  .site-concept > .site-concept__topbar .site-concept__topnav {
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__topnav {
+    flex: 0 1 auto;
     justify-content: flex-end;
     gap: clamp(8px, 1vw, 16px);
   }
 
-  .site-concept > .site-concept__topbar .site-concept__topnav a {
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__topnav a {
     color: #25453a;
     text-decoration-color: rgba(37, 69, 58, 0.42);
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
-  .site-concept > .site-concept__topbar .site-concept__topnav a:hover {
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__topnav a:hover {
     color: #142a22;
     text-decoration-color: rgba(20, 42, 34, 0.72);
   }
 
-  .site-concept > .site-concept__masthead {
+  .site-concept.site-concept--home > .site-concept__masthead {
     z-index: 1;
     min-height: clamp(420px, 34vw, 560px);
   }
