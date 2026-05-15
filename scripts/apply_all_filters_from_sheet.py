@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import re
@@ -11,9 +12,10 @@ import requests
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
-ROOT = Path('/Users/darya_botova/Documents/New project')
+ROOT = Path(__file__).resolve().parents[1]
 ENV_PATH = ROOT / '.env.supabase.local'
 REPORT_PATH = ROOT / 'output' / 'all_filters_sync_report.txt'
+EMPTY_FILTERS: dict[str, list[str]] = {g: [] for g in ('distance', 'food', 'price', 'city', 'beach', 'room', 'stay')}
 
 SPREADSHEET_ID = '135fxeZX5OE30rH3Sg5KWpTR4VuhBntCzGrTk0WcdTBY'
 SHEET_NAME = 'СОЦСЕТИ'
@@ -92,6 +94,7 @@ def load_env(path: Path) -> dict[str, str]:
 def pick_google_credentials_path() -> Path:
     candidates = [
         os.getenv('GOOGLE_SERVICE_ACCOUNT_JSON', '').strip(),
+        str(ROOT / 'google-service-account.json'),
         '/Users/darya_botova/Downloads/sonorous-bounty-488706-q9-32a19387de8d.json',
         '/Users/darya_botova/Documents/ПОДБОРКИ/telegram_export/credentials.json',
     ]
@@ -326,10 +329,35 @@ def infer_all_filters(row: list[str]) -> dict[str, list[str]]:
     }
 
 
+def listing_exists_on_site(listing: dict[str, Any], repo_root: Path | None = None) -> bool:
+    """Объект считается на сайте, если есть HTML-страница hotels/… или kvartira/…."""
+    base = repo_root or ROOT
+    details = listing.get('details') or {}
+    page_path = str(details.get('page_path') or '').strip()
+    if page_path:
+        path = Path(page_path)
+        if path.is_file():
+            return True
+        alt = Path(page_path.replace('/New project/', f'/GitHub/lending_pervyi/'))
+        if alt.is_file():
+            return True
+    slug = str(listing.get('slug') or '').strip()
+    kind = str(listing.get('source_kind') or '').strip()
+    if slug and kind in {'hotel', 'kvartira'}:
+        folder = 'hotels' if kind == 'hotel' else 'kvartira'
+        if (base / folder / slug / 'index.html').is_file():
+            return True
+    page_url = str(listing.get('page_url') or '')
+    match = re.search(r'/(hotels|kvartira)/([^/?#]+)', page_url)
+    if match:
+        return (base / match.group(1) / match.group(2) / 'index.html').is_file()
+    return False
+
+
 def fetch_listings(supabase_url: str, service_role: str) -> list[dict[str, Any]]:
     headers = {'apikey': service_role, 'Authorization': f'Bearer {service_role}'}
     params = {
-        'select': 'id,source_kind,title,source_channel,source_message_id,details,is_active',
+        'select': 'id,slug,source_kind,title,source_channel,source_message_id,page_url,details,is_active',
         'is_active': 'eq.true',
         'limit': '5000',
     }
@@ -365,6 +393,15 @@ def normalize_filter_values(raw: Any) -> list[str]:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description='Перенос фильтров из Google Sheets «СОЦСЕТИ» в Supabase.')
+    parser.add_argument(
+        '--all-listings',
+        action='store_true',
+        help='Обновить все активные объекты в Supabase (по умолчанию — только с HTML-страницей на сайте).',
+    )
+    args = parser.parse_args()
+    site_only = not args.all_listings
+
     env = load_env(ENV_PATH)
     supabase_url = env.get('SUPABASE_URL', '').rstrip('/')
     service_role = env.get('SUPABASE_SERVICE_ROLE_KEY', '')
@@ -416,6 +453,8 @@ def main() -> None:
     updated = 0
     unchanged = 0
     not_found = 0
+    skipped_not_on_site = 0
+    on_site_total = 0
 
     group_changed: Counter[str] = Counter()
     group_assigned: Counter[str] = Counter()
@@ -439,6 +478,11 @@ def main() -> None:
             not_found += 1
             not_found_links.append(tg_source_by_key[key])
             continue
+
+        if site_only and not listing_exists_on_site(listing):
+            skipped_not_on_site += 1
+            continue
+        on_site_total += 1
 
         details = listing.get('details') or {}
         if not isinstance(details, dict):
@@ -473,12 +517,15 @@ def main() -> None:
     lines: list[str] = []
     lines.append('Готово. Массовый перенос фильтров из СОЦСЕТИ в Supabase выполнен.')
     lines.append('')
+    lines.append(f'Режим: {"только объекты с HTML на сайте" if site_only else "все активные listings"}')
     lines.append(f'Строк в СОЦСЕТИ: {len(sheet_rows)}')
     lines.append(f'Разобрано ссылок Telegram: {len(sheet_filters)}')
     lines.append(f'Без ссылки Telegram: {rows_without_link}')
     lines.append(f'Ссылка не распознана: {rows_unparsed_link}')
+    lines.append(f'Обработано объектов на сайте (есть строка в таблице): {on_site_total}')
     lines.append(f'Обновлено объектов в Supabase: {updated}')
     lines.append(f'Без изменений: {unchanged}')
+    lines.append(f'Пропущено (нет HTML-страницы на сайте): {skipped_not_on_site}')
     lines.append(f'Не найдено в Supabase по channel+message_id: {not_found}')
     lines.append('')
     lines.append('Отчёт по группам фильтров:')

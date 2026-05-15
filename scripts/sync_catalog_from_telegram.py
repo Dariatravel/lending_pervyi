@@ -39,7 +39,7 @@ from sync_abhazbooking_2026 import (  # noqa: E402
     should_drop_line,
     summary_text,
 )
-from rebuild_from_supabase import infer_filters  # noqa: E402
+from apply_all_filters_from_sheet import EMPTY_FILTERS  # noqa: E402
 
 ROOT_INDEX = ROOT / 'index.html'
 HOTELS_DIR = ROOT / 'hotels'
@@ -850,7 +850,8 @@ def listing_payload(source_kind: str, row_id: int | None, slug: str, source_mess
             'page_path': str(page_path),
         },
     }
-    payload['details']['filters'] = infer_filters(payload)
+    # Фильтры задаются только из Google Sheets «СОЦСЕТИ» (apply_all_filters_from_sheet.py).
+    payload['details']['filters'] = {k: list(v) for k, v in EMPTY_FILTERS.items()}
     if row_id is not None:
         payload['id'] = row_id
     return payload

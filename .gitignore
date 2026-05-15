@@ -7,6 +7,9 @@ __pycache__/
 # Supabase service role (never commit)
 .env.supabase.local
 
+# Google Sheets service account (never commit)
+google-service-account.json
+
 # local telegram auth/session artifacts
 tg_session.session
 telegram_login_qr.png

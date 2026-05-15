@@ -1,0 +1,43 @@
+---
+description: Фильтры каталога — только из Google Sheets «СОЦСЕТИ», не из текста карточек
+alwaysApply: true
+---
+
+# Фильтры объектов: только из таблицы
+
+## Источник правды
+
+Фильтры для каталога (`distance`, `food`, `price`, `city`, `beach`, `room`, `stay`) задаются **только** столбцами листа **«СОЦСЕТИ»** в таблице:
+
+`135fxeZX5OE30rH3Sg5KWpTR4VuhBntCzGrTk0WcdTBY`
+
+Логика соответствия столбцов → кодов фильтров: `scripts/apply_all_filters_from_sheet.py` (`COL`, `infer_*`).
+
+## Запрещено
+
+- Выводить или перезаписывать фильтры из **текста карточки** (title, summary, excerpt, HTML страницы, подборки).
+- Использовать `infer_filters()` / `detect_*()` из `rebuild_from_supabase.py` для записи в Supabase или в `data-filter-*` на сайте.
+- Подмешивать фильтры из `podbori` / `match_podbori_site_filters` при сохранении объекта.
+
+## Разрешено
+
+- Читать фильтры из Supabase `details.filters` при сборке каталога (`rebuild_from_supabase.py` — только отображение).
+- Массовое обновление: `python3 scripts/apply_all_filters_from_sheet.py` (по умолчанию только объекты с HTML-страницей на сайте).
+- Для новых объектов после Telegram-sync: пустые `details.filters` или сразу прогон скрипта из таблицы после появления строки в «СОЦСЕТИ».
+
+## Привязка строки таблицы к объекту
+
+1. Колонка **I** (`tg_link`) → `source_channel` + `source_message_id` в Supabase.
+2. Резерв: название из колонки **A** + близкий `message_id` (как в скрипте).
+
+## Новые объекты
+
+При добавлении объекта на сайт:
+
+1. Заполнить строку в «СОЦСЕТИ» (галочки/текст в столбцах фильтров + ссылка Telegram).
+2. Запустить `apply_all_filters_from_sheet.py`.
+3. Пересобрать каталог: `python3 scripts/rebuild_from_supabase.py`.
+
+## Хранение
+
+Актуальные фильтры хранятся в **Supabase** → `listings.details.filters` → попадают в `data-filter-*` на карточках в `index.html` / `kvartira/index.html`.

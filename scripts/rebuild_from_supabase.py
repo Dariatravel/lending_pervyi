@@ -13,7 +13,7 @@ import xml.etree.ElementTree as ET
 import requests
 
 
-ROOT = Path("/Users/darya_botova/Documents/New project")
+ROOT = Path(__file__).resolve().parents[1]
 ENV_PATH = ROOT / ".env.supabase.local"
 INDEX_PATH = ROOT / "index.html"
 KVARTIRA_DIR = ROOT / "kvartira"
@@ -232,10 +232,41 @@ def load_env(path: Path) -> dict[str, str]:
     return data
 
 
+def resolve_site_page_path(row: dict[str, Any]) -> Path | None:
+    """Путь к index.html объекта в текущем репозитории (приоритет — lending_pervyi)."""
+    details = row.get("details") or {}
+    candidates: list[Path] = []
+    slug = str(row.get("slug") or "").strip()
+    kind = str(row.get("source_kind") or "").strip()
+    if slug and kind in {"hotel", "kvartira"}:
+        folder = "hotels" if kind == "hotel" else "kvartira"
+        candidates.append(ROOT / folder / slug / "index.html")
+    page_url = str(row.get("page_url") or "")
+    match = re.search(r"/(hotels|kvartira)/([^/?#]+)", page_url)
+    if match:
+        candidates.append(ROOT / match.group(1) / match.group(2) / "index.html")
+    page_path = str(details.get("page_path") or "").strip()
+    if page_path:
+        candidates.append(Path(page_path.replace("/New project/", "/GitHub/lending_pervyi/")))
+    for path in candidates:
+        if path.is_file():
+            try:
+                with path.open("r", encoding="utf-8") as handle:
+                    handle.read(1)
+            except OSError:
+                continue
+            return path
+    return None
+
+
 def get_text_from_page(page_path: str) -> str:
     path = Path(page_path)
-    if not path.exists():
-        return ""
+    if not path.is_file():
+        alt = Path(page_path.replace("/New project/", "/GitHub/lending_pervyi/"))
+        if alt.is_file():
+            path = alt
+        else:
+            return ""
     text = path.read_text(encoding="utf-8")
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", text)).strip()
 
@@ -727,13 +758,10 @@ def render_media_grid(row: dict[str, Any], title: str) -> str:
 
 
 def update_hotel_page(row: dict[str, Any]) -> None:
-    details = row.get("details") or {}
-    page_path = details.get("page_path")
-    if not page_path:
-      return
-    path = Path(page_path)
-    if not path.exists():
+    path = resolve_site_page_path(row)
+    if not path:
         return
+    details = row.get("details") or {}
 
     title = row.get("title") or ""
     summary = row.get("summary") or row.get("excerpt") or ""
@@ -790,10 +818,8 @@ def rebuild_kvartira_pages(rows: list[dict[str, Any]]) -> None:
     for row in rows:
         details = row.get("details") or {}
         page_url = row.get("page_url") or f"https://абхазберег.рф/kvartira/{row['slug']}/"
-        page_path = details.get("page_path")
-        if page_path:
-            path = Path(page_path)
-        else:
+        path = resolve_site_page_path(row)
+        if not path:
             rel = page_path_from_url(page_url, f"/kvartira/{row['slug']}/").strip("/")
             path = ROOT / rel / "index.html"
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -875,41 +901,9 @@ def main() -> None:
     kvartira_rows = [row for row in rows if row.get("source_kind") == "kvartira"]
     KVARTIRA_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Normalize filters in DB
-    session = requests.Session()
-    session.headers.update(headers)
-
-    def patch_listing(listing_id: int, details: dict[str, Any]) -> None:
-        last_error: Exception | None = None
-        for attempt in range(5):
-            try:
-                patch = session.patch(
-                    f"{base}/rest/v1/listings",
-                    params={"id": f"eq.{listing_id}"},
-                    headers={**headers, "Content-Type": "application/json", "Prefer": "return=minimal"},
-                    json={"details": details},
-                    timeout=60,
-                )
-                patch.raise_for_status()
-                return
-            except Exception as error:  # noqa: BLE001
-                last_error = error
-                time.sleep(1 + attempt)
-        if last_error:
-            raise last_error
-
-    updated = 0
+    # Фильтры не пересчитываем из текста карточек — только details.filters из Supabase
+    # (источник правды: Google Sheets «СОЦСЕТИ», см. apply_all_filters_from_sheet.py).
     hotel_post_meta = load_hotel_card_meta()
-    for row in rows:
-        filters = infer_filters(row)
-        details = dict(row.get("details") or {})
-        if details.get("filters") == filters:
-            continue
-        details["filters"] = filters
-        patch_listing(row["id"], details)
-        row["details"] = details
-        updated += 1
-
     replace_catalog_block(
         INDEX_PATH,
         '<div class="catalog-grid" id="catalog-grid">',
@@ -923,7 +917,6 @@ def main() -> None:
 
     rebuild_sitemap(rows)
 
-    print(f"Нормализовано фильтров: {updated}")
     print(f"Пересобрано отелей: {len(hotel_rows)}")
     print(f"Пересобрано квартир: {len(kvartira_rows)}")
 
