@@ -59,7 +59,7 @@ STORAGE_BUCKET = 'site-media'
 CUTOFF_DATE = '2026-01-01'
 API_ID = 32916166
 API_HASH = 'eefdec49605521b061de4bdf62ef784e'
-SESSION = str(ROOT / 'tg_session')
+SESSION = os.getenv('TG_SESSION', str(ROOT / 'tg_session'))
 MAX_VIDEO_UPLOAD_MB = 48
 VIDEO_BITRATES = ('1800k', '1200k', '900k', '700k', '500k', '350k')
 MAX_LOCAL_SOURCE_KEEP_MB = 95
@@ -1358,7 +1358,7 @@ async def main() -> None:
     ensure_dir(KV_CARD_DIR)
     ensure_dir(CARD_DIR)
 
-    client = TelegramClient(SESSION, API_ID, API_HASH)
+    client = TelegramClient(SESSION, API_ID, API_HASH, receive_updates=False)
     await client.connect()
 
     run_hotels = True

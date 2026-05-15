@@ -5,26 +5,26 @@
 Разобрано ссылок Telegram: 202
 Без ссылки Telegram: 18
 Ссылка не распознана: 3
-Обработано объектов на сайте (есть строка в таблице): 191
-Обновлено объектов в Supabase: 191
-Без изменений: 0
+Обработано объектов на сайте (есть строка в таблице): 198
+Обновлено объектов в Supabase: 1
+Без изменений: 197
 Пропущено (нет HTML-страницы на сайте): 0
-Не найдено в Supabase по channel+message_id: 11
+Не найдено в Supabase по channel+message_id: 4
 
 Отчёт по группам фильтров:
-- distance: заполнено по таблице (непустые) у 189 объектов, изменено у 61 объектов
+- distance: заполнено по таблице (непустые) у 196 объектов, изменено у 1 объектов
   значения: up-to-5:87, up-to-10:55, over-10:31, beachfront:28
-- food: заполнено по таблице (непустые) у 191 объектов, изменено у 168 объектов
+- food: заполнено по таблице (непустые) у 198 объектов, изменено у 1 объектов
   значения: no-food:162, cafe:35, breakfast:18, full-board:4, half-board:1
-- price: заполнено по таблице (непустые) у 189 объектов, изменено у 71 объектов
+- price: заполнено по таблице (непустые) у 196 объектов, изменено у 1 объектов
   значения: midrange:90, economy:76, premium:35
-- city: заполнено по таблице (непустые) у 188 объектов, изменено у 6 объектов
+- city: заполнено по таблице (непустые) у 195 объектов, изменено у 1 объектов
   значения: ldzaa:62, sukhum:37, pitsunda:34, gagra:24, alakhadzy:18, gudauta:9, new-afon:9, tsandripsh:6
-- beach: заполнено по таблице (непустые) у 190 объектов, изменено у 157 объектов
+- beach: заполнено по таблице (непустые) у 197 объектов, изменено у 1 объектов
   значения: pebble:99, pine-pebble-ldzaa-pitsunda:47, pitsunda-bay-mixed:33, sand-sukhum:17, sand-ldzaa:5
-- room: заполнено по таблице (непустые) у 179 объектов, изменено у 191 объектов
+- room: заполнено по таблице (непустые) у 186 объектов, изменено у 1 объектов
   значения: five-plus:87, kitchen:74, two-room-plus:66, terrace:62, balcony:60, pool:44, sea-view:26, beachfront-room:24
-- stay: заполнено по таблице (непустые) у 155 объектов, изменено у 105 объектов
+- stay: заполнено по таблице (непустые) у 161 объектов, изменено у 1 объектов
   значения: pets:90, cottages:72, apartments:37, turnkey-house:13, no-small-kids:1
 
 Нераспознанные ссылки Telegram (из таблицы):
@@ -33,14 +33,7 @@
 - t.me/abhmulberry
 
 Ссылки, не найденные в Supabase:
-- https://t.me/abhazbooking/1694
-- https://t.me/abhazbooking/2542
 - https://t.me/abhazbooking/2422
-- https://t.me/abhazbooking/667
-- https://t.me/abhazbooking/1396
-- https://t.me/abhazbooking/2869
 - https://t.me/abhkvartira/469/1025
-- https://t.me/abhkvartira/1575/1576?single
 - https://t.me/abhazbooking/3697?single
-- https://t.me/abhkvartira/1103/1104
 - https://t.me/abhkvartira/652/1185

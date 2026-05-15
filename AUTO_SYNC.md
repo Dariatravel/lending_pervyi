@@ -40,6 +40,21 @@ python scripts/run_auto_sync_pipeline.py \
   --force-media-refresh
 ```
 
+## Только новые объекты из «СОЦСЕТИ»
+
+Полный синк канала **не нужен**. Используется прежний backfill по строкам таблицы (`backfill_missing_from_sheet_links.py`), затем фильтры и пересборка каталога:
+
+```bash
+cd "/Users/darya_botova/Documents/GitHub/lending_pervyi"
+python3 scripts/sync_new_objects_from_sheet.py
+```
+
+Через оркестратор:
+
+```bash
+python3 scripts/run_auto_sync_pipeline.py --mode new-from-sheet
+```
+
 ## Включение автозапуска (каждые 3 часа)
 
 ```bash

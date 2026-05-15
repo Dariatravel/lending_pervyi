@@ -1,0 +1,234 @@
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/google/api_core/_python_version_support.py:246: FutureWarning: You are using a non-supported Python version (3.9.6). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+Найдено объектов: hotels=154, kvartira=58
+Обновлены отели: 10/154
+Обновлены отели: 20/154
+Server sent a very old message with ID 7640136154915514389, ignoring (see FAQ for details)
+Server sent a very old message with ID 7640136154915514393, ignoring (see FAQ for details)
+Server sent a very old message with ID 7640136154915514377, ignoring (see FAQ for details)
+Server sent a very old message with ID 7640136154915514381, ignoring (see FAQ for details)
+Server sent a very old message with ID 7640136154915634177, ignoring (see FAQ for details)
+Server sent a very old message with ID 7640136154915514385, ignoring (see FAQ for details)
+Server sent a very old message with ID 7640136169781682177, ignoring (see FAQ for details)
+Server sent a very old message with ID 7640136199130522625, ignoring (see FAQ for details)
+Server sent a very old message with ID 7640136203829237761, ignoring (see FAQ for details)
+Server sent a very old message with ID 7640136205527596033, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136217893241857, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136218178568193, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136235555480577, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136249998192641, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136259598022657, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136268494871553, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136311563140097, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136319834704897, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136322956522497, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136368293864449, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136392140555265, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136392140555269, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136401714199553, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136403939099649, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136413826946049, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136415988340737, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136416505422849, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136430318669825, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136438129425409, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136446000576513, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136468096692225, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136475559042049, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136484551851009, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136498803436545, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136544549063681, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136544549063685, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136547499891713, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136549972916225, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136550011235329, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136552975905793, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136554675127297, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136567723929601, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136592099878913, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136598877347841, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136616520736769, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136663191610369, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136718715871233, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136764470038529, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136764898571265, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136766913545217, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136777532142593, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136777531996169, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136803302331393, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136853719800833, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136857304530945, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136857304530949, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136869633505281, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136870085750785, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136875293663233, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136887892831233, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136903918436353, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136913523256321, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136919579440129, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136944578380801, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136944578380805, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136944704929793, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136955856559105, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136960616579073, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136964453733377, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136981336440833, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640136990586797057, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137046751434753, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137046751434757, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137057299857409, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137131212956673, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137138658179073, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137163584621569, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137223862812673, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137250241878017, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137253184807937, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137258104429569, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137302926173185, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137317921222657, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137351994756097, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137370004197377, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137396003036161, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137437606083585, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137449828598785, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137465116516353, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137467450584065, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137500765599745, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137502406243329, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137508918835201, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137511672417281, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137515033024513, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137579488225281, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137579488225285, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137587614455809, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137601962258433, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137673032402953, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137673032566785, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137689719555073, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137709759748097, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137719855639553, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137734853670913, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137735785633793, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137740542637057, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137757866226689, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137760129185793, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137769474530305, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137773573516289, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Server sent a very old message with ID 7640137775081837569, ignoring (see FAQ for details)
+Security error while unpacking a received message: Too many messages had to be ignored consecutively
+Обновлены отели: 30/154
+Обновлены отели: 40/154
+Обновлены отели: 50/154
+Обновлены отели: 60/154
+Обновлены отели: 70/154
+Обновлены отели: 80/154
+Обновлены отели: 90/154
+Обновлены отели: 100/154

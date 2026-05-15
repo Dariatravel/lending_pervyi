@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "output" / "auto-sync"
 ENV_PATH = ROOT / ".env.supabase.local"
 DEFAULT_GOOGLE_CREDS = [
+    ROOT / "google-service-account.json",
     Path("/Users/darya_botova/Downloads/sonorous-bounty-488706-q9-32a19387de8d.json"),
     Path("/Users/darya_botova/Documents/ПОДБОРКИ/telegram_export/credentials.json"),
 ]
@@ -101,9 +102,12 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--mode",
-        choices=("full", "targeted"),
+        choices=("full", "targeted", "new-from-sheet"),
         default="full",
-        help="full = полный синк, targeted = точечный по ID.",
+        help=(
+            "full = полный синк канала/форума; targeted = точечный по ID; "
+            "new-from-sheet = только строки таблицы без объекта в базе (backfill_missing_from_sheet_links + фильтры + rebuild)."
+        ),
     )
     parser.add_argument(
         "--target-hotel-source-ids",
@@ -169,6 +173,59 @@ def main() -> int:
     base_env = os.environ.copy()
     base_env.update(env_file_data)
 
+    python = sys.executable
+    steps: list[StepResult] = []
+
+    print(f"[auto-sync] run_id={run_id}")
+
+    if args.mode == "new-from-sheet":
+        cred = env_file_data.get("GOOGLE_SERVICE_ACCOUNT_JSON", "").strip() or str(ROOT / "google-service-account.json")
+        if Path(cred).exists():
+            base_env["GOOGLE_SERVICE_ACCOUNT_JSON"] = cred
+        sync_cmd = [python, str(ROOT / "scripts" / "sync_new_objects_from_sheet.py")]
+        if args.skip_verify:
+            sync_cmd.append("--skip-verify")
+        if args.skip_filters:
+            sync_cmd.append("--skip-filters")
+        sync_result = _run_step(
+            name="sync_new_objects_from_sheet",
+            cmd=sync_cmd,
+            env=base_env,
+            log_path=run_dir / "01-new-from-sheet.log",
+            dry_run=args.dry_run,
+        )
+        print(f"[auto-sync] {sync_result.name}: {sync_result.status}")
+        if sync_result.return_code != 0 and not args.dry_run:
+            payload = {
+                "run_id": run_id,
+                "status": "failed",
+                "failed_step": sync_result.name,
+                "steps": [asdict(sync_result)],
+            }
+            summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+            summary_txt_path.write_text(
+                f"run_id: {run_id}\nstatus: failed\nfailed_step: {sync_result.name}\n",
+                encoding="utf-8",
+            )
+            return sync_result.return_code
+        payload_ok = {"run_id": run_id, "status": "ok", "steps": [asdict(sync_result)]}
+        summary_path.write_text(json.dumps(payload_ok, ensure_ascii=False, indent=2), encoding="utf-8")
+        summary_txt_path.write_text(
+            "\n".join(
+                [
+                    f"run_id: {run_id}",
+                    "status: ok",
+                    "",
+                    f"- {sync_result.name}: {sync_result.status} (rc={sync_result.return_code})",
+                    f"  log: {sync_result.log_file}",
+                ]
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        print(f"[auto-sync] completed, отчёт: {summary_txt_path}")
+        return 0
+
     if args.mode == "targeted":
         if not args.target_hotel_source_ids and not args.target_kv_topic_ids:
             print(
@@ -185,10 +242,6 @@ def main() -> int:
     if args.force_media_refresh:
         base_env["FORCE_MEDIA_REFRESH"] = "1"
 
-    python = sys.executable
-    steps: list[StepResult] = []
-
-    print(f"[auto-sync] run_id={run_id}")
     sync_result = _run_step(
         name="sync_catalog_from_telegram",
         cmd=[python, str(ROOT / "scripts" / "sync_catalog_from_telegram.py")],

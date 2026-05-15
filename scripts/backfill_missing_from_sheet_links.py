@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+import argparse
 import asyncio
-import json
 import os
 import re
 from pathlib import Path
@@ -25,7 +25,7 @@ from sync_catalog_from_telegram import (
 )
 
 
-ROOT = Path("/Users/darya_botova/Documents/New project")
+ROOT = Path(__file__).resolve().parents[1]
 REPORT_PATH = ROOT / "output" / "backfill_missing_report.txt"
 SPREADSHEET_ID = "135fxeZX5OE30rH3Sg5KWpTR4VuhBntCzGrTk0WcdTBY"
 SHEET_NAME = "СОЦСЕТИ"
@@ -54,6 +54,7 @@ def load_env(path: Path) -> dict[str, str]:
 def pick_google_credentials_path() -> Path:
     candidates = [
         os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON", "").strip(),
+        str(ROOT / "google-service-account.json"),
         "/Users/darya_botova/Downloads/sonorous-bounty-488706-q9-32a19387de8d.json",
         "/Users/darya_botova/Documents/ПОДБОРКИ/telegram_export/credentials.json",
     ]
@@ -97,6 +98,30 @@ def title_key(value: str) -> str:
     return normalize_title(value).strip().lower()
 
 
+def normalize_tg_link(raw: str) -> str:
+    s = raw.strip().lower()
+    for prefix in ("https://", "http://"):
+        if s.startswith(prefix):
+            s = s[len(prefix) :]
+    s = s.replace("telegram.me/", "t.me/")
+    if "t.me/" in s and not s.startswith("t.me/"):
+        idx = s.index("t.me/")
+        s = s[idx:]
+    s = s.split("?")[0].split("#")[0].strip()
+    return s
+
+
+def load_only_links_file(path: Path) -> set[str]:
+    lines = path.read_text(encoding="utf-8").splitlines()
+    out: set[str] = set()
+    for line in lines:
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        out.add(normalize_tg_link(line))
+    return out
+
+
 def should_remove_hotel(title: str, source_kind: str) -> bool:
     if source_kind != "hotel":
         return False
@@ -131,14 +156,22 @@ async def collect_group_media(client: TelegramClient, entity: Any, canonical: An
     return []
 
 
-async def resolve_object_from_link(client: TelegramClient, channel: str, message_id: int, topic_id_from_link: int | None, sheet_title: str) -> dict[str, Any] | None:
+async def resolve_object_from_link(
+    client: TelegramClient,
+    channel: str,
+    message_id: int,
+    topic_id_from_link: int | None,
+    sheet_title: str,
+    *,
+    ignore_cutoff_date: bool = False,
+) -> dict[str, Any] | None:
     entity = await client.get_entity(channel)
     message = await client.get_messages(entity, ids=message_id)
     if not message:
         return None
     if not message.date:
         return None
-    if message.date.date().isoformat() < CUTOFF_DATE:
+    if not ignore_cutoff_date and message.date.date().isoformat() < CUTOFF_DATE:
         return None
 
     media_messages = await collect_group_media(client, entity, message)
@@ -168,6 +201,27 @@ async def resolve_object_from_link(client: TelegramClient, channel: str, message
 
 
 async def main() -> None:
+    parser = argparse.ArgumentParser(description="Дозагрузка объектов по ссылкам из «СОЦСЕТИ».")
+    parser.add_argument(
+        "--ignore-cutoff-date",
+        action="store_true",
+        help="Не отбрасывать посты с датой раньше CUTOFF_DATE (точечное восстановление по списку).",
+    )
+    parser.add_argument(
+        "--only-links-file",
+        type=Path,
+        default=None,
+        help="Обрабатывать только строки таблицы, чья ссылка совпадает с URL из файла (по одному на строку).",
+    )
+    args = parser.parse_args()
+    only_set: set[str] | None = None
+    if args.only_links_file:
+        if not args.only_links_file.is_file():
+            raise FileNotFoundError(f"Файл не найден: {args.only_links_file}")
+        only_set = load_only_links_file(args.only_links_file)
+        if not only_set:
+            raise ValueError("В --only-links-file нет ни одной ссылки (пустой или только комментарии).")
+
     env = load_env(ENV_FILE)
     supabase_url = env.get("SUPABASE_URL", "").rstrip("/")
     service_role = env.get("SUPABASE_SERVICE_ROLE_KEY", "")
@@ -199,12 +253,13 @@ async def main() -> None:
             existing_by_title.setdefault((source_kind, key), []).append(row)
 
     removed: list[str] = []
-    for row in list(existing):
-        if should_remove_hotel(str(row.get("title") or ""), str(row.get("source_kind") or "")):
-            cleanup_removed_listing(str(row.get("source_kind") or ""), row, supa)
-            removed.append(f'{row.get("slug")} | {row.get("title")}')
-            key = (str(row.get("source_channel") or "").lower().strip(), int(row.get("source_message_id") or 0))
-            existing_by_key.pop(key, None)
+    if only_set is None:
+        for row in list(existing):
+            if should_remove_hotel(str(row.get("title") or ""), str(row.get("source_kind") or "")):
+                cleanup_removed_listing(str(row.get("source_kind") or ""), row, supa)
+                removed.append(f'{row.get("slug")} | {row.get("title")}')
+                key = (str(row.get("source_channel") or "").lower().strip(), int(row.get("source_message_id") or 0))
+                existing_by_key.pop(key, None)
 
     pending: list[dict[str, Any]] = []
     unparsed_links: list[str] = []
@@ -213,6 +268,8 @@ async def main() -> None:
     for idx, row in enumerate(sheet_rows, start=2):
         raw_link = get_cell(row, COL_TG_LINK)
         if not raw_link:
+            continue
+        if only_set is not None and normalize_tg_link(raw_link) not in only_set:
             continue
         parsed_link = parse_telegram_link(raw_link)
         if not parsed_link:
@@ -240,7 +297,7 @@ async def main() -> None:
             }
         )
 
-    client = TelegramClient(SESSION, API_ID, API_HASH)
+    client = TelegramClient(SESSION, API_ID, API_HASH, receive_updates=False)
     await client.connect()
 
     added: list[str] = []
@@ -254,9 +311,13 @@ async def main() -> None:
             item["message_id"],
             item["topic_id"],
             item["title"],
+            ignore_cutoff_date=args.ignore_cutoff_date,
         )
         if not object_data:
-            failed.append(f'row {item["row"]}: {item["raw_link"]} | не удалось получить сообщение/оно старше {CUTOFF_DATE}')
+            suffix = ""
+            if not args.ignore_cutoff_date:
+                suffix = f"/оно старше {CUTOFF_DATE}"
+            failed.append(f'row {item["row"]}: {item["raw_link"]} | не удалось получить сообщение{suffix}')
             continue
 
         existing_listing = None
@@ -294,6 +355,11 @@ async def main() -> None:
 
     report_lines: list[str] = []
     report_lines.append("Backfill недостающих объектов из СОЦСЕТИ → Supabase/сайт")
+    report_lines.append("")
+    if args.only_links_file:
+        report_lines.append(f"Режим: только ссылки из {args.only_links_file}")
+    if args.ignore_cutoff_date:
+        report_lines.append(f"Игнор даты поста до CUTOFF_DATE={CUTOFF_DATE}: да")
     report_lines.append("")
     report_lines.append(f"Строк в таблице: {len(sheet_rows)}")
     report_lines.append(f"Удалено по правилу (КОСТА ДЕ ОРА / АСМАН / ЛАВАНДА): {len(removed)}")

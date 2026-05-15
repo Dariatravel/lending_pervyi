@@ -1,0 +1,3 @@
+run_id: 20260515-174051
+status: failed
+failed_step: sync_catalog_from_telegram
