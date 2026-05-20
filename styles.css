@@ -6019,6 +6019,309 @@ body.modal-open .back-to-top {
   background-size: 3px 3px;
 }
 
+/* Mobile reading pass: меньше вертикальной перегрузки, крупнее смысловые блоки */
+@media (max-width: 760px) {
+  .site-concept,
+  .hotel-site-concept,
+  .blog-page,
+  .podborki-page,
+  .content-page {
+    gap: 12px;
+  }
+
+  .site-concept__topbar {
+    position: relative;
+    top: auto;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .site-concept__topnav {
+    display: flex;
+    flex-wrap: nowrap;
+    width: calc(100% + 8px);
+    margin-inline: -4px;
+    padding: 2px 4px 4px;
+    gap: 8px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+  }
+
+  .site-concept__topnav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-concept__topnav a {
+    flex: 0 0 auto;
+    min-height: 34px;
+    padding: 9px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: inset 0 0 0 1px rgba(79, 125, 108, 0.12);
+    color: #24483b;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .site-concept__masthead {
+    min-height: clamp(180px, 48vw, 280px);
+    border-radius: 22px;
+  }
+
+  .site-concept__masthead-fade {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 52%, rgba(12, 26, 20, 0.18) 100%);
+  }
+
+  .site-concept__search-surface {
+    box-shadow: 0 16px 34px rgba(18, 31, 25, 0.08);
+  }
+
+  .site-concept__search-field {
+    min-height: 60px;
+  }
+
+  .site-concept__search-field span {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .site-concept__search-field strong,
+  .site-concept__search-field input,
+  .site-concept__search-field select {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .site-concept__search-tags {
+    display: none;
+  }
+
+  .site-concept .catalog-grid {
+    gap: 10px;
+  }
+
+  .site-concept .catalog-card {
+    display: grid;
+    grid-template-columns: minmax(112px, 38vw) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    align-items: stretch;
+    min-height: 132px;
+    border-radius: 20px;
+  }
+
+  .site-concept .catalog-card .catalog-card__media-wrap,
+  .site-concept .catalog-card > img {
+    grid-row: 1 / span 2;
+    align-self: stretch;
+  }
+
+  .site-concept .catalog-card .catalog-card__media-wrap {
+    height: 100%;
+  }
+
+  .site-concept .catalog-card img {
+    height: 100%;
+    min-height: 132px;
+    aspect-ratio: auto;
+    border-radius: 20px 0 0 20px;
+  }
+
+  .site-concept .catalog-card .catalog-card__badge {
+    top: 8px;
+    right: 8px;
+    font-size: 10px;
+  }
+
+  .site-concept .catalog-card h3 {
+    padding: 14px 14px 5px;
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  .site-concept .catalog-card p {
+    padding: 0 14px 14px;
+    font-size: clamp(0.78rem, 3.1vw, 0.9rem);
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  .hotel-site-concept__intro {
+    padding-block: 12px;
+  }
+
+  .hotel-site-concept__intro-brand {
+    gap: 2px;
+  }
+
+  .hotel-site-concept__card {
+    gap: 14px;
+  }
+
+  .hotel-card__main-photo {
+    min-height: clamp(230px, 72vw, 360px);
+    border-radius: 20px;
+  }
+
+  .hotel-card__thumbs {
+    display: flex;
+    gap: 8px;
+    margin-inline: -2px;
+    padding: 0 2px 2px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+  }
+
+  .hotel-card__thumbs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hotel-card__thumbs img {
+    flex: 0 0 94px;
+    width: 94px;
+    height: 74px;
+    border-radius: 14px;
+  }
+
+  .hotel-card__content {
+    gap: 14px;
+    padding: 0;
+  }
+
+  .hotel-card__header {
+    gap: 10px;
+  }
+
+  .hotel-card__header h2 {
+    margin-bottom: 10px;
+    font-size: clamp(1.2rem, 6vw, 1.7rem) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.02em !important;
+    text-transform: none !important;
+  }
+
+  .hotel-site-concept .location {
+    font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+    line-height: 1.65;
+  }
+
+  .hotel-site-concept .partner-badge {
+    display: none;
+  }
+
+  .hotel-site-concept .benefit-grid,
+  .hotel-site-concept .reviews-grid {
+    gap: 10px;
+  }
+
+  .hotel-site-concept .benefit-grid article,
+  .hotel-site-concept .reviews-panel,
+  .hotel-site-concept .review-card,
+  .hotel-site-concept .price-card,
+  .hotel-site-concept .faq-card {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .hotel-site-concept .benefit-grid ul {
+    padding-left: 1rem;
+    line-height: 1.62;
+  }
+
+  .hotel-site-concept__detail-main,
+  .hotel-site-concept__detail-aside {
+    gap: 12px;
+  }
+
+  .hotel-site-concept__detail-section .card > h2,
+  .hotel-site-concept__detail-section > h2,
+  .hotel-site-concept__detail-section .price-card h2.price-card__heading {
+    margin-bottom: 10px;
+    font-size: clamp(1rem, 4.2vw, 1.2rem) !important;
+    line-height: 1.18 !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  .hotel-site-concept .paragraph-blocks p,
+  .hotel-site-concept .faq-list p,
+  .hotel-site-concept .review-card p,
+  .paragraph-blocks p {
+    padding-block: 0.68rem;
+    font-size: clamp(0.96rem, 3.8vw, 1.05rem);
+    line-height: 1.68;
+  }
+
+  .hotel-site-concept .price-card__seasons,
+  .hotel-site-concept .price-card__notes {
+    gap: 8px;
+  }
+
+  .hotel-site-concept .price-card li {
+    padding: 12px 13px;
+    border-radius: 14px;
+    font-size: clamp(0.95rem, 3.7vw, 1.04rem);
+    line-height: 1.5;
+  }
+
+  .hotel-site-concept .media-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .hotel-site-concept .media-grid img,
+  .hotel-site-concept .media-grid video {
+    border-radius: 16px;
+  }
+
+  .blog-listing .blog-grid,
+  .podborki-index-list {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-concept,
+  .hotel-site-concept,
+  .blog-page,
+  .podborki-page,
+  .content-page {
+    padding-inline: 10px;
+  }
+
+  .site-concept__search-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .site-concept__search-field,
+  .site-concept__search-field--wide,
+  .site-concept__search-submit {
+    grid-column: 1 / -1;
+  }
+
+  .site-concept .catalog-card {
+    grid-template-columns: 104px minmax(0, 1fr);
+    min-height: 118px;
+  }
+
+  .site-concept .catalog-card img {
+    min-height: 118px;
+  }
+
+  .site-concept .catalog-card h3 {
+    padding: 12px 12px 4px;
+  }
+
+  .site-concept .catalog-card p {
+    padding: 0 12px 12px;
+  }
+
+  .hotel-site-concept .media-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .hero-template {
   width: 100%;
   height: auto;
