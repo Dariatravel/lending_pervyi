@@ -1726,10 +1726,6 @@ def build_homepage() -> None:
   </section>
 
   <section class="site-concept__section-block" id="stays">
-    <div class="site-concept__section-head">
-      <div class="site-concept__section-head__intro">
-        <p class="site-concept__eyebrow">Страничка подбора</p>
-      </div>
       <nav class="site-concept__filter-pills" aria-label="Быстрые подборки">
         <a class="is-active" href="#catalog">Все</a>
         <a href="/podborki/dvuhkomnatnye-i-bolee/">Двухкомнатные</a>
@@ -1737,7 +1733,6 @@ def build_homepage() -> None:
         <a href="/podborki/bereg-morya-oteli-na-beregu/">У моря</a>
         <a href="/podborki/varianty-dorozhe-12-tr-premium/">Премиум</a>
       </nav>
-    </div>
 
     <div class="site-concept__search-surface" id="search">
       <form class="site-concept__search-bar" id="home-search-form">
