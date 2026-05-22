@@ -867,6 +867,20 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         '',
     )
     og_image = absolute_site_url(first_photo_url or '/media/branding/site-cover.jpg')
+    schema_type = "LodgingBusiness" if source_kind == "kvartira" else "Hotel"
+    listing_schema_name = (normalize_title(parsed.get("title", "") or "").strip() or title)
+    ld_blob: dict[str, Any] = {
+        "@context": "https://schema.org",
+        "@type": schema_type,
+        "name": listing_schema_name,
+        "description": summary,
+        "url": f"https://абхазберег.рф{page_href}",
+    }
+    img_abs = absolute_site_url(first_photo_url)
+    if img_abs:
+        ld_blob["image"] = [img_abs]
+    ld_json = json.dumps(ld_blob, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
+    ld_block = f'    <script type="application/ld+json" data-schema="listing">\n      {ld_json}\n    </script>\n'
     return f'''<!doctype html>
 <html lang="ru">
   <head>
@@ -885,7 +899,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../styles.css" />
-  </head>
+{ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
     <main class="hotel-site-concept">

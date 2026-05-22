@@ -19,6 +19,10 @@ INDEX_PATH = ROOT / "index.html"
 KVARTIRA_DIR = ROOT / "kvartira"
 KVARTIRA_PATH = ROOT / "kvartira" / "index.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
+CANON_ORIGIN = "https://абхазберег.рф"
+PUNY_ORIGIN_LEGACY = "https://xn--80aacbklan7f0b.xn--p1ai"
+BLOG_ROOT = ROOT / "blog"
+PODBORKI_ROOT_SITE = ROOT / "podborki"
 HOTEL_POSTS_PATH = ROOT / "output" / "abhazbooking_2026_posts.json"
 
 
@@ -812,6 +816,19 @@ def update_hotel_page(row: dict[str, Any]) -> None:
             flags=re.S,
         )
 
+    cover_url = cover.strip() if cover else ""
+    ld_script = lodging_listing_json_ld_script(
+        "Hotel",
+        title,
+        summary or title,
+        page_url,
+        cover_url if cover_url else None,
+    )
+    if 'data-schema="listing"' in text:
+        text = re.sub(r"\s*<script type=\"application/ld\+json\" data-schema=\"listing\">[\s\S]*?</script>", "\n" + ld_script, text, count=1)
+    else:
+        text = re.sub(r"(\s*)</head>", rf"\1{ld_script}\n\1</head>", text, count=1)
+
     path.write_text(text, encoding="utf-8")
 
 
@@ -868,15 +885,73 @@ def rebuild_kvartira_pages(rows: list[dict[str, Any]]) -> None:
         path.write_text(html_page, encoding="utf-8")
 
 
+def lodging_listing_json_ld_script(schema_type: str, name: str, description: str, url: str, image_url: str | None) -> str:
+    blob: dict[str, Any] = {
+        "@context": "https://schema.org",
+        "@type": schema_type,
+        "name": name,
+        "description": description,
+        "url": url,
+    }
+    if image_url:
+        blob["image"] = [image_url]
+    dumped = json.dumps(blob, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
+    return f'    <script type="application/ld+json" data-schema="listing">\n      {dumped}\n    </script>'
+
+
+def discover_static_sitemap_urls() -> list[str]:
+    urls: list[str] = [
+        f"{CANON_ORIGIN}/",
+        f"{CANON_ORIGIN}/kvartira/",
+        f"{CANON_ORIGIN}/blog/",
+    ]
+    if BLOG_ROOT.is_dir():
+        for path_item in sorted(BLOG_ROOT.glob("*/index.html")):
+            urls.append(f"{CANON_ORIGIN}/blog/{path_item.parent.name}/")
+    if PODBORKI_ROOT_SITE.is_dir():
+        urls.append(f"{CANON_ORIGIN}/podborki/")
+        for path_item in sorted(PODBORKI_ROOT_SITE.glob("*/index.html")):
+            urls.append(f"{CANON_ORIGIN}/podborki/{path_item.parent.name}/")
+    return urls
+
+
+def _normalize_sitemap_location(raw: str) -> str:
+    u = (raw or "").strip()
+    if not u:
+        return ""
+    return u.replace(PUNY_ORIGIN_LEGACY, CANON_ORIGIN)
+
+
 def rebuild_sitemap(rows: list[dict[str, Any]]) -> None:
+    ordered: list[str] = []
+    seen: set[str] = set()
+
+    def push(raw: str) -> None:
+        u = _normalize_sitemap_location(raw)
+        if not u or u in seen:
+            return
+        seen.add(u)
+        ordered.append(u)
+
+    for u in discover_static_sitemap_urls():
+        push(u)
+    for row in rows:
+        if row.get("source_kind") not in {"hotel", "kvartira"}:
+            continue
+        page_u = row.get("page_url")
+        if page_u:
+            push(str(page_u))
+
     urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
-    urls = ["https://абхазберег.рф/", "https://абхазберег.рф/kvartira/"]
-    urls.extend(row["page_url"] for row in rows if row.get("page_url") and row.get("source_kind") in {"hotel", "kvartira"})
-    for url in urls:
+    for u in ordered:
         node = ET.SubElement(urlset, "url")
-        loc = ET.SubElement(node, "loc")
-        loc.text = url
+        loc_el = ET.SubElement(node, "loc")
+        loc_el.text = u
     tree = ET.ElementTree(urlset)
+    try:
+        ET.indent(tree.getroot(), space="  ")
+    except (AttributeError, TypeError):
+        pass
     tree.write(SITEMAP_PATH, encoding="utf-8", xml_declaration=True)
 
 

@@ -34,8 +34,8 @@ META_JSON = PODBORI_TXT / "_collection_meta.json"
 INDEX_HTML = REPO / "index.html"
 KVARTIRA_INDEX = REPO / "kvartira" / "index.html"
 CSS_VERSION = "202605031315"
-# Публичный URL раздела подборок (Punycode .рф)
-CANONICAL_ORIGIN = "https://xn--80aacbklan7f0b.xn--p1ai"
+# Публичный URL раздела подборок (канон: кирилический .рф)
+CANONICAL_ORIGIN = "https://абхазберег.рф"
 
 # Подпись в источниках ≠ официальное имя в каталоге (ключи после simp()).
 HEADLINE_QP_ALIASES: dict[str, str] = {

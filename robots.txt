@@ -2,5 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://абхазберег.рф/sitemap.xml
-Sitemap: https://xn--80aacbklan7f0b.xn--p1ai/sitemap.xml
+
 Host: абхазберег.рф

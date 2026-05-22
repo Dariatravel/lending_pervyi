@@ -17,7 +17,7 @@ KVARTIRA_INDEX_PATH = ROOT / "kvartira" / "index.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 REPORT_PATH = ROOT / "output" / "podborki_from_filters_report.txt"
 CSS_VERSION = "202605222200"
-CANONICAL_ORIGIN = "https://xn--80aacbklan7f0b.xn--p1ai"
+CANONICAL_ORIGIN = "https://абхазберег.рф"
 
 CITY_LABELS = {
     "ldzaa": "ЛДЗАА",
