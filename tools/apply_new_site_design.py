@@ -1638,7 +1638,7 @@ def build_homepage() -> None:
 
     <nav class="site-concept__topnav" aria-label="Основная навигация">
       <a href="#search">Подбор жилья</a>
-      <a href="https://xn--80aacbklan7f0b.xn--p1ai/blog/kak-vybrat-kurort-abkhaziya-pervyy-raz/#contacts">Для тех, кто едет впервые</a>
+      <a href="/blog/kak-vybrat-kurort-abkhaziya-pervyy-raz/">Для тех, кто едет впервые</a>
       <a href="#guide">Как бронировать</a>
       <a href="/blog/">Блог</a>
       <a href="#contacts">Контакты</a>
@@ -1730,13 +1730,13 @@ def build_homepage() -> None:
       <div class="site-concept__section-head__intro">
         <p class="site-concept__eyebrow">Страничка подбора</p>
       </div>
-      <div class="site-concept__filter-pills" aria-hidden="true">
-        <span class="is-active">Все</span>
-        <span>Двухкомнатные</span>
-        <span>С бассейном</span>
-        <span>У моря</span>
-        <span>Премиум</span>
-      </div>
+      <nav class="site-concept__filter-pills" aria-label="Быстрые подборки">
+        <a class="is-active" href="#catalog">Все</a>
+        <a href="/podborki/dvuhkomnatnye-i-bolee/">Двухкомнатные</a>
+        <a href="/podborki/basseyn-vse-varianty/">С бассейном</a>
+        <a href="/podborki/bereg-morya-oteli-na-beregu/">У моря</a>
+        <a href="/podborki/varianty-dorozhe-12-tr-premium/">Премиум</a>
+      </nav>
     </div>
 
     <div class="site-concept__search-surface" id="search">
