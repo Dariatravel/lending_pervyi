@@ -353,14 +353,10 @@ def render_index(items: list[tuple[str, str]]) -> str:
         <a href="#contacts">Контакты</a>
       </nav>
     </header>
-    <section class="site-concept__hero-card podborki-hero">
-      <p class="site-concept__eyebrow">Каталог</p>
-      <h1>Подборки жилья</h1>
-    </section>
     <section class="site-concept__section-block podborki-index-panel">
       <div class="podborki-index-head">
-        <p class="site-concept__eyebrow">Быстрый выбор</p>
-        <h2>Выберите подборку под свой формат отдыха</h2>
+        <h1>Подборки жилья</h1>
+        <p class="podborki-index-head__lead">Выберите подборку под свой формат отдыха</p>
         <p>Собрали варианты по городам, бюджету, пляжам и удобствам, чтобы не листать весь каталог вручную.</p>
       </div>
       <ul class="podborki-index-list">

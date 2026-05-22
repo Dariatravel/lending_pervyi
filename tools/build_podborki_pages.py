@@ -475,11 +475,11 @@ def main() -> None:
         <a href="/#contacts">Контакты</a>
       </nav>
     </header>
-    <section class="site-concept__hero-card podborki-hero">
-      <p class="site-concept__eyebrow">Каталог</p>
-      <h1>Подборки жилья</h1>
-    </section>
-    <section class="site-concept__section-block">
+    <section class="site-concept__section-block podborki-index-panel">
+      <div class="podborki-index-head">
+        <h1>Подборки жилья</h1>
+        <p class="podborki-index-head__lead">Выберите подборку под свой формат отдыха</p>
+      </div>
       <ul class="podborki-index-list">
 {links}
       </ul>

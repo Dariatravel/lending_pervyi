@@ -1787,6 +1787,7 @@ a.podborki-card--link:hover {
   margin: 0 0 clamp(18px, 3vw, 30px);
 }
 
+.podborki-index-head h1,
 .podborki-index-head h2 {
   margin: 0;
   max-width: 18ch;
@@ -1794,6 +1795,7 @@ a.podborki-card--link:hover {
   line-height: 0.98;
 }
 
+.podborki-index-head__lead,
 .podborki-index-head p:not(.site-concept__eyebrow) {
   margin: 0;
   max-width: 58ch;
@@ -1821,15 +1823,15 @@ a.podborki-card--link:hover {
   isolation: isolate;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  min-height: 246px;
+  min-height: 236px;
   padding: 0;
   overflow: hidden;
-  border-radius: 24px;
-  border: 1px solid rgba(34, 57, 47, 0.1);
+  border-radius: 28px;
+  border: 1px solid color-mix(in srgb, var(--poster-a, #2f6654) 28%, rgba(255, 255, 255, 0.86));
   background:
-    radial-gradient(circle at 94% 8%, rgba(232, 176, 143, 0.2), transparent 34%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(244, 250, 246, 0.86));
-  box-shadow: 0 18px 38px rgba(18, 31, 25, 0.08);
+    radial-gradient(circle at 94% 6%, color-mix(in srgb, var(--poster-b, #e8b08f) 28%, transparent), transparent 34%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.97), color-mix(in srgb, var(--poster-a, #2f6654) 8%, #f9f5ec));
+  box-shadow: 0 20px 42px rgba(18, 31, 25, 0.09);
   text-decoration: none;
   color: #1f332c;
   font-size: clamp(15px, 1.15vw, 17px);
@@ -1860,20 +1862,19 @@ a.podborki-card--link:hover {
 
 .podborki-index__visual {
   position: relative;
-  min-height: 150px;
+  min-height: 142px;
   margin: 10px 10px 0;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 24px;
   background:
-    linear-gradient(180deg, rgba(18, 31, 25, 0.05), rgba(18, 31, 25, 0.48)),
-    radial-gradient(circle at 18% 16%, rgba(255, 255, 255, 0.46), transparent 30%),
-    var(--visual-photo, linear-gradient(135deg, #9fd7e7, #f2d8a7));
-  background-size: cover;
-  background-position: var(--visual-position, center);
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.55), transparent 22%),
+    radial-gradient(circle at 86% 12%, color-mix(in srgb, var(--poster-c, #f5d184) 76%, transparent), transparent 19%),
+    linear-gradient(135deg, var(--poster-a, #2f6654), var(--poster-b, #7db2a4));
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.42),
-    0 18px 30px rgba(23, 48, 44, 0.12);
+    0 18px 30px rgba(23, 48, 44, 0.13);
   transform: translateZ(0);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 .podborki-index__visual::before,
@@ -1884,28 +1885,30 @@ a.podborki-card--link:hover {
 }
 
 .podborki-index__visual::before {
-  inset: 0;
-  background:
-    linear-gradient(135deg, var(--visual-tint, rgba(31, 74, 59, 0.28)), transparent 48%),
-    linear-gradient(0deg, rgba(10, 24, 19, 0.5), transparent 58%);
-  mix-blend-mode: multiply;
+  right: clamp(16px, 3vw, 28px);
+  bottom: 10px;
+  z-index: 1;
+  content: var(--poster-icon, "≈");
+  color: rgba(255, 255, 255, 0.94);
+  font-family: "Prata", Georgia, serif;
+  font-size: clamp(54px, 8vw, 84px);
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+  text-shadow: 0 18px 36px rgba(12, 25, 20, 0.2);
 }
 
 .podborki-index__visual::after {
-  right: 12px;
-  bottom: 12px;
-  width: 72px;
-  height: 46px;
-  border-radius: 18px;
+  left: -16px;
+  right: -16px;
+  bottom: -18px;
+  height: 72px;
+  border-radius: 999px 999px 0 0;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.28)),
-    var(--visual-accent, rgba(216, 132, 102, 0.58));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+    var(--poster-pattern, radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.32) 0 9px, transparent 10px)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.26), color-mix(in srgb, var(--poster-c, #f5d184) 44%, transparent));
   box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.48),
-    -92px -58px 0 -30px var(--visual-accent, rgba(216, 132, 102, 0.52)),
-    0 16px 28px rgba(11, 27, 21, 0.16);
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    0 -16px 34px rgba(14, 31, 24, 0.1);
 }
 
 .podborki-index__visual span {
@@ -1916,7 +1919,7 @@ a.podborki-card--link:hover {
   max-width: calc(100% - 24px);
   padding: 7px 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.84);
+  background: rgba(255, 255, 255, 0.88);
   color: #18392f;
   font-size: 11px;
   font-weight: 900;
@@ -1941,39 +1944,36 @@ a.podborki-card--link:hover {
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.52),
     0 20px 34px rgba(23, 48, 44, 0.16);
-}
-
-.podborki-index__link:hover .podborki-index__visual {
   transform: scale(1.015);
 }
 
-.podborki-index__link--homes { --visual-photo: url("media/cards/tihaya-obitel-dom-pod-klyuch-4230.jpg"); --visual-accent: rgba(218, 151, 94, 0.64); --visual-tint: rgba(78, 116, 74, 0.34); }
-.podborki-index__link--gagra { --visual-photo: url("media/hotels/amor-domiki-v-tsentre-gagry-2986/photo-05.jpg"); --visual-position: center 62%; --visual-accent: rgba(68, 154, 170, 0.62); --visual-tint: rgba(34, 82, 94, 0.26); }
-.podborki-index__link--gudauta { --visual-photo: url("media/cards/staryy-prichal-gostevoy-dom-u-morya-3891.jpg"); --visual-accent: rgba(85, 157, 150, 0.62); --visual-tint: rgba(35, 92, 82, 0.28); }
-.podborki-index__link--afon { --visual-photo: url("media/cards/lazurit-novyy-otel-s-zavtrakami-2583.jpg"); --visual-accent: rgba(114, 150, 182, 0.64); --visual-tint: rgba(53, 78, 104, 0.3); }
-.podborki-index__link--pitsunda { --visual-photo: url("media/cards/assir-pitsunda-gostevoy-dom-v-tsentre-4173.jpg"); --visual-accent: rgba(99, 154, 106, 0.62); --visual-tint: rgba(43, 104, 73, 0.3); }
-.podborki-index__link--suhum { --visual-photo: url("media/cards/morskaya-laguna-gostinitsa-s-zavtrakami-3418.jpg"); --visual-accent: rgba(82, 158, 180, 0.62); --visual-tint: rgba(36, 86, 104, 0.3); }
-.podborki-index__link--alahadzy { --visual-photo: url("media/cards/zelenyy-dvorik-domiki-i-nomera-2909.jpg"); --visual-accent: rgba(112, 157, 86, 0.62); --visual-tint: rgba(63, 100, 67, 0.3); }
-.podborki-index__link--economy { --visual-photo: url("media/cards/svetlyy-dvorik-gostevoy-dom-ekonom-4259.jpg"); --visual-accent: rgba(226, 176, 83, 0.66); --visual-tint: rgba(141, 106, 48, 0.26); }
-.podborki-index__link--midrange { --visual-photo: url("media/cards/bonzhur-mini-otel-2542.jpg"); --visual-accent: rgba(216, 132, 102, 0.64); --visual-tint: rgba(115, 74, 55, 0.26); }
-.podborki-index__link--balcony { --visual-photo: url("media/cards/pion-gostevoy-dom-4539.jpg"); --visual-accent: rgba(218, 151, 94, 0.66); --visual-tint: rgba(90, 70, 56, 0.28); }
-.podborki-index__link--veranda { --visual-photo: url("media/cards/fyuzhn-tri-domika-s-launzh-zonoy-3162.jpg"); --visual-accent: rgba(196, 128, 78, 0.64); --visual-tint: rgba(91, 74, 50, 0.3); }
-.podborki-index__link--rooms { --visual-photo: url("media/cards/grant-apartamenty-2801.jpg"); --visual-accent: rgba(128, 166, 132, 0.62); --visual-tint: rgba(68, 86, 70, 0.28); }
-.podborki-index__link--pets { --visual-photo: url("media/cards/rancho-elivel-mini-otel-2938.jpg"); --visual-accent: rgba(215, 120, 88, 0.64); --visual-tint: rgba(97, 65, 54, 0.28); }
-.podborki-index__link--kitchen { --visual-photo: url("media/cards/amor-apartamenty-s-kuhney-i-basseynom-3487.jpg"); --visual-accent: rgba(207, 132, 92, 0.66); --visual-tint: rgba(104, 71, 55, 0.28); }
-.podborki-index__link--cottages { --visual-photo: url("media/cards/soluna-domiki-i-nomera-s-zavtrakami-4041.jpg"); --visual-accent: rgba(108, 156, 100, 0.64); --visual-tint: rgba(50, 100, 68, 0.32); }
-.podborki-index__link--apartments { --visual-photo: url("media/cards/atmosfernaya-kvartira-2k-3902.jpg"); --visual-accent: rgba(190, 124, 95, 0.62); --visual-tint: rgba(82, 72, 70, 0.28); }
-.podborki-index__link--mountains { --visual-photo: url("media/cards/dyshi-glubzhe-domiki-v-gorah-3459.jpg"); --visual-accent: rgba(92, 132, 103, 0.68); --visual-tint: rgba(26, 66, 58, 0.36); }
-.podborki-index__link--ldzaa { --visual-photo: url("media/cards/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133.jpg"); --visual-accent: rgba(81, 154, 139, 0.62); --visual-tint: rgba(39, 101, 80, 0.3); }
-.podborki-index__link--pines { --visual-photo: url("media/cards/antaa-gostinitsa-u-sosnovogo-plyazha-2899.jpg"); --visual-accent: rgba(59, 117, 79, 0.66); --visual-tint: rgba(24, 83, 55, 0.34); }
-.podborki-index__link--sea-view { --visual-photo: url("media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574.jpg"); --visual-accent: rgba(79, 170, 188, 0.66); --visual-tint: rgba(24, 83, 97, 0.32); }
-.podborki-index__link--pool { --visual-photo: url("media/cards/aisha-otel-s-basseynami-2651.jpg"); --visual-accent: rgba(64, 184, 200, 0.72); --visual-tint: rgba(30, 102, 120, 0.3); }
-.podborki-index__link--cafe { --visual-photo: url("media/cards/fazenda-otel-s-basseynom-i-pitaniem-3190.jpg"); --visual-accent: rgba(213, 130, 84, 0.66); --visual-tint: rgba(107, 76, 49, 0.3); }
-.podborki-index__link--beachfront { --visual-photo: url("media/cards/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716.jpg"); --visual-accent: rgba(68, 154, 170, 0.68); --visual-tint: rgba(23, 82, 94, 0.3); }
-.podborki-index__link--sand-sukhum { --visual-photo: url("media/cards/peschanyy-bereg-apartamenty-3697.jpg"); --visual-accent: rgba(229, 184, 107, 0.7); --visual-tint: rgba(137, 103, 49, 0.24); }
-.podborki-index__link--sand-ldzaa { --visual-photo: url("media/cards/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889.jpg"); --visual-accent: rgba(229, 184, 107, 0.68); --visual-tint: rgba(91, 112, 63, 0.28); }
-.podborki-index__link--premium { --visual-photo: url("media/cards/lazurnyy-bereg-butik-otel-s-pitaniem-2592.jpg"); --visual-accent: rgba(215, 177, 109, 0.76); --visual-tint: rgba(24, 30, 28, 0.42); }
-.podborki-index__link--guests { --visual-photo: url("media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219.jpg"); --visual-accent: rgba(218, 151, 94, 0.68); --visual-tint: rgba(80, 82, 57, 0.28); }
+.podborki-index__link--homes { --poster-icon: "⌂"; --poster-a: #2f6654; --poster-b: #d28b63; --poster-c: #f3d89b; }
+.podborki-index__link--gagra { --poster-icon: "☀"; --poster-a: #227182; --poster-b: #e09b62; --poster-c: #f8d978; }
+.podborki-index__link--gudauta { --poster-icon: "≈"; --poster-a: #2f7c78; --poster-b: #bfa06b; --poster-c: #e6c77d; }
+.podborki-index__link--afon { --poster-icon: "◇"; --poster-a: #456e88; --poster-b: #b98962; --poster-c: #d9c08a; }
+.podborki-index__link--pitsunda { --poster-icon: "♧"; --poster-a: #2f7357; --poster-b: #86a95a; --poster-c: #d8d07d; }
+.podborki-index__link--suhum { --poster-icon: "✦"; --poster-a: #446b92; --poster-b: #6eb2b4; --poster-c: #efd39a; }
+.podborki-index__link--alahadzy { --poster-icon: "◎"; --poster-a: #587d48; --poster-b: #d99b5f; --poster-c: #efd07d; }
+.podborki-index__link--economy { --poster-icon: "₽"; --poster-a: #8a6e2e; --poster-b: #dfb25b; --poster-c: #f3d37b; }
+.podborki-index__link--midrange { --poster-icon: "₽₽"; --poster-a: #7c6044; --poster-b: #d48764; --poster-c: #f0c083; }
+.podborki-index__link--balcony { --poster-icon: "▤"; --poster-a: #805c45; --poster-b: #d59d68; --poster-c: #efd0a2; }
+.podborki-index__link--veranda { --poster-icon: "☕"; --poster-a: #7a6542; --poster-b: #c8845d; --poster-c: #efd2a0; }
+.podborki-index__link--rooms { --poster-icon: "2К"; --poster-a: #456b5d; --poster-b: #95a66d; --poster-c: #d8c98a; }
+.podborki-index__link--pets { --poster-icon: "♢"; --poster-a: #7b5848; --poster-b: #d47a61; --poster-c: #f0be8a; }
+.podborki-index__link--kitchen { --poster-icon: "◑"; --poster-a: #6f6047; --poster-b: #d3845d; --poster-c: #efd29a; }
+.podborki-index__link--cottages { --poster-icon: "⌂⌂"; --poster-a: #3f7350; --poster-b: #8eb46b; --poster-c: #e2d383; }
+.podborki-index__link--apartments { --poster-icon: "▦"; --poster-a: #596c73; --poster-b: #bc8068; --poster-c: #e7c597; }
+.podborki-index__link--mountains { --poster-icon: "△"; --poster-a: #344f58; --poster-b: #6f997a; --poster-c: #d5c885; }
+.podborki-index__link--ldzaa { --poster-icon: "L"; --poster-a: #31715f; --poster-b: #73b1a4; --poster-c: #e9d18a; }
+.podborki-index__link--pines { --poster-icon: "♧"; --poster-a: #245c43; --poster-b: #7c9f4f; --poster-c: #dfc979; }
+.podborki-index__link--sea-view { --poster-icon: "≈"; --poster-a: #216f84; --poster-b: #64b7c2; --poster-c: #f0d17c; }
+.podborki-index__link--pool { --poster-icon: "◌"; --poster-a: #167b91; --poster-b: #54c3d2; --poster-c: #b9edf0; }
+.podborki-index__link--cafe { --poster-icon: "☕"; --poster-a: #7b593e; --poster-b: #d28555; --poster-c: #f0c789; }
+.podborki-index__link--beachfront { --poster-icon: "≈"; --poster-a: #1f7483; --poster-b: #ddb76d; --poster-c: #f4d487; }
+.podborki-index__link--sand-sukhum { --poster-icon: "◒"; --poster-a: #9b7a37; --poster-b: #e3ba66; --poster-c: #f1d88d; }
+.podborki-index__link--sand-ldzaa { --poster-icon: "◒"; --poster-a: #807743; --poster-b: #dfbb65; --poster-c: #f1d78a; }
+.podborki-index__link--premium { --poster-icon: "★"; --poster-a: #1d332d; --poster-b: #b6904c; --poster-c: #f3d078; }
+.podborki-index__link--guests { --poster-icon: "5+"; --poster-a: #5f6c43; --poster-b: #d68f5d; --poster-c: #eecb7e; }
 
 @media (max-width: 980px) {
   .podborki-index-list {
@@ -6250,34 +6250,7 @@ body.modal-open .back-to-top {
     -webkit-backdrop-filter: none;
   }
 
-  .site-concept.site-concept--home > #stays > .site-concept__section-head {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 0;
-  }
-
-  .site-concept.site-concept--home > #stays .site-concept__eyebrow {
-    display: inline-flex;
-    align-items: center;
-    min-height: 34px;
-    margin: 0;
-    padding: 9px 13px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.52);
-    box-shadow:
-      0 12px 26px rgba(11, 27, 21, 0.14),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.54);
-    color: #153229;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-
-  .site-concept.site-concept--home > #stays .site-concept__section-head .site-concept__filter-pills {
+  .site-concept.site-concept--home > #stays > .site-concept__filter-pills {
     width: calc(100% + 8px);
     margin-inline: -4px;
     padding: 0 4px 4px;
