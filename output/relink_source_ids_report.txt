@@ -1,21 +1,19 @@
 Relink source_message_id по ссылкам Telegram-каталог
 
-Всего строк таблицы: 199
-Перепривязано карточек: 4
+Всего строк таблицы: 228
+Перепривязано карточек: 6
 Не удалось распознать ссылку: 3
-Не удалось сопоставить карточку: 2
+Не удалось сопоставить карточку: 0
 
 Перепривязанные карточки:
-- row 27: belaya-loshad-glemping-s-basseynom-3650 | "БЕЛАЯ ЛОШАДЬ" глэмпинг с бассейном | abhazbooking/3652 -> abhazbooking/3650
-- row 71: kashtak-domiki-3668 | "КАШТАК" домики | abhazbooking/3668 -> abhazbooking/667
-- row 101: mziya-gostevye-nomera-3659 | "МЗИЯ" гостевые номера | abhazbooking/3659 -> abhazbooking/1396
-- row 192: chernomorskaya-kvartira-suhum-1201 | "ЧЕРНОМОРСКАЯ-1" квартира 2к | abhkvartira/1193 -> abhkvartira/1185
-
-Не сопоставлены:
-- row 34: "БОНЖУР" мини-отель | https://t.me/abhazbooking/2542
-- row 93: "МАНОН" отель со сказочным видом | https://t.me/abhazbooking/2512
+- row 33: belaya-loshad-glemping-s-basseynom-3650 | "БЕЛАЯ ЛОШАДЬ" глэмпинг с бассейном | abhazbooking/3652 -> abhazbooking/3650
+- row 37: bereg-svyatoy-sofii-otel-4279 | "БЕРЕГ СВЯТОЙ СОФИИ" отель | abhazbooking/4279 -> abhazbooking/1694
+- row 130: monro-kvartira-3k-suhum-1386 | "МОНРО" квартира 3-к | abhkvartira/1378 -> abhkvartira/1025
+- row 159: peschanyy-bereg-apartamenty-3697 | "ПЕСЧАНЫЙ БЕРЕГ" апартаменты | abhazbooking/3700 -> abhazbooking/3697
+- row 161: pitiunt-kvartira-4k-pitsunda-1428 | "ПИТИУНТ" квартира 4к | abhkvartira/1420 -> abhkvartira/1411
+- row 220: chernomorskaya-kvartira-suhum-1201 | "ЧЕРНОМОРСКАЯ-2" квартира 2к | abhkvartira/1193 -> abhkvartira/1185
 
 Нераспознанные ссылки:
-- row 21: описание спрятала в вк видео, скрыт доступ
-- row 42: t.me/villalubov
-- row 117: t.me/abhmulberry
+- row 25: описание спрятала в вк видео, скрыт доступ
+- row 51: t.me/villalubov
+- row 135: t.me/abhmulberry

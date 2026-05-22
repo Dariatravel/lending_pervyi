@@ -6092,34 +6092,36 @@ body.modal-open .back-to-top {
   }
 
   .site-concept.site-concept--home > .site-concept__topbar .site-concept__topnav {
-    display: flex;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
     margin-inline: 0;
-    padding: 2px 0 8px;
-    gap: 9px;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scrollbar-width: none;
+    padding: 2px 0;
+    gap: 8px;
+    overflow: visible;
   }
 
   .site-concept.site-concept--home > .site-concept__topbar .site-concept__topnav a {
-    flex: 0 0 auto;
-    min-height: 40px;
-    padding: 11px 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 36px;
+    padding: 9px 10px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.52);
+    background: rgba(255, 255, 255, 0.5);
     box-shadow:
-      0 12px 28px rgba(11, 27, 21, 0.16),
+      0 10px 24px rgba(11, 27, 21, 0.14),
       inset 0 0 0 1px rgba(255, 255, 255, 0.52);
     color: #153229;
-    font-size: 12px;
+    font-size: clamp(10px, 2.8vw, 11px);
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: 0.055em;
+    line-height: 1.08;
+    letter-spacing: 0.035em;
     text-decoration: none;
+    text-align: center;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.58);
-    white-space: nowrap;
+    white-space: normal;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
   }

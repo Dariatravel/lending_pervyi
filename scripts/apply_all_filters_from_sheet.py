@@ -143,8 +143,19 @@ def parse_telegram_link(link: str) -> tuple[str, int] | None:
     link = link.strip()
     # Поддержка:
     # t.me/channel/1234
-    # t.me/channel/topic_id/1234
-    match = re.search(r'(?:https?://)?t\.me/(?:s/)?([A-Za-z0-9_]+)/(?:[0-9]+/)?([0-9]+)', link)
+    # t.me/channel/topic_id/1234 — для abhkvartira ключ = topic_id (как в Supabase)
+    forum_match = re.search(
+        r'(?:https?://)?t\.me/(?:s/)?([A-Za-z0-9_]+)/(\d+)/(\d+)',
+        link,
+    )
+    if forum_match:
+        channel = forum_match.group(1).lower()
+        topic_id = int(forum_match.group(2))
+        message_id = int(forum_match.group(3))
+        if channel == 'abhkvartira':
+            return channel, topic_id
+        return channel, message_id
+    match = re.search(r'(?:https?://)?t\.me/(?:s/)?([A-Za-z0-9_]+)/(\d+)', link)
     if not match:
         return None
     return match.group(1).lower(), int(match.group(2))
@@ -444,8 +455,11 @@ def main() -> None:
     for row in listings:
         channel = str(row.get('source_channel') or '').lower().strip()
         message_id = int(row.get('source_message_id') or 0)
+        topic_id = int(row.get('source_topic_id') or 0)
         if channel and message_id:
             listing_map[(channel, message_id)] = row
+        if channel == 'abhkvartira' and topic_id:
+            listing_map[(channel, topic_id)] = row
         source_kind = str(row.get('source_kind') or '').strip()
         if source_kind:
             listings_by_kind[source_kind].append(row)

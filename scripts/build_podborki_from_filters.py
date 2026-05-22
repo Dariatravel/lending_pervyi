@@ -347,7 +347,7 @@ def render_index(items: list[tuple[str, str]]) -> str:
           <p class="note">Только сообщения, обычный звонок не пройдёт.</p>
         </div>
         <div class="contact-buttons">
-          <a class="btn-book" href="https://max.ru/u/f9LHodD0cOLVw3RTEObQAuqGut5qrEnsCdmW7cdV4PgfGrp9ldI_eY2boY8" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>
+          <a class="btn-book" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>
           <a class="btn-book" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК</a>
           <a class="btn-book" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В TELEGRAM</a>
           <a class="btn-book" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В WHATSAPP</a>

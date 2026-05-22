@@ -93,7 +93,7 @@ CONTACT_BLOCK = '''      <section class="section cta-block hotel-contact-section
         <p>Задать вопросы либо проверить наличие номеров можно: <strong>+7 940 900-33-40</strong> (WhatsApp, Telegram, MAX).</p>
         <p class="note">(только сообщение, звонок не пройдёт)</p>
         <div class="contact-buttons">
-          <a class="btn-book" href="https://max.ru/u/f9LHodD0cOLVw3RTEObQAuqGut5qrEnsCdmW7cdV4PgfGrp9ldI_eY2boY8" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В MAX</a>
+          <a class="btn-book" href="https://max.ru/abhazbereg" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В MAX</a>
           <a class="btn-book" href="http://vk.cc/cQQnBn" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В ВК</a>
           <a class="btn-book" href="https://t.me/abhazbooking_online" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В TELEGRAM</a>
           <a class="btn-book" href="https://wa.me/79409003340" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В WHATSAPP</a>
@@ -340,6 +340,14 @@ def topic_message_score(text: str) -> float:
 
 def title_key(value: str) -> str:
     return clean_line(value).strip().lower()
+
+
+BLOCKED_HOTEL_TITLE_KEYWORDS = ('коста де ора', 'асман', 'лаванда', 'фико')
+
+
+def is_blocked_hotel_title(title: str) -> bool:
+    lowered = title_key(title)
+    return any(keyword in lowered for keyword in BLOCKED_HOTEL_TITLE_KEYWORDS)
 
 
 def file_sha1(path: Path) -> str:
@@ -1436,9 +1444,15 @@ async def main() -> None:
     unused_rows = {row['id']: row for row in existing_hotels if row['source_message_id'] not in hotel_canonical_ids}
 
     for index, obj in enumerate(hotel_objects, start=1):
+        hotel_title = obj['parsed'].get('title') or ''
+        if is_blocked_hotel_title(hotel_title):
+            matched_blocked = hotel_exact_by_source.get(obj['canonical'].id)
+            if matched_blocked is not None:
+                cleanup_removed_listing('hotel', matched_blocked, supa)
+            continue
         matched_row = hotel_exact_by_source.get(obj['canonical'].id)
         if matched_row is None:
-            key = title_key(obj['parsed'].get('title') or '')
+            key = title_key(hotel_title)
             for row in hotel_by_title.get(key, []):
                 if row['id'] in processed_hotel_rows:
                     continue

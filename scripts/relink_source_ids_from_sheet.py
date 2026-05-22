@@ -10,7 +10,7 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
 
-ROOT = Path("/Users/darya_botova/Documents/New project")
+ROOT = Path(__file__).resolve().parents[1]
 ENV_PATH = ROOT / ".env.supabase.local"
 REPORT_PATH = ROOT / "output" / "relink_source_ids_report.txt"
 
@@ -21,7 +21,7 @@ COL_TITLE = 0
 COL_TG_LINK = 8
 
 ALLOWED_CHANNELS = {"abhazbooking", "abhkvartira"}
-REMOVE_HOTEL_TITLES = ("коста де ора", "асман", "лаванда")
+REMOVE_HOTEL_TITLES = ("коста де ора", "асман", "лаванда", "фико")
 
 
 def load_env(path: Path) -> dict[str, str]:
