@@ -16,7 +16,7 @@ INDEX_PATH = ROOT / "index.html"
 KVARTIRA_INDEX_PATH = ROOT / "kvartira" / "index.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 REPORT_PATH = ROOT / "output" / "podborki_from_filters_report.txt"
-CSS_VERSION = "202605160130"
+CSS_VERSION = "202605222200"
 CANONICAL_ORIGIN = "https://xn--80aacbklan7f0b.xn--p1ai"
 
 CITY_LABELS = {
@@ -254,7 +254,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
         <a href="/">Главная</a>
         <a href="/podborki/">Подборки</a>
         <a href="/kvartira/">Квартиры и дома</a>
-        <a href="/blog/">Блог</a>
+        <a href="/blog/">Полезно узнать</a>
         <a href="/#contacts">Контакты</a>
       </nav>
     </header>
@@ -275,9 +275,50 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
 """
 
 
+PODBORKI_INDEX_VISUALS: dict[str, tuple[str, str]] = {
+    "doma-pod-klyuch-vse-varianty": ("homes", "дом"),
+    "gagra-vse-varianty": ("gagra", "Гагра"),
+    "gudauta-vse-varianty": ("gudauta", "Гудаута"),
+    "novyy-afon-vse-varianty": ("afon", "Новый Афон"),
+    "pitsunda-vse-varianty": ("pitsunda", "Пицунда"),
+    "suhum-vse-varianty": ("suhum", "Сухум"),
+    "alahadzy-vse-varianty": ("alahadzy", "Алахадзы"),
+    "varianty-do-5-tr-ekonom": ("economy", "до 5 тыс."),
+    "varianty-5-12-tr-srednyak": ("midrange", "5-12 тыс."),
+    "balkony": ("balcony", "балкон"),
+    "veranda": ("veranda", "веранда"),
+    "dvuhkomnatnye-i-bolee": ("rooms", "2-3 комнаты"),
+    "sobaki-varianty": ("pets", "pet friendly"),
+    "svoya-kuhnya-v-nomere": ("kitchen", "кухня"),
+    "domiki-vse-varianty": ("cottages", "домики"),
+    "kvartiry-vse-varianty": ("apartments", "квартира"),
+    "gory-oteli-v-gorah": ("mountains", "горы"),
+    "ldzaa-vse-varianty": ("ldzaa", "Лдзаа"),
+    "sosnovyy-plyazh": ("pines", "сосны"),
+    "vid-na-more-pryamoy-bokovoy": ("sea-view", "вид на море"),
+    "basseyn-vse-varianty": ("pool", "бассейн"),
+    "pitanie-v-otele-ili-svoe-kafe": ("cafe", "кафе"),
+    "bereg-morya-oteli-na-beregu": ("beachfront", "у берега"),
+    "peschanyy-plyazh-suhum": ("sand-sukhum", "песок"),
+    "peschanyy-ldzaa": ("sand-ldzaa", "Лдзаа песок"),
+    "varianty-dorozhe-12-tr-premium": ("premium", "premium"),
+    "pyatero-gostey-i-bolee": ("guests", "5+ гостей"),
+}
+
+
+def render_index_link(slug: str, title: str) -> str:
+    visual, label = PODBORKI_INDEX_VISUALS.get(slug, ("default", "Абхазия"))
+    return (
+        f'        <li><a class="podborki-index__link podborki-index__link--{html.escape(visual)}" '
+        f'href="/podborki/{html.escape(slug)}/">'
+        f'<span class="podborki-index__visual" aria-hidden="true"><span>{html.escape(label)}</span></span>'
+        f'<span class="podborki-index__title">{html.escape(title)}</span></a></li>'
+    )
+
+
 def render_index(items: list[tuple[str, str]]) -> str:
     links = "\n".join(
-        f'        <li><a class="podborki-index__link" href="/podborki/{html.escape(slug)}/">{html.escape(title)}</a></li>'
+        render_index_link(slug, title)
         for slug, title in sorted(items, key=lambda row: row[1].lower())
     )
     return f"""<!DOCTYPE html>
@@ -308,7 +349,7 @@ def render_index(items: list[tuple[str, str]]) -> str:
         <a href="/">Главная</a>
         <a href="/podborki/" aria-current="page">Подборки</a>
         <a href="/kvartira/">Квартиры и дома</a>
-        <a href="/blog/">Блог</a>
+        <a href="/blog/">Полезно узнать</a>
         <a href="#contacts">Контакты</a>
       </nav>
     </header>

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Сборка статей блога из текстов Telegram (scripts/blog_telegram_sources/<id>.txt)."""
+"""Сборка статей раздела «Полезно узнать» из текстов Telegram (scripts/blog_telegram_sources/<id>.txt)."""
 
 from __future__ import annotations
 
@@ -127,14 +127,14 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
       </a>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
         <a href="/">Главная</a>
-        <a href="/blog/">Блог</a>
+        <a href="/blog/">Полезно узнать</a>
         <a href="/kvartira/">Квартиры</a>
         <a href="/#contacts">Контакты</a>
       </nav>
     </header>
 
     <article class="site-concept__hero-card blog-article">
-      <p class="blog-breadcrumbs"><a href="/">Главная</a> / <a href="/blog/">Блог</a> / {breadcrumb_esc}</p>
+      <p class="blog-breadcrumbs"><a href="/">Главная</a> / <a href="/blog/">Полезно узнать</a> / {breadcrumb_esc}</p>
       <p class="site-concept__eyebrow">{eyebrow_esc}</p>
       <h1>{h1_esc}</h1>
       <p class="blog-hero__lead">{lead_esc}</p>

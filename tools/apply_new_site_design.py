@@ -46,7 +46,7 @@ LISTING_PAGE_GUIDE_SECTION = """  <section class="site-concept__section-block" i
     <div class="site-concept__section-head">
       <div>
         <p class="site-concept__eyebrow">Как бронировать</p>
-        <h2>Как найти жильё в Абхазии без утомительного поиска</h2>
+        <h2>Как найти жильё в Абхазии без утомительного поиска и переплат</h2>
       </div>
     </div>
 
@@ -1640,7 +1640,7 @@ def build_homepage() -> None:
       <a href="#search">Подбор жилья</a>
       <a href="/blog/kak-vybrat-kurort-abkhaziya-pervyy-raz/">Для тех, кто едет впервые</a>
       <a href="#guide">Как бронировать</a>
-      <a href="/blog/">Блог</a>
+      <a href="/blog/">Полезно узнать</a>
       <a href="#contacts">Контакты</a>
     </nav>
 
@@ -1718,7 +1718,7 @@ def build_homepage() -> None:
           <h3 class="site-concept__benefit-title">Выгода 3. Сопровождение от брони до выезда</h3>
           <div class="site-concept__benefit-body">
             <p>Я оказываю сопровождение по любым вопросам, связанным с самостоятельным путешествием. Я не исчезаю после бронирования, остаюсь на связи.</p>
-            <p>В разделе <a href="/blog/">Блог</a> вы найдете полезные статьи обо всем, что связано с поездкой в Абхазию, либо напишите мне сразу в чат, я подскажу где что и как.</p>
+            <p>В разделе <a href="/blog/">Полезно узнать</a> вы найдете полезные статьи обо всем, что связано с поездкой в Абхазию, либо напишите мне сразу в чат, я подскажу где что и как.</p>
           </div>
         </article>
       </div>
@@ -1815,7 +1815,7 @@ def build_homepage() -> None:
     <div class="site-concept__section-head">
       <div>
         <p class="site-concept__eyebrow">Как бронировать</p>
-        <h2>Как найти жильё в Абхазии без утомительного поиска</h2>
+        <h2>Как найти жильё в Абхазии без утомительного поиска и переплат</h2>
       </div>
     </div>
 

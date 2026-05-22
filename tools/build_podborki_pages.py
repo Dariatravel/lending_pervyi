@@ -378,7 +378,7 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
         <a href="/">Главная</a>
         <a href="/podborki/">Подборки</a>
         <a href="/kvartira/">Квартиры и дома</a>
-        <a href="/blog/">Блог</a>
+        <a href="/blog/">Полезно узнать</a>
         <a href="/#contacts">Контакты</a>
       </nav>
     </header>
@@ -471,7 +471,7 @@ def main() -> None:
         <a href="/">Главная</a>
         <a href="/podborki/" aria-current="page">Подборки</a>
         <a href="/kvartira/">Квартиры и дома</a>
-        <a href="/blog/">Блог</a>
+        <a href="/blog/">Полезно узнать</a>
         <a href="/#contacts">Контакты</a>
       </nav>
     </header>
