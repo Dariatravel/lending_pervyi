@@ -3126,6 +3126,26 @@
     return wrap;
   }
 
+  function normalizeGuestReviewKey(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function uniqueGuestReviews(list) {
+    const usedHeads = new Set();
+    const usedTexts = new Set();
+    return (Array.isArray(list) ? list : []).filter((review) => {
+      const head = normalizeGuestReviewKey(review?.head);
+      const text = normalizeGuestReviewKey(review?.text);
+      if (!head || !text || usedHeads.has(head) || usedTexts.has(text)) return false;
+      usedHeads.add(head);
+      usedTexts.add(text);
+      return true;
+    });
+  }
+
   let guestReviewsPromise = null;
   function loadGuestReviewsJson() {
     if (!guestReviewsPromise) {
@@ -3149,6 +3169,7 @@
       console.warn("Не удалось загрузить отзывы гостей", error);
       return;
     }
+    list = uniqueGuestReviews(list);
     if (!list.length) return;
     for (const el of nodes) {
       const raw = el.getAttribute("data-review-count") || "4";
