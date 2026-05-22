@@ -333,6 +333,7 @@
     if (!text) return "";
 
     // Частые артефакты OCR из интерфейсов агрегаторов.
+    text = text.replace(/^\s*[+»«"']+\s*/, "");
     text = text.replace(/(?:раскрыть\s+детали|что\s+было\s+хорошо|подписаться)/gi, " ");
     text = text.replace(/оценка\s*wi[\s-]*fi[^.?!]*[.?!]?/gi, " ");
     text = text.replace(/\b\d+\s*уровня\b/gi, " ");
@@ -461,6 +462,54 @@
       fragment.appendChild(item);
     });
     scroller.replaceChildren(fragment);
+  }
+
+  function createObjectReviewCard(review) {
+    const card = document.createElement("article");
+    card.className = "review-card";
+
+    const top = document.createElement("div");
+    top.className = "review-card__top";
+
+    const author = document.createElement("strong");
+    author.textContent = String(review.name || "Гость").toUpperCase();
+
+    const kind = document.createElement("span");
+    kind.textContent = "Гость";
+
+    const text = document.createElement("p");
+    text.textContent = review.text || "";
+
+    top.append(author, kind);
+    card.append(top, text);
+    return card;
+  }
+
+  function getObjectReviewSlotCount(panel) {
+    const existing = panel ? panel.querySelectorAll(".review-card").length : 0;
+    return Math.max(existing || 2, 1);
+  }
+
+  function renderObjectReviewPanels(context, objectPool) {
+    const panels = Array.from(document.querySelectorAll(".reviews-panel"));
+    if (!panels.length || !objectPool.length) return false;
+    let hydrated = false;
+
+    panels.forEach((panel, index) => {
+      const grid = panel.querySelector(".reviews-grid");
+      if (!grid) return;
+
+      const count = getObjectReviewSlotCount(panel);
+      const reviews = pickReviews(
+        objectPool,
+        count,
+        `abhaz:reviews:panel:${context.slug || window.location.pathname}:${index}`
+      );
+      grid.replaceChildren(...reviews.map(createObjectReviewCard));
+      hydrated = true;
+    });
+
+    return hydrated;
   }
 
   function reviewLeadKey(review) {
@@ -812,13 +861,14 @@
   }
 
   function renderHotelReviews(row) {
+    const context = extractObjectReviewContext(row);
+    const objectPool = getObjectReviewPool(context.slug);
+    renderObjectReviewPanels(context, objectPool);
     const scrollers = Array.from(
       document.querySelectorAll(".reviews-scroller:not([data-random-reviews])")
     );
     if (!scrollers.length) return;
 
-    const context = extractObjectReviewContext(row);
-    const objectPool = getObjectReviewPool(context.slug);
     const pool = objectPool.length ? objectPool : getGlobalReviewPool();
     if (!pool.length) return;
 

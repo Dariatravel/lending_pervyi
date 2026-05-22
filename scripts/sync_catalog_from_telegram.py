@@ -120,6 +120,113 @@ FAQ_BLOCK = '''      <section class="section hotel-faq-section hotel-site-concep
       </section>'''
 
 _APPLY_DESIGN_MOD: Any = None
+_OCR_REVIEW_BANK: dict[str, list[dict[str, Any]]] | None = None
+
+
+def _load_ocr_review_bank() -> dict[str, list[dict[str, Any]]]:
+    global _OCR_REVIEW_BANK
+    if _OCR_REVIEW_BANK is not None:
+        return _OCR_REVIEW_BANK
+
+    path = ROOT / 'media' / 'reviews' / 'review_text_bank.json'
+    if not path.exists():
+        _OCR_REVIEW_BANK = {}
+        return _OCR_REVIEW_BANK
+
+    try:
+        payload = json.loads(path.read_text(encoding='utf-8'))
+    except json.JSONDecodeError:
+        _OCR_REVIEW_BANK = {}
+        return _OCR_REVIEW_BANK
+
+    by_object = payload.get('by_object')
+    if not isinstance(by_object, dict):
+        _OCR_REVIEW_BANK = {}
+        return _OCR_REVIEW_BANK
+
+    _OCR_REVIEW_BANK = {
+        str(slug): reviews
+        for slug, reviews in by_object.items()
+        if slug and isinstance(reviews, list) and reviews
+    }
+    return _OCR_REVIEW_BANK
+
+
+def _normalize_review_slug(value: str) -> str:
+    value = re.sub(r'-+', '-', (value or '').lower().strip().strip('/').replace('_', '-'))
+    return re.sub(r'-\d{3,6}$', '', value)
+
+
+def _review_slug_match_score(source_slug: str, target_slug: str) -> int:
+    if not source_slug or not target_slug:
+        return 0
+    if source_slug == target_slug:
+        return 10_000 + len(source_slug)
+    if source_slug.startswith(target_slug):
+        return 5_000 + len(target_slug)
+    if target_slug.startswith(source_slug):
+        return 4_000 + len(source_slug)
+
+    source_tokens = source_slug.split('-')
+    target_tokens = target_slug.split('-')
+    source_set = set(source_tokens)
+    common = [token for token in target_tokens if token in source_set]
+    if not common:
+        return 0
+    return round(len(common) / max(len(source_tokens), len(target_tokens)) * 1000) + len(common)
+
+
+def _reviews_for_slug(slug: str) -> list[dict[str, Any]]:
+    bank = _load_ocr_review_bank()
+    if slug in bank:
+        return bank[slug]
+
+    target = _normalize_review_slug(slug)
+    best_key = ''
+    best_score = 0
+    for candidate in bank:
+        score = _review_slug_match_score(_normalize_review_slug(candidate), target)
+        if score > best_score:
+            best_key = candidate
+            best_score = score
+
+    if not best_key or best_score < 1200:
+        return []
+    return bank.get(best_key, [])
+
+
+def _clean_ocr_review_text(value: str) -> str:
+    text = re.sub(r'\s+', ' ', str(value or '')).strip()
+    if not text:
+        return ''
+
+    text = re.sub(r'^\s*[+»«"\']+\s*', '', text)
+    text = re.sub(r'(?:раскрыть\s+детали|что\s+было\s+хорошо|подписаться)', ' ', text, flags=re.I)
+    text = re.sub(r'оценка\s*wi[\s-]*fi[^.?!]*[.?!]?', ' ', text, flags=re.I)
+    text = re.sub(r'\b\d+\s*уровня\b', ' ', text, flags=re.I)
+
+    prefix_patterns = [
+        r'^\s*\d{1,2}\s*(?:превосходно|отлично|хорошо|супер)\s*',
+        r'^\s*\d{1,2}\s+[а-яё]+\s*',
+        r'^\s*\d{1,2}[./-]\d{1,2}[./-]\d{2,4}\s*',
+        r'^\s*[А-ЯЁ][а-яё]+(?:\s+[А-ЯЁ][а-яё]+){0,2}\s+\d{1,2}[./-]\d{1,2}[./-]\d{2,4}\s*',
+        r'^\s*[А-ЯЁ][а-яё]+[:,]?\s*добрый\s+(?:день|вечер|утро),?\s*дарья!?\.?\s*',
+        r'^\s*добрый\s+(?:день|вечер|утро),?\s*дарья!?\.?\s*',
+    ]
+
+    changed = True
+    while changed:
+        changed = False
+        for pattern in prefix_patterns:
+            cleaned = re.sub(pattern, '', text, flags=re.I).strip()
+            if cleaned != text:
+                text = cleaned
+                changed = True
+
+    text = re.sub(r'\s+', ' ', text).strip()
+    if text and not re.search(r'[.!?…]$', text):
+        text = f'{text}.'
+    return text
 
 
 def _apply_design_mod():
@@ -136,6 +243,31 @@ def _apply_design_mod():
 
 
 def _reviews_panel_for_slug(mod: Any, slug: str) -> str:
+    object_reviews = _reviews_for_slug(slug)
+    if object_reviews:
+        reviews_html = ''
+        for review in object_reviews[:2]:
+            author = str(review.get('name') or 'Гость').upper()
+            body = _clean_ocr_review_text(str(review.get('text') or ''))
+            if not body:
+                continue
+            reviews_html += f"""              <article class="review-card">
+                <div class="review-card__top">
+                  <strong>{html.escape(author)}</strong>
+                  <span>Гость</span>
+                </div>
+                <p>{html.escape(body)}</p>
+              </article>"""
+        if reviews_html:
+            return (
+                '<section class="reviews-panel">'
+                '<div class="reviews-panel__head">'
+                '<div class="reviews-summary"><span>Отзывы гостей</span>'
+                '</div></div>'
+                f'<div class="reviews-grid">{reviews_html}</div>'
+                '</section>'
+            )
+
     seed = sum(ord(ch) for ch in slug)
     wrapped = f'<section>{render_reviews(seed)}</section>'
     cards = mod.extract_reviews(wrapped)
