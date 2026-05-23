@@ -368,7 +368,7 @@ def listing_exists_on_site(listing: dict[str, Any], repo_root: Path | None = Non
 def fetch_listings(supabase_url: str, service_role: str) -> list[dict[str, Any]]:
     headers = {'apikey': service_role, 'Authorization': f'Bearer {service_role}'}
     params = {
-        'select': 'id,slug,source_kind,title,source_channel,source_message_id,page_url,details,is_active',
+        'select': 'id,slug,source_kind,title,source_channel,source_message_id,source_topic_id,page_url,details,is_active',
         'is_active': 'eq.true',
         'limit': '5000',
     }
