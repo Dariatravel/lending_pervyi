@@ -1,15 +1,12 @@
 Relink source_message_id по ссылкам Telegram-каталог
 
 Всего строк таблицы: 228
-Перепривязано карточек: 6
+Перепривязано карточек: 3
 Не удалось распознать ссылку: 3
 Не удалось сопоставить карточку: 0
 
 Перепривязанные карточки:
-- row 33: belaya-loshad-glemping-s-basseynom-3650 | "БЕЛАЯ ЛОШАДЬ" глэмпинг с бассейном | abhazbooking/3652 -> abhazbooking/3650
-- row 37: bereg-svyatoy-sofii-otel-4279 | "БЕРЕГ СВЯТОЙ СОФИИ" отель | abhazbooking/4279 -> abhazbooking/1694
 - row 130: monro-kvartira-3k-suhum-1386 | "МОНРО" квартира 3-к | abhkvartira/1378 -> abhkvartira/1025
-- row 159: peschanyy-bereg-apartamenty-3697 | "ПЕСЧАНЫЙ БЕРЕГ" апартаменты | abhazbooking/3700 -> abhazbooking/3697
 - row 161: pitiunt-kvartira-4k-pitsunda-1428 | "ПИТИУНТ" квартира 4к | abhkvartira/1420 -> abhkvartira/1411
 - row 220: chernomorskaya-kvartira-suhum-1201 | "ЧЕРНОМОРСКАЯ-2" квартира 2к | abhkvartira/1193 -> abhkvartira/1185
 
