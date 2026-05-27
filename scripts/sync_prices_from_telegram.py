@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from audit_telegram_site_prices import (  # noqa: E402
+    KV_PRICES_AUDIT,
     OUT_REPORT,
     Row,
     audit_all,
@@ -24,8 +25,9 @@ from audit_telegram_site_prices import (  # noqa: E402
     fetch_post_texts_batch,
     load_hotel_jobs,
     load_kv_jobs,
+    load_supabase_kv_message_ids,
     resolve_hotel_source_id,
-    resolve_kv_source_id,
+    resolve_kv_message_id,
     site_prices,
     telegram_prices,
     write_report,
@@ -40,6 +42,7 @@ from sync_catalog_from_telegram import (  # noqa: E402
 )
 
 SYNC_REPORT = ROOT / "output" / "telegram_prices_sync_report.txt"
+KV_SYNC_REPORT = ROOT / "output" / "telegram_kv_prices_sync_report.txt"
 
 
 def load_env(path: Path) -> dict[str, str]:
@@ -74,10 +77,11 @@ def replace_prices_block(html_text: str, prices_html: str) -> str | None:
     return str(soup)
 
 
-async def sync_prices(dry_run: bool = False) -> int:
+async def sync_prices(dry_run: bool = False, kv_only: bool = False) -> int:
     rows: list[Row] = []
-    await audit_all(rows)
-    write_report(rows, OUT_REPORT)
+    await audit_all(rows, kv_only=kv_only)
+    report_path = KV_PRICES_AUDIT if kv_only else OUT_REPORT
+    write_report(rows, report_path, kv_only=kv_only)
 
     to_fix = [
         r
@@ -86,6 +90,8 @@ async def sync_prices(dry_run: bool = False) -> int:
         and r.message_id > 0
         and r.channel in {"abhazbooking", "abhkvartira"}
     ]
+    if kv_only:
+        to_fix = [r for r in to_fix if r.kind == "kvartira"]
 
     env = load_env(ENV_FILE)
     supa = SupabaseClient(
@@ -94,24 +100,31 @@ async def sync_prices(dry_run: bool = False) -> int:
     )
     listings = {f'{r.get("source_kind")}:{r.get("slug")}': r for r in supa.fetch_listings()}
 
-    hotel_map = {
-        resolve_hotel_source_id(path.read_text(encoding="utf-8"), sid): (slug, path)
-        for slug, path, sid in load_hotel_jobs()
-        if path.is_file()
-    }
+    hotel_map = {}
+    if not kv_only:
+        hotel_map = {
+            resolve_hotel_source_id(path.read_text(encoding="utf-8"), sid): (slug, path)
+            for slug, path, sid in load_hotel_jobs()
+            if path.is_file()
+        }
+    supabase_kv_ids = load_supabase_kv_message_ids()
     kv_map = {}
     for slug, path, sid in load_kv_jobs():
         if path.is_file():
             html_text = path.read_text(encoding="utf-8")
-            kv_map[resolve_kv_source_id(html_text, sid)] = (slug, path)
+            mid = resolve_kv_message_id(html_text, slug, sid, supabase_kv_ids)
+            if mid:
+                kv_map[mid] = (slug, path)
 
     client = TelegramClient(SESSION, API_ID, API_HASH, receive_updates=False)
     await client.connect()
 
     hotel_ids = sorted({r.message_id for r in to_fix if r.kind == "hotel"})
     kv_ids = sorted({r.message_id for r in to_fix if r.kind == "kvartira"})
-    hotel_texts = await fetch_post_texts_batch(client, "abhazbooking", hotel_ids)
-    kv_texts = await fetch_post_texts_batch(client, "abhkvartira", kv_ids)
+    hotel_texts: dict[int, str] = {}
+    if hotel_ids:
+        hotel_texts = await fetch_post_texts_batch(client, "abhazbooking", hotel_ids)
+    kv_texts = await fetch_post_texts_batch(client, "abhkvartira", kv_ids) if kv_ids else {}
     await client.disconnect()
 
     updated: list[str] = []
@@ -187,14 +200,16 @@ async def sync_prices(dry_run: bool = False) -> int:
         lines.append("Ошибки:")
         lines.extend(f"- {x}" for x in failed[:40])
 
-    SYNC_REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    sync_report = KV_SYNC_REPORT if kv_only else SYNC_REPORT
+    sync_report.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
     return 0
 
 
 def main() -> int:
     dry = "--dry-run" in sys.argv
-    return asyncio.run(sync_prices(dry_run=dry))
+    kv_only = "--kv-only" in sys.argv
+    return asyncio.run(sync_prices(dry_run=dry, kv_only=kv_only))
 
 
 if __name__ == "__main__":

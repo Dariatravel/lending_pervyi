@@ -45,7 +45,54 @@ CURRENT_PAGES = ROOT / "output" / "current_pages.json"
 KV_CARDS = ROOT / "kvartira_cards.json"
 HOTELS_DIR = ROOT / "hotels"
 KVARTIRA_DIR = ROOT / "kvartira"
+ENV_FILE = ROOT / ".env.supabase.local"
 OUT_REPORT = ROOT / "output" / "telegram_prices_audit.txt"
+KV_PRICES_AUDIT = ROOT / "output" / "telegram_kv_prices_audit.txt"
+
+
+def load_supabase_kv_message_ids() -> dict[str, int]:
+    """slug → source_message_id из Supabase для квартир."""
+    if not ENV_FILE.is_file():
+        return {}
+    env: dict[str, str] = {}
+    for line in ENV_FILE.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        env[key.strip()] = value.strip()
+    base = env.get("SUPABASE_URL", "").rstrip("/")
+    key = env.get("SUPABASE_SERVICE_ROLE_KEY", "")
+    if not base or not key:
+        return {}
+    import urllib.request
+
+    url = base + "/rest/v1/listings?select=slug,source_message_id&source_kind=eq.kvartira&limit=200"
+    req = urllib.request.Request(
+        url,
+        headers={"apikey": key, "Authorization": f"Bearer {key}"},
+    )
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        rows = json.loads(resp.read().decode("utf-8"))
+    out: dict[str, int] = {}
+    for row in rows:
+        slug = str(row.get("slug") or "").strip()
+        mid = row.get("source_message_id")
+        if slug and mid:
+            out[slug] = int(mid)
+    return out
+
+
+def resolve_kv_message_id(html_text: str, slug: str, fallback: int, supabase_ids: dict[str, int]) -> int:
+    msg_id = resolve_kv_source_id(html_text, 0)
+    if msg_id:
+        return msg_id
+    if slug in supabase_ids:
+        return supabase_ids[slug]
+    m = re.search(r"-(\d+)/?$", slug)
+    if m:
+        return int(m.group(1))
+    return fallback
 
 
 def load_hotel_jobs() -> list[tuple[str, Path, int]]:
@@ -66,12 +113,15 @@ def load_hotel_jobs() -> list[tuple[str, Path, int]]:
     return jobs
 
 
-def load_kv_jobs() -> list[tuple[str, Path, int]]:
+def load_kv_jobs(*, catalog_only: bool = True) -> list[tuple[str, Path, int]]:
     cards = json.loads(KV_CARDS.read_text(encoding="utf-8")) if KV_CARDS.is_file() else []
     by_slug = {str(c.get("slug") or ""): int(c.get("message_id") or 0) for c in cards}
+    supabase_ids = load_supabase_kv_message_ids()
     jobs: list[tuple[str, Path, int]] = []
     for path in sorted(KVARTIRA_DIR.glob("*/index.html")):
         slug = path.parent.name
+        if catalog_only and supabase_ids and slug not in supabase_ids:
+            continue
         jobs.append((slug, path, by_slug.get(slug, 0)))
     return jobs
 
@@ -82,7 +132,13 @@ def normalize_price_line(text: str) -> str:
     s = unicodedata.normalize("NFKC", s).replace("\xa0", " ")
     s = re.sub(r"\s+", " ", s).strip().lower()
     s = s.replace("руб./", "₽/").replace("руб.", "₽").replace("руб", "₽")
+    s = s.replace("–", "-").replace("—", "-")
+    s = re.sub(r"(\d)\s+го\b", r"\1го", s)
+    s = re.sub(r"\+ (\d+)", r"+\1", s)
+    s = re.sub(r"(\d)\s+р\b", r"\1р", s)
+    s = re.sub(r"июль\s*/\s*", "июль/", s)
     s = re.sub(r"\s*,\s*", ", ", s)
+    s = re.sub(r",\s*$", "", s)
     s = re.sub(r"(\d)\s+₽", r"\1₽", s)
     s = re.sub(r"(\d)\s+/", r"\1/", s)
     s = re.sub(r"/\s+сутки", "/сутки", s)
@@ -203,15 +259,18 @@ def compare_lists(tg: list[str], site: list[str]) -> tuple[list[str], list[str]]
     return missing, extra
 
 
-async def audit_all(rows: list[Row]) -> None:
+async def audit_all(rows: list[Row], *, kv_only: bool = False) -> None:
+    supabase_kv_ids = load_supabase_kv_message_ids()
+
     hotel_jobs: list[tuple[str, int, Path]] = []
-    for slug, path, sid in load_hotel_jobs():
-        if not path.is_file():
-            rows.append(Row("hotel", slug, "abhazbooking", sid, "MISSING_FILE", 0, 0, [], [], False, str(path)))
-            continue
-        html_text = path.read_text(encoding="utf-8")
-        msg_id = resolve_hotel_source_id(html_text, sid)
-        hotel_jobs.append((slug, msg_id, path))
+    if not kv_only:
+        for slug, path, sid in load_hotel_jobs():
+            if not path.is_file():
+                rows.append(Row("hotel", slug, "abhazbooking", sid, "MISSING_FILE", 0, 0, [], [], False, str(path)))
+                continue
+            html_text = path.read_text(encoding="utf-8")
+            msg_id = resolve_hotel_source_id(html_text, sid)
+            hotel_jobs.append((slug, msg_id, path))
 
     kv_jobs: list[tuple[str, int, Path]] = []
     for slug, path, sid in load_kv_jobs():
@@ -219,65 +278,83 @@ async def audit_all(rows: list[Row]) -> None:
             rows.append(Row("kvartira", slug, "abhkvartira", sid, "MISSING_FILE", 0, 0, [], [], False, str(path)))
             continue
         html_text = path.read_text(encoding="utf-8")
-        msg_id = resolve_kv_source_id(html_text, sid)
+        msg_id = resolve_kv_message_id(html_text, slug, sid, supabase_kv_ids)
         kv_jobs.append((slug, msg_id, path))
 
     client = TelegramClient(SESSION, API_ID, API_HASH, receive_updates=False)
     await client.connect()
 
     try:
-        hotel_texts = await fetch_post_texts_batch(client, "abhazbooking", [j[1] for j in hotel_jobs])
-        print(f"Загружено постов отелей: {len(hotel_texts)}", flush=True)
-        for slug, msg_id, path in hotel_jobs:
-            raw = hotel_texts.get(msg_id, "")
-            if not raw:
-                rows.append(
-                    Row("hotel", slug, "abhazbooking", msg_id, "FETCH_FAIL", 0, 0, [], [], False, "empty message")
-                )
-                continue
-            html_text = path.read_text(encoding="utf-8")
-            tg_p, tg_n = telegram_prices(raw)
-            st_p, st_n, has_block = site_prices(html_text)
-            if not tg_p and not tg_n:
-                rows.append(Row("hotel", slug, "abhazbooking", msg_id, "NO_TG_PRICES", 0, len(st_p), [], [], False))
-                continue
-            if not has_block:
+        if not kv_only:
+            hotel_texts = await fetch_post_texts_batch(client, "abhazbooking", [j[1] for j in hotel_jobs])
+            print(f"Загружено постов отелей: {len(hotel_texts)}", flush=True)
+            for slug, msg_id, path in hotel_jobs:
+                raw = hotel_texts.get(msg_id, "")
+                if not raw:
+                    rows.append(
+                        Row("hotel", slug, "abhazbooking", msg_id, "FETCH_FAIL", 0, 0, [], [], False, "empty message")
+                    )
+                    continue
+                html_text = path.read_text(encoding="utf-8")
+                tg_p, tg_n = telegram_prices(raw)
+                st_p, st_n, has_block = site_prices(html_text)
+                if not tg_p and not tg_n:
+                    rows.append(Row("hotel", slug, "abhazbooking", msg_id, "NO_TG_PRICES", 0, len(st_p), [], [], False))
+                    continue
+                if not has_block:
+                    rows.append(
+                        Row(
+                            "hotel",
+                            slug,
+                            "abhazbooking",
+                            msg_id,
+                            "NO_SITE_PRICES",
+                            len(tg_p),
+                            0,
+                            tg_p[:12],
+                            [],
+                            bool(tg_n),
+                        )
+                    )
+                    continue
+                missing, extra = compare_lists(tg_p, st_p)
+                note_mismatch = tg_n != st_n
+                status = "OK" if not missing and not extra and not note_mismatch else "MISMATCH"
                 rows.append(
                     Row(
                         "hotel",
                         slug,
                         "abhazbooking",
                         msg_id,
-                        "NO_SITE_PRICES",
+                        status,
                         len(tg_p),
+                        len(st_p),
+                        missing[:12],
+                        extra[:12],
+                        note_mismatch,
+                    )
+                )
+
+        kv_texts = await fetch_post_texts_batch(client, "abhkvartira", [j[1] for j in kv_jobs if j[1] > 0])
+        print(f"Загружено постов квартир: {len(kv_texts)}", flush=True)
+        for slug, msg_id, path in kv_jobs:
+            if not msg_id:
+                rows.append(
+                    Row(
+                        "kvartira",
+                        slug,
+                        "abhkvartira",
                         0,
-                        tg_p[:12],
+                        "FETCH_FAIL",
+                        0,
+                        0,
                         [],
-                        bool(tg_n),
+                        [],
+                        False,
+                        "no message_id",
                     )
                 )
                 continue
-            missing, extra = compare_lists(tg_p, st_p)
-            note_mismatch = tg_n != st_n
-            status = "OK" if not missing and not extra and not note_mismatch else "MISMATCH"
-            rows.append(
-                Row(
-                    "hotel",
-                    slug,
-                    "abhazbooking",
-                    msg_id,
-                    status,
-                    len(tg_p),
-                    len(st_p),
-                    missing[:12],
-                    extra[:12],
-                    note_mismatch,
-                )
-            )
-
-        kv_texts = await fetch_post_texts_batch(client, "abhkvartira", [j[1] for j in kv_jobs])
-        print(f"Загружено постов квартир: {len(kv_texts)}", flush=True)
-        for slug, msg_id, path in kv_jobs:
             raw = kv_texts.get(msg_id, "")
             if not raw:
                 rows.append(
@@ -327,7 +404,7 @@ async def audit_all(rows: list[Row]) -> None:
         await client.disconnect()
 
 
-def write_report(rows: list[Row], path: Path) -> None:
+def write_report(rows: list[Row], path: Path, *, kv_only: bool = False) -> None:
     hotels = [r for r in rows if r.kind == "hotel"]
     kv = [r for r in rows if r.kind == "kvartira"]
 
@@ -340,12 +417,16 @@ def write_report(rows: list[Row], path: Path) -> None:
     lines: list[str] = [
         "Сверка блока ЦЕНЫ: Telegram (parse_post) ↔ HTML (.price-card__seasons / __notes)",
         "",
-        f"Отели: {stats(hotels)}",
-        f"Квартиры: {stats(kv)}",
-        "",
     ]
+    if kv_only:
+        lines.append(f"Квартиры: {stats(kv)}")
+        lines.append("")
+        sections = (("КВАРТИРЫ", kv),)
+    else:
+        lines.extend([f"Отели: {stats(hotels)}", f"Квартиры: {stats(kv)}", ""])
+        sections = (("ОТЕЛИ", hotels), ("КВАРТИРЫ", kv))
 
-    for title, section in (("ОТЕЛИ", hotels), ("КВАРТИРЫ", kv)):
+    for title, section in sections:
         lines.append(f"=== {title} ===")
         for r in sorted(section, key=lambda x: (x.status != "MISMATCH", x.slug)):
             if r.status in {"FETCH_FAIL", "MISSING_FILE"}:
@@ -375,11 +456,13 @@ def write_report(rows: list[Row], path: Path) -> None:
 
 
 async def main_async() -> int:
+    kv_only = "--kv-only" in sys.argv
     rows: list[Row] = []
-    await audit_all(rows)
-    write_report(rows, OUT_REPORT)
+    await audit_all(rows, kv_only=kv_only)
+    report_path = KV_PRICES_AUDIT if kv_only else OUT_REPORT
+    write_report(rows, report_path, kv_only=kv_only)
     mism = sum(1 for r in rows if r.status == "MISMATCH")
-    print(f"Отчёт: {OUT_REPORT}")
+    print(f"Отчёт: {report_path}")
     print(f"MISMATCH: {mism} из {len(rows)}")
     return 0
 
