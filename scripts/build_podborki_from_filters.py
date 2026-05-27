@@ -16,7 +16,7 @@ INDEX_PATH = ROOT / "index.html"
 KVARTIRA_INDEX_PATH = ROOT / "kvartira" / "index.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 REPORT_PATH = ROOT / "output" / "podborki_from_filters_report.txt"
-CSS_VERSION = "202605222200"
+CSS_VERSION = "202605272305"
 CANONICAL_ORIGIN = "https://абхазберег.рф"
 
 CITY_LABELS = {
@@ -233,6 +233,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/{selection.slug}/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://chnyazvybzzryduhgopa.supabase.co" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="../../media/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../../styles.css?v={CSS_VERSION}" />
@@ -268,6 +269,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
 {body_html}
     </section>
   </main>
+  <script src="../../image-lite.js" defer></script>
   <script src="../../scripts.js" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
@@ -331,6 +333,7 @@ def render_index(items: list[tuple[str, str]]) -> str:
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://chnyazvybzzryduhgopa.supabase.co" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="../media/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../styles.css?v={CSS_VERSION}" />
@@ -392,6 +395,7 @@ def render_index(items: list[tuple[str, str]]) -> str:
       </article>
     </section>
   </main>
+  <script src="../image-lite.js" defer></script>
   <script src="../scripts.js" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>

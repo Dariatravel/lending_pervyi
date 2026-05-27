@@ -897,8 +897,9 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <meta property="og:image" content="{og_image}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://chnyazvybzzryduhgopa.supabase.co" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../../styles.css?v=202605272305" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -976,6 +977,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         </aside>
       </div>
     </main>
+    <script src="../../image-lite.js" defer></script>
     <script src="../../scripts.js" defer></script>
   </body>
 </html>'''
