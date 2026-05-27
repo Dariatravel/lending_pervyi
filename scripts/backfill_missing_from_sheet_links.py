@@ -35,7 +35,7 @@ COL_TITLE = 0  # A
 COL_TG_LINK = 8  # I
 
 ALLOWED_CHANNELS = {"abhazbooking", "abhkvartira"}
-REMOVE_HOTEL_TITLES = ("коста де ора", "асман", "лаванда", "фико")
+REMOVE_HOTEL_TITLES = ("коста де ора", "асман", "фико")
 
 
 def load_env(path: Path) -> dict[str, str]:
@@ -362,7 +362,7 @@ async def main() -> None:
         report_lines.append(f"Игнор даты поста до CUTOFF_DATE={CUTOFF_DATE}: да")
     report_lines.append("")
     report_lines.append(f"Строк в таблице: {len(sheet_rows)}")
-    report_lines.append(f"Удалено по правилу (КОСТА ДЕ ОРА / АСМАН / ЛАВАНДА): {len(removed)}")
+    report_lines.append(f"Удалено по правилу (КОСТА ДЕ ОРА / АСМАН / ФИКО): {len(removed)}")
     report_lines.append(f"Кандидатов на дозагрузку: {len(pending)}")
     report_lines.append(f"Добавлено новых: {len(added)}")
     report_lines.append(f"Обновлено существующих (по topic/title fallback): {len(updated_existing)}")

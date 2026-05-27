@@ -1,0 +1,97 @@
++ /Library/Developer/CommandLineTools/usr/bin/python3 /Users/darya_botova/Documents/GitHub/lending_pervyi/scripts/backfill_missing_from_sheet_links.py
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/google/api_core/_python_version_support.py:246: FutureWarning: You are using a non-supported Python version (3.9.6). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Backfill недостающих объектов из СОЦСЕТИ → Supabase/сайт
+
+
+Строк в таблице: 232
+Удалено по правилу (КОСТА ДЕ ОРА / АСМАН / ЛАВАНДА): 0
+Кандидатов на дозагрузку: 6
+Добавлено новых: 3
+Обновлено существующих (по topic/title fallback): 1
+Ошибок: 2
+Нераспознанных ссылок: 3
+Игнорировано ссылок с чужими каналами: 0
+
+Добавлены:
+- dzhannat-otel-na-beregu-s-zavtrakami-4571 | "ДЖАННАТ" отель на берегу с завтраками | row 68
+- plyazhnyy-kompleks-151-na-beregu-4620 | "ПЛЯЖНЫЙ КОМПЛЕКС 151" на берегу | row 162
+- rd-otel-v-gagre-4561 | "РД-ОТЕЛЬ" в Гагре | row 169
+
+Обновлены существующие:
+- chernomorskaya-kvartira-suhum-1201 | "ЧЕРНОМОРСКАЯ-1" квартира 2к | row 224
+
+Ошибки:
+- row 132: https://t.me/abhkvartira/469/1025 | не удалось получить сообщение/оно старше 2026-01-01
+- row 164: https://t.me/abhkvartira/1410/1411 | не удалось получить сообщение/оно старше 2026-01-01
+
+Нераспознанные ссылки:
+- row 25: описание спрятала в вк видео, скрыт доступ
+- row 51: t.me/villalubov
+- row 137: t.me/abhmulberry
++ /Library/Developer/CommandLineTools/usr/bin/python3 /Users/darya_botova/Documents/GitHub/lending_pervyi/scripts/apply_all_filters_from_sheet.py
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/google/api_core/_python_version_support.py:246: FutureWarning: You are using a non-supported Python version (3.9.6). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+Готово. Массовый перенос фильтров из СОЦСЕТИ в Supabase выполнен.
+
+Режим: только объекты с HTML на сайте
+Строк в СОЦСЕТИ: 232
+Разобрано ссылок Telegram: 209
+Без ссылки Telegram: 19
+Ссылка не распознана: 3
+Обработано объектов на сайте (есть строка в таблице): 207
+Обновлено объектов в Supabase: 3
+Без изменений: 204
+Пропущено (нет HTML-страницы на сайте): 0
+Не найдено в Supabase по channel+message_id: 2
+
+Отчёт по группам фильтров:
+- distance: заполнено по таблице (непустые) у 205 объектов, изменено у 3 объектов
+  значения: up-to-5:90, up-to-10:56, over-10:32, beachfront:31
+- food: заполнено по таблице (непустые) у 207 объектов, изменено у 3 объектов
+  значения: no-food:168, cafe:37, breakfast:19, full-board:4, half-board:1
+- price: заполнено по таблице (непустые) у 205 объектов, изменено у 3 объектов
+  значения: midrange:93, economy:77, premium:39
+- city: заполнено по таблице (непустые) у 203 объектов, изменено у 3 объектов
+  значения: ldzaa:66, sukhum:37, pitsunda:34, gagra:26, alakhadzy:18, gudauta:9, new-afon:9, tsandripsh:7
+- beach: заполнено по таблице (непустые) у 206 объектов, изменено у 3 объектов
+  значения: pebble:102, pine-pebble-ldzaa-pitsunda:49, pitsunda-bay-mixed:36, sand-sukhum:17, sand-ldzaa:5
+- room: заполнено по таблице (непустые) у 193 объектов, изменено у 2 объектов
+  значения: five-plus:90, kitchen:76, two-room-plus:68, balcony:64, terrace:64, pool:46, sea-view:30, beachfront-room:27
+- stay: заполнено по таблице (непустые) у 168 объектов, изменено у 3 объектов
+  значения: pets:95, cottages:76, apartments:37, turnkey-house:13, no-small-kids:1
+
+Нераспознанные ссылки Telegram (из таблицы):
+- описание спрятала в вк видео, скрыт доступ
+- t.me/villalubov
+- t.me/abhmulberry
+
+Ссылки, не найденные в Supabase:
+- https://t.me/abhazbooking/2422
+- https://t.me/abhazbooking/4590
++ /Library/Developer/CommandLineTools/usr/bin/python3 /Users/darya_botova/Documents/GitHub/lending_pervyi/scripts/rebuild_from_supabase.py
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/darya_botova/Library/Python/3.9/lib/python/site-packages/google/api_core/_python_version_support.py:246: FutureWarning: You are using a non-supported Python version (3.9.6). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+Пересобрано отелей: 166
+Пересобрано квартир: 59
++ /Library/Developer/CommandLineTools/usr/bin/python3 /Users/darya_botova/Documents/GitHub/lending_pervyi/tools/verify_object_media.py
+OK: все проверенные URL объектных медиа согласованы со slug страницы.
+    (Проверены пути /media/hotels/, /media/kvartira/, /media/cards/, /media/kvartira-cards/*-cover*, /videos/hotels|kvartira/ в URL.)

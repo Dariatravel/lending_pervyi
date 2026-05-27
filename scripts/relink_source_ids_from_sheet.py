@@ -21,7 +21,7 @@ COL_TITLE = 0
 COL_TG_LINK = 8
 
 ALLOWED_CHANNELS = {"abhazbooking", "abhkvartira"}
-REMOVE_HOTEL_TITLES = ("коста де ора", "асман", "лаванда", "фико")
+REMOVE_HOTEL_TITLES = ("коста де ора", "асман", "фико")
 
 
 def load_env(path: Path) -> dict[str, str]:

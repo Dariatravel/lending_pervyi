@@ -474,7 +474,7 @@ def title_key(value: str) -> str:
     return clean_line(value).strip().lower()
 
 
-BLOCKED_HOTEL_TITLE_KEYWORDS = ('коста де ора', 'асман', 'лаванда', 'фико')
+BLOCKED_HOTEL_TITLE_KEYWORDS = ('коста де ора', 'асман', 'фико')
 
 
 def is_blocked_hotel_title(title: str) -> bool:

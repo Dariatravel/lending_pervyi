@@ -1,0 +1,2 @@
+OK: все проверенные URL объектных медиа согласованы со slug страницы.
+    (Проверены пути /media/hotels/, /media/kvartira/, /media/cards/, /media/kvartira-cards/*-cover*, /videos/hotels|kvartira/ в URL.)
