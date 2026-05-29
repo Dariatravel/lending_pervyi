@@ -989,6 +989,129 @@
     return raw;
   }
 
+  const SUPABASE_PUBLIC_MEDIA_MARKER = `/storage/v1/object/public/${SUPABASE_CONFIG.storageBucket}/`;
+
+  function isSupabaseStorageUrl(url) {
+    const normalized = normalizeMediaUrl(url);
+    if (!normalized || !normalized.includes("supabase.co")) return false;
+    return normalized.includes(SUPABASE_PUBLIC_MEDIA_MARKER);
+  }
+
+  /** Supabase Storage URL → тот же файл на домене сайта (/media/...). */
+  function supabaseStorageUrlToLocalPath(url) {
+    const normalized = normalizeMediaUrl(url);
+    if (!normalized) return "";
+    const markerIndex = normalized.indexOf(SUPABASE_PUBLIC_MEDIA_MARKER);
+    if (markerIndex === -1) return "";
+    const relative = normalized.slice(markerIndex + SUPABASE_PUBLIC_MEDIA_MARKER.length).split("?")[0];
+    try {
+      return `/media/${decodeURIComponent(relative)}`;
+    } catch (error) {
+      return `/media/${relative}`;
+    }
+  }
+
+  function localMediaFallbackChain(url) {
+    const primary = supabaseStorageUrlToLocalPath(url);
+    if (!primary) return [];
+
+    const chain = [primary];
+
+    if (primary.includes("/media/kvartira-cards/")) {
+      const withoutCover = primary.replace(/-cover\.jpg$/i, ".jpg");
+      const withCover = primary.replace(/\.jpg$/i, "-cover.jpg");
+      if (withoutCover !== primary && !chain.includes(withoutCover)) chain.push(withoutCover);
+      if (withCover !== primary && !chain.includes(withCover)) chain.push(withCover);
+    }
+
+    if (/\.mp4$/i.test(primary)) {
+      const match = primary.match(/^(.*?\/video-\d+-)([^/]+)(\.mp4)$/i);
+      if (match) {
+        const [, prefix, , ext] = match;
+        ["source", "1800k", "1200k", "900k", "700k", "500k", "350k"].forEach((variant) => {
+          const candidate = `${prefix}${variant}${ext}`;
+          if (!chain.includes(candidate)) chain.push(candidate);
+        });
+      }
+      if (primary.includes("vertical-high")) {
+        const low = primary.replace("vertical-high", "vertical-low");
+        if (!chain.includes(low)) chain.push(low);
+      }
+    }
+
+    return chain;
+  }
+
+  function attachSupabaseMediaFallbackToImage(img) {
+    if (!img || img.dataset.supabaseFallbackWired === "1") return;
+
+    const initial = normalizeMediaUrl(img.getAttribute("src") || img.currentSrc || "");
+    if (!isSupabaseStorageUrl(initial)) return;
+
+    const candidates = localMediaFallbackChain(initial);
+    if (!candidates.length) return;
+
+    img.dataset.supabaseFallbackWired = "1";
+    let attempt = 0;
+
+    img.addEventListener("error", function tryLocalMediaFallback() {
+      if (attempt >= candidates.length) {
+        img.removeEventListener("error", tryLocalMediaFallback);
+        return;
+      }
+      img.src = candidates[attempt];
+      attempt += 1;
+    });
+
+    if (img.complete && img.naturalWidth === 0) {
+      img.dispatchEvent(new Event("error"));
+    }
+  }
+
+  function attachSupabaseMediaFallbackToVideo(video) {
+    if (!video || video.dataset.supabaseFallbackWired === "1") return;
+
+    const sourceEl = video.querySelector("source[src]");
+    const initial = normalizeMediaUrl(video.getAttribute("src") || sourceEl?.getAttribute("src") || "");
+    if (!isSupabaseStorageUrl(initial)) return;
+
+    const candidates = localMediaFallbackChain(initial);
+    if (!candidates.length) return;
+
+    video.dataset.supabaseFallbackWired = "1";
+    let attempt = 0;
+
+    const applyCandidate = (candidateUrl) => {
+      if (sourceEl) {
+        sourceEl.src = candidateUrl;
+        video.removeAttribute("src");
+      } else {
+        video.src = candidateUrl;
+      }
+      try {
+        video.load();
+      } catch (error) {
+        /* ignore */
+      }
+    };
+
+    video.addEventListener("error", function tryLocalMediaFallback() {
+      if (attempt >= candidates.length) {
+        video.removeEventListener("error", tryLocalMediaFallback);
+        return;
+      }
+      applyCandidate(candidates[attempt]);
+      attempt += 1;
+    });
+  }
+
+  /** Подключает fallback Supabase → /media/ для статической вёрстки и динамических блоков. */
+  function wireSupabaseMediaFallback(root = document) {
+    if (!root || !root.querySelectorAll) return;
+    root.querySelectorAll("img[src]").forEach(attachSupabaseMediaFallbackToImage);
+    root.querySelectorAll("video").forEach(attachSupabaseMediaFallbackToVideo);
+  }
+
   /**
    * Kvartira covers in Storage often use `slug-cover.jpg`, sometimes `slug.jpg` only.
    * DB may point at a missing variant — try both after media/cover_url.
@@ -1552,6 +1675,7 @@
     });
 
     grid.replaceChildren(fragment);
+    wireSupabaseMediaFallback(grid);
   }
 
   function renderKvartiraCards(rows, grid) {
@@ -1588,6 +1712,7 @@
     });
 
     grid.replaceChildren(fragment);
+    wireSupabaseMediaFallback(grid);
   }
 
   function formatLeadText(row) {
@@ -1701,6 +1826,7 @@
 
     if (fragment.childNodes.length > 0) {
       grid.replaceChildren(fragment);
+      wireSupabaseMediaFallback(grid);
     }
   }
 
@@ -3184,6 +3310,7 @@
   }
 
   initHeroVideoQuality();
+  wireSupabaseMediaFallback();
   absolutizeHotelSiteConceptMedia();
   void initRandomGuestReviews();
 
