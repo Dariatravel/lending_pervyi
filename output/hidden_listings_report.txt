@@ -1,15 +1,27 @@
 Скрытые объекты (is_active=false, убраны из каталога и подборок)
 
-Всего в hidden_listings.json: 9
-Деактивировано в Supabase: 9
+Всего в hidden_listings.json: 21
+Деактивировано в Supabase: 21
 
 Скрыты:
 - alpika-mini-apart-otel-4202
 - aristokrat-gostevoy-kompleks-s-basseynami-4377
+- atmosfernaya-kvartira-2k-3902
 - bzyb-domiki-i-nomera-s-basseynom-4367
+- dyshi-glubzhe-domiki-v-gorah-1335
+- karalina-apartamenty-studiya-pitsunda-1274
+- kashtak-domiki-3668
 - kedrovyy-eko-otel-s-basseynom-4419
 - lemar-domiki-v-tsentre-4239
+- mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440
 - mare-dolche-eko-kompleks-4219
+- mechta-apartamenty-ldzaa-1176
+- na-vremya-v-rayu-zhile-pod-klyuch-1522
+- nasta-apartamenty-studiya-ldzaa-1264
+- peschanyy-bereg-novye-apartamenty-suhum-mokko-1407
 - san-pino-domiki-derevyannye-s-basseynom-3005
 - sanset-eko-domiki-4182
+- sekret-garden-apartamenty-1465
+- studio-san-amra-studiya-na-plyazhe-1511
+- tihaya-obitel-dom-pod-klyuch-1477
 - volshebnaya-imperiya-domiki-s-basseynom-4318
