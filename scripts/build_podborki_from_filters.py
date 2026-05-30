@@ -4,12 +4,15 @@ from __future__ import annotations
 import html
 import json
 import re
+import sys
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from listing_visibility import load_hidden_slugs  # noqa: E402
 PODBORKI_DIR = ROOT / "podborki"
 META_PATH = ROOT / "podbori_txt" / "_collection_meta.json"
 INDEX_PATH = ROOT / "index.html"
@@ -110,12 +113,20 @@ def parse_catalog_cards(path: Path, prefix: str) -> list[Card]:
     return cards
 
 
+def href_slug(href: str) -> str:
+    match = re.match(r"^/(?:hotels|kvartira)/([^/]+)/?", href.strip())
+    return match.group(1) if match else ""
+
+
 def load_cards() -> list[Card]:
+    hidden = load_hidden_slugs()
     cards = parse_catalog_cards(INDEX_PATH, "/hotels/")
     if KVARTIRA_INDEX_PATH.is_file():
         cards.extend(parse_catalog_cards(KVARTIRA_INDEX_PATH, "/kvartira/"))
     deduped: dict[str, Card] = {}
     for card in cards:
+        if href_slug(card.href) in hidden:
+            continue
         deduped[card.href] = card
     return list(deduped.values())
 
