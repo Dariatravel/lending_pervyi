@@ -79,6 +79,21 @@ def normalize_image(src: str) -> str:
     return "../../" + src.lstrip("./")
 
 
+def normalize_index_image(src: str) -> str:
+    src = html.unescape(src or "").strip()
+    if not src:
+        return ""
+    if src.startswith("http://") or src.startswith("https://"):
+        return src
+    if src.startswith("../../"):
+        return ".." + src[5:]
+    if src.startswith("../"):
+        return src
+    if src.startswith("/"):
+        return ".." + src
+    return "../" + src.lstrip("./")
+
+
 def parse_catalog_cards(path: Path, prefix: str) -> list[Card]:
     text = path.read_text(encoding="utf-8")
     cards: list[Card] = []
@@ -319,20 +334,31 @@ PODBORKI_INDEX_VISUALS: dict[str, tuple[str, str]] = {
 }
 
 
-def render_index_link(slug: str, title: str) -> str:
+def render_index_link(slug: str, title: str, cover_image: str = "", cover_alt: str = "") -> str:
     visual, label = PODBORKI_INDEX_VISUALS.get(slug, ("default", "Абхазия"))
+    photo_html = ""
+    visual_mod = ""
+    if cover_image:
+        img_src = normalize_index_image(cover_image)
+        if img_src:
+            photo_html = (
+                f'<img class="podborki-index__photo" src="{html.escape(img_src, quote=True)}" '
+                f'alt="{html.escape(cover_alt or title)}" loading="lazy" decoding="async" />'
+            )
+            visual_mod = " podborki-index__visual--photo"
     return (
         f'        <li><a class="podborki-index__link podborki-index__link--{html.escape(visual)}" '
         f'href="/podborki/{html.escape(slug)}/">'
-        f'<span class="podborki-index__visual" aria-hidden="true"><span>{html.escape(label)}</span></span>'
+        f'<span class="podborki-index__visual{visual_mod}" aria-hidden="true">{photo_html}'
+        f"<span>{html.escape(label)}</span></span>"
         f'<span class="podborki-index__title">{html.escape(title)}</span></a></li>'
     )
 
 
-def render_index(items: list[tuple[str, str]]) -> str:
+def render_index(items: list[tuple[str, str, str, str]]) -> str:
     links = "\n".join(
-        render_index_link(slug, title)
-        for slug, title in sorted(items, key=lambda row: row[1].lower())
+        render_index_link(slug, title, cover_image, cover_alt)
+        for slug, title, cover_image, cover_alt in sorted(items, key=lambda row: row[1].lower())
     )
     return f"""<!DOCTYPE html>
 <html lang="ru" id="top">
@@ -440,7 +466,7 @@ def main() -> int:
         f"Карточек в каталоге: {len(cards)}",
         "",
     ]
-    index_items: list[tuple[str, str]] = []
+    index_items: list[tuple[str, str, str, str]] = []
     slugs: list[str] = []
     for selection in selections():
         selected = [card for card in cards if selection.predicate(card)]
@@ -449,7 +475,10 @@ def main() -> int:
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(render_page(selection, selected, meta), encoding="utf-8")
         title = meta.get(selection.slug, {}).get("h1") or selection.title
-        index_items.append((selection.slug, title))
+        cover_card = selected[0] if selected else None
+        cover_image = cover_card.image if cover_card else ""
+        cover_alt = cover_card.alt if cover_card else title
+        index_items.append((selection.slug, title, cover_image, cover_alt))
         slugs.append(selection.slug)
         report.append(f"- {selection.slug}: {len(selected)}")
     PODBORKI_DIR.mkdir(parents=True, exist_ok=True)
