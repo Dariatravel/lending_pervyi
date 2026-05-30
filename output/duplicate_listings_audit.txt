@@ -1,0 +1,76 @@
+Аудит задвоений объектов (Supabase is_active=true, 220 записей)
+
+Критерий: одинаковый нормализованный title у 2+ активных listing.
+
+=== 1. Отель + квартира (10 пар) ===
+
+"МАНДАРИНОВЫЙ ДВОРИК" дом под ключ
+  KEEP (таблица): hotel | mandarinovyy-dvorik-dom-pod-klyuch-3789 | t.me/abhazbooking/3789
+  DUPLICATE:       kvartira | mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440 | t.me/abhkvartira/1430/1431
+
+"НА ВРЕМЯ В РАЮ" жилье под ключ
+  KEEP (таблица): hotel | na-vremya-v-rayu-zhile-pod-klyuch-4357 | t.me/abhazbooking/4357
+  DUPLICATE:       kvartira | na-vremya-v-rayu-zhile-pod-klyuch-1522 | t.me/abhkvartira/1521/1522
+
+"АТМОСФЕРНАЯ" квартира 2к
+  KEEP (таблица): kvartira | atmosfernaya-kvartira-2k-1454 | t.me/abhkvartira/1442/1454
+  DUPLICATE:       hotel | atmosfernaya-kvartira-2k-3902 | t.me/abhazbooking/3902
+
+"ДЫШИ ГЛУБЖЕ" домики в горах
+  KEEP (таблица): hotel | dyshi-glubzhe-domiki-v-gorah-3459 | t.me/abhazbooking/3459
+  DUPLICATE:       kvartira | dyshi-glubzhe-domiki-v-gorah-1335 | t.me/abhkvartira/1325/1326
+
+"КАРАЛИНА" апартаменты
+  KEEP (таблица): hotel | karalina-apartamenty-3124 | t.me/abhazbooking/3124
+  DUPLICATE:       kvartira | karalina-apartamenty-studiya-pitsunda-1274 | t.me/abhkvartira/500/1265
+
+"МЕЧТА" апартаменты
+  KEEP (таблица): hotel | mechta-apartamenty-s-kuhney-3363 | t.me/abhazbooking/3363
+  DUPLICATE:       kvartira | mechta-apartamenty-ldzaa-1176 | t.me/abhkvartira/19/1168
+
+"НАСТА" апартаменты
+  KEEP (таблица): hotel | nasta-apartamenty-3258 | t.me/abhazbooking/3258
+  DUPLICATE:       kvartira | nasta-apartamenty-studiya-ldzaa-1264 | t.me/abhkvartira/676/1255
+  NOTE: в таблице отдельно «НАСТА» гостевой комплекс (3249) — это другой объект, не дубль.
+
+"СЕКРЕТ ГАРДЕН" апартаменты
+  KEEP (таблица): hotel | sekret-garden-apartamenty-4162 | t.me/abhazbooking/4162
+  DUPLICATE:       kvartira | sekret-garden-apartamenty-1465 | t.me/abhkvartira/1464/1465
+
+"СТУДИО САН АМРА" студия на пляже
+  KEEP (таблица): hotel | studio-san-amra-studiya-na-plyazhe-4270 | t.me/abhazbooking/4270
+  DUPLICATE:       kvartira | studio-san-amra-studiya-na-plyazhe-1511 | t.me/abhkvartira/1510/1511
+
+"ТИХАЯ ОБИТЕЛЬ" дом под ключ
+  KEEP (таблица): hotel | tihaya-obitel-dom-pod-klyuch-4230 | t.me/abhazbooking/4230
+  DUPLICATE:       kvartira | tihaya-obitel-dom-pod-klyuch-1477 | t.me/abhkvartira/1476/1477
+
+=== 2. Два отеля с одним названием ===
+
+"КАШТАК" домики
+  KEEP (таблица): hotel | kashtak-domiki-667 | t.me/abhazbooking/667
+  DUPLICATE:       hotel | kashtak-domiki-3668 | t.me/abhazbooking/3668
+
+=== 3. Страницы на диске без активной записи Supabase (10) ===
+
+Скрытые ранее (is_active=false): alpika, aristokrat, bzyb, kedrovyy, lemar, mare-dolche, san-pino, sanset-eko, volshebnaya-imperiya
+Черновик: kvartira/kvartira-2k-afina-suhum-717 (замена: afina-kvartira-2k-1488)
+
+=== Рекомендация ===
+
+Спрятать DUPLICATE-версии (11 slug): 9 kvartira + 1 hotel (атмосферная hotel) + 1 hotel (каштак 3668).
+Источник правды по ссылке — колонка I «СОЦСЕТИ».
+
+Список slug для hidden_listings.json:
+- mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440
+- na-vremya-v-rayu-zhile-pod-klyuch-1522
+- atmosfernaya-kvartira-2k-3902
+- dyshi-glubzhe-domiki-v-gorah-1335
+- karalina-apartamenty-studiya-pitsunda-1274
+- mechta-apartamenty-ldzaa-1176
+- nasta-apartamenty-studiya-ldzaa-1264
+- sekret-garden-apartamenty-1465
+- studio-san-amra-studiya-na-plyazhe-1511
+- tihaya-obitel-dom-pod-klyuch-1477
+- kashtak-domiki-3668
+- kvartira-2k-afina-suhum-717
