@@ -22,6 +22,8 @@ from telethon import TelegramClient
 from telethon.errors.rpcerrorlist import FileReferenceExpiredError
 from telethon.tl.functions import messages as message_functions
 
+from listing_visibility import load_hidden_slugs
+
 ROOT = Path.cwd()
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -1326,6 +1328,17 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
         slug = build_slug(title, canonical.id, slug_pool)
         slug_pool.add(slug)
 
+    if slug in load_hidden_slugs():
+        if existing_listing:
+            supa.patch_listing(existing_listing['id'], {'is_active': False})
+        return {
+            'id': existing_listing['id'] if existing_listing else 0,
+            'slug': slug,
+            'title': title,
+            'source_id': canonical.id,
+            'hidden': True,
+        }
+
     gallery_dir = HOTEL_MEDIA_DIR / slug if source_kind == 'hotel' else KV_MEDIA_DIR / slug
     ensure_dir(gallery_dir)
     ensure_dir(VIDEOS_DIR)
@@ -1623,6 +1636,10 @@ async def main() -> None:
                 f'[error] hotel materialize failed id={obj["canonical"].id} title="{obj["parsed"].get("title") or ""}": {error}',
                 flush=True,
             )
+            continue
+        if result.get('hidden'):
+            if matched_row is not None:
+                processed_hotel_rows.add(matched_row['id'])
             continue
         if matched_row is not None:
             processed_hotel_rows.add(matched_row['id'])

@@ -346,6 +346,9 @@ async def main() -> None:
             failed.append(f'row {item["row"]}: {item["raw_link"]} | ошибка materialize: {error}')
             continue
 
+        if result.get("hidden"):
+            continue
+
         if existing_listing:
             updated_existing.append(f'{result["slug"]} | {result["title"]} | row {item["row"]}')
         else:

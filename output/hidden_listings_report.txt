@@ -1,0 +1,15 @@
+Скрытые объекты (is_active=false, убраны из каталога и подборок)
+
+Всего в hidden_listings.json: 9
+Деактивировано в Supabase: 9
+
+Скрыты:
+- alpika-mini-apart-otel-4202
+- aristokrat-gostevoy-kompleks-s-basseynami-4377
+- bzyb-domiki-i-nomera-s-basseynom-4367
+- kedrovyy-eko-otel-s-basseynom-4419
+- lemar-domiki-v-tsentre-4239
+- mare-dolche-eko-kompleks-4219
+- san-pino-domiki-derevyannye-s-basseynom-3005
+- sanset-eko-domiki-4182
+- volshebnaya-imperiya-domiki-s-basseynom-4318
