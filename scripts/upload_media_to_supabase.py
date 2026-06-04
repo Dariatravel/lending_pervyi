@@ -70,6 +70,7 @@ def upload_file(s: requests.Session, local_path: Path, storage_path: str, mime_t
     data = local_path.read_bytes()
     headers = {
         'Content-Type': mime_type or 'application/octet-stream',
+        'Cache-Control': 'public, max-age=31536000, immutable',
         'x-upsert': 'true',
     }
     last_error = None

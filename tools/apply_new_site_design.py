@@ -1668,7 +1668,7 @@ def build_homepage() -> None:
       </div>
       <div class="site-concept__hero-media-column">
         <div class="site-concept__hero-video">
-          <video class="site-concept__hero-video-player" controls playsinline webkit-playsinline preload="metadata" src="https://chnyazvybzzryduhgopa.supabase.co/storage/v1/object/public/site-media/videos/hero/darya-intro-vertical-high.mp4">
+          <video class="site-concept__hero-video-player" controls playsinline webkit-playsinline preload="none" data-high-src="https://chnyazvybzzryduhgopa.supabase.co/storage/v1/object/public/site-media/videos/hero/darya-intro-vertical-high.mp4" data-low-src="https://chnyazvybzzryduhgopa.supabase.co/storage/v1/object/public/site-media/videos/hero/darya-intro-vertical-low.mp4">
             Ваш браузер не поддерживает воспроизведение видео.
           </video>
         </div>

@@ -232,6 +232,7 @@ class SupabaseClient:
         url = f'{self.url}/storage/v1/object/{STORAGE_BUCKET}/{encoded}'
         headers = dict(self.headers)
         headers['Content-Type'] = mime_type or 'application/octet-stream'
+        headers['Cache-Control'] = 'public, max-age=31536000, immutable'
         headers['x-upsert'] = 'true'
         data = local_path.read_bytes()
         last_error: Exception | None = None
@@ -625,7 +626,7 @@ def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
             telegram_post = str(item.get('telegram_post') or '').strip()
             if source_url and source_url.startswith('http') and not telegram_post:
                 parts.append(
-                    f'''            <video class="local-video" controls preload="metadata" playsinline>\n              <source src="{html.escape(source_url)}" type="video/mp4" />\n            </video>'''
+                    f'''            <video class="local-video" controls preload="none" playsinline>\n              <source src="{html.escape(source_url)}" type="video/mp4" />\n            </video>'''
                 )
             elif telegram_post:
                 parts.append(

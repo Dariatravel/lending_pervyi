@@ -9,6 +9,7 @@ __pycache__/
 
 # local telegram auth/session artifacts
 tg_session.session
+tg_session.session.bak*
 telegram_login_qr.png
 tg_login_check.py
 tg_export_topics.py.save

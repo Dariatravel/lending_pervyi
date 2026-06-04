@@ -11,6 +11,9 @@ from urllib.parse import urlparse
 
 BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_DATA_FILE = BASE_DIR / "cashback-data.json"
+SYNC_DEFAULT_DATA_ON_START = (
+    os.environ.get("SYNC_DEFAULT_DATA_ON_START", "1").strip().lower() not in {"0", "false", "no"}
+)
 DATA_FILE = Path(
     os.environ.get(
         "CASHBACK_DATA_FILE",
@@ -24,29 +27,44 @@ HOST = "0.0.0.0"
 PORT = int(os.environ.get("PORT", "8765"))
 
 
+def read_json_file(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def write_json_file(path: Path, payload: dict) -> None:
+    path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+
 def ensure_data_file() -> None:
     DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
 
-    if DATA_FILE.exists():
-        return
+    if not DATA_FILE.exists():
+        if DEFAULT_DATA_FILE.exists() and DEFAULT_DATA_FILE.resolve() != DATA_FILE:
+            DATA_FILE.write_text(DEFAULT_DATA_FILE.read_text(encoding="utf-8"), encoding="utf-8")
+            return
 
-    if DEFAULT_DATA_FILE.exists() and DEFAULT_DATA_FILE.resolve() != DATA_FILE:
-        DATA_FILE.write_text(DEFAULT_DATA_FILE.read_text(encoding="utf-8"), encoding="utf-8")
-        return
-
-    DATA_FILE.write_text(
-        json.dumps(
+        write_json_file(
+            DATA_FILE,
             {
                 "version": 1,
                 "banks": [],
                 "months": {},
             },
-            ensure_ascii=False,
-            indent=2,
         )
-        + "\n",
-        encoding="utf-8",
-    )
+        return
+
+    if (
+        SYNC_DEFAULT_DATA_ON_START
+        and DEFAULT_DATA_FILE.exists()
+        and DEFAULT_DATA_FILE.resolve() != DATA_FILE
+    ):
+        default_payload = read_json_file(DEFAULT_DATA_FILE)
+        live_payload = read_json_file(DATA_FILE)
+        if default_payload != live_payload:
+            write_json_file(DATA_FILE, default_payload)
 
 
 class CashbackHandler(BaseHTTPRequestHandler):
@@ -110,10 +128,7 @@ class CashbackHandler(BaseHTTPRequestHandler):
             self.send_error(HTTPStatus.BAD_REQUEST, "Ожидается JSON-объект")
             return
 
-        DATA_FILE.write_text(
-            json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
+        write_json_file(DATA_FILE, payload)
 
         self._send_bytes(
             json.dumps({"ok": True}, ensure_ascii=False).encode("utf-8"),

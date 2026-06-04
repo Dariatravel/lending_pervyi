@@ -701,7 +701,7 @@ def render_media(photo_count: int, slug: str, title: str, video_filename: str, v
     if video_filename:
         items.append(
             f"""            <div class="video-embed">
-              <video controls preload="metadata" playsinline class="local-video">
+              <video controls preload="none" playsinline class="local-video">
                 <source src="/media/videos/{video_filename}" type="video/mp4" />
               </video>
               <a class="video-link" href="https://t.me/abhazbooking/{video_post_id}?single" target="_blank" rel="noopener noreferrer">Открыть видео в Telegram</a>

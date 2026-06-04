@@ -70,6 +70,7 @@ def upload_post(session: requests.Session, base: str, object_path: str, path: Pa
             data=f,
             headers={
                 "Content-Type": "video/mp4",
+                "Cache-Control": "public, max-age=31536000, immutable",
                 "x-upsert": "true",
             },
             timeout=(60, 7200),
@@ -103,7 +104,7 @@ def upload_tus(base: str, key: str, object_path: str, path: Path) -> None:
                 "bucketName": BUCKET,
                 "objectName": object_path,
                 "contentType": "video/mp4",
-                "cacheControl": "3600",
+                "cacheControl": "31536000",
             },
         )
         uploader.upload()

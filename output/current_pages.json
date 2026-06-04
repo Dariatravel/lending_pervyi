@@ -245,6 +245,11 @@
     "title": "\"МИРАСЛАВА\" мини-отель"
   },
   {
+    "slug": "grey-haus-domiki",
+    "source_id": 3153,
+    "title": "\"ГРЕЙ ХАУС\" домики с бассейном"
+  },
+  {
     "slug": "fyuzhn-tri-domika-s-launzh-zonoy-3162",
     "source_id": 3162,
     "title": "\"ФЬЮЖН\" три домика с лаунж-зоной"
@@ -678,5 +683,95 @@
     "slug": "tihaya-obitel-dom-pod-klyuch-4230",
     "source_id": 4230,
     "title": "\"ТИХАЯ ОБИТЕЛЬ\" дом под ключ"
+  },
+  {
+    "slug": "lemar-domiki-v-tsentre-4239",
+    "source_id": 4239,
+    "title": "\"ЛЕМАР\" домики в центре"
+  },
+  {
+    "slug": "svetlyy-dvorik-gostevoy-dom-ekonom-4259",
+    "source_id": 4259,
+    "title": "\"СВЕТЛЫЙ ДВОРИК\" гостевой дом эконом"
+  },
+  {
+    "slug": "studio-san-amra-studiya-na-plyazhe-4270",
+    "source_id": 4270,
+    "title": "\"СТУДИО САН АМРА\" студия на пляже"
+  },
+  {
+    "slug": "bereg-svyatoy-sofii-otel-4279",
+    "source_id": 4279,
+    "title": "\"БЕРЕГ СВЯТОЙ СОФИИ\" отель"
+  },
+  {
+    "slug": "neanila-eko-domiki-4308",
+    "source_id": 4308,
+    "title": "\"НЕАНИЛА\" эко домики"
+  },
+  {
+    "slug": "volshebnaya-imperiya-domiki-s-basseynom-4318",
+    "source_id": 4318,
+    "title": "\"ВОЛШЕБНАЯ ИМПЕРИЯ\" домики с бассейном"
+  },
+  {
+    "slug": "manon-otel-so-skazochnym-vidom-2512",
+    "source_id": 4329,
+    "title": "\"МАНОН\" отель со сказочным видом"
+  },
+  {
+    "slug": "apra-gostevoy-dom-na-plyazhe-4348",
+    "source_id": 4348,
+    "title": "\"АПРА\" гостевой дом на пляже"
+  },
+  {
+    "slug": "na-vremya-v-rayu-zhile-pod-klyuch-4357",
+    "source_id": 4357,
+    "title": "\"НА ВРЕМЯ В РАЮ\" жилье под ключ"
+  },
+  {
+    "slug": "bzyb-domiki-i-nomera-s-basseynom-4367",
+    "source_id": 4367,
+    "title": "\"БЗЫБЬ\" домики и номера с бассейном"
+  },
+  {
+    "slug": "aristokrat-gostevoy-kompleks-s-basseynami-4377",
+    "source_id": 4377,
+    "title": "\"АРИСТОКРАТ\" гостевой комплекс с бассейнами"
+  },
+  {
+    "slug": "bagripsh-domiki-na-beregu-s-pitaniem-4399",
+    "source_id": 4399,
+    "title": "\"БАГРИПШ\" домики на берегу с питанием"
+  },
+  {
+    "slug": "edem-domiki-4409",
+    "source_id": 4409,
+    "title": "\"ЭДЕМ\" домики"
+  },
+  {
+    "slug": "kedrovyy-eko-otel-s-basseynom-4419",
+    "source_id": 4419,
+    "title": "\"КЕДРОВЫЙ\" эко-отель с бассейном"
+  },
+  {
+    "slug": "sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429",
+    "source_id": 4429,
+    "title": "\"САНДИ ХАУС\" коттеджный комплекс с бассейном"
+  },
+  {
+    "slug": "kvarts-domiki-4449",
+    "source_id": 4449,
+    "title": "\"КВАРЦ\" домики"
+  },
+  {
+    "slug": "kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459",
+    "source_id": 4459,
+    "title": "\"КИАРАЗ РЕЗОРТ\" гостевой комплекс с бассейном"
+  },
+  {
+    "slug": "sanrey-gostevoy-dom-4469",
+    "source_id": 4469,
+    "title": "\"САНРЭЙ\" гостевой дом"
   }
 ]

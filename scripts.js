@@ -1902,23 +1902,59 @@
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     const effectiveType = String(connection?.effectiveType || "").toLowerCase();
     const saveDataEnabled = Boolean(connection?.saveData);
-    const shouldPreferLow = saveDataEnabled || ["slow-2g", "2g", "3g"].includes(effectiveType);
-    const preferredSrc = shouldPreferLow ? lowSrc : highSrc;
-    const fallbackSrc = shouldPreferLow ? highSrc : lowSrc;
+    const shouldPreferHigh = !saveDataEnabled && effectiveType === "4g";
+    const preferredSrc = shouldPreferHigh ? highSrc : lowSrc;
+    const fallbackSrc = shouldPreferHigh ? lowSrc : highSrc;
 
     const selectedSrc = preferredSrc || fallbackSrc;
     if (!selectedSrc) return;
 
+    if (inlineSrc) {
+      video.dataset.highSrc = video.dataset.highSrc || inlineSrc;
+      video.removeAttribute("src");
+      video.load();
+    }
+    video.preload = "none";
+
+    let isLoaded = false;
     const applySrc = (url) => {
+      if (!url || isLoaded) return;
+      isLoaded = true;
       video.src = url;
       video.load();
     };
 
     if (fallbackSrc && fallbackSrc !== selectedSrc) {
-      video.addEventListener("error", () => applySrc(fallbackSrc), { once: true });
+      video.addEventListener(
+        "error",
+        () => {
+          isLoaded = false;
+          applySrc(fallbackSrc);
+        },
+        { once: true }
+      );
     }
 
-    applySrc(selectedSrc);
+    const loadAndPlay = () => {
+      if (!isLoaded) {
+        applySrc(selectedSrc);
+      }
+      video.play?.().catch(() => {});
+    };
+
+    ["pointerdown", "touchstart", "click"].forEach((eventName) => {
+      video.addEventListener(eventName, loadAndPlay, { once: true, passive: true });
+    });
+
+    video.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          loadAndPlay();
+        }
+      },
+      { once: true }
+    );
   }
 
   function initCategoryPicks(filtersController) {

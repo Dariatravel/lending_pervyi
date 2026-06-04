@@ -71,18 +71,17 @@ function renderBankOverview() {
   bankOverviewList.innerHTML = bankGroups
     .map(
       (group) => `
-        <article class="bank-overview-item">
-          <div class="bank-overview-bank">${escapeHtml(group.bankName)}</div>
-          <ul class="bank-overview-categories">
-            ${group.categories
-              .map(
-                (category) => `
-                  <li>${escapeHtml(formatBankCategory(category))}</li>
-                `,
-              )
-              .join("")}
-          </ul>
-        </article>
+        <details class="bank-overview-item">
+          <summary class="bank-overview-summary">
+            <div class="bank-overview-bank-row">
+              <div class="bank-overview-bank">${escapeHtml(group.bankName)}</div>
+              <div class="bank-overview-count">${group.categories.length}</div>
+            </div>
+          </summary>
+          <div class="bank-overview-categories">
+            ${group.categories.map(renderBankCategoryChip).join("")}
+          </div>
+        </details>
       `,
     )
     .join("");
@@ -141,8 +140,10 @@ function renderCategoryDirectory() {
     .map(
       (group) => `
         <article class="category-card">
-          <h2>${escapeHtml(group.category)}</h2>
-          <p class="category-meta">Банков с кешбеком: ${group.offers.length}</p>
+          <div class="category-card-heading">
+            <h2>${escapeHtml(group.category)}</h2>
+            <p class="category-meta">${formatBankCount(group.offers.length)}</p>
+          </div>
           <div class="category-offer-list">
             ${group.offers
               .map(
@@ -214,6 +215,22 @@ function renderSearchSuggestions(groups, query) {
 function hideSearchSuggestions() {
   categorySearchSuggestions.hidden = true;
   categorySearchSuggestions.innerHTML = "";
+}
+
+function renderBankCategoryChip(category) {
+  return `
+    <div class="bank-category-chip">
+      <div class="bank-category-chip-top">
+        <span class="bank-category-chip-name">${escapeHtml(category.name)}</span>
+        <span class="bank-category-chip-rate">${formatRate(category.rate)}</span>
+      </div>
+      ${
+        category.limit
+          ? `<div class="bank-category-chip-limit">${escapeHtml(category.limit)}</div>`
+          : ""
+      }
+    </div>
+  `;
 }
 
 function buildCategoryGroupsForMonth(monthKey) {
@@ -500,12 +517,16 @@ function formatRate(rate) {
   return `${Number(rate).toLocaleString("ru-RU", { maximumFractionDigits: 1 })}%`;
 }
 
-function formatBankCategory(category) {
-  const base = `${category.name} - ${formatRate(category.rate)}`;
-  if (!category.limit) {
-    return base;
+function formatBankCount(count) {
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+  if (mod10 === 1 && mod100 !== 11) {
+    return `${count} банк`;
   }
-  return `${base}, лимит: ${category.limit}`;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) {
+    return `${count} банка`;
+  }
+  return `${count} банков`;
 }
 
 function normalizeText(value) {

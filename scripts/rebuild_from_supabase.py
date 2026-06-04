@@ -705,7 +705,7 @@ def render_media_grid(row: dict[str, Any], title: str) -> str:
 
         if mime.startswith("video/") and preferred_url:
             parts.append(
-                f"""            <video class="local-video" controls preload="metadata" playsinline>
+                f"""            <video class="local-video" controls preload="none" playsinline>
               <source src="{html.escape(preferred_url, quote=True)}" type="{html.escape(mime or 'video/mp4', quote=True)}" />
             </video>"""
             )

@@ -1,0 +1,20 @@
+{
+  "images_total": 3321,
+  "upload": {
+    "uploaded": 0,
+    "errors": 0,
+    "dry_run": 0
+  },
+  "rewrite": {
+    "files_changed": 3,
+    "urls_changed": 3338,
+    "missing_refs": 4,
+    "changed_files": [
+      "index.html",
+      "output/image_storage_report.json",
+      "output/media_delivery_audit_latest.json"
+    ]
+  },
+  "errors": [],
+  "rows": []
+}

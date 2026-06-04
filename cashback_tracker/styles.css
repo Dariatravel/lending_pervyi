@@ -83,6 +83,10 @@ h1 {
 .controls-card {
   padding: 16px;
   border-radius: var(--radius);
+  position: sticky;
+  top: 10px;
+  z-index: 6;
+  backdrop-filter: blur(12px);
 }
 
 .overview-grid {
@@ -116,22 +120,91 @@ h1 {
 .bank-overview-item {
   border: 1px solid var(--line);
   border-radius: 14px;
-  padding: 12px;
   background: var(--surface-soft);
+  overflow: hidden;
+}
+
+.bank-overview-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px;
+}
+
+.bank-overview-summary::-webkit-details-marker {
+  display: none;
+}
+
+.bank-overview-bank-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .bank-overview-bank {
   font-weight: 700;
 }
 
-.bank-overview-categories {
-  margin: 8px 0 0;
-  padding-left: 18px;
+.bank-overview-count {
+  flex: none;
+  min-width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
   color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
-.bank-overview-categories li + li {
-  margin-top: 5px;
+.bank-overview-categories {
+  margin: 0;
+  padding: 0 12px 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.bank-category-chip {
+  padding: 10px 11px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.bank-category-chip-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bank-category-chip-name {
+  font-size: 0.92rem;
+  line-height: 1.3;
+}
+
+.bank-category-chip-rate {
+  flex: none;
+  min-width: fit-content;
+  padding: 0.2rem 0.48rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.bank-category-chip-limit {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 0.24rem 0.52rem;
+  border-radius: 999px;
+  background: #fff4dd;
+  color: #9a6700;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
 .field {
@@ -206,10 +279,17 @@ h1 {
   letter-spacing: -0.02em;
 }
 
+.category-card-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .category-meta {
-  margin-top: 6px;
   color: var(--muted);
   font-size: 0.92rem;
+  white-space: nowrap;
 }
 
 .category-offer-list {
@@ -259,9 +339,22 @@ h1 {
 .category-offer-limit,
 .category-offer-note {
   margin-top: 8px;
-  color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.35;
+}
+
+.category-offer-limit {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.62rem;
+  border-radius: 999px;
+  background: #fff4dd;
+  color: #9a6700;
+  font-weight: 700;
+}
+
+.category-offer-note {
+  color: var(--muted);
 }
 
 .empty-state {
@@ -278,6 +371,11 @@ h1 {
 @media (min-width: 768px) {
   .app-shell {
     padding-top: 28px;
+  }
+
+  .controls-card {
+    position: static;
+    backdrop-filter: none;
   }
 
   .overview-grid {
