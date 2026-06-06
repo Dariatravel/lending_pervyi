@@ -253,28 +253,212 @@
   lightbox.setAttribute("hidden", "");
   lightbox.innerHTML = `
     <button class="lightbox__close" type="button" aria-label="Закрыть">×</button>
-    <img class="lightbox__image" alt="" />
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Предыдущее фото">‹</button>
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Следующее фото">›</button>
+    <div class="lightbox__stage">
+      <img class="lightbox__image" alt="" hidden />
+      <video class="lightbox__video" controls playsinline preload="metadata" hidden></video>
+    </div>
+    <p class="lightbox__counter" aria-live="polite"></p>
   `;
   body.appendChild(lightbox);
 
   const lightboxImage = lightbox.querySelector(".lightbox__image");
+  const lightboxVideo = lightbox.querySelector(".lightbox__video");
+  const lightboxCounter = lightbox.querySelector(".lightbox__counter");
   const closeButton = lightbox.querySelector(".lightbox__close");
+  const prevButton = lightbox.querySelector(".lightbox__nav--prev");
+  const nextButton = lightbox.querySelector(".lightbox__nav--next");
+  let galleryItems = [];
+  let galleryIndex = 0;
+  let galleryTouchStartX = 0;
 
-  const openLightbox = (src, alt) => {
-    if (!src || !lightboxImage) return;
-    lightboxImage.src = src;
-    lightboxImage.alt = alt || "";
+  function normalizeGallerySrc(src) {
+    const raw = String(src || "").trim();
+    if (!raw) return "";
+    try {
+      const url = new URL(raw, window.location.origin);
+      return decodeURIComponent(url.pathname).toLowerCase();
+    } catch (error) {
+      return decodeURIComponent(raw.split("?")[0]).toLowerCase();
+    }
+  }
+
+  function gallerySrcFromImage(image) {
+    if (!image) return "";
+    return image.currentSrc || image.src || "";
+  }
+
+  function collectObjectGalleryItems() {
+    const grid = document.querySelector(".hotel-site-concept .media-grid");
+    if (!grid) return [];
+
+    return Array.from(grid.children)
+      .map((node) => {
+        if (node.matches("img")) {
+          const src = gallerySrcFromImage(node);
+          if (!src) return null;
+          return {
+            type: "image",
+            src,
+            alt: node.getAttribute("alt") || "",
+            key: normalizeGallerySrc(src),
+          };
+        }
+
+        if (node.matches("video")) {
+          const source = node.querySelector("source");
+          const src = source?.getAttribute("src") || node.getAttribute("src") || "";
+          if (!src) return null;
+          return {
+            type: "video",
+            src,
+            alt: node.getAttribute("aria-label") || "Видео объекта",
+            key: normalizeGallerySrc(src),
+          };
+        }
+
+        if (node.matches(".video-embed")) {
+          const preview = node.querySelector(".local-video-preview");
+          const video = node.querySelector("video.local-video");
+          const link = node.querySelector(".video-link");
+          const src =
+            gallerySrcFromImage(preview) ||
+            video?.querySelector("source")?.getAttribute("src") ||
+            video?.getAttribute("src") ||
+            link?.href ||
+            "";
+          if (!src) return null;
+          const isVideo = /\.(mp4|webm|mov)(\?|$)/i.test(src) || Boolean(video);
+          return {
+            type: isVideo ? "video" : "image",
+            src,
+            alt: preview?.getAttribute("alt") || "Видео объекта",
+            key: normalizeGallerySrc(src),
+          };
+        }
+
+        const nestedImage = node.querySelector("img");
+        if (nestedImage) {
+          const src = gallerySrcFromImage(nestedImage);
+          if (!src) return null;
+          return {
+            type: "image",
+            src,
+            alt: nestedImage.getAttribute("alt") || "",
+            key: normalizeGallerySrc(src),
+          };
+        }
+
+        return null;
+      })
+      .filter(Boolean);
+  }
+
+  function findGalleryIndexByKey(key) {
+    if (!key) return 0;
+    const index = galleryItems.findIndex((item) => item.key === key);
+    return index >= 0 ? index : 0;
+  }
+
+  function updateGalleryNavState() {
+    const hasMany = galleryItems.length > 1;
+    if (prevButton) prevButton.hidden = !hasMany;
+    if (nextButton) nextButton.hidden = !hasMany;
+    if (lightboxCounter) {
+      lightboxCounter.textContent = galleryItems.length
+        ? `${galleryIndex + 1} / ${galleryItems.length}`
+        : "";
+    }
+  }
+
+  function pauseLightboxVideo() {
+    if (!lightboxVideo) return;
+    lightboxVideo.pause();
+    lightboxVideo.removeAttribute("src");
+    while (lightboxVideo.firstChild) {
+      lightboxVideo.removeChild(lightboxVideo.firstChild);
+    }
+    lightboxVideo.hidden = true;
+  }
+
+  function renderGalleryItem(index) {
+    if (!galleryItems.length) return;
+    galleryIndex = (index + galleryItems.length) % galleryItems.length;
+    const item = galleryItems[galleryIndex];
+    if (!item || !lightboxImage) return;
+
+    pauseLightboxVideo();
+    lightboxImage.hidden = true;
+    lightboxImage.removeAttribute("src");
+    lightboxImage.alt = "";
+
+    if (item.type === "video" && lightboxVideo) {
+      const source = document.createElement("source");
+      source.src = item.src;
+      source.type = "video/mp4";
+      lightboxVideo.appendChild(source);
+      lightboxVideo.setAttribute("aria-label", item.alt || "Видео объекта");
+      lightboxVideo.hidden = false;
+      lightboxVideo.load();
+    } else {
+      lightboxImage.src = item.src;
+      lightboxImage.alt = item.alt || "";
+      lightboxImage.hidden = false;
+    }
+
+    updateGalleryNavState();
+  }
+
+  function openGalleryLightbox(startIndex = 0) {
+    galleryItems = collectObjectGalleryItems();
+    if (!galleryItems.length) return;
+    renderGalleryItem(startIndex);
     lightbox.removeAttribute("hidden");
     body.classList.add("modal-open");
+  }
+
+  function openGalleryLightboxAtKey(key) {
+    galleryItems = collectObjectGalleryItems();
+    if (!galleryItems.length) return;
+    openGalleryLightbox(findGalleryIndexByKey(key));
+  }
+
+  const openLightbox = (src, alt) => {
+    if (!src) return;
+    openGalleryLightboxAtKey(normalizeGallerySrc(src));
+    if (!galleryItems.length && lightboxImage) {
+      galleryItems = [{ type: "image", src, alt: alt || "", key: normalizeGallerySrc(src) }];
+      galleryIndex = 0;
+      lightboxImage.src = src;
+      lightboxImage.alt = alt || "";
+      lightboxImage.hidden = false;
+      pauseLightboxVideo();
+      updateGalleryNavState();
+      lightbox.removeAttribute("hidden");
+      body.classList.add("modal-open");
+    }
   };
+
+  function stepGalleryLightbox(step) {
+    if (!galleryItems.length || lightbox.hasAttribute("hidden")) return;
+    renderGalleryItem(galleryIndex + step);
+  }
 
   const closeLightbox = () => {
     lightbox.setAttribute("hidden", "");
     body.classList.remove("modal-open");
+    galleryItems = [];
+    galleryIndex = 0;
     if (lightboxImage) {
       lightboxImage.src = "";
       lightboxImage.alt = "";
+      lightboxImage.hidden = true;
     }
+    pauseLightboxVideo();
+    if (lightboxCounter) lightboxCounter.textContent = "";
+    if (prevButton) prevButton.hidden = true;
+    if (nextButton) nextButton.hidden = true;
   };
 
   function hashString(value) {
@@ -3576,27 +3760,86 @@
   }
 
   closeButton?.addEventListener("click", closeLightbox);
+  prevButton?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    stepGalleryLightbox(-1);
+  });
+  nextButton?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    stepGalleryLightbox(1);
+  });
   lightbox.addEventListener("click", (event) => {
     if (event.target === lightbox) closeLightbox();
   });
 
+  lightbox.addEventListener(
+    "touchstart",
+    (event) => {
+      galleryTouchStartX = event.changedTouches?.[0]?.clientX || 0;
+    },
+    { passive: true }
+  );
+
+  lightbox.addEventListener("touchend", (event) => {
+    const endX = event.changedTouches?.[0]?.clientX || 0;
+    const delta = endX - galleryTouchStartX;
+    if (Math.abs(delta) < 40) return;
+    stepGalleryLightbox(delta > 0 ? -1 : 1);
+  });
+
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !lightbox.hasAttribute("hidden")) closeLightbox();
+    if (lightbox.hasAttribute("hidden")) return;
+    if (event.key === "Escape") closeLightbox();
+    if (event.key === "ArrowLeft") stepGalleryLightbox(-1);
+    if (event.key === "ArrowRight") stepGalleryLightbox(1);
   });
 
   document.addEventListener("click", (event) => {
-    const image = event.target.closest(".media-grid img, .hotel-media-section img");
-    if (!image) return;
-
-    if (image.classList.contains("local-video-preview")) {
-      const block = image.closest(".video-embed");
-      const link = block?.querySelector(".video-link");
-      if (link?.href) window.open(link.href, "_blank", "noopener,noreferrer");
+    const cardGalleryHit = event.target.closest(
+      ".hotel-card__gallery img, .hotel-card__main-photo, .hotel-card__thumbs"
+    );
+    if (cardGalleryHit) {
+      event.preventDefault();
+      const cardImage =
+        event.target.closest(".hotel-card__gallery img") ||
+        (cardGalleryHit.matches("img") ? cardGalleryHit : cardGalleryHit.querySelector("img"));
+      if (cardImage) {
+        openGalleryLightboxAtKey(normalizeGallerySrc(gallerySrcFromImage(cardImage)));
+      } else {
+        openGalleryLightbox(0);
+      }
       return;
     }
 
-    image.classList.add("media-grid__zoomable");
-    openLightbox(image.currentSrc || image.src, image.alt);
+    const image = event.target.closest(".media-grid img, .hotel-media-section img");
+    if (image) {
+      if (image.classList.contains("local-video-preview")) {
+        const block = image.closest(".video-embed");
+        const video = block?.querySelector("video.local-video");
+        const src =
+          video?.querySelector("source")?.getAttribute("src") ||
+          video?.getAttribute("src") ||
+          block?.querySelector(".video-link")?.href ||
+          gallerySrcFromImage(image);
+        if (src) {
+          openGalleryLightboxAtKey(normalizeGallerySrc(src));
+          return;
+        }
+        const link = block?.querySelector(".video-link");
+        if (link?.href) window.open(link.href, "_blank", "noopener,noreferrer");
+        return;
+      }
+
+      image.classList.add("media-grid__zoomable");
+      openLightbox(gallerySrcFromImage(image), image.alt);
+      return;
+    }
+
+    const video = event.target.closest(".media-grid video.local-video, .hotel-media-section video.local-video");
+    if (!video) return;
+    const src = video.querySelector("source")?.getAttribute("src") || video.getAttribute("src") || "";
+    if (!src) return;
+    openGalleryLightboxAtKey(normalizeGallerySrc(src));
   });
 
   document.addEventListener("click", (event) => {
