@@ -11,6 +11,17 @@
 
   const canOptimize = (url) => SUPABASE_OBJECT_RE.test(url) && !url.includes("/storage/v1/render/image/");
 
+  const localMediaPath = (src) => {
+    try {
+      const url = new URL(src, window.location.href);
+      const path = url.pathname.split("/storage/v1/object/public/site-media/")[1];
+      if (!path) return "";
+      return `/media/${decodeURIComponent(path)}`;
+    } catch {
+      return "";
+    }
+  };
+
   const optimizedUrl = (src, width) => {
     try {
       const url = new URL(src, window.location.href);
@@ -57,6 +68,20 @@
     img.loading = img.loading || (index < 2 ? "eager" : "lazy");
     img.fetchPriority = index < 2 ? "high" : "low";
     img.sizes = img.sizes || "(max-width: 760px) 92vw, (max-width: 1200px) 46vw, 420px";
+
+    const local = localMediaPath(original);
+    if (local) {
+      img.removeAttribute("srcset");
+      img.src = local;
+      img.addEventListener(
+        "error",
+        () => {
+          if (img.src !== original) img.src = original;
+        },
+        { once: true }
+      );
+      return;
+    }
 
     const srcset = makeSrcset(original);
     const src = optimizedUrl(original, desiredWidth(img));

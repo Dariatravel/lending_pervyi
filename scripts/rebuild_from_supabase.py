@@ -7,7 +7,7 @@ import time
 import unicodedata
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 import xml.etree.ElementTree as ET
 
 import requests
@@ -446,6 +446,20 @@ def pick_cover_url(row: dict[str, Any]) -> str:
     return row.get("cover_url") or ""
 
 
+STORAGE_PUBLIC_IMAGE_MARKER = "/storage/v1/object/public/site-media/"
+IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp", ".gif")
+
+
+def image_src_for_html(url: str) -> str:
+    raw = (url or "").strip()
+    if STORAGE_PUBLIC_IMAGE_MARKER not in raw:
+        return raw
+    relative = raw.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split("?", 1)[0]
+    if not relative.lower().endswith(IMAGE_EXTENSIONS):
+        return raw
+    return f"/media/{unquote(relative)}"
+
+
 def page_path_from_url(url: str | None, fallback: str) -> str:
     if not url:
         return fallback
@@ -514,7 +528,7 @@ def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]])
         for group in FILTER_GROUPS
     )
     href = page_path_from_url(row.get("page_url"), f"/hotels/{row['slug']}/")
-    image = pick_cover_url(row)
+    image = image_src_for_html(pick_cover_url(row))
     title = html.escape(row.get("title") or "")
     summary_fallback = row.get("summary") or row.get("excerpt") or ""
     card_lines: list[str] = []
@@ -575,7 +589,7 @@ def render_kvartira_card(row: dict[str, Any]) -> str:
     href = page_path_from_url(row.get("page_url"), row.get("telegram_url") or "/kvartira/")
     title = html.escape(row.get("title") or "")
     summary = html.escape(row.get("summary") or row.get("excerpt") or ((row.get("details") or {}).get("excerpt") or ""))
-    image = pick_cover_url(row)
+    image = image_src_for_html(pick_cover_url(row))
     badge = '<span class="catalog-card__badge">Видео</span>' if row.get("has_video") else ""
     return (
         f'<a class="catalog-card" {attrs} href="{html.escape(href, quote=True)}">'
@@ -737,6 +751,7 @@ def render_media_grid(row: dict[str, Any], title: str) -> str:
         preferred_url = source_url if source_url.startswith("/media/") else (public_url or source_url)
 
         if mime.startswith("image/") and preferred_url:
+            preferred_url = image_src_for_html(preferred_url)
             parts.append(
                 f'            <img src="{html.escape(preferred_url, quote=True)}" alt="{html.escape(title)} фото {image_index}" loading="lazy" />'
             )
@@ -864,7 +879,7 @@ def rebuild_kvartira_pages(rows: list[dict[str, Any]]) -> None:
             public_url = item.get("public_url") or ""
             preferred_url = source_url if str(source_url).startswith("/media/") else public_url or source_url
             if mime.startswith("image/") and preferred_url:
-                media_items.append({"kind": "photo", "source_url": preferred_url})
+                media_items.append({"kind": "photo", "source_url": image_src_for_html(preferred_url)})
                 continue
             if mime.startswith("video/") and preferred_url:
                 media_items.append({"kind": "video", "source_url": preferred_url})
