@@ -200,37 +200,9 @@ def _reviews_for_slug(slug: str) -> list[dict[str, Any]]:
 
 
 def _clean_ocr_review_text(value: str) -> str:
-    text = re.sub(r'\s+', ' ', str(value or '')).strip()
-    if not text:
-        return ''
+    from tools.review_text_clean import clean_ocr_review_text
 
-    text = re.sub(r'^\s*[+»«"\']+\s*', '', text)
-    text = re.sub(r'(?:раскрыть\s+детали|что\s+было\s+хорошо|подписаться)', ' ', text, flags=re.I)
-    text = re.sub(r'оценка\s*wi[\s-]*fi[^.?!]*[.?!]?', ' ', text, flags=re.I)
-    text = re.sub(r'\b\d+\s*уровня\b', ' ', text, flags=re.I)
-
-    prefix_patterns = [
-        r'^\s*\d{1,2}\s*(?:превосходно|отлично|хорошо|супер)\s*',
-        r'^\s*\d{1,2}\s+[а-яё]+\s*',
-        r'^\s*\d{1,2}[./-]\d{1,2}[./-]\d{2,4}\s*',
-        r'^\s*[А-ЯЁ][а-яё]+(?:\s+[А-ЯЁ][а-яё]+){0,2}\s+\d{1,2}[./-]\d{1,2}[./-]\d{2,4}\s*',
-        r'^\s*[А-ЯЁ][а-яё]+[:,]?\s*добрый\s+(?:день|вечер|утро),?\s*дарья!?\.?\s*',
-        r'^\s*добрый\s+(?:день|вечер|утро),?\s*дарья!?\.?\s*',
-    ]
-
-    changed = True
-    while changed:
-        changed = False
-        for pattern in prefix_patterns:
-            cleaned = re.sub(pattern, '', text, flags=re.I).strip()
-            if cleaned != text:
-                text = cleaned
-                changed = True
-
-    text = re.sub(r'\s+', ' ', text).strip()
-    if text and not re.search(r'[.!?…]$', text):
-        text = f'{text}.'
-    return text
+    return clean_ocr_review_text(value, ensure_sentence_end=True)
 
 
 def _apply_design_mod():

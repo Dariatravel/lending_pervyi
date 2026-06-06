@@ -328,24 +328,124 @@
     return /[.!?…]$/.test(text) ? text : `${text}.`;
   }
 
+  const REVIEW_START_WORDS = [
+    "отдыхали",
+    "отель",
+    "отели",
+    "мы",
+    "в ",
+    "на ",
+    "прекрас",
+    "удобн",
+    "чист",
+    "понрав",
+    "рекоменд",
+    "ехали",
+    "приехали",
+    "бронировали",
+    "остановились",
+    "жили",
+    "вернусь",
+    "вернемся",
+    "планируем",
+    "искали",
+    "выбрали",
+    "побывали",
+    "провели",
+    "остались",
+    "получили",
+    "всё",
+    "все ",
+    "есть ",
+    "очень ",
+    "шикар",
+    "замечат",
+    "отличн",
+    "хорош",
+    "уютн",
+    "гостеприим",
+    "территор",
+    "номер",
+    "море",
+    "пляж",
+    "бассейн",
+    "персонал",
+    "хозяйк",
+    "администрац",
+    "расположен",
+    "рядом",
+    "до моря",
+  ];
+
+  function looksLikeReviewStart(value) {
+    const lower = String(value || "").toLowerCase();
+    return REVIEW_START_WORDS.some((marker) => lower.startsWith(marker));
+  }
+
+  function greetingAfterName(value) {
+    return /^(?:спасибо|добрый|даша|дарья|здравствуйте|хочу|ну\s+вот|нам\s|большое\s+спасибо|огромное\s+спасибо)/i.test(
+      String(value || "").trim()
+    );
+  }
+
+  function stripLeadingNamePrefix(value) {
+    let text = String(value || "");
+    const namePrefix =
+      /^\s*(?:ОБ\s+)?(?:[А-ЯЁ][а-яё]+|[A-Z][A-Za-z]{1,}(?:-[A-Z][A-Za-z]{1,})?)(?:\s+(?:[А-ЯЁ][а-яё]+|[A-Z][A-Za-z]{1,}(?:-[A-Z][A-Za-z]{1,})?)){0,2}\s+(?=спасибо|добрый|даша|дарья|здравствуйте|хочу|ну\s+вот|нам\s|большое\s+спасибо|огромное\s+спасибо)/i;
+
+    while (true) {
+      const match = text.match(namePrefix);
+      if (!match) break;
+      const remainder = text.slice(match[0].length).trim();
+      if (!remainder || looksLikeReviewStart(remainder)) break;
+      text = remainder;
+    }
+    return text.trim();
+  }
+
+  function truncateSocialNoise(value) {
+    return String(value || "")
+      .split(/(?:Abhazize|Alkhaziae|ОТЕЛИ\|ЖИЛЬЕ\|СНЯТ[ЫЬ]ОТ|G Google|захарод в сервисе)/i)[0]
+      .trim();
+  }
+
+  function truncateOwnerReply(value) {
+    const text = String(value || "");
+    const match = text.match(
+      /(?:^|[.!?…]\s+)(?:[А-ЯЁ][а-яё]+),?\s*здравствуйте!\s*Большое спасибо за отзыв!?/i
+    );
+    if (!match || match.index == null) return text.trim();
+    return text.slice(0, match.index).trim();
+  }
+
+  function dedupeRepeatedLead(value) {
+    const text = String(value || "").trim();
+    const words = text.split(/\s+/);
+    if (words.length < 12) return text;
+    const lead = words.slice(0, 8).join(" ").toLowerCase();
+    const second = text.toLowerCase().indexOf(lead, lead.length);
+    if (second > 40) return text.slice(0, second).trim();
+    return text;
+  }
+
   function cleanReviewTextForDisplay(value) {
     let text = String(value || "").replace(/\s+/g, " ").trim();
     if (!text) return "";
 
-    // Частые артефакты OCR из интерфейсов агрегаторов.
     text = text.replace(/^\s*[+»«"']+\s*/, "");
     text = text.replace(/(?:раскрыть\s+детали|что\s+было\s+хорошо|подписаться)/gi, " ");
     text = text.replace(/оценка\s*wi[\s-]*fi[^.?!]*[.?!]?/gi, " ");
     text = text.replace(/\b\d+\s*уровня\b/gi, " ");
 
-    // Чистим префиксы итеративно, пока они встречаются в начале.
     const prefixPatterns = [
       /^\s*\d{1,2}\s*(?:превосходно|отлично|хорошо|супер)\s*/i,
-      /^\s*\d{1,2}\s+[а-яё]+\s*/i, // "29 августа ..."
-      /^\s*\d{1,2}[./-]\d{1,2}[./-]\d{2,4}\s*/i, // "12.08.2025 ..."
+      /^\s*\d{1,2}\s+[а-яё]+\s*/i,
+      /^\s*\d{1,2}[./-]\d{1,2}[./-]\d{2,4}\s*/i,
       /^\s*[А-ЯЁ][а-яё]+(?:\s+[А-ЯЁ][а-яё]+){0,2}\s+\d{1,2}[./-]\d{1,2}[./-]\d{2,4}\s*/i,
       /^\s*[А-ЯЁ][а-яё]+[:,]?\s*добрый\s+(?:день|вечер|утро),?\s*дарья!?\.?\s*/i,
       /^\s*добрый\s+(?:день|вечер|утро),?\s*дарья!?\.?\s*/i,
+      /^\s*[А-ЯA-Z]\s+(?=[А-ЯЁ][а-яё]+)/i,
+      /^\s*ОБ\s+\d{1,2}\s+[а-яё]+\s*/i,
     ];
 
     let changed = true;
@@ -360,8 +460,35 @@
       }
     }
 
-    text = text.replace(/\s+/g, " ").trim();
-    return text;
+    text = stripLeadingNamePrefix(text);
+
+    const leadingThanks =
+      /^\s*(?:спасибо\s+большое\s*!?\s*|большое\s+спасибо\s*!?\s*|огромное\s+спасибо\s*!?\s*|даша,?\s+спасибо\s+вам\s+огромное\s*!+\s*|дарья,?\s+|добрый\s+(?:день|вечер|утро)[.!?]?\s*(?:дарья[!]?[,]?\s*)?)/i;
+    changed = true;
+    while (changed) {
+      changed = false;
+      const next = text.replace(leadingThanks, "");
+      if (next !== text) {
+        text = next.trim();
+        changed = true;
+      }
+    }
+
+    text = truncateSocialNoise(text);
+    text = truncateOwnerReply(text);
+    text = dedupeRepeatedLead(text);
+
+    changed = true;
+    while (changed) {
+      changed = false;
+      const next = text.replace(/^\s*[.,;:!?…]+\s*/, "");
+      if (next !== text) {
+        text = next.trim();
+        changed = true;
+      }
+    }
+
+    return text.replace(/\s+/g, " ").trim();
   }
 
   function buildReviewPoolFromParts(gender, seedPrefix, limit = 480) {

@@ -6,11 +6,16 @@ from __future__ import annotations
 import json
 import re
 import subprocess
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.review_text_clean import clean_ocr_review_text
 REVIEWS_ROOT = ROOT / "media" / "reviews"
 OUTPUT_PATH = REVIEWS_ROOT / "review_text_bank.json"
 
@@ -240,7 +245,8 @@ def normalize_text(raw: str) -> str:
 
     clipped = " ".join(cleaned_parts[:5]).strip()
     clipped = re.sub(r"\s+", " ", clipped)
-    return clipped[:650].strip()
+    clipped = clipped[:650].strip()
+    return clean_ocr_review_text(clipped, ensure_sentence_end=False)
 
 
 def detect_gender(text: str) -> str | None:
