@@ -19,7 +19,7 @@
 - svoya-kuhnya-v-nomere: 81
 - domiki-vse-varianty: 70
 - kvartiry-vse-varianty: 39
-- gory-oteli-v-gorah: 4
+- gory-oteli-v-gorah: 12
 - ldzaa-vse-varianty: 67
 - sosnovyy-plyazh: 47
 - vid-na-more-pryamoy-bokovoy: 33

@@ -218,6 +218,26 @@ def card_sort_key(card: Card) -> tuple[int, str]:
     return (CITY_ORDER.index(city_key(card)) if city_key(card) in CITY_ORDER else 99, card.title.lower())
 
 
+def cover_image_key(src: str) -> str:
+    return normalize_index_image(src) or normalize_image(src) or src.strip()
+
+
+def pick_cover_card(selected: list[Card], used_images: set[str]) -> Card | None:
+    """Обложка индекса подборок: первое фото объекта из подборки, ещё не занятое на странице."""
+    if not selected:
+        return None
+    for card in selected:
+        key = cover_image_key(card.image)
+        if not key or key in used_images:
+            continue
+        used_images.add(key)
+        return card
+    for card in selected:
+        if card.image:
+            return card
+    return selected[0]
+
+
 def render_card(card: Card, rank: int) -> str:
     if card.image:
         media_inner = f'<img src="{html.escape(card.image)}" alt="{html.escape(card.alt)}" loading="lazy" decoding="async" />'
@@ -479,6 +499,7 @@ def main() -> int:
     ]
     index_items: list[tuple[str, str, str, str]] = []
     slugs: list[str] = []
+    used_cover_images: set[str] = set()
     for selection in selections():
         selected = [card for card in cards if selection.predicate(card)]
         selected = sorted(selected, key=card_sort_key)
@@ -486,7 +507,7 @@ def main() -> int:
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(render_page(selection, selected, meta), encoding="utf-8")
         title = meta.get(selection.slug, {}).get("h1") or selection.title
-        cover_card = selected[0] if selected else None
+        cover_card = pick_cover_card(selected, used_cover_images)
         cover_image = cover_card.image if cover_card else ""
         cover_alt = cover_card.alt if cover_card else title
         index_items.append((selection.slug, title, cover_image, cover_alt))
