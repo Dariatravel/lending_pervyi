@@ -21,3 +21,5 @@ tg_export_topics.py.save
 
 # generated heavy telegram source videos (intermediate, not for git)
 media/videos/**/video-*-source.mp4
+
+tg_session.session.bak*
