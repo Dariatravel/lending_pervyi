@@ -2728,6 +2728,10 @@ a.podborki-card--link:hover {
 .hotel-card__main-photo--video .hotel-card__preview-video {
   display: block;
   pointer-events: none;
+  background: linear-gradient(145deg, #e8e2d6, #d5cec0);
+}
+
+.hotel-card__main-photo--video .hotel-card__preview-video[poster] {
   background: #101010;
 }
 
@@ -6290,6 +6294,14 @@ body.modal-open .back-to-top {
   display: block;
   border-radius: 18px;
   border: 1px solid rgba(120, 145, 123, 0.12);
+}
+
+.media-grid video.local-video:not([poster]) {
+  background: linear-gradient(145deg, #e8e2d6, #d5cec0);
+}
+
+.media-grid video.local-video[poster] {
+  background: #101010;
 }
 
 /* Унифицируем заголовок медиа-блока: без формулировки "из поста" */
