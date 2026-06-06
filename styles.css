@@ -3101,6 +3101,66 @@ a.podborki-card--link:hover {
   top: 18px;
 }
 
+.hotel-site-concept__similar {
+  margin-top: 8px;
+  padding: 4px 0 0;
+}
+
+.hotel-site-concept__similar-head {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.hotel-site-concept__similar-head .eyebrow {
+  margin: 0;
+}
+
+.hotel-site-concept__similar-head h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  line-height: 1.2;
+}
+
+.hotel-site-concept__similar-lead {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.hotel-site-concept__similar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.hotel-site-concept__similar .catalog-card {
+  min-height: 100%;
+}
+
+@media (max-width: 1080px) {
+  .hotel-site-concept__similar-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .hotel-site-concept__similar {
+    margin-top: 4px;
+  }
+
+  .hotel-site-concept__similar-head {
+    margin-bottom: 10px;
+  }
+
+  .hotel-site-concept__similar-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
 .hotel-site-concept__detail-section {
   padding: 0;
   overflow: hidden;

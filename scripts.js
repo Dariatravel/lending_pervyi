@@ -1042,6 +1042,32 @@
     return chain;
   }
 
+  const SUPABASE_MEDIA_FALLBACK_TIMEOUT_MS = 2600;
+
+  function sourceLooksLoaded(mediaEl) {
+    if (!mediaEl) return false;
+    if (mediaEl.tagName === "IMG") {
+      return mediaEl.complete && mediaEl.naturalWidth > 0;
+    }
+    if (mediaEl.tagName === "VIDEO") {
+      return mediaEl.readyState >= 1;
+    }
+    return false;
+  }
+
+  async function firstReachableLocalMedia(candidates, startAt = 0) {
+    for (let index = startAt; index < candidates.length; index += 1) {
+      const candidate = candidates[index];
+      try {
+        const response = await fetch(candidate, { method: "HEAD", cache: "force-cache" });
+        if (response.ok) return { candidate, nextAttempt: index + 1 };
+      } catch (error) {
+        /* try next fallback candidate */
+      }
+    }
+    return null;
+  }
+
   function attachSupabaseMediaFallbackToImage(img) {
     if (!img || img.dataset.supabaseFallbackWired === "1") return;
 
@@ -1053,18 +1079,30 @@
 
     img.dataset.supabaseFallbackWired = "1";
     let attempt = 0;
+    let timerId = 0;
 
-    img.addEventListener("error", function tryLocalMediaFallback() {
+    const tryLocalMediaFallback = () => {
+      if (timerId) {
+        window.clearTimeout(timerId);
+        timerId = 0;
+      }
       if (attempt >= candidates.length) {
         img.removeEventListener("error", tryLocalMediaFallback);
         return;
       }
       img.src = candidates[attempt];
       attempt += 1;
-    });
+    };
+
+    img.addEventListener("error", tryLocalMediaFallback);
+    tryLocalMediaFallback();
 
     if (img.complete && img.naturalWidth === 0) {
       img.dispatchEvent(new Event("error"));
+    } else if (!sourceLooksLoaded(img)) {
+      timerId = window.setTimeout(() => {
+        if (!sourceLooksLoaded(img)) tryLocalMediaFallback();
+      }, SUPABASE_MEDIA_FALLBACK_TIMEOUT_MS);
     }
   }
 
@@ -1080,6 +1118,7 @@
 
     video.dataset.supabaseFallbackWired = "1";
     let attempt = 0;
+    let timerId = 0;
 
     const applyCandidate = (candidateUrl) => {
       if (sourceEl) {
@@ -1095,14 +1134,35 @@
       }
     };
 
-    video.addEventListener("error", function tryLocalMediaFallback() {
+    const tryLocalMediaFallback = () => {
+      if (timerId) {
+        window.clearTimeout(timerId);
+        timerId = 0;
+      }
       if (attempt >= candidates.length) {
         video.removeEventListener("error", tryLocalMediaFallback);
         return;
       }
       applyCandidate(candidates[attempt]);
       attempt += 1;
-    });
+    };
+
+    video.addEventListener("error", tryLocalMediaFallback);
+    video.addEventListener("loadedmetadata", () => {
+      if (timerId) {
+        window.clearTimeout(timerId);
+        timerId = 0;
+      }
+    }, { once: true });
+
+    timerId = window.setTimeout(() => {
+      if (sourceLooksLoaded(video)) return;
+      firstReachableLocalMedia(candidates, attempt).then((match) => {
+        if (!match || sourceLooksLoaded(video)) return;
+        attempt = match.nextAttempt;
+        applyCandidate(match.candidate);
+      });
+    }, SUPABASE_MEDIA_FALLBACK_TIMEOUT_MS);
   }
 
   /** Подключает fallback Supabase → /media/ для статической вёрстки и динамических блоков. */
@@ -1713,6 +1773,209 @@
 
     grid.replaceChildren(fragment);
     wireSupabaseMediaFallback(grid);
+  }
+
+  const SIMILAR_FILTER_WEIGHTS = {
+    city: 5,
+    beach: 4,
+    price: 3,
+    distance: 3,
+    stay: 2,
+    food: 1,
+    room: 1,
+  };
+
+  const PRICE_LABELS = {
+    economy: "эконом",
+    comfort: "комфорт",
+    premium: "премиум",
+  };
+
+  const BEACH_LABELS = {
+    [BEACH_FILTERS.SAND_LDZAA]: "песчаный пляж Лдзаа",
+    [BEACH_FILTERS.SAND_SUKHUM]: "песчаный пляж Сухум",
+    [BEACH_FILTERS.PINE_PEBBLE_LDZAA_PITSUNDA]: "сосновый галечный",
+    [BEACH_FILTERS.PITSUNDA_BAY_MIXED]: "бухта Пицунда",
+    [BEACH_FILTERS.PEBBLE]: "галечный пляж",
+  };
+
+  function normalizeListingFiltersMap(filters) {
+    const map = {};
+    FILTER_GROUPS.forEach((group) => {
+      const raw = filters?.[group];
+      const values = Array.isArray(raw)
+        ? raw.map((value) => String(value || "").trim()).filter(Boolean)
+        : String(raw || "")
+            .split("|")
+            .map((value) => value.trim())
+            .filter(Boolean);
+      map[group] = new Set(values);
+    });
+    return map;
+  }
+
+  function filterSimilarityScore(baseMap, candidateMap) {
+    let score = 0;
+    FILTER_GROUPS.forEach((group) => {
+      const weight = SIMILAR_FILTER_WEIGHTS[group] || 1;
+      const left = baseMap[group];
+      const right = candidateMap[group];
+      if (!left?.size || !right?.size) return;
+      left.forEach((token) => {
+        if (right.has(token)) score += weight;
+      });
+    });
+    return score;
+  }
+
+  function pickSimilarListings(currentRow, rows, limit = 4) {
+    const baseMap = normalizeListingFiltersMap(currentRow?.details?.filters);
+    const ranked = rows
+      .filter((row) => row?.slug && row.slug !== currentRow.slug)
+      .map((row) => ({
+        row,
+        score: filterSimilarityScore(baseMap, normalizeListingFiltersMap(row.details?.filters)),
+      }))
+      .sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return String(a.row.title || "").localeCompare(String(b.row.title || ""), "ru");
+      });
+
+    const picked = [];
+    const used = new Set([currentRow.slug]);
+
+    ranked
+      .filter((item) => item.score > 0)
+      .forEach((item) => {
+        if (picked.length >= limit) return;
+        if (used.has(item.row.slug)) return;
+        picked.push(item.row);
+        used.add(item.row.slug);
+      });
+
+    if (picked.length < 3) {
+      ranked.forEach((item) => {
+        if (picked.length >= limit) return;
+        if (used.has(item.row.slug)) return;
+        picked.push(item.row);
+        used.add(item.row.slug);
+      });
+    }
+
+    return picked.slice(0, limit);
+  }
+
+  function buildSimilarSectionLead(currentRow) {
+    const filters = currentRow?.details?.filters || {};
+    const hints = [];
+    const city = CITY_LABELS[firstValue(filters.city)];
+    const beach = BEACH_LABELS[firstValue(filters.beach)];
+    const price = PRICE_LABELS[firstValue(filters.price)];
+    const distance = DISTANCE_BY_FILTER[firstValue(filters.distance)];
+    if (city) hints.push(city);
+    if (beach) hints.push(beach);
+    if (price) hints.push(`бюджет «${price}»`);
+    if (distance) hints.push(distance);
+    if (!hints.length) {
+      return "Ещё варианты с похожими параметрами — можно сравнить и перейти дальше без возврата в каталог.";
+    }
+    return `Подборка по схожим параметрам: ${hints.join(", ")}.`;
+  }
+
+  function buildSimilarCatalogCard(row, sourceKind) {
+    const card = document.createElement("a");
+    card.className = "catalog-card";
+    card.href = pathnameFromUrl(
+      row.page_url,
+      sourceKind === "kvartira" ? `/kvartira/${row.slug}/` : `/hotels/${row.slug}/`
+    );
+    applyFilterData(card, row.details?.filters);
+
+    const mediaWrap = document.createElement("div");
+    mediaWrap.className = "catalog-card__media-wrap";
+
+    if (row.has_video) {
+      const badge = document.createElement("span");
+      badge.className = "catalog-card__badge";
+      badge.textContent = "Видео";
+      mediaWrap.appendChild(badge);
+    }
+
+    const image = document.createElement("img");
+    image.loading = "lazy";
+    image.alt = row.title || "";
+    image.src = pickCoverUrl(row);
+    attachImageFallback(image, row);
+    mediaWrap.appendChild(image);
+    card.appendChild(mediaWrap);
+    card.appendChild(createTextNode("h3", row.title || ""));
+
+    if (sourceKind === "kvartira") {
+      const desc = document.createElement("p");
+      replaceWithLines(desc, formatKvartiraCardSummary(row));
+      card.appendChild(desc);
+    } else {
+      card.appendChild(createTextNode("p", formatHotelCardSummary(row)));
+    }
+
+    return card;
+  }
+
+  async function initSimilarListings() {
+    const hotelMatch = window.location.pathname.match(/^\/hotels\/([^/]+)\/?$/);
+    const kvMatch = window.location.pathname.match(/^\/kvartira\/([^/]+)\/?$/);
+    if (!hotelMatch && !kvMatch) return;
+
+    const slug = hotelMatch?.[1] || kvMatch?.[1];
+    const sourceKind = hotelMatch ? "hotel" : "kvartira";
+    if (sourceKind === "kvartira" && KVARTIRA_EXCLUDED_SLUGS.has(slug)) return;
+
+    const main = document.querySelector("main.hotel-site-concept");
+    const anchor = main?.querySelector(".hotel-site-concept__detail-grid");
+    if (!main || !anchor) return;
+
+    let section = main.querySelector("[data-similar-listings]");
+    if (!section) {
+      section = document.createElement("section");
+      section.className = "section hotel-site-concept__similar";
+      section.setAttribute("data-similar-listings", "");
+      section.hidden = true;
+      section.innerHTML = `
+        <div class="hotel-site-concept__similar-head">
+          <p class="eyebrow">Похожие варианты</p>
+          <h2>Может подойти, если смотрите рядом</h2>
+          <p class="hotel-site-concept__similar-lead"></p>
+        </div>
+        <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
+      `;
+      anchor.insertAdjacentElement("afterend", section);
+    }
+
+    const leadNode = section.querySelector(".hotel-site-concept__similar-lead");
+    const grid = section.querySelector("[data-similar-listings-grid]");
+    if (!leadNode || !grid) return;
+
+    try {
+      const currentRow = await fetchListingBySlug(slug);
+      if (!currentRow) return;
+
+      const allRows = await fetchListings({ sourceKind });
+      const similarRows = pickSimilarListings(
+        currentRow,
+        (allRows || []).filter((row) => row.slug && !KVARTIRA_EXCLUDED_SLUGS.has(row.slug)),
+        4
+      );
+      if (similarRows.length < 2) return;
+
+      leadNode.textContent = buildSimilarSectionLead(currentRow);
+      const fragment = document.createDocumentFragment();
+      similarRows.forEach((row) => fragment.appendChild(buildSimilarCatalogCard(row, sourceKind)));
+      grid.replaceChildren(fragment);
+      wireSupabaseMediaFallback(grid);
+      section.hidden = false;
+    } catch (error) {
+      console.warn("Не удалось показать похожие объекты", error);
+    }
   }
 
   function formatLeadText(row) {
@@ -2579,8 +2842,7 @@
       const pins = countActivePins(filt.committedSel, filt.committedCat);
       const totalMatching = countTotalMatching(filt.committedSel, filt.committedCat);
       const displayedPrimaryShown = syncCatalogInitialLimit(primaryShown, pins);
-      // Счётчик — только основной каталог отелей; квартиры внизу страницы не суммируем в «Показано».
-      const resultCount = pins === 0 ? primaryShown : displayedPrimaryShown;
+      const resultCount = pins === 0 ? totalMatching : displayedPrimaryShown;
       if (visibleCount) visibleCount.textContent = String(resultCount);
       if (emptyNote) emptyNote.hidden = displayedPrimaryShown !== 0;
       if (clearBtn) clearBtn.hidden = pins === 0;
@@ -3325,5 +3587,6 @@
   hydrateHomeCatalog(filtersController);
   hydrateKvartiraCatalog(filtersController);
   hydrateHotelPage();
+  void initSimilarListings();
   initMobileReviewsPlacement();
 })();

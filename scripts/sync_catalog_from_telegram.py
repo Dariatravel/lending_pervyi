@@ -15,7 +15,7 @@ import importlib.util
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 import requests
 from telethon import TelegramClient
@@ -58,6 +58,8 @@ TOPICS_FILE = ROOT / 'topics.json'
 KV_CARDS_FILE = ROOT / 'kvartira_cards.json'
 ENV_FILE = ROOT / '.env.supabase.local'
 STORAGE_BUCKET = 'site-media'
+STORAGE_PUBLIC_IMAGE_MARKER = '/storage/v1/object/public/site-media/'
+IMAGE_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.webp', '.gif')
 CUTOFF_DATE = '2026-01-01'
 API_ID = 32916166
 API_HASH = 'eefdec49605521b061de4bdf62ef784e'
@@ -530,6 +532,16 @@ def local_to_public_path(local_path: Path) -> str:
     return f'/{rel}'
 
 
+def image_src_for_html(url: str) -> str:
+    raw = (url or '').strip()
+    if STORAGE_PUBLIC_IMAGE_MARKER not in raw:
+        return raw
+    relative = raw.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split('?', 1)[0]
+    if not relative.lower().endswith(IMAGE_EXTENSIONS):
+        return raw
+    return f'/media/{unquote(relative)}'
+
+
 def upload_local_image_public_url(supa: SupabaseClient, local_path: Path, storage_path: str) -> str:
     """
     Загрузка JPEG/WebP PNG в bucket; при ошибке или SKIP_IMAGE_UPLOAD_TO_SUPABASE — URL как /media/... в репо.
@@ -783,7 +795,8 @@ def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
     video_index = 1
     for item in media_items:
         if item['kind'] == 'photo':
-            parts.append(f'            <img src="{html.escape(item["source_url"])}" alt="{html.escape(title)} фото {image_index}" loading="lazy" />')
+            src = image_src_for_html(str(item.get('source_url') or ''))
+            parts.append(f'            <img src="{html.escape(src)}" alt="{html.escape(title)} фото {image_index}" loading="lazy" />')
             image_index += 1
         else:
             source_url = str(item.get('source_url') or '').strip()
@@ -806,10 +819,11 @@ def render_top_gallery(media_items: list[dict[str, Any]], title: str) -> str:
         return ''
     main = photos[0]
     thumbs = ''.join(
-        f'<img src="{html.escape(item["source_url"])}" alt="{html.escape(title)} фото {index + 2}" loading="lazy" />'
+        f'<img src="{html.escape(image_src_for_html(str(item.get("source_url") or "")))}" alt="{html.escape(title)} фото {index + 2}" loading="lazy" />'
         for index, item in enumerate(photos[1:4])
     )
-    return f'''          <div class="hotel-card__gallery">\n            <div class="hotel-card__main-photo">\n              <img src="{html.escape(main["source_url"])}" alt="{html.escape(title)} фото 1" loading="eager" />\n              <div class="hotel-card__floating">\n                <span class="pill pill--accent">Проверенный объект</span>\n              </div>\n            </div>\n            <div class="hotel-card__thumbs">\n              {thumbs}\n            </div>\n          </div>'''
+    main_src = image_src_for_html(str(main.get('source_url') or ''))
+    return f'''          <div class="hotel-card__gallery">\n            <div class="hotel-card__main-photo">\n              <img src="{html.escape(main_src)}" alt="{html.escape(title)} фото 1" loading="eager" />\n              <div class="hotel-card__floating">\n                <span class="pill pill--accent">Проверенный объект</span>\n              </div>\n            </div>\n            <div class="hotel-card__thumbs">\n              {thumbs}\n            </div>\n          </div>'''
 
 
 def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text: str, parsed: dict[str, Any], media_items: list[dict[str, Any]], page_href: str) -> str:
@@ -978,6 +992,15 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
 {CONTACT_BLOCK}
         </aside>
       </div>
+
+      <section class="section hotel-site-concept__similar" data-similar-listings hidden>
+        <div class="hotel-site-concept__similar-head">
+          <p class="eyebrow">Похожие варианты</p>
+          <h2>Может подойти, если смотрите рядом</h2>
+          <p class="hotel-site-concept__similar-lead"></p>
+        </div>
+        <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
+      </section>
     </main>
     <script src="../../image-lite.js" defer></script>
     <script src="../../scripts.js" defer></script>
