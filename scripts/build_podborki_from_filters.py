@@ -45,12 +45,21 @@ class Card:
     filters: dict[str, set[str]]
 
 
+GORY_HOTEL_SLUGS = (
+    "dyshi-glubzhe-domiki-v-gorah-3459",
+    "radonovyy-istochnik-otel-v-gorah-3064",
+    "bungalo-glemping-3623",
+    "grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928",
+)
+
+
 @dataclass(frozen=True)
 class Selection:
     slug: str
     title: str
     predicate: Callable[[Card], bool]
     group_by_city: bool = True
+    slug_order: tuple[str, ...] = ()
 
 
 def strip_tags(value: str) -> str:
@@ -160,6 +169,11 @@ def keyword(*needles: str) -> Callable[[Card], bool]:
     return lambda card: any(needle in f"{card.title} {card.summary}".lower() for needle in lowered)
 
 
+def slug_in(*slugs: str) -> Callable[[Card], bool]:
+    allowed = set(slugs)
+    return lambda card: href_slug(card.href) in allowed
+
+
 def selections() -> list[Selection]:
     return [
         Selection("doma-pod-klyuch-vse-varianty", "Варианты домов под ключ", has("stay", "turnkey-house")),
@@ -178,7 +192,13 @@ def selections() -> list[Selection]:
         Selection("svoya-kuhnya-v-nomere", "Варианты размещения с собственной кухней", has("room", "kitchen")),
         Selection("domiki-vse-varianty", "Варианты с отдельными домиками", has("stay", "cottages")),
         Selection("kvartiry-vse-varianty", "Варианты частных квартир", has("stay", "apartments")),
-        Selection("gory-oteli-v-gorah", "Горы - отели в горах", keyword("гор", "ущель", "источник")),
+        Selection(
+            "gory-oteli-v-gorah",
+            "Горы - отели в горах",
+            slug_in(*GORY_HOTEL_SLUGS),
+            False,
+            GORY_HOTEL_SLUGS,
+        ),
         Selection("ldzaa-vse-varianty", "Именно в Лдзаа есть такие варианты", has("city", "ldzaa"), False),
         Selection("sosnovyy-plyazh", "На пляже с соснами у меня есть варианты", has("beach", "pine-pebble-ldzaa-pitsunda")),
         Selection("vid-na-more-pryamoy-bokovoy", "Объекты, номера в которых имеют вид на море (прямой или боковой)", has("room", "sea-view")),
@@ -243,7 +263,12 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
             parts.append("        </div>")
     else:
         parts.append('        <div class="catalog-grid podborki-catalog-grid">')
-        for card in sorted(cards, key=card_sort_key):
+        if selection.slug_order:
+            order = {slug: index for index, slug in enumerate(selection.slug_order)}
+            ordered_cards = sorted(cards, key=lambda card: order.get(href_slug(card.href), 99))
+        else:
+            ordered_cards = sorted(cards, key=card_sort_key)
+        for card in ordered_cards:
             rank += 1
             parts.append(render_card(card, rank))
         parts.append("        </div>")
@@ -470,7 +495,11 @@ def main() -> int:
     slugs: list[str] = []
     for selection in selections():
         selected = [card for card in cards if selection.predicate(card)]
-        selected = sorted(selected, key=card_sort_key)
+        if selection.slug_order:
+            order = {slug: index for index, slug in enumerate(selection.slug_order)}
+            selected.sort(key=lambda card: order.get(href_slug(card.href), 99))
+        else:
+            selected = sorted(selected, key=card_sort_key)
         out_dir = PODBORKI_DIR / selection.slug
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(render_page(selection, selected, meta), encoding="utf-8")
