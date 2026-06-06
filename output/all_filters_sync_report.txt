@@ -6,8 +6,8 @@
 Без ссылки Telegram: 19
 Ссылка не распознана: 1
 Обработано объектов на сайте (есть строка в таблице): 203
-Обновлено объектов в Supabase: 2
-Без изменений: 201
+Обновлено объектов в Supabase: 0
+Без изменений: 203
 Пропущено (нет HTML-страницы на сайте): 0
 Не найдено в Supabase по channel+message_id: 15
 
@@ -18,8 +18,8 @@
   значения: no-food:175, cafe:39, breakfast:19, full-board:4, half-board:1
 - price: заполнено по таблице (непустые) у 201 объектов, изменено у 0 объектов
   значения: midrange:94, economy:81, premium:43
-- city: заполнено по таблице (непустые) у 200 объектов, изменено у 2 объектов
-  значения: ldzaa:72, sukhum:37, pitsunda:36, gagra:27, alakhadzy:18, new-afon:10, gudauta:9, tsandripsh:7
+- city: заполнено по таблице (непустые) у 201 объектов, изменено у 0 объектов
+  значения: ldzaa:72, sukhum:37, pitsunda:37, gagra:27, alakhadzy:18, new-afon:10, gudauta:9, tsandripsh:7
 - beach: заполнено по таблице (непустые) у 202 объектов, изменено у 0 объектов
   значения: pebble:105, pine-pebble-ldzaa-pitsunda:52, pitsunda-bay-mixed:39, sand-sukhum:17, sand-ldzaa:5
 - room: заполнено по таблице (непустые) у 189 объектов, изменено у 0 объектов

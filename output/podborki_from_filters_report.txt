@@ -7,8 +7,8 @@
 - gagra-vse-varianty: 27
 - gudauta-vse-varianty: 9
 - novyy-afon-vse-varianty: 9
-- pitsunda-vse-varianty: 31
-- suhum-vse-varianty: 37
+- pitsunda-vse-varianty: 32
+- suhum-vse-varianty: 38
 - alahadzy-vse-varianty: 15
 - varianty-do-5-tr-ekonom: 75
 - varianty-5-12-tr-srednyak: 88
