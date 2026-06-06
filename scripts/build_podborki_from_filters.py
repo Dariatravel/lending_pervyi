@@ -214,8 +214,23 @@ def city_label(key: str) -> str:
     return CITY_LABELS.get(key, "ДРУГИЕ ЛОКАЦИИ")
 
 
-def card_sort_key(card: Card) -> tuple[int, str]:
-    return (CITY_ORDER.index(city_key(card)) if city_key(card) in CITY_ORDER else 99, card.title.lower())
+def accommodation_priority(card: Card) -> int:
+    """Отели выше; квартиры и дома под ключ — ниже внутри того же города."""
+    if card.href.startswith("/kvartira/"):
+        return 2
+    if "turnkey-house" in card.filters.get("stay", set()):
+        return 1
+    return 0
+
+
+def card_sort_key(card: Card) -> tuple[int, int, str]:
+    city_rank = CITY_ORDER.index(city_key(card)) if city_key(card) in CITY_ORDER else 99
+    return (city_rank, accommodation_priority(card), card.title.lower())
+
+
+def within_city_sort_key(card: Card) -> tuple[int, str]:
+    """Порядок внутри одного города: отели → дома под ключ → квартиры, по алфавиту."""
+    return (accommodation_priority(card), card.title.lower())
 
 
 def cover_image_key(src: str) -> str:
@@ -260,10 +275,10 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
     rank = 0
     if selection.group_by_city:
         grouped: dict[str, list[Card]] = {}
-        for card in sorted(cards, key=card_sort_key):
+        for card in cards:
             grouped.setdefault(city_key(card), []).append(card)
         for key in [*CITY_ORDER, "other"]:
-            group_cards = grouped.get(key, [])
+            group_cards = sorted(grouped.get(key, []), key=within_city_sort_key)
             if not group_cards:
                 continue
             parts.append(f'        <h2 class="podborki-region">{city_label(key)}</h2>')
