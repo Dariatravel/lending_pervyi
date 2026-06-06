@@ -2271,7 +2271,7 @@
     return score;
   }
 
-  function pickSimilarListings(currentRow, rows, limit = 4) {
+  function pickSimilarListings(currentRow, rows, limit = 3) {
     const baseMap = normalizeListingFiltersMap(currentRow?.details?.filters);
     const ranked = rows
       .filter((row) => row?.slug && row.slug !== currentRow.slug)
@@ -2406,7 +2406,7 @@
       const similarRows = pickSimilarListings(
         currentRow,
         (allRows || []).filter((row) => row.slug && !KVARTIRA_EXCLUDED_SLUGS.has(row.slug)),
-        4
+        3
       );
       if (similarRows.length < 2) return;
 
