@@ -2579,7 +2579,8 @@
       const pins = countActivePins(filt.committedSel, filt.committedCat);
       const totalMatching = countTotalMatching(filt.committedSel, filt.committedCat);
       const displayedPrimaryShown = syncCatalogInitialLimit(primaryShown, pins);
-      const resultCount = pins === 0 ? totalMatching : displayedPrimaryShown;
+      // Счётчик — только основной каталог отелей; квартиры внизу страницы не суммируем в «Показано».
+      const resultCount = pins === 0 ? primaryShown : displayedPrimaryShown;
       if (visibleCount) visibleCount.textContent = String(resultCount);
       if (emptyNote) emptyNote.hidden = displayedPrimaryShown !== 0;
       if (clearBtn) clearBtn.hidden = pins === 0;
