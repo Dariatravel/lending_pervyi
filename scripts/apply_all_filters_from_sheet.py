@@ -59,7 +59,8 @@ COL = {
     # Питание
     'food_filter': 47,      # AV
 
-    # Город
+    # Город: текстовая метка (AX) и чекбоксы по городам (AY–BF)
+    'city_text': 49,        # AX
     'city_ldzaa': 50,       # AY
     'city_pitsunda': 51,    # AZ
     'city_gagra': 52,       # BA
@@ -239,6 +240,30 @@ def infer_price(row: list[str]) -> list[str]:
     return dedupe(values)
 
 
+CITY_TEXT_TO_CODE = {
+    'лдзаа': 'ldzaa',
+    'пицунда': 'pitsunda',
+    'гагра': 'gagra',
+    'алахадзы': 'alakhadzy',
+    'гудаута': 'gudauta',
+    'новый афон': 'new-afon',
+    'сухум': 'sukhum',
+    'цандрипш': 'tsandripsh',
+}
+
+
+def city_code_from_text(raw: str) -> str | None:
+    normalized = str(raw or '').strip().lower().replace('ё', 'е')
+    if not normalized:
+        return None
+    if normalized in CITY_TEXT_TO_CODE:
+        return CITY_TEXT_TO_CODE[normalized]
+    for label, code in CITY_TEXT_TO_CODE.items():
+        if label in normalized:
+            return code
+    return None
+
+
 def infer_city(row: list[str]) -> list[str]:
     values: list[str] = []
     if has_yes(get_cell(row, 'city_sukhum')):
@@ -257,6 +282,10 @@ def infer_city(row: list[str]) -> list[str]:
         values.append('gagra')
     if has_yes(get_cell(row, 'city_tsandripsh')):
         values.append('tsandripsh')
+    if not values:
+        code = city_code_from_text(get_cell(row, 'city_text'))
+        if code:
+            values.append(code)
     return dedupe(values)
 
 

@@ -36,6 +36,13 @@ CITY_LABELS = {
     "tsandripsh": "ЦАНДРИПШ",
 }
 CITY_ORDER = list(CITY_LABELS)
+# Горные объекты без привязки к побережью — только они попадают в «ДРУГИЕ ЛОКАЦИИ».
+MOUNTAIN_OTHER_HREFS = {
+    "/hotels/bungalo-glemping-3623/",
+    "/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/",
+    "/hotels/dyshi-glubzhe-domiki-v-gorah-3459/",
+    "/hotels/radonovyy-istochnik-otel-v-gorah-3064/",
+}
 
 
 @dataclass(frozen=True)
@@ -189,7 +196,11 @@ def selections() -> list[Selection]:
         Selection("svoya-kuhnya-v-nomere", "Варианты размещения с собственной кухней", has("room", "kitchen")),
         Selection("domiki-vse-varianty", "Варианты с отдельными домиками", has("stay", "cottages")),
         Selection("kvartiry-vse-varianty", "Варианты частных квартир", has("stay", "apartments")),
-        Selection("gory-oteli-v-gorah", "Горы - отели в горах", keyword("гор", "ущель", "источник")),
+        Selection(
+            "gory-oteli-v-gorah",
+            "Горы - отели в горах",
+            any_of(keyword("гор", "ущель", "источник"), lambda card: card.href in MOUNTAIN_OTHER_HREFS),
+        ),
         Selection("ldzaa-vse-varianty", "Именно в Лдзаа есть такие варианты", has("city", "ldzaa"), False),
         Selection("sosnovyy-plyazh", "На пляже с соснами у меня есть варианты", has("beach", "pine-pebble-ldzaa-pitsunda")),
         Selection("vid-na-more-pryamoy-bokovoy", "Объекты, номера в которых имеют вид на море (прямой или боковой)", has("room", "sea-view")),
@@ -204,6 +215,8 @@ def selections() -> list[Selection]:
 
 
 def city_key(card: Card) -> str:
+    if card.href in MOUNTAIN_OTHER_HREFS:
+        return "other"
     for city in CITY_ORDER:
         if city in card.filters.get("city", set()):
             return city
@@ -211,6 +224,8 @@ def city_key(card: Card) -> str:
 
 
 def city_label(key: str) -> str:
+    if key == "other":
+        return "ДРУГИЕ ЛОКАЦИИ"
     return CITY_LABELS.get(key, "ДРУГИЕ ЛОКАЦИИ")
 
 
