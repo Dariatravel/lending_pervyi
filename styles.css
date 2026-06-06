@@ -2429,16 +2429,40 @@ a.podborki-card--link:hover {
   gap: 12px;
 }
 
-.blog-article__content--telegram {
+.blog-article__content--telegram,
+.blog-article__content--sections {
   display: block;
 }
 
-.blog-article__content--telegram p {
+.blog-article__content--telegram p,
+.blog-article__content--sections p {
   margin: 0 0 10px;
 }
 
-.blog-article__content--telegram p:last-child {
+.blog-article__content--telegram p:last-child,
+.blog-article__content--sections p:last-child {
   margin-bottom: 0;
+}
+
+.blog-article__content--sections .blog-section {
+  margin: 0 0 22px;
+  padding: 0 0 4px;
+}
+
+.blog-article__content--sections .blog-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.blog-article__content--sections .blog-section h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.05rem, 2.2vw, 1.32rem);
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.blog-article__content--sections .blog-section ul,
+.blog-article__content--sections .blog-section ol {
+  margin: 0 0 10px;
 }
 
 .blog-article__content h2 {
@@ -2515,6 +2539,14 @@ a.podborki-card--link:hover {
   .blog-article__aside {
     position: static;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .blog-article__content--sections .blog-section {
+    margin-bottom: 18px;
+  }
+
+  .blog-article__content--sections .blog-section h2 {
+    margin-bottom: 8px;
   }
 }
 
