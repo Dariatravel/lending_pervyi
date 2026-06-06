@@ -3796,10 +3796,22 @@
 
   document.addEventListener("click", (event) => {
     const cardGalleryHit = event.target.closest(
-      ".hotel-card__gallery img, .hotel-card__main-photo, .hotel-card__thumbs"
+      ".hotel-card__gallery img, .hotel-card__gallery video.local-video, .hotel-card__main-photo, .hotel-card__thumbs"
     );
     if (cardGalleryHit) {
       event.preventDefault();
+      const cardVideo =
+        event.target.closest(".hotel-card__gallery video.local-video") ||
+        cardGalleryHit.querySelector("video.local-video");
+      if (cardVideo) {
+        const src =
+          cardVideo.querySelector("source")?.getAttribute("src") || cardVideo.getAttribute("src") || "";
+        if (src) {
+          openGalleryLightboxAtKey(normalizeGallerySrc(src));
+          return;
+        }
+      }
+
       const cardImage =
         event.target.closest(".hotel-card__gallery img") ||
         (cardGalleryHit.matches("img") ? cardGalleryHit : cardGalleryHit.querySelector("img"));

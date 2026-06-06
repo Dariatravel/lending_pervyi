@@ -2717,11 +2717,18 @@ a.podborki-card--link:hover {
 }
 
 .hotel-card__main-photo img,
-.hotel-card__thumbs img {
+.hotel-card__thumbs img,
+.hotel-card__main-photo--video .hotel-card__preview-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   cursor: zoom-in;
+}
+
+.hotel-card__main-photo--video .hotel-card__preview-video {
+  display: block;
+  pointer-events: none;
+  background: #101010;
 }
 
 .hotel-card__thumbs {

@@ -787,15 +787,36 @@ def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
 
 def render_top_gallery(media_items: list[dict[str, Any]], title: str) -> str:
     photos = [item for item in media_items if item['kind'] == 'photo']
-    if not photos:
+    if photos:
+        main = photos[0]
+        thumbs = ''.join(
+            f'<img src="{html.escape(image_src_for_html(str(item.get("source_url") or "")))}" alt="{html.escape(title)} фото {index + 2}" loading="lazy" />'
+            for index, item in enumerate(photos[1:4])
+        )
+        main_src = image_src_for_html(str(main.get('source_url') or ''))
+        return f'''          <div class="hotel-card__gallery">\n            <div class="hotel-card__main-photo">\n              <img src="{html.escape(main_src)}" alt="{html.escape(title)} фото 1" loading="eager" />\n              <div class="hotel-card__floating">\n                <span class="pill pill--accent">Проверенный объект</span>\n              </div>\n            </div>\n            <div class="hotel-card__thumbs">\n              {thumbs}\n            </div>\n          </div>'''
+
+    videos = [
+        item
+        for item in media_items
+        if item.get('kind') == 'video' and str(item.get('source_url') or '').strip()
+    ]
+    if not videos:
         return ''
-    main = photos[0]
-    thumbs = ''.join(
-        f'<img src="{html.escape(image_src_for_html(str(item.get("source_url") or "")))}" alt="{html.escape(title)} фото {index + 2}" loading="lazy" />'
-        for index, item in enumerate(photos[1:4])
-    )
-    main_src = image_src_for_html(str(main.get('source_url') or ''))
-    return f'''          <div class="hotel-card__gallery">\n            <div class="hotel-card__main-photo">\n              <img src="{html.escape(main_src)}" alt="{html.escape(title)} фото 1" loading="eager" />\n              <div class="hotel-card__floating">\n                <span class="pill pill--accent">Проверенный объект</span>\n              </div>\n            </div>\n            <div class="hotel-card__thumbs">\n              {thumbs}\n            </div>\n          </div>'''
+
+    main_src = html.escape(str(videos[0].get('source_url') or ''), quote=True)
+    escaped_title = html.escape(title)
+    return f'''          <div class="hotel-card__gallery hotel-card__gallery--video">
+            <div class="hotel-card__main-photo hotel-card__main-photo--video">
+              <video class="local-video hotel-card__preview-video" preload="metadata" muted playsinline aria-label="{escaped_title} видео">
+                <source src="{main_src}" type="video/mp4" />
+              </video>
+              <div class="hotel-card__floating">
+                <span class="pill pill--accent">Проверенный объект</span>
+                <span class="pill">Видео</span>
+              </div>
+            </div>
+          </div>'''
 
 
 def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text: str, parsed: dict[str, Any], media_items: list[dict[str, Any]], page_href: str) -> str:
