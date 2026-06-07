@@ -2313,38 +2313,83 @@ a.podborki-card--link:hover {
   box-shadow: 0 10px 22px rgba(18, 31, 25, 0.09);
 }
 
-@media (min-width: 760px) {
-  .blog-listing .blog-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-}
-
-@media (min-width: 1080px) {
+/* Десктоп: квадратные плитки по три в ряд */
+@media (min-width: 761px) {
   .blog-listing .blog-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
+    gap: clamp(14px, 1.8vw, 20px);
   }
 
   .blog-listing .blog-card,
   .blog-listing .blog-card:first-child,
   .blog-listing .blog-card:nth-child(2),
   .blog-listing .blog-card:nth-child(3) {
-    grid-template-columns: 92px minmax(0, 1fr);
-    min-height: 92px;
+    grid-column: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    min-height: unset;
+    border-radius: 26px;
+    box-shadow: 0 18px 42px rgba(18, 31, 25, 0.08);
   }
 
   .blog-listing .blog-card__image-link,
   .blog-listing .blog-card:first-child .blog-card__image-link {
-    min-height: 92px;
+    min-height: unset;
+    aspect-ratio: 1 / 1;
+    border-radius: 0;
+  }
+
+  .blog-listing .blog-card__image-link::after {
+    height: 42%;
   }
 
   .blog-listing .blog-card__image-link img {
-    min-height: 92px;
+    min-height: unset;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
   }
 
   .blog-listing .blog-card__body {
-    padding: 9px 12px;
+    padding: clamp(14px, 1.6vw, 18px);
+    gap: 8px;
+    align-content: start;
+  }
+
+  .blog-listing .blog-card__meta {
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .blog-listing .blog-card__meta span {
+    min-height: 24px;
+    padding: 0 8px;
+  }
+
+  .blog-listing .blog-card__meta time {
+    font-size: 11px;
+  }
+
+  .blog-listing .blog-card h3,
+  .blog-listing .blog-card:first-child h3 {
+    font-size: clamp(0.95rem, 1.1vw, 1.08rem);
+    line-height: 1.25;
+    -webkit-line-clamp: 3;
+  }
+
+  .blog-listing .blog-card__body p {
+    font-size: 13px;
+    line-height: 1.5;
+    -webkit-line-clamp: 3;
+  }
+
+  .blog-listing .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 26px 54px rgba(18, 31, 25, 0.13);
+  }
+
+  .blog-listing .blog-card:hover .blog-card__image-link img {
+    transform: scale(1.06);
   }
 }
 
