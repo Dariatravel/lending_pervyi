@@ -3182,6 +3182,7 @@ a.podborki-card--link:hover {
 
 .hotel-site-concept__detail-section .card,
 .hotel-site-concept__detail-section > .cta-block,
+.hotel-site-concept__detail-section.hotel-contact-wrap > .hotel-contact-section--mobile.cta-block,
 .hotel-site-concept__detail-section.price-card,
 .hotel-site-concept__detail-section.faq-card {
   padding: 22px;
@@ -3192,7 +3193,8 @@ a.podborki-card--link:hover {
 }
 
 .hotel-site-concept__detail-section .card h2,
-.hotel-site-concept__detail-section > .cta-block h2 {
+.hotel-site-concept__detail-section > .cta-block h2,
+.hotel-site-concept__detail-section.hotel-contact-wrap > .hotel-contact-section--mobile.cta-block h2 {
   margin: 0 0 14px;
   font-size: clamp(1.55rem, 2.3vw, 2.2rem);
 }
@@ -4511,6 +4513,86 @@ body {
   font-size: clamp(1.28rem, 2.35vw, 1.62rem);
   font-weight: 800;
   letter-spacing: -0.02em;
+}
+
+/* Объекты: на десктопе — блок контактов как на главной, на мобайле — прежний */
+.hotel-contact-section--desktop {
+  display: none;
+}
+
+.hotel-contact-section--mobile {
+  display: block;
+}
+
+@media (min-width: 761px) {
+  .hotel-site-concept .hotel-contact-wrap .hotel-contact-section--desktop {
+    display: block;
+    padding: clamp(10px, 1.4vw, 18px);
+  }
+
+  .hotel-site-concept .hotel-contact-wrap .hotel-contact-section--mobile {
+    display: none;
+  }
+
+  .hotel-site-concept .hotel-contact-wrap .hotel-contact-section--desktop .contact-shell {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(12px, 2vw, 18px);
+    align-items: start;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .hotel-site-concept .hotel-contact-wrap .hotel-contact-section--desktop .contact-shell__intro {
+    margin-bottom: 10px;
+  }
+
+  .hotel-site-concept .hotel-contact-wrap .hotel-contact-section--desktop .contact-shell__intro .eyebrow {
+    margin-bottom: 8px;
+    font-size: clamp(1.05rem, 1.45vw, 1.22rem);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .hotel-site-concept .hotel-contact-wrap .hotel-contact-section--desktop .contact-shell__intro p:not(.eyebrow) {
+    margin: 0 0 0.5rem;
+    font-size: clamp(16px, 1.45vw, 18px);
+    line-height: 1.45;
+  }
+
+  .hotel-site-concept .hotel-contact-wrap .hotel-contact-section--desktop .contact-shell__intro .note {
+    margin-bottom: 0;
+    font-size: clamp(14px, 1.2vw, 15px);
+    line-height: 1.45;
+  }
+
+  .hotel-site-concept .hotel-contact-wrap .hotel-contact-section--desktop .contact-messengers {
+    font-size: clamp(15px, 1.35vw, 17px);
+    line-height: 1.42;
+    color: var(--muted);
+  }
+
+  .hotel-site-concept .hotel-contact-wrap .hotel-contact-section--desktop .contact-shell__intro .contact-phone {
+    font-size: clamp(1.28rem, 2.35vw, 1.62rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .hotel-site-concept .hotel-contact-wrap .hotel-contact-section--desktop .contact-buttons {
+    margin-top: 4px;
+    gap: 8px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hotel-site-concept .hotel-contact-wrap .hotel-contact-section--desktop .contact-buttons .btn-book {
+    min-height: 44px;
+    border-radius: 14px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    padding: 0.4rem 0.65rem;
+  }
 }
 
 .hotel-page-v2 .contact-buttons {
@@ -6565,6 +6647,7 @@ body.modal-open .back-to-top {
 .hotel-site-concept__detail-section .card h2,
 .hotel-site-concept__detail-section > h2,
 .hotel-site-concept__detail-section > .cta-block h2,
+.hotel-site-concept__detail-section.hotel-contact-wrap > .hotel-contact-section--mobile.cta-block h2,
 .hotel-site-concept__detail-section .price-card h2.price-card__heading {
   margin: 0 0 12px;
   font-size: clamp(1.02rem, 1.45vw, 1.24rem) !important;
@@ -6578,6 +6661,7 @@ body.modal-open .back-to-top {
 /* Единые отступы после заголовков в контентных блоках карточки */
 .hotel-site-concept__detail-section .card > h2 + *,
 .hotel-site-concept__detail-section > .cta-block > h2 + *,
+.hotel-site-concept__detail-section.hotel-contact-wrap > .hotel-contact-section--mobile.cta-block > h2 + *,
 .hotel-site-concept__detail-section > h2 + * {
   margin-top: 0;
 }
