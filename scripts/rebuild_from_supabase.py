@@ -521,6 +521,42 @@ def load_hotel_card_meta() -> dict[int, dict[str, str]]:
     return result
 
 
+CITY_MAP_LABELS = {
+    "ldzaa": "Лдзаа",
+    "pitsunda": "Пицунда",
+    "gagra": "Гагра",
+    "alakhadzy": "Алахадзы",
+    "gudauta": "Гудаута",
+    "new-afon": "Н. Афон",
+    "sukhum": "Сухум",
+    "tsandripsh": "Цандрипш",
+}
+
+
+def primary_city_key(filters: dict[str, Any]) -> str:
+    cities = filters.get("city") or []
+    if isinstance(cities, str):
+        cities = [part.strip() for part in cities.split("|") if part.strip()]
+    return cities[0] if cities else ""
+
+
+def render_map_plaque_html(city_key: str) -> str:
+    if not city_key:
+        return ""
+    label = CITY_MAP_LABELS.get(city_key, "Абхазия")
+    city_attr = html.escape(city_key, quote=True)
+    label_attr = html.escape(f"Показать на карте объектов: {label}", quote=True)
+    label_text = html.escape(label)
+    return (
+        f'<span class="catalog-card__map-plaque catalog-card__map-plaque--{city_attr}" '
+        f'data-map-city="{city_attr}" role="link" tabindex="0" aria-label="{label_attr}">'
+        f'<span class="catalog-card__map-plaque-pin" aria-hidden="true"></span>'
+        f'<span class="catalog-card__map-plaque-city">{label_text}</span>'
+        f'<span class="catalog-card__map-plaque-map" aria-hidden="true">карта</span>'
+        f"</span>"
+    )
+
+
 def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]]) -> str:
     filters = (row.get("details") or {}).get("filters") or {}
     attrs = " ".join(
@@ -545,9 +581,12 @@ def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]])
     else:
         summary_html = html.escape(summary_fallback)
     alt = title
+    city_key = primary_city_key(filters)
+    map_plaque = render_map_plaque_html(city_key)
     return (
         f'<a class="catalog-card" {attrs} href="{html.escape(href, quote=True)}">'
-        f'<img alt="{alt}" loading="lazy" src="{html.escape(image, quote=True)}"/>'
+        f'<div class="catalog-card__media-wrap"><img alt="{alt}" loading="lazy" src="{html.escape(image, quote=True)}"/>'
+        f"{map_plaque}</div>"
         f"<h3>{title}</h3>"
         f"<p>{summary_html}</p>"
         f"</a>"
@@ -591,9 +630,11 @@ def render_kvartira_card(row: dict[str, Any]) -> str:
     summary = html.escape(row.get("summary") or row.get("excerpt") or ((row.get("details") or {}).get("excerpt") or ""))
     image = image_src_for_html(pick_cover_url(row))
     badge = '<span class="catalog-card__badge">Видео</span>' if row.get("has_video") else ""
+    map_plaque = render_map_plaque_html(primary_city_key(filters))
     return (
         f'<a class="catalog-card" {attrs} href="{html.escape(href, quote=True)}">'
-        f'<div class="catalog-card__media-wrap">{badge}<img src="{html.escape(image, quote=True)}" alt="{title}" loading="lazy" /></div>'
+        f'<div class="catalog-card__media-wrap">{badge}<img src="{html.escape(image, quote=True)}" alt="{title}" loading="lazy" />'
+        f"{map_plaque}</div>"
         f"<h3>{title}</h3>"
         f"<p>{summary}</p>"
         f"</a>"

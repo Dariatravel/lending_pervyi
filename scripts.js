@@ -2169,8 +2169,8 @@
       image.src = pickCoverUrl(row);
       attachImageFallback(image, row);
       mediaWrap.appendChild(image);
-
       card.appendChild(mediaWrap);
+      appendCatalogMapPlaque(card, primaryCityKeyFromFilters(row.details?.filters));
 
       card.appendChild(createTextNode("h3", row.title || ""));
       card.appendChild(createTextNode("p", formatHotelCardSummary(row)));
@@ -2179,6 +2179,7 @@
 
     grid.replaceChildren(fragment);
     wireSupabaseMediaFallback(grid);
+    initCatalogMapPlaques(grid);
   }
 
   function renderKvartiraCards(rows, grid) {
@@ -2205,8 +2206,8 @@
       image.src = pickCoverUrl(row);
       attachImageFallback(image, row);
       mediaWrap.appendChild(image);
-
       card.appendChild(mediaWrap);
+      appendCatalogMapPlaque(card, primaryCityKeyFromFilters(row.details?.filters));
       card.appendChild(createTextNode("h3", row.title || ""));
       const desc = document.createElement("p");
       replaceWithLines(desc, formatKvartiraCardSummary(row));
@@ -2216,6 +2217,7 @@
 
     grid.replaceChildren(fragment);
     wireSupabaseMediaFallback(grid);
+    initCatalogMapPlaques(grid);
   }
 
   const SIMILAR_FILTER_WEIGHTS = {
@@ -3716,6 +3718,159 @@
     });
   }
 
+  const OBJECTS_MAP_CONSTRUCTOR_ID =
+    "80408220233bb515383a3bc3da359eb235d60e8dd3dddfe843612590179aabd1";
+
+  const CITY_MAP_GEO = {
+    ldzaa: { label: "Лдзаа", short: "Лдзаа", lon: 40.32, lat: 43.05, z: 13 },
+    pitsunda: { label: "Пицунда", short: "Пицунда", lon: 40.34, lat: 43.16, z: 13 },
+    gagra: { label: "Гагра", short: "Гагра", lon: 40.265, lat: 43.278, z: 13 },
+    alakhadzy: { label: "Алахадзы", short: "Алахадзы", lon: 40.28, lat: 43.22, z: 14 },
+    gudauta: { label: "Гудаута", short: "Гудаута", lon: 40.62, lat: 43.1, z: 13 },
+    "new-afon": { label: "Новый Афон", short: "Н. Афон", lon: 40.82, lat: 43.09, z: 13 },
+    sukhum: { label: "Сухум", short: "Сухум", lon: 41.02, lat: 43.0, z: 12 },
+    tsandripsh: { label: "Цандрипш", short: "Цандрипш", lon: 40.34, lat: 43.38, z: 13 },
+  };
+
+  const DEFAULT_CITY_MAP_GEO = { label: "Абхазия", short: "Абхазия", lon: 40.5, lat: 43.15, z: 10 };
+
+  const CITY_TEXT_TO_KEY = [
+    ["новый афон", "new-afon"],
+    ["цандрипш", "tsandripsh"],
+    ["алахадз", "alakhadzy"],
+    ["гагрск", "gagra"],
+    ["гагра", "gagra"],
+    ["пицунд", "pitsunda"],
+    ["гудаут", "gudauta"],
+    ["лдзаа", "ldzaa"],
+    ["сухум", "sukhum"],
+  ];
+
+  function cityGeo(cityKey) {
+    return CITY_MAP_GEO[cityKey] || DEFAULT_CITY_MAP_GEO;
+  }
+
+  function buildObjectsMapPageUrl(cityKey) {
+    const base = "/karta/";
+    if (!cityKey) return base;
+    return `${base}?city=${encodeURIComponent(cityKey)}`;
+  }
+
+  function primaryCityKeyFromFilters(filters) {
+    const raw = filters?.city;
+    const values = Array.isArray(raw)
+      ? raw
+      : String(raw || "")
+          .split("|")
+          .map((value) => value.trim())
+          .filter(Boolean);
+    return values[0] || "";
+  }
+
+  function primaryCityKeyFromCard(card) {
+    if (!card) return "";
+    const raw = card.getAttribute("data-filter-city") || "";
+    return raw.split("|").map((value) => value.trim()).filter(Boolean)[0] || "";
+  }
+
+  function inferCityKeyFromText(text) {
+    const normalized = String(text || "").toLowerCase();
+    for (const [needle, key] of CITY_TEXT_TO_KEY) {
+      if (normalized.includes(needle)) return key;
+    }
+    return "";
+  }
+
+  function ensureCatalogCardMediaWrap(card) {
+    let mediaWrap = card.querySelector(".catalog-card__media-wrap");
+    if (mediaWrap) return mediaWrap;
+    const firstImage = card.querySelector("img");
+    if (!firstImage) return null;
+    mediaWrap = document.createElement("div");
+    mediaWrap.className = "catalog-card__media-wrap";
+    firstImage.parentNode?.insertBefore(mediaWrap, firstImage);
+    mediaWrap.appendChild(firstImage);
+    return mediaWrap;
+  }
+
+  function createCatalogMapPlaque(cityKey) {
+    const geo = cityGeo(cityKey);
+    const plaque = document.createElement("span");
+    plaque.className = `catalog-card__map-plaque catalog-card__map-plaque--${cityKey || "default"}`;
+    plaque.dataset.mapCity = cityKey || "";
+    plaque.setAttribute("role", "link");
+    plaque.setAttribute("tabindex", "0");
+    plaque.setAttribute("aria-label", `Показать на карте объектов: ${geo.label}`);
+
+    const pin = document.createElement("span");
+    pin.className = "catalog-card__map-plaque-pin";
+    pin.setAttribute("aria-hidden", "true");
+
+    const city = document.createElement("span");
+    city.className = "catalog-card__map-plaque-city";
+    city.textContent = geo.short || geo.label;
+
+    const mapLabel = document.createElement("span");
+    mapLabel.className = "catalog-card__map-plaque-map";
+    mapLabel.setAttribute("aria-hidden", "true");
+    mapLabel.textContent = "карта";
+
+    plaque.append(pin, city, mapLabel);
+    return plaque;
+  }
+
+  function wireCatalogMapPlaque(plaque) {
+    const openMap = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      window.open(buildObjectsMapPageUrl(plaque.dataset.mapCity || ""), "_blank", "noopener,noreferrer");
+    };
+    plaque.addEventListener("click", openMap);
+    plaque.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      openMap(event);
+    });
+  }
+
+  function appendCatalogMapPlaque(card, cityKey) {
+    if (!card || !cityKey || card.querySelector(".catalog-card__map-plaque")) return;
+    const mediaWrap = ensureCatalogCardMediaWrap(card);
+    if (!mediaWrap) return;
+    const plaque = createCatalogMapPlaque(cityKey);
+    wireCatalogMapPlaque(plaque);
+    mediaWrap.appendChild(plaque);
+  }
+
+  function initCatalogMapPlaques(root = document) {
+    if (!root?.querySelectorAll) return;
+    root.querySelectorAll(".catalog-card").forEach((card) => {
+      appendCatalogMapPlaque(card, primaryCityKeyFromCard(card));
+      card.querySelectorAll(".catalog-card__map-plaque").forEach((plaque) => {
+        if (plaque.dataset.mapWired === "1") return;
+        plaque.dataset.mapWired = "1";
+        wireCatalogMapPlaque(plaque);
+      });
+    });
+  }
+
+  function initObjectPageMapLink() {
+    const rating = document.querySelector(".hotel-site-concept .hotel-card__rating");
+    if (!rating || rating.querySelector(".hotel-card__map-link")) return;
+
+    const cityKey =
+      inferCityKeyFromText(rating.querySelector(".hotel-card__rating-summary")?.textContent) ||
+      inferCityKeyFromText(document.querySelector(".hotel-site-concept .location")?.textContent);
+    if (!cityKey) return;
+
+    const link = document.createElement("a");
+    link.className = "hotel-card__map-link";
+    link.href = buildObjectsMapPageUrl(cityKey);
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = `На карте — ${cityGeo(cityKey).label}`;
+    rating.appendChild(link);
+  }
+
   async function addHotelVideoBadges(grid) {
     if (!grid) return;
     try {
@@ -3764,6 +3919,7 @@
     // затем упрощённые карточки из formatHotelCardSummary. Не перезаписываем готовую сетку.
     if (grid.querySelector(".catalog-card")) {
       addHotelVideoBadges(grid);
+      initCatalogMapPlaques(grid);
       filtersController.refresh();
       return;
     }
@@ -3790,6 +3946,7 @@
     // Как и с основным каталогом: если карточки уже отрисованы статикой,
     // не перезатираем DOM данными из Supabase (иначе виден "мигающий" откат верстки/текста).
     if (grid.querySelector(".catalog-card")) {
+      initCatalogMapPlaques(grid);
       filtersController.refresh();
       return;
     }
@@ -4088,6 +4245,8 @@
 
   initHeroVideoQuality();
   wireSupabaseMediaFallback();
+  initCatalogMapPlaques();
+  initObjectPageMapLink();
   absolutizeHotelSiteConceptMedia();
   void initRandomGuestReviews();
 

@@ -6202,6 +6202,167 @@ body.modal-open .back-to-top {
   font-size: 0.72rem;
 }
 
+.catalog-card__map-plaque {
+  --map-plaque-accent: #2f7c78;
+  --map-plaque-shore: #7db2a4;
+  position: absolute;
+  left: 0.62rem;
+  bottom: 0.62rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  max-width: calc(100% - 1.2rem);
+  padding: 0.34rem 0.62rem 0.34rem 0.48rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  background:
+    radial-gradient(circle at 78% 28%, color-mix(in srgb, var(--map-plaque-shore) 55%, transparent), transparent 42%),
+    linear-gradient(135deg, rgba(255, 252, 245, 0.96), rgba(255, 252, 245, 0.88));
+  box-shadow: 0 8px 18px rgba(17, 28, 22, 0.14);
+  color: #1f342c;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.catalog-card__map-plaque:hover,
+.catalog-card__map-plaque:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(17, 28, 22, 0.18);
+  outline: none;
+}
+
+.catalog-card__map-plaque-pin {
+  width: 0.52rem;
+  height: 0.52rem;
+  border-radius: 50%;
+  background: var(--map-plaque-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--map-plaque-accent) 28%, transparent);
+  flex-shrink: 0;
+}
+
+.catalog-card__map-plaque-city {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.catalog-card__map-plaque-map {
+  padding: 0.08rem 0.34rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--map-plaque-accent) 14%, white);
+  color: color-mix(in srgb, var(--map-plaque-accent) 82%, black);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+
+.catalog-card__map-plaque--ldzaa { --map-plaque-accent: #31715f; --map-plaque-shore: #73b1a4; }
+.catalog-card__map-plaque--pitsunda { --map-plaque-accent: #2f7357; --map-plaque-shore: #86a95a; }
+.catalog-card__map-plaque--gagra { --map-plaque-accent: #227182; --map-plaque-shore: #e09b62; }
+.catalog-card__map-plaque--alakhadzy { --map-plaque-accent: #587d48; --map-plaque-shore: #d99b5f; }
+.catalog-card__map-plaque--gudauta { --map-plaque-accent: #2f7c78; --map-plaque-shore: #bfa06b; }
+.catalog-card__map-plaque--new-afon { --map-plaque-accent: #456e88; --map-plaque-shore: #b98962; }
+.catalog-card__map-plaque--sukhum { --map-plaque-accent: #446b92; --map-plaque-shore: #6eb2b4; }
+.catalog-card__map-plaque--tsandripsh { --map-plaque-accent: #3a6d62; --map-plaque-shore: #8eb46b; }
+.catalog-card__map-plaque--default { --map-plaque-accent: #4a6458; --map-plaque-shore: #9ab09a; }
+
+.site-concept .catalog-card .catalog-card__map-plaque {
+  left: 12px;
+  bottom: 12px;
+  font-size: 10px;
+}
+
+.hotel-card__map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+  padding: 0.34rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(47, 124, 120, 0.22);
+  background: rgba(255, 252, 245, 0.92);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.hotel-card__map-link::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-strong) 24%, transparent);
+}
+
+.hotel-card__map-link:hover {
+  border-color: rgba(47, 124, 120, 0.36);
+  background: #fff;
+}
+
+.objects-map-page {
+  margin: 0;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: #f7f3ea;
+  color: #1f342c;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+}
+
+.objects-map-page__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(120, 145, 123, 0.18);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.objects-map-page__back {
+  color: var(--accent-strong);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.objects-map-page__title {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.objects-map-page__title strong {
+  color: #1f342c;
+}
+
+.objects-map-page__city {
+  margin: 0 0 0 auto;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2f6654;
+}
+
+#objects-map-frame {
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: #e8e2d6;
+}
+
 .catalog-card img,
 .catalog-card__media-fallback {
   width: 100%;

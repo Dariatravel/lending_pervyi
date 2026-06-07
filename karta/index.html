@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Карта объектов — Абхазберег</title>
+  <meta name="description" content="Интерактивная карта проверенных объектов размещения Абхазберег по курортам Абхазии." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="icon" type="image/png" href="../media/branding/favicon-abhazbereg.png" />
+  <link rel="stylesheet" href="../styles.css?v=202605272305" />
+</head>
+<body class="objects-map-page">
+  <header class="objects-map-page__bar">
+    <a class="objects-map-page__back" href="/">← К каталогу</a>
+    <p class="objects-map-page__title">Карта объектов <strong>Абхазберег</strong></p>
+    <p class="objects-map-page__city" id="objects-map-city">Абхазия</p>
+  </header>
+  <iframe
+    id="objects-map-frame"
+    title="Интерактивная карта объектов Абхазберег"
+    loading="lazy"
+    allowfullscreen
+  ></iframe>
+  <script>
+    (function () {
+      var CONSTRUCTOR_ID = "80408220233bb515383a3bc3da359eb235d60e8dd3dddfe843612590179aabd1";
+      var CITIES = {
+        ldzaa: { label: "Лдзаа", lon: 40.32, lat: 43.05, z: 13 },
+        pitsunda: { label: "Пицунда", lon: 40.34, lat: 43.16, z: 13 },
+        gagra: { label: "Гагра", lon: 40.265, lat: 43.278, z: 13 },
+        alakhadzy: { label: "Алахадзы", lon: 40.28, lat: 43.22, z: 14 },
+        gudauta: { label: "Гудаута", lon: 40.62, lat: 43.1, z: 13 },
+        "new-afon": { label: "Новый Афон", lon: 40.82, lat: 43.09, z: 13 },
+        sukhum: { label: "Сухум", lon: 41.02, lat: 43.0, z: 12 },
+        tsandripsh: { label: "Цандрипш", lon: 40.34, lat: 43.38, z: 13 },
+      };
+      var DEFAULT_GEO = { label: "Абхазия", lon: 40.5, lat: 43.15, z: 10 };
+      var cityKey = new URLSearchParams(window.location.search).get("city") || "";
+      var geo = CITIES[cityKey] || DEFAULT_GEO;
+      var cityNode = document.getElementById("objects-map-city");
+      if (cityNode) cityNode.textContent = geo.label;
+      document.title = "Карта объектов — " + geo.label + " | Абхазберег";
+      var frame = document.getElementById("objects-map-frame");
+      if (!frame) return;
+      frame.src =
+        "https://yandex.ru/map-widget/v1/?um=constructor%3A" +
+        encodeURIComponent(CONSTRUCTOR_ID) +
+        "&ll=" +
+        encodeURIComponent(geo.lon + "," + geo.lat) +
+        "&z=" +
+        encodeURIComponent(String(geo.z)) +
+        "&scroll=true";
+    })();
+  </script>
+</body>
+</html>
