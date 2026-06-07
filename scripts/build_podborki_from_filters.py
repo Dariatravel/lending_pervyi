@@ -394,6 +394,14 @@ PODBORKI_INDEX_VISUALS: dict[str, tuple[str, str]] = {
     "pyatero-gostey-i-bolee": ("guests", "5+ гостей"),
 }
 
+# Ручная обложка на индексе подборок (если авто-выбор неудачен)
+PODBORKI_INDEX_COVER_OVERRIDES: dict[str, tuple[str, str]] = {
+    "gudauta-vse-varianty": (
+        "/media/cards/full-haus-domiki-s-basseynom-4092.jpg",
+        '"ФУЛЛ ХАУС" домики с бассейном',
+    ),
+}
+
 
 def render_index_link(slug: str, title: str, cover_image: str = "", cover_alt: str = "") -> str:
     visual, label = PODBORKI_INDEX_VISUALS.get(slug, ("default", "Абхазия"))
@@ -538,8 +546,15 @@ def main() -> int:
         (out_dir / "index.html").write_text(render_page(selection, selected, meta), encoding="utf-8")
         title = meta.get(selection.slug, {}).get("h1") or selection.title
         cover_card = pick_cover_card(selected, used_cover_images)
-        cover_image = cover_card.image if cover_card else ""
-        cover_alt = cover_card.alt if cover_card else title
+        override = PODBORKI_INDEX_COVER_OVERRIDES.get(selection.slug)
+        if override:
+            cover_image, cover_alt = override
+            key = cover_image_key(cover_image)
+            if key:
+                used_cover_images.add(key)
+        else:
+            cover_image = cover_card.image if cover_card else ""
+            cover_alt = cover_card.alt if cover_card else title
         index_items.append((selection.slug, title, cover_image, cover_alt))
         slugs.append(selection.slug)
         report.append(f"- {selection.slug}: {len(selected)}")
