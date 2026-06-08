@@ -1,32 +1,32 @@
 Подборки пересобраны по data-filter-* из каталога.
 Источник data-filter-* — Google Sheet СОЦСЕТИ через apply_all_filters_from_sheet.py.
 
-Карточек в каталоге: 208
+Карточек в каталоге: 213
 
 - doma-pod-klyuch-vse-varianty: 14
 - gagra-vse-varianty: 27
 - gudauta-vse-varianty: 9
 - novyy-afon-vse-varianty: 9
-- pitsunda-vse-varianty: 32
+- pitsunda-vse-varianty: 35
 - suhum-vse-varianty: 38
 - alahadzy-vse-varianty: 15
-- varianty-do-5-tr-ekonom: 75
-- varianty-5-12-tr-srednyak: 88
-- balkony: 67
-- veranda: 58
-- dvuhkomnatnye-i-bolee: 68
+- varianty-do-5-tr-ekonom: 78
+- varianty-5-12-tr-srednyak: 90
+- balkony: 71
+- veranda: 59
+- dvuhkomnatnye-i-bolee: 69
 - sobaki-varianty: 92
-- svoya-kuhnya-v-nomere: 81
-- domiki-vse-varianty: 70
-- kvartiry-vse-varianty: 39
+- svoya-kuhnya-v-nomere: 83
+- domiki-vse-varianty: 71
+- kvartiry-vse-varianty: 40
 - gory-oteli-v-gorah: 13
-- ldzaa-vse-varianty: 69
-- sosnovyy-plyazh: 47
+- ldzaa-vse-varianty: 72
+- sosnovyy-plyazh: 50
 - vid-na-more-pryamoy-bokovoy: 33
 - basseyn-vse-varianty: 42
-- pitanie-v-otele-ili-svoe-kafe: 45
+- pitanie-v-otele-ili-svoe-kafe: 47
 - bereg-morya-oteli-na-beregu: 32
 - peschanyy-plyazh-suhum: 17
 - peschanyy-ldzaa: 5
 - varianty-dorozhe-12-tr-premium: 43
-- pyatero-gostey-i-bolee: 92
+- pyatero-gostey-i-bolee: 93
