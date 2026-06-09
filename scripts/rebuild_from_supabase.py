@@ -766,9 +766,18 @@ def render_kvartira_catalog_page(rows: list[dict[str, Any]]) -> str:
 
 def replace_catalog_block(file_path: Path, marker: str, html_block: str) -> None:
     text = file_path.read_text(encoding="utf-8")
-    start = text.index(marker) + len(marker)
-    end = text.index("</div>", start)
-    updated = text[:start] + html_block + text[end:]
+    pattern = (
+        r'<div class="catalog-grid" id="catalog-grid">'
+        r'[\s\S]*?'
+        r'</div>\s*(?:<div class="catalog-grid" id="catalog-grid">[\s\S]*?</div>\s*)?'
+        r'(?=<div class="catalog-expand-wrap">|<button class="btn-filter catalog-expand-button")'
+    )
+    replacement = f'<div class="catalog-grid" id="catalog-grid">{html_block}</div>\n'
+    updated, count = re.subn(pattern, replacement, text, count=1)
+    if count != 1:
+        raise RuntimeError(
+            f"Не удалось заменить блок каталога в {file_path}: найдено совпадений {count}"
+        )
     file_path.write_text(updated, encoding="utf-8")
 
 

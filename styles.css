@@ -1287,11 +1287,18 @@ a.site-concept__destination-card:focus-visible {
 }
 
 .site-concept .catalog-grid {
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
   gap: clamp(10px, 1.5vw, 20px);
   align-items: start;
   min-width: 0;
   width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .site-concept .catalog-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .site-concept .catalog-card {
