@@ -69,7 +69,8 @@
     storageBucket: "site-media",
   };
   const SUPABASE_MODULE_URL = "https://esm.sh/@supabase/supabase-js@2";
-  const SCREENSHOT_REVIEW_BANK_URL = "/media/reviews/review_text_bank.json";
+  const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
+  const SCREENSHOT_REVIEW_BANK_URL = `${CDN_MEDIA_BASE}/reviews/review_text_bank.json`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
   const FILTER_CONFIG = {
     /** Отдельный URL-парам (hotel / guesthouse / cabin), не смешиваем с группами `data-filter-*` на карточках. Состояние категории живёт рядом с группами в createFilterStore (committedCat / draftCat). */
@@ -1259,16 +1260,46 @@
   function localCardFallback(row) {
     if (!row?.slug) return "";
     const folder = row.source_kind === "kvartira" ? "kvartira-cards" : "cards";
-    return `/media/${folder}/${row.slug}.jpg`;
+    return toCdnMediaUrl(`/media/${folder}/${row.slug}.jpg`);
   }
 
-  /** Turn /media/... paths into public Supabase Storage URLs (covers cards, hotel galleries, videos — not in static repo). */
+  function toCdnMediaUrl(value) {
+    const n = normalizeMediaUrl(value);
+    if (!n) return "";
+    if (n.startsWith(CDN_MEDIA_BASE)) return n;
+
+    const supabaseMarker = `/storage/v1/object/public/${SUPABASE_CONFIG.storageBucket}/`;
+    const yandexFolders = /^(cards|hotels|kvartira|kvartira-cards|branding|blog|reviews)\//;
+    let rel = "";
+
+    if (n.includes(supabaseMarker)) {
+      rel = n.slice(n.indexOf(supabaseMarker) + supabaseMarker.length).split("?")[0].replace(/^\/+/, "");
+    } else if (n.includes("/media/")) {
+      rel = n.slice(n.indexOf("/media/") + "/media/".length).split("?")[0].replace(/^\/+/, "");
+    } else if (!/^https?:\/\//i.test(n)) {
+      rel = n.replace(/^(\.\.\/)+/, "").replace(/^\/+/, "").replace(/^media\//, "");
+    }
+
+    if (rel) {
+      try {
+        rel = decodeURIComponent(rel);
+      } catch (error) {
+        /* keep raw rel */
+      }
+      if (yandexFolders.test(rel)) {
+        return `${CDN_MEDIA_BASE}/${rel.split("/").map(encodeURIComponent).join("/")}`;
+      }
+      if (rel.startsWith("videos/")) return n;
+    }
+
+    return n;
+  }
+
+  /** Turn local/Supabase media image paths into Yandex Object Storage URLs. */
   function absolutizeKvartiraCoverUrl(url) {
     const n = normalizeMediaUrl(url);
     if (!n) return "";
-    if (n.startsWith("http://") || n.startsWith("https://")) return n;
-    if (n.startsWith("/media/")) return n;
-    return n;
+    return toCdnMediaUrl(n);
   }
 
   /** Локальные медиа уже лежат на сайте, поэтому только инициируем перезагрузку video после гидрации. */
@@ -1322,7 +1353,7 @@
     return normalized.includes(SUPABASE_PUBLIC_MEDIA_MARKER);
   }
 
-  /** Supabase Storage URL → тот же файл на домене сайта (/media/...). */
+  /** Supabase Storage URL → CDN для фото или локальный путь для видео. */
   function supabaseStorageUrlToLocalPath(url) {
     const normalized = normalizeMediaUrl(url);
     if (!normalized) return "";
@@ -1330,9 +1361,9 @@
     if (markerIndex === -1) return "";
     const relative = normalized.slice(markerIndex + SUPABASE_PUBLIC_MEDIA_MARKER.length).split("?")[0];
     try {
-      return `/media/${decodeURIComponent(relative)}`;
+      return toCdnMediaUrl(`/media/${decodeURIComponent(relative)}`);
     } catch (error) {
-      return `/media/${relative}`;
+      return toCdnMediaUrl(`/media/${relative}`);
     }
   }
 
@@ -1342,7 +1373,7 @@
 
     const chain = [primary];
 
-    if (primary.includes("/media/kvartira-cards/")) {
+    if (primary.includes(`${CDN_MEDIA_BASE}/kvartira-cards/`)) {
       const withoutCover = primary.replace(/-cover\.jpg$/i, ".jpg");
       const withCover = primary.replace(/\.jpg$/i, "-cover.jpg");
       if (withoutCover !== primary && !chain.includes(withoutCover)) chain.push(withoutCover);
@@ -1633,15 +1664,15 @@
     };
     /* Главное фото страницы объекта — то же, что в карточке на сайте (галерея photo-01…). */
     if (row.slug) {
-      push(`/media/kvartira/${row.slug}/photo-01.jpg`);
-      push(`/media/kvartira/${row.slug}/photo-02.jpg`);
+      push(`https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/${row.slug}/photo-01.jpg`);
+      push(`https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/${row.slug}/photo-02.jpg`);
     }
     push(card?.public_url);
     push(image?.public_url);
     push(row.cover_url);
     if (row.slug) {
-      push(`/media/kvartira-cards/${row.slug}-cover.jpg`);
-      push(`/media/kvartira-cards/${row.slug}.jpg`);
+      push(`https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/${row.slug}-cover.jpg`);
+      push(`https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/${row.slug}.jpg`);
     }
     return urls;
   }
@@ -2462,9 +2493,9 @@
 
   function resolveSupabaseMediaUrl(item, row) {
     if (item && typeof item.source_url === "string" && item.source_url.startsWith("/media/")) {
-      return item.source_url;
+      return toCdnMediaUrl(item.source_url);
     }
-    if (item && item.public_url) return item.public_url;
+    if (item && item.public_url) return toCdnMediaUrl(item.public_url);
     const raw = (item && item.storage_path) || (item && item.source_url) || '';
     if (!raw) return '';
     if (/^https?:\/\//i.test(raw)) {
@@ -2477,12 +2508,12 @@
           if (nextIdx === -1) break;
           rel = decodeURIComponent(rel.slice(nextIdx + marker.length));
         }
-        return `${SUPABASE_CONFIG.url}/storage/v1/object/public/${SUPABASE_CONFIG.storageBucket}/${rel.split('/').map(encodeURIComponent).join('/')}`;
+        return toCdnMediaUrl(`/media/${rel}`);
       }
-      return raw;
+      return toCdnMediaUrl(raw);
     }
     const rel = raw.replace(/^\/+/, '');
-    return `${SUPABASE_CONFIG.url}/storage/v1/object/public/${SUPABASE_CONFIG.storageBucket}/${rel.split('/').map(encodeURIComponent).join('/')}`;
+    return toCdnMediaUrl(`/media/${rel}`);
   }
 
   function renderHotelMedia(row, grid) {

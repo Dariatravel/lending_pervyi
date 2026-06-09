@@ -817,15 +817,15 @@ img[data-image-lite="done"] {
 }
 
 .site-concept__social-stat-icon--tg {
-  background-image: url("/media/branding/icon-tg-circle.png");
+  background-image: url("https://storage.yandexcloud.net/abhazbereg-media/media/branding/icon-tg-circle.png");
 }
 
 .site-concept__social-stat-icon--vk {
-  background-image: url("/media/branding/icon-vk-circle.png");
+  background-image: url("https://storage.yandexcloud.net/abhazbereg-media/media/branding/icon-vk-circle.png");
 }
 
 .site-concept__social-stat-icon--max {
-  background-image: url("/media/branding/icon-max-circle.png");
+  background-image: url("https://storage.yandexcloud.net/abhazbereg-media/media/branding/icon-max-circle.png");
 }
 
 .site-concept__social-stat strong {

@@ -12,12 +12,16 @@ google-service-account.json
 
 # local telegram auth/session artifacts
 tg_session.session
+tg_session.session.bak*
 telegram_login_qr.png
 tg_login_check.py
 tg_export_topics.py.save
 
 # local Supabase secrets
 .env.supabase.local
+
+# local Yandex Object Storage secrets
+.env.yandex.local
 
 # generated heavy telegram source videos (intermediate, not for git)
 media/videos/**/video-*-source.mp4
