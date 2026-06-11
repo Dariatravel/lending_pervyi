@@ -751,7 +751,6 @@ def render_kvartira_catalog_page(rows: list[dict[str, Any]]) -> str:
 
       <section class="section">
         <article class="card">
-          <h2>Каталог объектов</h2>
           <div class="catalog-grid" id="kvartira-catalog-grid">{grid}</div>
         </article>
       </section>{KVARTIRA_CATALOG_PAGE_SUFFIX}
