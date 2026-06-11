@@ -4015,22 +4015,50 @@
     });
   }
 
-  function initObjectPageMapLink() {
-    const rating = document.querySelector(".hotel-site-concept .hotel-card__rating");
-    if (!rating || rating.querySelector(".hotel-card__map-link")) return;
+  function inferObjectPageCityKey(root) {
+    const scope = root || document;
+    return (
+      inferCityKeyFromText(scope.querySelector(".location")?.textContent) ||
+      inferCityKeyFromText(scope.querySelector(".hotel-card__rating-summary")?.textContent)
+    );
+  }
 
-    const cityKey =
-      inferCityKeyFromText(rating.querySelector(".hotel-card__rating-summary")?.textContent) ||
-      inferCityKeyFromText(document.querySelector(".hotel-site-concept .location")?.textContent);
+  function appendObjectPageMapPlaque(host, cityKey, variant) {
+    if (!host || !cityKey || host.querySelector(`.object-card__map-plaque${variant ? `[data-map-variant="${variant}"]` : ""}`)) {
+      return;
+    }
+
+    const plaque = createCatalogMapPlaque(cityKey);
+    plaque.classList.add("object-card__map-plaque");
+    if (variant) plaque.dataset.mapVariant = variant;
+    wireCatalogMapPlaque(plaque);
+    host.appendChild(plaque);
+  }
+
+  function initObjectPageMapPlaque() {
+    const root = document.querySelector(".hotel-site-concept");
+    if (!root || root.dataset.mapPlaqueWired === "1") return;
+
+    const cityKey = inferObjectPageCityKey(root);
     if (!cityKey) return;
 
-    const link = document.createElement("a");
-    link.className = "hotel-card__map-link";
-    link.href = buildObjectsMapPageUrl(cityKey);
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = `На карте — ${cityGeo(cityKey).label}`;
-    rating.appendChild(link);
+    appendObjectPageMapPlaque(root.querySelector(".hotel-card__main-photo"), cityKey, "photo");
+
+    const headerMain = root.querySelector(".hotel-card__header-main");
+    if (headerMain) {
+      let row = headerMain.querySelector(".object-card__map-plaque-row");
+      if (!row) {
+        row = document.createElement("div");
+        row.className = "object-card__map-plaque-row";
+        const h2 = headerMain.querySelector("h2");
+        if (h2) h2.insertAdjacentElement("afterend", row);
+        else headerMain.prepend(row);
+      }
+      appendObjectPageMapPlaque(row, cityKey, "header");
+    }
+
+    root.querySelector(".hotel-card__map-link")?.remove();
+    root.dataset.mapPlaqueWired = "1";
   }
 
   async function addHotelVideoBadges(grid) {
@@ -4408,7 +4436,7 @@
   initHeroVideoQuality();
   wireSupabaseMediaFallback();
   initCatalogMapPlaques();
-  initObjectPageMapLink();
+  initObjectPageMapPlaque();
   absolutizeHotelSiteConceptMedia();
   void initRandomGuestReviews();
 
