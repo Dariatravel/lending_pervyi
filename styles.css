@@ -1572,6 +1572,14 @@ section.site-concept__contacts.section {
   gap: clamp(14px, 2vw, 22px);
 }
 
+.blog-listing-group {
+  scroll-margin-top: clamp(72px, 10vw, 96px);
+}
+
+.blog-listing-group + .blog-listing-group {
+  margin-top: clamp(6px, 1vw, 10px);
+}
+
 .blog-page .site-concept__hero-card,
 .blog-page .site-concept__section-block {
   padding: clamp(16px, 2.1vw, 26px);
