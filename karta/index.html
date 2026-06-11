@@ -46,29 +46,40 @@
       if (cityNode) cityNode.textContent = geo.label;
       document.title = "Карта объектов — " + geo.label + " | Абхазберег";
 
-      function escapeHtml(value) {
-        return String(value || "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;");
+      function decodeHtmlText(value) {
+        var node = document.createElement("textarea");
+        node.innerHTML = String(value || "");
+        return node.value;
       }
 
-      function popupHtml(point) {
-        var title = escapeHtml(point.title);
-        var address = escapeHtml(point.address || "");
-        var url = escapeHtml(point.url || "/");
-        return (
-          '<div class="objects-map-popup">' +
-          '<p class="objects-map-popup__title">' +
-          title +
-          "</p>" +
-          (address ? '<p class="objects-map-popup__address">' + address + "</p>" : "") +
-          '<a class="objects-map-popup__link" href="' +
-          url +
-          '" target="_blank" rel="noopener noreferrer">Открыть объект на сайте</a>' +
-          "</div>"
-        );
+      function createPopupContent(point) {
+        var title = decodeHtmlText(point.title);
+        var address = decodeHtmlText(point.address || "");
+        var url = String(point.url || "/");
+        var wrap = document.createElement("div");
+        wrap.className = "objects-map-popup";
+
+        var titleNode = document.createElement("p");
+        titleNode.className = "objects-map-popup__title";
+        titleNode.textContent = title;
+        wrap.appendChild(titleNode);
+
+        if (address) {
+          var addressNode = document.createElement("p");
+          addressNode.className = "objects-map-popup__address";
+          addressNode.textContent = address;
+          wrap.appendChild(addressNode);
+        }
+
+        var link = document.createElement("a");
+        link.className = "objects-map-popup__link";
+        link.href = url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Открыть объект на сайте";
+        wrap.appendChild(link);
+
+        return wrap;
       }
 
       function filterPoints(points) {
@@ -102,7 +113,7 @@
             fillColor: "#58a789",
             fillOpacity: 0.92,
           });
-          marker.bindPopup(popupHtml(point), { maxWidth: 280, className: "objects-map-popup-shell" });
+          marker.bindPopup(createPopupContent(point), { maxWidth: 280, className: "objects-map-popup-shell" });
           marker.addTo(group);
         });
         group.addTo(map);
@@ -136,12 +147,13 @@
                 return Number.isFinite(point.lat) && Number.isFinite(point.lon);
               })
               .map(function (point) {
+                var popup = createPopupContent(point);
                 return new window.ymaps.Placemark(
                   [point.lat, point.lon],
                   {
-                    balloonContentHeader: point.title,
-                    balloonContentBody: popupHtml(point),
-                    hintContent: point.title,
+                    balloonContentHeader: decodeHtmlText(point.title),
+                    balloonContentBody: popup.outerHTML,
+                    hintContent: decodeHtmlText(point.title),
                   },
                   { preset: "islands#darkGreenDotIcon" }
                 );
