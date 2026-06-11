@@ -50,3 +50,22 @@ def deactivate_slugs(supa: Any, slugs: set[str]) -> tuple[list[str], list[str]]:
             supa.patch_listing(int(row["id"]), {"is_active": False})
         done.append(slug)
     return done, missing
+
+
+def activate_slugs(supa: Any, slugs: set[str]) -> tuple[list[str], list[str]]:
+    """Вернуть (активированы, не найдены в Supabase)."""
+    if not slugs:
+        return [], []
+    rows = supa.fetch_listings() if hasattr(supa, "fetch_listings") else []
+    by_slug = {str(r.get("slug") or ""): r for r in rows}
+    done: list[str] = []
+    missing: list[str] = []
+    for slug in sorted(slugs):
+        row = by_slug.get(slug)
+        if not row:
+            missing.append(slug)
+            continue
+        if row.get("is_active") is not True:
+            supa.patch_listing(int(row["id"]), {"is_active": True})
+        done.append(slug)
+    return done, missing

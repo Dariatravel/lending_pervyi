@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T21:25:32.260025+00:00",
+  "generated_at": "2026-06-11T21:37:26.546125+00:00",
   "constructor_id": "80408220233bb515383a3bc3da359eb235d60e8dd3dddfe843612590179aabd1",
   "points": [
     {
@@ -24,22 +24,6 @@
       "lat": 43.219509,
       "lon": 40.275602,
       "url": "/hotels/akva-otel-s-basseynom-i-zavtrakami-3114/",
-      "cityKey": "alakhadzy"
-    },
-    {
-      "title": "\"АРИСТОКРАТ\" ГОСТЕВОЙ КОМПЛЕКС С БАССЕЙНАМИ",
-      "address": "Алахадзы, ул. Туманяна, 5А",
-      "lat": 43.20869145454546,
-      "lon": 40.282179909090914,
-      "url": "/hotels/aristokrat-gostevoy-kompleks-s-basseynami-4377/",
-      "cityKey": "alakhadzy"
-    },
-    {
-      "title": "\"ВОЛШЕБНАЯ ИМПЕРИЯ\" ДОМИКИ С БАССЕЙНОМ",
-      "address": "Алахадзы, ул. Туманяна, 14Б",
-      "lat": 43.210879272727276,
-      "lon": 40.28084954545455,
-      "url": "/hotels/volshebnaya-imperiya-domiki-s-basseynom-4318/",
       "cityKey": "alakhadzy"
     },
     {
@@ -120,14 +104,6 @@
       "lat": 43.223441,
       "lon": 40.275597,
       "url": "/kvartira/flora-dom-alahadze-1163/",
-      "cityKey": "alakhadzy"
-    },
-    {
-      "title": "«АЛЬПИКА» МИНИ АПАРТ-ОТЕЛЬ",
-      "address": "Алахадзы, ул. Туманяна, д. 15А",
-      "lat": 43.21112236363637,
-      "lon": 40.280701727272735,
-      "url": "/hotels/alpika-mini-apart-otel-4202/",
       "cityKey": "alakhadzy"
     },
     {
@@ -360,14 +336,6 @@
       "lat": 43.315015204135236,
       "lon": 40.25296398596945,
       "url": "/hotels/rd-otel-v-gagre-4561/",
-      "cityKey": "gagra"
-    },
-    {
-      "title": "\"САНСЕТ\" ЭКО-ДОМИКИ",
-      "address": "Гагра, ул. Чанба, 2-й переулок, д. 2",
-      "lat": 43.174900259875905,
-      "lon": 40.38943379265911,
-      "url": "/hotels/sanset-eko-domiki-4182/",
       "cityKey": "gagra"
     },
     {
@@ -795,14 +763,6 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"МАРЕ ДОЛЬЧЕ\" ЭКО-КОМПЛЕКС",
-      "address": "Лдзаа ул.Рыбзаводская 39",
-      "lat": 43.174571739682214,
-      "lon": 40.385393953642065,
-      "url": "/hotels/mare-dolche-eko-kompleks-4219/",
-      "cityKey": "ldzaa"
-    },
-    {
       "title": "\"МЕЧТА\" АПАРТАМЕНТЫ С КУХНЕЙ",
       "address": "Лдзаа, координаты 43.173756,40.379626",
       "lat": 43.173756,
@@ -1131,14 +1091,6 @@
       "cityKey": "new-afon"
     },
     {
-      "title": "\"ЛЕМАР\" ДОМИКИ В ЦЕНТРЕ",
-      "address": "Новый Афон, ул. Ладария, 4",
-      "lat": 43.079115,
-      "lon": 40.82896,
-      "url": "/hotels/lemar-domiki-v-tsentre-4239/",
-      "cityKey": "new-afon"
-    },
-    {
       "title": "\"МАНДАРИНОВЫЙ ДВОРИК\" ДОМ ПОД КЛЮЧ",
       "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия",
       "lat": 43.081015,
@@ -1251,14 +1203,6 @@
       "cityKey": "pitsunda"
     },
     {
-      "title": "\"БЗЫБЬ\" ДОМИКИ И НОМЕРА С БАССЕЙНОМ",
-      "address": "Пицунда, ул. Гицба, 5В",
-      "lat": 43.16478156721231,
-      "lon": 40.32287512591807,
-      "url": "/hotels/bzyb-domiki-i-nomera-s-basseynom-4367/",
-      "cityKey": "pitsunda"
-    },
-    {
       "title": "\"БОНЖУР\" МИНИ-ОТЕЛЬ",
       "address": "Пицунда, ул. Гицба",
       "lat": 43.16898169854798,
@@ -1304,14 +1248,6 @@
       "lat": 43.168078469807554,
       "lon": 40.344315253963856,
       "url": "/hotels/karalina-apartamenty-3124/",
-      "cityKey": "pitsunda"
-    },
-    {
-      "title": "\"КЕДРОВЫЙ\" ЭКО-ОТЕЛЬ С БАССЕЙНОМ",
-      "address": "Сухум, ул. Абзага Гургулия 6",
-      "lat": 43.00277,
-      "lon": 41.043711,
-      "url": "/hotels/kedrovyy-eko-otel-s-basseynom-4419/",
       "cityKey": "pitsunda"
     },
     {
@@ -1395,14 +1331,6 @@
       "cityKey": "pitsunda"
     },
     {
-      "title": "\"САН ПИНО\" ДОМИКИ ДЕРЕВЯННЫЕ С БАССЕЙНОМ",
-      "address": "Пицунда, ул.Гицба 7а",
-      "lat": 43.16592960599298,
-      "lon": 40.3193913343082,
-      "url": "/hotels/san-pino-domiki-derevyannye-s-basseynom-3005/",
-      "cityKey": "pitsunda"
-    },
-    {
       "title": "\"САНРЭЙ\" ГОСТЕВОЙ ДОМ",
       "address": "Пицунда, ул. Агрба, 20/2",
       "lat": 43.16211269803033,
@@ -1429,16 +1357,16 @@
     {
       "title": "\"СИМОНА\" ГОСТЕВОЙ ДОМ",
       "address": "Пицунда, ул. Гочуа, 66",
-      "lat": 43.188895625,
-      "lon": 40.18669333333333,
+      "lat": 43.156009999999995,
+      "lon": 40.331320000000005,
       "url": "/hotels/simona-gostevoy-dom-3592/",
       "cityKey": "pitsunda"
     },
     {
       "title": "\"СИМСИМ\" ГОСТЕВОЙ ДОМ",
       "address": "Пицунда, ул. Гочуа, 51А",
-      "lat": 43.1407596875,
-      "lon": 40.40833583333333,
+      "lat": 43.162065,
+      "lon": 40.339685,
       "url": "/hotels/simsim-gostevoy-dom-4701/",
       "cityKey": "pitsunda"
     },
@@ -1453,8 +1381,8 @@
     {
       "title": "\"СОСНОВАЯ\" КВАРТИРА 1К",
       "address": "Пицунда, ул. Гочуа, 11, 4 этаж",
-      "lat": 43.0123971875,
-      "lon": 40.9993825,
+      "lat": 43.16903,
+      "lon": 40.353615000000005,
       "url": "/kvartira/sosnovaya-kvartira-1k-1610/",
       "cityKey": "pitsunda"
     },
@@ -1475,26 +1403,18 @@
       "cityKey": "pitsunda"
     },
     {
-      "title": "«АТМОСФЕРНАЯ» КВАРТИРА 2К",
-      "address": "Пицунда, ул. Агрба 16/1",
-      "lat": 43.16631261474644,
-      "lon": 40.33922825991013,
-      "url": "/hotels/atmosfernaya-kvartira-2k-3902/",
-      "cityKey": "pitsunda"
-    },
-    {
       "title": "«ЛАЙМ» МИНИ-ОТЕЛЬ С БАССЕЙНОМ У ЗАПОВЕДНИКА",
       "address": "Пицунда, ул. Гочуа 11В 5 мин",
-      "lat": 43.0123971875,
-      "lon": 40.9993825,
+      "lat": 43.157129999999995,
+      "lon": 40.349520000000005,
       "url": "/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/",
       "cityKey": "pitsunda"
     },
     {
       "title": "«НОРА» ГОСТЕВОЙ ДОМ ЭКОНОМ",
       "address": "Пицунда, ул. Гочуа, 9",
-      "lat": 43.005979062499996,
-      "lon": 41.02893483333334,
+      "lat": 43.172774999999994,
+      "lon": 40.355050000000006,
       "url": "/hotels/nora-gostevoy-dom-3851/",
       "cityKey": "pitsunda"
     },
@@ -1584,14 +1504,6 @@
       "lat": 42.956283,
       "lon": 41.07729,
       "url": "/hotels/kashtak-domiki-667/",
-      "cityKey": "sukhum"
-    },
-    {
-      "title": "\"КАШТАК\" ДОМИКИ",
-      "address": "Сухум, ул. Абжуйское шоссе, 94",
-      "lat": 42.956283,
-      "lon": 41.07729,
-      "url": "/hotels/kashtak-domiki-3668/",
       "cityKey": "sukhum"
     },
     {
@@ -1731,14 +1643,6 @@
       "cityKey": "sukhum"
     },
     {
-      "title": "\"ТИХАЯ ОБИТЕЛЬ\" ДОМ ПОД КЛЮЧ",
-      "address": "Сухум, ул. Пхазария, 7",
-      "lat": 42.993,
-      "lon": 41.015240000000006,
-      "url": "/kvartira/tihaya-obitel-dom-pod-klyuch-1477/",
-      "cityKey": "sukhum"
-    },
-    {
       "title": "\"У МОРЯ\" ДОМИКИ",
       "address": "Сухум, ул. Кодорское шоссе 665 д. 43",
       "lat": 42.986181,
@@ -1835,14 +1739,6 @@
       "cityKey": "sukhum"
     },
     {
-      "title": "КВАРТИРА 2К «АФИНА»",
-      "address": "Сухум, ул. Басария 48",
-      "lat": 43.004221,
-      "lon": 41.01315,
-      "url": "/kvartira/kvartira-2k-afina-suhum-717/",
-      "cityKey": "sukhum"
-    },
-    {
       "title": "\"АЛМА\" ДОМИКИ НА БЕРЕГУ",
       "address": "Цандрипш, ул. Приморская, 46",
       "lat": 43.38619417572236,
@@ -1901,23 +1797,25 @@
   ],
   "stats": {
     "placemarks_total": 302,
-    "pages_total": 237,
-    "from_constructor": 150,
+    "pages_total": 224,
+    "pages_on_disk": 237,
+    "pages_excluded": 13,
+    "from_constructor": 146,
     "from_coords_in_text": 5,
     "from_coords_in_page": 1,
     "from_coords_in_telegram": 0,
     "from_placemark_address": 1,
     "from_shared_title": 1,
-    "from_shared_brand": 5,
+    "from_shared_brand": 4,
     "from_shared_address": 2,
     "from_shared_address_lookup": 0,
-    "from_street_interpolation": 34,
+    "from_street_interpolation": 23,
     "from_street_centroid": 7,
     "from_manual_coords": 0,
     "from_geocode_yandex": 0,
     "from_geocode_nominatim": 1,
-    "from_city_fallback": 30,
-    "points_total": 237,
+    "from_city_fallback": 33,
+    "points_total": 224,
     "unmatched_pages": 0
   }
 }
