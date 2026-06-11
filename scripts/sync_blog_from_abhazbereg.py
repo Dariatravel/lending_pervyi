@@ -533,6 +533,15 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       </div>
     </article>
 
+  <section class="site-concept__section-block blog-article__similar" data-similar-blog hidden aria-label="Другие статьи блога">
+    <div class="blog-article__similar-head">
+      <p class="site-concept__eyebrow">Ещё из блога</p>
+      <h2>Может быть полезно по теме</h2>
+      <p class="blog-article__similar-lead"></p>
+    </div>
+    <div class="blog-grid blog-article__similar-grid" data-similar-blog-grid></div>
+  </section>
+
   <section class="site-concept__section-block" id="guide">
     <div class="site-concept__section-head">
       <div>
@@ -874,6 +883,9 @@ def main() -> int:
     print(f"updated blog/index.html ({len(all_cards)} cards)")
     update_sitemap([c["slug"] for c in new_cards])
     print("sitemap updated")
+    from build_blog_posts_manifest import main as build_blog_manifest
+
+    build_blog_manifest()
     return 0
 
 

@@ -2409,6 +2409,66 @@ a.podborki-card--link:hover {
   margin-bottom: 0;
 }
 
+.blog-article__similar {
+  margin-top: 8px;
+}
+
+.blog-article__similar-head {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.blog-article__similar-head .site-concept__eyebrow {
+  margin: 0;
+}
+
+.blog-article__similar-head h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  line-height: 1.15;
+}
+
+.blog-article__similar-lead {
+  margin: 0;
+  max-width: 62ch;
+  color: rgba(34, 57, 47, 0.78);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.blog-article__similar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.8vw, 20px);
+}
+
+.blog-article__similar .blog-card {
+  grid-column: auto;
+  min-height: 100%;
+}
+
+@media (max-width: 1080px) {
+  .blog-article__similar-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .blog-article__similar {
+    margin-top: 4px;
+  }
+
+  .blog-article__similar-head {
+    margin-bottom: 10px;
+  }
+
+  .blog-article__similar-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
 .blog-article {
   display: grid;
   gap: 12px;

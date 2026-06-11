@@ -2397,6 +2397,200 @@
     return card;
   }
 
+  let blogPostsCache = null;
+
+  async function fetchBlogPosts() {
+    if (blogPostsCache) return blogPostsCache;
+    const response = await fetch("/data/blog-posts.json", { cache: "no-cache" });
+    if (!response.ok) throw new Error("blog-posts.json unavailable");
+    const posts = await response.json();
+    blogPostsCache = Array.isArray(posts) ? posts : [];
+    return blogPostsCache;
+  }
+
+  function normalizeBlogTags(tags) {
+    return new Set(
+      (tags || [])
+        .map((tag) => String(tag || "").trim().toLowerCase())
+        .filter(Boolean)
+    );
+  }
+
+  function blogSimilarityScore(baseTags, post) {
+    const postTags = normalizeBlogTags([...(post?.tags || []), post?.card_tag]);
+    let score = 0;
+    baseTags.forEach((tag) => {
+      if (postTags.has(tag)) score += 2;
+    });
+    return score;
+  }
+
+  function pickSimilarBlogPosts(currentSlug, currentTags, posts, limit = 3) {
+    const baseTags = normalizeBlogTags(currentTags);
+    const ranked = posts
+      .filter((post) => post?.slug && post.slug !== currentSlug)
+      .map((post) => ({
+        post,
+        score: blogSimilarityScore(baseTags, post),
+      }))
+      .sort((left, right) => {
+        if (right.score !== left.score) return right.score - left.score;
+        return String(right.post.iso_date || "").localeCompare(String(left.post.iso_date || ""), "ru");
+      });
+
+    const picked = [];
+    const used = new Set([currentSlug]);
+
+    ranked
+      .filter((item) => item.score > 0)
+      .forEach((item) => {
+        if (picked.length >= limit) return;
+        if (used.has(item.post.slug)) return;
+        picked.push(item.post);
+        used.add(item.post.slug);
+      });
+
+    if (picked.length < limit) {
+      ranked.forEach((item) => {
+        if (picked.length >= limit) return;
+        if (used.has(item.post.slug)) return;
+        picked.push(item.post);
+        used.add(item.post.slug);
+      });
+    }
+
+    return picked.slice(0, limit);
+  }
+
+  function buildSimilarBlogLead(currentTags, posts) {
+    const shared = [];
+    const baseTags = normalizeBlogTags(currentTags);
+    posts.forEach((post) => {
+      normalizeBlogTags([...(post.tags || []), post.card_tag]).forEach((tag) => {
+        if (baseTags.has(tag) && !shared.includes(tag)) shared.push(tag);
+      });
+    });
+    if (!shared.length) {
+      return "Ещё материалы из раздела «Полезно узнать» — можно почитать без возврата к списку статей.";
+    }
+    const labels = shared.slice(0, 3).map((tag) => tag.charAt(0).toUpperCase() + tag.slice(1));
+    return `Подборка по теме: ${labels.join(", ")}.`;
+  }
+
+  function blogCardImageSrc(post) {
+    const raw = String(post?.image || "").trim();
+    if (!raw) return "";
+    if (/^https?:\/\//i.test(raw)) return raw;
+    return `/media/blog/${raw.replace(/^\/+/, "")}`;
+  }
+
+  function buildSimilarBlogCard(post) {
+    const article = document.createElement("article");
+    article.className = "blog-card";
+    const href = `/blog/${post.slug}/`;
+    const date = formatPublishedDate(post.iso_date);
+    const imageSrc = blogCardImageSrc(post);
+
+    const imageLink = document.createElement("a");
+    imageLink.className = "blog-card__image-link";
+    imageLink.href = href;
+    if (imageSrc) {
+      const image = document.createElement("img");
+      image.loading = "lazy";
+      image.alt = post.title || "";
+      image.src = imageSrc;
+      imageLink.appendChild(image);
+    }
+    article.appendChild(imageLink);
+
+    const body = document.createElement("div");
+    body.className = "blog-card__body";
+
+    const meta = document.createElement("p");
+    meta.className = "blog-card__meta";
+    const tag = document.createElement("span");
+    tag.textContent = post.card_tag || "блог";
+    meta.appendChild(tag);
+    if (date) {
+      const time = document.createElement("time");
+      time.dateTime = date.machine;
+      time.textContent = date.human;
+      meta.appendChild(time);
+    }
+    body.appendChild(meta);
+
+    const title = document.createElement("h3");
+    const titleLink = document.createElement("a");
+    titleLink.href = href;
+    titleLink.textContent = post.title || "";
+    title.appendChild(titleLink);
+    body.appendChild(title);
+
+    body.appendChild(createTextNode("p", post.excerpt || ""));
+
+    const cta = document.createElement("a");
+    cta.className = "blog-card__cta";
+    cta.href = href;
+    cta.textContent = "Читать статью";
+    body.appendChild(cta);
+
+    article.appendChild(body);
+    return article;
+  }
+
+  async function initSimilarBlogPosts() {
+    const match = window.location.pathname.match(/^\/blog\/([^/]+)\/?$/);
+    if (!match) return;
+
+    const slug = decodeURIComponent(match[1]);
+    if (!slug) return;
+
+    const main = document.querySelector("main.blog-article-page");
+    const anchor = main?.querySelector("article.blog-article");
+    if (!main || !anchor) return;
+
+    let section = main.querySelector("[data-similar-blog]");
+    if (!section) {
+      section = document.createElement("section");
+      section.className = "site-concept__section-block blog-article__similar";
+      section.setAttribute("data-similar-blog", "");
+      section.hidden = true;
+      section.setAttribute("aria-label", "Другие статьи блога");
+      section.innerHTML = `
+        <div class="blog-article__similar-head">
+          <p class="site-concept__eyebrow">Ещё из блога</p>
+          <h2>Может быть полезно по теме</h2>
+          <p class="blog-article__similar-lead"></p>
+        </div>
+        <div class="blog-grid blog-article__similar-grid" data-similar-blog-grid></div>
+      `;
+      anchor.insertAdjacentElement("afterend", section);
+    }
+
+    const leadNode = section.querySelector(".blog-article__similar-lead");
+    const grid = section.querySelector("[data-similar-blog-grid]");
+    if (!leadNode || !grid) return;
+
+    try {
+      const posts = await fetchBlogPosts();
+      if (posts.length < 2) return;
+
+      const currentTags = [...document.querySelectorAll(".blog-article .blog-tags span")]
+        .map((node) => node.textContent.trim())
+        .filter(Boolean);
+      const similarPosts = pickSimilarBlogPosts(slug, currentTags, posts, 3);
+      if (similarPosts.length < 2) return;
+
+      leadNode.textContent = buildSimilarBlogLead(currentTags, similarPosts);
+      const fragment = document.createDocumentFragment();
+      similarPosts.forEach((post) => fragment.appendChild(buildSimilarBlogCard(post)));
+      grid.replaceChildren(fragment);
+      section.hidden = false;
+    } catch (error) {
+      console.warn("Не удалось показать похожие статьи блога", error);
+    }
+  }
+
   async function initSimilarListings() {
     const hotelMatch = window.location.pathname.match(/^\/hotels\/([^/]+)\/?$/);
     const kvMatch = window.location.pathname.match(/^\/kvartira\/([^/]+)\/?$/);
@@ -4451,5 +4645,6 @@
   hydrateKvartiraCatalog(filtersController);
   hydrateHotelPage();
   void initSimilarListings();
+  void initSimilarBlogPosts();
   initMobileReviewsPlacement();
 })();
