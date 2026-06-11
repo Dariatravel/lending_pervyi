@@ -1,83 +1,152 @@
 Синхронизация блока ЦЕНЫ из Telegram
 
-Кандидатов: 73
-Обновлено: 70
-Пропущено: 3
+Кандидатов: 222
+Обновлено: 102
+Пропущено: 120
 Ошибок: 0
 
 Обновлены:
-- alma-domiki-na-beregu-2996
-- alpika-mini-apart-otel-4202
+- abaza-otel-3614
+- abyrlash-otel-na-plyazhe-3239
+- akva-otel-s-basseynom-i-zavtrakami-3114
 - amor-apartamenty-s-kuhney-i-basseynom-3487
+- amor-domiki-v-tsentre-gagry-2986
+- apra-gostevoy-dom-na-plyazhe-4348
 - apsa-park-otel-v-zapovednike-2611
-- aristokrat-gostevoy-kompleks-s-basseynami-4377
-- art-otel-s-pitaniem-i-basseynom-4479
 - assir-pitsunda-gostevoy-dom-v-tsentre-4173
-- atmosfernaya-kvartira-2k-3902
 - avrora-inn-novyy-otel-v-tsentre-goroda-2641
 - bagripsh-domiki-na-beregu-s-pitaniem-4399
+- banan-i-funduk-gostevoy-dom-2849
+- belaya-dacha-otel-s-pitaniem-4630
 - belaya-loshad-glemping-s-basseynom-3650
+- belveder-gostevoy-dom-3602
 - bereg-svyatoy-sofii-otel-4279
 - bi-heppi-apart-otel-3334
 - blek-si-otel-s-basseynom-i-pitaniem-3912
 - boho-kompleks-polnogo-schastya-u-morya-3054
 - bonzhur-mini-otel-2542
-- briz-domiki-na-beregu-4510
 - bugenvilleya-otel-s-basseynom-3044
-- bzyb-domiki-i-nomera-s-basseynom-4367
-- chegem-gostevoy-dom-3727
+- bungalo-glemping-3623
 - damira-otel-v-tsentre-goroda-2830
-- domiki-u-mariny-otdyh-u-morya-3922
+- delfin-domiki-3024
+- dyuna-domiki-3717
+- dzhannat-otel-na-beregu-s-zavtrakami-4571
+- fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219
+- fazenda-otel-s-basseynom-i-pitaniem-3190
 - full-haus-domiki-s-basseynom-4092
+- fyuzhn-tri-domika-s-launzh-zonoy-3162
+- grafit-haus-gostevoy-dom-s-basseynom-3707
 - grant-apartamenty-2801
-- grant-kompleks-domikov-s-zavtrakami-2811
-- grant-otel-nomera-2820
+- grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928
 - grin-villadzh-domiki-3633
+- heppi-lend-domiki-dvuhetazhnye-3313
+- kashtak-domiki-3668
+- kavo-de-bukso-domiki-3323
 - kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459
+- kira-gostevoy-kompleks-2725
+- lavanda-villa-s-basseynom-4590
 - lazurit-novyy-otel-s-zavtrakami-2583
 - lazurnyy-bereg-butik-otel-s-pitaniem-2592
 - liliya-uyutnyy-otel-s-zavtrakami-3832
-- lk-otel-s-basseynom-4123
+- limari-domiki-3496
 - lnd-gostevoy-dom-v-sinope-3687
-- mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133
 - marta-gostevye-nomera-3574
-- melodi-eko-otel-derevyannye-domiki-3563
 - mika-gostevoy-dom-ekonom-3094
+- mimi-domiki-s-vidom-na-gory-2869
+- mira-domiki-i-nomera-u-ozera-2956
+- mirano-gostevoy-dom-4550
 - miraslava-mini-otel-3143
+- mokko-briz-dva-domika-4152
 - more-more-gostevoy-kompleks-3583
+- moreon-domiki-2919
 - morskaya-laguna-gostinitsa-s-zavtrakami-3418
-- nasta-apartamenty-3258
+- mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074
 - nasta-gostevoy-dom-3249
+- nikol-gostevoy-dom-3678
+- nikopsiya-domiki-3015
 - nora-gostevoy-dom-3851
+- palma-gostevoy-dom-4071
 - parus-vidovoy-otel-s-basseynom-i-stolovoy-2602
+- pegas-otel-na-pervoy-linii-vid-na-more-2574
 - peschanyy-bereg-apartamenty-3697
 - pion-gostevoy-dom-4539
-- pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889
-- rancho-elivel-mini-otel-2938
-- rivera-gostinitsa-vidovaya-2706
+- plyazhnyy-kompleks-151-na-beregu-4620
+- radonovyy-istochnik-otel-v-gorah-3064
+- rayskiy-bereg-mini-otel-3277
 - san-amra-lyuks-nomera-s-vidom-na-more-2631
+- sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429
+- sanni-houm-domiki-s-basseynom-4731
 - sanrayz-gostevoy-dom-s-zavtrakami-3953
 - sanrey-gostevoy-dom-4469
 - sekret-garden-apartamenty-4162
 - sia-lend-baza-otdyha-3800
+- simona-gostevoy-dom-3592
+- simsim-gostevoy-dom-4701
 - sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390
 - sizon-gostevoy-dom-3449
+- soluna-domiki-i-nomera-s-zavtrakami-4041
 - staryy-prichal-gostevoy-dom-u-morya-3891
+- tis-kottedzhi-u-zapovednika-3372
+- tis-mini-otel-u-zapovednika-3381
 - tsarskoe-selo-anhua-kottedzhi-3871
+- u-morya-domiki-3200
 - v-gostyah-u-belochki-domiki-i-nomera-2879
+- villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755
 - villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716
-- volshebnaya-imperiya-domiki-s-basseynom-4318
-- voshodyaschaya-zvezda-otel-s-basseynom-3428
 - zhasmin-mini-otel-3736
 - zolotaya-veranda-gostevoy-kompleks-3769
 - amina-dom-suhum-921
+- argo-kvartira-1k-pitsunda-940
+- atmosfernaya-kvartira-2k-1454
+- biryuza-etazh-pod-klyuch-gagra-1367
 - flora-dom-alahadze-1163
-- letnyaya-kvartira-3k-suhum-1377
-- na-plyazhe-apartamenty-3k-ldzaa-1073
-- nasta-apartamenty-studiya-ldzaa-1264
+- klassika-kvartira-3k-ldzaa-1303
+- leto-kvartira-2k-1587
+- moreon-kvartira-2k-pitsunda-1391
+- palma-kvartira-3k-ldzaa-1080
+- sekret-garden-apartamenty-1465
 - semeynaya-kvartira-2k-1104
+- solnechnaya-kvartira-2k-pitsunda-1231
+- sosnovaya-kvartira-1k-1610
 
 Пропущены:
+- aduney-gostevoy-dom-3181: already OK after audit
+- aisha-otel-s-basseynami-2651: already OK after audit
+- alma-domiki-na-beregu-2996: already OK after audit
+- amzara-otel-s-vinodelney-u-zapovednika-2668: already OK after audit
 - antaa-gostinitsa-u-sosnovogo-plyazha-2899: already OK after audit
-- kameliya-3084: already OK after audit
-- san-amra-novyy-otel-na-plyazhe-ldzaa-2631: already OK after audit
+- arina-mini-otel-2792: already OK after audit
+- art-otel-s-pitaniem-i-basseynom-4479: already OK after audit
+- assir-gostevoy-dom-2840: already OK after audit
+- atmosfernaya-kvartira-2k-3902: already OK after audit
+- belaya-rechka-gostevoy-dom-s-kafe-3517: already OK after audit
+- belyy-dom-domiki-i-apartamenty-4081: already OK after audit
+- briz-domiki-na-beregu-4510: already OK after audit
+- chegem-gostevoy-dom-3727: already OK after audit
+- danelyan-semeynyy-otel-so-stolovoy-4652: already OK after audit
+- demi-mokko-dva-domika-3353: already OK after audit
+- diar-domiki-s-basseynom-4192: already OK after audit
+- domiki-u-mariny-otdyh-u-morya-3922: already OK after audit
+- dyshi-glubzhe-domiki-v-gorah-3459: already OK after audit
+- edem-domiki-4409: already OK after audit
+- eko-haus-pitiunt-domiki-s-basseynom-3545: already OK after audit
+- ekohoum-kottedzh-otel-3974: already OK after audit
+- esma-domiki-s-basseynom-v-tsentre-4032: already OK after audit
+- grant-kompleks-domikov-s-zavtrakami-2811: already OK after audit
+- grant-otel-nomera-2820: already OK after audit
+- grin-haus-domiki-3104: already OK after audit
+- irsen-domiki-3642: already OK after audit
+- kameliya-domiki-3084: already OK after audit
+- karalina-apartamenty-3124: already OK after audit
+- karin-gostevoy-dom-3267: already OK after audit
+- kashtak-domiki-667: already OK after audit
+- krylya-domiki-vidovye-dvuhkomnatnye-2765: already OK after audit
+- kvarts-domiki-4449: already OK after audit
+- leon-domiki-3536: already OK after audit
+- limon-otel-4721: already OK after audit
+- madlena-domiki-3344: already OK after audit
+- mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133: already OK after audit
+- mandarinovyy-dvorik-dom-pod-klyuch-3789: already OK after audit
+- mayak-gostevoy-dom-3810: already OK after audit
+- mechta-apartamenty-s-kuhney-3363: already OK after audit
+- melodi-eko-otel-derevyannye-domiki-3563: already OK after audit

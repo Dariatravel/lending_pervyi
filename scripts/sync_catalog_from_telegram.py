@@ -675,82 +675,76 @@ def _normalize_prices_payload(prices: Any) -> list[dict[str, str]]:
     return out
 
 
+def _is_tariff_season_price(text: str) -> bool:
+    """Строка вида «3800₽ - май» — месячный тариф в блоке цен."""
+    t = (text or "").strip().lower()
+    if not re.search(r"\d[\d\s]*₽", t):
+        return False
+    months = (
+        "январ", "феврал", "март", "апрел", "май", "июн", "июл",
+        "август", "сентябр", "октябр", "ноябр", "декабр",
+    )
+    return any(m in t for m in months)
+
+
 def render_prices_html(prices: Any) -> str:
     norm = _normalize_prices_payload(prices)
     if not norm:
         return ''
 
-    has_heading = any(e['kind'] == 'heading' for e in norm)
-
     mod = _apply_design_mod()
     fmt = mod.format_price_line_to_html
 
-    def seasons_ul(lines: list[str]) -> str:
-        lis = '\n'.join(f'            <li>{fmt(line)}</li>' for line in lines)
-        return f'          <ul class="price-card__seasons">\n{lis}\n          </ul>'
+    def li_html(entry: dict[str, str]) -> str:
+        return f'            <li>{fmt(entry["text"])}</li>'
 
-    def notes_ul(note_lines: list[str]) -> str:
-        if not note_lines:
-            return ''
-        nitems = '\n'.join(f'            <li>{fmt(n)}</li>' for n in note_lines)
-        return (
-            f'\n          <ul class="price-card__notes" aria-label="Особые условия">\n{nitems}\n          </ul>'
-        )
-
-    if not has_heading:
-        price_lines = [e['text'] for e in norm if e['kind'] == 'price']
-        note_lines = [e['text'] for e in norm if e['kind'] == 'note']
-        if not price_lines:
-            return ''
-        notes_part = notes_ul(note_lines)
-        return (
-            f'''      <section class="section hotel-price-section hotel-site-concept__detail-section">\n'''
-            f'''        <article class="card price-card">\n'''
-            f'''          <h2 class="price-card__heading">ЦЕНЫ:</h2>\n'''
-            f'''{seasons_ul(price_lines)}{notes_part}\n'''
-            f'''        </article>\n'''
-            f'''      </section>'''
-        )
-
-    groups: list[tuple[str, list[str]]] = []
-    notes: list[str] = []
-    bucket: list[str] = []
-    current_label: str | None = None
-
-    def flush_bucket() -> None:
-        nonlocal current_label, bucket
-        if not bucket:
-            return
-        groups.append((current_label or '', bucket[:]))
-        bucket = []
-
-    for entry in norm:
-        kind, text = entry['kind'], entry['text']
-        if kind == 'heading':
-            flush_bucket()
-            current_label = text
-            continue
-        if kind == 'note':
-            notes.append(text)
-            continue
-        bucket.append(text)
-    flush_bucket()
-
-    body_chunks: list[str] = ['          <h2 class="price-card__heading">ЦЕНЫ:</h2>']
-    for label, lines in groups:
+    def emit_group(heading: str | None, lines: list[str]) -> str:
         if not lines:
-            continue
-        ul = seasons_ul(lines)
-        if label:
-            body_chunks.append(
+            return ''
+        ul = '          <ul class="price-card__seasons">\n' + '\n'.join(lines) + '\n          </ul>'
+        if heading:
+            return (
                 f'          <div class="price-card__tariff-group">\n'
-                f'            <h3 class="price-card__group">{html.escape(label)}</h3>\n'
+                f'            <h3 class="price-card__group">{html.escape(heading)}</h3>\n'
                 f'{ul}\n          </div>'
             )
-        else:
-            body_chunks.append(ul)
+        return ul
 
-    inner = '\n'.join(body_chunks) + notes_ul(notes)
+    body: list[str] = ['          <h2 class="price-card__heading">ЦЕНЫ:</h2>']
+    current_heading: str | None = None
+    bucket: list[str] = []
+    bucket_raw: list[str] = []
+
+    def flush_group() -> None:
+        nonlocal current_heading, bucket, bucket_raw
+        if not bucket:
+            return
+        body.append(emit_group(current_heading, bucket))
+        bucket = []
+        bucket_raw = []
+
+    for entry in norm:
+        kind = entry['kind']
+        text = entry['text']
+        if kind == 'heading':
+            flush_group()
+            current_heading = text
+            continue
+
+        if current_heading and bucket_raw:
+            is_paren = text.strip().startswith(('(', '（'))
+            is_season = _is_tariff_season_price(text)
+            bucket_has_season = any(_is_tariff_season_price(t) for t in bucket_raw)
+            if bucket_has_season and not is_paren and not is_season:
+                flush_group()
+                current_heading = None
+
+        bucket_raw.append(text)
+        bucket.append(li_html(entry))
+
+    flush_group()
+
+    inner = '\n'.join(body)
     return (
         f'''      <section class="section hotel-price-section hotel-site-concept__detail-section">\n'''
         f'''        <article class="card price-card">\n{inner}\n        </article>\n'''

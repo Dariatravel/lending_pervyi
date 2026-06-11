@@ -22,14 +22,15 @@ from audit_telegram_site_prices import (  # noqa: E402
     Row,
     audit_all,
     compare_lists,
+    compare_ordered,
     fetch_post_texts_batch,
     load_hotel_jobs,
     load_kv_jobs,
     load_supabase_kv_message_ids,
     resolve_hotel_source_id,
     resolve_kv_message_id,
-    site_prices,
-    telegram_prices,
+    site_price_lines_ordered,
+    telegram_price_lines_ordered,
     write_report,
 )
 from sync_catalog_from_telegram import (  # noqa: E402
@@ -77,19 +78,28 @@ def replace_prices_block(html_text: str, prices_html: str) -> str | None:
     return str(soup)
 
 
-async def sync_prices(dry_run: bool = False, kv_only: bool = False) -> int:
+async def sync_prices(dry_run: bool = False, kv_only: bool = False, sync_all: bool = False) -> int:
     rows: list[Row] = []
     await audit_all(rows, kv_only=kv_only)
     report_path = KV_PRICES_AUDIT if kv_only else OUT_REPORT
     write_report(rows, report_path, kv_only=kv_only)
 
-    to_fix = [
-        r
-        for r in rows
-        if r.status in {"MISMATCH", "NO_SITE_PRICES"}
-        and r.message_id > 0
-        and r.channel in {"abhazbooking", "abhkvartira"}
-    ]
+    if sync_all:
+        to_fix = [
+            r
+            for r in rows
+            if r.status not in {"FETCH_FAIL", "MISSING_FILE", "NO_TG_PRICES"}
+            and r.message_id > 0
+            and r.channel in {"abhazbooking", "abhkvartira"}
+        ]
+    else:
+        to_fix = [
+            r
+            for r in rows
+            if r.status in {"MISMATCH", "NO_SITE_PRICES"}
+            and r.message_id > 0
+            and r.channel in {"abhazbooking", "abhkvartira"}
+        ]
     if kv_only:
         to_fix = [r for r in to_fix if r.kind == "kvartira"]
 
@@ -156,10 +166,10 @@ async def sync_prices(dry_run: bool = False, kv_only: bool = False) -> int:
             continue
         slug, path = job
         html_text = path.read_text(encoding="utf-8")
-        tg_p, _ = telegram_prices(raw)
-        st_p, _, _ = site_prices(html_text)
-        missing, extra = compare_lists(tg_p, st_p)
-        if not missing and not extra and row.status != "NO_SITE_PRICES":
+        tg_ordered = telegram_price_lines_ordered(raw)
+        st_ordered = site_price_lines_ordered(html_text)
+        missing, extra = compare_lists(tg_ordered, st_ordered)
+        if not missing and not extra and compare_ordered(tg_ordered, st_ordered) and row.status != "NO_SITE_PRICES":
             skipped.append(f"{row.slug}: already OK after audit")
             continue
 
@@ -209,7 +219,8 @@ async def sync_prices(dry_run: bool = False, kv_only: bool = False) -> int:
 def main() -> int:
     dry = "--dry-run" in sys.argv
     kv_only = "--kv-only" in sys.argv
-    return asyncio.run(sync_prices(dry_run=dry, kv_only=kv_only))
+    sync_all = "--all" in sys.argv
+    return asyncio.run(sync_prices(dry_run=dry, kv_only=kv_only, sync_all=sync_all))
 
 
 if __name__ == "__main__":

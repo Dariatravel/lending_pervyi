@@ -331,9 +331,13 @@ def _is_room_category_header_for_prices(line: str) -> bool:
 
 
 def _line_with_ruble_belongs_in_description(line: str) -> bool:
-    """Не тащить в «цены» длинные фразы про столовые/кафе с разовым «от N₽/завтрак»."""
+    """Не тащить в «цены» строки из других секций: депозит, кафе/завтрак и т.п."""
     s = (line or "").strip()
     low = s.lower()
+    if "депозит" in low or "залог" in low or "страхов" in low:
+        return True
+    if re.search(r"(собач|кошк|животн|питомц)", low) and ("₽" in s or "руб" in low):
+        return True
     if len(s) < 85 or ("₽" not in s and "руб" not in low):
         return False
     if re.search(r"\d[\d\s]*\s*/\s*сут", s, re.I):
@@ -426,6 +430,7 @@ def parse_post(raw_text: str):
                 if should_drop_line(line):
                     continue
                 if _is_room_category_header_for_prices(line):
+                    prices.append({"kind": "heading", "text": humanize_tariff_subgroup_heading(sl)})
                     continue
                 if _is_price_subgroup_heading(line):
                     prices.append({"kind": "heading", "text": humanize_tariff_subgroup_heading(sl)})

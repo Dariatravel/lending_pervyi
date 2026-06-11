@@ -134,11 +134,26 @@ def normalize_price_line(text: str) -> str:
     s = s.replace("руб./", "₽/").replace("руб.", "₽").replace("руб", "₽")
     s = s.replace("–", "-").replace("—", "-")
     s = re.sub(r"(\d)\s+го\b", r"\1го", s)
+    s = re.sub(r"(\d)\s+х\b", r"\1х", s)
+    s = re.sub(r"(\d)\s+чел\b", r"\1чел", s)
+    s = re.sub(r"(\d)\s+этаж\b", r"\1этаж", s)
+    s = re.sub(r"(\d)\s+(\N{COMBINING ENCLOSING KEYCAP})", lambda m: m.group(1) + m.group(2), s)
+    s = re.sub(r"\\\s+", r"\\", s)
+    s = re.sub(r"(?<!\d)\s+\+(?=\d)", "+", s)
+    s = re.sub(r"(\d)\s*кв\.?\s*м\b", r"\1кв.м", s)
+    s = re.sub(r"\bno\s+(\d)", r"no\1", s)
+    s = re.sub(r"(\d)\s*:\s*(\d)", r"\1:\2", s)
+    s = re.sub(r"\s*/\s*", "/", s)
+    s = re.sub(r"(\d)\s+\+\s*(\d)", r"\1+\2", s)
+    s = re.sub(r"(\+\d+)\s+(?=[^\s\d₽/\\-])", r"\1", s)
+    s = re.sub(r"\s+\.", ".", s)
     s = re.sub(r"\+ (\d+)", r"+\1", s)
     s = re.sub(r"(\d)\s+р\b", r"\1р", s)
     s = re.sub(r"июль\s*/\s*", "июль/", s)
     s = re.sub(r"\s*,\s*", ", ", s)
     s = re.sub(r",\s*$", "", s)
+    while re.search(r"(\d) (\d{3})(?!\d)", s):
+        s = re.sub(r"(\d) (\d{3})(?!\d)", r"\1\2", s)
     s = re.sub(r"(\d)\s+₽", r"\1₽", s)
     s = re.sub(r"(\d)\s+/", r"\1/", s)
     s = re.sub(r"/\s+сутки", "/сутки", s)
@@ -161,11 +176,55 @@ def telegram_prices(raw_text: str) -> tuple[list[str], list[str]]:
         text = str(item.get("text") or "").strip()
         if not text:
             continue
-        if kind == "note":
+        if kind == "heading":
+            prices.append(normalize_price_line(text))
+        elif kind == "note":
             notes.append(normalize_price_line(text))
         elif kind == "price":
             prices.append(normalize_price_line(text))
     return prices, notes
+
+
+def telegram_price_lines_ordered(raw_text: str) -> list[str]:
+    parsed = parse_post(raw_text or "")
+    lines: list[str] = []
+    for item in parsed.get("prices") or []:
+        if not isinstance(item, dict):
+            continue
+        text = str(item.get("text") or "").strip()
+        if not text:
+            continue
+        lines.append(normalize_price_line(text))
+    return lines
+
+
+def site_price_lines_ordered(html_text: str) -> list[str]:
+    soup = BeautifulSoup(html_text, "html.parser")
+    card = soup.select_one(".price-card")
+    if not card:
+        return []
+    lines: list[str] = []
+    for el in card.children:
+        name = getattr(el, "name", None)
+        if not name:
+            continue
+        classes = el.get("class") or []
+        if name == "div" and "price-card__tariff-group" in classes:
+            h3 = el.select_one(".price-card__group")
+            if h3 and h3.get_text(strip=True):
+                lines.append(normalize_price_line(h3.get_text(" ", strip=True)))
+            for li in el.select(".price-card__seasons li"):
+                if li.get_text(strip=True):
+                    lines.append(normalize_price_line(li.get_text(" ", strip=True)))
+        elif name == "ul" and "price-card__seasons" in classes:
+            for li in el.select("li"):
+                if li.get_text(strip=True):
+                    lines.append(normalize_price_line(li.get_text(" ", strip=True)))
+        elif name == "ul" and "price-card__notes" in classes:
+            for li in el.select("li"):
+                if li.get_text(strip=True):
+                    lines.append(normalize_price_line(li.get_text(" ", strip=True)))
+    return lines
 
 
 def site_prices(html_text: str) -> tuple[list[str], list[str], bool]:
@@ -259,6 +318,10 @@ def compare_lists(tg: list[str], site: list[str]) -> tuple[list[str], list[str]]
     return missing, extra
 
 
+def compare_ordered(tg: list[str], site: list[str]) -> bool:
+    return tg == site
+
+
 async def audit_all(rows: list[Row], *, kv_only: bool = False) -> None:
     supabase_kv_ids = load_supabase_kv_message_ids()
 
@@ -297,7 +360,9 @@ async def audit_all(rows: list[Row], *, kv_only: bool = False) -> None:
                     continue
                 html_text = path.read_text(encoding="utf-8")
                 tg_p, tg_n = telegram_prices(raw)
+                tg_ordered = telegram_price_lines_ordered(raw)
                 st_p, st_n, has_block = site_prices(html_text)
+                st_ordered = site_price_lines_ordered(html_text)
                 if not tg_p and not tg_n:
                     rows.append(Row("hotel", slug, "abhazbooking", msg_id, "NO_TG_PRICES", 0, len(st_p), [], [], False))
                     continue
@@ -317,9 +382,10 @@ async def audit_all(rows: list[Row], *, kv_only: bool = False) -> None:
                         )
                     )
                     continue
-                missing, extra = compare_lists(tg_p, st_p)
-                note_mismatch = tg_n != st_n
-                status = "OK" if not missing and not extra and not note_mismatch else "MISMATCH"
+                missing, extra = compare_lists(tg_ordered, st_ordered)
+                order_ok = compare_ordered(tg_ordered, st_ordered)
+                note_mismatch = not order_ok
+                status = "OK" if order_ok else "MISMATCH"
                 rows.append(
                     Row(
                         "hotel",
@@ -363,7 +429,9 @@ async def audit_all(rows: list[Row], *, kv_only: bool = False) -> None:
                 continue
             html_text = path.read_text(encoding="utf-8")
             tg_p, tg_n = telegram_prices(raw)
+            tg_ordered = telegram_price_lines_ordered(raw)
             st_p, st_n, has_block = site_prices(html_text)
+            st_ordered = site_price_lines_ordered(html_text)
             if not tg_p and not tg_n:
                 rows.append(Row("kvartira", slug, "abhkvartira", msg_id, "NO_TG_PRICES", 0, len(st_p), [], [], False))
                 continue
@@ -383,9 +451,10 @@ async def audit_all(rows: list[Row], *, kv_only: bool = False) -> None:
                     )
                 )
                 continue
-            missing, extra = compare_lists(tg_p, st_p)
-            note_mismatch = tg_n != st_n
-            status = "OK" if not missing and not extra and not note_mismatch else "MISMATCH"
+            missing, extra = compare_lists(tg_ordered, st_ordered)
+            order_ok = compare_ordered(tg_ordered, st_ordered)
+            note_mismatch = not order_ok
+            status = "OK" if order_ok else "MISMATCH"
             rows.append(
                 Row(
                     "kvartira",
