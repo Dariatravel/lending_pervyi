@@ -1,0 +1,490 @@
+{
+  "nominatim:алахадзы туманяна": {
+    "lat": 43.2208444,
+    "lon": 40.2741033,
+    "address": "Алахадзы, Туманяна"
+  },
+  "nominatim:пицунда ул гицба": {
+    "lat": 43.163713,
+    "lon": 40.3201869,
+    "address": "Пицунда, ул. Гицба"
+  },
+  "nominatim:лдзаа ул рыбзаводская 39": {
+    "lat": 43.1747753,
+    "lon": 40.3815764,
+    "address": "Лдзаа ул.Рыбзаводская 39"
+  },
+  "nominatim:гагра ул генерала дбар 151": {
+    "lat": 43.3022285,
+    "lon": 40.2569528,
+    "address": "Гагра, ул. Генерала Дбар, 151"
+  },
+  "nominatim:цандрипш с амзара ул октябрьская 255 абхазия": {
+    "miss": true,
+    "address": "Цандрипш, с. Амзара, ул. Октябрьская, 255, Абхазия"
+  },
+  "nominatim:цандрипш с амзара ул октябрьская 255": {
+    "miss": true,
+    "address": "Цандрипш, с. Амзара, ул. Октябрьская, 255"
+  },
+  "nominatim:цандрипш с амзара ул октябрьская 255 abkhazia": {
+    "miss": true,
+    "address": "Цандрипш, с. Амзара, ул. Октябрьская, 255, Abkhazia"
+  },
+  "nominatim:цандрипш с амзара октябрьская 255 abkhazia": {
+    "miss": true,
+    "address": "Цандрипш, с. Амзара, Октябрьская, 255, Abkhazia"
+  },
+  "nominatim:гагра ул гумистинская 7 абхазия": {
+    "miss": true,
+    "address": "Гагра, ул. Гумистинская, 7, Абхазия"
+  },
+  "nominatim:гагра ул гумистинская 7": {
+    "miss": true,
+    "address": "Гагра, ул. Гумистинская, 7"
+  },
+  "nominatim:гагра ул гумистинская 7 abkhazia": {
+    "miss": true,
+    "address": "Гагра, ул. Гумистинская, 7, Abkhazia"
+  },
+  "nominatim:гагра гумистинская 7 abkhazia": {
+    "miss": true,
+    "address": "Гагра, Гумистинская, 7, Abkhazia"
+  },
+  "nominatim:гагра ул лакоба 99 абхазия": {
+    "miss": true,
+    "address": "Гагра, ул. Лакоба 99, Абхазия"
+  },
+  "nominatim:гагра ул лакоба 99": {
+    "miss": true,
+    "address": "Гагра, ул. Лакоба 99"
+  },
+  "nominatim:гагра ул лакоба 99 abkhazia": {
+    "miss": true,
+    "address": "Гагра, ул. Лакоба 99, Abkhazia"
+  },
+  "nominatim:гагра лакоба 99 abkhazia": {
+    "miss": true,
+    "address": "Гагра, Лакоба 99, Abkhazia"
+  },
+  "nominatim:лдзаа ул рыбозаводская 82а абхазия": {
+    "miss": true,
+    "address": "Лдзаа, ул. Рыбозаводская, 82А, Абхазия"
+  },
+  "nominatim:лдзаа ул рыбозаводская 82а": {
+    "miss": true,
+    "address": "Лдзаа, ул. Рыбозаводская, 82А"
+  },
+  "nominatim:лдзаа ул рыбозаводская 82а abkhazia": {
+    "miss": true,
+    "address": "Лдзаа, ул. Рыбозаводская, 82А, Abkhazia"
+  },
+  "nominatim:лдзаа рыбозаводская 82а abkhazia": {
+    "miss": true,
+    "address": "Лдзаа, Рыбозаводская, 82А, Abkhazia"
+  },
+  "nominatim:сухум пос мачара ул солнечная 46а абхазия": {
+    "miss": true,
+    "address": "Сухум, пос. Мачара, ул. Солнечная, 46а, Абхазия"
+  },
+  "nominatim:сухум пос мачара ул солнечная 46а": {
+    "miss": true,
+    "address": "Сухум, пос. Мачара, ул. Солнечная, 46а"
+  },
+  "nominatim:сухум пос мачара ул солнечная 46а abkhazia": {
+    "miss": true,
+    "address": "Сухум, пос. Мачара, ул. Солнечная, 46а, Abkhazia"
+  },
+  "nominatim:сухум пос мачара солнечная 46а abkhazia": {
+    "miss": true,
+    "address": "Сухум, пос. Мачара, Солнечная, 46а, Abkhazia"
+  },
+  "nominatim:13 км рицинского ущелья рицинское шоссе абхазия": {
+    "miss": true,
+    "address": "13 км Рицинского ущелья, Рицинское шоссе, Абхазия"
+  },
+  "nominatim:13 км рицинского ущелья рицинское шоссе": {
+    "miss": true,
+    "address": "13 км Рицинского ущелья, Рицинское шоссе"
+  },
+  "nominatim:13 км рицинского ущелья рицинское шоссе abkhazia": {
+    "miss": true,
+    "address": "13 км Рицинского ущелья, Рицинское шоссе, Abkhazia"
+  },
+  "nominatim:сухум ул анчабадзе 13 абхазия": {
+    "miss": true,
+    "address": "Сухум, ул. Анчабадзе, 13, Абхазия"
+  },
+  "nominatim:сухум ул анчабадзе 13": {
+    "miss": true,
+    "address": "Сухум, ул. Анчабадзе, 13"
+  },
+  "nominatim:сухум ул анчабадзе 13 abkhazia": {
+    "miss": true,
+    "address": "Сухум, ул. Анчабадзе, 13, Abkhazia"
+  },
+  "nominatim:сухум анчабадзе 13 abkhazia": {
+    "miss": true,
+    "address": "Сухум, Анчабадзе, 13, Abkhazia"
+  },
+  "nominatim:гудаута ул агрба 40 абхазия": {
+    "miss": true,
+    "address": "Гудаута, ул. Агрба, 40, Абхазия"
+  },
+  "nominatim:гудаута ул агрба 40": {
+    "miss": true,
+    "address": "Гудаута, ул. Агрба, 40"
+  },
+  "nominatim:гудаута ул агрба 40 abkhazia": {
+    "miss": true,
+    "address": "Гудаута, ул. Агрба, 40, Abkhazia"
+  },
+  "nominatim:гудаута агрба 40 abkhazia": {
+    "miss": true,
+    "address": "Гудаута, Агрба, 40, Abkhazia"
+  },
+  "nominatim:лдзаа ул речная абхазия": {
+    "miss": true,
+    "address": "Лдзаа, ул. Речная, Абхазия"
+  },
+  "nominatim:лдзаа ул речная": {
+    "miss": true,
+    "address": "Лдзаа, ул. Речная"
+  },
+  "nominatim:лдзаа ул речная abkhazia": {
+    "miss": true,
+    "address": "Лдзаа, ул. Речная, Abkhazia"
+  },
+  "nominatim:лдзаа речная abkhazia": {
+    "miss": true,
+    "address": "Лдзаа, Речная, Abkhazia"
+  },
+  "nominatim:лдзаа лидзавское шоссе 6а абхазия": {
+    "miss": true,
+    "address": "Лдзаа, Лидзавское шоссе, 6А, Абхазия"
+  },
+  "nominatim:лдзаа лидзавское шоссе 6а": {
+    "miss": true,
+    "address": "Лдзаа, Лидзавское шоссе, 6А"
+  },
+  "nominatim:лдзаа лидзавское шоссе 6а abkhazia": {
+    "miss": true,
+    "address": "Лдзаа, Лидзавское шоссе, 6А, Abkhazia"
+  },
+  "nominatim:новый афон ул ладария 4 абхазия": {
+    "miss": true,
+    "address": "Новый Афон, ул. Ладария, 4, Абхазия"
+  },
+  "nominatim:новый афон ул ладария 4": {
+    "miss": true,
+    "address": "Новый Афон, ул. Ладария, 4"
+  },
+  "nominatim:новый афон ул ладария 4 abkhazia": {
+    "miss": true,
+    "address": "Новый Афон, ул. Ладария, 4, Abkhazia"
+  },
+  "nominatim:новый афон ладария 4 abkhazia": {
+    "miss": true,
+    "address": "Новый Афон, Ладария, 4, Abkhazia"
+  },
+  "nominatim:гудаута ул пушкина 2 абхазия": {
+    "miss": true,
+    "address": "Гудаута, ул. Пушкина, 2, Абхазия"
+  },
+  "nominatim:гудаута ул пушкина 2": {
+    "miss": true,
+    "address": "Гудаута, ул. Пушкина, 2"
+  },
+  "nominatim:гудаута ул пушкина 2 abkhazia": {
+    "miss": true,
+    "address": "Гудаута, ул. Пушкина, 2, Abkhazia"
+  },
+  "nominatim:гудаута пушкина 2 abkhazia": {
+    "miss": true,
+    "address": "Гудаута, Пушкина, 2, Abkhazia"
+  },
+  "nominatim:новый афон с псырцха ул братьев джинджолия абхазия": {
+    "miss": true,
+    "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия, Абхазия"
+  },
+  "nominatim:новый афон с псырцха ул братьев джинджолия": {
+    "miss": true,
+    "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия"
+  },
+  "nominatim:новый афон с псырцха ул братьев джинджолия abkhazia": {
+    "miss": true,
+    "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия, Abkhazia"
+  },
+  "nominatim:новый афон с псырцха братьев жинджолия abkhazia": {
+    "miss": true,
+    "address": "Новый Афон, с. Псырцха, Братьев жинджолия, Abkhazia"
+  },
+  "nominatim:сухум ул 4 марта 10 абхазия": {
+    "miss": true,
+    "address": "Сухум, ул. 4 Марта, 10, Абхазия"
+  },
+  "nominatim:сухум ул 4 марта 10": {
+    "miss": true,
+    "address": "Сухум, ул. 4 Марта, 10"
+  },
+  "nominatim:сухум ул 4 марта 10 abkhazia": {
+    "miss": true,
+    "address": "Сухум, ул. 4 Марта, 10, Abkhazia"
+  },
+  "nominatim:сухум 4 марта 10 abkhazia": {
+    "miss": true,
+    "address": "Сухум, 4 Марта, 10, Abkhazia"
+  },
+  "nominatim:алахадзы шаумяна абхазия": {
+    "miss": true,
+    "address": "Алахадзы, Шаумяна, Абхазия"
+  },
+  "nominatim:алахадзы шаумяна": {
+    "miss": true,
+    "address": "Алахадзы, Шаумяна"
+  },
+  "nominatim:алахадзы шаумяна abkhazia": {
+    "miss": true,
+    "address": "Алахадзы, Шаумяна, Abkhazia"
+  },
+  "nominatim:новый афон с псырцха ул братьев джинджолия 66 абхазия": {
+    "miss": true,
+    "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия, 66, Абхазия"
+  },
+  "nominatim:новый афон с псырцха ул братьев джинджолия 66": {
+    "miss": true,
+    "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия, 66"
+  },
+  "nominatim:новый афон с псырцха ул братьев джинджолия 66 abkhazia": {
+    "miss": true,
+    "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия, 66, Abkhazia"
+  },
+  "nominatim:новый афон с псырцха братьев жинджолия 66 abkhazia": {
+    "miss": true,
+    "address": "Новый Афон, с. Псырцха, Братьев жинджолия, 66, Abkhazia"
+  },
+  "nominatim:гудаута ул абазинская 7 абхазия": {
+    "miss": true,
+    "address": "Гудаута, ул. Абазинская, 7, Абхазия"
+  },
+  "nominatim:гудаута ул абазинская 7": {
+    "miss": true,
+    "address": "Гудаута, ул. Абазинская, 7"
+  },
+  "nominatim:гудаута ул абазинская 7 abkhazia": {
+    "miss": true,
+    "address": "Гудаута, ул. Абазинская, 7, Abkhazia"
+  },
+  "nominatim:гудаута абазинская 7 abkhazia": {
+    "miss": true,
+    "address": "Гудаута, Абазинская, 7, Abkhazia"
+  },
+  "nominatim:пицунда ул приморская 6 абхазия": {
+    "miss": true,
+    "address": "Пицунда , ул. Приморская, 6, Абхазия"
+  },
+  "nominatim:пицунда ул приморская 6": {
+    "miss": true,
+    "address": "Пицунда , ул. Приморская, 6"
+  },
+  "nominatim:пицунда ул приморская 6 abkhazia": {
+    "miss": true,
+    "address": "Пицунда , ул. Приморская, 6, Abkhazia"
+  },
+  "nominatim:пицунда иморская 6 abkhazia": {
+    "miss": true,
+    "address": "Пицунда , иморская, 6, Abkhazia"
+  },
+  "nominatim:лдзаа с рапица ул молодежная 30 абхазия": {
+    "miss": true,
+    "address": "Лдзаа, с. Рапица, ул. Молодежная, 30, Абхазия"
+  },
+  "nominatim:лдзаа с рапица ул молодежная 30": {
+    "miss": true,
+    "address": "Лдзаа, с. Рапица, ул. Молодежная, 30"
+  },
+  "nominatim:лдзаа с рапица ул молодежная 30 abkhazia": {
+    "miss": true,
+    "address": "Лдзаа, с. Рапица, ул. Молодежная, 30, Abkhazia"
+  },
+  "nominatim:лдзаа с рапица молодежная 30 abkhazia": {
+    "miss": true,
+    "address": "Лдзаа, с. Рапица, Молодежная, 30, Abkhazia"
+  },
+  "nominatim:лдзаа ул приморская 18а абхазия": {
+    "miss": true,
+    "address": "Лдзаа, ул. Приморская, 18А, Абхазия"
+  },
+  "nominatim:лдзаа ул приморская 18а": {
+    "miss": true,
+    "address": "Лдзаа, ул. Приморская, 18А"
+  },
+  "nominatim:лдзаа ул приморская 18а abkhazia": {
+    "miss": true,
+    "address": "Лдзаа, ул. Приморская, 18А, Abkhazia"
+  },
+  "nominatim:лдзаа иморская 18а abkhazia": {
+    "miss": true,
+    "address": "Лдзаа, иморская, 18А, Abkhazia"
+  },
+  "nominatim:алахадзе ул туманяна абхазия": {
+    "miss": true,
+    "address": "Алахадзе, ул. Туманяна, Абхазия"
+  },
+  "nominatim:алахадзе ул туманяна": {
+    "miss": true,
+    "address": "Алахадзе, ул. Туманяна"
+  },
+  "nominatim:алахадзе ул туманяна abkhazia": {
+    "miss": true,
+    "address": "Алахадзе, ул. Туманяна, Abkhazia"
+  },
+  "nominatim:алахадзе туманяна abkhazia": {
+    "miss": true,
+    "address": "Алахадзе, Туманяна, Abkhazia"
+  },
+  "nominatim:алахадзы пос цитрусовый ул цитрусовая 6 абхазия": {
+    "miss": true,
+    "address": "Алахадзы, пос. Цитрусовый, ул. Цитрусовая, 6, Абхазия"
+  },
+  "nominatim:алахадзы пос цитрусовый ул цитрусовая 6": {
+    "miss": true,
+    "address": "Алахадзы, пос. Цитрусовый, ул. Цитрусовая, 6"
+  },
+  "nominatim:алахадзы пос цитрусовый ул цитрусовая 6 abkhazia": {
+    "miss": true,
+    "address": "Алахадзы, пос. Цитрусовый, ул. Цитрусовая, 6, Abkhazia"
+  },
+  "nominatim:алахадзы пос цитрусовый цитрусовая 6 abkhazia": {
+    "miss": true,
+    "address": "Алахадзы, пос. Цитрусовый, Цитрусовая, 6, Abkhazia"
+  },
+  "nominatim:гагра ул адыгаа 4 абхазия": {
+    "miss": true,
+    "address": "Гагра, ул. Адыгаа, 4, Абхазия"
+  },
+  "nominatim:гагра ул адыгаа 4": {
+    "miss": true,
+    "address": "Гагра, ул. Адыгаа, 4"
+  },
+  "nominatim:гагра ул адыгаа 4 abkhazia": {
+    "miss": true,
+    "address": "Гагра, ул. Адыгаа, 4, Abkhazia"
+  },
+  "nominatim:гагра адыгаа 4 abkhazia": {
+    "miss": true,
+    "address": "Гагра, Адыгаа, 4, Abkhazia"
+  },
+  "nominatim:гагра кабардинская ул 83 абхазия": {
+    "miss": true,
+    "address": "Гагра, Кабардинская ул, 83, Абхазия"
+  },
+  "nominatim:гагра кабардинская ул 83": {
+    "miss": true,
+    "address": "Гагра, Кабардинская ул, 83"
+  },
+  "nominatim:гагра кабардинская ул 83 abkhazia": {
+    "miss": true,
+    "address": "Гагра, Кабардинская ул, 83, Abkhazia"
+  },
+  "nominatim:гагра кабардинская 83 abkhazia": {
+    "miss": true,
+    "address": "Гагра, Кабардинская , 83, Abkhazia"
+  },
+  "nominatim:сухум ул пхазария 7 абхазия": {
+    "miss": true,
+    "address": "Сухум, ул. Пхазария, 7, Абхазия"
+  },
+  "nominatim:сухум ул пхазария 7": {
+    "miss": true,
+    "address": "Сухум, ул. Пхазария, 7"
+  },
+  "nominatim:сухум ул пхазария 7 abkhazia": {
+    "miss": true,
+    "address": "Сухум, ул. Пхазария, 7, Abkhazia"
+  },
+  "nominatim:сухум пхазария 7 abkhazia": {
+    "miss": true,
+    "address": "Сухум, Пхазария, 7, Abkhazia"
+  },
+  "nominatim:алахадзы ул инал ипа 75 абхазия": {
+    "miss": true,
+    "address": "Алахадзы, ул. Инал-Ипа, 75, Абхазия"
+  },
+  "nominatim:алахадзы ул инал ипа 75": {
+    "miss": true,
+    "address": "Алахадзы, ул. Инал-Ипа, 75"
+  },
+  "nominatim:алахадзы ул инал ипа 75 abkhazia": {
+    "miss": true,
+    "address": "Алахадзы, ул. Инал-Ипа, 75, Abkhazia"
+  },
+  "nominatim:алахадзы инал ипа 75 abkhazia": {
+    "miss": true,
+    "address": "Алахадзы, Инал-Ипа, 75, Abkhazia"
+  },
+  "nominatim:гагра ул русских добровольцев 2 абхазия": {
+    "miss": true,
+    "address": "Гагра ул. Русских добровольцев, 2, Абхазия"
+  },
+  "nominatim:гагра ул русских добровольцев 2": {
+    "miss": true,
+    "address": "Гагра ул. Русских добровольцев, 2"
+  },
+  "nominatim:гагра ул русских добровольцев 2 abkhazia": {
+    "miss": true,
+    "address": "Гагра ул. Русских добровольцев, 2, Abkhazia"
+  },
+  "nominatim:гагра русских обровольцев 2 abkhazia": {
+    "miss": true,
+    "address": "Гагра Русских обровольцев, 2, Abkhazia"
+  },
+  "nominatim:сухум ул акиртава 7 6 этаж абхазия": {
+    "miss": true,
+    "address": "Сухум, ул. Акиртава, 7, 6 этаж, Абхазия"
+  },
+  "nominatim:сухум ул акиртава 7 6 этаж": {
+    "miss": true,
+    "address": "Сухум, ул. Акиртава, 7, 6 этаж"
+  },
+  "nominatim:сухум ул акиртава 7 6 этаж abkhazia": {
+    "miss": true,
+    "address": "Сухум, ул. Акиртава, 7, 6 этаж, Abkhazia"
+  },
+  "nominatim:сухум акиртава 7 6 этаж abkhazia": {
+    "miss": true,
+    "address": "Сухум, Акиртава, 7, 6 этаж, Abkhazia"
+  },
+  "nominatim:сухум ул ладария 20 абхазия": {
+    "miss": true,
+    "address": "Сухум, ул. Ладария, 20, Абхазия"
+  },
+  "nominatim:сухум ул ладария 20": {
+    "miss": true,
+    "address": "Сухум, ул. Ладария, 20"
+  },
+  "nominatim:сухум ул ладария 20 abkhazia": {
+    "miss": true,
+    "address": "Сухум, ул. Ладария, 20, Abkhazia"
+  },
+  "nominatim:сухум ладария 20 abkhazia": {
+    "miss": true,
+    "address": "Сухум, Ладария, 20, Abkhazia"
+  },
+  "nominatim:гудаута ул гумистинская 34 абхазия": {
+    "miss": true,
+    "address": "Гудаута, ул. Гумистинская 34, Абхазия"
+  },
+  "nominatim:гудаута ул гумистинская 34": {
+    "miss": true,
+    "address": "Гудаута, ул. Гумистинская 34"
+  },
+  "nominatim:гудаута ул гумистинская 34 abkhazia": {
+    "miss": true,
+    "address": "Гудаута, ул. Гумистинская 34, Abkhazia"
+  },
+  "nominatim:гудаута гумистинская 34 abkhazia": {
+    "miss": true,
+    "address": "Гудаута, Гумистинская 34, Abkhazia"
+  }
+}

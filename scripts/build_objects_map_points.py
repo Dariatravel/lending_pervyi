@@ -6,9 +6,11 @@ from __future__ import annotations
 import hashlib
 import html
 import json
+import os
 import re
 import time
 import unicodedata
+from collections import defaultdict
 from datetime import datetime, timezone
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -18,6 +20,8 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_PATH = ROOT / "data" / "objects-map-points.json"
 GEOCODE_CACHE_PATH = ROOT / "data" / "objects-map-geocode-cache.json"
+MANUAL_COORDS_PATH = ROOT / "data" / "objects-map-manual-coords.json"
+TELEGRAM_POSTS_PATH = ROOT / "output" / "abhazbooking_2026_posts.json"
 MAPS_CONFIG_PATH = ROOT / "supabase" / "maps-config.js"
 CONSTRUCTOR_ID = "80408220233bb515383a3bc3da359eb235d60e8dd3dddfe843612590179aabd1"
 WIDGET_URL = (
@@ -264,6 +268,31 @@ BRAND_ALIASES = {
     "moryeon": "moreon",
 }
 
+STREET_WORDS = frozenset(
+    {
+        "ул",
+        "улица",
+        "улице",
+        "пр",
+        "проспект",
+        "просп",
+        "пр-т",
+        "шоссе",
+        "пер",
+        "переулок",
+        "д",
+        "дом",
+        "дома",
+    }
+)
+
+ABKHAZIA_BBOX = {
+    "lat_min": 42.5,
+    "lat_max": 43.65,
+    "lon_min": 39.8,
+    "lon_max": 42.0,
+}
+
 CITY_LATIN_SUFFIXES = (
     "gagra",
     "sukhum",
@@ -342,22 +371,84 @@ def extract_address_line(location: str) -> str:
         maxsplit=1,
         flags=re.I,
     )[0].strip(" ,.")
-    text = re.sub(r"\s+\d+\s*$", "", text).strip(" ,.")
     text = re.sub(r"\s*\([^)]*\)\s*", " ", text).strip(" ,.")
     return text
 
 
-def extract_coords_from_location(location: str) -> tuple[float, float] | None:
-    match = re.search(r"(\d{2}\.\d{4,})\s*,\s*(\d{2}\.\d{4,})", location or "")
+def source_message_id_from_slug(slug: str) -> int | None:
+    match = re.search(r"-(\d+)$", slug)
     if not match:
         return None
-    lat = float(match.group(1))
-    lon = float(match.group(2))
-    if 42.0 <= lat <= 44.5 and 40.0 <= lon <= 42.5:
-        return lat, lon
-    if 40.0 <= lat <= 42.5 and 42.0 <= lon <= 44.5:
-        return lon, lat
+    try:
+        return int(match.group(1))
+    except ValueError:
+        return None
+
+
+def coords_in_abkhazia(lat: float, lon: float) -> bool:
+    return (
+        ABKHAZIA_BBOX["lat_min"] <= lat <= ABKHAZIA_BBOX["lat_max"]
+        and ABKHAZIA_BBOX["lon_min"] <= lon <= ABKHAZIA_BBOX["lon_max"]
+    )
+
+
+def extract_coords_from_text(text: str) -> tuple[float, float] | None:
+    if not text:
+        return None
+    patterns = (
+        r"(?:координат\w*|gps|lat/lon)[:\s]*(\d{2}\.\d{4,})\s*[,;]\s*(\d{2}\.\d{4,})",
+        r"(\d{2}\.\d{4,})\s*,\s*(\d{2}\.\d{4,})",
+    )
+    for pattern in patterns:
+        for match in re.finditer(pattern, text, flags=re.I):
+            first = float(match.group(1))
+            second = float(match.group(2))
+            if coords_in_abkhazia(first, second):
+                return first, second
+            if coords_in_abkhazia(second, first):
+                return second, first
     return None
+
+
+def extract_coords_from_location(location: str) -> tuple[float, float] | None:
+    return extract_coords_from_text(location or "")
+
+
+def extract_coords_from_page(page: dict) -> tuple[float, float] | None:
+    coords = extract_coords_from_text(page.get("location", ""))
+    if coords:
+        return coords
+    page_path = page.get("page_path")
+    if not page_path:
+        return None
+    path = Path(page_path)
+    if not path.is_file():
+        return None
+    return extract_coords_from_text(path.read_text(encoding="utf-8", errors="ignore"))
+
+
+def load_telegram_posts_by_id() -> dict[int, str]:
+    if not TELEGRAM_POSTS_PATH.is_file():
+        return {}
+    try:
+        posts = json.loads(TELEGRAM_POSTS_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    result: dict[int, str] = {}
+    if not isinstance(posts, list):
+        return result
+    for post in posts:
+        if not isinstance(post, dict):
+            continue
+        post_id = post.get("id")
+        text = post.get("text", "")
+        if post_id is None or not text:
+            continue
+        try:
+            result[int(post_id)] = str(text)
+        except (TypeError, ValueError):
+            continue
+    return result
 
 
 def page_records() -> list[dict]:
@@ -385,6 +476,8 @@ def page_records() -> list[dict]:
             records.append(
                 {
                     "slug": path.parent.name,
+                    "page_path": path,
+                    "source_message_id": source_message_id_from_slug(path.parent.name),
                     "title": title,
                     "title_norm": norm_text(title),
                     "location": loc_text,
@@ -609,6 +702,220 @@ def exact_address_key(text: str) -> str:
     return "|".join(tokens) + "|" + "|".join(sorted(numbers))
 
 
+def address_lookup_key(text: str) -> str:
+    numbers, tokens = address_signature(text)
+    if not numbers:
+        return ""
+    city = infer_city_key(text) or ""
+    street_tokens = [
+        token
+        for token in tokens
+        if token not in STREET_WORDS and not re.fullmatch(r"\d+[a-zа-я]?", token)
+    ]
+    if not street_tokens:
+        return ""
+    street = max(street_tokens, key=len)
+    return f"{city}|{street}|{numbers[0]}"
+
+
+def build_placemark_address_index(placemarks: list[dict]) -> dict[str, tuple[float, float]]:
+    index: dict[str, tuple[float, float]] = {}
+    for placemark in placemarks:
+        for field in ("address", "title"):
+            lookup_key = address_lookup_key(placemark.get(field, ""))
+            if lookup_key and lookup_key not in index:
+                index[lookup_key] = (placemark["lat"], placemark["lon"])
+        exact_key = exact_address_key(placemark.get("address", ""))
+        if exact_key and exact_key not in index:
+            index[exact_key] = (placemark["lat"], placemark["lon"])
+    return index
+
+
+def street_key(text: str) -> str:
+    _, tokens = address_signature(text)
+    if not tokens:
+        normalized = norm_text(extract_address_line(text))
+        tokens = [
+            token
+            for token in normalized.split()
+            if token not in GENERIC_ADDRESS_TOKENS
+            and token not in STREET_WORDS
+            and len(token) >= 3
+            and not re.fullmatch(r"\d+[a-zа-я]?", token)
+        ]
+    if not tokens:
+        return ""
+    city = infer_city_key(text) or ""
+    street_tokens = [
+        token
+        for token in tokens
+        if token not in STREET_WORDS and not re.fullmatch(r"\d+[a-zа-я]?", token)
+    ]
+    if not street_tokens:
+        return ""
+    street = max(street_tokens, key=len)
+    return f"{city}|{street}"
+
+
+def parse_house_number(text: str) -> float | None:
+    numbers, _ = address_signature(text)
+    if not numbers:
+        return None
+    match = re.match(r"(\d+)", numbers[0])
+    if not match:
+        return None
+    return float(match.group(1))
+
+
+def build_street_reference_index(
+    placemarks: list[dict],
+    points_by_slug: dict[str, dict],
+    pages_by_slug: dict[str, dict],
+) -> dict[str, list[tuple[float, float, float]]]:
+    refs: dict[str, list[tuple[float, float, float]]] = defaultdict(list)
+
+    def add_reference(source_text: str, lat: float, lon: float) -> None:
+        key = street_key(source_text)
+        house_number = parse_house_number(source_text)
+        if not key or house_number is None:
+            return
+        refs[key].append((house_number, lat, lon))
+
+    for placemark in placemarks:
+        combined = f"{placemark.get('address', '')} {placemark.get('title', '')}"
+        add_reference(combined, placemark["lat"], placemark["lon"])
+
+    for slug, point in points_by_slug.items():
+        page = pages_by_slug[slug]
+        source_text = page.get("address_line", "") or page.get("location", "")
+        add_reference(source_text, point["lat"], point["lon"])
+
+    return refs
+
+
+def interpolate_coords_on_street(
+    refs: list[tuple[float, float, float]],
+    target_number: float,
+) -> tuple[float, float] | None:
+    if not refs:
+        return None
+
+    grouped: dict[float, list[tuple[float, float]]] = defaultdict(list)
+    for house_number, lat, lon in refs:
+        grouped[house_number].append((lat, lon))
+
+    points: list[tuple[float, float, float]] = []
+    for house_number in sorted(grouped):
+        coords = grouped[house_number]
+        lat = sum(item[0] for item in coords) / len(coords)
+        lon = sum(item[1] for item in coords) / len(coords)
+        points.append((house_number, lat, lon))
+
+    if len(points) == 1:
+        only_number, lat, lon = points[0]
+        if abs(only_number - target_number) <= 0.5:
+            return lat, lon
+        return None
+
+    for house_number, lat, lon in points:
+        if abs(house_number - target_number) <= 0.5:
+            return lat, lon
+
+    for index in range(len(points) - 1):
+        n1, lat1, lon1 = points[index]
+        n2, lat2, lon2 = points[index + 1]
+        low, high = sorted((n1, n2))
+        if low <= target_number <= high:
+            ratio = (target_number - n1) / (n2 - n1) if n2 != n1 else 0.0
+            lat = lat1 + ratio * (lat2 - lat1)
+            lon = lon1 + ratio * (lon2 - lon1)
+            if coords_in_abkhazia(lat, lon):
+                return lat, lon
+
+    n1, lat1, lon1 = points[-2]
+    n2, lat2, lon2 = points[-1]
+    if target_number > max(n1, n2) and n2 != n1:
+        ratio = (target_number - n1) / (n2 - n1)
+        lat = lat1 + ratio * (lat2 - lat1)
+        lon = lon1 + ratio * (lon2 - lon1)
+        if coords_in_abkhazia(lat, lon):
+            return lat, lon
+
+    n1, lat1, lon1 = points[0]
+    n2, lat2, lon2 = points[1]
+    if target_number < min(n1, n2) and n2 != n1:
+        ratio = (target_number - n1) / (n2 - n1)
+        lat = lat1 + ratio * (lat2 - lat1)
+        lon = lon1 + ratio * (lon2 - lon1)
+        if coords_in_abkhazia(lat, lon):
+            return lat, lon
+
+    return None
+
+
+def street_centroid(refs: list[tuple[float, float, float]]) -> tuple[float, float] | None:
+    if len(refs) < 2:
+        return None
+    grouped: dict[float, list[tuple[float, float]]] = defaultdict(list)
+    for house_number, lat, lon in refs:
+        grouped[house_number].append((lat, lon))
+    coords: list[tuple[float, float]] = []
+    for house_number in grouped:
+        points = grouped[house_number]
+        coords.append(
+            (
+                sum(item[0] for item in points) / len(points),
+                sum(item[1] for item in points) / len(points),
+            )
+        )
+    lat = sum(item[0] for item in coords) / len(coords)
+    lon = sum(item[1] for item in coords) / len(coords)
+    if coords_in_abkhazia(lat, lon):
+        return lat, lon
+    return None
+
+
+def load_manual_coords() -> dict[str, tuple[float, float]]:
+    if not MANUAL_COORDS_PATH.is_file():
+        return {}
+    try:
+        payload = json.loads(MANUAL_COORDS_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    if not isinstance(payload, dict):
+        return {}
+
+    result: dict[str, tuple[float, float]] = {}
+    for key, value in payload.items():
+        if not isinstance(value, dict):
+            continue
+        try:
+            lat = float(value["lat"])
+            lon = float(value["lon"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        if coords_in_abkhazia(lat, lon):
+            result[str(key)] = (lat, lon)
+    return result
+
+
+def geocode_query_variants(page: dict) -> list[str]:
+    address = resolve_address(page)
+    variants = [f"{address}, Абхазия", address, f"{address}, Abkhazia"]
+    simplified = re.sub(r"\b(?:ул\.?|улица|пр\.?|проспект|д\.?|дом)\s*", " ", address, flags=re.I)
+    simplified = re.sub(r"\s+", " ", simplified).strip(" ,")
+    if simplified and simplified not in variants:
+        variants.append(f"{simplified}, Abkhazia")
+    deduped: list[str] = []
+    seen: set[str] = set()
+    for variant in variants:
+        key = norm_text(variant)
+        if key and key not in seen:
+            seen.add(key)
+            deduped.append(variant)
+    return deduped
+
+
 def match_remaining_placemarks(
     pages: list[dict],
     placemarks: list[dict],
@@ -631,7 +938,14 @@ def match_remaining_placemarks(
                 placemark_key = exact_address_key(placemark.get("address", ""))
                 if page_key and page_key == placemark_key:
                     score = 0.95
-            if score >= 0.95:
+                else:
+                    page_lookup = address_lookup_key(page.get("address_line", "") or page.get("location", ""))
+                    placemark_lookup = address_lookup_key(
+                        f"{placemark.get('address', '')} {placemark.get('title', '')}"
+                    )
+                    if page_lookup and page_lookup == placemark_lookup:
+                        score = 0.94
+            if score >= 0.94:
                 pairs.append((score, page_index, placemark_index))
     pairs.sort(reverse=True)
 
@@ -680,6 +994,12 @@ def share_coords_from_existing(
             key = exact_address_key(page.get("address_line", "") or page.get("location", ""))
             if key and key not in lookup:
                 lookup[key] = (point["lat"], point["lon"])
+    elif by == "address_lookup":
+        for slug, point in points_by_slug.items():
+            page = pages_by_slug[slug]
+            key = address_lookup_key(page.get("address_line", "") or page.get("location", ""))
+            if key and key not in lookup:
+                lookup[key] = (point["lat"], point["lon"])
 
     for page in pending_pages:
         coords = None
@@ -692,6 +1012,9 @@ def share_coords_from_existing(
                     break
         elif by == "address":
             key = exact_address_key(page.get("address_line", "") or page.get("location", ""))
+            coords = lookup.get(key) if key else None
+        elif by == "address_lookup":
+            key = address_lookup_key(page.get("address_line", "") or page.get("location", ""))
             coords = lookup.get(key) if key else None
 
         if coords:
@@ -741,6 +1064,9 @@ def city_fallback_coords(slug: str, city_key: str) -> tuple[float, float]:
 
 
 def load_maps_api_key() -> str:
+    env_key = os.environ.get("YANDEX_MAPS_API_KEY", "").strip()
+    if env_key:
+        return env_key
     if MAPS_CONFIG_PATH.is_file():
         match = re.search(r'apiKey:\s*"([^"]+)"', MAPS_CONFIG_PATH.read_text(encoding="utf-8"))
         if match and match.group(1) and match.group(1) != "YOUR_YANDEX_MAPS_API_KEY":
@@ -785,12 +1111,100 @@ def geocode_with_yandex(address: str, api_key: str) -> tuple[float, float] | Non
     if not pos:
         return None
     lon_str, lat_str = pos.split()
-    return float(lat_str), float(lon_str)
+    lat = float(lat_str)
+    lon = float(lon_str)
+    if coords_in_abkhazia(lat, lon):
+        return lat, lon
+    return None
+
+
+def geocode_with_nominatim(address: str) -> tuple[float, float] | None:
+    query = quote(f"{address}, Abkhazia")
+    url = "https://nominatim.openstreetmap.org/search?q=" + query + "&format=json&limit=1"
+    req = Request(
+        url,
+        headers={
+            "User-Agent": "abhazbereg-map-builder/1.0 (https://abhazbereg.ru/karta/)",
+            "Accept-Language": "ru",
+        },
+    )
+    with urlopen(req, timeout=30) as resp:
+        payload = json.loads(resp.read().decode("utf-8", errors="ignore"))
+    if not payload:
+        return None
+    lat = float(payload[0]["lat"])
+    lon = float(payload[0]["lon"])
+    if coords_in_abkhazia(lat, lon):
+        return lat, lon
+    return None
+
+
+def geocode_pending_pages(
+    pending: list[dict],
+    points_by_slug: dict[str, dict],
+    *,
+    provider: str,
+    api_key: str,
+    geocode_cache: dict[str, dict],
+) -> tuple[list[dict], int, bool]:
+    still_pending: list[dict] = []
+    matched = 0
+    cache_dirty = False
+
+    for page in pending:
+        address = resolve_address(page)
+        coords = None
+        for variant in geocode_query_variants(page):
+            cache_key = f"{provider}:{norm_text(variant)}"
+            cached = geocode_cache.get(cache_key)
+            if cached and "lat" in cached and "lon" in cached:
+                coords = (float(cached["lat"]), float(cached["lon"]))
+                break
+
+        if coords is None:
+            variants = geocode_query_variants(page)
+            all_cached_miss = all(
+                geocode_cache.get(f"{provider}:{norm_text(variant)}", {}).get("miss")
+                for variant in variants
+            )
+            if all_cached_miss:
+                still_pending.append(page)
+                continue
+            for variant in variants:
+                cache_key = f"{provider}:{norm_text(variant)}"
+                if cache_key in geocode_cache and geocode_cache[cache_key].get("miss"):
+                    continue
+                try:
+                    if provider == "yandex" and api_key:
+                        coords = geocode_with_yandex(variant, api_key)
+                    elif provider == "nominatim":
+                        coords = geocode_with_nominatim(variant)
+                    else:
+                        break
+                except OSError:
+                    coords = None
+                time.sleep(1.1 if provider == "nominatim" else 0.25)
+                if coords:
+                    geocode_cache[cache_key] = {"lat": coords[0], "lon": coords[1], "address": address}
+                    cache_dirty = True
+                    break
+                geocode_cache[cache_key] = {"miss": True, "address": variant}
+                cache_dirty = True
+
+        if coords:
+            points_by_slug[page["slug"]] = make_point(page, coords[0], coords[1], address, f"geocode_{provider}")
+            matched += 1
+        else:
+            still_pending.append(page)
+
+    return still_pending, matched, cache_dirty
 
 
 def build_points() -> dict:
     html = fetch_constructor_html()
     placemarks = parse_constructor_placemarks(html)
+    placemark_address_index = build_placemark_address_index(placemarks)
+    telegram_posts = load_telegram_posts_by_id()
     pages = page_records()
     pages_by_slug = {page["slug"]: page for page in pages}
     matches = match_pages_to_placemarks(pages, placemarks)
@@ -810,10 +1224,18 @@ def build_points() -> dict:
         "pages_total": len(pages),
         "from_constructor": 0,
         "from_coords_in_text": 0,
+        "from_coords_in_page": 0,
+        "from_coords_in_telegram": 0,
+        "from_placemark_address": 0,
         "from_shared_title": 0,
         "from_shared_brand": 0,
         "from_shared_address": 0,
-        "from_geocode": 0,
+        "from_shared_address_lookup": 0,
+        "from_street_interpolation": 0,
+        "from_street_centroid": 0,
+        "from_manual_coords": 0,
+        "from_geocode_yandex": 0,
+        "from_geocode_nominatim": 0,
         "from_city_fallback": 0,
     }
 
@@ -835,6 +1257,40 @@ def build_points() -> dict:
             stats["from_coords_in_text"] += 1
 
     pending = [page for page in pages if page["slug"] not in points_by_slug]
+    for page in pending[:]:
+        coords = extract_coords_from_page(page)
+        if coords:
+            lat, lon = coords
+            address = resolve_address(page)
+            points_by_slug[page["slug"]] = make_point(page, lat, lon, address, "coords_in_page")
+            stats["from_coords_in_page"] += 1
+
+    pending = [page for page in pages if page["slug"] not in points_by_slug]
+    for page in pending[:]:
+        post_id = page.get("source_message_id")
+        post_text = telegram_posts.get(post_id) if post_id else None
+        if not post_text:
+            continue
+        coords = extract_coords_from_text(post_text)
+        if coords:
+            lat, lon = coords
+            address = resolve_address(page)
+            points_by_slug[page["slug"]] = make_point(page, lat, lon, address, "coords_in_telegram")
+            stats["from_coords_in_telegram"] += 1
+
+    pending = [page for page in pages if page["slug"] not in points_by_slug]
+    for page in pending[:]:
+        lookup_key = address_lookup_key(page.get("address_line", "") or page.get("location", ""))
+        coords = placemark_address_index.get(lookup_key) if lookup_key else None
+        if not coords:
+            exact_key = exact_address_key(page.get("address_line", "") or page.get("location", ""))
+            coords = placemark_address_index.get(exact_key) if exact_key else None
+        if coords:
+            address = resolve_address(page)
+            points_by_slug[page["slug"]] = make_point(page, coords[0], coords[1], address, "placemark_address")
+            stats["from_placemark_address"] += 1
+
+    pending = [page for page in pages if page["slug"] not in points_by_slug]
     before = len(pending)
     pending = share_coords_from_existing(points_by_slug, pages_by_slug, pending, by="title")
     stats["from_shared_title"] += before - len(pending)
@@ -847,35 +1303,79 @@ def build_points() -> dict:
     pending = share_coords_from_existing(points_by_slug, pages_by_slug, pending, by="address")
     stats["from_shared_address"] += before - len(pending)
 
+    before = len(pending)
+    pending = share_coords_from_existing(points_by_slug, pages_by_slug, pending, by="address_lookup")
+    stats["from_shared_address_lookup"] += before - len(pending)
+
+    street_refs = build_street_reference_index(placemarks, points_by_slug, pages_by_slug)
+    pending_after_street: list[dict] = []
+    for page in pending:
+        source_text = page.get("address_line", "") or page.get("location", "")
+        key = street_key(source_text)
+        house_number = parse_house_number(source_text)
+        coords = None
+        if key and house_number is not None:
+            coords = interpolate_coords_on_street(street_refs.get(key, []), house_number)
+        if coords:
+            address = resolve_address(page)
+            points_by_slug[page["slug"]] = make_point(page, coords[0], coords[1], address, "street_interpolation")
+            stats["from_street_interpolation"] += 1
+        else:
+            pending_after_street.append(page)
+    pending = pending_after_street
+
+    pending_after_centroid: list[dict] = []
+    for page in pending:
+        source_text = page.get("address_line", "") or page.get("location", "")
+        if parse_house_number(source_text):
+            pending_after_centroid.append(page)
+            continue
+        key = street_key(source_text)
+        coords = street_centroid(street_refs.get(key, [])) if key else None
+        if coords:
+            address = resolve_address(page)
+            points_by_slug[page["slug"]] = make_point(page, coords[0], coords[1], address, "street_centroid")
+            stats["from_street_centroid"] += 1
+        else:
+            pending_after_centroid.append(page)
+    pending = pending_after_centroid
+
+    manual_coords = load_manual_coords()
+    pending_after_manual: list[dict] = []
+    for page in pending:
+        coords = manual_coords.get(page["slug"]) or manual_coords.get(page["url"].strip("/"))
+        if coords:
+            address = resolve_address(page)
+            points_by_slug[page["slug"]] = make_point(page, coords[0], coords[1], address, "manual_coords")
+            stats["from_manual_coords"] += 1
+        else:
+            pending_after_manual.append(page)
+    pending = pending_after_manual
+
     api_key = load_maps_api_key()
     geocode_cache = load_geocode_cache()
     cache_dirty = False
 
     if pending and api_key:
-        for page in pending[:]:
-            address = resolve_address(page)
-            cache_key = norm_text(address)
-            cached = geocode_cache.get(cache_key)
-            if cached and "lat" in cached and "lon" in cached:
-                points_by_slug[page["slug"]] = make_point(
-                    page, float(cached["lat"]), float(cached["lon"]), address, "geocode"
-                )
-                stats["from_geocode"] += 1
-                pending.remove(page)
-                continue
-            try:
-                coords = geocode_with_yandex(address, api_key)
-            except OSError:
-                coords = None
-            time.sleep(0.25)
-            if not coords:
-                continue
-            lat, lon = coords
-            geocode_cache[cache_key] = {"lat": lat, "lon": lon, "address": address}
-            cache_dirty = True
-            points_by_slug[page["slug"]] = make_point(page, lat, lon, address, "geocode")
-            stats["from_geocode"] += 1
-            pending.remove(page)
+        pending, matched, cache_dirty = geocode_pending_pages(
+            pending,
+            points_by_slug,
+            provider="yandex",
+            api_key=api_key,
+            geocode_cache=geocode_cache,
+        )
+        stats["from_geocode_yandex"] += matched
+
+    if pending:
+        pending, matched, nominatim_dirty = geocode_pending_pages(
+            pending,
+            points_by_slug,
+            provider="nominatim",
+            api_key="",
+            geocode_cache=geocode_cache,
+        )
+        stats["from_geocode_nominatim"] += matched
+        cache_dirty = cache_dirty or nominatim_dirty
 
     if cache_dirty:
         save_geocode_cache(geocode_cache)
@@ -910,10 +1410,19 @@ def main() -> int:
     print(
         f"OK: {stats['points_total']} точек -> {OUTPUT_PATH.relative_to(ROOT)} "
         f"(страниц {stats['pages_total']}; конструктор {stats['from_constructor']}, "
-        f"координаты в тексте {stats['from_coords_in_text']}, "
+        f"координаты в шапке {stats['from_coords_in_text']}, "
+        f"координаты на странице {stats['from_coords_in_page']}, "
+        f"координаты из Telegram {stats['from_coords_in_telegram']}, "
+        f"адрес метки {stats['from_placemark_address']}, "
         f"общий бренд {stats['from_shared_brand']}, общий адрес {stats['from_shared_address']}, "
+        f"общий адрес (lookup) {stats['from_shared_address_lookup']}, "
+        f"интерполяция по улице {stats['from_street_interpolation']}, "
+        f"центр улицы {stats['from_street_centroid']}, "
+        f"ручные координаты {stats['from_manual_coords']}, "
         f"общее название {stats['from_shared_title']}, "
-        f"геокодер {stats['from_geocode']}, город {stats['from_city_fallback']})"
+        f"геокодер Яндекс {stats['from_geocode_yandex']}, "
+        f"геокодер OSM {stats['from_geocode_nominatim']}, "
+        f"город {stats['from_city_fallback']})"
     )
     return 0
 
