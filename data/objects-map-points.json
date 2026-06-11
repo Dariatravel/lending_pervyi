@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T21:49:54.399200+00:00",
+  "generated_at": "2026-06-11T21:53:25.031932+00:00",
   "constructor_id": "80408220233bb515383a3bc3da359eb235d60e8dd3dddfe843612590179aabd1",
   "points": [
     {
@@ -339,19 +339,19 @@
       "cityKey": "gagra"
     },
     {
-      "title": "\"САН АМРА\" ЛЮКС НОМЕРА С ВИДОМ НА МОРЕ",
-      "address": "Гагрский район, село Лдзаа, Рыбзаводская улица, 80А",
-      "lat": 43.174072,
-      "lon": 40.385677,
-      "url": "/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/",
-      "cityKey": "gagra"
-    },
-    {
       "title": "\"САЯ\" ДОМИКИ",
       "address": "Гагрский район, Пицунда, улица Агрба, 24",
       "lat": 43.169255874421076,
       "lon": 40.339146182525056,
       "url": "/hotels/saya-domiki-3134/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "\"СЕКРЕТ ГАРДЕН\" АПАРТАМЕНТЫ",
+      "address": "Гагра, Кабардинская ул, 83",
+      "lat": 43.2751,
+      "lon": 40.28323,
+      "url": "/kvartira/sekret-garden-apartamenty-1465/",
       "cityKey": "gagra"
     },
     {
@@ -368,6 +368,14 @@
       "lat": 43.273932,
       "lon": 40.270261,
       "url": "/kvartira/siti-gagra-kvartira-2k-gagra-1242/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "\"СТУДИО САН АМРА\" СТУДИЯ НА ПЛЯЖЕ",
+      "address": "Гагрский район, село Лдзаа, Рыбзаводская улица, 80А",
+      "lat": 43.174072,
+      "lon": 40.385677,
+      "url": "/kvartira/studio-san-amra-studiya-na-plyazhe-1511/",
       "cityKey": "gagra"
     },
     {
@@ -432,6 +440,14 @@
       "lat": 43.091565,
       "lon": 40.60922,
       "url": "/hotels/dyshi-glubzhe-domiki-v-gorah-3459/",
+      "cityKey": "gudauta"
+    },
+    {
+      "title": "\"ДЫШИ ГЛУБЖЕ\" ДОМИКИ В ГОРАХ",
+      "address": "13 км Рицинского ущелья, Рицинское шоссе",
+      "lat": 43.09818,
+      "lon": 40.612825,
+      "url": "/kvartira/dyshi-glubzhe-domiki-v-gorah-1335/",
       "cityKey": "gudauta"
     },
     {
@@ -751,6 +767,14 @@
       "address": "Лдзаа, координаты 43.173756,40.379626",
       "lat": 43.173756,
       "lon": 40.379626,
+      "url": "/kvartira/mechta-apartamenty-ldzaa-1176/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"МЕЧТА\" АПАРТАМЕНТЫ С КУХНЕЙ",
+      "address": "Лдзаа, координаты 43.173756,40.379626",
+      "lat": 43.173756,
+      "lon": 40.379626,
       "url": "/hotels/mechta-apartamenty-s-kuhney-3363/",
       "cityKey": "ldzaa"
     },
@@ -820,17 +844,25 @@
     },
     {
       "title": "\"НАСТА\" АПАРТАМЕНТЫ",
-      "address": "Лдзаа, улица Речная 36Б",
-      "lat": 43.175714855989796,
-      "lon": 40.38186052478156,
+      "address": "Абхазия, село Лдзаа, Речная улица, 36Б",
+      "lat": 43.175897,
+      "lon": 40.382199,
+      "url": "/kvartira/nasta-apartamenty-studiya-ldzaa-1264/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"НАСТА\" АПАРТАМЕНТЫ",
+      "address": "Абхазия, село Лдзаа, Речная улица, 36Б",
+      "lat": 43.175897,
+      "lon": 40.382199,
       "url": "/hotels/nasta-apartamenty-3258/",
       "cityKey": "ldzaa"
     },
     {
       "title": "\"НАСТА\" ГОСТЕВОЙ ДОМ",
-      "address": "Абхазия, село Лдзаа, Речная улица, 36Б",
-      "lat": 43.175897,
-      "lon": 40.382199,
+      "address": "Лдзаа, улица Речная 36Б",
+      "lat": 43.175714855989796,
+      "lon": 40.38186052478156,
       "url": "/hotels/nasta-gostevoy-dom-3249/",
       "cityKey": "ldzaa"
     },
@@ -896,6 +928,14 @@
       "lat": 43.1742184790067,
       "lon": 40.392719793736525,
       "url": "/hotels/rivera-domiki-na-plyazhe-2966/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"САН АМРА\" ЛЮКС НОМЕРА С ВИДОМ НА МОРЕ",
+      "address": "Лдзаа, улица Рыбзаводская 80 А",
+      "lat": 43.060815,
+      "lon": 40.32007,
+      "url": "/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/",
       "cityKey": "ldzaa"
     },
     {
@@ -1059,6 +1099,14 @@
       "cityKey": "new-afon"
     },
     {
+      "title": "\"МАНДАРИНОВЫЙ ДВОРИК\" ДОМ ПОД КЛЮЧ",
+      "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия",
+      "lat": 43.07439,
+      "lon": 40.830115,
+      "url": "/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/",
+      "cityKey": "new-afon"
+    },
+    {
       "title": "\"МАНОН\" ОТЕЛЬ СО СКАЗОЧНЫМ ВИДОМ",
       "address": "Новый Афон,Чанба 43",
       "lat": 43.088916,
@@ -1072,6 +1120,14 @@
       "lat": 43.093745000000006,
       "lon": 40.82644,
       "url": "/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/",
+      "cityKey": "new-afon"
+    },
+    {
+      "title": "\"НА ВРЕМЯ В РАЮ\" ЖИЛЬЕ ПОД КЛЮЧ",
+      "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия, 66",
+      "lat": 43.09357000000001,
+      "lon": 40.812335,
+      "url": "/kvartira/na-vremya-v-rayu-zhile-pod-klyuch-1522/",
       "cityKey": "new-afon"
     },
     {
@@ -1176,6 +1232,14 @@
       "lat": 43.158935,
       "lon": 40.332398,
       "url": "/kvartira/kamilla-kvartira-2k-pitsunda-968/",
+      "cityKey": "pitsunda"
+    },
+    {
+      "title": "\"КАРАЛИНА\" АПАРТАМЕНТЫ",
+      "address": "Пицунда, ул. Агрба 30Б",
+      "lat": 43.168078469807554,
+      "lon": 40.344315253963856,
+      "url": "/kvartira/karalina-apartamenty-studiya-pitsunda-1274/",
       "cityKey": "pitsunda"
     },
     {
@@ -1539,6 +1603,14 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"ПЕСЧАНЫЙ БЕРЕГ\" АПАРТАМЕНТЫ",
+      "address": "Сухум, Кадорское шоссе, дом 11",
+      "lat": 43.011585,
+      "lon": 41.020525000000006,
+      "url": "/kvartira/peschanyy-bereg-novye-apartamenty-suhum-mokko-1407/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"РИММА\" ДВЕ КВАРТИРЫ С КУХНЕЙ",
       "address": "Сухум, ул. Услара 4Б (Армянское ущелье)",
       "lat": 42.97872,
@@ -1568,6 +1640,14 @@
       "lat": 42.99657,
       "lon": 41.0116,
       "url": "/hotels/tihaya-obitel-dom-pod-klyuch-4230/",
+      "cityKey": "sukhum"
+    },
+    {
+      "title": "\"ТИХАЯ ОБИТЕЛЬ\" ДОМ ПОД КЛЮЧ",
+      "address": "Сухум, ул. Пхазария, 7",
+      "lat": 42.993,
+      "lon": 41.015240000000006,
+      "url": "/kvartira/tihaya-obitel-dom-pod-klyuch-1477/",
       "cityKey": "sukhum"
     },
     {
@@ -1725,10 +1805,10 @@
   ],
   "stats": {
     "placemarks_total": 302,
-    "pages_total": 215,
+    "pages_total": 225,
     "pages_on_disk": 237,
-    "pages_excluded": 22,
-    "from_constructor": 140,
+    "pages_excluded": 12,
+    "from_constructor": 143,
     "from_coords_in_text": 5,
     "from_coords_in_page": 1,
     "from_coords_in_telegram": 0,
@@ -1736,9 +1816,9 @@
     "from_manual_coords": 0,
     "from_geocode_yandex": 0,
     "from_geocode_nominatim": 3,
-    "from_city_fallback": 65,
-    "shared_coordinate_groups": 17,
-    "points_total": 215,
+    "from_city_fallback": 72,
+    "shared_coordinate_groups": 20,
+    "points_total": 225,
     "unmatched_pages": 0
   }
 }

@@ -1018,5 +1018,37 @@
   "nominatim:лдзаа виноградная 3 abkhazia": {
     "miss": true,
     "address": "Лдзаа, Виноградная, 3, Abkhazia"
+  },
+  "nominatim:лдзаа улица рыбзаводская 80 а абхазия": {
+    "miss": true,
+    "address": "Лдзаа, улица Рыбзаводская 80 А, Абхазия"
+  },
+  "nominatim:лдзаа улица рыбзаводская 80 а": {
+    "miss": true,
+    "address": "Лдзаа, улица Рыбзаводская 80 А"
+  },
+  "nominatim:лдзаа улица рыбзаводская 80 а abkhazia": {
+    "miss": true,
+    "address": "Лдзаа, улица Рыбзаводская 80 А, Abkhazia"
+  },
+  "nominatim:лдзаа ица рыбзаводская 80 а abkhazia": {
+    "miss": true,
+    "address": "Лдзаа, ица Рыбзаводская 80 А, Abkhazia"
+  },
+  "nominatim:сухум кадорское шоссе дом 11 абхазия": {
+    "miss": true,
+    "address": "Сухум, Кадорское шоссе, дом 11, Абхазия"
+  },
+  "nominatim:сухум кадорское шоссе дом 11": {
+    "miss": true,
+    "address": "Сухум, Кадорское шоссе, дом 11"
+  },
+  "nominatim:сухум кадорское шоссе дом 11 abkhazia": {
+    "miss": true,
+    "address": "Сухум, Кадорское шоссе, дом 11, Abkhazia"
+  },
+  "nominatim:сухум кадорское шоссе ом 11 abkhazia": {
+    "miss": true,
+    "address": "Сухум, Кадорское шоссе, ом 11, Abkhazia"
   }
 }
