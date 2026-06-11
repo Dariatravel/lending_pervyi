@@ -1557,6 +1557,9 @@ section.site-concept__contacts.section {
   min-height: 40px;
   padding: 0.4rem 0.75rem;
   font-size: 12px;
+  text-align: center;
+  white-space: normal;
+  max-width: 100%;
 }
 
 .hotel-site-concept .contact-buttons .btn-book {
