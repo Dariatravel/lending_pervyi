@@ -8,6 +8,10 @@
   <meta name="robots" content="noindex, follow" />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../styles.css?v=202605272305" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script>
+    window.__ABHAZBEREG_MAPS_CONFIG__ = window.__ABHAZBEREG_MAPS_CONFIG__ || {};
+  </script>
 </head>
 <body class="objects-map-page">
   <header class="objects-map-page__bar">
@@ -15,15 +19,12 @@
     <p class="objects-map-page__title">Карта объектов <strong>Абхазберег</strong></p>
     <p class="objects-map-page__city" id="objects-map-city">Абхазия</p>
   </header>
-  <iframe
-    id="objects-map-frame"
-    title="Интерактивная карта объектов Абхазберег"
-    loading="lazy"
-    allowfullscreen
-  ></iframe>
+  <div id="objects-map" role="region" aria-label="Интерактивная карта объектов"></div>
+  <p class="objects-map-page__status" hidden id="objects-map-status"></p>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script>
     (function () {
-      var CONSTRUCTOR_ID = "80408220233bb515383a3bc3da359eb235d60e8dd3dddfe843612590179aabd1";
       var CITIES = {
         ldzaa: { label: "Лдзаа", lon: 40.32, lat: 43.05, z: 13 },
         pitsunda: { label: "Пицунда", lon: 40.34, lat: 43.16, z: 13 },
@@ -35,21 +36,151 @@
         tsandripsh: { label: "Цандрипш", lon: 40.34, lat: 43.38, z: 13 },
       };
       var DEFAULT_GEO = { label: "Абхазия", lon: 40.5, lat: 43.15, z: 10 };
+      var mapsConfig = window.__ABHAZBEREG_MAPS_CONFIG__ || {};
       var cityKey = new URLSearchParams(window.location.search).get("city") || "";
       var geo = CITIES[cityKey] || DEFAULT_GEO;
       var cityNode = document.getElementById("objects-map-city");
+      var statusNode = document.getElementById("objects-map-status");
+      var mapHost = document.getElementById("objects-map");
+
       if (cityNode) cityNode.textContent = geo.label;
       document.title = "Карта объектов — " + geo.label + " | Абхазберег";
-      var frame = document.getElementById("objects-map-frame");
-      if (!frame) return;
-      frame.src =
-        "https://yandex.ru/map-widget/v1/?um=constructor%3A" +
-        encodeURIComponent(CONSTRUCTOR_ID) +
-        "&ll=" +
-        encodeURIComponent(geo.lon + "," + geo.lat) +
-        "&z=" +
-        encodeURIComponent(String(geo.z)) +
-        "&scroll=true";
+
+      function escapeHtml(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function popupHtml(point) {
+        var title = escapeHtml(point.title);
+        var address = escapeHtml(point.address || "");
+        var url = escapeHtml(point.url || "/");
+        return (
+          '<div class="objects-map-popup">' +
+          '<p class="objects-map-popup__title">' +
+          title +
+          "</p>" +
+          (address ? '<p class="objects-map-popup__address">' + address + "</p>" : "") +
+          '<a class="objects-map-popup__link" href="' +
+          url +
+          '" target="_blank" rel="noopener noreferrer">Открыть объект на сайте</a>' +
+          "</div>"
+        );
+      }
+
+      function filterPoints(points) {
+        if (!cityKey) return points;
+        return points.filter(function (point) {
+          return !point.cityKey || point.cityKey === cityKey;
+        });
+      }
+
+      function showStatus(text) {
+        if (!statusNode) return;
+        statusNode.textContent = text;
+        statusNode.hidden = !text;
+      }
+
+      function initLeafletMap(points) {
+        if (!mapHost || !window.L) return;
+        var map = window.L.map(mapHost, { zoomControl: true }).setView([geo.lat, geo.lon], geo.z);
+        window.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }).addTo(map);
+
+        var group = window.L.featureGroup();
+        points.forEach(function (point) {
+          if (!Number.isFinite(point.lat) || !Number.isFinite(point.lon)) return;
+          var marker = window.L.circleMarker([point.lat, point.lon], {
+            radius: 8,
+            color: "#2f6654",
+            weight: 2,
+            fillColor: "#58a789",
+            fillOpacity: 0.92,
+          });
+          marker.bindPopup(popupHtml(point), { maxWidth: 280, className: "objects-map-popup-shell" });
+          marker.addTo(group);
+        });
+        group.addTo(map);
+        if (group.getLayers().length) {
+          if (cityKey) {
+            map.fitBounds(group.getBounds().pad(0.18));
+          }
+        } else {
+          showStatus("Для выбранного города пока нет точек с привязкой к страницам сайта.");
+        }
+      }
+
+      function initYandexMap(points, apiKey) {
+        if (!mapHost) return;
+        var script = document.createElement("script");
+        script.src =
+          "https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=" + encodeURIComponent(apiKey) + "&load=package.full";
+        script.onload = function () {
+          window.ymaps.ready(function () {
+            var map = new window.ymaps.Map(mapHost, {
+              center: [geo.lat, geo.lon],
+              zoom: geo.z,
+              controls: ["zoomControl", "typeSelector", "fullscreenControl"],
+            });
+            var clusterer = new window.ymaps.Clusterer({
+              preset: "islands#invertedDarkGreenClusterIcons",
+              groupByCoordinates: false,
+            });
+            var geoObjects = points
+              .filter(function (point) {
+                return Number.isFinite(point.lat) && Number.isFinite(point.lon);
+              })
+              .map(function (point) {
+                return new window.ymaps.Placemark(
+                  [point.lat, point.lon],
+                  {
+                    balloonContentHeader: point.title,
+                    balloonContentBody: popupHtml(point),
+                    hintContent: point.title,
+                  },
+                  { preset: "islands#darkGreenDotIcon" }
+                );
+              });
+            clusterer.add(geoObjects);
+            map.geoObjects.add(clusterer);
+            if (cityKey && geoObjects.length) {
+              map.setBounds(clusterer.getBounds(), { checkZoomRange: true, zoomMargin: 40 });
+            }
+            if (!geoObjects.length) {
+              showStatus("Для выбранного города пока нет точек с привязкой к страницам сайта.");
+            }
+          });
+        };
+        script.onerror = function () {
+          initLeafletMap(points);
+        };
+        document.head.appendChild(script);
+      }
+
+      fetch("../data/objects-map-points.json", { cache: "no-cache" })
+        .then(function (response) {
+          if (!response.ok) throw new Error("map-data");
+          return response.json();
+        })
+        .then(function (payload) {
+          var points = filterPoints(Array.isArray(payload.points) ? payload.points : []);
+          if (!points.length) {
+            showStatus("На карте пока нет объектов для выбранного фильтра.");
+          }
+          if (mapsConfig.apiKey) {
+            initYandexMap(points, mapsConfig.apiKey);
+          } else {
+            initLeafletMap(points);
+          }
+        })
+        .catch(function () {
+          showStatus("Не удалось загрузить точки карты. Попробуйте обновить страницу.");
+        });
     })();
   </script>
 </body>

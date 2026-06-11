@@ -6548,13 +6548,60 @@ body.modal-open .back-to-top {
   color: #2f6654;
 }
 
-#objects-map-frame {
+#objects-map {
   width: 100%;
   min-height: 0;
   height: 100%;
-  border: 0;
-  display: block;
   background: #e8e2d6;
+}
+
+.objects-map-page__status {
+  margin: 0;
+  padding: 0.65rem 1rem 0.85rem;
+  font-size: 0.84rem;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.92);
+  border-top: 1px solid rgba(120, 145, 123, 0.14);
+}
+
+.objects-map-popup-shell .leaflet-popup-content-wrapper {
+  border-radius: 14px;
+  box-shadow: 0 14px 30px rgba(17, 28, 22, 0.16);
+}
+
+.objects-map-popup-shell .leaflet-popup-content {
+  margin: 12px 14px;
+}
+
+.objects-map-popup__title {
+  margin: 0 0 0.35rem;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #1f342c;
+}
+
+.objects-map-popup__address {
+  margin: 0 0 0.65rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.objects-map-popup__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.42rem 0.72rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-strong) 12%, white);
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.objects-map-popup__link:hover {
+  background: color-mix(in srgb, var(--accent-strong) 18%, white);
 }
 
 .catalog-card img,
