@@ -529,6 +529,10 @@ def local_to_public_path(local_path: Path) -> str:
 
 def image_src_for_html(url: str) -> str:
     raw = (url or '').strip()
+    if not raw:
+        return raw
+    if raw.startswith(('http://', 'https://')):
+        return raw
     if STORAGE_PUBLIC_IMAGE_MARKER not in raw:
         return raw
     relative = raw.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split('?', 1)[0]
