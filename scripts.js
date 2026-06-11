@@ -2481,7 +2481,7 @@
     const raw = String(post?.image || "").trim();
     if (!raw) return "";
     if (/^https?:\/\//i.test(raw)) return raw;
-    return `/media/blog/${raw.replace(/^\/+/, "")}`;
+    return `https://storage.yandexcloud.net/abhazbereg-media/media/blog/${raw.replace(/^\/+/, "")}`;
   }
 
   function buildSimilarBlogCard(post) {

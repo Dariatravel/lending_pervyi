@@ -447,17 +447,26 @@ def pick_cover_url(row: dict[str, Any]) -> str:
 
 
 STORAGE_PUBLIC_IMAGE_MARKER = "/storage/v1/object/public/site-media/"
+CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp", ".gif")
 
 
 def image_src_for_html(url: str) -> str:
     raw = (url or "").strip()
-    if STORAGE_PUBLIC_IMAGE_MARKER not in raw:
+    relative = ""
+    if raw.startswith(CDN_MEDIA_BASE):
         return raw
-    relative = raw.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split("?", 1)[0]
+    if STORAGE_PUBLIC_IMAGE_MARKER in raw:
+        relative = raw.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split("?", 1)[0]
+    elif "/media/" in raw:
+        relative = raw.split("/media/", 1)[1].split("?", 1)[0]
+    elif raw.startswith("media/"):
+        relative = raw.split("media/", 1)[1].split("?", 1)[0]
+    if not relative:
+        return raw
     if not relative.lower().endswith(IMAGE_EXTENSIONS):
         return raw
-    return f"/media/{unquote(relative)}"
+    return f"{CDN_MEDIA_BASE}/{unquote(relative)}"
 
 
 def page_path_from_url(url: str | None, fallback: str) -> str:
@@ -855,7 +864,7 @@ def update_hotel_page(row: dict[str, Any]) -> None:
     text = replace_once(text, r'<meta property="og:description" content=".*?" ?/?>', f'<meta property="og:description" content="{html.escape(summary, quote=True)}" />')
     text = replace_once(text, r'<meta property="og:url" content=".*?" ?/?>', f'<meta property="og:url" content="{html.escape(page_url, quote=True)}" />')
     if cover:
-        text = replace_once(text, r'<meta property="og:image" content=".*?" ?/?>', f'<meta property="og:image" content="{html.escape(cover, quote=True)}" />')
+        text = replace_once(text, r'<meta property="og:image" content=".*?" ?/?>', f'<meta property="og:image" content="{html.escape(image_src_for_html(cover), quote=True)}" />')
     text = replace_once(text, r"<h1>.*?</h1>", f"<h1>{html.escape(title)}</h1>")
     if lead_html:
         text = replace_once(text, r'<p class="lead">.*?</p>', f'<p class="lead">{lead_html}</p>')

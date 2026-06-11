@@ -21,11 +21,16 @@ INDEX_FILE = ROOT / "index.html"
 SITEMAP_FILE = ROOT / "sitemap.xml"
 OUTPUT_DIR = ROOT / "output"
 REPORT_FILE = OUTPUT_DIR / "abhazbooking_sync_report.json"
+CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 
 CHANNEL = "abhazbooking"
 BASE_URL = f"https://t.me/s/{CHANNEL}"
 CUTOFF_DATE = "2026-01-01"
 HEADERS = {"User-Agent": "Mozilla/5.0"}
+
+
+def cdn_media_url(relative: str) -> str:
+    return f"{CDN_MEDIA_BASE}/{relative.lstrip('/')}"
 
 
 REVIEW_BANK = [
@@ -701,7 +706,7 @@ def render_media(photo_count: int, slug: str, title: str, video_filename: str, v
     items = []
     for index in range(1, photo_count + 1):
         items.append(
-            f'            <img src="/media/hotels/{slug}/photo-{index:02d}.jpg" alt="{html.escape(title)} фото {index}" loading="lazy" />'
+            f'            <img src="{cdn_media_url(f"hotels/{slug}/photo-{index:02d}.jpg")}" alt="{html.escape(title)} фото {index}" loading="lazy" />'
         )
     if video_filename:
         items.append(
@@ -750,7 +755,7 @@ def render_page(slug: str, message_id: int, date_text: str, parsed: dict, photo_
     <meta property="og:title" content="{html.escape(parsed["title"])} — обзор и цены" />
     <meta property="og:description" content="{html.escape(og_description)}" />
     <meta property="og:url" content="https://абхазберег.рф/hotels/{slug}/" />
-    <meta property="og:image" content="/media/hotels/{slug}/photo-01.jpg" />
+    <meta property="og:image" content="{cdn_media_url(f"hotels/{slug}/photo-01.jpg")}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
@@ -872,7 +877,7 @@ def build_card(slug: str, title: str, location: str, beach: str, capacity: str):
     card["href"] = f"/hotels/{slug}/"
 
     img = BeautifulSoup("", "html.parser").new_tag("img")
-    img["src"] = f"/media/cards/{slug}.jpg"
+    img["src"] = cdn_media_url(f"cards/{slug}.jpg")
     img["alt"] = title
     img["loading"] = "lazy"
     card.append(img)

@@ -59,6 +59,7 @@ KV_CARDS_FILE = ROOT / 'kvartira_cards.json'
 ENV_FILE = ROOT / '.env.supabase.local'
 STORAGE_BUCKET = 'site-media'
 STORAGE_PUBLIC_IMAGE_MARKER = '/storage/v1/object/public/site-media/'
+CDN_MEDIA_BASE = 'https://storage.yandexcloud.net/abhazbereg-media/media'
 IMAGE_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.webp', '.gif')
 CUTOFF_DATE = '2026-01-01'
 API_ID = 32916166
@@ -531,14 +532,20 @@ def image_src_for_html(url: str) -> str:
     raw = (url or '').strip()
     if not raw:
         return raw
-    if raw.startswith(('http://', 'https://')):
+    relative = ''
+    if raw.startswith(CDN_MEDIA_BASE):
         return raw
-    if STORAGE_PUBLIC_IMAGE_MARKER not in raw:
+    if STORAGE_PUBLIC_IMAGE_MARKER in raw:
+        relative = raw.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split('?', 1)[0]
+    elif '/media/' in raw:
+        relative = raw.split('/media/', 1)[1].split('?', 1)[0]
+    elif raw.startswith('media/'):
+        relative = raw.split('media/', 1)[1].split('?', 1)[0]
+    if not relative:
         return raw
-    relative = raw.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split('?', 1)[0]
     if not relative.lower().endswith(IMAGE_EXTENSIONS):
         return raw
-    return f'/media/{unquote(relative)}'
+    return f'{CDN_MEDIA_BASE}/{unquote(relative)}'
 
 
 def upload_local_image_public_url(supa: SupabaseClient, local_path: Path, storage_path: str) -> str:
@@ -896,7 +903,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         ),
         '',
     )
-    og_image = absolute_site_url(first_photo_url or '/media/branding/site-cover.jpg')
+    og_image = absolute_site_url(image_src_for_html(first_photo_url or '/media/branding/site-cover.jpg'))
     schema_type = "LodgingBusiness" if source_kind == "kvartira" else "Hotel"
     listing_schema_name = (normalize_title(parsed.get("title", "") or "").strip() or title)
     ld_blob: dict[str, Any] = {

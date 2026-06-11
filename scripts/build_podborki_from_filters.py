@@ -23,6 +23,7 @@ REPORT_PATH = ROOT / "output" / "podborki_from_filters_report.txt"
 CSS_VERSION = "202605272305"
 CANONICAL_ORIGIN = "https://абхазберег.рф"
 STORAGE_PUBLIC_IMAGE_MARKER = "/storage/v1/object/public/site-media/"
+CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp", ".gif")
 
 CITY_LABELS = {
@@ -80,10 +81,16 @@ def normalize_image(src: str) -> str:
     src = html.unescape(src or "").strip()
     if not src:
         return ""
+    if src.startswith(CDN_MEDIA_BASE):
+        return src
     if STORAGE_PUBLIC_IMAGE_MARKER in src:
         relative = src.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split("?", 1)[0]
         if relative.lower().endswith(IMAGE_EXTENSIONS):
-            return "../../media/" + unquote(relative)
+            return f"{CDN_MEDIA_BASE}/{unquote(relative)}"
+    if "/media/" in src:
+        relative = src.split("/media/", 1)[1].split("?", 1)[0]
+        if relative.lower().endswith(IMAGE_EXTENSIONS):
+            return f"{CDN_MEDIA_BASE}/{unquote(relative)}"
     if src.startswith("http://") or src.startswith("https://"):
         return src
     if src.startswith("/"):
@@ -97,10 +104,16 @@ def normalize_index_image(src: str) -> str:
     src = html.unescape(src or "").strip()
     if not src:
         return ""
+    if src.startswith(CDN_MEDIA_BASE):
+        return src
     if STORAGE_PUBLIC_IMAGE_MARKER in src:
         relative = src.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split("?", 1)[0]
         if relative.lower().endswith(IMAGE_EXTENSIONS):
-            return "../media/" + unquote(relative)
+            return f"{CDN_MEDIA_BASE}/{unquote(relative)}"
+    if "/media/" in src:
+        relative = src.split("/media/", 1)[1].split("?", 1)[0]
+        if relative.lower().endswith(IMAGE_EXTENSIONS):
+            return f"{CDN_MEDIA_BASE}/{unquote(relative)}"
     if src.startswith("http://") or src.startswith("https://"):
         return src
     if src.startswith("../../"):
@@ -322,7 +335,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://chnyazvybzzryduhgopa.supabase.co" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="../../media/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../../styles.css?v={CSS_VERSION}" />
 </head>
 <body>
@@ -333,7 +346,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
 
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="../../media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="{CDN_MEDIA_BASE}/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy">
           <strong>АБХАЗБЕРЕГ - жилье напрямую</strong>
         </span>
@@ -441,7 +454,7 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://chnyazvybzzryduhgopa.supabase.co" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="../media/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../styles.css?v={CSS_VERSION}" />
 </head>
 <body>
@@ -451,7 +464,7 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
     <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="../media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="{CDN_MEDIA_BASE}/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy"><strong>АБХАЗБЕРЕГ - жилье напрямую</strong></span>
       </a>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
