@@ -2575,6 +2575,20 @@
     return `${h3?.textContent || ""} ${img?.getAttribute("alt") || ""}`.toLowerCase();
   }
 
+  /** Нормализация заголовка карточки для поиска только по названию объекта (h3). */
+  function normalizeCatalogTitle(text) {
+    return String(text || "")
+      .replace(/\u00a0/g, " ")
+      .replace(/[«»""„"]/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+  }
+
+  function getCatalogCardTitleText(card) {
+    return card?.querySelector("h3")?.textContent || "";
+  }
+
   /** Rough title-based match for category tiles (main catalog is hotels/guest houses/cabins). */
   function matchesCatalogCategory(slug, text) {
     if (!slug) return true;
@@ -2610,8 +2624,10 @@
       subscribers: new Set(),
       committedSel: emptySelections(),
       committedCat: null,
+      committedNameQuery: "",
       draftSel: emptySelections(),
       draftCat: null,
+      draftNameQuery: "",
 
       cloneSelections,
 
@@ -2626,16 +2642,19 @@
       replaceCommittedFromDraft() {
         store.committedSel = cloneSelections(store.draftSel);
         store.committedCat = store.draftCat;
+        store.committedNameQuery = store.draftNameQuery;
       },
 
       syncDraftFromCommitted() {
         store.draftSel = cloneSelections(store.committedSel);
         store.draftCat = store.committedCat;
+        store.draftNameQuery = store.committedNameQuery;
       },
 
       getCommittedSnapshot() {
         return {
           catalogCategory: store.committedCat,
+          nameQuery: store.committedNameQuery,
           groups: Object.fromEntries(
             groupOrder.map((group) => [group, [...store.committedSel[group]]])
           ),
@@ -2671,6 +2690,9 @@
         params.set(group, parts.join(","));
       });
 
+      const nameQuery = String(filt.committedNameQuery || "").trim();
+      if (nameQuery) params.set("name", nameQuery);
+
       const nextSearch = params.toString() ? `?${params}` : "";
       const next = `${window.location.pathname}${nextSearch}${window.location.hash || ""}`;
       const current = `${window.location.pathname}${window.location.search}${window.location.hash || ""}`;
@@ -2699,6 +2721,9 @@
       const cat = String(params.get(catalogParamKey) || "").trim();
       if (cat === "hotel" || cat === "guesthouse" || cat === "cabin") filt.committedCat = cat;
       else filt.committedCat = null;
+
+      filt.committedNameQuery = String(params.get("name") || "").trim();
+      filt.draftNameQuery = filt.committedNameQuery;
 
       rebuildRecentStackFromSelectionsFn();
     }
@@ -2758,6 +2783,7 @@
   function buildCatalogCardIndexRecords(cards, groupOrder, parseCardGroup) {
     return cards.map((card) => ({
       el: card,
+      titleNorm: normalizeCatalogTitle(getCatalogCardTitleText(card)),
       byGroup: Object.fromEntries(
         groupOrder.map((group) => [group, new Set(parseCardGroup(card, group).filter(Boolean))])
       ),
@@ -2765,7 +2791,15 @@
   }
 
   /** AND между группами, OR выбора внутри группы; опционально slug каталога типа размещения по тексту карточки. */
-  function catalogIndexedEntryPassesFilters(entry, selected, slug, filterGroups, matchesCatalogSlug, catalogTextForCard) {
+  function catalogIndexedEntryPassesFilters(
+    entry,
+    selected,
+    slug,
+    filterGroups,
+    matchesCatalogSlug,
+    catalogTextForCard,
+    nameQuery
+  ) {
     for (const group of filterGroups) {
       if (!selected[group] || selected[group].size === 0) continue;
       const bucket = entry.byGroup[group];
@@ -2781,6 +2815,10 @@
     if (slug && !matchesCatalogSlug(slug, catalogTextForCard(entry.el))) {
       return false;
     }
+    const normalizedNameQuery = normalizeCatalogTitle(nameQuery);
+    if (normalizedNameQuery && !entry.titleNorm.includes(normalizedNameQuery)) {
+      return false;
+    }
     return true;
   }
 
@@ -2791,38 +2829,39 @@
       entries = buildCatalogCardIndexRecords(deps.collectCards(), deps.filterGroups, deps.parseCardGroup);
     }
 
-    function passes(entry, selected, catSlug) {
+    function passes(entry, selected, catSlug, nameQuery) {
       return catalogIndexedEntryPassesFilters(
         entry,
         selected,
         catSlug,
         deps.filterGroups,
         deps.matchesCatalogSlug,
-        deps.catalogTextForCard
+        deps.catalogTextForCard,
+        nameQuery
       );
     }
 
-    function countPrimaryShown(selected, catSlug) {
+    function countPrimaryShown(selected, catSlug, nameQuery) {
       let shown = 0;
       entries.forEach((entry) => {
-        if (!passes(entry, selected, catSlug)) return;
+        if (!passes(entry, selected, catSlug, nameQuery)) return;
         if (deps.isPrimaryCard(entry.el)) shown += 1;
       });
       return shown;
     }
 
-    function countAllMatching(selected, catSlug) {
+    function countAllMatching(selected, catSlug, nameQuery) {
       let n = 0;
       entries.forEach((entry) => {
-        if (passes(entry, selected, catSlug)) n += 1;
+        if (passes(entry, selected, catSlug, nameQuery)) n += 1;
       });
       return n;
     }
 
-    function applyHiddenForSelection(selected, catSlug) {
+    function applyHiddenForSelection(selected, catSlug, nameQuery) {
       let primaryShown = 0;
       entries.forEach((entry) => {
-        const ok = passes(entry, selected, catSlug);
+        const ok = passes(entry, selected, catSlug, nameQuery);
         entry.el.hidden = !ok;
         if (ok && deps.isPrimaryCard(entry.el)) primaryShown += 1;
       });
@@ -2877,11 +2916,27 @@
         d.activeFiltersList.appendChild(pill);
       }
 
-      d.activeFiltersWrap.hidden = d.countPins(d.filt.committedSel, d.filt.committedCat) === 0;
+      const nameQuery = String(d.filt.committedNameQuery || "").trim();
+      if (nameQuery) {
+        const pill = document.createElement("button");
+        pill.type = "button";
+        pill.className = "filter-pill-removable";
+        pill.setAttribute("data-remove-name", "1");
+        pill.setAttribute("aria-label", `Снять поиск «${nameQuery}»`);
+        pill.append(`Название: «${nameQuery}»`);
+        const x = document.createElement("span");
+        x.className = "filter-pill-removable__x";
+        x.setAttribute("aria-hidden", "true");
+        x.textContent = "\u00d7";
+        pill.appendChild(x);
+        d.activeFiltersList.appendChild(pill);
+      }
+
+      d.activeFiltersWrap.hidden = d.countPins(d.filt.committedSel, d.filt.committedCat, d.filt.committedNameQuery) === 0;
     }
 
     function syncOpenBadge() {
-      const pins = d.countPins(d.filt.committedSel, d.filt.committedCat);
+      const pins = d.countPins(d.filt.committedSel, d.filt.committedCat, d.filt.committedNameQuery);
       const cap = pins > 99 ? "99+" : String(pins);
 
       if (d.openFiltersLabel) {
@@ -2952,6 +3007,8 @@
         clearGroups: () => {},
         applySearchFromForm: () => {},
         applyPatch: () => {},
+        setNameQuery: () => {},
+        getNameQuery: () => "",
         subscribe: () => noopUnsub,
         getCommittedSnapshot: () => null,
       };
@@ -3117,9 +3174,9 @@
           ? { reason, ...snapshot }
           : {
               reason,
-              pins: countActivePins(filt.committedSel, filt.committedCat),
+              pins: countActivePins(filt.committedSel, filt.committedCat, filt.committedNameQuery),
               primaryShown: 0,
-              totalMatching: countTotalMatching(filt.committedSel, filt.committedCat),
+              totalMatching: countTotalMatching(filt.committedSel, filt.committedCat, filt.committedNameQuery),
             };
 
       filt.subscribers.forEach((fn) => {
@@ -3131,16 +3188,20 @@
       });
     }
 
-    function countShownOnly(selected, slug) {
-      return catalogMatch.countPrimaryShown(selected, slug);
+    function countShownOnly(selected, slug, nameQuery) {
+      return catalogMatch.countPrimaryShown(selected, slug, nameQuery ?? filt.committedNameQuery);
     }
 
-    function countTotalMatching(selected, slug) {
-      return catalogMatch.countAllMatching(selected, slug);
+    function countTotalMatching(selected, slug, nameQuery) {
+      return catalogMatch.countAllMatching(selected, slug, nameQuery ?? filt.committedNameQuery);
     }
 
     function applyVisibilityCommitted() {
-      return catalogMatch.applyHiddenForSelection(filt.committedSel, filt.committedCat);
+      return catalogMatch.applyHiddenForSelection(
+        filt.committedSel,
+        filt.committedCat,
+        filt.committedNameQuery
+      );
     }
 
     function labelForToken(group, token) {
@@ -3162,9 +3223,10 @@
       return token ? String(token) : "";
     }
 
-    function countActivePins(selected, slug) {
+    function countActivePins(selected, slug, nameQuery) {
       let n = FILTER_GROUPS.reduce((acc, group) => acc + selected[group].size, 0);
       if (slug) n += 1;
+      if (String(nameQuery || "").trim()) n += 1;
       return n;
     }
 
@@ -3209,6 +3271,11 @@
       if (group === "catalog" && token) {
         recentStack = recentStack.filter((item) => !(item.group === "catalog"));
         recentStack.push({ group: "catalog", token });
+        return;
+      }
+      if (group === "name" && token) {
+        recentStack = recentStack.filter((item) => !(item.group === "name"));
+        recentStack.push({ group: "name", token });
         return;
       }
       if (!token || !FILTER_GROUPS.includes(group)) return;
@@ -3269,9 +3336,32 @@
     function rebuildRecentStackFromSelections() {
       recentStack = [];
       if (filt.committedCat) pushRecent("catalog", filt.committedCat);
+      if (filt.committedNameQuery) pushRecent("name", filt.committedNameQuery);
       FILTER_GROUPS.forEach((group) => {
         [...filt.committedSel[group]].forEach((token) => pushRecent(group, token));
       });
+    }
+
+    function syncNameSearchInputs(value) {
+      const normalized = String(value || "");
+      ["search-name", "catalog-name-search"].forEach((id) => {
+        const input = document.getElementById(id);
+        if (input && input.value !== normalized) input.value = normalized;
+      });
+    }
+
+    function setNameQuery(value) {
+      const next = String(value || "").trim();
+      if (next === filt.committedNameQuery) return;
+
+      filt.committedNameQuery = next;
+      filt.draftNameQuery = next;
+      if (next) pushRecent("name", next);
+      else recentStack = recentStack.filter((item) => item.group !== "name");
+
+      syncNameSearchInputs(next);
+      rollbackDraftFromCommitted();
+      applyCommittedToDom();
     }
 
     const catalogUrl = attachCatalogFilterUrlLayers({
@@ -3315,8 +3405,8 @@
 
     function applyCommittedToDom() {
       const primaryShown = applyVisibilityCommitted();
-      const pins = countActivePins(filt.committedSel, filt.committedCat);
-      const totalMatching = countTotalMatching(filt.committedSel, filt.committedCat);
+      const pins = countActivePins(filt.committedSel, filt.committedCat, filt.committedNameQuery);
+      const totalMatching = countTotalMatching(filt.committedSel, filt.committedCat, filt.committedNameQuery);
       const displayedPrimaryShown = syncCatalogInitialLimit(primaryShown, pins);
       const resultCount = pins === 0 ? totalMatching : displayedPrimaryShown;
       if (visibleCount) visibleCount.textContent = String(resultCount);
@@ -3428,6 +3518,9 @@
       clearSelectionGroups(filt.committedSel, groups || FILTER_GROUPS, true);
       if (!groups || groups === FILTER_GROUPS) {
         filt.committedCat = null;
+        filt.committedNameQuery = "";
+        filt.draftNameQuery = "";
+        syncNameSearchInputs("");
         clearRecentFully();
       }
       rollbackDraftFromCommitted();
@@ -3442,6 +3535,7 @@
         beach = [],
         price = [],
         room = [],
+        name,
       } = patch || {};
 
       const batch = [
@@ -3462,6 +3556,12 @@
         });
       });
 
+      if (name !== undefined) {
+        filt.committedNameQuery = String(name || "").trim();
+        filt.draftNameQuery = filt.committedNameQuery;
+        syncNameSearchInputs(filt.committedNameQuery);
+      }
+
       rebuildRecentStackFromSelections();
       rollbackDraftFromCommitted();
       syncChipUi(filt.committedSel, filt.committedCat);
@@ -3474,6 +3574,11 @@
 
     function bindActiveRemovalDelegation() {
       activeFiltersList?.addEventListener("click", (event) => {
+        const nameBtn = event.target.closest("[data-remove-name]");
+        if (nameBtn) {
+          setNameQuery("");
+          return;
+        }
         const categoryBtn = event.target.closest("[data-remove-category]");
         if (categoryBtn) {
           setCatalogCategory(null);
@@ -3502,6 +3607,10 @@
       if (!last) return false;
       if (last.group === "catalog") {
         filt.committedCat = null;
+      } else if (last.group === "name") {
+        filt.committedNameQuery = "";
+        filt.draftNameQuery = "";
+        syncNameSearchInputs("");
       } else if (filt.committedSel[last.group]) {
         filt.committedSel[last.group].delete(last.token);
       }
@@ -3539,6 +3648,9 @@
       clearBtn?.addEventListener("click", () => {
         clearSelectionGroups(filt.committedSel, FILTER_GROUPS, true);
         filt.committedCat = null;
+        filt.committedNameQuery = "";
+        filt.draftNameQuery = "";
+        syncNameSearchInputs("");
         clearRecentFully();
         rollbackDraftFromCommitted();
         syncChipUi(filt.committedSel, filt.committedCat);
@@ -3602,6 +3714,7 @@
       suppressUrlSync = false;
       rollbackDraftFromCommitted();
       rebuildRecentStackFromSelections();
+      syncNameSearchInputs(filt.committedNameQuery);
       applyCommittedToDom();
     }
 
@@ -3618,6 +3731,8 @@
       clearGroups,
       applySearchFromForm,
       applyPatch,
+      setNameQuery,
+      getNameQuery: () => filt.committedNameQuery,
       subscribe(listener) {
         return filt.subscribe(listener);
       },
@@ -3631,6 +3746,8 @@
     const form = document.getElementById("home-search-form");
     if (!form || !filtersController) return;
 
+    const nameInput = document.getElementById("search-name");
+    const catalogNameInput = document.getElementById("catalog-name-search");
     const citySelect = document.getElementById("search-city");
     const distanceSelect = document.getElementById("search-distance");
     const beachSelect = document.getElementById("search-beach");
@@ -3658,10 +3775,22 @@
     const toISODate = (d) => d.toISOString().slice(0, 10);
     if (checkinInput && !checkinInput.value) checkinInput.value = toISODate(today);
     if (checkoutInput && !checkoutInput.value) checkoutInput.value = toISODate(plusWeek);
+    if (nameInput) nameInput.value = filtersController.getNameQuery?.() || "";
+
+    let nameDebounceTimer = null;
+    catalogNameInput?.addEventListener("input", () => {
+      clearTimeout(nameDebounceTimer);
+      nameDebounceTimer = setTimeout(() => {
+        const value = catalogNameInput.value.trim();
+        if (nameInput && nameInput.value !== value) nameInput.value = value;
+        filtersController.setNameQuery?.(value);
+      }, 350);
+    });
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
 
+      const name = nameInput?.value.trim() || "";
       const city = citySelect?.value || "";
       const distance = distanceSelect?.value || "";
       const beach = beachSelect?.value || "";
@@ -3672,6 +3801,7 @@
         Number.isFinite(guests) && guests >= 5 ? ["five-plus"] : [];
 
       filtersController.applyPatch({
+        name,
         city: city ? [city] : [],
         distance: distance ? [distance] : [],
         beach: beach ? [beach] : [],
@@ -3681,6 +3811,7 @@
 
       document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth", block: "start" });
       trackAnalytics("home_search_submit", {
+        name: name || null,
         city,
         distance,
         beach,

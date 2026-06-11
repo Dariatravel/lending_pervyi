@@ -147,6 +147,10 @@
     <div class="site-concept__search-surface" id="search">
       <form class="site-concept__search-bar" id="home-search-form">
         <label class="site-concept__search-field site-concept__search-field--wide">
+          <span>Название объекта</span>
+          <input id="search-name" name="name" type="search" placeholder="Например, Лимон" autocomplete="off" />
+        </label>
+        <label class="site-concept__search-field site-concept__search-field--wide">
           <span>Куда едем</span>
           <select id="search-city" name="city">
             <option value="">Любой город</option>
@@ -212,6 +216,10 @@
 <span aria-hidden="true" class="btn-filter__badge btn-filter__badge--legacy" hidden="" id="open-filters-badge"></span>
 </span>
 </button>
+<label class="catalog-name-search">
+<span class="catalog-name-search__label">Название</span>
+<input id="catalog-name-search" type="search" name="name" placeholder="Поиск по названию" autocomplete="off" aria-label="Поиск по названию объекта" />
+</label>
 <button class="btn-filter btn-filter--ghost" id="clear-filters" type="button">Сбросить всё</button>
 <p class="filter-result">Показано объектов: <strong id="visible-count">0</strong></p>
 </div>
