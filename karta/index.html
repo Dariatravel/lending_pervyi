@@ -118,9 +118,7 @@
         });
         group.addTo(map);
         if (group.getLayers().length) {
-          if (cityKey) {
-            map.fitBounds(group.getBounds().pad(0.18));
-          }
+          map.fitBounds(group.getBounds().pad(cityKey ? 0.18 : 0.1), { maxZoom: cityKey ? 15 : 10 });
         } else {
           showStatus("Для выбранного города пока нет точек с привязкой к страницам сайта.");
         }
@@ -160,8 +158,15 @@
               });
             clusterer.add(geoObjects);
             map.geoObjects.add(clusterer);
-            if (cityKey && geoObjects.length) {
-              map.setBounds(clusterer.getBounds(), { checkZoomRange: true, zoomMargin: 40 });
+            if (geoObjects.length) {
+              map.setBounds(clusterer.getBounds(), {
+                checkZoomRange: true,
+                zoomMargin: cityKey ? 40 : 24,
+                preciseZoom: true,
+              });
+              if (!cityKey && map.getZoom() > 10) {
+                map.setZoom(10, { checkZoomRange: true });
+              }
             }
             if (!geoObjects.length) {
               showStatus("Для выбранного города пока нет точек с привязкой к страницам сайта.");
@@ -174,7 +179,7 @@
         document.head.appendChild(script);
       }
 
-      fetch("../data/objects-map-points.json", { cache: "no-cache" })
+      fetch("../data/objects-map-points.json?v=202606120900", { cache: "no-cache" })
         .then(function (response) {
           if (!response.ok) throw new Error("map-data");
           return response.json();
