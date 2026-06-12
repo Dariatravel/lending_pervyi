@@ -7,7 +7,7 @@
   <meta name="description" content="Интерактивная карта проверенных объектов размещения Абхазберег по курортам Абхазии." />
   <meta name="robots" content="noindex, follow" />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" />
-  <link rel="stylesheet" href="../styles.css?v=202605272305" />
+  <link rel="stylesheet" href="../styles.css?v=202606120915" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <script>
     window.__ABHAZBEREG_MAPS_CONFIG__ = window.__ABHAZBEREG_MAPS_CONFIG__ || {};
@@ -107,7 +107,7 @@
         points.forEach(function (point) {
           if (!Number.isFinite(point.lat) || !Number.isFinite(point.lon)) return;
           var marker = window.L.circleMarker([point.lat, point.lon], {
-            radius: 8,
+            radius: 5,
             color: "#2f6654",
             weight: 2,
             fillColor: "#58a789",
@@ -127,8 +127,10 @@
       function initYandexMap(points, apiKey) {
         if (!mapHost) return;
         var script = document.createElement("script");
-        script.src =
-          "https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=" + encodeURIComponent(apiKey) + "&load=package.full";
+        script.src = "https://api-maps.yandex.ru/2.1/?lang=ru_RU&load=package.full";
+        if (apiKey) {
+          script.src += "&apikey=" + encodeURIComponent(apiKey);
+        }
         script.onload = function () {
           window.ymaps.ready(function () {
             var map = new window.ymaps.Map(mapHost, {
@@ -136,10 +138,9 @@
               zoom: geo.z,
               controls: ["zoomControl", "typeSelector", "fullscreenControl"],
             });
-            var clusterer = new window.ymaps.Clusterer({
-              preset: "islands#invertedDarkGreenClusterIcons",
-              groupByCoordinates: false,
-            });
+            var dotLayout = window.ymaps.templateLayoutFactory.createClass(
+              '<span class="objects-map-yandex-dot" aria-hidden="true"></span>'
+            );
             var geoObjects = points
               .filter(function (point) {
                 return Number.isFinite(point.lat) && Number.isFinite(point.lon);
@@ -153,13 +154,18 @@
                     balloonContentBody: popup.outerHTML,
                     hintContent: decodeHtmlText(point.title),
                   },
-                  { preset: "islands#darkGreenDotIcon" }
+                  {
+                    iconLayout: dotLayout,
+                    iconOffset: [-3, -11],
+                    iconShape: { type: "Circle", coordinates: [4, -4], radius: 7 },
+                  }
                 );
               });
-            clusterer.add(geoObjects);
-            map.geoObjects.add(clusterer);
+            geoObjects.forEach(function (geoObject) {
+              map.geoObjects.add(geoObject);
+            });
             if (geoObjects.length) {
-              map.setBounds(clusterer.getBounds(), {
+              map.setBounds(map.geoObjects.getBounds(), {
                 checkZoomRange: true,
                 zoomMargin: cityKey ? 40 : 24,
                 preciseZoom: true,
@@ -179,7 +185,7 @@
         document.head.appendChild(script);
       }
 
-      fetch("../data/objects-map-points.json?v=202606120900", { cache: "no-cache" })
+      fetch("../data/objects-map-points.json?v=202606120910", { cache: "no-cache" })
         .then(function (response) {
           if (!response.ok) throw new Error("map-data");
           return response.json();
@@ -189,10 +195,10 @@
           if (!points.length) {
             showStatus("На карте пока нет объектов для выбранного фильтра.");
           }
-          if (mapsConfig.apiKey) {
-            initYandexMap(points, mapsConfig.apiKey);
-          } else {
+          if (window.location.protocol === "file:") {
             initLeafletMap(points);
+          } else {
+            initYandexMap(points, mapsConfig.apiKey);
           }
         })
         .catch(function () {

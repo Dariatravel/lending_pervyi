@@ -6675,6 +6675,16 @@ body.modal-open .back-to-top {
   background: color-mix(in srgb, var(--accent-strong) 18%, white);
 }
 
+.objects-map-yandex-dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #2f6654;
+  border-radius: 50%;
+  background: #58a789;
+  box-shadow: 0 1px 4px rgba(20, 56, 45, 0.28);
+}
+
 .catalog-card img,
 .catalog-card__media-fallback {
   width: 100%;
