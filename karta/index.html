@@ -7,7 +7,7 @@
   <meta name="description" content="Интерактивная карта проверенных объектов размещения Абхазберег по курортам Абхазии." />
   <meta name="robots" content="noindex, follow" />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" />
-  <link rel="stylesheet" href="../styles.css?v=202605272305" />
+  <link rel="stylesheet" href="../styles.css?v=202605302100" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <script>
     window.__ABHAZBEREG_MAPS_CONFIG__ = window.__ABHAZBEREG_MAPS_CONFIG__ || {};
@@ -95,9 +95,42 @@
         statusNode.hidden = !text;
       }
 
+      function scheduleMapResize(map) {
+        if (!map || !map.invalidateSize) return;
+        window.requestAnimationFrame(function () {
+          map.invalidateSize(true);
+        });
+      }
+
+      function bindMapResize(map, group, hasCityFilter) {
+        if (!map) return;
+        function refit() {
+          scheduleMapResize(map);
+          if (group && group.getLayers().length) {
+            fitMapToPoints(map, group, hasCityFilter);
+          }
+        }
+        refit();
+        window.setTimeout(refit, 120);
+        window.setTimeout(refit, 420);
+        window.addEventListener("resize", refit);
+        window.addEventListener("orientationchange", function () {
+          window.setTimeout(refit, 280);
+        });
+      }
+
+      function fitMapToPoints(map, group, hasCityFilter) {
+        if (!map || !group || !group.getLayers().length) return;
+        var bounds = group.getBounds().pad(hasCityFilter ? 0.18 : 0.06);
+        map.fitBounds(bounds, { animate: false, padding: [12, 12] });
+      }
+
       function initLeafletMap(points) {
         if (!mapHost || !window.L) return;
-        var map = window.L.map(mapHost, { zoomControl: true }).setView([geo.lat, geo.lon], geo.z);
+        var map = window.L.map(mapHost, {
+          zoomControl: true,
+          attributionControl: true,
+        }).setView([geo.lat, geo.lon], geo.z);
         window.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
           maxZoom: 19,
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -118,12 +151,11 @@
         });
         group.addTo(map);
         if (group.getLayers().length) {
-          if (cityKey) {
-            map.fitBounds(group.getBounds().pad(0.18));
-          }
+          fitMapToPoints(map, group, Boolean(cityKey));
         } else {
           showStatus("Для выбранного города пока нет точек с привязкой к страницам сайта.");
         }
+        bindMapResize(map, group, Boolean(cityKey));
       }
 
       function initYandexMap(points, apiKey) {
@@ -160,12 +192,12 @@
               });
             clusterer.add(geoObjects);
             map.geoObjects.add(clusterer);
-            if (cityKey && geoObjects.length) {
-              map.setBounds(clusterer.getBounds(), { checkZoomRange: true, zoomMargin: 40 });
-            }
-            if (!geoObjects.length) {
+            if (geoObjects.length) {
+              map.setBounds(clusterer.getBounds(), { checkZoomRange: true, zoomMargin: cityKey ? 40 : 24 });
+            } else {
               showStatus("Для выбранного города пока нет точек с привязкой к страницам сайта.");
             }
+            bindMapResize(map);
           });
         };
         script.onerror = function () {
