@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from listing_visibility import load_hidden_slugs  # noqa: E402
 OUTPUT_PATH = ROOT / "data" / "objects-map-points.json"
+UNMATCHED_REPORT_PATH = ROOT / "output" / "objects-map-unmatched.txt"
 GEOCODE_CACHE_PATH = ROOT / "data" / "objects-map-geocode-cache.json"
 MANUAL_COORDS_PATH = ROOT / "data" / "objects-map-manual-coords.json"
 TELEGRAM_POSTS_PATH = ROOT / "output" / "abhazbooking_2026_posts.json"
@@ -330,6 +331,22 @@ def fetch_constructor_html() -> str:
     req = Request(WIDGET_URL, headers={"User-Agent": "abhazbereg-map-builder/1.0"})
     with urlopen(req, timeout=60) as resp:
         return resp.read().decode("utf-8", errors="ignore")
+
+
+def dedupe_placemarks(placemarks: list[dict]) -> list[dict]:
+    unique: list[dict] = []
+    seen: set[tuple[str, float, float]] = set()
+    for placemark in placemarks:
+        key = (
+            norm_text(placemark.get("title", "")),
+            round(placemark["lat"], 6),
+            round(placemark["lon"], 6),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(placemark)
+    return unique
 
 
 def parse_constructor_placemarks(html: str) -> list[dict]:
@@ -1076,6 +1093,76 @@ def share_coords_from_existing(
     return still_pending
 
 
+def match_by_brand_reuse(
+    pages: list[dict],
+    placemarks: list[dict],
+    matched_slugs: set[str],
+    *,
+    min_score: float = 0.94,
+) -> dict[str, dict]:
+    matches: dict[str, dict] = {}
+    for page in pages:
+        if page["slug"] in matched_slugs:
+            continue
+        best_placemark: dict | None = None
+        best_score = 0.0
+        for placemark in placemarks:
+            if not brands_equivalent(placemark["title"], page["title"]):
+                continue
+            if not cities_compatible(placemark, page):
+                continue
+            score = match_score(placemark, page)
+            if score > best_score:
+                best_score = score
+                best_placemark = placemark
+        if best_placemark and best_score >= min_score:
+            matches[page["slug"]] = {
+                "page": page,
+                "placemark": best_placemark,
+                "score": best_score,
+            }
+    return matches
+
+
+def collect_constructor_matches(pages: list[dict], placemarks: list[dict]) -> dict[str, dict]:
+    matches = match_pages_to_placemarks(pages, placemarks)
+
+    used_placemark_indexes: set[int] = set()
+    for match in matches.values():
+        for index, placemark in enumerate(placemarks):
+            if placemark is match["placemark"]:
+                used_placemark_indexes.add(index)
+                break
+
+    remaining = match_remaining_placemarks(
+        pages,
+        placemarks,
+        set(matches.keys()),
+        used_placemark_indexes,
+    )
+    matches.update(remaining)
+    matches.update(match_by_brand_reuse(pages, placemarks, set(matches.keys())))
+    return matches
+
+
+def write_unmatched_report(pages: list[dict], matches: dict[str, dict]) -> None:
+    unmatched = [page for page in pages if page["slug"] not in matches]
+    lines = [
+        "Страницы каталога без метки в конструкторе Яндекса",
+        f"constructor_id={CONSTRUCTOR_ID}",
+        "",
+        f"Всего в каталоге: {len(pages)}",
+        f"С меткой конструктора: {len(matches)}",
+        f"Без метки: {len(unmatched)}",
+        "",
+    ]
+    if unmatched:
+        lines.append("Без метки:")
+        lines.extend(f"- {page['slug']} | {page['title']}" for page in unmatched)
+    UNMATCHED_REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    UNMATCHED_REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def match_pages_to_placemarks(pages: list[dict], placemarks: list[dict]) -> dict[str, dict]:
     pairs: list[tuple[float, int, int]] = []
     for page_index, page in enumerate(pages):
@@ -1253,38 +1340,21 @@ def geocode_pending_pages(
 
 def build_points() -> dict:
     html = fetch_constructor_html()
-    placemarks = parse_constructor_placemarks(html)
-    placemark_address_index = build_placemark_address_index(placemarks)
-    telegram_posts = load_telegram_posts_by_id()
+    placemarks_raw = parse_constructor_placemarks(html)
+    placemarks = dedupe_placemarks(placemarks_raw)
     all_pages = page_records()
     pages = visible_page_records(all_pages)
-    pages_by_slug = {page["slug"]: page for page in pages}
-    matches = match_pages_to_placemarks(pages, placemarks)
-    used_placemark_indexes = set()
-    for match in matches.values():
-        for index, placemark in enumerate(placemarks):
-            if placemark is match["placemark"]:
-                used_placemark_indexes.add(index)
-                break
-
-    remaining = match_remaining_placemarks(pages, placemarks, set(matches.keys()), used_placemark_indexes)
-    matches.update(remaining)
+    matches = collect_constructor_matches(pages, placemarks_raw)
 
     points_by_slug: dict[str, dict] = {}
     stats = {
-        "placemarks_total": len(placemarks),
+        "placemarks_total": len(placemarks_raw),
+        "placemarks_unique": len(placemarks),
         "pages_total": len(pages),
         "pages_on_disk": len(all_pages),
         "pages_excluded": len(all_pages) - len(pages),
         "from_constructor": 0,
-        "from_coords_in_text": 0,
-        "from_coords_in_page": 0,
-        "from_coords_in_telegram": 0,
-        "from_placemark_address": 0,
-        "from_manual_coords": 0,
-        "from_geocode_yandex": 0,
-        "from_geocode_nominatim": 0,
-        "from_city_fallback": 0,
+        "skipped_without_constructor": 0,
         "shared_coordinate_groups": 0,
     }
 
@@ -1296,98 +1366,8 @@ def build_points() -> dict:
         stats["from_constructor"] += 1
 
     verify_constructor_coords(points_by_slug, matches)
-
-    pending = [page for page in pages if page["slug"] not in points_by_slug]
-
-    for page in pending[:]:
-        coords = extract_coords_from_location(page["location"])
-        if coords:
-            lat, lon = coords
-            address = resolve_address(page)
-            points_by_slug[page["slug"]] = make_point(page, lat, lon, address, "coords_in_text")
-            stats["from_coords_in_text"] += 1
-
-    pending = [page for page in pages if page["slug"] not in points_by_slug]
-    for page in pending[:]:
-        coords = extract_coords_from_page(page)
-        if coords:
-            lat, lon = coords
-            address = resolve_address(page)
-            points_by_slug[page["slug"]] = make_point(page, lat, lon, address, "coords_in_page")
-            stats["from_coords_in_page"] += 1
-
-    pending = [page for page in pages if page["slug"] not in points_by_slug]
-    for page in pending[:]:
-        post_id = page.get("source_message_id")
-        post_text = telegram_posts.get(post_id) if post_id else None
-        if not post_text:
-            continue
-        coords = extract_coords_from_text(post_text)
-        if coords:
-            lat, lon = coords
-            address = resolve_address(page)
-            points_by_slug[page["slug"]] = make_point(page, lat, lon, address, "coords_in_telegram")
-            stats["from_coords_in_telegram"] += 1
-
-    pending = [page for page in pages if page["slug"] not in points_by_slug]
-    for page in pending[:]:
-        exact_key = exact_address_key(page.get("address_line", "") or page.get("location", ""))
-        coords = placemark_address_index.get(exact_key) if exact_key else None
-        if coords:
-            address = resolve_address(page)
-            points_by_slug[page["slug"]] = make_point(page, coords[0], coords[1], address, "placemark_address")
-            stats["from_placemark_address"] += 1
-
-    pending = [page for page in pages if page["slug"] not in points_by_slug]
-    manual_coords = load_manual_coords()
-    pending_after_manual: list[dict] = []
-    for page in pending:
-        coords = manual_coords.get(page["slug"]) or manual_coords.get(page["url"].strip("/"))
-        if coords:
-            address = resolve_address(page)
-            points_by_slug[page["slug"]] = make_point(page, coords[0], coords[1], address, "manual_coords")
-            stats["from_manual_coords"] += 1
-        else:
-            pending_after_manual.append(page)
-    pending = pending_after_manual
-
-    api_key = load_maps_api_key()
-    geocode_cache = load_geocode_cache()
-    cache_dirty = False
-
-    if pending and api_key:
-        pending, matched, cache_dirty = geocode_pending_pages(
-            pending,
-            points_by_slug,
-            provider="yandex",
-            api_key=api_key,
-            geocode_cache=geocode_cache,
-        )
-        stats["from_geocode_yandex"] += matched
-
-    if pending:
-        pending, matched, nominatim_dirty = geocode_pending_pages(
-            pending,
-            points_by_slug,
-            provider="nominatim",
-            api_key="",
-            geocode_cache=geocode_cache,
-        )
-        stats["from_geocode_nominatim"] += matched
-        cache_dirty = cache_dirty or nominatim_dirty
-
-    if cache_dirty:
-        save_geocode_cache(geocode_cache)
-
-    for page in pending:
-        lat, lon = city_fallback_coords(page["slug"], page["city_key"])
-        address = resolve_address(page)
-        points_by_slug[page["slug"]] = make_point(page, lat, lon, address, "city_fallback")
-        stats["from_city_fallback"] += 1
-
-    if len(points_by_slug) != len(pages):
-        missing = [page["slug"] for page in pages if page["slug"] not in points_by_slug]
-        raise RuntimeError(f"Missing map points for {len(missing)} catalog pages")
+    stats["skipped_without_constructor"] = len(pages) - len(points_by_slug)
+    write_unmatched_report(pages, matches)
 
     coord_groups: dict[tuple[float, float], list[str]] = defaultdict(list)
     for slug, point in points_by_slug.items():
@@ -1401,7 +1381,6 @@ def build_points() -> dict:
     points.sort(key=lambda item: (item.get("cityKey") or "", item["title"]))
 
     stats["points_total"] = len(points)
-    stats["unmatched_pages"] = stats["pages_total"] - stats["points_total"]
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -1419,15 +1398,10 @@ def main() -> int:
     print(
         f"OK: {stats['points_total']} точек -> {OUTPUT_PATH.relative_to(ROOT)} "
         f"(каталог {stats['pages_total']}, на диске {stats['pages_on_disk']}, "
-        f"исключено {stats['pages_excluded']}; конструктор {stats['from_constructor']}, "
-        f"координаты в шапке {stats['from_coords_in_text']}, "
-        f"координаты на странице {stats['from_coords_in_page']}, "
-        f"координаты из Telegram {stats['from_coords_in_telegram']}, "
-        f"точный адрес метки {stats['from_placemark_address']}, "
-        f"ручные {stats['from_manual_coords']}, "
-        f"геокодер Яндекс {stats['from_geocode_yandex']}, "
-        f"геокодер OSM {stats['from_geocode_nominatim']}, "
-        f"город {stats['from_city_fallback']}, "
+        f"исключено {stats['pages_excluded']}; меток конструктора {stats['placemarks_total']}, "
+        f"уникальных {stats['placemarks_unique']}, "
+        f"только конструктор {stats['from_constructor']}, "
+        f"без метки {stats['skipped_without_constructor']}, "
         f"групп с общими координатами {stats['shared_coordinate_groups']})"
     )
     return 0
