@@ -715,6 +715,7 @@ KVARTIRA_CATALOG_PAGE_SUFFIX = """
               <span class="contact-messengers">(WhatsApp, Telegram, MAX, VK)</span>
             </p>
             <p class="note">Только сообщения, обычный звонок не пройдёт.</p>
+            <p class="note">Прежде чем написать в МАКС, добавьте номер в контакты (иначе макс не даст ответить на входящее сообщение). Обращайтесь!</p>
           </div>
           <div class="contact-buttons">
             <a class="btn-book" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>

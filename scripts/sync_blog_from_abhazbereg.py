@@ -573,6 +573,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
         <p class="eyebrow">Контакты и бронирование</p>
         <p>Проверить наличие номеров и задать вопросы можно по номеру<br /><strong class="contact-phone">+7 940 900-33-40</strong><br /><span class="contact-messengers">(WhatsApp, Telegram, MAX, VK)</span></p>
         <p class="note">Только сообщения, обычный звонок не пройдёт.</p>
+        <p class="note">Прежде чем написать в МАКС, добавьте номер в контакты (иначе макс не даст ответить на входящее сообщение). Обращайтесь!</p>
       </div>
       <div class="contact-buttons">
         <a class="btn-book" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>
@@ -753,6 +754,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
         <p class="eyebrow">Контакты и бронирование</p>
         <p>Проверить наличие номеров и задать вопросы можно по номеру<br /><strong class="contact-phone">+7 940 900-33-40</strong><br /><span class="contact-messengers">(WhatsApp, Telegram, MAX, VK)</span></p>
         <p class="note">Только сообщения, обычный звонок не пройдёт.</p>
+        <p class="note">Прежде чем написать в МАКС, добавьте номер в контакты (иначе макс не даст ответить на входящее сообщение). Обращайтесь!</p>
       </div>
       <div class="contact-buttons">
         <a class="btn-book" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>
