@@ -131,9 +131,10 @@ CLI (альтернатива, если настроен supabase CLI + service 
 
 | Проверка | Результат | Дата |
 |----------|-----------|------|
-| Supabase photo refs в HTML = 0 | | |
-| Yandex dry-run uploaded=0 | | |
-| Прод: фото с Яндекса | | |
-| Прод: видео с Supabase | | |
-| Папки фото удалены из Storage | | |
-| Image Transformations стабилизировались | | |
+| Supabase photo refs в HTML = 0 | OK | 2026-06-13 |
+| Yandex dry-run uploaded=0 | OK (4070 файлов) | 2026-06-13 |
+| Прод: фото с Яндекса | OK (проверен danelyan) | 2026-06-13 |
+| GitHub Pages built | OK (0b9c3b8f) | 2026-06-13 |
+| Прод: видео с Supabase | без изменений (норма) | 2026-06-13 |
+| Папки фото удалены из Storage | **вручную в Dashboard** | |
+| Image Transformations стабилизировались | проверить через 24–48 ч | |
