@@ -7866,3 +7866,46 @@ html:has(> body.objects-map-page) {
 .site-concept__topbar-actions .site-concept__cta {
   display: none !important;
 }
+
+/* Performance: длинный каталог не должен заставлять браузер рисовать всю страницу сразу. */
+.catalog-card,
+.site-concept__section-block,
+.hotel-site-concept .card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 420px;
+}
+
+.catalog-card img[data-deferred-src]:not([src]) {
+  min-height: 220px;
+  background:
+    linear-gradient(110deg, rgba(240, 235, 222, 0.92), rgba(250, 247, 238, 0.9) 45%, rgba(232, 239, 226, 0.92));
+}
+
+@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+  .site-concept *,
+  .landing-v2 *,
+  .filters-modal__backdrop,
+  .filters-modal__footer,
+  .poster-side {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .catalog-card,
+  .catalog-card__map-plaque,
+  .btn-filter,
+  .filter-chip,
+  .site-concept__topnav a {
+    transition: none !important;
+  }
+
+  .catalog-card:hover,
+  .catalog-card__map-plaque:hover,
+  .catalog-card__map-plaque:focus-visible {
+    transform: none !important;
+  }
+
+  .catalog-card {
+    box-shadow: 0 6px 16px rgba(67, 84, 61, 0.07);
+  }
+}

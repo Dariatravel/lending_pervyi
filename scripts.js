@@ -3386,6 +3386,35 @@
     return { rebuild, passes, countHotelShown, countAllMatching, applyHiddenForSelection };
   }
 
+  function deferCatalogCardImages(cards, immediateLimit) {
+    (cards || []).forEach((card, index) => {
+      card.dataset.catalogIndex = String(index);
+      card.querySelectorAll("img[src]").forEach((img) => {
+        img.decoding = "async";
+        if (index < immediateLimit) {
+          if (index < 4) img.fetchPriority = "high";
+          return;
+        }
+        if (img.dataset.deferredSrc) return;
+        img.dataset.deferredSrc = img.getAttribute("src") || "";
+        img.removeAttribute("src");
+        img.loading = "lazy";
+      });
+    });
+  }
+
+  function restoreCatalogCardImages(cards) {
+    (cards || []).forEach((card) => {
+      if (card.hidden) return;
+      card.querySelectorAll("img[data-deferred-src]").forEach((img) => {
+        const src = img.dataset.deferredSrc || "";
+        if (!src) return;
+        img.setAttribute("src", src);
+        img.removeAttribute("data-deferred-src");
+      });
+    });
+  }
+
   /** Склонение для строки «ничего не нашли по N фильтру/фильтрам» над пустым каталогом. */
   function parametrovSklonenieRuForFilters(n) {
     const k = Number(n);
@@ -3566,6 +3595,7 @@
     let draftPreviewCount = 0;
     let catalogExpanded = false;
     const CATALOG_INITIAL_LIMIT = 20;
+    let catalogMediaDeferred = false;
 
     const filtersDrawerState = { reopenFocusEl: null, isOpen: false };
 
@@ -3755,6 +3785,8 @@
         const needsExpand = visibility.hotelShown > CATALOG_INITIAL_LIMIT || hasHiddenKv;
         catalogExpandBtn.hidden = !(pins === 0 && !catalogExpanded && needsExpand);
       }
+
+      restoreCatalogCardImages(cards);
 
       return displayedHotels;
     }
@@ -4263,6 +4295,10 @@
 
     function bootstrapFiltersFromUrlAndDom() {
       rebuildCardIndex();
+      if (!catalogMediaDeferred) {
+        deferCatalogCardImages(getCards(), CATALOG_INITIAL_LIMIT);
+        catalogMediaDeferred = true;
+      }
       suppressUrlSync = true;
       catalogUrl.absorbLocationIntoCommitted();
       suppressUrlSync = false;
@@ -4278,6 +4314,8 @@
     return {
       refresh: () => {
         rebuildCardIndex();
+        deferCatalogCardImages(getCards(), CATALOG_INITIAL_LIMIT);
+        catalogMediaDeferred = true;
         applyCommittedToDom();
       },
       setCatalogCategory,
@@ -4384,6 +4422,7 @@
     const rawLow = video.dataset.lowSrc || "";
     let highSrc = rawHigh ? absolutizeKvartiraCoverUrl(rawHigh) || rawHigh : "";
     let lowSrc = rawLow ? absolutizeKvartiraCoverUrl(rawLow) || rawLow : "";
+    if (!highSrc && inlineSrc) highSrc = inlineSrc;
 
     // На GitHub Pages файлы под /media/videos/*.mp4 часто — текстовые Git LFS pointer, не MP4.
     const isNonHttpMediaVideoPath = (url) =>
@@ -4418,7 +4457,30 @@
       video.addEventListener("error", () => applySrc(fallbackSrc), { once: true });
     }
 
-    applySrc(selectedSrc);
+    const shouldDefer = video.preload === "none" || video.dataset.deferLoad === "1";
+    if (!shouldDefer) {
+      applySrc(selectedSrc);
+      return;
+    }
+
+    video.removeAttribute("src");
+    video.dataset.pendingSrc = selectedSrc;
+    let applied = false;
+
+    const loadDeferredVideo = (playAfterLoad) => {
+      if (applied) return;
+      applied = true;
+      applySrc(video.dataset.pendingSrc || selectedSrc);
+      if (playAfterLoad) {
+        const promise = video.play();
+        if (promise && typeof promise.catch === "function") promise.catch(() => {});
+      }
+    };
+
+    video.addEventListener("pointerdown", () => loadDeferredVideo(false), { once: true });
+    video.addEventListener("touchstart", () => loadDeferredVideo(false), { once: true, passive: true });
+    video.addEventListener("focus", () => loadDeferredVideo(false), { once: true });
+    video.addEventListener("play", () => loadDeferredVideo(true), { once: true });
   }
 
   function initCategoryPicks(filtersController) {
