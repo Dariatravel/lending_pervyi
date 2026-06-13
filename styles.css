@@ -1070,9 +1070,34 @@ img[data-image-lite="done"] {
   margin-top: clamp(14px, 2vw, 24px);
 }
 
-/* Секция «Квартиры и дома» на главной: не показываем блок, карточки остаются в DOM для фильтров/поиска */
-#kvartira-catalog {
+/* Индивидуальная подборка по фильтрам (режим как у /podborki/) */
+body.is-selection-podborka .catalog-shell .catalog-grid,
+body.is-selection-podborka .catalog-shell .catalog-expand-wrap,
+body.is-selection-podborka .catalog-shell .filter-result {
   display: none !important;
+}
+
+body.is-selection-podborka .selection-podborka-hero,
+body.is-selection-podborka .selection-podborka-view {
+  display: block;
+}
+
+.selection-podborka-hero {
+  margin-bottom: clamp(12px, 2vw, 18px);
+}
+
+.selection-podborka-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 10px 0 0;
+  font-size: 0.95rem;
+  color: rgba(24, 40, 32, 0.78);
+}
+
+.selection-podborka-view .podborki-region:first-child {
+  margin-top: 0;
 }
 
 .site-concept__stay-categories {
@@ -6020,6 +6045,11 @@ body.modal-open .back-to-top {
   gap: 0.45rem;
   min-width: 0;
   flex: 1 1 auto;
+}
+
+.active-filters__share {
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .filter-pill-removable {

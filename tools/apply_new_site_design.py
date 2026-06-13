@@ -1796,16 +1796,6 @@ def build_homepage() -> None:
     {catalog_section}
   </section>
 
-  <section class="site-concept__section-block site-concept__section-block--subcatalog" id="kvartira-catalog">
-    <div class="site-concept__section-head">
-      <div>
-        <p class="site-concept__eyebrow">Квартиры и дома</p>
-      </div>
-      <a href="/kvartira/">Открыть весь раздел</a>
-    </div>
-    <div class="catalog-grid" id="kvartira-catalog-grid"></div>
-  </section>
-
   <section class="site-concept__section-block" id="guide">
     <div class="site-concept__section-head">
       <div>

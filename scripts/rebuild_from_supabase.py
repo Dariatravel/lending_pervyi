@@ -593,7 +593,7 @@ def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]])
     city_key = primary_city_key(filters)
     map_plaque = render_map_plaque_html(city_key)
     return (
-        f'<a class="catalog-card" {attrs} href="{html.escape(href, quote=True)}">'
+        f'<a class="catalog-card" data-listing-kind="hotel" {attrs} href="{html.escape(href, quote=True)}">'
         f'<div class="catalog-card__media-wrap"><img alt="{alt}" loading="lazy" src="{html.escape(image, quote=True)}"/>'
         f"{map_plaque}</div>"
         f"<h3>{title}</h3>"
@@ -641,7 +641,7 @@ def render_kvartira_card(row: dict[str, Any]) -> str:
     badge = '<span class="catalog-card__badge">Видео</span>' if row.get("has_video") else ""
     map_plaque = render_map_plaque_html(primary_city_key(filters))
     return (
-        f'<a class="catalog-card" {attrs} href="{html.escape(href, quote=True)}">'
+        f'<a class="catalog-card" data-listing-kind="kvartira" {attrs} href="{html.escape(href, quote=True)}">'
         f'<div class="catalog-card__media-wrap">{badge}<img src="{html.escape(image, quote=True)}" alt="{title}" loading="lazy" />'
         f"{map_plaque}</div>"
         f"<h3>{title}</h3>"
@@ -1051,16 +1051,24 @@ def main() -> None:
     rows = response.json()
 
     hotel_rows = [row for row in rows if row.get("source_kind") == "hotel"]
-    kvartira_rows = [row for row in rows if row.get("source_kind") == "kvartira"]
+    kvartira_excluded = {"general-1409", "villa-suhum-959"}
+    kvartira_rows = [
+        row
+        for row in rows
+        if row.get("source_kind") == "kvartira" and row.get("slug") not in kvartira_excluded
+    ]
     KVARTIRA_DIR.mkdir(parents=True, exist_ok=True)
 
     # Фильтры не пересчитываем из текста карточек — только details.filters из Supabase
     # (источник правды: Google Sheets «СОЦСЕТИ», см. apply_all_filters_from_sheet.py).
     hotel_post_meta = load_hotel_card_meta()
+    catalog_cards_html = "".join(render_hotel_card(row, hotel_post_meta) for row in hotel_rows) + "".join(
+        render_kvartira_card(row) for row in kvartira_rows
+    )
     replace_catalog_block(
         INDEX_PATH,
         '<div class="catalog-grid" id="catalog-grid">',
-        "".join(render_hotel_card(row, hotel_post_meta) for row in hotel_rows),
+        catalog_cards_html,
     )
     KVARTIRA_PATH.write_text(render_kvartira_catalog_page(kvartira_rows), encoding="utf-8")
 

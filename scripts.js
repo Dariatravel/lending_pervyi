@@ -92,6 +92,306 @@
 
   const FILTER_GROUPS = FILTER_CONFIG.groupOrder;
 
+  const SELECTION_CITY_ORDER = [
+    "ldzaa",
+    "pitsunda",
+    "gagra",
+    "alakhadzy",
+    "gudauta",
+    "new-afon",
+    "sukhum",
+    "tsandripsh",
+  ];
+
+  const SELECTION_CITY_LABELS = {
+    ldzaa: "ЛДЗАА",
+    pitsunda: "ПИЦУНДА",
+    gagra: "ГАГРА",
+    alakhadzy: "АЛАХАДЗЫ",
+    gudauta: "ГУДАУТА",
+    "new-afon": "НОВЫЙ АФОН",
+    sukhum: "СУХУМ",
+    tsandripsh: "ЦАНДРИПШ",
+    other: "ДРУГИЕ ЛОКАЦИИ",
+  };
+
+  function isKvartiraCatalogCard(cardEl) {
+    if (!cardEl) return false;
+    const kind = cardEl.dataset.listingKind;
+    if (kind === "kvartira") return true;
+    if (kind === "hotel") return false;
+    return /^\/kvartira\//.test(String(cardEl.getAttribute("href") || ""));
+  }
+
+  function isHotelCatalogCard(cardEl) {
+    return !isKvartiraCatalogCard(cardEl);
+  }
+
+  function catalogCardCityKey(cardEl) {
+    const cityRaw = String(cardEl.dataset.filterCity || "");
+    const first = cityRaw.split("|").map((part) => part.trim()).find(Boolean);
+    if (first && SELECTION_CITY_ORDER.includes(first)) return first;
+    const mapCity = cardEl.querySelector("[data-map-city]")?.dataset.mapCity;
+    if (mapCity && SELECTION_CITY_ORDER.includes(mapCity)) return mapCity;
+    return "other";
+  }
+
+  function catalogCardTitleKey(cardEl) {
+    const h3 = cardEl.querySelector("h3");
+    return (h3?.textContent || "").trim().toLowerCase();
+  }
+
+  function variantLabelRu(count) {
+    const n = Number(count);
+    if (!Number.isFinite(n) || n <= 0) return "0 вариантов";
+    const mod100 = n % 100;
+    const mod10 = n % 10;
+    if (mod100 >= 11 && mod100 <= 14) return `${n} вариантов`;
+    if (mod10 === 1) return `${n} вариант`;
+    if (mod10 >= 2 && mod10 <= 4) return `${n} варианта`;
+    return `${n} вариантов`;
+  }
+
+  /** Режим индивидуальной подборки: витрина как у /podborki/, карточки временно переносятся из #catalog-grid. */
+  function attachSelectionPodborkaView(spec) {
+    const {
+      grid,
+      heroEl,
+      viewEl,
+      titleEl,
+      countEl,
+      shareBtn,
+      shareHeroBtn,
+      editFiltersBtn,
+      openFiltersModal,
+      buildSelectionTitle,
+    } = spec;
+
+    let active = false;
+    const cardAnchorIndex = new WeakMap();
+
+    function rememberAnchors() {
+      if (!grid) return;
+      Array.from(grid.querySelectorAll(".catalog-card")).forEach((card, index) => {
+        card.dataset.catalogAnchorIndex = String(index);
+        cardAnchorIndex.set(card, index);
+      });
+    }
+
+    function restoreCardsToGrid() {
+      if (!grid) return;
+      const cards = Array.from(document.querySelectorAll("#catalog-grid .catalog-card, #selection-podborka-view .catalog-card"));
+      cards.sort((a, b) => {
+        const ai = Number(a.dataset.catalogAnchorIndex || cardAnchorIndex.get(a) || 0);
+        const bi = Number(b.dataset.catalogAnchorIndex || cardAnchorIndex.get(b) || 0);
+        return ai - bi;
+      });
+      cards.forEach((card) => {
+        card.classList.remove("podborki-catalog-card");
+        card.querySelector(".catalog-card__badge--rank")?.remove();
+        if (card.parentElement !== grid) grid.appendChild(card);
+      });
+      if (viewEl) viewEl.replaceChildren();
+    }
+
+    function setRankBadge(card, rank) {
+      const wrap = card.querySelector(".catalog-card__media-wrap");
+      if (!wrap) return;
+      let badge = wrap.querySelector(".catalog-card__badge--rank");
+      if (!badge) {
+        badge = document.createElement("span");
+        badge.className = "catalog-card__badge catalog-card__badge--rank";
+        wrap.insertBefore(badge, wrap.firstChild);
+      }
+      badge.textContent = String(rank);
+      badge.setAttribute("aria-label", `Место в подборке — ${rank}`);
+    }
+
+    function appendRegionBlock(parent, label, cards, startRank) {
+      if (!cards.length) return startRank;
+      const region = document.createElement("h2");
+      region.className = "podborki-region";
+      region.textContent = label;
+      parent.appendChild(region);
+
+      const regionGrid = document.createElement("div");
+      regionGrid.className = "catalog-grid podborki-catalog-grid";
+      let rank = startRank;
+      cards.forEach((card) => {
+        rank += 1;
+        card.classList.add("podborki-catalog-card");
+        setRankBadge(card, rank);
+        regionGrid.appendChild(card);
+      });
+      parent.appendChild(regionGrid);
+      return rank;
+    }
+
+    function citySortIndex(card) {
+      const key = catalogCardCityKey(card);
+      const idx = SELECTION_CITY_ORDER.indexOf(key);
+      return idx >= 0 ? idx : SELECTION_CITY_ORDER.length;
+    }
+
+    function buildView(visibleCards) {
+      if (!viewEl) return;
+      viewEl.replaceChildren();
+
+      const hotels = visibleCards.filter(isHotelCatalogCard).sort((a, b) => {
+        const cityDiff = citySortIndex(a) - citySortIndex(b);
+        if (cityDiff !== 0) return cityDiff;
+        return catalogCardTitleKey(a).localeCompare(catalogCardTitleKey(b), "ru");
+      });
+
+      const kvCards = visibleCards.filter(isKvartiraCatalogCard).sort((a, b) =>
+        catalogCardTitleKey(a).localeCompare(catalogCardTitleKey(b), "ru")
+      );
+
+      let rank = 0;
+      const hotelsByCity = new Map();
+      hotels.forEach((card) => {
+        const key = catalogCardCityKey(card);
+        if (!hotelsByCity.has(key)) hotelsByCity.set(key, []);
+        hotelsByCity.get(key).push(card);
+      });
+
+      [...SELECTION_CITY_ORDER, "other"].forEach((cityKey) => {
+        const group = hotelsByCity.get(cityKey) || [];
+        if (!group.length) return;
+        rank = appendRegionBlock(
+          viewEl,
+          SELECTION_CITY_LABELS[cityKey] || SELECTION_CITY_LABELS.other,
+          group,
+          rank
+        );
+      });
+
+      if (kvCards.length) {
+        rank = appendRegionBlock(viewEl, "КВАРТИРЫ И ДОМА", kvCards, rank);
+      }
+    }
+
+    function setShareButtonsVisible(show) {
+      [shareBtn, shareHeroBtn].forEach((btn) => {
+        if (!btn) return;
+        btn.hidden = !show;
+      });
+    }
+
+    async function copyShareLink(triggerBtn) {
+      const url = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+      const original = triggerBtn?.textContent || "";
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(url);
+        } else {
+          window.prompt("Скопируйте ссылку на подборку:", url);
+          return;
+        }
+        if (triggerBtn) {
+          triggerBtn.textContent = "Ссылка скопирована";
+          window.setTimeout(() => {
+            triggerBtn.textContent = original;
+          }, 2200);
+        }
+      } catch (error) {
+        window.prompt("Скопируйте ссылку на подборку:", url);
+      }
+    }
+
+    function wireShareButtons() {
+      [shareBtn, shareHeroBtn].forEach((btn) => {
+        if (!btn || btn.dataset.shareWired === "1") return;
+        btn.dataset.shareWired = "1";
+        btn.addEventListener("click", () => {
+          void copyShareLink(btn);
+        });
+      });
+    }
+
+    function wireEditFilters() {
+      if (!editFiltersBtn || editFiltersBtn.dataset.editWired === "1") return;
+      editFiltersBtn.dataset.editWired = "1";
+      editFiltersBtn.addEventListener("click", () => {
+        if (typeof openFiltersModal === "function") openFiltersModal();
+      });
+    }
+
+    function wireScrollMemory() {
+      if (viewEl?.dataset.scrollWired === "1") return;
+      if (viewEl) viewEl.dataset.scrollWired = "1";
+      viewEl?.addEventListener("click", (event) => {
+        if (!active) return;
+        if (!event.target.closest(".catalog-card")) return;
+        try {
+          sessionStorage.setItem("abhaz:selectionScroll", String(window.scrollY));
+        } catch (storageError) {
+          /* ignore quota / private mode */
+        }
+      });
+    }
+
+    function restoreScrollFromSession() {
+      try {
+        const raw = sessionStorage.getItem("abhaz:selectionScroll");
+        if (!raw) return;
+        const y = Number.parseInt(raw, 10);
+        if (!Number.isFinite(y)) return;
+        window.requestAnimationFrame(() => window.scrollTo({ top: y, behavior: "auto" }));
+      } catch (storageError) {
+        /* ignore */
+      }
+    }
+
+    function sync(totalMatching, pins) {
+      const shouldShow = pins > 0 && totalMatching > 0;
+      if (!shouldShow) {
+        if (active) {
+          active = false;
+          document.body.classList.remove("is-selection-podborka");
+          restoreCardsToGrid();
+          if (heroEl) heroEl.hidden = true;
+          if (viewEl) viewEl.hidden = true;
+          setShareButtonsVisible(false);
+        }
+        return;
+      }
+
+      const visibleCards = Array.from(grid?.querySelectorAll(".catalog-card") || []).filter((card) => !card.hidden);
+      if (!visibleCards.length) {
+        if (active) {
+          active = false;
+          document.body.classList.remove("is-selection-podborka");
+          restoreCardsToGrid();
+          if (heroEl) heroEl.hidden = true;
+          if (viewEl) viewEl.hidden = true;
+          setShareButtonsVisible(false);
+        }
+        return;
+      }
+
+      if (titleEl && typeof buildSelectionTitle === "function") {
+        titleEl.textContent = buildSelectionTitle();
+      }
+      if (countEl) countEl.textContent = variantLabelRu(totalMatching);
+
+      restoreCardsToGrid();
+      buildView(visibleCards);
+
+      active = true;
+      document.body.classList.add("is-selection-podborka");
+      if (heroEl) heroEl.hidden = false;
+      if (viewEl) viewEl.hidden = false;
+      setShareButtonsVisible(true);
+      wireShareButtons();
+      wireEditFilters();
+      wireScrollMemory();
+      restoreScrollFromSession();
+    }
+
+    return { rememberAnchors, sync, restoreCardsToGrid };
+  }
+
   const BEACH_FILTERS = {
     SAND_LDZAA: "sand-ldzaa",
     SAND_SUKHUM: "sand-sukhum",
@@ -2973,7 +3273,7 @@
     return { openFiltersModal, closeFiltersModal };
   }
 
-  /** Индекс `data-filter` по карточкам главной каталог-сетки (и квартирного блока, если смёржен в getCards). */
+  /** Индекс `data-filter` по карточкам единого каталога (#catalog-grid). */
   function buildCatalogCardIndexRecords(cards, groupOrder, parseCardGroup) {
     return cards.map((card) => ({
       el: card,
@@ -3035,11 +3335,11 @@
       );
     }
 
-    function countPrimaryShown(selected, catSlug, nameQuery) {
+    function countHotelShown(selected, catSlug, nameQuery) {
       let shown = 0;
       entries.forEach((entry) => {
         if (!passes(entry, selected, catSlug, nameQuery)) return;
-        if (deps.isPrimaryCard(entry.el)) shown += 1;
+        if (isHotelCatalogCard(entry.el)) shown += 1;
       });
       return shown;
     }
@@ -3053,16 +3353,19 @@
     }
 
     function applyHiddenForSelection(selected, catSlug, nameQuery) {
-      let primaryShown = 0;
+      let hotelShown = 0;
+      let totalShown = 0;
       entries.forEach((entry) => {
         const ok = passes(entry, selected, catSlug, nameQuery);
         entry.el.hidden = !ok;
-        if (ok && deps.isPrimaryCard(entry.el)) primaryShown += 1;
+        if (!ok) return;
+        totalShown += 1;
+        if (isHotelCatalogCard(entry.el)) hotelShown += 1;
       });
-      return primaryShown;
+      return { hotelShown, totalShown };
     }
 
-    return { rebuild, passes, countPrimaryShown, countAllMatching, applyHiddenForSelection };
+    return { rebuild, passes, countHotelShown, countAllMatching, applyHiddenForSelection };
   }
 
   /** Склонение для строки «ничего не нашли по N фильтру/фильтрам» над пустым каталогом. */
@@ -3145,12 +3448,11 @@
       }
     }
 
-    function updateEmptyLead(primaryShown, totalMatching, pins) {
+    function updateEmptyLead(totalMatching, pins) {
       if (!d.emptyLeadEl || !d.emptyNoteEl) return;
-      if (primaryShown > 0) return;
+      if (totalMatching > 0) return;
 
       const emptyHint = d.emptyNoteEl.querySelector(".filter-empty__hint");
-      const kvFallback = Boolean(totalMatching > 0 && totalMatching !== primaryShown);
 
       if (totalMatching === 0) {
         if (pins === 0) {
@@ -3162,18 +3464,6 @@
         }
         if (emptyHint) {
           emptyHint.textContent = "Попробуйте смягчить условие: город, расстояние до пляжа или бюджет.";
-          emptyHint.removeAttribute("hidden");
-        }
-        return;
-      }
-
-      if (kvFallback) {
-        const search = typeof window.location !== "undefined" ? window.location.search || "" : "";
-        d.emptyLeadEl.textContent =
-          "В основном каталоге ниже подходящих объектов размещения сейчас не видно, но есть совпадения среди квартир и домов.";
-        if (emptyHint) {
-          emptyHint.innerHTML =
-            `Откройте <a href="/kvartira/${search}">раздел «Квартиры»</a> с теми же параметрами в адресе (или перейдите из меню сайта).`;
           emptyHint.removeAttribute("hidden");
         }
       }
@@ -3208,7 +3498,13 @@
       };
     }
 
-    const kvGrid = document.getElementById("kvartira-catalog-grid");
+    const selectionHero = document.getElementById("selection-podborka-hero");
+    const selectionView = document.getElementById("selection-podborka-view");
+    const selectionTitle = document.getElementById("selection-podborka-title");
+    const selectionCount = document.getElementById("selection-podborka-count");
+    const shareSelectionBtn = document.getElementById("share-selection-link");
+    const shareSelectionHeroBtn = document.getElementById("share-selection-link-hero");
+    const editSelectionFiltersBtn = document.getElementById("edit-selection-filters");
 
     function isMobileFiltersLayout() {
       return window.matchMedia(FILTER_SHEET_MOBILE_QUERY).matches;
@@ -3263,27 +3559,7 @@
     }
 
     function getCards() {
-      const hotelCards = Array.from(grid.querySelectorAll(".catalog-card"));
-      const kvCards = kvGrid ? Array.from(kvGrid.querySelectorAll(".catalog-card")) : [];
-      if (!kvCards.length) return hotelCards;
-      const seen = new Set();
-      const merged = [];
-      hotelCards.forEach((el) => {
-        if (seen.has(el)) return;
-        seen.add(el);
-        merged.push(el);
-      });
-      kvCards.forEach((el) => {
-        if (seen.has(el)) return;
-        seen.add(el);
-        merged.push(el);
-      });
-      return merged;
-    }
-
-    /** Считаем только карточки в основном гриде (#catalog-grid) — они видимы после скрытия блока «Квартиры». */
-    function isPrimaryCatalogCard(cardEl) {
-      return Boolean(cardEl && grid.contains(cardEl));
+      return Array.from(grid.querySelectorAll(".catalog-card"));
     }
 
     function parseValues(card, group) {
@@ -3300,7 +3576,6 @@
       parseCardGroup: parseValues,
       matchesCatalogSlug: matchesCatalogCategory,
       catalogTextForCard: cardCatalogCategoryText,
-      isPrimaryCard: isPrimaryCatalogCard,
     });
 
     function normalizeSelectedFilterValues(group, value, chipText) {
@@ -3359,7 +3634,9 @@
     }
 
     function rebuildCardIndex() {
+      selectionPodborka.restoreCardsToGrid();
       catalogMatch.rebuild();
+      selectionPodborka.rememberAnchors();
     }
 
     function notifySubscribers(reason, snapshot) {
@@ -3383,7 +3660,7 @@
     }
 
     function countShownOnly(selected, slug, nameQuery) {
-      return catalogMatch.countPrimaryShown(selected, slug, nameQuery ?? filt.committedNameQuery);
+      return catalogMatch.countAllMatching(selected, slug, nameQuery ?? filt.committedNameQuery);
     }
 
     function countTotalMatching(selected, slug, nameQuery) {
@@ -3424,26 +3701,44 @@
       return n;
     }
 
-    function syncCatalogInitialLimit(primaryShown, pins) {
-      const primaryCards = Array.from(grid.querySelectorAll(".catalog-card"));
-      const shouldLimit = pins === 0 && !catalogExpanded && primaryShown > CATALOG_INITIAL_LIMIT;
-      let visiblePrimary = 0;
+    function syncCatalogInitialLimit(visibility, pins) {
+      if (pins > 0) return visibility.totalShown;
 
-      primaryCards.forEach((card) => {
-        if (card.hidden) return;
-        visiblePrimary += 1;
-        if (shouldLimit && visiblePrimary > CATALOG_INITIAL_LIMIT) {
+      const cards = Array.from(grid.querySelectorAll(".catalog-card"));
+      const shouldLimitHotels = !catalogExpanded;
+      let visibleHotels = 0;
+      let displayedHotels = 0;
+      let hasHiddenKv = false;
+
+      cards.forEach((card) => {
+        if (isKvartiraCatalogCard(card)) {
+          const showKv = catalogExpanded;
+          card.hidden = !showKv;
+          if (!showKv) hasHiddenKv = true;
+          return;
+        }
+
+        if (!shouldLimitHotels) {
+          card.hidden = false;
+          displayedHotels += 1;
+          return;
+        }
+
+        visibleHotels += 1;
+        if (visibleHotels > CATALOG_INITIAL_LIMIT) {
           card.hidden = true;
+        } else {
+          card.hidden = false;
+          displayedHotels += 1;
         }
       });
 
-      const displayed = shouldLimit ? CATALOG_INITIAL_LIMIT : visiblePrimary;
-
       if (catalogExpandBtn) {
-        catalogExpandBtn.hidden = !(pins === 0 && !catalogExpanded && primaryShown > CATALOG_INITIAL_LIMIT);
+        const needsExpand = visibility.hotelShown > CATALOG_INITIAL_LIMIT || hasHiddenKv;
+        catalogExpandBtn.hidden = !(pins === 0 && !catalogExpanded && needsExpand);
       }
 
-      return displayed;
+      return displayedHotels;
     }
 
     const { renderActiveRemovalChips, syncOpenBadge, updateEmptyLead } = attachCatalogFilterSummaryChrome({
@@ -3598,20 +3893,28 @@
     }
 
     function applyCommittedToDom() {
-      const primaryShown = applyVisibilityCommitted();
+      const visibility = applyVisibilityCommitted();
       const pins = countActivePins(filt.committedSel, filt.committedCat, filt.committedNameQuery);
-      const totalMatching = countTotalMatching(filt.committedSel, filt.committedCat, filt.committedNameQuery);
-      const displayedPrimaryShown = syncCatalogInitialLimit(primaryShown, pins);
-      const resultCount = pins === 0 ? totalMatching : displayedPrimaryShown;
+      const totalMatching = visibility.totalShown;
+      let resultCount = totalMatching;
+
+      if (pins > 0) {
+        selectionPodborka.sync(totalMatching, pins);
+        if (emptyNote) emptyNote.hidden = totalMatching !== 0;
+      } else {
+        selectionPodborka.sync(0, 0);
+        resultCount = syncCatalogInitialLimit(visibility, pins);
+        if (emptyNote) emptyNote.hidden = true;
+      }
+
       if (visibleCount) visibleCount.textContent = String(resultCount);
-      if (emptyNote) emptyNote.hidden = displayedPrimaryShown !== 0;
       if (clearBtn) clearBtn.hidden = pins === 0;
 
       draftPreviewCount = countShownOnly(filt.draftSel, filt.draftCat);
 
       syncOpenBadge();
       renderActiveRemovalChips();
-      updateEmptyLead(displayedPrimaryShown, totalMatching, pins);
+      updateEmptyLead(totalMatching, pins);
       catalogUrl.syncCommittedToLocation();
 
       syncApplyFooterText();
@@ -3623,7 +3926,7 @@
           : filt.committedCat;
       syncChipUi(chipSource, chipCatUnused);
 
-      notifySubscribers("commit", { pins, primaryShown: displayedPrimaryShown, totalMatching, resultCount });
+      notifySubscribers("commit", { pins, primaryShown: resultCount, totalMatching, resultCount });
     }
 
     function toggleChipAcrossModes(chip) {
@@ -3831,6 +4134,35 @@
       },
     });
 
+    function buildSelectionTitle() {
+      const parts = [];
+      FILTER_GROUPS.forEach((group) => {
+        [...filt.committedSel[group]].forEach((token) => {
+          const label = labelForToken(group, token);
+          if (label) parts.push(label);
+        });
+      });
+      if (filt.committedCat && CATALOG_CATEGORY_LABELS[filt.committedCat]) {
+        parts.unshift(CATALOG_CATEGORY_LABELS[filt.committedCat]);
+      }
+      const nameQuery = String(filt.committedNameQuery || "").trim();
+      if (nameQuery) parts.push(`«${nameQuery}»`);
+      return parts.length ? parts.join(" · ") : "Подборка по параметрам";
+    }
+
+    const selectionPodborka = attachSelectionPodborkaView({
+      grid,
+      heroEl: selectionHero,
+      viewEl: selectionView,
+      titleEl: selectionTitle,
+      countEl: selectionCount,
+      shareBtn: shareSelectionBtn,
+      shareHeroBtn: shareSelectionHeroBtn,
+      editFiltersBtn: editSelectionFiltersBtn,
+      openFiltersModal,
+      buildSelectionTitle,
+    });
+
     /** Привязка чипов, кнопок и модалки — после объявления всех обработчиков состояния. */
     function wireFilterUiInteractions() {
       chips.forEach((chip) => {
@@ -3899,6 +4231,16 @@
       );
 
       bindActiveRemovalDelegation();
+
+      window.addEventListener("popstate", () => {
+        suppressUrlSync = true;
+        catalogUrl.absorbLocationIntoCommitted();
+        suppressUrlSync = false;
+        rollbackDraftFromCommitted();
+        rebuildRecentStackFromSelections();
+        syncNameSearchInputs(filt.committedNameQuery);
+        applyCommittedToDom();
+      });
     }
 
     function bootstrapFiltersFromUrlAndDom() {
