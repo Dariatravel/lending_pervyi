@@ -28,7 +28,7 @@ MANUAL_COORDS_PATH = ROOT / "data" / "objects-map-manual-coords.json"
 TELEGRAM_POSTS_PATH = ROOT / "output" / "abhazbooking_2026_posts.json"
 CATALOG_HTML_PATHS = (ROOT / "index.html", ROOT / "kvartira" / "index.html")
 MAPS_CONFIG_PATH = ROOT / "supabase" / "maps-config.js"
-CONSTRUCTOR_ID = "80408220233bb515383a3bc3da359eb235d60e8dd3dddfe843612590179aabd1"
+CONSTRUCTOR_ID = "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33"
 WIDGET_URL = (
     "https://yandex.ru/map-widget/v1/?um=constructor%3A"
     + CONSTRUCTOR_ID
@@ -39,17 +39,17 @@ CITY_TEXT_TO_KEY = [
     ("новый афон", "new-afon"),
     ("цандрипш", "tsandripsh"),
     ("алахадз", "alakhadzy"),
-    ("гагрск", "gagra"),
-    ("гагра", "gagra"),
+    ("цитрусов", "alakhadzy"),
     ("пицунд", "pitsunda"),
-    ("гудаут", "gudauta"),
     ("лдзаа", "ldzaa"),
+    ("гудаут", "gudauta"),
+    ("хыпст", "gudauta"),
     ("сухум", "sukhum"),
     ("сухуми", "sukhum"),
+    ("гагрск", "gagra"),
+    ("гагра", "gagra"),
     ("гулрыпш", "gagra"),
-    ("хыпст", "gagra"),
     ("псырцх", "new-afon"),
-    ("цитрусов", "alakhadzy"),
     ("рицинск", "gudauta"),
     ("амзара", "tsandripsh"),
     ("мачара", "sukhum"),
@@ -998,21 +998,20 @@ def match_remaining_placemarks(
             if placemark_index in used_placemark_indexes:
                 continue
             score = 0.0
-            if brands_equivalent(placemark["title"], page["title"]):
+            page_key = exact_address_key(page.get("address_line", "") or page.get("location", ""))
+            placemark_key = exact_address_key(placemark.get("address", ""))
+            if page_key and page_key == placemark_key:
+                score = 0.98
+            elif brands_equivalent(placemark["title"], page["title"]):
                 if cities_compatible(placemark, page):
                     score = 0.97
             else:
-                page_key = exact_address_key(page.get("address_line", "") or page.get("location", ""))
-                placemark_key = exact_address_key(placemark.get("address", ""))
-                if page_key and page_key == placemark_key:
-                    score = 0.95
-                else:
-                    page_lookup = address_lookup_key(page.get("address_line", "") or page.get("location", ""))
-                    placemark_lookup = address_lookup_key(
-                        f"{placemark.get('address', '')} {placemark.get('title', '')}"
-                    )
-                    if page_lookup and page_lookup == placemark_lookup:
-                        score = 0.94
+                page_lookup = address_lookup_key(page.get("address_line", "") or page.get("location", ""))
+                placemark_lookup = address_lookup_key(
+                    f"{placemark.get('address', '')} {placemark.get('title', '')}"
+                )
+                if page_lookup and page_lookup == placemark_lookup:
+                    score = 0.94
             if score >= 0.94:
                 pairs.append((score, page_index, placemark_index))
     pairs.sort(reverse=True)
@@ -1161,6 +1160,36 @@ def write_unmatched_report(pages: list[dict], matches: dict[str, dict]) -> None:
         lines.extend(f"- {page['slug']} | {page['title']}" for page in unmatched)
     UNMATCHED_REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
     UNMATCHED_REPORT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def add_fallback_points(
+    pages: list[dict],
+    points_by_slug: dict[str, dict],
+    stats: dict,
+) -> None:
+    """Add only auditable non-constructor coordinates for pages missing from the constructor."""
+    manual_coords = load_manual_coords()
+    pages_by_slug = {page["slug"]: page for page in pages}
+
+    for page in pages:
+        if page["slug"] in points_by_slug:
+            continue
+        coords = extract_coords_from_page(page)
+        if not coords:
+            continue
+        address = resolve_address(page)
+        points_by_slug[page["slug"]] = make_point(page, coords[0], coords[1], address, "page_coords")
+        stats["from_page_coords"] += 1
+
+    for slug, coords in manual_coords.items():
+        if slug in points_by_slug:
+            continue
+        page = pages_by_slug.get(slug)
+        if not page:
+            continue
+        address = resolve_address(page)
+        points_by_slug[slug] = make_point(page, coords[0], coords[1], address, "manual")
+        stats["from_manual"] += 1
 
 
 def match_pages_to_placemarks(pages: list[dict], placemarks: list[dict]) -> dict[str, dict]:
@@ -1354,7 +1383,10 @@ def build_points() -> dict:
         "pages_on_disk": len(all_pages),
         "pages_excluded": len(all_pages) - len(pages),
         "from_constructor": 0,
+        "from_page_coords": 0,
+        "from_manual": 0,
         "skipped_without_constructor": 0,
+        "skipped_without_coords": 0,
         "shared_coordinate_groups": 0,
     }
 
@@ -1366,7 +1398,9 @@ def build_points() -> dict:
         stats["from_constructor"] += 1
 
     verify_constructor_coords(points_by_slug, matches)
-    stats["skipped_without_constructor"] = len(pages) - len(points_by_slug)
+    stats["skipped_without_constructor"] = len(pages) - len(matches)
+    add_fallback_points(pages, points_by_slug, stats)
+    stats["skipped_without_coords"] = len(pages) - len(points_by_slug)
     write_unmatched_report(pages, matches)
 
     coord_groups: dict[tuple[float, float], list[str]] = defaultdict(list)
@@ -1401,7 +1435,10 @@ def main() -> int:
         f"исключено {stats['pages_excluded']}; меток конструктора {stats['placemarks_total']}, "
         f"уникальных {stats['placemarks_unique']}, "
         f"только конструктор {stats['from_constructor']}, "
+        f"GPS из карточек {stats['from_page_coords']}, "
+        f"ручных {stats['from_manual']}, "
         f"без метки {stats['skipped_without_constructor']}, "
+        f"без координат {stats['skipped_without_coords']}, "
         f"групп с общими координатами {stats['shared_coordinate_groups']})"
     )
     return 0

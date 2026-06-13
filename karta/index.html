@@ -86,7 +86,7 @@
       function filterPoints(points) {
         if (!cityKey) return points;
         return points.filter(function (point) {
-          return !point.cityKey || point.cityKey === cityKey;
+          return point.cityKey === cityKey;
         });
       }
 
@@ -226,7 +226,7 @@
         document.head.appendChild(script);
       }
 
-      fetch("../data/objects-map-points.json?v=202606121000", { cache: "no-cache" })
+      fetch("../data/objects-map-points.json?v=202606130930", { cache: "no-cache" })
         .then(function (response) {
           if (!response.ok) throw new Error("map-data");
           return response.json();
