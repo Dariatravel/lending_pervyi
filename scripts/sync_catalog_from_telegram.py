@@ -915,7 +915,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         "description": summary,
         "url": f"https://абхазберег.рф{page_href}",
     }
-    img_abs = absolute_site_url(first_photo_url)
+    img_abs = absolute_site_url(image_src_for_html(first_photo_url)) if first_photo_url else ""
     if img_abs:
         ld_blob["image"] = [img_abs]
     ld_json = json.dumps(ld_blob, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")

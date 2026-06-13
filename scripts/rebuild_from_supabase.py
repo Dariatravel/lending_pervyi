@@ -892,7 +892,7 @@ def update_hotel_page(row: dict[str, Any]) -> None:
             flags=re.S,
         )
 
-    cover_url = cover.strip() if cover else ""
+    cover_url = image_src_for_html(cover.strip()) if cover else ""
     ld_script = lodging_listing_json_ld_script(
         "Hotel",
         title,

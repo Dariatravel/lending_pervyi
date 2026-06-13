@@ -1,0 +1,139 @@
+# Чеклист очистки Supabase Storage после миграции фото на Яндекс
+
+Проект: Абхазберег (chnyazvybzzryduhgopa)
+Дата актуализации: 2026-06-13
+
+## Что оставить в Supabase
+
+- [ ] Postgres — таблица listings и связанные данные (не трогать)
+- [ ] Storage bucket `site-media` → только папка `videos/` (и связанные превью, если есть)
+
+## Что можно удалить из Supabase Storage
+
+После проверки, что сайт не ссылается на Supabase-фото:
+
+- [ ] `site-media/cards/`
+- [ ] `site-media/hotels/` (только изображения; если там лежат mp4 — перенести в videos/ или оставить)
+- [ ] `site-media/kvartira/`
+- [ ] `site-media/kvartira-cards/`
+- [ ] `site-media/branding/`
+- [ ] `site-media/blog/`
+- [ ] `site-media/reviews/`
+- [ ] Любые другие image-префиксы вне `videos/`
+
+Ожидаемый эффект: −6…8 ГБ storage, резкое снижение Image Transformations (сейчас основной перерасход квоты).
+
+---
+
+## Шаг 1. Проверка сайта (локально)
+
+```bash
+# Supabase-ссылки на фото — должно быть 0 совпадений
+rg -n 'storage/v1/object/public/site-media/(cards|hotels|kvartira|kvartira-cards|branding|blog|reviews)' \
+  --glob '*.html' --glob '*.css' --glob '*.js' --glob '*.json' \
+  --glob '!media/**' --glob '!output/**' --glob '!node_modules/**' --glob '!tmp/**'
+
+# Локальные пути к фото в рабочих файлах — должно быть 0
+rg -n '(?<![\w.-])(?:\.\./)+media/(cards|hotels|kvartira|kvartira-cards|branding|blog|reviews)|(?<![\w.-])/media/(cards|hotels|kvartira|kvartira-cards|branding|blog|reviews)|(?<![\w./:-])media/(cards|hotels|kvartira|kvartira-cards|branding|blog|reviews)' \
+  --pcre2 --glob '*.html' --glob '*.css' --glob '*.js' --glob '*.json' \
+  --glob '!media/**' --glob '!output/**' --glob '!node_modules/**' --glob '!tmp/**'
+
+# Видео на Supabase — должны остаться (это норма)
+rg -n 'site-media/videos' --glob '*.html' --glob '*.js' | head
+```
+
+Автозамена (если снова появятся Supabase-фото в HTML):
+
+```bash
+python3 tools/fix_supabase_photo_urls_in_site.py
+```
+
+---
+
+## Шаг 2. Яндекс Object Storage
+
+```bash
+# Все фото уже в облаке? Ожидается uploaded=0
+python3 tools/upload_yandex_media.py --dry-run --workers 48 \
+  media/cards media/hotels media/kvartira media/kvartira-cards \
+  media/branding media/blog media/reviews
+
+# Если dry-run показал missing — загрузить
+python3 tools/upload_yandex_media.py --workers 48 \
+  media/cards media/hotels media/kvartira media/kvartira-cards \
+  media/branding media/blog media/reviews
+```
+
+Проверка в браузере (выборочно):
+
+- [ ] Главная — карточки открываются, фото с `storage.yandexcloud.net`
+- [ ] 2–3 страницы отелей с галереей
+- [ ] 1–2 квартиры
+- [ ] Блог — обложки статей
+- [ ] Видео на страницах объектов — по-прежнему с `supabase.co/.../videos/`
+
+---
+
+## Шаг 3. Деплой
+
+- [ ] Закоммитить и запушить правки HTML/генераторов
+- [ ] Дождаться успешной сборки GitHub Pages
+- [ ] Повторить выборочную проверку на проде (абхазберег.рф)
+
+---
+
+## Шаг 4. Бэкап перед удалением (рекомендуется)
+
+- [ ] Supabase Dashboard → Storage → site-media → экспорт/скачивание одной проблемной папки для контроля
+- [ ] Или: убедиться, что `media/` в репо + Яндекс содержат те же файлы (dry-run uploaded=0)
+
+---
+
+## Шаг 5. Удаление фото из Supabase Storage
+
+Supabase Dashboard → Storage → `site-media`:
+
+1. [ ] Удалить `cards/` (папку целиком)
+2. [ ] Удалить `hotels/` — **только если** внутри нет `.mp4` (видео должны быть в `videos/hotels/`)
+3. [ ] Удалить `kvartira/`
+4. [ ] Удалить `kvartira-cards/`
+5. [ ] Удалить `branding/`
+6. [ ] Удалить `blog/`
+7. [ ] Удалить `reviews/`
+
+CLI (альтернатива, если настроен supabase CLI + service role):
+
+```bash
+# Пример: список объектов перед удалением — выполнять вручную с нужными ключами
+# supabase storage ls ss:///site-media/cards --experimental
+```
+
+---
+
+## Шаг 6. После очистки
+
+- [ ] Usage → Image Transformations: через 24–48 ч квота должна перестать расти
+- [ ] Usage → Storage: объём должен упасть (ориентир: минус несколько ГБ)
+- [ ] При необходимости: Supabase → Settings → Billing → увеличить лимит Image Transformations до стабилизации или оставить минимальным
+
+---
+
+## Шаг 7. Не забыть (регрессии)
+
+- [ ] `scripts/rebuild_from_supabase.py` — JSON-LD image через `image_src_for_html`
+- [ ] `scripts/sync_catalog_from_telegram.py` — то же для ld+json
+- [ ] `image-lite.js` — трансформирует только Supabase URL; после миграции фото не должен вызывать `/render/image/` для картинок
+- [ ] Не коммитить `.env.yandex.local` и ключи S3
+
+---
+
+## Быстрый статус (заполнить после прохода)
+
+| Проверка | Результат | Дата |
+|----------|-----------|------|
+| Supabase photo refs в HTML = 0 | | |
+| Yandex dry-run uploaded=0 | | |
+| Прод: фото с Яндекса | | |
+| Прод: видео с Supabase | | |
+| Папки фото удалены из Storage | | |
+| Image Transformations стабилизировались | | |
