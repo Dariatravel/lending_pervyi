@@ -7438,6 +7438,18 @@ html:has(> body.objects-map-page) {
   .podborki-index-list {
     gap: 12px;
   }
+
+  .site-concept__guide-messenger-btn,
+  .site-concept__contacts .contact-buttons .btn-book,
+  .contact-buttons .btn-book {
+    min-height: 42px;
+    padding: 0.38rem 0.28rem;
+    font-size: 10px;
+    letter-spacing: 0.02em;
+    line-height: 1.18;
+    white-space: normal;
+    text-wrap: balance;
+  }
 }
 
 @media (max-width: 520px) {
@@ -7478,6 +7490,16 @@ html:has(> body.objects-map-page) {
 
   .hotel-site-concept .media-grid {
     grid-template-columns: 1fr;
+  }
+
+  .site-concept__guide-messenger-btn,
+  .site-concept__contacts .contact-buttons .btn-book,
+  .contact-buttons .btn-book {
+    min-height: 40px;
+    padding: 0.32rem 0.22rem;
+    font-size: 8.5px;
+    letter-spacing: 0.01em;
+    line-height: 1.15;
   }
 }
 
