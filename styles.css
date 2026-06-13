@@ -1071,8 +1071,8 @@ img[data-image-lite="done"] {
 }
 
 /* Индивидуальная подборка по фильтрам (режим как у /podborki/) */
-body.is-selection-podborka .catalog-shell .catalog-grid,
-body.is-selection-podborka .catalog-shell .catalog-expand-wrap,
+body.is-selection-podborka .catalog-shell > #catalog-grid,
+body.is-selection-podborka .catalog-shell > .catalog-expand-wrap,
 body.is-selection-podborka .catalog-shell .filter-result {
   display: none !important;
 }
@@ -1080,6 +1080,10 @@ body.is-selection-podborka .catalog-shell .filter-result {
 body.is-selection-podborka .selection-podborka-hero,
 body.is-selection-podborka .selection-podborka-view {
   display: block;
+}
+
+body.is-selection-podborka .selection-podborka-view .podborki-catalog-grid {
+  display: grid !important;
 }
 
 .selection-podborka-hero {
