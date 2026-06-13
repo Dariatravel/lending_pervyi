@@ -20,37 +20,60 @@
     {
       "id": "bank-tbank",
       "name": "Т-Банк"
+    },
+    {
+      "id": "bank-ozon",
+      "name": "Ozon Банк"
+    },
+    {
+      "id": "bank-tbank-mama",
+      "name": "Т-Банк мама"
+    },
+    {
+      "id": "bank-akbars",
+      "name": "Ак Барс"
+    },
+    {
+      "id": "bank-psb",
+      "name": "ПСБ"
     }
   ],
   "months": {
-    "2026-05": {
+    "2026-06": {
       "banks": {
         "bank-alfa": {
           "categories": [
             {
-              "id": "category-alfa-may-all-purchases",
-              "name": "За все покупки",
-              "rate": 1,
+              "id": "category-alfa-june-clothes-shoes",
+              "name": "Одежда и обувь",
+              "rate": 5,
               "limit": "",
-              "note": ""
+              "note": "с Альфа-Смарт"
             },
             {
-              "id": "category-alfa-may-home-repair",
+              "id": "category-alfa-june-home-repair",
               "name": "Дом и ремонт",
               "rate": 5,
               "limit": "",
-              "note": ""
+              "note": "на покупки от 500 ₽"
             },
             {
-              "id": "category-alfa-may-jewelry",
+              "id": "category-alfa-june-jewelry",
               "name": "Ювелирные изделия",
               "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-alfa-may-clothes-shoes",
-              "name": "Одежда и обувь",
+              "id": "category-alfa-june-delivery",
+              "name": "Деливери",
+              "rate": 7,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-alfa-june-afisha",
+              "name": "Афиша",
               "rate": 5,
               "limit": "",
               "note": ""
@@ -60,38 +83,38 @@
         "bank-mts": {
           "categories": [
             {
-              "id": "category-mts-may-sports",
-              "name": "Спорт товары",
-              "rate": 7,
-              "limit": "1000 руб",
+              "id": "category-mts-june-supermarkets",
+              "name": "Супермаркеты",
+              "rate": 5,
+              "limit": "до 1000 руб",
+              "note": "с МТС Premium"
+            },
+            {
+              "id": "category-mts-june-all-purchases",
+              "name": "За всё",
+              "rate": 1,
+              "limit": "до 1000 руб",
               "note": ""
             },
             {
-              "id": "category-mts-may-beauty",
-              "name": "Красота",
-              "rate": 5,
-              "limit": "1000 руб",
+              "id": "category-mts-june-city-transport",
+              "name": "Городской транспорт",
+              "rate": 3,
+              "limit": "до 1000 руб",
               "note": ""
             },
             {
-              "id": "category-mts-may-air-tickets",
-              "name": "Авиабилеты",
+              "id": "category-mts-june-fastfood",
+              "name": "Фастфуд",
               "rate": 5,
-              "limit": "1000 руб",
+              "limit": "до 1000 руб",
               "note": ""
             },
             {
-              "id": "category-mts-may-flowers",
-              "name": "Цветы",
+              "id": "category-mts-june-clothes-shoes",
+              "name": "Одежда и обувь",
               "rate": 5,
-              "limit": "1000 руб",
-              "note": ""
-            },
-            {
-              "id": "category-mts-may-dentistry",
-              "name": "Стоматология",
-              "rate": 5,
-              "limit": "1000 руб",
+              "limit": "до 1000 руб",
               "note": ""
             }
           ]
@@ -99,36 +122,36 @@
         "bank-rshb": {
           "categories": [
             {
-              "id": "category-rshb-may-marketplaces",
-              "name": "Маркетплейсы",
+              "id": "category-rshb-june-home-repair",
+              "name": "Дом и ремонт",
               "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-rshb-may-cafes-restaurants",
-              "name": "Кафе и рестораны",
+              "id": "category-rshb-june-supermarkets",
+              "name": "Супермаркеты",
               "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-rshb-may-electronics-appliances",
-              "name": "Бытовая техника и электроника",
+              "id": "category-rshb-june-fastfood",
+              "name": "Фастфуд",
               "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-rshb-may-alcohol",
-              "name": "Алкоголь",
+              "id": "category-rshb-june-clothes-shoes",
+              "name": "Одежда и обувь",
               "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-rshb-may-pets",
-              "name": "Животные",
+              "id": "category-rshb-june-beauty",
+              "name": "Красота",
               "rate": 5,
               "limit": "",
               "note": ""
@@ -138,69 +161,197 @@
         "bank-vtb": {
           "categories": [
             {
-              "id": "category-vtb-may-yandex-services",
+              "id": "category-vtb-june-yandex-services",
               "name": "Сервисы Яндекса",
               "rate": 10,
               "limit": "",
               "note": "5-10%; за подписку ВТБ Плюс"
             },
             {
-              "id": "category-vtb-may-train-tickets",
+              "id": "category-vtb-june-toll-roads",
+              "name": "Платные дороги",
+              "rate": 5,
+              "limit": "",
+              "note": "за хранение остатков; действует 28.05-26.06"
+            },
+            {
+              "id": "category-vtb-june-gas-stations",
+              "name": "АЗС",
+              "rate": 3,
+              "limit": "",
+              "note": "за хранение остатков; действует 28.05-26.06"
+            },
+            {
+              "id": "category-vtb-june-education",
+              "name": "Образование",
+              "rate": 5,
+              "limit": "",
+              "note": "за подписку ВТБ Плюс"
+            },
+            {
+              "id": "category-vtb-june-train-tickets",
               "name": "Ж/д билеты",
               "rate": 5,
               "limit": "кешбэк до 1000 ₽",
               "note": "за подписку ВТБ Плюс"
             },
             {
-              "id": "category-vtb-may-theaters-cinema",
-              "name": "Театры и кино",
-              "rate": 15,
+              "id": "category-vtb-june-medsi",
+              "name": "МЕДСИ",
+              "rate": 10,
               "limit": "кешбэк до 1000 ₽",
-              "note": ""
-            },
-            {
-              "id": "category-vtb-may-pharmacies",
-              "name": "Аптеки",
-              "rate": 7,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-vtb-may-aromatny-mir",
-              "name": "Ароматный Мир",
-              "rate": 7,
-              "limit": "кешбэк до 500 ₽",
-              "note": "оплата на кассе в розничных магазинах Москвы, Московской области, Санкт-Петербурга, Ленинградской области; кроме подарочных карт и сертификатов"
+              "note": "оплата услуг в клиниках МЕДСИ"
             }
           ]
         },
         "bank-tbank": {
           "categories": [
             {
-              "id": "category-tbank-may-all-purchases",
-              "name": "Все покупки",
-              "rate": 1,
+              "id": "category-tbank-june-train-tickets",
+              "name": "Ж/д билеты",
+              "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-tbank-may-dolyami",
-              "name": "Долями",
-              "rate": 10,
-              "limit": "",
-              "note": ""
-            },
-            {
-              "id": "category-tbank-may-pharmacies",
+              "id": "category-tbank-june-pharmacies",
               "name": "Аптеки",
               "rate": 5,
               "limit": "",
               "note": ""
             },
             {
-              "id": "category-tbank-may-restaurants",
+              "id": "category-tbank-june-taxi",
+              "name": "Такси",
+              "rate": 5,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-tbank-june-entertainment",
+              "name": "Развлечения",
+              "rate": 5,
+              "limit": "",
+              "note": ""
+            }
+          ]
+        },
+        "bank-ozon": {
+          "categories": [
+            {
+              "id": "category-ozon-june-carsharing",
+              "name": "Каршеринг",
+              "rate": 5,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-ozon-june-medical-clinics",
+              "name": "Медицинские клиники",
+              "rate": 5,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-ozon-june-hotels",
+              "name": "Отели",
+              "rate": 5,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-ozon-june-transport",
+              "name": "Транспорт",
+              "rate": 5,
+              "limit": "",
+              "note": ""
+            }
+          ]
+        },
+        "bank-tbank-mama": {
+          "categories": [
+            {
+              "id": "category-tbank-mama-june-all-purchases",
+              "name": "Все покупки",
+              "rate": 1,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-tbank-mama-june-supermarkets",
+              "name": "Супермаркеты",
+              "rate": 5,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-tbank-mama-june-restaurants",
               "name": "Рестораны",
               "rate": 5,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-tbank-mama-june-taxi",
+              "name": "Такси",
+              "rate": 5,
+              "limit": "",
+              "note": ""
+            }
+          ]
+        },
+        "bank-akbars": {
+          "categories": [
+            {
+              "id": "category-akbars-june-fastfood",
+              "name": "Фастфуд",
+              "rate": 3,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-akbars-june-beauty",
+              "name": "Красота",
+              "rate": 5,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-akbars-june-fuel",
+              "name": "Топливо",
+              "rate": 4,
+              "limit": "",
+              "note": ""
+            }
+          ]
+        },
+        "bank-psb": {
+          "categories": [
+            {
+              "id": "category-psb-june-all-purchases",
+              "name": "Все покупки",
+              "rate": 1,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-psb-june-cafes-restaurants-fastfood",
+              "name": "Кафе, рестораны, фастфуд",
+              "rate": 5,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-psb-june-beauty-salons",
+              "name": "Салоны красоты",
+              "rate": 5,
+              "limit": "",
+              "note": ""
+            },
+            {
+              "id": "category-psb-june-cosmetics-perfumery",
+              "name": "Косметика и парфюмерия",
+              "rate": 3,
               "limit": "",
               "note": ""
             }
