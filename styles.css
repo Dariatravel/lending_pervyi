@@ -352,6 +352,10 @@ img[data-image-lite="done"] {
   color: #3d6658;
 }
 
+.site-concept__topnav-link--mobile-only {
+  display: none !important;
+}
+
 .site-concept__hero-card,
 .site-concept__section-block,
 .site-concept .section,
@@ -7147,6 +7151,10 @@ html:has(> body.objects-map-page) {
     white-space: normal;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
+  }
+
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__topnav .site-concept__topnav-link--mobile-only {
+    display: inline-flex !important;
   }
 
   .site-concept.site-concept--home > .site-concept__masthead {
