@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T19:40:29.571018+00:00",
+  "generated_at": "2026-06-15T20:31:48.067000+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 227,
@@ -30311,7 +30311,6 @@
       ]
     },
     {
-      "id": 132,
       "source_kind": "kvartira",
       "source_channel": "abhkvartira",
       "source_message_id": 1153,
@@ -30329,57 +30328,10 @@
       "telegram_url": "https://t.me/abhkvartira/1153",
       "published_at": "2026-02-04",
       "has_video": true,
-      "cover_url": "",
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
       "is_active": true,
       "details": {
         "lead": "г. Сухум. 7 минут до пляжа, размещение до 10 человек.",
-        "prices": [
-          {
-            "kind": "price",
-            "text": "7000₽/сутки - май"
-          },
-          {
-            "kind": "price",
-            "text": "8000₽/сутки - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "9000₽/сутки - июль"
-          },
-          {
-            "kind": "price",
-            "text": "10000₽/сутки - август"
-          },
-          {
-            "kind": "price",
-            "text": "9000₽/сутки - сентябрь"
-          }
-        ],
-        "filters": {
-          "city": [
-            "sukhum"
-          ],
-          "food": [
-            "no-food"
-          ],
-          "room": [
-            "kitchen",
-            "five-plus",
-            "two-room-plus"
-          ],
-          "stay": [
-            "turnkey-house"
-          ],
-          "beach": [
-            "pebble"
-          ],
-          "price": [
-            "premium"
-          ],
-          "distance": [
-            "up-to-10"
-          ]
-        },
         "sections": [
           {
             "label": "✔️РАСПОЛОЖЕНИЕ:",
@@ -30417,11 +30369,67 @@
             ]
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/suhum-dom-1153/index.html"
+        "prices": [
+          {
+            "kind": "price",
+            "text": "7000₽/сутки - май"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽/сутки - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽/сутки - июль"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽/сутки - август"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽/сутки - сентябрь"
+          }
+        ],
+        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/suhum-dom-1153/index.html",
+        "filters": {
+          "city": [
+            "sukhum"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "room": [
+            "kitchen",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "turnkey-house"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "price": [
+            "premium"
+          ],
+          "distance": [
+            "up-to-10"
+          ]
+        }
       },
+      "id": 132,
       "media": [
         {
-          "id": 74359,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
+          "storage_path": "branding/site-cover.jpg"
+        },
+        {
+          "id": 132001,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "video/mp4",
@@ -30430,8 +30438,8 @@
           "storage_path": "videos/kvartira/suhum-dom-1153/video-01-1800k.mp4",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/suhum-dom-1153/video-01-1800k.mp4",
           "details": {
-            "telegram_url": "https://t.me/abhkvartira/1153",
-            "telegram_post": "abhkvartira/1153"
+            "telegram_post": "abhkvartira/1153",
+            "telegram_url": "https://t.me/abhkvartira/1153"
           }
         }
       ]
@@ -31287,7 +31295,6 @@
       ]
     },
     {
-      "id": 127,
       "source_kind": "kvartira",
       "source_channel": "abhkvartira",
       "source_message_id": 1220,
@@ -31305,16 +31312,39 @@
       "telegram_url": "https://t.me/abhkvartira/1220",
       "published_at": "2026-02-04",
       "has_video": true,
-      "cover_url": "",
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
       "is_active": true,
       "details": {
         "lead": "Сухум. 5 минут до центрального пляжа, размещение до 8 человек.",
+        "sections": [
+          {
+            "label": "✔️РАСПОЛОЖЕНИЕ:",
+            "lines": [
+              "Дом расположен в самом центре Сухума , внутри квартала, вокруг не шумно. Во дворе дома просторная площадка, где всегда тень от деревьев и прохлада для отдыха и перекусов."
+            ]
+          },
+          {
+            "label": "✔️В ДОМЕ:",
+            "lines": [
+              "Три спальни с двуспальными кроватями, гостиная с красивыми диванчиками и тв. Кухня со всем необходимым, санузел с душевой.",
+              "В доме сможет разместиться комфортно до 8 человек.",
+              "Есть утюг, фен, стиральная машинка. Кондиционеры в гостиной и одной из спален. Wi-fi"
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Море в 5 минутах пешком. Центральная набережная. И все достопримечательности в шаговой доступности. А также магазины, кафе, аптеки, остановки."
+            ]
+          }
+        ],
         "prices": [
           {
             "kind": "price",
             "text": "10000₽/сутки - любой месяц за дом"
           }
         ],
+        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/tsentralnyy-dom-suhum-1220/index.html",
         "filters": {
           "city": [
             "sukhum"
@@ -31340,34 +31370,20 @@
           "distance": [
             "up-to-5"
           ]
-        },
-        "sections": [
-          {
-            "label": "✔️РАСПОЛОЖЕНИЕ:",
-            "lines": [
-              "Дом расположен в самом центре Сухума , внутри квартала, вокруг не шумно. Во дворе дома просторная площадка, где всегда тень от деревьев и прохлада для отдыха и перекусов."
-            ]
-          },
-          {
-            "label": "✔️В ДОМЕ:",
-            "lines": [
-              "Три спальни с двуспальными кроватями, гостиная с красивыми диванчиками и тв. Кухня со всем необходимым, санузел с душевой.",
-              "В доме сможет разместиться комфортно до 8 человек.",
-              "Есть утюг, фен, стиральная машинка. Кондиционеры в гостиной и одной из спален. Wi-fi"
-            ]
-          },
-          {
-            "label": "✔️РЯДОМ:",
-            "lines": [
-              "Море в 5 минутах пешком. Центральная набережная. И все достопримечательности в шаговой доступности. А также магазины, кафе, аптеки, остановки."
-            ]
-          }
-        ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/tsentralnyy-dom-suhum-1220/index.html"
+        }
       },
+      "id": 127,
       "media": [
         {
-          "id": 74378,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
+          "storage_path": "branding/site-cover.jpg"
+        },
+        {
+          "id": 127001,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "video/mp4",
@@ -31376,8 +31392,8 @@
           "storage_path": "videos/kvartira/tsentralnyy-dom-suhum-1220/video-01-source.mp4",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/tsentralnyy-dom-suhum-1220/video-01-source.mp4",
           "details": {
-            "telegram_url": "https://t.me/abhkvartira/1220",
-            "telegram_post": "abhkvartira/1220"
+            "telegram_post": "abhkvartira/1220",
+            "telegram_url": "https://t.me/abhkvartira/1220"
           }
         }
       ]
@@ -34209,7 +34225,6 @@
       ]
     },
     {
-      "id": 142,
       "source_kind": "kvartira",
       "source_channel": "abhkvartira",
       "source_message_id": 1053,
@@ -34227,62 +34242,10 @@
       "telegram_url": "https://t.me/abhkvartira/1053",
       "published_at": "2026-02-03",
       "has_video": true,
-      "cover_url": "",
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
       "is_active": true,
       "details": {
         "lead": "Пицунда. 15 минут до пляжа, размещение 4-5 человек.",
-        "prices": [
-          {
-            "kind": "price",
-            "text": "4000/сутки - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "6000/сутки - июль"
-          },
-          {
-            "kind": "price",
-            "text": "7000/сутки - август"
-          },
-          {
-            "kind": "price",
-            "text": "4500/сутки - сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "3000/сутки - октябрь"
-          },
-          {
-            "kind": "price",
-            "text": "20000/месяц - с ноября по май"
-          }
-        ],
-        "filters": {
-          "city": [
-            "pitsunda"
-          ],
-          "food": [
-            "no-food"
-          ],
-          "room": [
-            "tv",
-            "kitchen",
-            "five-plus",
-            "two-room-plus"
-          ],
-          "stay": [
-            "apartments"
-          ],
-          "beach": [
-            "pebble"
-          ],
-          "price": [
-            "midrange"
-          ],
-          "distance": [
-            "over-10"
-          ]
-        },
         "sections": [
           {
             "label": "✔️ТЕРРИТОРИЯ:",
@@ -34315,11 +34278,72 @@
             ]
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/na-vysote-kvartira-pitsunda-1053/index.html"
+        "prices": [
+          {
+            "kind": "price",
+            "text": "4000/сутки - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "6000/сутки - июль"
+          },
+          {
+            "kind": "price",
+            "text": "7000/сутки - август"
+          },
+          {
+            "kind": "price",
+            "text": "4500/сутки - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3000/сутки - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "20000/месяц - с ноября по май"
+          }
+        ],
+        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/na-vysote-kvartira-pitsunda-1053/index.html",
+        "filters": {
+          "city": [
+            "pitsunda"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "room": [
+            "tv",
+            "kitchen",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "apartments"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "distance": [
+            "over-10"
+          ]
+        }
       },
+      "id": 142,
       "media": [
         {
-          "id": 74351,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
+          "storage_path": "branding/site-cover.jpg"
+        },
+        {
+          "id": 142001,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "video/mp4",
@@ -34328,8 +34352,8 @@
           "storage_path": "videos/kvartira/na-vysote-kvartira-pitsunda-1053/video-01-source.mp4",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/na-vysote-kvartira-pitsunda-1053/video-01-source.mp4",
           "details": {
-            "telegram_url": "https://t.me/abhkvartira/1053",
-            "telegram_post": "abhkvartira/1053"
+            "telegram_post": "abhkvartira/1053",
+            "telegram_url": "https://t.me/abhkvartira/1053"
           }
         }
       ]
