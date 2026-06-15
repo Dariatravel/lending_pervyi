@@ -81,13 +81,9 @@
   initMetrika();
   initGA4();
 
-  const SUPABASE_CONFIG = window.__ABHAZBEREG_SUPABASE_CONFIG__ || {
-    url: "https://chnyazvybzzryduhgopa.supabase.co",
-    anonKey: "sb_publishable_O-ymNKudqlqBER490d90-Q_uYm8XrUc",
-    storageBucket: "site-media",
-  };
-  const SUPABASE_MODULE_URL = "https://esm.sh/@supabase/supabase-js@2";
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
+  const CATALOG_SNAPSHOT_URL = "/data/catalog-snapshot.json";
+  const LEGACY_STORAGE_BUCKET = "site-media";
   const SCREENSHOT_REVIEW_BANK_URL = `${CDN_MEDIA_BASE}/reviews/review_text_bank.json`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
   const FILTER_CONFIG = {
@@ -563,7 +559,7 @@
       ],
     },
   };
-  let supabaseClientPromise = null;
+  let catalogSnapshotPromise = null;
   let screenshotReviewBank = null;
   let screenshotReviewBankPromise = null;
 
@@ -1535,39 +1531,53 @@
     }
   }
 
-  function isSupabaseConfigured() {
-    return Boolean(SUPABASE_CONFIG.url && SUPABASE_CONFIG.anonKey);
+  function normalizeSnapshotListing(row) {
+    if (!row || typeof row !== "object") return row;
+    const listing = { ...row };
+    if (!Array.isArray(listing.listing_media) && Array.isArray(listing.media)) {
+      listing.listing_media = listing.media;
+    }
+    return listing;
   }
 
-  async function getSupabaseClient() {
-    if (!isSupabaseConfigured()) return null;
-    if (!supabaseClientPromise) {
-      supabaseClientPromise = import(SUPABASE_MODULE_URL).then(({ createClient }) =>
-        createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey)
-      );
+  async function loadCatalogSnapshot() {
+    if (!catalogSnapshotPromise) {
+      catalogSnapshotPromise = fetch(CATALOG_SNAPSHOT_URL, { credentials: "same-origin" })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`catalog snapshot HTTP ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((payload) => {
+          const rows = Array.isArray(payload?.listings) ? payload.listings : [];
+          return rows.map(normalizeSnapshotListing);
+        })
+        .catch((error) => {
+          catalogSnapshotPromise = null;
+          throw error;
+        });
     }
-    return supabaseClientPromise;
+    return catalogSnapshotPromise;
   }
 
   async function fetchListings(options = {}) {
-    const client = await getSupabaseClient();
-    if (!client) return [];
-
-    let query = client
-      .from("listings")
-      .select(
-        "id, slug, source_kind, title, summary, excerpt, city, page_url, telegram_url, published_at, has_video, cover_url, details, listing_media(id, media_role, sort_order, public_url, storage_path, mime_type, source_url, details)"
-      )
-      .eq("is_active", true)
-      .order("published_at", { ascending: false, nullsFirst: false })
-      .order("id", { ascending: false });
-
-    if (options.sourceKind) query = query.eq("source_kind", options.sourceKind);
-    if (options.slug) query = query.eq("slug", options.slug).limit(1);
-
-    const { data, error } = await query;
-    if (error) throw error;
-    return data || [];
+    const rows = await loadCatalogSnapshot();
+    let filtered = rows.filter((row) => row?.is_active !== false);
+    if (options.sourceKind) {
+      filtered = filtered.filter((row) => row.source_kind === options.sourceKind);
+    }
+    if (options.slug) {
+      filtered = filtered.filter((row) => row.slug === options.slug);
+    }
+    filtered.sort((left, right) => {
+      const leftDate = String(left?.published_at || "");
+      const rightDate = String(right?.published_at || "");
+      if (leftDate !== rightDate) return rightDate.localeCompare(leftDate);
+      return Number(right?.id || 0) - Number(left?.id || 0);
+    });
+    if (options.slug) return filtered.slice(0, 1);
+    return filtered;
   }
 
   async function fetchListingBySlug(slug) {
@@ -1586,7 +1596,7 @@
     if (!n) return "";
     if (n.startsWith(CDN_MEDIA_BASE)) return n;
 
-    const supabaseMarker = `/storage/v1/object/public/${SUPABASE_CONFIG.storageBucket}/`;
+    const supabaseMarker = `/storage/v1/object/public/${LEGACY_STORAGE_BUCKET}/`;
     const yandexFolders = /^(cards|hotels|kvartira|kvartira-cards|branding|blog|reviews)\//;
     let rel = "";
 
@@ -1665,7 +1675,7 @@
     return raw;
   }
 
-  const SUPABASE_PUBLIC_MEDIA_MARKER = `/storage/v1/object/public/${SUPABASE_CONFIG.storageBucket}/`;
+  const SUPABASE_PUBLIC_MEDIA_MARKER = `/storage/v1/object/public/${LEGACY_STORAGE_BUCKET}/`;
 
   function isSupabaseStorageUrl(url) {
     const normalized = normalizeMediaUrl(url);
@@ -3013,7 +3023,7 @@
     const raw = (item && item.storage_path) || (item && item.source_url) || '';
     if (!raw) return '';
     if (/^https?:\/\//i.test(raw)) {
-      const marker = `/storage/v1/object/public/${SUPABASE_CONFIG.storageBucket}/`;
+      const marker = `/storage/v1/object/public/${LEGACY_STORAGE_BUCKET}/`;
       const idx = raw.indexOf(marker);
       if (idx !== -1) {
         let rel = decodeURIComponent(raw.slice(idx + marker.length));

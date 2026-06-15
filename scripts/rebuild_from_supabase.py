@@ -1015,26 +1015,18 @@ def rebuild_sitemap(rows: list[dict[str, Any]]) -> None:
     tree.write(SITEMAP_PATH, encoding="utf-8", xml_declaration=True)
 
 
-def main() -> None:
-    env = load_env(ENV_PATH)
-    base = env["SUPABASE_URL"].rstrip("/")
-    service_key = env["SUPABASE_SERVICE_ROLE_KEY"]
-    headers = {"apikey": service_key, "Authorization": f"Bearer {service_key}"}
+def normalize_catalog_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    normalized: list[dict[str, Any]] = []
+    for row in rows:
+        item = dict(row)
+        if "listing_media" not in item and "media" in item:
+            item["listing_media"] = item.get("media") or []
+        normalized.append(item)
+    return normalized
 
-    response = requests.get(
-        f"{base}/rest/v1/listings",
-        headers=headers,
-        params={
-            "select": "id,slug,source_kind,source_message_id,title,summary,excerpt,city,location_text,beach_text,capacity_text,page_url,telegram_url,published_at,has_video,cover_url,details,is_active,listing_media(id,media_role,sort_order,public_url,storage_path,mime_type,source_url,details)",
-            "is_active": "eq.true",
-            "order": "published_at.desc",
-            "limit": "2000",
-        },
-        timeout=120,
-    )
-    response.raise_for_status()
-    rows = response.json()
 
+def rebuild_catalog(rows: list[dict[str, Any]]) -> None:
+    rows = normalize_catalog_rows(rows)
     hotel_rows = [row for row in rows if row.get("source_kind") == "hotel"]
     kvartira_excluded = {"general-1409", "villa-suhum-959"}
     kvartira_rows = [
@@ -1044,8 +1036,6 @@ def main() -> None:
     ]
     KVARTIRA_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Фильтры не пересчитываем из текста карточек — только details.filters из Supabase
-    # (источник правды: Google Sheets «СОЦСЕТИ», см. apply_all_filters_from_sheet.py).
     hotel_post_meta = load_hotel_card_meta()
     catalog_cards_html = "".join(render_hotel_card(row, hotel_post_meta) for row in hotel_rows) + "".join(
         render_kvartira_card(row) for row in kvartira_rows
@@ -1065,6 +1055,31 @@ def main() -> None:
 
     print(f"Пересобрано отелей: {len(hotel_rows)}")
     print(f"Пересобрано квартир: {len(kvartira_rows)}")
+
+
+def fetch_listings_from_supabase() -> list[dict[str, Any]]:
+    env = load_env(ENV_PATH)
+    base = env["SUPABASE_URL"].rstrip("/")
+    service_key = env["SUPABASE_SERVICE_ROLE_KEY"]
+    headers = {"apikey": service_key, "Authorization": f"Bearer {service_key}"}
+
+    response = requests.get(
+        f"{base}/rest/v1/listings",
+        headers=headers,
+        params={
+            "select": "id,slug,source_kind,source_message_id,title,summary,excerpt,city,location_text,beach_text,capacity_text,page_url,telegram_url,published_at,has_video,cover_url,details,is_active,listing_media(id,media_role,sort_order,public_url,storage_path,mime_type,source_url,details)",
+            "is_active": "eq.true",
+            "order": "published_at.desc",
+            "limit": "2000",
+        },
+        timeout=120,
+    )
+    response.raise_for_status()
+    return response.json()
+
+
+def main() -> None:
+    rebuild_catalog(fetch_listings_from_supabase())
 
 
 if __name__ == "__main__":
