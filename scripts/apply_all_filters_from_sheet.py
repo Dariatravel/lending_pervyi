@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 import re
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
@@ -13,6 +14,9 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'scripts'))
+from catalog_snapshot import load_listings as snapshot_load_listings, update_filters as snapshot_update_filters  # noqa: E402
+
 ENV_PATH = ROOT / '.env.supabase.local'
 REPORT_PATH = ROOT / 'output' / 'all_filters_sync_report.txt'
 EMPTY_FILTERS: dict[str, list[str]] = {g: [] for g in ('distance', 'food', 'price', 'city', 'beach', 'room', 'stay')}
@@ -433,20 +437,26 @@ def normalize_filter_values(raw: Any) -> list[str]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description='Перенос фильтров из Google Sheets «СОЦСЕТИ» в Supabase.')
+    parser = argparse.ArgumentParser(description='Перенос фильтров из Google Sheets «СОЦСЕТИ» в Supabase и catalog snapshot.')
     parser.add_argument(
         '--all-listings',
         action='store_true',
-        help='Обновить все активные объекты в Supabase (по умолчанию — только с HTML-страницей на сайте).',
+        help='Обновить все активные объекты (по умолчанию — только с HTML-страницей на сайте).',
+    )
+    parser.add_argument(
+        '--snapshot-only',
+        action='store_true',
+        help='Писать только в data/catalog-snapshot.json (без Supabase REST).',
     )
     args = parser.parse_args()
     site_only = not args.all_listings
+    snapshot_only = args.snapshot_only
 
     env = load_env(ENV_PATH)
     supabase_url = env.get('SUPABASE_URL', '').rstrip('/')
     service_role = env.get('SUPABASE_SERVICE_ROLE_KEY', '')
-    if not supabase_url or not service_role:
-        raise RuntimeError('В .env.supabase.local должны быть SUPABASE_URL и SUPABASE_SERVICE_ROLE_KEY.')
+    if not snapshot_only and (not supabase_url or not service_role):
+        raise RuntimeError('В .env.supabase.local должны быть SUPABASE_URL и SUPABASE_SERVICE_ROLE_KEY (или --snapshot-only).')
 
     credentials_path = pick_google_credentials_path()
     sheet_rows = fetch_sheet_rows(credentials_path)
@@ -478,7 +488,8 @@ def main() -> None:
             for value in filters[group]:
                 sheet_group_value_counts[group][value] += 1
 
-    listings = fetch_listings(supabase_url, service_role)
+    listings = snapshot_load_listings() if snapshot_only else fetch_listings(supabase_url, service_role)
+    snapshot_updated = 0
     listing_map: dict[tuple[str, int], dict[str, Any]] = {}
     listings_by_kind: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in listings:
@@ -554,11 +565,21 @@ def main() -> None:
             continue
 
         details['filters'] = existing_filters
+        if snapshot_only:
+            if snapshot_update_filters(str(listing.get('slug') or ''), existing_filters):
+                snapshot_updated += 1
+                updated += 1
+            continue
         patch_listing_details(supabase_url, service_role, int(listing['id']), details)
+        slug = str(listing.get('slug') or '').strip()
+        if slug:
+            snapshot_update_filters(slug, existing_filters)
+            snapshot_updated += 1
         updated += 1
 
     lines: list[str] = []
-    lines.append('Готово. Массовый перенос фильтров из СОЦСЕТИ в Supabase выполнен.')
+    lines.append('Готово. Массовый перенос фильтров из СОЦСЕТИ выполнен.')
+    lines.append(f'Режим snapshot-only: {snapshot_only}')
     lines.append('')
     lines.append(f'Режим: {"только объекты с HTML на сайте" if site_only else "все активные listings"}')
     lines.append(f'Строк в СОЦСЕТИ: {len(sheet_rows)}')
@@ -566,7 +587,8 @@ def main() -> None:
     lines.append(f'Без ссылки Telegram: {rows_without_link}')
     lines.append(f'Ссылка не распознана: {rows_unparsed_link}')
     lines.append(f'Обработано объектов на сайте (есть строка в таблице): {on_site_total}')
-    lines.append(f'Обновлено объектов в Supabase: {updated}')
+    lines.append(f'Обновлено объектов в Supabase: {updated if not snapshot_only else 0}')
+    lines.append(f'Обновлено объектов в catalog snapshot: {snapshot_updated}')
     lines.append(f'Без изменений: {unchanged}')
     lines.append(f'Пропущено (нет HTML-страницы на сайте): {skipped_not_on_site}')
     lines.append(f'Не найдено в Supabase по channel+message_id: {not_found}')

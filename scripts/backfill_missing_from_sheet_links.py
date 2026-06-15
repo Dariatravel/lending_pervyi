@@ -17,12 +17,16 @@ from sync_catalog_from_telegram import (
     CUTOFF_DATE,
     ENV_FILE,
     SESSION,
+    SKIP_SUPABASE_SYNC,
     SupabaseClient,
     cleanup_removed_listing,
     materialize_object,
     normalize_title,
     parse_post,
 )
+
+if SKIP_SUPABASE_SYNC:
+    from catalog_snapshot import load_listings as snapshot_load_listings
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -223,16 +227,20 @@ async def main() -> None:
             raise ValueError("В --only-links-file нет ни одной ссылки (пустой или только комментарии).")
 
     env = load_env(ENV_FILE)
-    supabase_url = env.get("SUPABASE_URL", "").rstrip("/")
-    service_role = env.get("SUPABASE_SERVICE_ROLE_KEY", "")
-    if not supabase_url or not service_role:
-        raise RuntimeError("В .env.supabase.local должны быть SUPABASE_URL и SUPABASE_SERVICE_ROLE_KEY")
+    supa: SupabaseClient | None = None
+    if SKIP_SUPABASE_SYNC:
+        existing = snapshot_load_listings()
+        print("[info] backfill: SKIP_SUPABASE_SYNC=1, источник — catalog snapshot", flush=True)
+    else:
+        supabase_url = env.get("SUPABASE_URL", "").rstrip("/")
+        service_role = env.get("SUPABASE_SERVICE_ROLE_KEY", "")
+        if not supabase_url or not service_role:
+            raise RuntimeError("В .env.supabase.local должны быть SUPABASE_URL и SUPABASE_SERVICE_ROLE_KEY")
+        supa = SupabaseClient(url=supabase_url, service_key=service_role)
+        existing = supa.fetch_listings()
 
     credentials_path = pick_google_credentials_path()
     sheet_rows = fetch_sheet_rows(credentials_path)
-
-    supa = SupabaseClient(url=supabase_url, service_key=service_role)
-    existing = supa.fetch_listings()
 
     slug_pool = {str(row.get("slug") or "").strip() for row in existing if row.get("slug")}
     existing_by_key = {

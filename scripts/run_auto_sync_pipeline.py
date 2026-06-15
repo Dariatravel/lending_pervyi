@@ -149,6 +149,11 @@ def _build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Показать команды без запуска.",
     )
+    parser.add_argument(
+        "--snapshot-only",
+        action="store_true",
+        help="Писать в catalog-snapshot.json без Supabase (SKIP_SUPABASE_SYNC=1).",
+    )
     return parser
 
 
@@ -157,12 +162,15 @@ def main() -> int:
     args = parser.parse_args()
 
     env_file_data = _load_env(ENV_PATH)
-    if "SUPABASE_URL" not in env_file_data or "SUPABASE_SERVICE_ROLE_KEY" not in env_file_data:
-        print(
-            "Ошибка: в .env.supabase.local должны быть SUPABASE_URL и SUPABASE_SERVICE_ROLE_KEY.",
-            file=sys.stderr,
-        )
-        return 2
+    snapshot_only = args.snapshot_only or os.getenv("SKIP_SUPABASE_SYNC", "").strip().lower() in {"1", "true", "yes", "on"}
+    if not snapshot_only and ("SUPABASE_URL" not in env_file_data or "SUPABASE_SERVICE_ROLE_KEY" not in env_file_data):
+        if not (ROOT / "data" / "catalog-snapshot.json").exists():
+            print(
+                "Ошибка: нужен .env.supabase.local или --snapshot-only с data/catalog-snapshot.json.",
+                file=sys.stderr,
+            )
+            return 2
+        snapshot_only = True
 
     run_id = _timestamp()
     run_dir = OUTPUT_DIR / run_id
@@ -172,17 +180,23 @@ def main() -> int:
 
     base_env = os.environ.copy()
     base_env.update(env_file_data)
+    if snapshot_only:
+        base_env["SKIP_SUPABASE_SYNC"] = "1"
 
     python = sys.executable
     steps: list[StepResult] = []
 
     print(f"[auto-sync] run_id={run_id}")
+    if snapshot_only:
+        print("[auto-sync] режим: snapshot-only (без Supabase)")
 
     if args.mode == "new-from-sheet":
         cred = env_file_data.get("GOOGLE_SERVICE_ACCOUNT_JSON", "").strip() or str(ROOT / "google-service-account.json")
         if Path(cred).exists():
             base_env["GOOGLE_SERVICE_ACCOUNT_JSON"] = cred
         sync_cmd = [python, str(ROOT / "scripts" / "sync_new_objects_from_sheet.py")]
+        if snapshot_only:
+            sync_cmd.append("--snapshot-only")
         if args.skip_verify:
             sync_cmd.append("--skip-verify")
         if args.skip_filters:
@@ -294,9 +308,12 @@ def main() -> int:
                 status=status,
             )
         else:
+            filter_cmd = [python, str(ROOT / "scripts" / "apply_all_filters_from_sheet.py")]
+            if snapshot_only:
+                filter_cmd.append("--snapshot-only")
             filter_step = _run_step(
                 name="apply_all_filters_from_sheet",
-                cmd=[python, str(ROOT / "scripts" / "apply_all_filters_from_sheet.py")],
+                cmd=filter_cmd,
                 env=base_env,
                 log_path=run_dir / "02-filters.log",
                 dry_run=args.dry_run,
@@ -355,6 +372,53 @@ def main() -> int:
                 encoding="utf-8",
             )
             return verify_step.return_code
+
+    if snapshot_only:
+        rebuild_step = _run_step(
+            name="rebuild_from_catalog_snapshot",
+            cmd=[python, str(ROOT / "scripts" / "rebuild_from_catalog_snapshot.py")],
+            env=base_env,
+            log_path=run_dir / "04-rebuild.log",
+            dry_run=args.dry_run,
+        )
+        steps.append(rebuild_step)
+        print(f"[auto-sync] {rebuild_step.name}: {rebuild_step.status}")
+        if rebuild_step.return_code != 0 and not args.dry_run:
+            payload = {
+                "run_id": run_id,
+                "status": "failed",
+                "failed_step": rebuild_step.name,
+                "steps": [asdict(step) for step in steps],
+            }
+            summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+            summary_txt_path.write_text(
+                f"run_id: {run_id}\nstatus: failed\nfailed_step: {rebuild_step.name}\n",
+                encoding="utf-8",
+            )
+            return rebuild_step.return_code
+
+        validate_step = _run_step(
+            name="validate_catalog_snapshot",
+            cmd=[python, str(ROOT / "tools" / "validate_catalog_snapshot.py")],
+            env=base_env,
+            log_path=run_dir / "05-validate.log",
+            dry_run=args.dry_run,
+        )
+        steps.append(validate_step)
+        print(f"[auto-sync] {validate_step.name}: {validate_step.status}")
+        if validate_step.return_code != 0 and not args.dry_run:
+            payload = {
+                "run_id": run_id,
+                "status": "failed",
+                "failed_step": validate_step.name,
+                "steps": [asdict(step) for step in steps],
+            }
+            summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+            summary_txt_path.write_text(
+                f"run_id: {run_id}\nstatus: failed\nfailed_step: {validate_step.name}\n",
+                encoding="utf-8",
+            )
+            return validate_step.return_code
 
     payload = {
         "run_id": run_id,

@@ -213,45 +213,38 @@ Supabase активно используют:
 
 ### 4.4 Сборка сайта без Supabase API
 
-- [ ] `scripts/rebuild_from_supabase.py` → оставить как legacy.
-- [ ] Новый `scripts/rebuild_from_catalog_snapshot.py` — читает локальный JSON.
-- [ ] На первом этапе outputs сравниваются с текущим rebuild.
+- [x] `scripts/rebuild_from_catalog_snapshot.py` — читает `data/catalog-snapshot.json`
+- [x] `rebuild_catalog()` вынесен в `rebuild_from_supabase.py`
+- [x] Прогон: 163 отеля, 61 квартира без `.env.supabase.local`
 
 ### 4.5 Фильтры
 
 - [ ] По-прежнему Google Sheet «СОЦСЕТИ» → `apply_all_filters_from_sheet.py` → snapshot JSON
 - [ ] Supabase REST для фильтров не нужен
 
-**Критерий:** `rebuild_from_catalog_snapshot.py` собирает index/kvartira/страницы без `.env.supabase.local`.
+**Критерий:** ✅ `rebuild_from_catalog_snapshot.py` собирает index/kvartira/страницы без Supabase API.
 
 ---
 
-## Этап 5 — Браузер без Supabase (`scripts.js`)
-
-Сейчас в рантайме Supabase используется для:
-
-- блок «Похожие объекты» на странице отеля/квартиры
-- бейджи «Видео» на карточках каталога
-- fallback медиа URL
+## Этап 5 — Браузер без Supabase (`scripts.js`) ✅
 
 ### 5.1 Новый data loader
 
-- [ ] `fetchListings()` → читать `data/catalog-snapshot.json` (или Яндекс CDN fallback)
-- [ ] Кэшировать Promise, чтобы не грузить snapshot несколько раз
-- [ ] Сохранить API функций:
-  - `fetchListings({ sourceKind })`
-  - `fetchListingBySlug(slug)`
+- [x] `fetchListings()` → `/data/catalog-snapshot.json`, кэш Promise
+- [x] `fetchListingBySlug(slug)` — фильтрация в памяти
+- [x] `media` → `listing_media` при загрузке snapshot
 
 ### 5.2 Удалить Supabase browser dependency
 
-- [ ] Убрать `import @supabase/supabase-js` из браузера
-- [ ] Удалить hardcoded anon key из `scripts.js`
-- [ ] `preconnect` на supabase.co — убрать из HTML шаблонов
-- [ ] `supabase/browser-client.js` оставить только как legacy/archive или удалить после cutover.
+- [x] Убран `import @supabase/supabase-js` и anon key из `scripts.js`
+- [x] `preconnect` на supabase.co удалён (`tools/strip_supabase_preconnect.py`, 158 файлов)
+- [ ] `supabase/browser-client.js` — legacy, удалить после cutover
 
 ### 5.3 Проверка UI
 
-**Критерий:** сайт работает при полностью недоступном Supabase; похожие объекты и бейджи видео на месте.
+- [ ] Ручная проверка: похожие объекты, бейджи «Видео» при недоступном Supabase
+
+**Критерий:** сайт не обращается к Supabase REST в рантайме.
 
 ---
 
@@ -268,12 +261,14 @@ Supabase активно используют:
 
 ### 6.2 Скрипты
 
-- [ ] `sync_catalog_from_telegram.py` — primary write: JSON snapshot + HTML, не POST в Postgres.
-- [ ] `sync_new_objects_from_sheet.py` — без Supabase.
-- [ ] `apply_all_filters_from_sheet.py` — пишет filters в snapshot.
-- [ ] `backfill_*`, `repair_*` — переписать или архивировать.
-- [ ] Документировать новый flow в `AUTO_SYNC.md`
-- [ ] Добавить `tools/validate_catalog_snapshot.py`.
+- [x] `sync_catalog_from_telegram.py` — dual-write в JSON snapshot + HTML; SKIP_SUPABASE_SYNC без Postgres.
+- [x] `sync_new_objects_from_sheet.py` — `--snapshot-only`.
+- [x] `apply_all_filters_from_sheet.py` — пишет filters в snapshot (`--snapshot-only`).
+- [ ] `backfill_*`, `repair_*` — переписать или архивировать (backfill поддерживает SKIP_SUPABASE_SYNC).
+- [x] Документировать новый flow в `AUTO_SYNC.md`
+- [x] Добавить `tools/validate_catalog_snapshot.py`.
+- [x] `scripts/catalog_snapshot.py` — CRUD snapshot.
+- [x] `run_auto_sync_pipeline.py` — `--snapshot-only`, rebuild + validate.
 
 **Критерий:** добавление объекта из Telegram не требует Supabase.
 

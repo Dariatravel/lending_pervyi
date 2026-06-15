@@ -42,6 +42,15 @@ from sync_abhazbooking_2026 import (  # noqa: E402
     summary_text,
 )
 from apply_all_filters_from_sheet import EMPTY_FILTERS  # noqa: E402
+from catalog_snapshot import (  # noqa: E402
+    build_listing_record,
+    deactivate_listing as snapshot_deactivate_listing,
+    listings_by_kind,
+    listing_map_by_source,
+    load_listings as snapshot_load_listings,
+    next_listing_id,
+    upsert_listing as snapshot_upsert_listing,
+)
 from media_urls import media_src_for_html, yandex_photo_url  # noqa: E402
 from yandex_storage import upload_file as upload_to_yandex  # noqa: E402
 
@@ -59,7 +68,7 @@ POSTS_FILE = OUTPUT_DIR / 'abhazbooking_2026_posts.json'
 TOPICS_FILE = ROOT / 'topics.json'
 KV_CARDS_FILE = ROOT / 'kvartira_cards.json'
 ENV_FILE = ROOT / '.env.supabase.local'
-STORAGE_BUCKET = 'site-media'
+STORAGE_BUCKET = 'abhazbereg-media'
 STORAGE_PUBLIC_IMAGE_MARKER = '/storage/v1/object/public/site-media/'
 CDN_MEDIA_BASE = 'https://storage.yandexcloud.net/abhazbereg-media/media'
 IMAGE_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.webp', '.gif')
@@ -79,6 +88,7 @@ SKIP_IMAGE_UPLOAD_TO_SUPABASE = os.getenv('SKIP_IMAGE_UPLOAD_TO_SUPABASE', '').s
     'yes',
     'on',
 }
+SKIP_SUPABASE_SYNC = os.getenv('SKIP_SUPABASE_SYNC', '').strip().lower() in {'1', 'true', 'yes', 'on'}
 def _parse_int_set(raw: str) -> set[int]:
     result: set[int] = set()
     for part in (raw or '').split(','):
@@ -1324,7 +1334,10 @@ async def build_kvartira_objects(client: TelegramClient) -> tuple[list[dict[str,
     return objects, topic_dump
 
 
-def cleanup_removed_listing(source_kind: str, listing: dict[str, Any], supa: SupabaseClient) -> None:
+def cleanup_removed_listing(source_kind: str, listing: dict[str, Any], supa: SupabaseClient | None) -> None:
+    slug = str(listing.get('slug') or '').strip()
+    if slug:
+        snapshot_deactivate_listing(slug)
     page_url = listing.get('page_url') or ''
     local_path = None
     if page_url:
@@ -1346,10 +1359,11 @@ def cleanup_removed_listing(source_kind: str, listing: dict[str, Any], supa: Sup
         cover = KV_CARD_DIR / f"{listing['slug']}-cover.jpg"
         if cover.exists():
             cover.unlink()
-    supa.delete_listing(listing['id'])
+    if not SKIP_SUPABASE_SYNC and supa is not None:
+        supa.delete_listing(listing['id'])
 
 
-async def materialize_object(client: TelegramClient, supa: SupabaseClient, existing_listing: dict[str, Any] | None, object_data: dict[str, Any], slug_pool: set[str]) -> dict[str, Any]:
+async def materialize_object(client: TelegramClient, supa: SupabaseClient | None, existing_listing: dict[str, Any] | None, object_data: dict[str, Any], slug_pool: set[str]) -> dict[str, Any]:
     source_kind = object_data['source_kind']
     canonical = object_data['canonical']
     parsed = object_data['parsed']
@@ -1363,7 +1377,9 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
 
     if slug in load_hidden_slugs():
         if existing_listing:
-            supa.patch_listing(existing_listing['id'], {'is_active': False})
+            snapshot_deactivate_listing(slug)
+            if not SKIP_SUPABASE_SYNC and supa is not None:
+                supa.patch_listing(existing_listing['id'], {'is_active': False})
         return {
             'id': existing_listing['id'] if existing_listing else 0,
             'slug': slug,
@@ -1566,14 +1582,23 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
                 details['filters'] = {gk: list(gv) if isinstance(gv, list) else gv for gk, gv in prev_filters.items()}
 
     if existing_listing:
-        supa.patch_listing(existing_listing['id'], {k: v for k, v in payload.items() if k != 'id'})
-        listing_id = existing_listing['id']
+        listing_id = int(existing_listing['id'])
     else:
-        listing_id = supa.insert_listing({k: v for k, v in payload.items() if k != 'id'})['id']
+        listing_id = next_listing_id(snapshot_load_listings())
 
-    for row in media_payload:
-        row['listing_id'] = listing_id
-    supa.replace_media(listing_id, media_payload)
+    if not SKIP_SUPABASE_SYNC and supa is not None:
+        if existing_listing:
+            supa.patch_listing(existing_listing['id'], {k: v for k, v in payload.items() if k != 'id'})
+        else:
+            listing_id = supa.insert_listing({k: v for k, v in payload.items() if k != 'id'})['id']
+        for row in media_payload:
+            row['listing_id'] = listing_id
+        supa.replace_media(listing_id, media_payload)
+    else:
+        for row in media_payload:
+            row['listing_id'] = listing_id
+
+    snapshot_upsert_listing(build_listing_record(payload, media_payload, listing_id))
 
     return {
         'id': listing_id,
@@ -1591,8 +1616,14 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
 
 
 async def main() -> None:
-    env = load_env(ENV_FILE)
-    supa = SupabaseClient(url=env['SUPABASE_URL'].rstrip('/'), service_key=env['SUPABASE_SERVICE_ROLE_KEY'])
+    supa: SupabaseClient | None = None
+    if SKIP_SUPABASE_SYNC:
+        if not snapshot_load_listings() and not (ROOT / 'data' / 'catalog-snapshot.json').exists():
+            raise RuntimeError('SKIP_SUPABASE_SYNC=1, но data/catalog-snapshot.json отсутствует.')
+        print('[info] Режим snapshot: запись в Supabase отключена.', flush=True)
+    else:
+        env = load_env(ENV_FILE)
+        supa = SupabaseClient(url=env['SUPABASE_URL'].rstrip('/'), service_key=env['SUPABASE_SERVICE_ROLE_KEY'])
     ensure_dir(OUTPUT_DIR)
     ensure_dir(KV_CARD_DIR)
     ensure_dir(CARD_DIR)
@@ -1618,8 +1649,8 @@ async def main() -> None:
     if TARGET_SYNC_MODE:
         print('[info] Включен точечный режим синка: удаление неактивных объектов отключено.', flush=True)
 
-    existing_hotels = supa.fetch_listings('hotel') if run_hotels else []
-    existing_kvartira = supa.fetch_listings('kvartira') if run_kvartira else []
+    existing_hotels = listings_by_kind('hotel') if run_hotels and SKIP_SUPABASE_SYNC else (supa.fetch_listings('hotel') if run_hotels and supa else [])
+    existing_kvartira = listings_by_kind('kvartira') if run_kvartira and SKIP_SUPABASE_SYNC else (supa.fetch_listings('kvartira') if run_kvartira and supa else [])
 
     kvartira_by_topic = {row.get('source_topic_id'): row for row in existing_kvartira}
 
