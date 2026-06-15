@@ -67,7 +67,7 @@ python3 tools/upload_yandex_media.py --dry-run --workers 48 media/cards media/ho
 - `scripts/upload_hero_videos.py`
 - `sync_abhazbooking_2026.py`
 
-Postgres (Supabase) хранит метаданные каталога; **файлы** — только Яндекс.
+Postgres (Supabase) — **legacy**; рабочая база сайта — `data/catalog-snapshot.json`. **Файлы медиа** — только Яндекс.
 
 ## Секреты
 

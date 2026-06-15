@@ -276,12 +276,14 @@ Supabase активно используют:
 
 ## Этап 7 — Выключение Supabase
 
-- [ ] Финальный export Postgres → архив JSON (`output/supabase_archive_YYYY-MM-DD/`)
-- [ ] Удалить bucket `site-media` (если ещё есть)
-- [ ] Проверить, что `rg 'supabase\.co|SUPABASE|createClient|site-media'` не находит активных прод-зависимостей
-- [ ] Pause project или downgrade тарифа Supabase
-- [ ] Убрать `.env.supabase.local` из CI/локальных инструкций (оставить только `.env.yandex.local`)
-- [ ] Обновить README/AUTO_SYNC и Cursor rules
+- [x] Финальный export Postgres → `output/supabase_archive_2026-06-15/` (не в git)
+- [ ] **Вручную:** удалить bucket `site-media` в Dashboard (медиа на Яндексе)
+- [x] Аудит prod-зависимостей: `tools/audit_supabase_prod_deps.py`
+- [x] Убрать Supabase preconnect из HTML (`tools/strip_supabase_preconnect.py`)
+- [x] Карта: `config/maps-config.js` вместо `supabase/maps-config.js`
+- [x] hide/show listings → catalog snapshot
+- [ ] **Вручную:** Pause project Supabase
+- [x] Обновить `AUTO_SYNC.md`, Cursor rules, `supabase/README.md`
 
 **Критерий:** нет платных квот Supabase; проект не нужен для прода.
 

@@ -33,7 +33,11 @@
 | Рабочая база каталога | `data/catalog-snapshot.json` |
 | Главная и каталог | `index.html`, `kvartira/index.html` (build artifacts) |
 
-По умолчанию sync **дублирует** запись в Supabase и snapshot. Для полного отказа от Supabase используйте `--snapshot-only` или `SKIP_SUPABASE_SYNC=1`.
+По умолчанию sync пишет в **`data/catalog-snapshot.json`** (рекомендуется `--snapshot-only`). Dual-write в Supabase — только legacy.
+
+```bash
+python3 scripts/run_auto_sync_pipeline.py --mode full --snapshot-only
+```
 
 ## Быстрый ручной запуск
 
@@ -119,10 +123,9 @@ bash scripts/stop_auto_sync_daemon.sh
 
 ## Требования
 
-1. **Snapshot-only:** файл `data/catalog-snapshot.json`, `.env.yandex.local` для загрузки медиа в Object Storage.
-2. **Dual-write (legacy):** `.env.supabase.local` с `SUPABASE_URL` и `SUPABASE_SERVICE_ROLE_KEY`.
-3. Telegram-сессия: `tg_session.session`
-4. Для фильтров — Google service account JSON:
+1. **Snapshot-only (прод):** `data/catalog-snapshot.json`, `.env.yandex.local` для загрузки медиа.
+2. Telegram-сессия: `tg_session.session`
+3. Для фильтров — Google service account JSON:
    - `GOOGLE_SERVICE_ACCOUNT_JSON=/abs/path/to/file.json`
    - или один из дефолтных путей в `apply_all_filters_from_sheet.py`.
 

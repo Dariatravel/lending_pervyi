@@ -18,20 +18,20 @@ alwaysApply: true
 Если строки уже добавлены в `СОЦСЕТИ`, запускать:
 
 ```bash
-python3 scripts/sync_new_objects_from_sheet.py
+python3 scripts/sync_new_objects_from_sheet.py --snapshot-only
 ```
 
-Скрипт вызывает `backfill_missing_from_sheet_links.py`, затем фильтры из таблицы, пересборку каталога и проверку медиа.
+Скрипт вызывает `backfill_missing_from_sheet_links.py`, фильтры из таблицы, пересборку каталога из `catalog-snapshot.json` и проверку медиа.
 
 ## Точечный способ
 
 Для одного/нескольких известных ID:
 
 ```bash
-TARGET_HOTEL_SOURCE_IDS="4318,4357" python3 scripts/sync_catalog_from_telegram.py
-TARGET_KV_TOPIC_IDS="12345" python3 scripts/sync_catalog_from_telegram.py
-python3 scripts/apply_all_filters_from_sheet.py
-python3 scripts/rebuild_from_supabase.py
+SKIP_SUPABASE_SYNC=1 TARGET_HOTEL_SOURCE_IDS="4318,4357" python3 scripts/sync_catalog_from_telegram.py
+SKIP_SUPABASE_SYNC=1 TARGET_KV_TOPIC_IDS="12345" python3 scripts/sync_catalog_from_telegram.py
+python3 scripts/apply_all_filters_from_sheet.py --snapshot-only
+python3 scripts/rebuild_from_catalog_snapshot.py
 python3 tools/verify_object_media.py
 ```
 
@@ -46,6 +46,6 @@ python3 tools/verify_object_media.py
 
 ## Медиа и фильтры
 
-- Фото и видео должны попадать в Supabase Storage (`site-media`); после синка `index.html` должен использовать `supabase.co/storage`, а не локальные `/media/...`.
-- Фильтры (`data-filter-*`, `details.filters`) брать только из Google Sheet через `scripts/apply_all_filters_from_sheet.py`.
-- После любого добавления запускать `scripts/rebuild_from_supabase.py`, чтобы главная и `kvartira/index.html` подтянули новые URL и фильтры.
+- Фото и видео загружаются в **Яндекс Object Storage** (`abhazbereg-media`); в HTML — абсолютные URL `storage.yandexcloud.net`, не `/media/...` и не Supabase.
+- Фильтры (`data-filter-*`, `details.filters`) брать только из Google Sheet через `scripts/apply_all_filters_from_sheet.py --snapshot-only`.
+- После любого добавления: `python3 scripts/rebuild_from_catalog_snapshot.py`, чтобы главная и `kvartira/index.html` подтянули новые URL и фильтры.

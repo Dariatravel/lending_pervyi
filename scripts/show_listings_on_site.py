@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from listing_visibility import activate_slugs, load_hidden_slugs, save_hidden_slugs  # noqa: E402
+from listing_visibility import activate_slugs, load_hidden_slugs, save_hidden_slugs, use_snapshot_store  # noqa: E402
 from sync_catalog_from_telegram import ENV_FILE, SupabaseClient, load_env  # noqa: E402
 
 REPORT = ROOT / "output" / "shown_listings_report.txt"
@@ -34,12 +34,19 @@ def main() -> int:
     remaining = load_hidden_slugs() - slugs
     save_hidden_slugs(remaining)
 
-    env = load_env(ENV_FILE)
-    supa = SupabaseClient(url=env["SUPABASE_URL"].rstrip("/"), service_key=env["SUPABASE_SERVICE_ROLE_KEY"])
+    supa: SupabaseClient | None = None
+    if not use_snapshot_store():
+        env = load_env(ENV_FILE)
+        supa = SupabaseClient(url=env["SUPABASE_URL"].rstrip("/"), service_key=env["SUPABASE_SERVICE_ROLE_KEY"])
     done, missing = activate_slugs(supa, slugs)
 
+    rebuild = (
+        ROOT / "scripts" / "rebuild_from_catalog_snapshot.py"
+        if use_snapshot_store()
+        else ROOT / "scripts" / "rebuild_from_supabase.py"
+    )
     for cmd in (
-        [sys.executable, str(ROOT / "scripts" / "rebuild_from_supabase.py")],
+        [sys.executable, str(rebuild)],
         [sys.executable, str(ROOT / "scripts" / "build_objects_map_points.py")],
         [sys.executable, str(ROOT / "scripts" / "build_podborki_from_filters.py")],
     ):
@@ -49,17 +56,17 @@ def main() -> int:
             print(f"Ошибка ({rc}): {' '.join(cmd)}", file=sys.stderr)
             return rc
 
+    store = "catalog snapshot" if use_snapshot_store() else "Supabase"
     lines = [
         "Показанные объекты (is_active=true, добавлены в каталог)",
         "",
-        f"Активировано в Supabase: {len(done)}",
-        f"Убрано из hidden_listings.json: {len(slugs & (load_hidden_slugs() | slugs))}",
+        f"Активировано в {store}: {len(done)}",
         "",
         "Активны:",
         *[f"- {s}" for s in done],
     ]
     if missing:
-        lines.extend(["", "Не найдены в Supabase:", *[f"- {s}" for s in missing]])
+        lines.extend(["", f"Не найдены в {store}:", *[f"- {s}" for s in missing]])
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))

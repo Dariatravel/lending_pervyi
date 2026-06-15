@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Remove Supabase preconnect links from HTML (no longer needed after catalog snapshot)."""
+"""Remove Supabase preconnect links from HTML (catalog reads JSON snapshot, not Supabase REST)."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PATTERN = re.compile(
-    r'\s*<link rel="preconnect" href="https://chnyazvybzzryduhgopa\.supabase\.co" crossorigin />\s*\n?',
+    r'\s*<link\b[^>]*\bhref="https://chnyazvybzzryduhgopa\.supabase\.co"[^>]*/>\s*\n?',
     re.I,
 )
 SKIP = {"node_modules", "output", "media", ".git"}

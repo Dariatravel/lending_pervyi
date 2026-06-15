@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""Скрытые объекты: slug-список и деактивация в Supabase (is_active=false)."""
+"""Скрытые объекты: slug-список и деактивация в catalog snapshot (или Supabase legacy)."""
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 HIDDEN_LISTINGS_FILE = ROOT / "tools" / "hidden_listings.json"
+SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 
 
 def load_hidden_slugs() -> set[str]:
@@ -33,39 +35,65 @@ def merge_hidden_slugs(new_slugs: list[str]) -> set[str]:
     return merged
 
 
-def deactivate_slugs(supa: Any, slugs: set[str]) -> tuple[list[str], list[str]]:
-    """Вернуть (деактивированы, не найдены в Supabase)."""
+def use_snapshot_store() -> bool:
+    if os.getenv("SKIP_SUPABASE_SYNC", "").strip().lower() in {"1", "true", "yes", "on"}:
+        return True
+    return SNAPSHOT_PATH.exists()
+
+
+def _rows_from_store(supa: Any | None) -> list[dict[str, Any]]:
+    if use_snapshot_store() or supa is None:
+        from catalog_snapshot import load_listings
+
+        return load_listings()
+    return supa.fetch_listings() if hasattr(supa, "fetch_listings") else []
+
+
+def deactivate_slugs(supa: Any | None, slugs: set[str]) -> tuple[list[str], list[str]]:
+    """Вернуть (деактивированы, не найдены)."""
     if not slugs:
         return [], []
-    rows = supa.fetch_listings() if hasattr(supa, "fetch_listings") else []
+    rows = _rows_from_store(supa)
     by_slug = {str(r.get("slug") or ""): r for r in rows}
     done: list[str] = []
     missing: list[str] = []
+    snapshot_mode = use_snapshot_store() or supa is None
     for slug in sorted(slugs):
         row = by_slug.get(slug)
         if not row:
             missing.append(slug)
             continue
         if row.get("is_active") is not False:
-            supa.patch_listing(int(row["id"]), {"is_active": False})
+            if snapshot_mode:
+                from catalog_snapshot import deactivate_listing
+
+                deactivate_listing(slug)
+            else:
+                supa.patch_listing(int(row["id"]), {"is_active": False})
         done.append(slug)
     return done, missing
 
 
-def activate_slugs(supa: Any, slugs: set[str]) -> tuple[list[str], list[str]]:
-    """Вернуть (активированы, не найдены в Supabase)."""
+def activate_slugs(supa: Any | None, slugs: set[str]) -> tuple[list[str], list[str]]:
+    """Вернуть (активированы, не найдены)."""
     if not slugs:
         return [], []
-    rows = supa.fetch_listings() if hasattr(supa, "fetch_listings") else []
+    rows = _rows_from_store(supa)
     by_slug = {str(r.get("slug") or ""): r for r in rows}
     done: list[str] = []
     missing: list[str] = []
+    snapshot_mode = use_snapshot_store() or supa is None
     for slug in sorted(slugs):
         row = by_slug.get(slug)
         if not row:
             missing.append(slug)
             continue
         if row.get("is_active") is not True:
-            supa.patch_listing(int(row["id"]), {"is_active": True})
+            if snapshot_mode:
+                from catalog_snapshot import activate_listing
+
+                activate_listing(slug)
+            else:
+                supa.patch_listing(int(row["id"]), {"is_active": True})
         done.append(slug)
     return done, missing

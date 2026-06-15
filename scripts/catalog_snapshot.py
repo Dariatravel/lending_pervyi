@@ -149,6 +149,18 @@ def deactivate_listing(slug: str) -> bool:
     return False
 
 
+def activate_listing(slug: str) -> bool:
+    listings = load_listings()
+    for index, row in enumerate(listings):
+        if row.get("slug") != slug:
+            continue
+        row["is_active"] = True
+        listings[index] = row
+        save_listings(listings)
+        return True
+    return False
+
+
 def find_by_slug(slug: str) -> dict[str, Any] | None:
     for row in load_listings():
         if row.get("slug") == slug:

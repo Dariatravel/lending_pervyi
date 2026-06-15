@@ -728,7 +728,7 @@ def render_kvartira_catalog_page(rows: list[dict[str, Any]]) -> str:
     <meta property="og:url" content="https://абхазберег.рф/kvartira/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://chnyazvybzzryduhgopa.supabase.co" crossorigin />
+    <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../styles.css?v=202605272305" />
   </head>
