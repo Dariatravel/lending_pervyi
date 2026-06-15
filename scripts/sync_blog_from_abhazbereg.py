@@ -256,7 +256,7 @@ EXISTING_CARDS = [
         "iso_date": "2026-01-08",
         "card_tag": "о проекте",
         "title": "Давайте знакомиться: почему надёжнее бронировать отдых в Абхазии со мной",
-        "excerpt": "Дарья о себе, о каталоге жилья и о том, что даёт бронирование напрямую — по тексту поста из Telegram.",
+        "excerpt": "Дарья о себе, о каталоге жилья и о том, что даёт бронирование напрямую — по тексту поста из Телеграм.",
         "image": "telegram-2572.jpg",
         "alt": "Знакомство и бронирование с Дарьей — АБХАЗБЕРЕГ",
     },
@@ -527,7 +527,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
         <img class="blog-article__cover-inline" src="{yandex_media_base}/media/blog/{image_name}" alt="{cover_alt_esc}" loading="eager" />
 {body_html}
 
-        <p class="blog-source">Источник: <a href="https://t.me/abhazbereg/{post_id}" target="_blank" rel="noopener noreferrer">пост Telegram @abhazbereg/{post_id}</a>.</p>
+        <p class="blog-source">Источник: <a href="https://t.me/abhazbereg/{post_id}" target="_blank" rel="noopener noreferrer">пост Телеграм @abhazbereg/{post_id}</a>.</p>
           </div>
         </div>
         <aside class="blog-article__aside">
@@ -571,10 +571,10 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       <p class="site-concept__guide-pitch">Напишите, что вам нужно — я предложу подходящие варианты; если не подойдёт, продолжите искать сами.</p>
       <div class="site-concept__guide-cta">
         <div class="site-concept__guide-messenger-grid" role="group" aria-label="Написать в мессенджер">
-          <a class="btn-book site-concept__guide-messenger-btn" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>
-          <a class="btn-book site-concept__guide-messenger-btn" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК</a>
-          <a class="btn-book site-concept__guide-messenger-btn" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В TELEGRAM</a>
-          <a class="btn-book site-concept__guide-messenger-btn" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В WHATSAPP</a>
+          <a class="btn-book site-concept__guide-messenger-btn" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В МАКС</a>
+          <a class="btn-book site-concept__guide-messenger-btn" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК-ЧАТ</a>
+          <a class="btn-book site-concept__guide-messenger-btn" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ТЕЛЕГРАМ</a>
+          <a class="btn-book site-concept__guide-messenger-btn" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВАТСАП</a>
         </div>
       </div>
     </div>
@@ -591,15 +591,15 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     <article class="cta-block contact-shell">
       <div class="contact-shell__intro">
         <p class="eyebrow">Контакты и бронирование</p>
-        <p>Проверить наличие номеров и задать вопросы можно по номеру<br /><strong class="contact-phone">+7 940 900-33-40</strong><br /><span class="contact-messengers">(WhatsApp, Telegram, MAX, VK)</span></p>
+        <p>Проверить наличие номеров и задать вопросы можно по номеру<br /><strong class="contact-phone">+7 940 900-33-40</strong><br /><span class="contact-messengers">(Ватсап, Телеграм, Макс, ВК-чат)</span></p>
         <p class="note">Только сообщения, обычный звонок не пройдёт.</p>
         <p class="note">Прежде чем написать в МАКС, добавьте номер в контакты (иначе макс не даст ответить на входящее сообщение). Обращайтесь!</p>
       </div>
       <div class="contact-buttons">
-        <a class="btn-book" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>
-        <a class="btn-book" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК</a>
-        <a class="btn-book" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В TELEGRAM</a>
-        <a class="btn-book" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В WHATSAPP</a>
+        <a class="btn-book" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В МАКС</a>
+        <a class="btn-book" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК-ЧАТ</a>
+        <a class="btn-book" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ТЕЛЕГРАМ</a>
+        <a class="btn-book" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВАТСАП</a>
       </div>
     </article>
   </section>
@@ -753,10 +753,10 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
       <p class="site-concept__guide-pitch">Напишите, что вам нужно — я предложу подходящие варианты; если не подойдёт, продолжите искать сами.</p>
       <div class="site-concept__guide-cta">
         <div class="site-concept__guide-messenger-grid" role="group" aria-label="Написать в мессенджер">
-          <a class="btn-book site-concept__guide-messenger-btn" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>
-          <a class="btn-book site-concept__guide-messenger-btn" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК</a>
-          <a class="btn-book site-concept__guide-messenger-btn" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В TELEGRAM</a>
-          <a class="btn-book site-concept__guide-messenger-btn" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В WHATSAPP</a>
+          <a class="btn-book site-concept__guide-messenger-btn" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В МАКС</a>
+          <a class="btn-book site-concept__guide-messenger-btn" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК-ЧАТ</a>
+          <a class="btn-book site-concept__guide-messenger-btn" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ТЕЛЕГРАМ</a>
+          <a class="btn-book site-concept__guide-messenger-btn" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВАТСАП</a>
         </div>
       </div>
     </div>
@@ -773,15 +773,15 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
     <article class="cta-block contact-shell">
       <div class="contact-shell__intro">
         <p class="eyebrow">Контакты и бронирование</p>
-        <p>Проверить наличие номеров и задать вопросы можно по номеру<br /><strong class="contact-phone">+7 940 900-33-40</strong><br /><span class="contact-messengers">(WhatsApp, Telegram, MAX, VK)</span></p>
+        <p>Проверить наличие номеров и задать вопросы можно по номеру<br /><strong class="contact-phone">+7 940 900-33-40</strong><br /><span class="contact-messengers">(Ватсап, Телеграм, Макс, ВК-чат)</span></p>
         <p class="note">Только сообщения, обычный звонок не пройдёт.</p>
         <p class="note">Прежде чем написать в МАКС, добавьте номер в контакты (иначе макс не даст ответить на входящее сообщение). Обращайтесь!</p>
       </div>
       <div class="contact-buttons">
-        <a class="btn-book" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В MAX</a>
-        <a class="btn-book" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК</a>
-        <a class="btn-book" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В TELEGRAM</a>
-        <a class="btn-book" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В WHATSAPP</a>
+        <a class="btn-book" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В МАКС</a>
+        <a class="btn-book" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК-ЧАТ</a>
+        <a class="btn-book" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ТЕЛЕГРАМ</a>
+        <a class="btn-book" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВАТСАП</a>
       </div>
     </article>
   </section>
