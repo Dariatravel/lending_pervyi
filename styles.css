@@ -497,6 +497,50 @@ img[data-image-lite="done"] {
 .site-concept__hero-video {
   width: 100%;
   max-width: 100%;
+  position: relative;
+}
+
+.site-concept__hero-video-poster-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 33.333%;
+  margin: 0;
+  padding: clamp(12px, 3.5vw, 18px) clamp(14px, 4vw, 20px) 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+  font-family: inherit;
+  font-size: clamp(0.58rem, 2.6vw, 0.74rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow:
+    0 1px 10px rgba(0, 0, 0, 0.65),
+    0 0 1px rgba(0, 0, 0, 0.85);
+  border-radius: 16px 16px 0 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.site-concept__hero-video-poster-label::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(15, 20, 18, 0.42) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.site-concept__hero-video:has(.site-concept__hero-video-player:playing) .site-concept__hero-video-poster-label {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .site-concept__hero-video-player {
@@ -2279,26 +2323,19 @@ a.podborki-card--link:hover {
 .blog-card h3 {
   margin: 0;
   color: #1f332c;
-  font-size: clamp(1.02rem, 1.5vw, 1.22rem);
-  line-height: 1.22;
+  font-size: clamp(1rem, 2.8vw, 1.12rem);
+  line-height: 1.25;
   letter-spacing: -0.02em;
 }
 
-.blog-card:first-child h3 {
-  font-size: clamp(1.28rem, 2.2vw, 1.8rem);
-}
-
-.blog-listing .blog-card h3 {
-  font-size: clamp(0.84rem, 0.95vw, 0.98rem);
+.blog-listing .blog-card h3,
+.blog-article__similar .blog-card h3 {
+  font-size: clamp(1rem, 2.8vw, 1.12rem);
   line-height: 1.25;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-}
-
-.blog-listing .blog-card:first-child h3 {
-  font-size: clamp(0.84rem, 0.95vw, 0.98rem);
 }
 
 .blog-card h3 a {
@@ -2423,8 +2460,8 @@ a.podborki-card--link:hover {
   }
 
   .blog-listing .blog-card h3,
-  .blog-listing .blog-card:first-child h3 {
-    font-size: clamp(0.72rem, 0.85vw, 0.84rem);
+  .blog-article__similar .blog-card h3 {
+    font-size: clamp(0.92rem, 0.95vw, 1rem);
     line-height: 1.22;
     -webkit-line-clamp: 2;
   }
@@ -2736,7 +2773,8 @@ a.podborki-card--link:hover {
     gap: 4px;
   }
 
-  .blog-listing .blog-card h3 {
+  .blog-listing .blog-card h3,
+  .blog-article__similar .blog-card h3 {
     -webkit-line-clamp: 2;
   }
 
@@ -5913,6 +5951,18 @@ body.modal-open .back-to-top {
   .catalog-shell > .filters-launch .catalog-name-search {
     order: 2;
     max-width: none;
+    flex: 0 0 auto;
+    padding: 0.28rem 0.65rem;
+  }
+
+  .catalog-shell > .filters-launch .catalog-name-search input {
+    padding: 0.3rem 0;
+    font-size: 0.9rem;
+    line-height: 1.25;
+  }
+
+  .catalog-shell > .filters-launch .catalog-name-search__label {
+    font-size: 0.72rem;
   }
 
   .catalog-expand-button {
