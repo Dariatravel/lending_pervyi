@@ -497,50 +497,6 @@ img[data-image-lite="done"] {
 .site-concept__hero-video {
   width: 100%;
   max-width: 100%;
-  position: relative;
-}
-
-.site-concept__hero-video-poster-label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  height: 33.333%;
-  margin: 0;
-  padding: clamp(12px, 3.5vw, 18px) clamp(14px, 4vw, 20px) 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  text-align: center;
-  pointer-events: none;
-  font-family: inherit;
-  font-size: clamp(0.58rem, 2.6vw, 0.74rem);
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  line-height: 1.35;
-  text-transform: uppercase;
-  color: #fff;
-  text-shadow:
-    0 1px 10px rgba(0, 0, 0, 0.65),
-    0 0 1px rgba(0, 0, 0, 0.85);
-  border-radius: 16px 16px 0 0;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
-}
-
-.site-concept__hero-video-poster-label::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(15, 20, 18, 0.42) 0%, transparent 100%);
-  pointer-events: none;
-}
-
-.site-concept__hero-video:has(.site-concept__hero-video-player:playing) .site-concept__hero-video-poster-label {
-  opacity: 0;
-  visibility: hidden;
 }
 
 .site-concept__hero-video-player {
@@ -550,7 +506,7 @@ img[data-image-lite="done"] {
   border: 0;
   border-radius: 16px;
   display: block;
-  background: #0f1412;
+  background: #ecf3f6;
   object-fit: contain;
 }
 
