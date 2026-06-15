@@ -5,21 +5,9 @@
   const GA4_ID = "G-MZ2NTRDDJ5";
   const SITE_CANONICAL_ORIGIN = "https://абхазберег.рф";
 
-  function resolvePublicSiteOrigin() {
-    const href = document.querySelector('link[rel="canonical"]')?.getAttribute("href");
-    if (href) {
-      try {
-        return new URL(href).origin;
-      } catch (error) {
-        /* ignore malformed canonical */
-      }
-    }
-    return SITE_CANONICAL_ORIGIN;
-  }
-
   function buildPublicShareUrl(pathname = window.location.pathname, search = window.location.search) {
     const path = pathname || "/";
-    return `${resolvePublicSiteOrigin()}${path}${search || ""}`;
+    return `${SITE_CANONICAL_ORIGIN}${path}${search || ""}`;
   }
 
   function initMetrika() {
