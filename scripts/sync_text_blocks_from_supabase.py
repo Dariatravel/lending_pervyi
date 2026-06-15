@@ -16,7 +16,7 @@ if str(ROOT / "scripts") not in sys.path:
 
 from rebuild_from_supabase import ENV_PATH, FILTER_GROUPS, load_env
 from sync_abhazbooking_2026 import clean_line, render_paragraph_lines_html, should_drop_line
-from tools.apply_new_site_design import format_price_line_to_html
+from tools.apply_new_site_design import format_price_line_to_html, format_price_season_li_html
 
 
 def _dedupe_preserve_order(lines: list[str]) -> list[str]:
@@ -89,7 +89,7 @@ def render_prices_section_html(details: dict[str, Any]) -> str:
     lines = collect_price_lines(details)
     if not lines:
         return ""
-    items = "\n".join(f"            <li>{format_price_line_to_html(line)}</li>" for line in lines)
+    items = "\n".join(f"            {format_price_season_li_html(line)}" for line in lines)
     return (
         '      <section class="section hotel-price-section hotel-site-concept__detail-section">\n'
         '        <article class="card price-card">\n'

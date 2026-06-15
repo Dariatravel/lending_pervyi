@@ -3195,6 +3195,19 @@ a.podborki-card--link:hover {
   color: var(--text);
 }
 
+.hotel-site-concept .price-card__seasons li.price-card__season-line {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.hotel-site-concept .price-card__seasons li.price-card__season-line strong,
+.hotel-site-concept .price-card__seasons li.price-card__season-line b,
+.hotel-site-concept .price-card__seasons li.price-card__season-line .price-card__amount,
+.hotel-site-concept .price-card__seasons li.price-card__season-line span {
+  font-weight: inherit;
+  color: inherit;
+}
+
 .hotel-site-concept .price-card li strong {
   font-weight: 400;
   color: var(--text);

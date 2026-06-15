@@ -1138,6 +1138,19 @@ def bold_digits_outside_tags(fragment: str) -> str:
     return "".join(out)
 
 
+def line_has_month_name(text: str) -> bool:
+    return bool(_MONTHS_RE.search(text or ""))
+
+
+def price_season_li_class_attr(text: str) -> str:
+    return ' class="price-card__season-line"' if line_has_month_name(text) else ""
+
+
+def format_price_season_li_html(plain: str) -> str:
+    plain = (plain or "").strip()
+    return f"<li{price_season_li_class_attr(plain)}>{format_price_line_to_html(plain)}</li>"
+
+
 def format_price_line_to_html(text: str) -> str:
     """Сумма жирным, месяцы жирным; условия обычным текстом."""
     text = (text or "").strip()
@@ -1267,13 +1280,12 @@ def split_price_card_seasons_notes(section: str) -> str:
         plain = strip_tags(inner).strip()
         if not plain:
             continue
-        li_html = f"<li>{inner}</li>"
         if _is_room_category_header_line(plain):
             continue
         if is_seasonal_price_line(plain):
-            seasons.append(li_html)
+            seasons.append(format_price_season_li_html(plain))
         else:
-            notes.append(li_html)
+            notes.append(f"<li>{inner}</li>")
 
     seasons_block = (
         f'<ul class="price-card__seasons">\n{"".join(seasons)}\n</ul>' if seasons else '<ul class="price-card__seasons"></ul>'
@@ -1306,7 +1318,7 @@ def reformat_price_card_content(section: str) -> str:
         plain = strip_tags(inner).strip()
         if not plain:
             return match.group(0)
-        return f"<li>{format_price_line_to_html(plain)}</li>"
+        return format_price_season_li_html(plain)
 
     updated = re.sub(r"<li[^>]*>(.*?)</li>", li_repl, section, flags=re.S)
 
@@ -1372,7 +1384,7 @@ def _reflow_price_card_inner_tariff_groups(inner: str) -> str:
             plain = clean_text(strip_tags(raw_inner))
             if not plain or _is_room_category_header_line(plain):
                 continue
-            lis_out.append(f"<li>{format_price_line_to_html(plain)}</li>")
+            lis_out.append(format_price_season_li_html(plain))
         body = "\n".join(f"            {x}" for x in lis_out)
         return f"{open_tag}\n{body}\n          {close_tag}"
 
@@ -1447,11 +1459,10 @@ def reflow_price_card_list_items(fragment: str) -> str:
     seasons: list[str] = []
     notes: list[str] = []
     for plain in lis_plain_order:
-        li_html = f"<li>{format_price_line_to_html(plain)}</li>"
         if is_seasonal_price_line(plain):
-            seasons.append(li_html)
+            seasons.append(format_price_season_li_html(plain))
         else:
-            notes.append(li_html)
+            notes.append(f"<li>{format_price_line_to_html(plain)}</li>")
 
     seasons_block = (
         f'<ul class="price-card__seasons">\n{"".join(seasons)}\n</ul>' if seasons else "<ul class=\"price-card__seasons\"></ul>"
@@ -1482,11 +1493,10 @@ def merge_extra_lines_into_price_section(price_section: str, extra_lines: list[s
         if key in existing:
             continue
         existing.add(key)
-        li_html = f"<li>{format_price_line_to_html(plain)}</li>"
         if is_seasonal_price_line(plain):
-            season_chunks.append(li_html)
+            season_chunks.append(format_price_season_li_html(plain))
         else:
-            note_chunks.append(li_html)
+            note_chunks.append(f"<li>{format_price_line_to_html(plain)}</li>")
     updated = price_section
     if season_chunks:
         if "price-card__seasons" in updated:
@@ -1502,6 +1512,61 @@ def merge_extra_lines_into_price_section(price_section: str, extra_lines: list[s
             block = f'<ul class="price-card__notes" aria-label="Особые условия">\n{"".join(note_chunks)}\n</ul>'
             updated = re.sub(r"(</article>)", block + r"\n\1", updated, count=1, flags=re.S)
     return updated
+
+
+def patch_price_season_line_classes_in_html(html: str) -> str:
+    """Добавляет price-card__season-line на пункты сезонов с названиями месяцев."""
+
+    def repl_season_ul(match: re.Match[str]) -> str:
+        open_tag, ul_body, close_tag = match.group(1), match.group(2), match.group(3)
+        lis_out: list[str] = []
+        for li_match in re.finditer(r"<li([^>]*)>([\s\S]*?)</li>", ul_body):
+            attrs, inner = li_match.group(1), li_match.group(2)
+            plain = clean_text(strip_tags(inner))
+            if line_has_month_name(plain):
+                if "price-card__season-line" in attrs:
+                    lis_out.append(f"<li{attrs}>{inner}</li>")
+                elif re.search(r'\bclass="', attrs):
+                    new_attrs = re.sub(
+                        r'class="([^"]*)"',
+                        lambda m: f'class="{m.group(1)} price-card__season-line"',
+                        attrs,
+                        count=1,
+                    )
+                    lis_out.append(f"<li{new_attrs}>{inner}</li>")
+                else:
+                    lis_out.append(f'<li class="price-card__season-line"{attrs}>{inner}</li>')
+            else:
+                new_attrs = re.sub(
+                    r'\s*class="[^"]*\bprice-card__season-line\b[^"]*"',
+                    "",
+                    attrs,
+                )
+                lis_out.append(f"<li{new_attrs}>{inner}</li>" if new_attrs.strip() else f"<li>{inner}</li>")
+        body = "\n".join(f"            {x}" for x in lis_out)
+        return f"{open_tag}\n{body}\n          {close_tag}"
+
+    return re.sub(
+        r'(<ul class="price-card__seasons"[^>]*>)([\s\S]*?)(</ul>)',
+        repl_season_ul,
+        html,
+        flags=re.S,
+    )
+
+
+def patch_all_object_pages_price_season_classes() -> int:
+    root = Path(__file__).resolve().parents[1]
+    changed = 0
+    for folder in ("hotels", "kvartira"):
+        for path in (root / folder).glob("*/index.html"):
+            text = path.read_text(encoding="utf-8")
+            if "price-card__seasons" not in text:
+                continue
+            new_text = patch_price_season_line_classes_in_html(text)
+            if new_text != text:
+                path.write_text(new_text, encoding="utf-8")
+                changed += 1
+    return changed
 
 
 def _is_standalone_phone_line(plain: str) -> bool:
