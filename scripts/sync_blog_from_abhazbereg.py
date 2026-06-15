@@ -23,9 +23,11 @@ MEDIA_DIR = ROOT / "media" / "blog"
 SOURCES_DIR = ROOT / "scripts" / "blog_telegram_sources"
 BLOG_DIR = ROOT / "blog"
 CSS_VERSION = "202605272305"
+YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media"
 
 POST_IDS = [
     2119, 2149, 2166, 2213, 2218, 2240, 2245, 2256, 2261, 2266, 2294, 2313, 2325, 2327, 2336, 2337,
+    2383, 2385,
 ]
 
 # slug и SEO-поля; title/lead дополняются из текста поста при необходимости
@@ -173,6 +175,24 @@ POST_META: dict[int, dict[str, object]] = {
         "eyebrow": "Документы",
         "tags": ("дети", "поезд", "документы"),
         "card_tag": "дети",
+    },
+    2383: {
+        "slug": "chto-takoe-citrusovyy-abhaziya",
+        "title": "Что такое Цитрусовый в Абхазии: это Пицунда или Алахадзы?",
+        "lead": "Разбираем, где на карте находится Цитрусовый, чем отличается от Пицунды и кому подойдёт этот тихий посёлок у моря.",
+        "breadcrumb": "Цитрусовый",
+        "eyebrow": "Куда поехать",
+        "tags": ("курорты", "Пицунда", "пляжи"),
+        "card_tag": "курорты",
+    },
+    2385: {
+        "slug": "vremya-v-abhazii-moskovskoe",
+        "title": "Сколько времени в Абхазии и почему телефон может показывать другое",
+        "lead": "В Абхазии московское время, но смартфон иногда переводит час вперёд — как проверить настройки на границе.",
+        "breadcrumb": "Время в Абхазии",
+        "eyebrow": "Практика",
+        "tags": ("время", "граница", "смартфон"),
+        "card_tag": "практика",
     },
 }
 
@@ -465,11 +485,11 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   <meta property="og:title" content="{og_title}" />
   <meta property="og:description" content="{og_desc}" />
   <meta property="og:url" content="https://абхазберег.рф/blog/{slug}/" />
-  <meta property="og:image" content="https://абхазберег.рф/media/blog/{image_name}" />
+  <meta property="og:image" content="{yandex_media_base}/media/blog/{image_name}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="../../media/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="{yandex_media_base}/media/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../../styles.css?v={css_version}" />
   <script type="application/ld+json">{json_ld}</script>
 </head>
@@ -481,7 +501,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="../../media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ - жилье напрямую — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="{yandex_media_base}/media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ - жилье напрямую — на главную" decoding="async" />
         <span class="site-concept__brand-copy"><strong>АБХАЗБЕРЕГ - жилье напрямую</strong></span>
       </a>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
@@ -504,7 +524,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       <div class="blog-article__layout">
         <div class="blog-article__main">
           <div class="blog-article__content blog-article__content--sections">
-        <img class="blog-article__cover-inline" src="/media/blog/{image_name}" alt="{cover_alt_esc}" loading="eager" />
+        <img class="blog-article__cover-inline" src="{yandex_media_base}/media/blog/{image_name}" alt="{cover_alt_esc}" loading="eager" />
 {body_html}
 
         <p class="blog-source">Источник: <a href="https://t.me/abhazbereg/{post_id}" target="_blank" rel="noopener noreferrer">пост Telegram @abhazbereg/{post_id}</a>.</p>
@@ -605,7 +625,7 @@ def render_article_page(art: BuiltArticle, body_html: str) -> str:
             "datePublished": art.iso_date,
             "dateModified": art.iso_date,
             "author": {"@type": "Person", "name": "Дарья"},
-            "image": [f"https://абхазберег.рф/media/blog/{art.image_name}"],
+            "image": [f"{YANDEX_MEDIA_BASE}/media/blog/{art.image_name}"],
             "mainEntityOfPage": f"https://абхазберег.рф/blog/{art.slug}/",
         },
         ensure_ascii=False,
@@ -631,6 +651,7 @@ def render_article_page(art: BuiltArticle, body_html: str) -> str:
         body_html=body_html,
         post_id=art.post_id,
         aside_esc=html.escape(art.aside_about),
+        yandex_media_base=YANDEX_MEDIA_BASE,
     )
 
 
@@ -774,38 +795,76 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
 """
 
 
-async def sync_posts() -> list[BuiltArticle]:
+async def resolve_album_message(client, entity, post_id: int, msg) -> tuple[str, object]:
+    raw_text = (msg.message or "").strip()
+    date_msg = msg
+    if raw_text:
+        return raw_text, date_msg
+    if not msg.grouped_id:
+        return raw_text, date_msg
+    siblings = await client.get_messages(entity, limit=20, min_id=post_id - 10, max_id=post_id + 10)
+    group = [item for item in siblings if item and item.grouped_id == msg.grouped_id]
+    for item in sorted(group, key=lambda row: row.id):
+        text = (item.message or "").strip()
+        if text:
+            return text, item
+    return raw_text, date_msg
+
+
+async def download_cover_image(client, entity, post_id: int, msg, image_path: Path) -> None:
+    if image_path.is_file():
+        return
+    if msg.photo:
+        await client.download_media(msg, file=str(image_path))
+        return
+    if not msg.grouped_id:
+        return
+    siblings = await client.get_messages(entity, limit=20, min_id=post_id - 10, max_id=post_id + 10)
+    for item in sorted(
+        [row for row in siblings if row and row.grouped_id == msg.grouped_id],
+        key=lambda row: row.id,
+    ):
+        if item.photo:
+            await client.download_media(item, file=str(image_path))
+            return
+
+
+async def sync_posts(post_ids: list[int] | None = None) -> list[BuiltArticle]:
     from telethon import TelegramClient
 
     MEDIA_DIR.mkdir(parents=True, exist_ok=True)
     SOURCES_DIR.mkdir(parents=True, exist_ok=True)
 
     built: list[BuiltArticle] = []
+    target_ids = post_ids or POST_IDS
     async with TelegramClient(SESSION, API_ID, API_HASH) as client:
         entity = await client.get_entity(CHANNEL)
-        messages = await client.get_messages(entity, ids=POST_IDS)
+        messages = await client.get_messages(entity, ids=target_ids)
         by_id = {m.id: m for m in messages if m}
 
-        for post_id in POST_IDS:
+        for post_id in target_ids:
             msg = by_id.get(post_id)
-            if not msg or not (msg.message or "").strip():
+            if not msg:
                 print(f"skip missing #{post_id}", file=sys.stderr)
                 continue
 
-            raw_text = (msg.message or "").strip()
+            raw_text, date_msg = await resolve_album_message(client, entity, post_id, msg)
+            if not raw_text:
+                print(f"skip empty text #{post_id}", file=sys.stderr)
+                continue
+
             (SOURCES_DIR / f"abhazbereg-{post_id}.txt").write_text(raw_text + "\n", encoding="utf-8")
 
             image_name = f"telegram-bereg-{post_id}.jpg"
             image_path = MEDIA_DIR / image_name
-            if msg.photo and not image_path.is_file():
-                await client.download_media(msg, file=str(image_path))
+            await download_cover_image(client, entity, post_id, msg, image_path)
 
             meta = POST_META[post_id]
             body_html = telegram_text_to_sections_html(raw_text)
             title = str(meta.get("title") or clean_title_line(raw_text.split("\n", 1)[0]))
             lead = str(meta.get("lead") or title)
 
-            iso_date = msg.date.strftime("%Y-%m-%d") if msg.date else "2026-01-01"
+            iso_date = date_msg.date.strftime("%Y-%m-%d") if date_msg.date else "2026-01-01"
             reading_min = estimate_reading_min(raw_text)
             title_short = title if len(title) <= 72 else title[:69] + "…"
             meta_desc = str(meta.get("lead") or lead)
@@ -857,7 +916,18 @@ def update_sitemap(slugs: list[str]) -> None:
 
 
 def main() -> int:
-    built = asyncio.run(sync_posts())
+    only_ids = os.getenv("TARGET_BLOG_POST_IDS", "").strip()
+    post_ids = None
+    if only_ids:
+        post_ids = [int(part.strip()) for part in only_ids.split(",") if part.strip()]
+    built = asyncio.run(sync_posts(post_ids))
+    if os.getenv("SKIP_BLOG_INDEX", "").strip().lower() in {"1", "true", "yes", "on"}:
+        update_sitemap([art.slug for art in built])
+        from build_blog_posts_manifest import main as build_blog_manifest
+
+        build_blog_manifest()
+        print(f"synced {len(built)} article(s), blog index skipped")
+        return 0
     new_cards = [
         {
             "slug": art.slug,
