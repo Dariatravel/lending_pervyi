@@ -572,6 +572,7 @@
   const closeButton = lightbox.querySelector(".lightbox__close");
   const prevButton = lightbox.querySelector(".lightbox__nav--prev");
   const nextButton = lightbox.querySelector(".lightbox__nav--next");
+  lightboxVideo?.addEventListener("play", pauseInlineGalleryVideos);
   let galleryItems = [];
   let galleryIndex = 0;
   let galleryTouchStartX = 0;
@@ -685,6 +686,38 @@
     lightboxVideo.hidden = true;
   }
 
+  function pauseInlineGalleryVideos() {
+    document
+      .querySelectorAll(
+        ".hotel-site-concept .media-grid video, .hotel-site-concept .hotel-media-section video, .hotel-site-concept .hotel-card__gallery video"
+      )
+      .forEach((node) => {
+        try {
+          node.pause();
+        } catch (error) {
+          /* ignore */
+        }
+      });
+  }
+
+  /** Клик по полоске native controls — только inline-воспроизведение, без lightbox. */
+  function isVideoControlsClick(video, event) {
+    if (!video?.controls || !event) return false;
+    const rect = video.getBoundingClientRect();
+    if (!rect.width || !rect.height) return false;
+    const y = event.clientY - rect.top;
+    const controlBand = Math.min(56, Math.max(36, rect.height * 0.28));
+    return y >= rect.height - controlBand;
+  }
+
+  function openInlineGalleryVideoLightbox(video) {
+    if (!video) return;
+    const src = video.querySelector("source")?.getAttribute("src") || video.getAttribute("src") || "";
+    if (!src) return;
+    pauseInlineGalleryVideos();
+    openGalleryLightboxAtKey(normalizeGallerySrc(src));
+  }
+
   function renderGalleryItem(index) {
     if (!galleryItems.length) return;
     galleryIndex = (index + galleryItems.length) % galleryItems.length;
@@ -730,6 +763,7 @@
   function openGalleryLightbox(startIndex = 0) {
     galleryItems = collectObjectGalleryItems();
     if (!galleryItems.length) return;
+    pauseInlineGalleryVideos();
     renderGalleryItem(startIndex);
     lightbox.removeAttribute("hidden");
     body.classList.add("modal-open");
@@ -4902,12 +4936,10 @@
         event.target.closest(".hotel-card__gallery video.local-video") ||
         cardGalleryHit.querySelector("video.local-video");
       if (cardVideo) {
-        const src =
-          cardVideo.querySelector("source")?.getAttribute("src") || cardVideo.getAttribute("src") || "";
-        if (src) {
-          openGalleryLightboxAtKey(normalizeGallerySrc(src));
-          return;
-        }
+        if (isVideoControlsClick(cardVideo, event)) return;
+        event.preventDefault();
+        openInlineGalleryVideoLightbox(cardVideo);
+        return;
       }
 
       const cardImage =
@@ -4947,9 +4979,9 @@
 
     const video = event.target.closest(".media-grid video.local-video, .hotel-media-section video.local-video");
     if (!video) return;
-    const src = video.querySelector("source")?.getAttribute("src") || video.getAttribute("src") || "";
-    if (!src) return;
-    openGalleryLightboxAtKey(normalizeGallerySrc(src));
+    if (isVideoControlsClick(video, event)) return;
+    event.preventDefault();
+    openInlineGalleryVideoLightbox(video);
   });
 
   document.addEventListener("click", (event) => {
