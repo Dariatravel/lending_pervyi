@@ -3960,6 +3960,9 @@
       const totalMatching = visibility.totalShown;
       let resultCount = totalMatching;
 
+      const visibleCards = Array.from(grid.querySelectorAll(".catalog-card")).filter((card) => !card.hidden);
+      restoreCatalogCardImages(visibleCards);
+
       if (pins > 0) {
         selectionPodborka.sync(totalMatching, pins);
         if (emptyNote) emptyNote.hidden = totalMatching !== 0;
