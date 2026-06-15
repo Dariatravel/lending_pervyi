@@ -1,0 +1,80 @@
+---
+description: Медиа на сайте — фото и видео в Яндекс Object Storage
+alwaysApply: true
+---
+
+# Медиа: фото и видео — Яндекс Object Storage
+
+## Все медиа — только Яндекс Object Storage
+
+- **Не** возвращать фото или видео на Supabase Storage.
+- **Не** оставлять локальные пути `/media/...` в рабочих файлах (HTML, JSON, JS, CSS).
+
+Базовый URL:
+
+`https://storage.yandexcloud.net/abhazbereg-media/media/...`
+
+Примеры префиксов:
+
+- `.../media/cards/...`
+- `.../media/hotels/...`
+- `.../media/kvartira/...`
+- `.../media/kvartira-cards/...`
+- `.../media/branding/...`
+- `.../media/blog/...`
+- `.../media/reviews/...`
+- `.../media/videos/...` (в т.ч. `videos/hero/`)
+
+## URL-слой в коде
+
+- `scripts/media_urls.py` — `yandex_photo_url()`, `yandex_video_url()`, `to_yandex_media_url()`, `media_src_for_html()`
+- `scripts/yandex_storage.py` — загрузка файлов в bucket
+
+## Новый объект
+
+1. Локальные файлы могут лежать в repo: `media/cards`, `media/hotels`, `media/kvartira`, `media/kvartira-cards`, `media/videos`.
+2. В **HTML / JSON / JS / CSS** ссылки — только абсолютные Яндекс-URL.
+3. После добавления фото:
+
+```bash
+python3 tools/upload_yandex_media.py --workers 48 media/cards media/hotels media/kvartira media/kvartira-cards media/branding media/blog media/reviews
+```
+
+4. После добавления видео (или миграции из Supabase):
+
+```bash
+python3 tools/migrate_supabase_videos_to_yandex.py
+python3 tools/upload_yandex_media.py --workers 48 media/videos
+```
+
+## Перед публикацией
+
+Dry-run фото (ожидается `uploaded=0`):
+
+```bash
+python3 tools/upload_yandex_media.py --dry-run --workers 48 media/cards media/hotels media/kvartira media/kvartira-cards media/branding media/blog media/reviews media/videos
+```
+
+Проверка: нет локальных ссылок на медиа в рабочих файлах и нет Supabase Storage URL для фото/видео.
+
+## Генераторы
+
+Используют `scripts/media_urls.py` и `scripts/yandex_storage.py`:
+
+- `scripts/sync_catalog_from_telegram.py`
+- `scripts/rebuild_from_supabase.py`
+- `scripts/build_podborki_from_filters.py`
+- `scripts/upload_hero_videos.py`
+- `sync_abhazbooking_2026.py`
+
+Postgres (Supabase) хранит метаданные каталога; **файлы** — только Яндекс.
+
+## Секреты
+
+**Не** коммитить: `.env.yandex.local`, S3-ключи.
+
+## Ошибки
+
+Supabase CDN для images/videos в HTML — **ошибка**. Заменить на:
+
+`https://storage.yandexcloud.net/abhazbereg-media/media/...`

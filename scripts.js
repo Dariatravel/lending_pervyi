@@ -1607,7 +1607,9 @@
       if (yandexFolders.test(rel)) {
         return `${CDN_MEDIA_BASE}/${rel.split("/").map(encodeURIComponent).join("/")}`;
       }
-      if (rel.startsWith("videos/")) return n;
+      if (rel.startsWith("videos/")) {
+        return `${CDN_MEDIA_BASE}/${rel.split("/").map(encodeURIComponent).join("/")}`;
+      }
     }
 
     return n;

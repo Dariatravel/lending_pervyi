@@ -1,0 +1,350 @@
+# План миграции: Supabase → Яндекс (полный выход)
+
+Проект: абхазберег.рф
+Цель: убрать Supabase из продакшн-цепочки сайта. Медиа хранить в Яндекс Object Storage, каталог и служебные данные — в версионируемых JSON-снимках/локальных файлах, которые можно публиковать на GitHub Pages и при необходимости дублировать в Яндекс Object Storage.
+
+---
+
+## Важно: что именно переносим
+
+| Что | Где сейчас | Куда на Яндексе |
+|-----|------------|-----------------|
+| **Файлы** (фото, видео) | Storage `site-media` | **Object Storage** `abhazbereg-media` |
+| **Структура каталога** (объекты, медиа-метаданные, фильтры) | Postgres `listings`, `listing_media` | **JSON-снимки** в `data/` + копия в Яндекс Object Storage |
+| **Рантайм-чтение в браузере** | `scripts.js` читает Supabase REST через `@supabase/supabase-js` | `scripts.js` читает локальный/Яндекс JSON |
+| **Пайплайн генерации** | часть скриптов читает/пишет Supabase | Telegram + Google Sheets → JSON snapshot → HTML |
+
+Postgres нельзя «перелить» в Object Storage как живую БД. Для статического сайта правильная замена — **детерминированный JSON-снимок каталога** плюс генераторы, которые читают этот снимок. Yandex Managed PostgreSQL нужен только если появится требование к настоящей SQL-БД.
+
+---
+
+## Текущие зависимости от Supabase
+
+### Продакшн HTML
+
+- Фото: уже переведены на Яндекс.
+- Видео: остаются `https://chnyazvybzzryduhgopa.supabase.co/storage/v1/object/public/site-media/videos/...`.
+- Некоторые шаблоны содержат `preconnect` на Supabase из-за видео.
+
+### Браузер (`scripts.js`)
+
+Supabase сейчас нужен для:
+
+- `fetchListings()` / `fetchListingBySlug()`;
+- блока «Похожие варианты» на страницах объектов;
+- бейджей «Видео» в каталоге;
+- fallback-логики медиа URL.
+
+В `scripts.js` есть hardcoded publishable key и импорт `@supabase/supabase-js` с `esm.sh`.
+
+### Скрипты
+
+Supabase активно используют:
+
+- `scripts/rebuild_from_supabase.py`;
+- `scripts/sync_catalog_from_telegram.py`;
+- `scripts/apply_all_filters_from_sheet.py`;
+- `scripts/sync_new_objects_from_sheet.py`;
+- `scripts/backfill_*`, `repair_*`, `import_to_supabase.py`, `export_*_from_supabase.py`;
+- `scripts/upload_hero_videos.py`, `scripts/migrate_telegram_videos_to_supabase.py`.
+
+### Таблицы
+
+- `public.listings`
+- `public.listing_media`
+
+Перед отключением Supabase их нужно экспортировать в архив и в рабочий snapshot.
+
+---
+
+## Правила безопасности миграции
+
+1. **Не удалять Supabase-данные до двух успешных проверок прода.**
+2. **Каждый этап заканчивать отдельным коммитом и push.**
+3. **Перед удалением Storage делать dry-run Яндекса и `rg`-проверки.**
+4. **Для БД сначала dual-run:** Supabase остаётся источником, параллельно генерируем JSON и сравниваем результат.
+5. **Cutover делать только после parity-аудита:** HTML/карточки/фильтры/похожие объекты совпадают.
+6. **Rollback должен быть простым:** пока Supabase не удалён, можно вернуть чтение из Supabase одним revert.
+
+---
+
+## Этап 0 — Фото на Яндекс ✅ (почти завершено)
+
+- [x] HTML/генераторы отдают фото с `storage.yandexcloud.net`
+- [x] dry-run: 4070 файлов в Яндексе
+- [x] JSON-LD на 61 странице исправлен
+- [ ] **Вручную:** удалить фото-папки из Supabase Storage (чеклист: `tools/supabase_storage_cleanup_checklist.txt`)
+
+**Критерий готовности:** в Storage не осталось `cards/`, `hotels/`, `kvartira/`, … (кроме `videos/`).
+
+---
+
+## Этап 1 — Инвентаризация и архив перед переносом видео ✅
+
+Нужен перед любыми удалениями и перед переписыванием генераторов.
+
+### 1.1 Экспорт текущей БД
+
+- [x] `scripts/export_supabase_archive.py`
+- [x] Архив: `output/supabase_archive_2026-06-13/` (listings, listing_media, storage_manifest, summary)
+- [x] Архив не коммитится (объём + данные каталога)
+
+### 1.2 Инвентаризация Storage
+
+- [x] `storage_manifest.json`: 156 video, 2294 image в listing_media
+- [x] Префиксы в bucket: cards, hotels, kvartira, kvartira-cards, branding, videos
+- [x] Фото-папки ещё видны в Supabase API (удаление — этап 0, вручную)
+
+### 1.3 Инвентаризация ссылок в сайте
+
+- [x] `tools/inventory_supabase_site_links.py` → `output/migration_stage1_site_links.json`
+- [x] Отчёт: `output/migration_stage1_report.txt`
+- Supabase в HTML: ~164 video-ссылки, fetchListings/supabase-js в scripts.js
+
+**Критерий:** ✅ полный список того, что переносим и что будет отключаться.
+
+---
+
+## Этап 2 — Видео на Яндекс ✅ (осталась ручная проверка и очистка Storage)
+
+**Объём:** ~1,6 ГБ, 156 MP4 в БД + 2 hero, ~161 ссылка в HTML.
+
+### 2.1 Загрузка
+
+- [x] `tools/migrate_supabase_videos_to_yandex.py` — 156 jobs из архива + hero
+- [x] Все видео на Яндексе
+- [x] Локальные `media/videos/` — dry-run ok
+
+### 2.2 URL-слой
+
+- [x] `scripts/media_urls.py` → `yandex_video_url()`, `to_yandex_media_url()`, `media_src_for_html()`
+- [x] `scripts/yandex_storage.py` — upload helper
+
+### 2.3 Массовая замена
+
+- [x] `tools/fix_supabase_video_urls_in_site.py` — 157 файлов, 161 замена
+- [x] Hero-видео на главной → Яндекс
+- [ ] Убрать `preconnect` на Supabase (после этапа 5 — пока нужен для fetchListings)
+
+### 2.4 Генераторы
+
+- [x] `scripts/sync_catalog_from_telegram.py` — фото и видео в Яндекс
+- [x] `scripts/upload_hero_videos.py` → Yandex
+- [x] `scripts/migrate_telegram_videos_to_supabase.py` — upload в Yandex
+- [x] `scripts.js` — `toCdnMediaUrl` для `videos/` → Яндекс
+
+### 2.5 База (переходный этап)
+
+- [x] `tools/update_supabase_listing_media_video_urls.py` — 156 rows → Yandex URL
+
+### 2.6 Проверка
+
+- [x] `site-media/videos` — 0 в HTML/JS/CSS
+- [x] Supabase Storage URL — 0 в рабочих HTML/JS/CSS
+- [ ] Проигрывание видео на 3–5 страницах + hero (ручная проверка прода)
+- [ ] Бейджи «Видео» в каталоге
+- [ ] Range/seeking в видео
+
+### 2.7 Storage
+
+- [ ] Удалить `videos/` из Supabase Storage после двух проверок прода
+
+---
+
+## Этап 3 — Единый слой URL медиа в пайплайне ✅
+
+**Цель:** один модуль URL для всех генераторов.
+
+- [x] `scripts/media_urls.py` + `scripts/yandex_storage.py`
+- [x] Подключено в: `rebuild_from_supabase.py`, `sync_catalog_from_telegram.py`, `build_podborki_from_filters.py`
+- [x] `.cursor/rules/media-yandex-photos-supabase-videos.mdc` → всё медиа на Яндекс
+- [ ] `sync_abhazbooking_2026.py` — локальный `cdn_media_url` (можно унифицировать позже)
+- [ ] Deprecated: `scripts/upload_media_to_supabase.py`, `upload_local_media_to_storage.py`
+
+**Критерий:** генераторы не пишут Supabase Storage URL в HTML/JSON.
+
+---
+
+## Этап 4 — JSON-снимок каталога (замена Postgres для сайта)
+
+**Объём:** таблицы `listings` + `listing_media` (~сотни объектов, тысячи media-строк).
+
+### 4.1 Формат snapshot
+
+Новый файл:
+
+- `data/catalog-snapshot.json`
+
+Рекомендуемая структура:
+
+```json
+{
+  "generated_at": "2026-06-14T00:00:00Z",
+  "schema_version": 1,
+  "source": "supabase-export",
+  "listings": [
+    {
+      "id": 1,
+      "slug": "...",
+      "source_kind": "hotel",
+      "title": "...",
+      "page_url": "...",
+      "cover_url": "https://storage.yandexcloud.net/...",
+      "has_video": true,
+      "details": {},
+      "media": []
+    }
+  ]
+}
+```
+
+### 4.2 Экспорт
+
+- [x] `scripts/export_catalog_snapshot.py`
+- [x] Читает Supabase, нормализует URL через `media_urls.py`
+- [x] Валидация: slug, page_url, Yandex media — 0 issues
+- [x] Файл: `data/catalog-snapshot.json` (225 active listings)
+- [ ] Копия snapshot в Яндекс Object Storage
+
+### 4.3 Сравнение с Supabase
+
+- [x] `scripts/audit_catalog_snapshot_parity.py`
+- [x] Отчёт: `output/catalog_snapshot_parity.txt` — parity OK
+
+### 4.4 Сборка сайта без Supabase API
+
+- [ ] `scripts/rebuild_from_supabase.py` → оставить как legacy.
+- [ ] Новый `scripts/rebuild_from_catalog_snapshot.py` — читает локальный JSON.
+- [ ] На первом этапе outputs сравниваются с текущим rebuild.
+
+### 4.5 Фильтры
+
+- [ ] По-прежнему Google Sheet «СОЦСЕТИ» → `apply_all_filters_from_sheet.py` → snapshot JSON
+- [ ] Supabase REST для фильтров не нужен
+
+**Критерий:** `rebuild_from_catalog_snapshot.py` собирает index/kvartira/страницы без `.env.supabase.local`.
+
+---
+
+## Этап 5 — Браузер без Supabase (`scripts.js`)
+
+Сейчас в рантайме Supabase используется для:
+
+- блок «Похожие объекты» на странице отеля/квартиры
+- бейджи «Видео» на карточках каталога
+- fallback медиа URL
+
+### 5.1 Новый data loader
+
+- [ ] `fetchListings()` → читать `data/catalog-snapshot.json` (или Яндекс CDN fallback)
+- [ ] Кэшировать Promise, чтобы не грузить snapshot несколько раз
+- [ ] Сохранить API функций:
+  - `fetchListings({ sourceKind })`
+  - `fetchListingBySlug(slug)`
+
+### 5.2 Удалить Supabase browser dependency
+
+- [ ] Убрать `import @supabase/supabase-js` из браузера
+- [ ] Удалить hardcoded anon key из `scripts.js`
+- [ ] `preconnect` на supabase.co — убрать из HTML шаблонов
+- [ ] `supabase/browser-client.js` оставить только как legacy/archive или удалить после cutover.
+
+### 5.3 Проверка UI
+
+**Критерий:** сайт работает при полностью недоступном Supabase; похожие объекты и бейджи видео на месте.
+
+---
+
+## Этап 6 — Пайплайн sync без Supabase
+
+### 6.1 Новый источник правды
+
+Рекомендуемая модель:
+
+1. Telegram — источник текстов/медиа новых объектов.
+2. Google Sheet «СОЦСЕТИ» — источник фильтров.
+3. `data/catalog-snapshot.json` — рабочая база сайта.
+4. HTML/JSON каталога — build artifacts.
+
+### 6.2 Скрипты
+
+- [ ] `sync_catalog_from_telegram.py` — primary write: JSON snapshot + HTML, не POST в Postgres.
+- [ ] `sync_new_objects_from_sheet.py` — без Supabase.
+- [ ] `apply_all_filters_from_sheet.py` — пишет filters в snapshot.
+- [ ] `backfill_*`, `repair_*` — переписать или архивировать.
+- [ ] Документировать новый flow в `AUTO_SYNC.md`
+- [ ] Добавить `tools/validate_catalog_snapshot.py`.
+
+**Критерий:** добавление объекта из Telegram не требует Supabase.
+
+---
+
+## Этап 7 — Выключение Supabase
+
+- [ ] Финальный export Postgres → архив JSON (`output/supabase_archive_YYYY-MM-DD/`)
+- [ ] Удалить bucket `site-media` (если ещё есть)
+- [ ] Проверить, что `rg 'supabase\.co|SUPABASE|createClient|site-media'` не находит активных прод-зависимостей
+- [ ] Pause project или downgrade тарифа Supabase
+- [ ] Убрать `.env.supabase.local` из CI/локальных инструкций (оставить только `.env.yandex.local`)
+- [ ] Обновить README/AUTO_SYNC и Cursor rules
+
+**Критерий:** нет платных квот Supabase; проект не нужен для прода.
+
+---
+
+## Этап 8 (опционально) — Postgres на Yandex
+
+Нужен **только если** хотите SQL-базу, а не JSON.
+
+- Yandex Managed Service for PostgreSQL
+- Миграция schema.sql + import seed
+- Переписать скрипты на новый DSN
+
+**Для текущей архитектуры (статический GitHub Pages) — не рекомендуется.** JSON + Sheets проще и дешевле.
+
+---
+
+## Порядок и риски
+
+```
+0 (фото) → 1 (инвентаризация) → 2 (видео) → 3 (URL layer) → 4 (snapshot) → 5 (browser) → 6 (sync) → 7 (off)
+```
+
+| Риск | Снижение риска |
+|------|----------------|
+| Большие видео, egress Яндекс | Сжатые версии `-1800k.mp4` уже есть; мониторить трафик и Range-запросы |
+| Сломать «похожие объекты» | Этап 5 только после parity snapshot |
+| Два источника правды | На этапах 4–6: Supabase остаётся read-only fallback, snapshot сравнивается отчётом |
+| Регрессия URL | После каждого этапа: `rg`-проверки + выборочный просмотр прода |
+| Потерять объект/фильтр при отказе от Postgres | Перед cutover: архив, parity-аудит, count по source_kind, diff slug lists |
+| Удалить Storage раньше времени | Удаление только после двух успешных прод-проверок и свежего dry-run |
+
+---
+
+## Оценка трудозатрат (ориентир)
+
+| Этап | Сложность | Зависимости |
+|------|-----------|-------------|
+| 0 cleanup фото | низкая | Dashboard |
+| 1 инвентаризация | низкая/средняя | Supabase доступ |
+| 2 видео | средняя | Yandex upload |
+| 3 URL layer | низкая | этап 2 |
+| 4 JSON snapshot | средняя | export + parity |
+| 5 browser без Supabase | средняя | этап 4 |
+| 6 sync pipeline | высокая | этапы 3–5 |
+| 7 off Supabase | низкая | всё выше |
+
+---
+
+## Следующий шаг
+
+**Рекомендуется начать не сразу с видео, а с короткого Этапа 1 (инвентаризация и архив).** Это даст rollback и точный список Storage/DB перед удалениями.
+
+После этого:
+
+1. Этап 2 — видео на Яндекс.
+2. Этап 3 — единый URL layer.
+3. Этап 4 — JSON snapshot и parity-аудит.
+4. Этап 5 — браузер без Supabase.
+5. Этап 6 — sync pipeline без Supabase.
+6. Этап 7 — выключить Supabase.

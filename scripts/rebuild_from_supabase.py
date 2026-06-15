@@ -12,6 +12,8 @@ import xml.etree.ElementTree as ET
 
 import requests
 
+from media_urls import media_src_for_html, yandex_photo_url  # noqa: E402
+
 
 ROOT = Path(__file__).resolve().parents[1]
 ENV_PATH = ROOT / ".env.supabase.local"
@@ -446,27 +448,8 @@ def pick_cover_url(row: dict[str, Any]) -> str:
     return row.get("cover_url") or ""
 
 
-STORAGE_PUBLIC_IMAGE_MARKER = "/storage/v1/object/public/site-media/"
-CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
-IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp", ".gif")
-
-
 def image_src_for_html(url: str) -> str:
-    raw = (url or "").strip()
-    relative = ""
-    if raw.startswith(CDN_MEDIA_BASE):
-        return raw
-    if STORAGE_PUBLIC_IMAGE_MARKER in raw:
-        relative = raw.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split("?", 1)[0]
-    elif "/media/" in raw:
-        relative = raw.split("/media/", 1)[1].split("?", 1)[0]
-    elif raw.startswith("media/"):
-        relative = raw.split("media/", 1)[1].split("?", 1)[0]
-    if not relative:
-        return raw
-    if not relative.lower().endswith(IMAGE_EXTENSIONS):
-        return raw
-    return f"{CDN_MEDIA_BASE}/{unquote(relative)}"
+    return yandex_photo_url(url)
 
 
 def page_path_from_url(url: str | None, fallback: str) -> str:
@@ -818,6 +801,7 @@ def render_media_grid(row: dict[str, Any], title: str) -> str:
             continue
 
         if mime.startswith("video/") and preferred_url:
+            preferred_url = media_src_for_html(preferred_url, mime_type=mime)
             parts.append(
                 f"""            <video class="local-video" controls preload="metadata" playsinline>
               <source src="{html.escape(preferred_url, quote=True)}" type="{html.escape(mime or 'video/mp4', quote=True)}" />
@@ -941,7 +925,7 @@ def rebuild_kvartira_pages(rows: list[dict[str, Any]]) -> None:
                 media_items.append({"kind": "photo", "source_url": image_src_for_html(preferred_url)})
                 continue
             if mime.startswith("video/") and preferred_url:
-                media_items.append({"kind": "video", "source_url": preferred_url})
+                media_items.append({"kind": "video", "source_url": media_src_for_html(preferred_url, mime_type=mime)})
                 continue
             if mime == "application/x-telegram-embed":
                 telegram_post = ((item.get("details") or {}).get("telegram_post") or "").strip()

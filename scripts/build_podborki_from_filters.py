@@ -9,11 +9,11 @@ import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
-from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from listing_visibility import load_hidden_slugs  # noqa: E402
+from media_urls import yandex_photo_url  # noqa: E402
 PODBORKI_DIR = ROOT / "podborki"
 META_PATH = ROOT / "podbori_txt" / "_collection_meta.json"
 INDEX_PATH = ROOT / "index.html"
@@ -22,9 +22,7 @@ SITEMAP_PATH = ROOT / "sitemap.xml"
 REPORT_PATH = ROOT / "output" / "podborki_from_filters_report.txt"
 CSS_VERSION = "202605272305"
 CANONICAL_ORIGIN = "https://абхазберег.рф"
-STORAGE_PUBLIC_IMAGE_MARKER = "/storage/v1/object/public/site-media/"
 CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
-IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp", ".gif")
 
 CITY_LABELS = {
     "ldzaa": "ЛДЗАА",
@@ -81,18 +79,9 @@ def normalize_image(src: str) -> str:
     src = html.unescape(src or "").strip()
     if not src:
         return ""
-    if src.startswith(CDN_MEDIA_BASE):
-        return src
-    if STORAGE_PUBLIC_IMAGE_MARKER in src:
-        relative = src.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split("?", 1)[0]
-        if relative.lower().endswith(IMAGE_EXTENSIONS):
-            return f"{CDN_MEDIA_BASE}/{unquote(relative)}"
-    if "/media/" in src:
-        relative = src.split("/media/", 1)[1].split("?", 1)[0]
-        if relative.lower().endswith(IMAGE_EXTENSIONS):
-            return f"{CDN_MEDIA_BASE}/{unquote(relative)}"
-    if src.startswith("http://") or src.startswith("https://"):
-        return src
+    converted = yandex_photo_url(src)
+    if converted.startswith("http://") or converted.startswith("https://"):
+        return converted
     if src.startswith("/"):
         return "../.." + src
     if src.startswith("../"):
@@ -104,25 +93,14 @@ def normalize_index_image(src: str) -> str:
     src = html.unescape(src or "").strip()
     if not src:
         return ""
-    if src.startswith(CDN_MEDIA_BASE):
-        return src
-    if STORAGE_PUBLIC_IMAGE_MARKER in src:
-        relative = src.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split("?", 1)[0]
-        if relative.lower().endswith(IMAGE_EXTENSIONS):
-            return f"{CDN_MEDIA_BASE}/{unquote(relative)}"
-    if "/media/" in src:
-        relative = src.split("/media/", 1)[1].split("?", 1)[0]
-        if relative.lower().endswith(IMAGE_EXTENSIONS):
-            return f"{CDN_MEDIA_BASE}/{unquote(relative)}"
-    if src.startswith("http://") or src.startswith("https://"):
-        return src
-    if src.startswith("../../"):
-        return ".." + src[5:]
-    if src.startswith("../"):
-        return src
+    converted = yandex_photo_url(src)
+    if converted.startswith("http://") or converted.startswith("https://"):
+        return converted
     if src.startswith("/"):
-        return ".." + src
-    return "../" + src.lstrip("./")
+        return src
+    if src.startswith("../"):
+        return src.lstrip("../")
+    return src.lstrip("./")
 
 
 def parse_catalog_cards(path: Path, prefix: str) -> list[Card]:

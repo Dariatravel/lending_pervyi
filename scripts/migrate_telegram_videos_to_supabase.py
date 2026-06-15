@@ -15,13 +15,13 @@ from sync_catalog_from_telegram import (  # noqa: E402
     ENV_FILE,
     MAX_VIDEO_UPLOAD_MB,
     SESSION,
-    STORAGE_BUCKET,
     SupabaseClient,
     VIDEO_BITRATES,
     download_message_media,
     ensure_dir,
     storage_kind_prefix,
     transcode_video,
+    upload_local_video_public_url,
 )
 
 ROOT = Path.cwd()
@@ -159,7 +159,7 @@ async def main() -> None:
                 return False
             storage_path = f'videos/{storage_kind_prefix(source_kind)}/{slug}/{candidate.name}'
             try:
-                public_url = supa.upload_file(candidate, storage_path, 'video/mp4')
+                public_url = upload_local_video_public_url(candidate, storage_path)
             except Exception:  # noqa: BLE001
                 return False
             uploaded_public_url = public_url
@@ -187,7 +187,7 @@ async def main() -> None:
         patch_payload = {
             'mime_type': 'video/mp4',
             'source_url': uploaded_public_url,
-            'storage_bucket': STORAGE_BUCKET,
+            'storage_bucket': 'abhazbereg-media',
             'storage_path': uploaded_storage_path,
             'public_url': uploaded_public_url,
             'details': details,

@@ -42,6 +42,8 @@ from sync_abhazbooking_2026 import (  # noqa: E402
     summary_text,
 )
 from apply_all_filters_from_sheet import EMPTY_FILTERS  # noqa: E402
+from media_urls import media_src_for_html, yandex_photo_url  # noqa: E402
+from yandex_storage import upload_file as upload_to_yandex  # noqa: E402
 
 ROOT_INDEX = ROOT / 'index.html'
 HOTELS_DIR = ROOT / 'hotels'
@@ -70,7 +72,7 @@ VIDEO_BITRATES = ('1800k', '1200k', '900k', '700k', '500k', '350k')
 MAX_LOCAL_SOURCE_KEEP_MB = 95
 VIDEO_MAX_WIDTH = 960
 FORCE_MEDIA_REFRESH = os.getenv('FORCE_MEDIA_REFRESH', '').strip().lower() in {'1', 'true', 'yes', 'on'}
-# По умолчанию фото (как и видео) уходят в Supabase Storage, чтобы прод работал без /media из git.
+# Фото и видео уходят в Яндекс Object Storage; Postgres хранит метаданные и URL.
 SKIP_IMAGE_UPLOAD_TO_SUPABASE = os.getenv('SKIP_IMAGE_UPLOAD_TO_SUPABASE', '').strip().lower() in {
     '1',
     'true',
@@ -531,40 +533,26 @@ def local_to_public_path(local_path: Path) -> str:
 
 
 def image_src_for_html(url: str) -> str:
-    raw = (url or '').strip()
-    if not raw:
-        return raw
-    relative = ''
-    if raw.startswith(CDN_MEDIA_BASE):
-        return raw
-    if STORAGE_PUBLIC_IMAGE_MARKER in raw:
-        relative = raw.split(STORAGE_PUBLIC_IMAGE_MARKER, 1)[1].split('?', 1)[0]
-    elif '/media/' in raw:
-        relative = raw.split('/media/', 1)[1].split('?', 1)[0]
-    elif raw.startswith('media/'):
-        relative = raw.split('media/', 1)[1].split('?', 1)[0]
-    if not relative:
-        return raw
-    if not relative.lower().endswith(IMAGE_EXTENSIONS):
-        return raw
-    return f'{CDN_MEDIA_BASE}/{unquote(relative)}'
+    return yandex_photo_url(url)
 
 
-def upload_local_image_public_url(supa: SupabaseClient, local_path: Path, storage_path: str) -> str:
-    """
-    Загрузка JPEG/WebP PNG в bucket; при ошибке или SKIP_IMAGE_UPLOAD_TO_SUPABASE — URL как /media/... в репо.
-    """
+def upload_local_image_public_url(_supa: SupabaseClient, local_path: Path, storage_path: str) -> str:
+    """Upload photo to Yandex; fallback to /media/... path on error."""
     if SKIP_IMAGE_UPLOAD_TO_SUPABASE:
         return local_to_public_path(local_path)
     mime = mimetypes.guess_type(local_path.name)[0] or 'image/jpeg'
     try:
-        return supa.upload_file(local_path, storage_path, mime)
+        return upload_to_yandex(local_path, storage_path, mime)
     except Exception as error:  # noqa: BLE001
         print(
-            f'[warn] Не удалось загрузить фото в Storage ({storage_path}): {error} — используем локальный путь.',
+            f'[warn] Не удалось загрузить фото в Яндекс ({storage_path}): {error} — используем локальный путь.',
             flush=True,
         )
         return local_to_public_path(local_path)
+
+
+def upload_local_video_public_url(local_path: Path, storage_path: str) -> str:
+    return upload_to_yandex(local_path, storage_path, 'video/mp4')
 
 
 def resolve_ffmpeg_binary() -> str | None:
@@ -801,7 +789,7 @@ def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
             parts.append(f'            <img src="{html.escape(src)}" alt="{html.escape(title)} фото {image_index}" loading="lazy" />')
             image_index += 1
         else:
-            source_url = str(item.get('source_url') or '').strip()
+            source_url = media_src_for_html(str(item.get('source_url') or ''), mime_type='video/mp4')
             telegram_post = str(item.get('telegram_post') or '').strip()
             if source_url and source_url.startswith('http') and not telegram_post:
                 parts.append(
@@ -834,7 +822,7 @@ def render_top_gallery(media_items: list[dict[str, Any]], title: str) -> str:
     if not videos:
         return ''
 
-    main_src = html.escape(str(videos[0].get('source_url') or ''), quote=True)
+    main_src = html.escape(media_src_for_html(str(videos[0].get('source_url') or ''), mime_type='video/mp4'), quote=True)
     escaped_title = html.escape(title)
     return f'''          <div class="hotel-card__gallery hotel-card__gallery--video">
             <div class="hotel-card__main-photo hotel-card__main-photo--video">
@@ -1458,7 +1446,7 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient, exist
                     return False
                 storage_path = f'videos/{storage_kind_prefix(source_kind)}/{slug}/{candidate.name}'
                 try:
-                    public_url = supa.upload_file(candidate, storage_path, 'video/mp4')
+                    public_url = upload_local_video_public_url(candidate, storage_path)
                 except Exception:  # noqa: BLE001
                     return False
                 uploaded_public_url = public_url
