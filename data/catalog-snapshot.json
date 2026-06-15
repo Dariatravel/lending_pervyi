@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-15T05:01:17.453402+00:00",
+  "generated_at": "2026-06-15T19:40:29.571018+00:00",
   "schema_version": 1,
-  "source": "supabase-export",
-  "listings_total": 225,
-  "listings_hotels": 163,
+  "source": "local-sync",
+  "listings_total": 227,
+  "listings_hotels": 165,
   "listings_kvartira": 62,
   "listings": [
     {
@@ -52,6 +52,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -323,6 +324,7 @@
           "room": [
             "pool",
             "terrace",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -616,7 +618,8 @@
             "cafe"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [],
           "beach": [
@@ -896,7 +899,8 @@
           ],
           "room": [
             "pool",
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [],
           "beach": [
@@ -1143,7 +1147,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [],
           "beach": [
@@ -1357,6 +1362,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -1671,6 +1677,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -1891,6 +1898,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -2108,6 +2116,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -2321,6 +2330,7 @@
           ],
           "room": [
             "sea-view",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -2634,6 +2644,7 @@
           "room": [
             "sea-view",
             "balcony",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -2892,6 +2903,7 @@
           "room": [
             "pool",
             "balcony",
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -3156,6 +3168,7 @@
           "room": [
             "sea-view",
             "terrace",
+            "tv",
             "five-plus",
             "two-room-plus",
             "beachfront-room"
@@ -3469,6 +3482,7 @@
           "room": [
             "sea-view",
             "balcony",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus",
@@ -3794,7 +3808,9 @@
           "food": [
             "no-food"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [
             "pets"
           ],
@@ -4028,7 +4044,9 @@
           "food": [
             "no-food"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [],
           "beach": [
             "pine-pebble-ldzaa-pitsunda"
@@ -4314,6 +4332,7 @@
           "room": [
             "sea-view",
             "balcony",
+            "tv",
             "kitchen"
           ],
           "stay": [],
@@ -4558,6 +4577,7 @@
           "room": [
             "sea-view",
             "terrace",
+            "tv",
             "beachfront-room"
           ],
           "stay": [
@@ -5156,7 +5176,8 @@
           ],
           "room": [
             "pool",
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [
             "pets"
@@ -5389,6 +5410,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -5651,7 +5673,9 @@
           "food": [
             "no-food"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [],
           "beach": [
             "pebble"
@@ -5974,6 +5998,7 @@
             "pool",
             "balcony",
             "terrace",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -6226,7 +6251,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages",
@@ -6447,6 +6473,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "two-room-plus"
           ],
@@ -6692,6 +6719,7 @@
           "room": [
             "pool",
             "terrace",
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -6959,6 +6987,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "kitchen",
             "two-room-plus"
           ],
@@ -7271,7 +7300,8 @@
           ],
           "room": [
             "sea-view",
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages",
@@ -7512,6 +7542,7 @@
           "room": [
             "sea-view",
             "balcony",
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -7963,6 +7994,7 @@
           ],
           "room": [
             "sea-view",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -8251,6 +8283,7 @@
           "room": [
             "sea-view",
             "balcony",
+            "tv",
             "beachfront-room"
           ],
           "stay": [
@@ -8626,6 +8659,7 @@
           ],
           "room": [
             "sea-view",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -9071,7 +9105,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages"
@@ -9283,6 +9318,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "kitchen",
             "two-room-plus"
           ],
@@ -9496,7 +9532,9 @@
           "food": [
             "no-food"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [
             "apartments"
           ],
@@ -9706,6 +9744,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -9931,7 +9970,9 @@
           "food": [
             "no-food"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [],
           "beach": [
             "pine-pebble-ldzaa-pitsunda"
@@ -10362,6 +10403,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -10905,6 +10947,7 @@
           "room": [
             "pool",
             "balcony",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -11401,6 +11444,7 @@
           "room": [
             "sea-view",
             "balcony",
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -11620,7 +11664,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages",
@@ -11900,6 +11945,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "two-room-plus"
           ],
           "stay": [],
@@ -12156,6 +12202,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -12389,7 +12436,8 @@
             "no-food"
           ],
           "room": [
-            "pool"
+            "pool",
+            "tv"
           ],
           "stay": [
             "cottages",
@@ -12951,7 +12999,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [
             "pets"
@@ -13191,6 +13240,7 @@
           "room": [
             "pool",
             "terrace",
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -13426,6 +13476,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -13931,6 +13982,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -14166,6 +14218,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -14403,7 +14456,8 @@
           ],
           "room": [
             "pool",
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages"
@@ -14645,7 +14699,9 @@
           "food": [
             "breakfast"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [],
           "beach": [
             "pebble"
@@ -14864,7 +14920,8 @@
             "no-food"
           ],
           "room": [
-            "pool"
+            "pool",
+            "tv"
           ],
           "stay": [
             "cottages"
@@ -15123,7 +15180,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [],
           "beach": [
@@ -15742,6 +15800,7 @@
             "pool",
             "balcony",
             "terrace",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -16005,6 +16064,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "two-room-plus"
           ],
@@ -16521,7 +16581,9 @@
           "food": [
             "cafe"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [
             "cottages"
           ],
@@ -16754,18 +16816,20 @@
           "food": [
             "no-food"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [
             "pets"
           ],
           "beach": [
-            "pine-pebble-ldzaa-pitsunda"
+            "pebble"
           ],
           "price": [
             "economy"
           ],
           "distance": [
-            "up-to-5"
+            "up-to-10"
           ]
         },
         "sections": [
@@ -16999,7 +17063,9 @@
           "food": [
             "no-food"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [
             "pets"
           ],
@@ -17640,6 +17706,7 @@
           ],
           "room": [
             "pool",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -17874,7 +17941,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages",
@@ -18124,6 +18192,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -18676,6 +18745,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "kitchen",
             "five-plus"
           ],
@@ -18921,6 +18991,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "two-room-plus"
           ],
@@ -19371,6 +19442,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "five-plus"
           ],
           "stay": [],
@@ -19618,6 +19690,7 @@
           ],
           "room": [
             "pool",
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -20077,7 +20150,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages"
@@ -20291,7 +20365,8 @@
             "no-food"
           ],
           "room": [
-            "pool"
+            "pool",
+            "tv"
           ],
           "stay": [
             "pets"
@@ -20527,6 +20602,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus"
           ],
@@ -20865,7 +20941,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [
             "pets"
@@ -21082,7 +21159,8 @@
             "cafe"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [
             "pets"
@@ -21986,6 +22064,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -22255,6 +22334,7 @@
             "half-board"
           ],
           "room": [
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -22496,7 +22576,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [
             "pets"
@@ -22755,7 +22836,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [],
           "beach": [
@@ -23121,7 +23203,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [],
           "beach": [
@@ -23424,7 +23507,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [
             "cottages"
@@ -23650,7 +23734,9 @@
           "food": [
             "no-food"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [],
           "beach": [
             "pebble"
@@ -23859,6 +23945,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -24854,6 +24941,7 @@
           "room": [
             "pool",
             "terrace",
+            "tv",
             "two-room-plus"
           ],
           "stay": [
@@ -25080,6 +25168,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -25956,7 +26045,9 @@
           "food": [
             "no-food"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [
             "cottages"
           ],
@@ -26169,6 +26260,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -26390,6 +26482,7 @@
           ],
           "room": [
             "pool",
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -26595,6 +26688,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus"
           ],
@@ -27265,7 +27359,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [],
           "beach": [
@@ -27491,6 +27586,7 @@
             "cafe"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -28124,7 +28220,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages"
@@ -28417,7 +28514,8 @@
           ],
           "room": [
             "pool",
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [],
           "beach": [
@@ -28775,6 +28873,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -29022,6 +29121,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "kitchen",
             "beachfront-room"
           ],
@@ -29588,6 +29688,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "beachfront-room"
           ],
           "stay": [],
@@ -29807,6 +29908,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus",
@@ -30844,6 +30946,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus",
@@ -30981,28 +31084,45 @@
       ]
     },
     {
-      "id": 128,
       "source_kind": "kvartira",
       "source_channel": "abhkvartira",
-      "source_message_id": 1185,
+      "source_message_id": 1193,
       "source_topic_id": 652,
       "slug": "chernomorskaya-kvartira-suhum-1201",
-      "title": "\"ЧЕРНОМОРСКАЯ-1\" квартира 2к",
-      "summary": "Сухум. 2 минуты до центрального пляжа, размещение до 5 человек.",
-      "excerpt": "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\"",
+      "title": "\"ЧЕРНОМОРСКАЯ-2\" квартира 2к",
+      "summary": "Сухум. 2 минуты до центрального пляжа, размещение до 6 человек.",
+      "excerpt": "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\". На той же площадке, что и \"Черноморская-1\"",
       "city": "Сухум",
       "location_text": "Сухум, ул. Лакоба 114, 2 этаж",
       "distance_text": "2 минуты до центрального пляжа",
       "beach_text": "2 минуты до центрального пляжа",
-      "capacity_text": "размещение до 5 человек",
+      "capacity_text": "размещение до 6 человек",
       "page_url": "https://абхазберег.рф/kvartira/chernomorskaya-kvartira-suhum-1201/",
-      "telegram_url": "https://t.me/abhkvartira/1185",
+      "telegram_url": "https://t.me/abhkvartira/1193",
       "published_at": "2026-02-04",
       "has_video": false,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/chernomorskaya-kvartira-suhum-1201-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Сухум. 2 минуты до центрального пляжа, размещение до 5 человек.",
+        "lead": "Сухум. 2 минуты до центрального пляжа, размещение до 6 человек.",
+        "sections": [
+          {
+            "label": "✔️КВАРТИРА:",
+            "lines": [
+              "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\". На той же площадке, что и \"Черноморская-1\"",
+              "Есть три односпальные кровати (можно совмещать), двуспальная, диванчик. Оборудованная кухня с посудой. Санузел с ванной, стиральная машинка.",
+              "Wi-Fi , кондиционер."
+            ]
+          },
+          {
+            "label": "✔️РАСПОЛОЖЕНИЕ:",
+            "lines": [
+              "Дом расположен на второй линии. Во дворе есть место для парковки авто. Детская площадка на набережной.",
+              "Пешком 3 минуты до кромки моря. Пляж галечный, прокат шезлонги, зонты.",
+              "В шаговой доступности центральная набережная, знаменитая \"Брехаловка\". Аптеки, продуктовые магазины, остановка (троллейбус, маршрутка). Рестораны, кафе, столовая, салон красоты, остановка, театр, рынок, ботанический сад. В общем, есть всё)"
+            ]
+          }
+        ],
         "prices": [
           {
             "kind": "price",
@@ -31025,6 +31145,7 @@
             "text": "Бронь от 5 дней."
           }
         ],
+        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/chernomorskaya-kvartira-suhum-1201/index.html",
         "filters": {
           "city": [
             "sukhum"
@@ -31049,115 +31170,118 @@
           "distance": [
             "up-to-5"
           ]
-        },
-        "sections": [
-          {
-            "label": "✔️КВАРТИРА:",
-            "lines": [
-              "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\".",
-              "Есть три односпальные кровати (можно совмещать).",
-              "Оборудованная кухня с посудой. Санузел с ванной, стиральная машинка.",
-              "Wi-Fi , кондиционер."
-            ]
-          },
-          {
-            "label": "✔️РАСПОЛОЖЕНИЕ:",
-            "lines": [
-              "Дом расположен на второй линии. Во дворе есть место для парковки авто. Детская площадка на набережной.",
-              "Пешком 3 минуты до кромки моря. Пляж галечный, прокат шезлонги, зонты.",
-              "В шаговой доступности центральная набережная, знаменитая \"Брехаловка\". Аптеки, продуктовые магазины, остановка (троллейбус, маршрутка). Рестораны, кафе, столовая, салон красоты, остановка, театр, рынок, ботанический сад. В общем, есть всё)"
-            ]
-          }
-        ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/chernomorskaya-kvartira-suhum-1201/index.html"
+        }
       },
+      "id": 128,
       "media": [
         {
-          "id": 75107,
+          "id": 128001,
           "media_role": "card",
           "sort_order": 0,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/chernomorskaya-kvartira-suhum-1201-cover.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira-cards/chernomorskaya-kvartira-suhum-1201-cover.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/chernomorskaya-kvartira-suhum-1201-cover.jpg",
           "details": {}
         },
         {
-          "id": 75108,
+          "id": 128002,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-01.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-01.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-01.jpg",
           "details": {}
         },
         {
-          "id": 75109,
+          "id": 128003,
           "media_role": "gallery",
           "sort_order": 2,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-02.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-02.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-02.jpg",
           "details": {}
         },
         {
-          "id": 75110,
+          "id": 128004,
           "media_role": "gallery",
           "sort_order": 3,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-03.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-03.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-03.jpg",
           "details": {}
         },
         {
-          "id": 75111,
+          "id": 128005,
           "media_role": "gallery",
           "sort_order": 4,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-04.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-04.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-04.jpg",
           "details": {}
         },
         {
-          "id": 75112,
+          "id": 128006,
           "media_role": "gallery",
           "sort_order": 5,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-05.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-05.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-05.jpg",
           "details": {}
         },
         {
-          "id": 75113,
+          "id": 128007,
           "media_role": "gallery",
           "sort_order": 6,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-06.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-06.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-06.jpg",
           "details": {}
         },
         {
-          "id": 75114,
+          "id": 128008,
           "media_role": "gallery",
           "sort_order": 7,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-07.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-07.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 128009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 128010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-09.jpg",
           "details": {}
         }
       ]
@@ -31199,6 +31323,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -31334,6 +31459,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus"
           ],
@@ -31555,6 +31681,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus"
           ],
@@ -31783,6 +31910,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -32691,6 +32819,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -32903,7 +33032,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages",
@@ -33148,7 +33278,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages"
@@ -33431,7 +33562,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [
             "turnkey-house"
@@ -33675,7 +33807,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages"
@@ -33904,6 +34037,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -34131,6 +34265,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -34252,6 +34387,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -34455,6 +34591,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus",
@@ -35077,6 +35214,7 @@
           ],
           "room": [
             "sea-view",
+            "tv",
             "kitchen",
             "two-room-plus"
           ],
@@ -35292,6 +35430,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -36150,6 +36289,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -36344,6 +36484,7 @@
           "room": [
             "balcony",
             "terrace",
+            "tv",
             "five-plus",
             "two-room-plus",
             "beachfront-room"
@@ -36576,6 +36717,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "kitchen",
             "five-plus"
           ],
@@ -36777,6 +36919,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -37007,6 +37150,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen"
           ],
           "stay": [],
@@ -37204,6 +37348,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -37415,6 +37560,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -37626,6 +37772,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen"
           ],
           "stay": [],
@@ -37845,6 +37992,7 @@
           ],
           "room": [
             "sea-view",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -38289,7 +38437,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [
             "pets"
@@ -38605,7 +38754,9 @@
           "food": [
             "no-food"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [],
           "beach": [
             "pebble"
@@ -38819,6 +38970,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -39473,6 +39625,7 @@
           ],
           "room": [
             "pool",
+            "tv",
             "kitchen",
             "five-plus"
           ],
@@ -40237,6 +40390,7 @@
           ],
           "room": [
             "pool",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -40466,7 +40620,8 @@
             "cafe"
           ],
           "room": [
-            "sea-view"
+            "sea-view",
+            "tv"
           ],
           "stay": [
             "cottages",
@@ -40808,6 +40963,7 @@
           ],
           "room": [
             "pool",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -41051,6 +41207,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "five-plus"
           ],
           "stay": [],
@@ -41299,6 +41456,7 @@
           ],
           "room": [
             "sea-view",
+            "tv",
             "kitchen",
             "five-plus"
           ],
@@ -41767,6 +41925,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -42029,7 +42188,8 @@
           ],
           "room": [
             "pool",
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages"
@@ -42248,7 +42408,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages"
@@ -42467,6 +42628,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -42731,6 +42893,7 @@
           "room": [
             "pool",
             "balcony",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -42969,7 +43132,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages"
@@ -43202,6 +43366,7 @@
             "cafe"
           ],
           "room": [
+            "tv",
             "beachfront-room"
           ],
           "stay": [
@@ -43463,6 +43628,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus"
           ],
@@ -43812,6 +43978,7 @@
             "sea-view",
             "pool",
             "balcony",
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus",
@@ -44636,6 +44803,7 @@
           "room": [
             "pool",
             "balcony",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -44876,7 +45044,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages",
@@ -45114,7 +45283,9 @@
           "food": [
             "no-food"
           ],
-          "room": [],
+          "room": [
+            "tv"
+          ],
           "stay": [
             "cottages",
             "pets"
@@ -45345,6 +45516,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "beachfront-room"
           ],
           "stay": [
@@ -45799,6 +45971,7 @@
           "room": [
             "sea-view",
             "terrace",
+            "tv",
             "beachfront-room"
           ],
           "stay": [
@@ -46300,7 +46473,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [
             "pets"
@@ -46800,7 +46974,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages",
@@ -47035,7 +47210,8 @@
             "no-food"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages",
@@ -47269,6 +47445,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "beachfront-room"
           ],
           "stay": [
@@ -47884,7 +48061,8 @@
             "cafe"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "pets"
@@ -48178,6 +48356,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -48731,7 +48910,8 @@
             "cafe"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [],
           "beach": [
@@ -48988,6 +49168,7 @@
           ],
           "room": [
             "terrace",
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -49273,6 +49454,7 @@
             "cafe"
           ],
           "room": [
+            "tv",
             "five-plus"
           ],
           "stay": [],
@@ -49833,6 +50015,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -50074,7 +50257,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [
             "pets"
@@ -51151,7 +51335,8 @@
           ],
           "room": [
             "pool",
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [
             "cottages"
@@ -51434,6 +51619,7 @@
           "room": [
             "sea-view",
             "terrace",
+            "tv",
             "kitchen",
             "five-plus",
             "beachfront-room"
@@ -51709,6 +51895,7 @@
           "room": [
             "sea-view",
             "balcony",
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -51954,7 +52141,8 @@
             "cafe"
           ],
           "room": [
-            "terrace"
+            "terrace",
+            "tv"
           ],
           "stay": [
             "cottages",
@@ -52184,7 +52372,8 @@
             "no-food"
           ],
           "room": [
-            "balcony"
+            "balcony",
+            "tv"
           ],
           "stay": [],
           "beach": [
@@ -52451,6 +52640,7 @@
           ],
           "room": [
             "pool",
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -53816,6 +54006,7 @@
             "sea-view",
             "pool",
             "balcony",
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -54053,6 +54244,7 @@
             "cafe"
           ],
           "room": [
+            "tv",
             "kitchen",
             "five-plus",
             "two-room-plus"
@@ -54394,6 +54586,7 @@
             "cafe"
           ],
           "room": [
+            "tv",
             "five-plus",
             "two-room-plus"
           ],
@@ -54874,6 +55067,7 @@
             "no-food"
           ],
           "room": [
+            "tv",
             "kitchen"
           ],
           "stay": [
@@ -55253,6 +55447,7 @@
           ],
           "room": [
             "balcony",
+            "tv",
             "five-plus"
           ],
           "stay": [
@@ -55848,6 +56043,491 @@
           "storage_path": "hotels/kashtak-domiki-667/photo-09.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/kashtak-domiki-667/photo-09.jpg",
           "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 4743,
+      "source_topic_id": null,
+      "slug": "aleksandriya-domiki-4743",
+      "title": "\"АЛЕКСАНДРИЯ\" домики",
+      "summary": "Гагра. 10 минут до пляжа, галечный, размещение до 4 человек.",
+      "excerpt": "Одиннадцать эко-домиков, расположенных в Жоэкварском ущелье у горной реки",
+      "city": "Гагра",
+      "location_text": "Гагра, ул. Русских Добровольцев, 32А",
+      "distance_text": "10 минут до пляжа, галечный",
+      "beach_text": "10 минут до пляжа, галечный",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/aleksandriya-domiki-4743/",
+      "telegram_url": "https://t.me/abhazbooking/4743",
+      "published_at": "2026-06-12",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/aleksandriya-domiki-4743.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 10 минут до пляжа, галечный, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Одиннадцать эко-домиков, расположенных в Жоэкварском ущелье у горной реки.",
+              "В домиках двуспальная и односпальная кровати, прикроватные тумбочки, шкаф. Сан узел с душем. Доп место для 4 человека - раскладная кровать.",
+              "Оснащение: кондиционер, телевизор, Wi‑Fi, мини-холодильник, фен."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Общая кухня для самостоятельного приготовления: плита, холодильник, микроволновка, чайник, вся посуда.",
+              "Мангальная зона и зона отдыха.",
+              "Горная речка прямо за забором, можно купаться в жару."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Живописный район Старой Гагры. Рядом Комсомольский и Приморский парки, дворец принца Ольденбургского.",
+              "В шаговой доступности магазины, кафе, ресторан Аббата, остановка общественного транспорта.",
+              "До набережной и галечного пляжа 10 минут пешком."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с животными возможно по согласованию.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за трехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место — 500₽."
+          }
+        ],
+        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/aleksandriya-domiki-4743/index.html",
+        "filters": {
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "economy"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "terrace"
+          ],
+          "stay": [
+            "cottages",
+            "pets"
+          ]
+        }
+      },
+      "id": 1155,
+      "media": [
+        {
+          "id": 1155001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/aleksandriya-domiki-4743.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/aleksandriya-domiki-4743.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/aleksandriya-domiki-4743.jpg",
+          "details": {}
+        },
+        {
+          "id": 1155002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandriya-domiki-4743/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1155003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandriya-domiki-4743/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1155004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandriya-domiki-4743/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1155005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandriya-domiki-4743/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1155006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandriya-domiki-4743/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1155007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandriya-domiki-4743/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1155008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandriya-domiki-4743/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1155009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandriya-domiki-4743/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1155010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandriya-domiki-4743/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandriya-domiki-4743/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1155011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/aleksandriya-domiki-4743/video-01-1800k.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/aleksandriya-domiki-4743/video-01-1800k.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/aleksandriya-domiki-4743/video-01-1800k.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/4752",
+            "telegram_url": "https://t.me/abhazbooking/4752"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 4783,
+      "source_topic_id": null,
+      "slug": "boho-kompleks-polnogo-schastya-u-morya-4783",
+      "title": "\"БОХО\" комплекс полного счастья у моря!",
+      "summary": "Гагра. 0 минут до пляжа, размещение до 4 человек.",
+      "excerpt": "Как выглядит ваш идеальный отдых? 😎🌊",
+      "city": "Гагра",
+      "location_text": "Гагра, ул. Лакоба 99",
+      "distance_text": "0 минут до пляжа",
+      "beach_text": "0 минут до пляжа",
+      "capacity_text": "Размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/",
+      "telegram_url": "https://t.me/abhazbooking/4783",
+      "published_at": "2026-06-12",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/boho-kompleks-polnogo-schastya-u-morya-4783.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 0 минут до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "",
+            "lines": [
+              "Как выглядит ваш идеальный отдых? 😎🌊",
+              "🏖💦 БАССЕЙН прямо на берегу - нырнул, вышел, и перед тобой море до горизонта",
+              "🧖‍♀️🌊 САУНА у воды - прогрелся, выбежал босиком и в солёную волну",
+              "🪵✨ Полностью деревянные ДОМИКИ с панорамными окнами - пахнет деревом, солнцем и свободой",
+              "🍹🏄‍♂️ ДНЕМ - пляж, бар, коктейли и сапы",
+              "💃🕺🌙 ВЕЧЕРОМ - диджей, огни, музыка, смех, как на лучших курортах, где умеют отдыхать красиво и веселиться от души",
+              "⏳❤️ Здесь знакомятся, танцуют, встречают закаты и не смотрят на часы",
+              "\"БОХО\" - это место, куда приезжают за морем, а уезжают с эмоциями! 🌊💛🎉"
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ И УСЛУГИ:",
+            "lines": [
+              "Свой оборудованный пляж, бар у моря и новая VIP-зона с бассейном и сауной прямо на берегу.",
+              "На территории: качели для красивых фото, Wi-Fi до 50 метров, чистые кабинки для переодевания и душевые лейки. Шезлонги с матрасами и зонтами - бесплатно для гостей.",
+              "Работает ресторан с абхазской и европейской кухней. Завтраки включены в стоимость. Вкусные блюда, приятные цены, панорамный вид на море.",
+              "Для активного отдыха - скидки на банан, ватрушку и гидроцикл. Сапы - 1 час в день бесплатно, далее - скидка 50%. Для детей есть площадка и батут.",
+              "Подогреваемый бассейн 7 × 12 м у пляжа и оборудованая VIP-зона с электрической сауной.",
+              "В этот период доступно: пользование бассейном, шезлонги, парная.",
+              "Комната отдыха в это время не предоставляется.",
+              "Еду и напитки гости могут заказать отдельно - обслуживание официантами.",
+              "С 18:00 доступ в ВИП-зону и к бассейну только для гостей отеля."
+            ]
+          },
+          {
+            "label": "✔️КОТТЕДЖИ:",
+            "lines": [
+              "Проcтоpные коттeджи c панoрaмными окнaми прямо на море.",
+              "В каждом - oтдeльная cпaльня c кoмфортной двуспальной кроватью, кондиционером и мягким освещением.",
+              "Просторная зона отдыха с диваном, обеденным столом, телевизором со Smаrt ТV и кондиционером, Wi-Fi, мини-бар.",
+              "Полностью оборудованная кухня (холодильник, микроволновка, чайник, мойка, индукционная плита, столовые приборы и посуда).",
+              "Современная ванная комната с душевой зоной \"тропический дождь\" и гигиеническими принадлежностями. Предоставляются пляжные полотенца, халаты и тапочки.",
+              "Стильная терраса с мебелью для отдыха на свежем воздухе."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(указаны за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "12000₽/сутки - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "16000₽/сутки - июль, август, сентябрь по 14 число"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽/сутки - доп место"
+          },
+          {
+            "kind": "price",
+            "text": "12000₽/сутки - сентябрь с 15 числа"
+          },
+          {
+            "kind": "price",
+            "text": "1500₽/сутки - доп. место"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 3 лет бесплатно (с завтраком)"
+          },
+          {
+            "kind": "price",
+            "text": "С 9:00 до 18:00 формат свободного посещения VIP-зоны. Для проживающих гостей - вход бесплатный, включён в стоимость проживания. (Для сторонних гостей - 2 500 ₽ с человека)"
+          },
+          {
+            "kind": "price",
+            "text": "С 18:00 сауна работает только по индивидуальному бронированию. (Стоимость - 5 000 ₽ в час). Включено: парная, комната отдыха, санузел."
+          }
+        ],
+        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/index.html",
+        "filters": {
+          "distance": [
+            "beachfront"
+          ],
+          "food": [
+            "breakfast",
+            "cafe"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "pool",
+            "terrace",
+            "kitchen",
+            "beachfront-room"
+          ],
+          "stay": [
+            "cottages",
+            "pets"
+          ]
+        }
+      },
+      "id": 1156,
+      "media": [
+        {
+          "id": 1156001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/boho-kompleks-polnogo-schastya-u-morya-4783.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/boho-kompleks-polnogo-schastya-u-morya-4783.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/boho-kompleks-polnogo-schastya-u-morya-4783.jpg",
+          "details": {}
+        },
+        {
+          "id": 1156002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1156003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1156004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1156005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1156006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1156007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1156008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1156009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1156010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/video-01-1800k.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/video-01-1800k.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/video-01-1800k.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/4791",
+            "telegram_url": "https://t.me/abhazbooking/4791"
+          }
         }
       ]
     }

@@ -2048,6 +2048,7 @@ a.podborki-card--link:hover {
 .podborki-index__link--midrange { --poster-icon: "₽₽"; --poster-a: #7c6044; --poster-b: #d48764; --poster-c: #f0c083; }
 .podborki-index__link--balcony { --poster-icon: "▤"; --poster-a: #805c45; --poster-b: #d59d68; --poster-c: #efd0a2; }
 .podborki-index__link--veranda { --poster-icon: "☕"; --poster-a: #7a6542; --poster-b: #c8845d; --poster-c: #efd2a0; }
+.podborki-index__link--tv { --poster-icon: "▣"; --poster-a: #4a5568; --poster-b: #7b8ea8; --poster-c: #c5d4e8; }
 .podborki-index__link--rooms { --poster-icon: "2К"; --poster-a: #456b5d; --poster-b: #95a66d; --poster-c: #d8c98a; }
 .podborki-index__link--pets { --poster-icon: "♢"; --poster-a: #7b5848; --poster-b: #d47a61; --poster-c: #f0be8a; }
 .podborki-index__link--kitchen { --poster-icon: "◑"; --poster-a: #6f6047; --poster-b: #d3845d; --poster-c: #efd29a; }

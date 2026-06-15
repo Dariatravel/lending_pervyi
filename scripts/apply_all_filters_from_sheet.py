@@ -23,7 +23,7 @@ EMPTY_FILTERS: dict[str, list[str]] = {g: [] for g in ('distance', 'food', 'pric
 
 SPREADSHEET_ID = '135fxeZX5OE30rH3Sg5KWpTR4VuhBntCzGrTk0WcdTBY'
 SHEET_NAME = 'СОЦСЕТИ'
-RANGE = f'{SHEET_NAME}!A2:BK'
+RANGE = f'{SHEET_NAME}!A2:BL'
 
 # 0-based индексы колонок
 COL = {
@@ -53,6 +53,7 @@ COL = {
     'room_pool': 45,        # AT
     'room_balcony': 61,     # BJ
     'room_terrace': 62,     # BK
+    'room_tv': 63,          # BL
 
     # Особенности размещения
     'stay_cottages': 42,    # AQ
@@ -331,6 +332,8 @@ def infer_room(row: list[str]) -> list[str]:
         values.append('balcony')
     if has_yes(get_cell(row, 'room_terrace')):
         values.append('terrace')
+    if has_yes(get_cell(row, 'room_tv')):
+        values.append('tv')
     if has_yes(get_cell(row, 'room_kitchen')):
         values.append('kitchen')
     if has_yes(get_cell(row, 'room_five_plus')):

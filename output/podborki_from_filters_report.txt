@@ -14,6 +14,7 @@
 - varianty-5-12-tr-srednyak: 94
 - balkony: 74
 - veranda: 63
+- televizor-v-nomere: 160
 - dvuhkomnatnye-i-bolee: 71
 - sobaki-varianty: 98
 - svoya-kuhnya-v-nomere: 93
@@ -21,7 +22,7 @@
 - kvartiry-vse-varianty: 51
 - gory-oteli-v-gorah: 14
 - ldzaa-vse-varianty: 75
-- sosnovyy-plyazh: 51
+- sosnovyy-plyazh: 50
 - vid-na-more-pryamoy-bokovoy: 36
 - basseyn-vse-varianty: 45
 - pitanie-v-otele-ili-svoe-kafe: 57
