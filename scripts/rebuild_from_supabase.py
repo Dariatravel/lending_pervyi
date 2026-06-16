@@ -1027,6 +1027,7 @@ def normalize_catalog_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 def rebuild_catalog(rows: list[dict[str, Any]]) -> None:
     rows = normalize_catalog_rows(rows)
+    rows = [row for row in rows if row.get("is_active", True)]
     hotel_rows = [row for row in rows if row.get("source_kind") == "hotel"]
     kvartira_excluded = {"general-1409", "villa-suhum-959"}
     kvartira_rows = [

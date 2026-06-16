@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-15T20:31:48.067000+00:00",
+  "generated_at": "2026-06-16T06:40:34.140089+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 227,
-  "listings_hotels": 165,
-  "listings_kvartira": 62,
+  "listings_total": 225,
+  "listings_hotels": 164,
+  "listings_kvartira": 61,
   "listings": [
     {
       "id": 1154,
@@ -35600,7 +35600,7 @@
       "published_at": "2026-02-03",
       "has_video": false,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/bi-heppi-kottedzh-suhum-1130-cover.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Сухум. 3 минуты до пляжа, размещение 8 человек.",
         "prices": [
@@ -44477,7 +44477,7 @@
       "published_at": "2026-01-23",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/boho-kompleks-polnogo-schastya-u-morya-3054.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Гагра. 0 минут до пляжа, размещение до 4 человек.",
         "prices": [
