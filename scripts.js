@@ -4780,7 +4780,7 @@
   }
 
   /** Slugs removed from UI (e.g. Telegram service posts, not real listings). */
-  const KVARTIRA_EXCLUDED_SLUGS = new Set(["general-1409", "villa-suhum-959"]);
+  const KVARTIRA_EXCLUDED_SLUGS = new Set(["general-1409"]);
 
   async function hydrateKvartiraCatalog(filtersController) {
     const grid = document.getElementById("kvartira-catalog-grid");
