@@ -78,8 +78,11 @@
     /** Отдельный URL-парам (hotel / guesthouse / cabin), не смешиваем с группами `data-filter-*` на карточках. Состояние категории живёт рядом с группами в createFilterStore (committedCat / draftCat). */
     catalogParamKey: "catalog",
     groupOrder: ["distance", "food", "price", "city", "beach", "room", "stay"],
-    /** OR внутри группы / AND между группами — см. matcher в initFilters */
+    /** OR внутри группы по умолчанию; для room — AND (все выбранные чипы). Между группами — AND. */
     combineWithinGroup: "any",
+    combineWithinGroupByGroup: {
+      room: "all",
+    },
     combineAcrossGroups: "all",
     groupLabels: {
       distance: "Расстояние до пляжа",
@@ -3339,7 +3342,13 @@
     }));
   }
 
-  /** AND между группами, OR выбора внутри группы; опционально slug каталога типа размещения по тексту карточки. */
+  /** AND между группами; внутри группы — OR или AND по FILTER_CONFIG. */
+  function filterGroupCombineMode(group) {
+    const overrides = FILTER_CONFIG.combineWithinGroupByGroup;
+    if (overrides && overrides[group]) return overrides[group];
+    return FILTER_CONFIG.combineWithinGroup || "any";
+  }
+
   function catalogIndexedEntryPassesFilters(
     entry,
     selected,
@@ -3352,14 +3361,21 @@
     for (const group of filterGroups) {
       if (!selected[group] || selected[group].size === 0) continue;
       const bucket = entry.byGroup[group];
-      let ok = false;
-      for (const choice of selected[group]) {
-        if (bucket.has(choice)) {
-          ok = true;
-          break;
+      const combineMode = filterGroupCombineMode(group);
+      if (combineMode === "all") {
+        for (const choice of selected[group]) {
+          if (!bucket.has(choice)) return false;
         }
+      } else {
+        let ok = false;
+        for (const choice of selected[group]) {
+          if (bucket.has(choice)) {
+            ok = true;
+            break;
+          }
+        }
+        if (!ok) return false;
       }
-      if (!ok) return false;
     }
     if (slug && !matchesCatalogSlug(slug, catalogTextForCard(entry.el))) {
       return false;
