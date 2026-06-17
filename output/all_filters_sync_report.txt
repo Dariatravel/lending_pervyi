@@ -1,43 +1,41 @@
 Готово. Массовый перенос фильтров из СОЦСЕТИ выполнен.
-Режим snapshot-only: False
+Режим snapshot-only: True
 
 Режим: только объекты с HTML на сайте
-Строк в СОЦСЕТИ: 243
-Разобрано ссылок Telegram: 222
-Без ссылки Telegram: 19
+Строк в СОЦСЕТИ: 241
+Разобрано ссылок Telegram: 223
+Без ссылки Telegram: 16
 Ссылка не распознана: 1
-Обработано объектов на сайте (есть строка в таблице): 210
-Обновлено объектов в Supabase: 161
-Обновлено объектов в catalog snapshot: 161
-Без изменений: 49
+Обработано объектов на сайте (есть строка в таблице): 213
+Обновлено объектов в Supabase: 0
+Обновлено объектов в catalog snapshot: 0
+Без изменений: 213
 Пропущено (нет HTML-страницы на сайте): 0
-Не найдено в Supabase по channel+message_id: 12
+Не найдено в Supabase по channel+message_id: 10
 
 Отчёт по группам фильтров:
-- distance: заполнено по таблице (непустые) у 208 объектов, изменено у 1 объектов
-  значения: up-to-5:96, up-to-10:59, over-10:34, beachfront:33
-- food: заполнено по таблице (непустые) у 210 объектов, изменено у 0 объектов
-  значения: no-food:178, cafe:40, breakfast:19, full-board:4, half-board:1
-- price: заполнено по таблице (непустые) у 208 объектов, изменено у 0 объектов
-  значения: midrange:96, economy:83, premium:43
-- city: заполнено по таблице (непустые) у 208 объектов, изменено у 0 объектов
-  значения: ldzaa:73, sukhum:38, pitsunda:38, gagra:28, alakhadzy:19, new-afon:10, gudauta:9, tsandripsh:7
-- beach: заполнено по таблице (непустые) у 209 объектов, изменено у 1 объектов
-  значения: pebble:107, pine-pebble-ldzaa-pitsunda:52, pitsunda-bay-mixed:41, sand-sukhum:17, sand-ldzaa:5
-- room: заполнено по таблице (непустые) у 209 объектов, изменено у 161 объектов
-  значения: tv:170, five-plus:97, kitchen:83, two-room-plus:74, balcony:71, terrace:68, pool:49, sea-view:34, beachfront-room:29
-- stay: заполнено по таблице (непустые) у 168 объектов, изменено у 0 объектов
+- distance: заполнено по таблице (непустые) у 211 объектов, изменено у 0 объектов
+  значения: up-to-5:97, up-to-10:59, over-10:34, beachfront:33
+- food: заполнено по таблице (непустые) у 213 объектов, изменено у 0 объектов
+  значения: no-food:179, cafe:40, breakfast:19, full-board:4, half-board:1
+- price: заполнено по таблице (непустые) у 211 объектов, изменено у 0 объектов
+  значения: midrange:97, economy:83, premium:43
+- city: заполнено по таблице (непустые) у 211 объектов, изменено у 0 объектов
+  значения: ldzaa:73, pitsunda:39, sukhum:38, gagra:28, alakhadzy:19, new-afon:10, gudauta:9, tsandripsh:7
+- beach: заполнено по таблице (непустые) у 212 объектов, изменено у 0 объектов
+  значения: pebble:107, pine-pebble-ldzaa-pitsunda:53, pitsunda-bay-mixed:41, sand-sukhum:17, sand-ldzaa:5
+- room: заполнено по таблице (непустые) у 212 объектов, изменено у 0 объектов
+  значения: tv:171, five-plus:98, kitchen:83, two-room-plus:75, balcony:71, terrace:68, pool:50, sea-view:34, beachfront-room:29
+- stay: заполнено по таблице (непустые) у 170 объектов, изменено у 0 объектов
   значения: pets:99, cottages:79, apartments:40, turnkey-house:14, no-small-kids:1
 
 Нераспознанные ссылки Telegram (из таблицы):
 - описание спрятала в вк видео, скрыт доступ
 
 Ссылки, не найденные в Supabase:
-- https://t.me/abhazbooking/4743?single
 - https://t.me/abhazbooking/4202?single
 - https://t.me/abhazbooking/4377
 - https://t.me/abhazbooking/4367?single
-- https://t.me/abhazbooking/4783
 - https://t.me/abhazbooking/4318?single
 - https://t.me/abhazbooking/2422
 - https://t.me/abhazbooking/4419?single

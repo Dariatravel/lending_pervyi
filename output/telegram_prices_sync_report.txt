@@ -1,25 +1,26 @@
 Синхронизация блока ЦЕНЫ из Telegram
 
-Кандидатов: 23
-Обновлено: 23
-Пропущено: 0
+Кандидатов: 224
+Обновлено: 24
+Пропущено: 200
 Ошибок: 0
 
 Обновлены:
-- art-otel-s-pitaniem-i-basseynom-4479
+- aleksandriya-domiki-4743
 - assir-pitsunda-gostevoy-dom-v-tsentre-4173
 - avrora-inn-novyy-otel-v-tsentre-goroda-2641
 - belveder-gostevoy-dom-3602
-- domiki-u-mariny-otdyh-u-morya-3922
-- kameliya-domiki-3084
 - kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459
 - liliya-uyutnyy-otel-s-zavtrakami-3832
-- oazis-villa-4052
+- mziya-gostevye-nomera-3659
 - parus-vidovoy-otel-s-basseynom-i-stolovoy-2602
+- sanni-houm-domiki-s-basseynom-4731
 - sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390
 - staryy-prichal-gostevoy-dom-u-morya-3891
 - tsarskoe-selo-anhua-kottedzhi-3871
+- v-gostyah-u-belochki-domiki-i-nomera-2879
 - villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716
+- afina-kvartira-2k-1488
 - argo-kvartira-1k-pitsunda-940
 - flora-dom-alahadze-1163
 - magnoliya-kvartira-3k-gagra-1253
@@ -29,3 +30,45 @@
 - siti-gagra-kvartira-2k-gagra-1242
 - tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142
 - yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152
+
+Пропущены:
+- abaza-otel-3614: already OK after audit
+- abyrlash-otel-na-plyazhe-3239: already OK after audit
+- aduney-gostevoy-dom-3181: already OK after audit
+- aisha-otel-s-basseynami-2651: already OK after audit
+- akva-otel-s-basseynom-i-zavtrakami-3114: already OK after audit
+- alma-domiki-na-beregu-2996: already OK after audit
+- amor-apartamenty-s-kuhney-i-basseynom-3487: already OK after audit
+- amor-domiki-v-tsentre-gagry-2986: already OK after audit
+- amzara-otel-s-vinodelney-u-zapovednika-2668: already OK after audit
+- antaa-gostinitsa-u-sosnovogo-plyazha-2899: already OK after audit
+- apra-gostevoy-dom-na-plyazhe-4348: already OK after audit
+- apsa-park-otel-v-zapovednike-2611: already OK after audit
+- arina-mini-otel-2792: already OK after audit
+- art-otel-s-pitaniem-i-basseynom-4479: already OK after audit
+- assir-gostevoy-dom-2840: already OK after audit
+- atmosfernaya-kvartira-2k-3902: already OK after audit
+- bagripsh-domiki-na-beregu-s-pitaniem-4399: already OK after audit
+- banan-i-funduk-gostevoy-dom-2849: already OK after audit
+- belaya-dacha-otel-s-pitaniem-4630: already OK after audit
+- belaya-loshad-glemping-s-basseynom-3650: already OK after audit
+- belaya-rechka-gostevoy-dom-s-kafe-3517: already OK after audit
+- belyy-dom-domiki-i-apartamenty-4081: already OK after audit
+- bereg-svyatoy-sofii-otel-4279: already OK after audit
+- bi-heppi-apart-otel-3334: already OK after audit
+- blek-si-otel-s-basseynom-i-pitaniem-3912: already OK after audit
+- boho-kompleks-polnogo-schastya-u-morya-3054: already OK after audit
+- boho-kompleks-polnogo-schastya-u-morya-4783: already OK after audit
+- bonzhur-mini-otel-2542: already OK after audit
+- briz-domiki-na-beregu-4510: already OK after audit
+- bugenvilleya-otel-s-basseynom-3044: already OK after audit
+- bungalo-glemping-3623: already OK after audit
+- chegem-gostevoy-dom-3727: already OK after audit
+- damira-otel-v-tsentre-goroda-2830: already OK after audit
+- danelyan-semeynyy-otel-so-stolovoy-4652: already OK after audit
+- delfin-domiki-3024: already OK after audit
+- demi-mokko-dva-domika-3353: already OK after audit
+- diar-domiki-s-basseynom-4192: already OK after audit
+- domiki-u-mariny-otdyh-u-morya-3922: already OK after audit
+- dyshi-glubzhe-domiki-v-gorah-3459: already OK after audit
+- dyuna-domiki-3717: already OK after audit
