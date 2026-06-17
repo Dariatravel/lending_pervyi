@@ -6965,6 +6965,13 @@ html:has(> body.objects-map-page) {
   font-weight: 700;
 }
 
+.faq-list p a.faq-trust-link {
+  color: #294a3d;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
 .reviews-scroller {
   display: grid;
   grid-auto-flow: column;

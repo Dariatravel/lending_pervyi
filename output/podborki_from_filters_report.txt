@@ -1,18 +1,18 @@
 Подборки пересобраны по data-filter-* из каталога.
 Источник data-filter-* — Google Sheet СОЦСЕТИ через apply_all_filters_from_sheet.py.
 
-Карточек в каталоге: 216
+Карточек в каталоге: 215
 
 - doma-pod-klyuch-vse-varianty: 14
 - gagra-vse-varianty: 28
 - gudauta-vse-varianty: 9
 - novyy-afon-vse-varianty: 9
 - pitsunda-vse-varianty: 35
-- suhum-vse-varianty: 39
+- suhum-vse-varianty: 38
 - alahadzy-vse-varianty: 16
-- varianty-do-5-tr-ekonom: 82
+- varianty-do-5-tr-ekonom: 81
 - varianty-5-12-tr-srednyak: 91
-- balkony: 71
+- balkony: 70
 - veranda: 62
 - televizor-v-nomere: 153
 - dvuhkomnatnye-i-bolee: 68
@@ -27,7 +27,7 @@
 - basseyn-vse-varianty: 44
 - pitanie-v-otele-ili-svoe-kafe: 57
 - bereg-morya-oteli-na-beregu: 31
-- peschanyy-plyazh-suhum: 17
+- peschanyy-plyazh-suhum: 16
 - peschanyy-ldzaa: 5
 - varianty-dorozhe-12-tr-premium: 42
 - pyatero-gostey-i-bolee: 95

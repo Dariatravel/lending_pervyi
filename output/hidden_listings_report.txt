@@ -1,7 +1,7 @@
 Скрытые объекты (is_active=false, убраны из каталога и подборок)
 
-Всего в hidden_listings.json: 23
-Деактивировано в catalog snapshot: 11
+Всего в hidden_listings.json: 24
+Деактивировано в catalog snapshot: 12
 
 Скрыты:
 - bi-heppi-kottedzh-suhum-1130
@@ -10,6 +10,7 @@
 - karalina-apartamenty-3124
 - mandarinovyy-dvorik-dom-pod-klyuch-3789
 - mechta-apartamenty-s-kuhney-3363
+- mziya-apartamenty-1396
 - na-vremya-v-rayu-zhile-pod-klyuch-4357
 - nasta-apartamenty-3258
 - sekret-garden-apartamenty-4162

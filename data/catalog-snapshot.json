@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-17T11:49:48.631652+00:00",
+  "generated_at": "2026-06-17T12:30:03.564389+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 216,
-  "listings_hotels": 155,
+  "listings_total": 215,
+  "listings_hotels": 154,
   "listings_kvartira": 61,
   "listings": [
     {
@@ -55660,7 +55660,7 @@
       "published_at": "2025-06-09",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mziya-apartamenty-1396.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Сухум. ️5 минут до песчаного пляжа, размещение до 3х человек.",
         "prices": [
