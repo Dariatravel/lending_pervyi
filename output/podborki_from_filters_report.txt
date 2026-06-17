@@ -1,33 +1,33 @@
 Подборки пересобраны по data-filter-* из каталога.
 Источник data-filter-* — Google Sheet СОЦСЕТИ через apply_all_filters_from_sheet.py.
 
-Карточек в каталоге: 224
+Карточек в каталоге: 216
 
-- doma-pod-klyuch-vse-varianty: 16
-- gagra-vse-varianty: 29
-- gudauta-vse-varianty: 10
-- novyy-afon-vse-varianty: 11
+- doma-pod-klyuch-vse-varianty: 14
+- gagra-vse-varianty: 28
+- gudauta-vse-varianty: 9
+- novyy-afon-vse-varianty: 9
 - pitsunda-vse-varianty: 35
-- suhum-vse-varianty: 40
+- suhum-vse-varianty: 39
 - alahadzy-vse-varianty: 16
 - varianty-do-5-tr-ekonom: 82
-- varianty-5-12-tr-srednyak: 95
-- balkony: 73
-- veranda: 64
-- televizor-v-nomere: 160
-- dvuhkomnatnye-i-bolee: 71
-- sobaki-varianty: 98
-- svoya-kuhnya-v-nomere: 92
-- domiki-vse-varianty: 74
-- kvartiry-vse-varianty: 50
-- gory-oteli-v-gorah: 14
-- ldzaa-vse-varianty: 75
-- sosnovyy-plyazh: 49
-- vid-na-more-pryamoy-bokovoy: 36
-- basseyn-vse-varianty: 45
+- varianty-5-12-tr-srednyak: 91
+- balkony: 71
+- veranda: 62
+- televizor-v-nomere: 153
+- dvuhkomnatnye-i-bolee: 68
+- sobaki-varianty: 94
+- svoya-kuhnya-v-nomere: 84
+- domiki-vse-varianty: 73
+- kvartiry-vse-varianty: 47
+- gory-oteli-v-gorah: 13
+- ldzaa-vse-varianty: 72
+- sosnovyy-plyazh: 48
+- vid-na-more-pryamoy-bokovoy: 34
+- basseyn-vse-varianty: 44
 - pitanie-v-otele-ili-svoe-kafe: 57
-- bereg-morya-oteli-na-beregu: 33
+- bereg-morya-oteli-na-beregu: 31
 - peschanyy-plyazh-suhum: 17
 - peschanyy-ldzaa: 5
-- varianty-dorozhe-12-tr-premium: 46
-- pyatero-gostey-i-bolee: 101
+- varianty-dorozhe-12-tr-premium: 42
+- pyatero-gostey-i-bolee: 95

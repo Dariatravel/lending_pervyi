@@ -239,26 +239,22 @@
       if (!viewEl) return;
       viewEl.replaceChildren();
 
-      const hotels = visibleCards.filter(isHotelCatalogCard).sort((a, b) => {
+      const sorted = [...visibleCards].sort((a, b) => {
         const cityDiff = citySortIndex(a) - citySortIndex(b);
         if (cityDiff !== 0) return cityDiff;
         return catalogCardTitleKey(a).localeCompare(catalogCardTitleKey(b), "ru");
       });
 
-      const kvCards = visibleCards.filter(isKvartiraCatalogCard).sort((a, b) =>
-        catalogCardTitleKey(a).localeCompare(catalogCardTitleKey(b), "ru")
-      );
-
       let rank = 0;
-      const hotelsByCity = new Map();
-      hotels.forEach((card) => {
+      const cardsByCity = new Map();
+      sorted.forEach((card) => {
         const key = catalogCardCityKey(card);
-        if (!hotelsByCity.has(key)) hotelsByCity.set(key, []);
-        hotelsByCity.get(key).push(card);
+        if (!cardsByCity.has(key)) cardsByCity.set(key, []);
+        cardsByCity.get(key).push(card);
       });
 
       [...SELECTION_CITY_ORDER, "other"].forEach((cityKey) => {
-        const group = hotelsByCity.get(cityKey) || [];
+        const group = cardsByCity.get(cityKey) || [];
         if (!group.length) return;
         rank = appendRegionBlock(
           viewEl,
@@ -267,10 +263,6 @@
           rank
         );
       });
-
-      if (kvCards.length) {
-        rank = appendRegionBlock(viewEl, "КВАРТИРЫ И ДОМА", kvCards, rank);
-      }
     }
 
     function setShareButtonsVisible(show) {

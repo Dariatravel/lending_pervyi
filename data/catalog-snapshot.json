@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-16T08:08:25.464675+00:00",
+  "generated_at": "2026-06-17T11:49:48.631652+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 224,
-  "listings_hotels": 163,
+  "listings_total": 216,
+  "listings_hotels": 155,
   "listings_kvartira": 61,
   "listings": [
     {
@@ -7964,7 +7964,7 @@
       "published_at": "2026-05-01",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/na-vremya-v-rayu-zhile-pod-klyuch-4357.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Новый Афон. 15 минут до пляжа, галечный, размещение до 8 человек.",
         "prices": [
@@ -9719,7 +9719,7 @@
       "published_at": "2026-04-28",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/studio-san-amra-studiya-na-plyazhe-4270.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Лдзаа. 0 минут до пляжа, размещение до 2 человек.",
         "prices": [
@@ -10385,7 +10385,7 @@
       "published_at": "2026-04-24",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/tihaya-obitel-dom-pod-klyuch-4230.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Сухум. 15 минут до пляжа, размещение до 6 человек.",
         "prices": [
@@ -11397,7 +11397,7 @@
       "published_at": "2026-04-16",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sekret-garden-apartamenty-4162.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Гагра. 8 минут до пляжа, размещение до 3 человек.",
         "prices": [
@@ -18146,7 +18146,7 @@
       "published_at": "2026-03-21",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mandarinovyy-dvorik-dom-pod-klyuch-3789.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Новый Афон. пляж в 15 минутах пешком, галечный, размещение до 9 человек.",
         "prices": [
@@ -26663,7 +26663,7 @@
       "published_at": "2026-02-13",
       "has_video": false,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/dyshi-glubzhe-domiki-v-gorah-3459.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "13 км Рицинского ущелья. до пляжа 30 минут на авто, размещение до 6 человек.",
         "prices": [
@@ -30096,7 +30096,7 @@
       "published_at": "2026-02-04",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mechta-apartamenty-s-kuhney-3363.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Лдзаа. 1 минута до пляжа, размещение 4-5 человек.",
         "prices": [
@@ -39619,7 +39619,7 @@
       "published_at": "2026-01-31",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/nasta-apartamenty-3258.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Лдзаа. ️ 3 минуты пешком до пляжа, размещение до 4 человек.",
         "prices": [

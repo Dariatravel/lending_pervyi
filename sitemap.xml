@@ -4,6 +4,9 @@
     <loc>https://абхазберег.рф/</loc>
   </url>
   <url>
+    <loc>https://абхазберег.рф/kvartira/</loc>
+  </url>
+  <url>
     <loc>https://абхазберег.рф/blog/</loc>
   </url>
   <url>
@@ -262,9 +265,6 @@
     <loc>https://абхазберег.рф/kvartira/na-vremya-v-rayu-zhile-pod-klyuch-1522/</loc>
   </url>
   <url>
-    <loc>https://абхазберег.рф/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/</loc>
-  </url>
-  <url>
     <loc>https://абхазберег.рф/hotels/apra-gostevoy-dom-na-plyazhe-4348/</loc>
   </url>
   <url>
@@ -283,16 +283,10 @@
     <loc>https://абхазберег.рф/kvartira/mimoza-3k-kvartira-1499/</loc>
   </url>
   <url>
-    <loc>https://абхазберег.рф/hotels/studio-san-amra-studiya-na-plyazhe-4270/</loc>
-  </url>
-  <url>
     <loc>https://абхазберег.рф/hotels/svetlyy-dvorik-gostevoy-dom-ekonom-4259/</loc>
   </url>
   <url>
     <loc>https://абхазберег.рф/kvartira/tihaya-obitel-dom-pod-klyuch-1477/</loc>
-  </url>
-  <url>
-    <loc>https://абхазберег.рф/hotels/tihaya-obitel-dom-pod-klyuch-4230/</loc>
   </url>
   <url>
     <loc>https://абхазберег.рф/hotels/diar-domiki-s-basseynom-4192/</loc>
@@ -302,9 +296,6 @@
   </url>
   <url>
     <loc>https://абхазберег.рф/kvartira/sekret-garden-apartamenty-1465/</loc>
-  </url>
-  <url>
-    <loc>https://абхазберег.рф/hotels/sekret-garden-apartamenty-4162/</loc>
   </url>
   <url>
     <loc>https://абхазберег.рф/hotels/mokko-briz-dva-domika-4152/</loc>
@@ -380,9 +371,6 @@
   </url>
   <url>
     <loc>https://абхазберег.рф/hotels/sia-lend-baza-otdyha-3800/</loc>
-  </url>
-  <url>
-    <loc>https://абхазберег.рф/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/</loc>
   </url>
   <url>
     <loc>https://абхазберег.рф/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/</loc>
@@ -487,9 +475,6 @@
     <loc>https://абхазберег.рф/hotels/amor-apartamenty-s-kuhney-i-basseynom-3487/</loc>
   </url>
   <url>
-    <loc>https://абхазберег.рф/hotels/dyshi-glubzhe-domiki-v-gorah-3459/</loc>
-  </url>
-  <url>
     <loc>https://абхазберег.рф/kvartira/amor-apartamenty-studiya-gagra-1322/</loc>
   </url>
   <url>
@@ -527,9 +512,6 @@
   </url>
   <url>
     <loc>https://абхазберег.рф/hotels/tis-kottedzhi-u-zapovednika-3372/</loc>
-  </url>
-  <url>
-    <loc>https://абхазберег.рф/hotels/mechta-apartamenty-s-kuhney-3363/</loc>
   </url>
   <url>
     <loc>https://абхазберег.рф/kvartira/suhum-dom-1153/</loc>
@@ -656,9 +638,6 @@
   </url>
   <url>
     <loc>https://абхазберег.рф/kvartira/akirtava-kvartira-3k-suhum-931/</loc>
-  </url>
-  <url>
-    <loc>https://абхазберег.рф/hotels/nasta-apartamenty-3258/</loc>
   </url>
   <url>
     <loc>https://абхазберег.рф/hotels/nasta-gostevoy-dom-3249/</loc>

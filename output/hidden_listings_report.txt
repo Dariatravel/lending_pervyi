@@ -1,12 +1,20 @@
 Скрытые объекты (is_active=false, убраны из каталога и подборок)
 
-Всего в hidden_listings.json: 15
-Деактивировано в catalog snapshot: 3
+Всего в hidden_listings.json: 23
+Деактивировано в catalog snapshot: 11
 
 Скрыты:
 - bi-heppi-kottedzh-suhum-1130
 - boho-kompleks-polnogo-schastya-u-morya-3054
+- dyshi-glubzhe-domiki-v-gorah-3459
 - karalina-apartamenty-3124
+- mandarinovyy-dvorik-dom-pod-klyuch-3789
+- mechta-apartamenty-s-kuhney-3363
+- na-vremya-v-rayu-zhile-pod-klyuch-4357
+- nasta-apartamenty-3258
+- sekret-garden-apartamenty-4162
+- studio-san-amra-studiya-na-plyazhe-4270
+- tihaya-obitel-dom-pod-klyuch-4230
 
 Не найдены в catalog snapshot:
 - alpika-mini-apart-otel-4202
