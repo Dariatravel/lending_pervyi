@@ -1,7 +1,7 @@
 Скрытые объекты (is_active=false, убраны из каталога и подборок)
 
-Всего в hidden_listings.json: 24
-Деактивировано в catalog snapshot: 12
+Всего в hidden_listings.json: 25
+Деактивировано в catalog snapshot: 13
 
 Скрыты:
 - bi-heppi-kottedzh-suhum-1130
@@ -13,6 +13,7 @@
 - mziya-apartamenty-1396
 - na-vremya-v-rayu-zhile-pod-klyuch-4357
 - nasta-apartamenty-3258
+- peschanyy-bereg-apartamenty-3697
 - sekret-garden-apartamenty-4162
 - studio-san-amra-studiya-na-plyazhe-4270
 - tihaya-obitel-dom-pod-klyuch-4230
