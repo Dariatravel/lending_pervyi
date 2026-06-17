@@ -507,7 +507,6 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/blog/" aria-current="page">Полезно узнать</a>
-        <a href="/kvartira/">Квартиры</a>
         <a href="/#contacts">Контакты</a>
       </nav>
     </header>
@@ -708,7 +707,6 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
       <nav class="site-concept__topnav" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/">Подбор жилья</a>
-        <a href="/kvartira/">Квартиры и дома</a>
         <a href="/blog/" aria-current="page">Полезно узнать</a>
         <a href="/#contacts">Контакты</a>
       </nav>

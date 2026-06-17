@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-16T06:40:34.140089+00:00",
+  "generated_at": "2026-06-16T08:08:25.464675+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 225,
-  "listings_hotels": 164,
+  "listings_total": 224,
+  "listings_hotels": 163,
   "listings_kvartira": 61,
   "listings": [
     {
@@ -42611,7 +42611,7 @@
       "published_at": "2026-01-26",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/karalina-apartamenty-3124.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Пицунда. ️ 25 минут до центрального пляжа, размещение до 4 человек.",
         "prices": [

@@ -1323,7 +1323,11 @@
       if (list.length) byObject[cleanSlug] = list;
     });
 
-    return { global, by_object: byObject };
+    return {
+      global,
+      by_object: byObject,
+      excluded_fuzzy_slugs: Array.isArray(payload?.excluded_fuzzy_slugs) ? payload.excluded_fuzzy_slugs : [],
+    };
   }
 
   function normalizeSlugForMatch(value) {
@@ -1382,6 +1386,11 @@
     return fromScreenshots;
   }
 
+  function getExcludedFuzzyReviewSlugs() {
+    const fromBank = screenshotReviewBank?.excluded_fuzzy_slugs;
+    return Array.isArray(fromBank) ? new Set(fromBank) : new Set();
+  }
+
   function getObjectReviewPool(slug) {
     const cleanSlug = String(slug || "").trim();
     if (!cleanSlug) return [];
@@ -1391,10 +1400,12 @@
     const normalizedTarget = normalizeSlugForMatch(cleanSlug);
     if (!normalizedTarget) return [];
 
+    const excluded = getExcludedFuzzyReviewSlugs();
     let bestKey = "";
     let bestScore = 0;
 
     Object.keys(byObject).forEach((candidateKey) => {
+      if (excluded.has(candidateKey)) return;
       const candidateNorm = normalizeSlugForMatch(candidateKey);
       const score = slugMatchScore(candidateNorm, normalizedTarget);
       if (score > bestScore) {
@@ -3787,42 +3798,30 @@
       if (pins > 0) return visibility.totalShown;
 
       const cards = Array.from(grid.querySelectorAll(".catalog-card"));
-      const shouldLimitHotels = !catalogExpanded;
-      let visibleHotels = 0;
-      let displayedHotels = 0;
-      let hasHiddenKv = false;
+      const shouldLimit = !catalogExpanded;
+      let displayed = 0;
 
       cards.forEach((card) => {
-        if (isKvartiraCatalogCard(card)) {
-          const showKv = catalogExpanded;
-          card.hidden = !showKv;
-          if (!showKv) hasHiddenKv = true;
-          return;
-        }
+        if (card.hidden) return;
 
-        if (!shouldLimitHotels) {
-          card.hidden = false;
-          displayedHotels += 1;
-          return;
-        }
-
-        visibleHotels += 1;
-        if (visibleHotels > CATALOG_INITIAL_LIMIT) {
-          card.hidden = true;
-        } else {
-          card.hidden = false;
-          displayedHotels += 1;
+        if (shouldLimit) {
+          displayed += 1;
+          if (displayed > CATALOG_INITIAL_LIMIT) {
+            card.hidden = true;
+          }
         }
       });
 
       if (catalogExpandBtn) {
-        const needsExpand = visibility.hotelShown > CATALOG_INITIAL_LIMIT || hasHiddenKv;
+        const needsExpand = visibility.totalShown > CATALOG_INITIAL_LIMIT;
         catalogExpandBtn.hidden = !(pins === 0 && !catalogExpanded && needsExpand);
       }
 
-      restoreCatalogCardImages(cards);
+      restoreCatalogCardImages(cards.filter((card) => !card.hidden));
 
-      return displayedHotels;
+      return shouldLimit
+        ? Math.min(visibility.totalShown, CATALOG_INITIAL_LIMIT)
+        : visibility.totalShown;
     }
 
     const { renderActiveRemovalChips, syncOpenBadge, updateEmptyLead } = attachCatalogFilterSummaryChrome({
@@ -4782,32 +4781,8 @@
   /** Slugs removed from UI (e.g. Telegram service posts, not real listings). */
   const KVARTIRA_EXCLUDED_SLUGS = new Set(["general-1409"]);
 
-  async function hydrateKvartiraCatalog(filtersController) {
-    const grid = document.getElementById("kvartira-catalog-grid");
-    if (!grid || !filtersController) return;
-
-    // Как и с основным каталогом: если карточки уже отрисованы статикой,
-    // не перезатираем DOM данными из Supabase (иначе виден "мигающий" откат верстки/текста).
-    if (grid.querySelector(".catalog-card")) {
-      initCatalogMapPlaques(grid);
-      filtersController.refresh();
-      return;
-    }
-
-    try {
-      const rows = (await fetchListings({ sourceKind: "kvartira" })).filter(
-        (row) => row.slug && !KVARTIRA_EXCLUDED_SLUGS.has(row.slug)
-      );
-      if (!rows.length) {
-        filtersController.refresh();
-        return;
-      }
-      renderKvartiraCards(rows, grid);
-      filtersController.refresh();
-    } catch (error) {
-      console.error("Не удалось загрузить каталог квартир из Supabase", error);
-      filtersController.refresh();
-    }
+  async function hydrateKvartiraCatalog(_filtersController) {
+    // Квартиры входят в общий #catalog-grid на главной; отдельной страницы каталога нет.
   }
 
   function initMobileReviewsPlacement() {

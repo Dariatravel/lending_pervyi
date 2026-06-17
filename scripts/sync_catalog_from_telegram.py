@@ -218,15 +218,28 @@ def _review_slug_match_score(source_slug: str, target_slug: str) -> int:
     return round(len(common) / max(len(source_tokens), len(target_tokens)) * 1000) + len(common)
 
 
+def _load_hidden_review_slugs() -> set[str]:
+    path = ROOT / 'tools' / 'hidden_listings.json'
+    if not path.is_file():
+        return set()
+    try:
+        return set(json.loads(path.read_text(encoding='utf-8')))
+    except json.JSONDecodeError:
+        return set()
+
+
 def _reviews_for_slug(slug: str) -> list[dict[str, Any]]:
     bank = _load_ocr_review_bank()
     if slug in bank:
         return bank[slug]
 
+    hidden = _load_hidden_review_slugs()
     target = _normalize_review_slug(slug)
     best_key = ''
     best_score = 0
     for candidate in bank:
+        if candidate in hidden:
+            continue
         score = _review_slug_match_score(_normalize_review_slug(candidate), target)
         if score > best_score:
             best_key = candidate
@@ -877,14 +890,9 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     important_lines = sections[1]['lines'][:3] if len(sections) > 1 else []
     why_html = ''.join(f'<li>{html.escape(line)}</li>' for line in why_lines if not should_drop_line(line))
     important_html = ''.join(f'<li>{html.escape(line)}</li>' for line in important_lines if not should_drop_line(line))
-    if source_kind == 'kvartira':
-        eyebrow_link = '<a href="/kvartira/"><strong>Каталог квартир</strong></a>'
-        save_href = '/kvartira/'
-        save_label = 'К каталогу квартир'
-    else:
-        eyebrow_link = '<a href="/"><strong>Каталог Абхазберег</strong></a>'
-        save_href = '/'
-        save_label = 'К каталогу'
+    eyebrow_link = '<a href="/#catalog"><strong>Каталог Абхазберег</strong></a>'
+    save_href = '/#catalog'
+    save_label = 'К каталогу'
     page_title_suffix = 'обзор, фото, видео и цены'
     summary = summary_text(parsed.get('location', ''), parsed.get('beach', ''), parsed.get('capacity', ''))
     def absolute_site_url(raw: str) -> str:

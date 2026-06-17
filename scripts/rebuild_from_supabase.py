@@ -711,46 +711,21 @@ KVARTIRA_CATALOG_PAGE_SUFFIX = """
 """
 
 
-def render_kvartira_catalog_page(rows: list[dict[str, Any]]) -> str:
-    grid = "".join(render_kvartira_card(row) for row in rows)
-    return f"""<!doctype html>
-<html lang="ru" id="top">
+def render_kvartira_catalog_page(_rows: list[dict[str, Any]]) -> str:
+    """Legacy /kvartira/ URL: redirect to unified catalog on the homepage."""
+    return """<!doctype html>
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Квартиры и дома — Абхазия 2026</title>
-    <meta name="description" content="Каталог квартир и домов из @abhkvartira: отдельная карточка товара на каждый объект, с фото, видео и описанием из Телеграм." />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://абхазберег.рф/kvartira/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Квартиры и дома — Абхазия 2026" />
-    <meta property="og:description" content="Отдельные карточки квартир и домов в едином стиле с отелями: фото, видео и описание из Телеграм." />
-    <meta property="og:url" content="https://абхазберег.рф/kvartira/" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../styles.css?v=202605272305" />
+    <title>Каталог жилья — Абхазберег</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://абхазберег.рф/" />
+    <meta http-equiv="refresh" content="0;url=/#catalog" />
+    <script>location.replace("/#catalog");</script>
   </head>
   <body>
-    <div class="grain" aria-hidden="true"></div>
-    <main class="page-shell site-concept kvartira-page">
-      <div class="bg-blur bg-blur--mint" aria-hidden="true"></div>
-      <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
-      <header class="hero section">
-        <p class="eyebrow"><a href="/">Абхазберег</a></p>
-        <h1>КВАРТИРЫ И ДОМА</h1>
-      </header>
-
-      <section class="section">
-        <article class="card">
-          <div class="catalog-grid" id="kvartira-catalog-grid">{grid}</div>
-        </article>
-      </section>{KVARTIRA_CATALOG_PAGE_SUFFIX}
-    </main>
-    <script src="../image-lite.js" defer></script>
-    <script src="../scripts.js" defer></script>
-    <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
+    <p><a href="/#catalog">Перейти в каталог</a></p>
   </body>
 </html>
 """

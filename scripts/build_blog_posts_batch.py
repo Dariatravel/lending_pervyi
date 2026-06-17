@@ -128,7 +128,6 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/blog/">Полезно узнать</a>
-        <a href="/kvartira/">Квартиры</a>
         <a href="/#contacts">Контакты</a>
       </nav>
     </header>

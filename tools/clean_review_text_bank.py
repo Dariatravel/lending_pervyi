@@ -59,14 +59,27 @@ def load_review_bank() -> dict[str, list[dict[str, Any]]]:
     }
 
 
+def load_hidden_review_slugs() -> set[str]:
+    path = ROOT / 'tools' / 'hidden_listings.json'
+    if not path.is_file():
+        return set()
+    try:
+        return set(json.loads(path.read_text(encoding='utf-8')))
+    except json.JSONDecodeError:
+        return set()
+
+
 def reviews_for_slug(slug: str, bank: dict[str, list[dict[str, Any]]]) -> list[dict[str, Any]]:
     if slug in bank:
         return bank[slug]
 
+    hidden = load_hidden_review_slugs()
     target = normalize_review_slug(slug)
     best_key = ''
     best_score = 0
     for candidate in bank:
+        if candidate in hidden:
+            continue
         score = review_slug_match_score(normalize_review_slug(candidate), target)
         if score > best_score:
             best_key = candidate

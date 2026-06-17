@@ -1,0 +1,29 @@
+Review assignment audit/fix
+
+Bank/manifest:
+removed bucket (hidden slug): karalina-apartamenty-3124 (25 reviews)
+removed bucket (hidden slug): san-pino-domiki-derevyannye-s-basseynom-3005 (11 reviews)
+removed reviews total: 72
+removed manifest bucket: karalina-apartamenty-3124 (25 images)
+removed manifest bucket: san-pino-domiki-derevyannye-s-basseynom-3005 (11 images)
+
+Remaining fuzzy inherits:
+FUZZY abyrlash-otel-na-plyazhe-3239 ("АБЫРЛАШ" отель на пляже) <- abyrlash-otel score=4013 | Отличное местечко, уютные номера, оборудованы всем необходимым, миникухня на лоджии. Гостевой дом ра
+FUZZY alma-domiki-na-beregu-2996 ("АЛМА" домики на берегу) <- alma-domiki score=4011 | Отдыхали с мужем в сентябре. Очень уютные домики, всё чисто, аккуратно. В шаговой доступности магази
+FUZZY amor-apartamenty-s-kuhney-i-basseynom-3487 ("АМОР" апартаменты с кухней и бассейном) <- amor-apartamenty score=4016 | здравствуйте! Мы ни когда не были в Абхазии. Поездка получилась спонтанной.подружка купила у вас тур
+FUZZY amor-apartamenty-studiya-gagra-1322 ("АМОР" апартаменты - студия) <- amor-apartamenty score=4016 | здравствуйте! Мы ни когда не были в Абхазии. Поездка получилась спонтанной.подружка купила у вас тур
+FUZZY belaya-rechka-gostevoy-dom-s-kafe-3517 ("БЕЛАЯ РЕЧКА" гостевой дом с кафе) <- belaya-rechka score=4013 | Мне очень понравилось отношение персонала к гостям дома. Постараюсь в следующем году посетить отель.
+FUZZY delfin-domiki-3024 ("ДЕЛЬФИН" домики) <- delfin-domiki score=10013 | Отдыхали недавно всей семьей , все понравилось , гостеприимные хозяева , угощали своими фруктами, ко
+FUZZY fyuzhn-tri-domika-s-launzh-zonoy-3162 ("ФЬЮЖН" три домика с лаунж-зоной) <- fyuzhn-tri-domika score=4017 | сентябре отдыхали с супругой в Абхазии в г. Сухум по адресу ул Братьев Эзугбая 686. За 2 недели отды
+FUZZY grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928 ("ГРАСС ОТЕЛЬ" коттеджи в горах Абхазии с бассейном) <- grass-otel-kottedzhi-v-gorah-abhazii-s-basse-2928 score=4044 | Остались в полном восторге от этого уютного уголка! Настолько здесь понравилось, что решили задержат
+FUZZY grin-haus-domiki-3104 ("ГРИН ХАУС" домики) <- grin-haus-domiki score=10016 | Отличное место 6 отдыхали двумя семьями , рядом 3 пляжа один дикий и 2 благоустроенных . Владелец до
+FUZZY kameliya-domiki-3084 ("КАМЕЛИЯ" домики) <- kameliya-3084 score=4008 | спасибо вам огромное * через вас мы бронировали в Гостином доме Камелия. Очень переживали так ехали 
+FUZZY karin-gostevoy-dom-3267 ("КАРИН" гостевой дом) <- karin-gostevoy-dom score=10018 | Абхазская сказка в Гаграх: где гость-как родной, а море - как живой изумруд! Знаете, что такое госте
+FUZZY kastl-otel-s-teplym-basseynom-i-vidom-na-more-2859 ("КАСТЛ" видовой отель с бассейном прямо на пляже) <- kastl-otel-s-teplym-basseynom-i-vidom-na-mor-2859 score=4044 | Елена Костина 7 октября 2025 ***** Отдыхали в сентябре в этом прекрасном месте. Замечательные номера
+FUZZY lavanda-villa-s-basseynom-4590 ("ЛАВАНДА" вилла с бассейном) <- lavanda-villa-s-basseynom-2774 score=10025 | Новый, чистый и уютный домик с террасой на которой приятно проводить вечера. Очень приветливые хозяе
+FUZZY leon-domiki-3536 ("ЛЕОН" домики) <- leon-domiki score=10011 | Очень-очень понравилось проживание в гостевом доме Леон . Хозяйка Анастасия еще во время пути интере
+FUZZY limari-domiki-3496 ("ЛИМАРИ" домики) <- limari-domiki score=10013 | Крытые домики, абсолютно новые)) Все чистенько и аккуратно сделано. Мы рассматривали много аналогичн
+FUZZY mika-gostevoy-dom-ekonom-3094 ("МИКА" гостевой дом эконом) <- mika-gostevoy-dom-ekonom score=10024 | Екатерина Очень чистый номер, новый ремонт, дом находится рядом с морем, не мало важно есть парковка
+FUZZY rayskiy-bereg-mini-otel-3277 ("РАЙСКИЙ БЕРЕГ" мини-отель) <- rayskiy-bereg score=4013 | Очень комфортный номер есть кондиционер, холодильник, микроволновка. Всё чисто, приятно и красиво, о
+FUZZY sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390 ("СИРИУС" отель у соснового пляжа 💥 ОТКРЫТЫЕ БАССЕЙНА С 1 ИЮЛЯ 💦) <- sirius-otel score=4011 | Отдыхали с ребенком в августе 2025 г, жили в деревянном корпусе на втором этаже. Нам все понравилось
+FUZZY villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755 ("ВИЛЛА ЛЕОНА" отель с бассейном, питанием и собственным пляжем) <- villa-leona-otel-s-basseynom-pitaniem-i-sobs-2755 score=4044 | Хороший отель) Очень приятный персонал, вкусно готовят. Есть свой небольшой бассейн с зоной шезлонго

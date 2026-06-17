@@ -5486,11 +5486,6 @@ h1 {
   font-size: clamp(2.6rem, 5vw, 4.8rem);
 }
 
-/* Каталог /kvartira/: заголовок героя без гигантской типографики */
-header.hero.section h1 {
-  font-size: clamp(1.3rem, 2.5vw, 2.4rem);
-}
-
 h2 {
   margin: 0;
   font-size: clamp(1.8rem, 3vw, 3rem);

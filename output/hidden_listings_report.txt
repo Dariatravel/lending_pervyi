@@ -1,11 +1,12 @@
 Скрытые объекты (is_active=false, убраны из каталога и подборок)
 
-Всего в hidden_listings.json: 14
-Деактивировано в catalog snapshot: 2
+Всего в hidden_listings.json: 15
+Деактивировано в catalog snapshot: 3
 
 Скрыты:
 - bi-heppi-kottedzh-suhum-1130
 - boho-kompleks-polnogo-schastya-u-morya-3054
+- karalina-apartamenty-3124
 
 Не найдены в catalog snapshot:
 - alpika-mini-apart-otel-4202

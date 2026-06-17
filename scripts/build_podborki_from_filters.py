@@ -145,8 +145,7 @@ def href_slug(href: str) -> str:
 def load_cards() -> list[Card]:
     hidden = load_hidden_slugs()
     cards = parse_catalog_cards(INDEX_PATH, "/hotels/")
-    if KVARTIRA_INDEX_PATH.is_file():
-        cards.extend(parse_catalog_cards(KVARTIRA_INDEX_PATH, "/kvartira/"))
+    cards.extend(parse_catalog_cards(INDEX_PATH, "/kvartira/"))
     deduped: dict[str, Card] = {}
     for card in cards:
         if href_slug(card.href) in hidden:
@@ -333,7 +332,6 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
       <nav class="site-concept__topnav" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/podborki/">Подборки</a>
-        <a href="/kvartira/">Квартиры и дома</a>
         <a href="/blog/">Полезно узнать</a>
         <a href="/#contacts">Контакты</a>
       </nav>
@@ -450,7 +448,6 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
       <nav class="site-concept__topnav" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/podborki/" aria-current="page">Подборки</a>
-        <a href="/kvartira/">Квартиры и дома</a>
         <a href="/blog/">Полезно узнать</a>
         <a href="#contacts">Контакты</a>
       </nav>

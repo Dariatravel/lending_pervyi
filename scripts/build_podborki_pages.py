@@ -199,11 +199,10 @@ def parse_catalog_index(text: str, prefix: str, pattern: str) -> list[dict[str, 
 
 def load_catalog_resolver() -> dict[str, list[dict[str, Any]]]:
     by_qp: dict[str, list[dict[str, Any]]] = {}
-    hotel_txt = INDEX_HTML.read_text(encoding="utf-8")
-    kv_txt = KVARTIRA_INDEX.read_text(encoding="utf-8") if KVARTIRA_INDEX.is_file() else ""
-    for row in parse_catalog_index(hotel_txt, "/hotels/", "hotels"):
+    catalog_txt = INDEX_HTML.read_text(encoding="utf-8")
+    for row in parse_catalog_index(catalog_txt, "/hotels/", "hotels"):
         by_qp.setdefault(row["qp"], []).append(row)
-    for row in parse_catalog_index(kv_txt, "/kvartira/", "kvartira"):
+    for row in parse_catalog_index(catalog_txt, "/kvartira/", "kvartira"):
         by_qp.setdefault(row["qp"], []).append(row)
     augment_resolver_from_detail_pages(by_qp)
     return by_qp
@@ -523,7 +522,6 @@ def render_collection_page(
       <nav class="site-concept__topnav" aria-label="Основная навигация">
         <a href="/">Главная</a>
         <a href="/podborki/">Подборки</a>
-        <a href="/kvartira/">Квартиры и дома</a>
         <a href="/blog/">Полезно узнать</a>
         <a href="/#contacts">Контакты</a>
       </nav>
