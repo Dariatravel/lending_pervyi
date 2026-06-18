@@ -43,6 +43,16 @@ MOUNTAIN_OTHER_HREFS = {
     "/hotels/radonovyy-istochnik-otel-v-gorah-3064/",
 }
 
+# Ручной состав подборок (источник: podbori_txt/*.txt). Автофильтр их не перезаписывает.
+MANUAL_SELECTION_HREFS: dict[str, list[str]] = {
+    "gory-oteli-v-gorah": [
+        "/hotels/bungalo-glemping-3623/",
+        "/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/",
+        "/kvartira/dyshi-glubzhe-domiki-v-gorah-1335/",
+        "/hotels/radonovyy-istochnik-otel-v-gorah-3064/",
+    ],
+}
+
 
 @dataclass(frozen=True)
 class Card:
@@ -295,7 +305,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
             parts.append("        </div>")
     else:
         parts.append('        <div class="catalog-grid podborki-catalog-grid">')
-        for card in sorted(cards, key=card_sort_key):
+        for card in cards:
             rank += 1
             parts.append(render_card(card, rank))
         parts.append("        </div>")
@@ -390,6 +400,10 @@ PODBORKI_INDEX_COVER_OVERRIDES: dict[str, tuple[str, str]] = {
     "gudauta-vse-varianty": (
         "/media/cards/full-haus-domiki-s-basseynom-4092.jpg",
         '"ФУЛЛ ХАУС" домики с бассейном',
+    ),
+    "gory-oteli-v-gorah": (
+        "/media/cards/bungalo-glemping-3623.jpg",
+        '"БУНГАЛО" глэмпинг',
     ),
 }
 
@@ -529,12 +543,22 @@ def main() -> int:
     index_items: list[tuple[str, str, str, str]] = []
     slugs: list[str] = []
     used_cover_images: set[str] = set()
+    cards_by_href = {card.href: card for card in cards}
     for selection in selections():
-        selected = [card for card in cards if selection.predicate(card)]
-        selected = sorted(selected, key=card_sort_key)
+        manual_hrefs = MANUAL_SELECTION_HREFS.get(selection.slug)
+        if manual_hrefs:
+            selected = [cards_by_href[href] for href in manual_hrefs if href in cards_by_href]
+            missing = [href for href in manual_hrefs if href not in cards_by_href]
+            if missing:
+                print(f"warn: {selection.slug} — нет в каталоге: {', '.join(missing)}", file=sys.stderr)
+            page_selection = Selection(selection.slug, selection.title, selection.predicate, group_by_city=False)
+        else:
+            selected = [card for card in cards if selection.predicate(card)]
+            selected = sorted(selected, key=card_sort_key)
+            page_selection = selection
         out_dir = PODBORKI_DIR / selection.slug
         out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / "index.html").write_text(render_page(selection, selected, meta), encoding="utf-8")
+        (out_dir / "index.html").write_text(render_page(page_selection, selected, meta), encoding="utf-8")
         title = meta.get(selection.slug, {}).get("h1") or selection.title
         cover_card = pick_cover_card(selected, used_cover_images)
         override = PODBORKI_INDEX_COVER_OVERRIDES.get(selection.slug)
