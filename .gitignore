@@ -23,5 +23,8 @@ tg_export_topics.py.save
 # local Yandex Object Storage secrets
 .env.yandex.local
 
+# Telegram site update bot secrets
+.env.site-update-bot
+
 # generated heavy telegram source videos (intermediate, not for git)
 media/videos/**/video-*-source.mp4

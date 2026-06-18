@@ -135,3 +135,84 @@ bash scripts/stop_auto_sync_daemon.sh
 python3 tools/validate_catalog_snapshot.py
 python3 scripts/rebuild_from_catalog_snapshot.py
 ```
+
+## VPS + Telegram-бот управления
+
+Добавлен бот:
+
+- `scripts/site_update_bot.py`
+- `.env.site-update-bot.example`
+- `requirements-site-update-bot.txt`
+- `deploy/systemd/abhazbereg-site-update-bot.service`
+
+Бот работает в long polling режиме. По умолчанию он **раз в час проверяет** расхождения в Telegram-постах и присылает уведомление владельцу. Обновление сайта запускается вручную из Telegram:
+
+- `/check` — проверить расхождения сейчас;
+- `/update` — быстро обновить новые объекты, фильтры, детальные тексты, цены, подборки, затем сделать commit + push;
+- `/full_update` — полный синк Telegram с медиа, долго;
+- `/status` — состояние бота.
+
+Безопасный режим по умолчанию:
+
+```env
+SITE_UPDATE_AUTO_APPLY=0
+```
+
+Если нужно, чтобы бот сам применял быстрые обновления после часовой проверки:
+
+```env
+SITE_UPDATE_AUTO_APPLY=1
+```
+
+### Установка на VPS
+
+Пример для Ubuntu, путь проекта `/srv/lending_pervyi`:
+
+```bash
+sudo apt update
+sudo apt install -y git python3-venv python3-pip
+
+cd /srv
+sudo git clone git@github.com:Dariatravel/lending_pervyi.git
+sudo chown -R "$USER":"$USER" /srv/lending_pervyi
+cd /srv/lending_pervyi
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements-site-update-bot.txt
+pip install -r collab_bot/requirements.txt
+
+cp .env.site-update-bot.example .env.site-update-bot
+nano .env.site-update-bot
+```
+
+На сервер нужно положить локальные секреты:
+
+- `.env.site-update-bot` — токен бота и разрешённые chat id;
+- `.env.yandex.local` — доступ к Яндекс Object Storage для медиа;
+- `google-service-account.json` — фильтры из таблицы;
+- `tg_session.session` — Telegram-сессия Telethon;
+- SSH deploy key с правом `git push` в репозиторий.
+
+Проверка вручную:
+
+```bash
+source .venv/bin/activate
+python3 scripts/site_update_bot.py
+```
+
+### systemd
+
+```bash
+sudo cp deploy/systemd/abhazbereg-site-update-bot.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now abhazbereg-site-update-bot
+sudo systemctl status abhazbereg-site-update-bot
+```
+
+Логи:
+
+```bash
+journalctl -u abhazbereg-site-update-bot -f
+ls -lah output/site-update-bot/
+```
