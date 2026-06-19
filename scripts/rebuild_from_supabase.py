@@ -560,13 +560,20 @@ def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]])
     title = html.escape(row.get("title") or "")
     summary_fallback = row.get("summary") or row.get("excerpt") or ""
     card_lines: list[str] = []
-    source_message_id = resolve_source_message_id(row)
-    if source_message_id is not None:
-        meta = post_meta.get(source_message_id) or {}
-        if meta.get("location_line"):
-            card_lines.append(meta["location_line"])
-        if meta.get("beach_line"):
-            card_lines.append(meta["beach_line"])
+    location_text = str(row.get("location_text") or "").strip()
+    beach_text = str(row.get("beach_text") or "").strip()
+    if location_text:
+        card_lines.append(location_text if location_text.startswith("📍") else f"📍{location_text}")
+    if beach_text:
+        card_lines.append(beach_text if beach_text.startswith("🏖") else f"🏖 {beach_text}")
+    if not card_lines:
+        source_message_id = resolve_source_message_id(row)
+        if source_message_id is not None:
+            meta = post_meta.get(source_message_id) or {}
+            if meta.get("location_line"):
+                card_lines.append(meta["location_line"])
+            if meta.get("beach_line"):
+                card_lines.append(meta["beach_line"])
 
     if card_lines:
         summary_html = "<br />".join(html.escape(line) for line in card_lines)
