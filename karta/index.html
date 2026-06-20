@@ -7,7 +7,7 @@
   <meta name="description" content="Интерактивная карта проверенных объектов размещения Абхазберег по курортам Абхазии." />
   <meta name="robots" content="noindex, follow" />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" />
-  <link rel="stylesheet" href="../styles.css?v=202606121000" />
+  <link rel="stylesheet" href="../styles.css?v=202606201215" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <script>
     window.__ABHAZBEREG_MAPS_CONFIG__ = window.__ABHAZBEREG_MAPS_CONFIG__ || {};
@@ -83,6 +83,21 @@
         return wrap;
       }
 
+      function createMarkerTitle(point) {
+        return decodeHtmlText(point.title)
+          .replace(/[<>]/g, "")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+
+      function escapeHtml(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
       function filterPoints(points) {
         if (!cityKey) return points;
         return points.filter(function (point) {
@@ -144,12 +159,20 @@
         var group = window.L.featureGroup();
         points.forEach(function (point) {
           if (!Number.isFinite(point.lat) || !Number.isFinite(point.lon)) return;
-          var marker = window.L.circleMarker([point.lat, point.lon], {
-            radius: 5,
-            color: "#2f6654",
-            weight: 2,
-            fillColor: "#58a789",
-            fillOpacity: 0.92,
+          var marker = window.L.marker([point.lat, point.lon], {
+            icon: window.L.divIcon({
+              className: "objects-map-leaflet-label",
+              html:
+                '<span class="objects-map-marker">' +
+                '<span class="objects-map-marker__dot" aria-hidden="true"></span>' +
+                '<span class="objects-map-marker__label">' +
+                escapeHtml(createMarkerTitle(point)) +
+                "</span>" +
+                "</span>",
+              iconSize: null,
+              iconAnchor: [6, 0],
+              popupAnchor: [0, -10],
+            }),
           });
           marker.bindPopup(createPopupContent(point), { maxWidth: 280, className: "objects-map-popup-shell" });
           marker.addTo(group);
@@ -179,8 +202,11 @@
               zoom: geo.z,
               controls: ["zoomControl", "typeSelector", "fullscreenControl"],
             });
-            var dotLayout = window.ymaps.templateLayoutFactory.createClass(
-              '<span class="objects-map-yandex-dot" aria-hidden="true"></span>'
+            var labelLayout = window.ymaps.templateLayoutFactory.createClass(
+              '<span class="objects-map-marker">' +
+                '<span class="objects-map-marker__dot" aria-hidden="true"></span>' +
+                '<span class="objects-map-marker__label">{{ properties.markerTitle }}</span>' +
+              '</span>'
             );
             var geoObjects = points
               .filter(function (point) {
@@ -194,11 +220,12 @@
                     balloonContentHeader: decodeHtmlText(point.title),
                     balloonContentBody: popup.outerHTML,
                     hintContent: decodeHtmlText(point.title),
+                    markerTitle: createMarkerTitle(point),
                   },
                   {
-                    iconLayout: dotLayout,
-                    iconOffset: [-3, -11],
-                    iconShape: { type: "Circle", coordinates: [4, -4], radius: 7 },
+                    iconLayout: labelLayout,
+                    iconOffset: [-6, 0],
+                    iconShape: { type: "Rectangle", coordinates: [[-6, -14], [190, 14]] },
                   }
                 );
               });
