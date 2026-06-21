@@ -53,17 +53,20 @@
         return node.value;
       }
 
-      function createPopupContent(point) {
+      function createPopupContent(point, options) {
+        var shouldShowTitle = !options || options.showTitle !== false;
         var title = decodeHtmlText(point.title);
         var address = decodeHtmlText(point.address || "");
         var url = String(point.url || "/");
         var wrap = document.createElement("div");
         wrap.className = "objects-map-popup";
 
-        var titleNode = document.createElement("p");
-        titleNode.className = "objects-map-popup__title";
-        titleNode.textContent = title;
-        wrap.appendChild(titleNode);
+        if (shouldShowTitle) {
+          var titleNode = document.createElement("p");
+          titleNode.className = "objects-map-popup__title";
+          titleNode.textContent = title;
+          wrap.appendChild(titleNode);
+        }
 
         if (address) {
           var addressNode = document.createElement("p");
@@ -213,7 +216,7 @@
                 return Number.isFinite(point.lat) && Number.isFinite(point.lon);
               })
               .map(function (point) {
-                var popup = createPopupContent(point);
+                var popup = createPopupContent(point, { showTitle: false });
                 return new window.ymaps.Placemark(
                   [point.lat, point.lon],
                   {
