@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-21T06:09:14.210861+00:00",
+  "generated_at": "2026-06-22T19:32:11.279824+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 218,
-  "listings_hotels": 155,
+  "listings_total": 219,
+  "listings_hotels": 156,
   "listings_kvartira": 63,
   "listings": [
     {
@@ -3445,11 +3445,11 @@
           },
           {
             "kind": "price",
-            "text": "7300₽ - с 21 июня по 20 июля"
+            "text": "8500₽ - с 21 июня по 20 июля"
           },
           {
             "kind": "price",
-            "text": "8500₽ - с 21 июля по 15 сентября"
+            "text": "9500₽ - с 21 июля по 15 сентября"
           },
           {
             "kind": "price",
@@ -3469,19 +3469,19 @@
           },
           {
             "kind": "price",
-            "text": "8300₽ - с 21 июня по 20 июля"
+            "text": "9500₽ - с 21 июня по 20 июля"
           },
           {
             "kind": "price",
-            "text": "9500₽ - с 21 июля по 15 сентября"
+            "text": "9900₽ - с 21 июля по 15 сентября"
           },
           {
             "kind": "price",
-            "text": "6900₽ - с 16 сентября по 30 октября"
+            "text": "6900₽ - с 20 сентября по 30 октября"
           },
           {
             "kind": "price",
-            "text": "Доп плата свыше 2 человек - 500₽ за каждого гостя с завтраками"
+            "text": "Доп плата свыше 2 человек - 1000₽ за каждого гостя с завтраками"
           },
           {
             "kind": "price",
@@ -3493,11 +3493,11 @@
           },
           {
             "kind": "price",
-            "text": "4500₽ - с 15 мая по 20 июня"
+            "text": "4900₽ - с 15 мая по 20 июня"
           },
           {
             "kind": "price",
-            "text": "5200₽ - с 21 июня по 20 июля"
+            "text": "5700₽ - с 21 июня по 20 июля"
           },
           {
             "kind": "price",
@@ -3505,11 +3505,11 @@
           },
           {
             "kind": "price",
-            "text": "4500₽ - с 16 сентября по 30 октября"
+            "text": "4900₽ - с 16 сентября по 30 октября"
           },
           {
             "kind": "price",
-            "text": "Доп плата за 3 человека - 500₽ с завтраками"
+            "text": "Доп плата за 3 человека - 1000₽ с завтраками"
           },
           {
             "kind": "price",
@@ -43766,7 +43766,7 @@
           },
           {
             "kind": "price",
-            "text": "7000₽/сутки - сентябрь с 15го"
+            "text": "6000₽/сутки - сентябрь с 15го"
           },
           {
             "kind": "price",
@@ -48025,47 +48025,11 @@
           },
           {
             "kind": "price",
-            "text": "Скидка 30% до 15 июня на тарифы с завтраком и полный пансион🔥"
+            "text": "Скидка 30% до конца июня на тарифы с завтраком и полный пансион🔥"
           },
           {
             "kind": "price",
-            "text": "Июнь с 1 по 15 (цены указаны без скидки)"
-          },
-          {
-            "kind": "price",
-            "text": "с завтраками"
-          },
-          {
-            "kind": "price",
-            "text": "2 чел - 5000₽/сутки"
-          },
-          {
-            "kind": "price",
-            "text": "3 чел - 6500₽/сутки"
-          },
-          {
-            "kind": "price",
-            "text": "4 чел - 7500₽/сутки"
-          },
-          {
-            "kind": "price",
-            "text": "полный пансион"
-          },
-          {
-            "kind": "price",
-            "text": "2 чел - 7500₽/сутки"
-          },
-          {
-            "kind": "price",
-            "text": "3 чел - 8900₽/сутки"
-          },
-          {
-            "kind": "price",
-            "text": "4 чел - 9900₽/сутки"
-          },
-          {
-            "kind": "price",
-            "text": "Июнь с 15 по 30"
+            "text": "Июнь с 15 по 30 (цены указаны без скидки)"
           },
           {
             "kind": "price",
@@ -57528,6 +57492,456 @@
           "storage_path": "kvartira/bi-heppi-kottedzh-1121/photo-10.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/bi-heppi-kottedzh-1121/photo-10.jpg",
           "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 4829,
+      "source_topic_id": null,
+      "slug": "femeli-baza-otdyha-s-basseynom-i-pitaniem-4829",
+      "title": "\"ФЕМЕЛИ\" база отдыха с бассейном и питанием",
+      "summary": "Алахадзы. 5 минут до пляжа, галечный, размещение до 8 человек.",
+      "excerpt": "Двенадцать домиков. Размещение до 4 человек",
+      "city": "Алахадзы",
+      "location_text": "Алахадзы, ул. Абовяна, 33",
+      "distance_text": "5 минут до пляжа, галечный",
+      "beach_text": "5 минут до пляжа, галечный",
+      "capacity_text": "размещение до 8 человек",
+      "page_url": "https://абхазберег.рф/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/",
+      "telegram_url": "https://t.me/abhazbooking/4829",
+      "published_at": "2026-06-22",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Алахадзы. 5 минут до пляжа, галечный, размещение до 8 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Двенадцать домиков. Размещение до 4 человек.",
+              "В домиках: двуспальная кровать или две односпальные кровати, раскладной диван, прикроватные тумбочки, шкаф, стол. Сан узел с душем. душевые принадлежности, полотенца.",
+              "Оснащение: кондиционер, Wi-Fi, телевизор, мини-холодильник, фен.",
+              "Веранда у каждого домика."
+            ]
+          },
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Четыре однокомнатных номера люкс, расположенных на 1 и 2 этаже. Размещение до 4 человек.",
+              "Большая двуспальная кровать и двуспальный раскладной диван.",
+              "Один однокомнатный номер люкс, расположенный в отдельном здании на втором этаже. Двуспальная кровать и две раскладные кровати. Размещение до 4 человек.",
+              "Один расширенный номер люкс. Размещение до 6 человек.",
+              "Двуспальная кровать и два раскладных дивана.",
+              "Два двухкомнатных номера люкс. Размещение до 8 человек.",
+              "Две двуспальные кровати и два раскладных дивана.",
+              "Во всех номерах: сан узел с тропическим душем, душевые принадлежности, полотенца.",
+              "Оснащение во всех номерах: кондиционер, Wi-Fi, телевизор, мини-холодильник, фен."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Ухоженная закрытая территория.",
+              "Бассейн с подогревом 12 х 6, разделенный на детскую и взрослую зоны. Спасатель дежурит у бассейна.",
+              "Лаунж-зона с шезлонгами для отдыха у бассейна. 4 конус-бунгало, 8 квадратных бунгало с шезлонгами и столиками. Для детей: батут, качели, горка.",
+              "Бар на территории за дополнительную плату: напитки, коктейли, кальян и закуски. Работает до 00:00",
+              "Громкая музыка до 22:00.",
+              "Третий этаж с видом на море, горы и территорию базы: лаунж зона, открытая терраса, чай кофе, напитки, бильярд, кальян и многое другое.",
+              "Есть свой генератор, собственный трансформатор и собственная артезианская скважина.",
+              "Бесплатная парковка, видеонаблюдение по всему периметру снаружи и внутри.",
+              "Своя профессиональная прачечная для базы и отдельно бесплатная для отдыхающих.",
+              "Беседка с двумя большими каменными столами по 2 м,80 см, комфортными креслами и мангальной зоной, умыльник, стол и большой ТВ для больших компаний. Также отдельностоящий мангал на территории, отдельные умывальник, душ и туалет."
+            ]
+          },
+          {
+            "label": "✔️ПИТАНИЕ:",
+            "lines": [
+              "Питание по системе «шведский стол», каждый день новое меню.",
+              "Завтрак с 8 до 10 часов.",
+              "Обед с 13 до 15 часов.",
+              "Ужин с 18 до 20 часов.",
+              "На завтрак: каши, сыр, колбаса для бутербродов, блинчики, оладьи, запеканки, омлеты, вареные яйца, чай и кофе.",
+              "На обед и ужин: супы, горячие блюда с разными гарнирами, мясо, овощи, фрукты, соки, компоты и десерты."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До оборудованного галечного пляжа пять минут пешком. Широкий пляж, обзорный вид на горы. Есть прокат сапбордов.",
+              "В шаговой доступности различные магазины, сувенирные лавки."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Домик до 4 человек"
+          },
+          {
+            "kind": "price",
+            "text": "Июнь"
+          },
+          {
+            "kind": "price",
+            "text": "12000₽ - без питания"
+          },
+          {
+            "kind": "price",
+            "text": "14000₽ - с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "16000₽ - с 3-разовым питанием"
+          },
+          {
+            "kind": "price",
+            "text": "Июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "13000₽ - без питания"
+          },
+          {
+            "kind": "price",
+            "text": "15000₽ - с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "17000₽ - с 3-разовым питанием"
+          },
+          {
+            "kind": "price",
+            "text": "Сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "12000₽ - без питания"
+          },
+          {
+            "kind": "price",
+            "text": "14000₽ - с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "16000₽ - с 3-разовым питанием"
+          },
+          {
+            "kind": "price",
+            "text": "Номер люкс до 4 человек"
+          },
+          {
+            "kind": "price",
+            "text": "Июнь"
+          },
+          {
+            "kind": "price",
+            "text": "14000₽ - без питания"
+          },
+          {
+            "kind": "price",
+            "text": "16000₽ - с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "18000₽ - с 3-разовым питанием"
+          },
+          {
+            "kind": "price",
+            "text": "Июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "15000₽ - без питания"
+          },
+          {
+            "kind": "price",
+            "text": "17000₽ - с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "19000₽ - с 3-разовым питанием"
+          },
+          {
+            "kind": "price",
+            "text": "Сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "14000₽ - без питания"
+          },
+          {
+            "kind": "price",
+            "text": "16000₽ - с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "18000₽ - с 3-разовым питанием"
+          },
+          {
+            "kind": "price",
+            "text": "Расширенный номер люкс до 6 человек"
+          },
+          {
+            "kind": "price",
+            "text": "Июнь"
+          },
+          {
+            "kind": "price",
+            "text": "18000₽ - без питания"
+          },
+          {
+            "kind": "price",
+            "text": "20000₽ - с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "22000₽ - с 3-разовым питанием"
+          },
+          {
+            "kind": "price",
+            "text": "Июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "19000₽ - без питания"
+          },
+          {
+            "kind": "price",
+            "text": "21000₽ - с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "23000₽ - с 3-разовым питанием"
+          },
+          {
+            "kind": "price",
+            "text": "Сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "18000₽ - без питания"
+          },
+          {
+            "kind": "price",
+            "text": "20000₽ - с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "22000₽ - с 3-разовым питанием"
+          },
+          {
+            "kind": "price",
+            "text": "Двухкомнатный номер люкс до 8 человек"
+          },
+          {
+            "kind": "price",
+            "text": "Июнь"
+          },
+          {
+            "kind": "price",
+            "text": "20000₽ - без питания"
+          },
+          {
+            "kind": "price",
+            "text": "22000₽ - с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "24000₽ - с 3-разовым питанием"
+          },
+          {
+            "kind": "price",
+            "text": "Июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "21000₽ - без питания"
+          },
+          {
+            "kind": "price",
+            "text": "23000₽ - с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "25000₽ - с 3-разовым питанием"
+          },
+          {
+            "kind": "price",
+            "text": "Сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "20000₽ - без питания"
+          },
+          {
+            "kind": "price",
+            "text": "22000₽ - с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "24000₽ - с 3-разовым питанием"
+          },
+          {
+            "kind": "price",
+            "text": "Размещение детей до 5 лет бесплатно без предоставления отдельного места."
+          }
+        ],
+        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/index.html",
+        "filters": {
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "alakhadzy"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "pool",
+            "terrace",
+            "tv",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "cottages"
+          ]
+        }
+      },
+      "id": 1165,
+      "media": [
+        {
+          "id": 1165001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829.jpg",
+          "details": {}
+        },
+        {
+          "id": 1165002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1165003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1165004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1165005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1165006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1165007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1165008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1165009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1165010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1165011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "application/x-telegram-embed",
+          "source_url": "https://t.me/abhazbooking/4838",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "",
+          "public_url": "https://t.me/abhazbooking/4838",
+          "details": {
+            "telegram_post": "abhazbooking/4838"
+          }
         }
       ]
     }
