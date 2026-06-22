@@ -2938,6 +2938,13 @@ a.podborki-card--link:hover {
   gap: 16px;
 }
 
+.hotel-card__topline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
 .hotel-card__footer {
   display: flex;
   align-items: flex-start;

@@ -4,11 +4,96 @@
   const METRIKA_ID = 108214677;
   const GA4_ID = "G-MZ2NTRDDJ5";
   const SITE_CANONICAL_ORIGIN = "https://абхазберег.рф";
+  const PUNY_SITE_HOST = "xn--80aacbklan7f0b.xn--p1ai";
+  const PUNY_SITE_ORIGINS = [
+    `https://${PUNY_SITE_HOST}`,
+    `http://${PUNY_SITE_HOST}`,
+  ];
 
   function buildPublicShareUrl(pathname = window.location.pathname, search = window.location.search) {
     const path = pathname || "/";
     return `${SITE_CANONICAL_ORIGIN}${path}${search || ""}`;
   }
+
+  function normalizePublicUrlText(raw) {
+    let text = String(raw || "");
+    PUNY_SITE_ORIGINS.forEach((origin) => {
+      text = text.split(origin).join(SITE_CANONICAL_ORIGIN);
+    });
+    return text;
+  }
+
+  async function copyPublicUrl(triggerBtn, copiedLabel = "Ссылка скопирована", defaultLabel = "") {
+    const url = buildPublicShareUrl();
+    const original = triggerBtn?.textContent || defaultLabel;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+      } else {
+        window.prompt("Скопируйте ссылку:", url);
+        return;
+      }
+      if (triggerBtn) {
+        triggerBtn.textContent = copiedLabel;
+        window.setTimeout(() => {
+          triggerBtn.textContent = original;
+        }, 2200);
+      }
+    } catch (error) {
+      window.prompt("Скопируйте ссылку:", url);
+    }
+  }
+
+  function initCanonicalUrlDisplay() {
+    if (window.location.hostname !== PUNY_SITE_HOST) return;
+    const nextUrl = `${buildPublicShareUrl()}${window.location.hash || ""}`;
+    try {
+      window.history.replaceState(window.history.state, "", nextUrl);
+    } catch (error) {
+      /* ignore unsupported IDN replaceState */
+    }
+  }
+
+  function initPublicUrlCopyNormalization() {
+    document.addEventListener("copy", (event) => {
+      const selection = window.getSelection?.()?.toString?.() || "";
+      if (!selection.includes(PUNY_SITE_HOST)) return;
+      const normalized = normalizePublicUrlText(selection);
+      if (normalized === selection) return;
+      event.preventDefault();
+      event.clipboardData?.setData("text/plain", normalized);
+    });
+  }
+
+  function initListingPageShareLink() {
+    const match = window.location.pathname.match(/^\/(?:hotels|kvartira)\/([^/]+)\/?$/);
+    if (!match || document.getElementById("copy-listing-link")) return;
+
+    const topline = document.querySelector(".hotel-card__topline");
+    const catalogBtn = topline?.querySelector(".save-button");
+    if (!topline || !catalogBtn) return;
+
+    let actions = topline.querySelector(".hotel-card__topline-actions");
+    if (!actions) {
+      actions = document.createElement("div");
+      actions.className = "hotel-card__topline-actions";
+      catalogBtn.replaceWith(actions);
+      actions.appendChild(catalogBtn);
+    }
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "save-button";
+    btn.id = "copy-listing-link";
+    btn.textContent = "Скопировать ссылку";
+    btn.addEventListener("click", () => {
+      void copyPublicUrl(btn);
+    });
+    actions.insertBefore(btn, catalogBtn);
+  }
+
+  initCanonicalUrlDisplay();
+  initPublicUrlCopyNormalization();
 
   function initMetrika() {
     window.ym =
@@ -276,24 +361,7 @@
     }
 
     async function copyShareLink(triggerBtn) {
-      const url = buildPublicShareUrl();
-      const original = triggerBtn?.textContent || "";
-      try {
-        if (navigator.clipboard?.writeText) {
-          await navigator.clipboard.writeText(url);
-        } else {
-          window.prompt("Скопируйте ссылку на подборку:", url);
-          return;
-        }
-        if (triggerBtn) {
-          triggerBtn.textContent = "Ссылка скопирована";
-          window.setTimeout(() => {
-            triggerBtn.textContent = original;
-          }, 2200);
-        }
-      } catch (error) {
-        window.prompt("Скопируйте ссылку на подборку:", url);
-      }
+      await copyPublicUrl(triggerBtn, "Ссылка скопирована", triggerBtn?.textContent || "");
     }
 
     function wireShareButtons() {
@@ -5084,6 +5152,7 @@
   hydrateHomeCatalog(filtersController);
   hydrateKvartiraCatalog(filtersController);
   hydrateHotelPage();
+  initListingPageShareLink();
   void initSimilarListings();
   void initSimilarBlogPosts();
   initMobileReviewsPlacement();
