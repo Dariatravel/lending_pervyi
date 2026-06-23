@@ -1,25 +1,5 @@
 [
   {
-    "slug": "kashtak-domiki-667",
-    "source_id": 667,
-    "title": "\"КАШТАК\" домики"
-  },
-  {
-    "slug": "mziya-apartamenty-1396",
-    "source_id": 1396,
-    "title": "\"МЗИЯ\" апартаменты"
-  },
-  {
-    "slug": "bereg-svyatoy-sofii-otel-4279",
-    "source_id": 1694,
-    "title": "Отель \"Берег Святой Софии\""
-  },
-  {
-    "slug": "bonzhur-mini-otel-2542",
-    "source_id": 2542,
-    "title": "\"БОНЖУР\" мини-отель"
-  },
-  {
     "slug": "pegas-otel-na-pervoy-linii-vid-na-more-2574",
     "source_id": 2574,
     "title": "\"ПЕГАС\" отель на первой линии, вид на море"
@@ -135,11 +115,6 @@
     "title": "\"БАНАН И ФУНДУК\" гостевой дом"
   },
   {
-    "slug": "mimi-domiki-s-vidom-na-gory-2869",
-    "source_id": 2869,
-    "title": "\"МИМИ\" домики с видом на горы"
-  },
-  {
     "slug": "v-gostyah-u-belochki-domiki-i-nomera-2879",
     "source_id": 2879,
     "title": "\"В ГОСТЯХ У БЕЛОЧКИ\" домики и номера"
@@ -210,11 +185,6 @@
     "title": "\"БУГЕНВИЛЛЕЯ\" отель с бассейном"
   },
   {
-    "slug": "boho-kompleks-polnogo-schastya-u-morya-3054",
-    "source_id": 3054,
-    "title": "\"БОХО\" комплекс полного счастья у моря!"
-  },
-  {
     "slug": "radonovyy-istochnik-otel-v-gorah-3064",
     "source_id": 3064,
     "title": "\"РАДОНОВЫЙ ИСТОЧНИК\" отель в горах"
@@ -243,11 +213,6 @@
     "slug": "akva-otel-s-basseynom-i-zavtrakami-3114",
     "source_id": 3114,
     "title": "\"АКВА\" отель с бассейном и завтраками"
-  },
-  {
-    "slug": "karalina-apartamenty-3124",
-    "source_id": 3124,
-    "title": "\"КАРАЛИНА\" апартаменты"
   },
   {
     "slug": "saya-domiki-3134",
@@ -305,11 +270,6 @@
     "title": "\"НАСТА\" гостевой дом"
   },
   {
-    "slug": "nasta-apartamenty-3258",
-    "source_id": 3258,
-    "title": "\"НАСТА\" апартаменты"
-  },
-  {
     "slug": "karin-gostevoy-dom-3267",
     "source_id": 3267,
     "title": "\"КАРИН\" гостевой дом"
@@ -345,11 +305,6 @@
     "title": "\"ДЕМИ МОККО\" два домика"
   },
   {
-    "slug": "mechta-apartamenty-s-kuhney-3363",
-    "source_id": 3363,
-    "title": "\"МЕЧТА\" апартаменты с кухней"
-  },
-  {
     "slug": "tis-kottedzhi-u-zapovednika-3372",
     "source_id": 3372,
     "title": "\"ТИС\" коттеджи у заповедника"
@@ -362,7 +317,7 @@
   {
     "slug": "sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390",
     "source_id": 3390,
-    "title": "\"СИРИУС\" отель у соснового пляжа 💥 ОТКРЫТЫЕ БАССЕЙНА С 1 ИЮЛЯ 💦"
+    "title": "\"СИРИУС\" отель у соснового пляжа 💥 ОТКРЫТЫЕ БАССЕЙНА ВО ВТОРОЙ ПОЛОВИНЕ ИЮЛЯ 💦"
   },
   {
     "slug": "sisayd-domiki-3409",
@@ -390,11 +345,6 @@
     "title": "\"СИЗОН\" гостевой дом"
   },
   {
-    "slug": "dyshi-glubzhe-domiki-v-gorah-3459",
-    "source_id": 3459,
-    "title": "\"ДЫШИ ГЛУБЖЕ\" домики в горах"
-  },
-  {
     "slug": "amor-apartamenty-s-kuhney-i-basseynom-3487",
     "source_id": 3487,
     "title": "\"АМОР\" апартаменты с кухней и бассейном"
@@ -418,11 +368,6 @@
     "slug": "eko-haus-pitiunt-domiki-s-basseynom-3545",
     "source_id": 3545,
     "title": "\"ЭКО ХАУС ПИТИУНТ\" домики с бассейном"
-  },
-  {
-    "slug": "laym-mini-otel-s-basseynom-u-zapovednika-3554",
-    "source_id": 3554,
-    "title": "\"ЛАЙМ\" мини-отель с бассейном у заповедника"
   },
   {
     "slug": "melodi-eko-otel-derevyannye-domiki-3563",
@@ -480,6 +425,11 @@
     "title": "\"МЗИЯ\" гостевые номера"
   },
   {
+    "slug": "kashtak-domiki-667",
+    "source_id": 3668,
+    "title": "\"КАШТАК\" домики"
+  },
+  {
     "slug": "nikol-gostevoy-dom-3678",
     "source_id": 3678,
     "title": "\"НИКОЛЬ\" гостевой дом"
@@ -490,7 +440,7 @@
     "title": "\"ЛНД\" гостевой дом в Синопе"
   },
   {
-    "slug": "peschanyy-bereg-apartamenty-3697",
+    "slug": "peschanyy-bereg-apartamenty-3700",
     "source_id": 3700,
     "title": "\"ПЕСЧАНЫЙ БЕРЕГ\" апартаменты"
   },
@@ -523,11 +473,6 @@
     "slug": "zolotaya-veranda-gostevoy-kompleks-3769",
     "source_id": 3769,
     "title": "\"ЗОЛОТАЯ ВЕРАНДА\" гостевой комплекс"
-  },
-  {
-    "slug": "mandarinovyy-dvorik-dom-pod-klyuch-3789",
-    "source_id": 3789,
-    "title": "\"МАНДАРИНОВЫЙ ДВОРИК\" дом под ключ"
   },
   {
     "slug": "sia-lend-baza-otdyha-3800",
@@ -650,11 +595,6 @@
     "title": "\"МОККО БРИЗ\" два домика"
   },
   {
-    "slug": "sekret-garden-apartamenty-4162",
-    "source_id": 4162,
-    "title": "\"СЕКРЕТ ГАРДЕН\" апартаменты"
-  },
-  {
     "slug": "assir-pitsunda-gostevoy-dom-v-tsentre-4173",
     "source_id": 4173,
     "title": "\"АССИР ПИЦУНДА\" гостевой дом в центре"
@@ -665,19 +605,9 @@
     "title": "\"ДИАР\" домики с бассейном"
   },
   {
-    "slug": "tihaya-obitel-dom-pod-klyuch-4230",
-    "source_id": 4230,
-    "title": "\"ТИХАЯ ОБИТЕЛЬ\" дом под ключ"
-  },
-  {
     "slug": "svetlyy-dvorik-gostevoy-dom-ekonom-4259",
     "source_id": 4259,
     "title": "\"СВЕТЛЫЙ ДВОРИК\" гостевой дом эконом"
-  },
-  {
-    "slug": "studio-san-amra-studiya-na-plyazhe-4270",
-    "source_id": 4270,
-    "title": "\"СТУДИО САН АМРА\" студия на пляже"
   },
   {
     "slug": "neanila-eko-domiki-4308",
@@ -693,11 +623,6 @@
     "slug": "apra-gostevoy-dom-na-plyazhe-4348",
     "source_id": 4348,
     "title": "\"АПРА\" гостевой дом на пляже"
-  },
-  {
-    "slug": "na-vremya-v-rayu-zhile-pod-klyuch-4357",
-    "source_id": 4357,
-    "title": "\"НА ВРЕМЯ В РАЮ\" жилье под ключ"
   },
   {
     "slug": "bagripsh-domiki-na-beregu-s-pitaniem-4399",
@@ -813,5 +738,25 @@
     "slug": "sanni-houm-domiki-s-basseynom-4731",
     "source_id": 4731,
     "title": "\"САННИ ХОУМ\" домики с бассейном"
+  },
+  {
+    "slug": "aleksandriya-domiki-4743",
+    "source_id": 4743,
+    "title": "\"АЛЕКСАНДРИЯ\" домики"
+  },
+  {
+    "slug": "flora-dom-4763",
+    "source_id": 4763,
+    "title": "\"ФЛОРА\" дом"
+  },
+  {
+    "slug": "boho-kompleks-polnogo-schastya-u-morya-4783",
+    "source_id": 4783,
+    "title": "\"БОХО\" комплекс полного счастья у моря!"
+  },
+  {
+    "slug": "laym-mini-otel-s-basseynom-u-zapovednika-3554",
+    "source_id": 4807,
+    "title": "\"ЛАЙМ\" мини-отель с бассейном у заповедника"
   }
 ]

@@ -1,26 +1,24 @@
 Синхронизация блока ЦЕНЫ из Telegram
 
-Кандидатов: 224
-Обновлено: 24
+Кандидатов: 222
+Обновлено: 22
 Пропущено: 200
 Ошибок: 0
 
 Обновлены:
-- aleksandriya-domiki-4743
-- assir-pitsunda-gostevoy-dom-v-tsentre-4173
 - avrora-inn-novyy-otel-v-tsentre-goroda-2641
 - belveder-gostevoy-dom-3602
+- flora-dom-4763
+- kashtak-domiki-667
 - kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459
 - liliya-uyutnyy-otel-s-zavtrakami-3832
-- mziya-gostevye-nomera-3659
+- nasta-gostevoy-dom-3249
 - parus-vidovoy-otel-s-basseynom-i-stolovoy-2602
-- sanni-houm-domiki-s-basseynom-4731
+- pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889
 - sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390
 - staryy-prichal-gostevoy-dom-u-morya-3891
-- tsarskoe-selo-anhua-kottedzhi-3871
 - v-gostyah-u-belochki-domiki-i-nomera-2879
 - villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716
-- afina-kvartira-2k-1488
 - argo-kvartira-1k-pitsunda-940
 - flora-dom-alahadze-1163
 - magnoliya-kvartira-3k-gagra-1253
@@ -37,6 +35,7 @@
 - aduney-gostevoy-dom-3181: already OK after audit
 - aisha-otel-s-basseynami-2651: already OK after audit
 - akva-otel-s-basseynom-i-zavtrakami-3114: already OK after audit
+- aleksandriya-domiki-4743: already OK after audit
 - alma-domiki-na-beregu-2996: already OK after audit
 - amor-apartamenty-s-kuhney-i-basseynom-3487: already OK after audit
 - amor-domiki-v-tsentre-gagry-2986: already OK after audit
@@ -47,6 +46,7 @@
 - arina-mini-otel-2792: already OK after audit
 - art-otel-s-pitaniem-i-basseynom-4479: already OK after audit
 - assir-gostevoy-dom-2840: already OK after audit
+- assir-pitsunda-gostevoy-dom-v-tsentre-4173: already OK after audit
 - atmosfernaya-kvartira-2k-3902: already OK after audit
 - bagripsh-domiki-na-beregu-s-pitaniem-4399: already OK after audit
 - banan-i-funduk-gostevoy-dom-2849: already OK after audit
@@ -54,12 +54,10 @@
 - belaya-loshad-glemping-s-basseynom-3650: already OK after audit
 - belaya-rechka-gostevoy-dom-s-kafe-3517: already OK after audit
 - belyy-dom-domiki-i-apartamenty-4081: already OK after audit
-- bereg-svyatoy-sofii-otel-4279: already OK after audit
 - bi-heppi-apart-otel-3334: already OK after audit
 - blek-si-otel-s-basseynom-i-pitaniem-3912: already OK after audit
 - boho-kompleks-polnogo-schastya-u-morya-3054: already OK after audit
 - boho-kompleks-polnogo-schastya-u-morya-4783: already OK after audit
-- bonzhur-mini-otel-2542: already OK after audit
 - briz-domiki-na-beregu-4510: already OK after audit
 - bugenvilleya-otel-s-basseynom-3044: already OK after audit
 - bungalo-glemping-3623: already OK after audit
