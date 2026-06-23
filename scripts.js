@@ -46,11 +46,11 @@
 
   function initCanonicalUrlDisplay() {
     if (window.location.hostname !== PUNY_SITE_HOST) return;
-    const nextUrl = `${buildPublicShareUrl()}${window.location.hash || ""}`;
+    const nextUrl = `${window.location.pathname || "/"}${window.location.search || ""}${window.location.hash || ""}`;
     try {
       window.history.replaceState(window.history.state, "", nextUrl);
     } catch (error) {
-      /* ignore unsupported IDN replaceState */
+      /* ignore unsupported replaceState */
     }
   }
 
