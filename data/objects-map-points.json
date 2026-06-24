@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T09:29:14.116008+00:00",
+  "generated_at": "2026-06-24T09:40:56.558222+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -27,6 +27,14 @@
       "cityKey": "alakhadzy"
     },
     {
+      "title": "\"БЕРЕГ СВЯТОЙ СОФИИ\" ОТЕЛЬ",
+      "address": "Алахадзы, улица Абовяна, 43.223950, 40.273705",
+      "lat": 43.22395,
+      "lon": 40.273705,
+      "url": "/hotels/bereg-svyatoy-sofii-otel-4279/",
+      "cityKey": "alakhadzy"
+    },
+    {
       "title": "\"ВОСХОДЯЩАЯ ЗВЕЗДА\" ОТЕЛЬ С БАССЕЙНОМ",
       "address": "Гагрский район, село Алахадзы, улица Инал-Ипа, 75",
       "lat": 43.207213,
@@ -44,10 +52,18 @@
     },
     {
       "title": "\"ГРИН ВИЛЛАДЖ\" ДОМИКИ",
-      "address": "Алахадзы, посёлок Цитрусовый, Цитрусовая улица, д. 5",
+      "address": "Пицунда, посёлок Цитрусовый, Цитрусовая улица, д. 5",
       "lat": 43.199886,
       "lon": 40.282281,
       "url": "/hotels/grin-villadzh-domiki-3633/",
+      "cityKey": "alakhadzy"
+    },
+    {
+      "title": "\"ДИАР\" ДОМИКИ С БАССЕЙНОМ",
+      "address": "Алахадзы, ул. Туманяна, 34Е",
+      "lat": 43.221052346792945,
+      "lon": 40.281197069940106,
+      "url": "/hotels/diar-domiki-s-basseynom-4192/",
       "cityKey": "alakhadzy"
     },
     {
@@ -75,6 +91,14 @@
       "cityKey": "alakhadzy"
     },
     {
+      "title": "\"РУСАНА\" ЭКО-ДОМИКИ",
+      "address": "Алахадзы ул Шаумяна 20",
+      "lat": 43.21655,
+      "lon": 40.286862,
+      "url": "/hotels/rusana-eko-domiki-3963/",
+      "cityKey": "alakhadzy"
+    },
+    {
       "title": "\"САБИНА\" ДОМИКИ У МОРЯ",
       "address": "Алахадзы, ул. Туманяна, 55.",
       "lat": 43.220846,
@@ -99,6 +123,22 @@
       "cityKey": "alakhadzy"
     },
     {
+      "title": "\"ТИХИЙ ЗАКАТ\" ДОМИКИ С БАССЕЙНОМ",
+      "address": "Алахадзы, ул. Шаумяна, 32а",
+      "lat": 43.215393,
+      "lon": 40.280134,
+      "url": "/hotels/tihiy-zakat-domiki-s-basseynom-3942/",
+      "cityKey": "alakhadzy"
+    },
+    {
+      "title": "\"ФЕМЕЛИ\" БАЗА ОТДЫХА С БАССЕЙНОМ И ПИТАНИЕМ",
+      "address": "Алахадзы, ул. Абовяна, 33",
+      "lat": 43.22488,
+      "lon": 40.279334,
+      "url": "/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/",
+      "cityKey": "alakhadzy"
+    },
+    {
       "title": "\"ФЛОРА\" ДОМ",
       "address": "Алахадзе, улица Абовяна, 25А",
       "lat": 43.223441,
@@ -107,35 +147,11 @@
       "cityKey": "alakhadzy"
     },
     {
-      "title": "«ДИАР» ДОМИКИ С БАССЕЙНОМ",
-      "address": "Алахадзы, ул. Туманяна, 34Е",
-      "lat": 43.221052346792945,
-      "lon": 40.281197069940106,
-      "url": "/hotels/diar-domiki-s-basseynom-4192/",
-      "cityKey": "alakhadzy"
-    },
-    {
-      "title": "«РУСАНА» ЭКО-ДОМИКИ",
-      "address": "Алахадзы ул Шаумяна 20",
-      "lat": 43.21655,
-      "lon": 40.286862,
-      "url": "/hotels/rusana-eko-domiki-3963/",
-      "cityKey": "alakhadzy"
-    },
-    {
-      "title": "«ТИХИЙ ЗАКАТ» ДОМИКИ С БАССЕЙНОМ",
-      "address": "Алахадзы, ул. Шаумяна, 32а",
-      "lat": 43.215393,
-      "lon": 40.280134,
-      "url": "/hotels/tihiy-zakat-domiki-s-basseynom-3942/",
-      "cityKey": "alakhadzy"
-    },
-    {
-      "title": "ОТЕЛЬ \"БЕРЕГ СВЯТОЙ СОФИИ\"",
-      "address": "Алахадзы, улица Абовяна, 43.223950, 40.273705",
-      "lat": 43.22395,
-      "lon": 40.273705,
-      "url": "/hotels/bereg-svyatoy-sofii-otel-4279/",
+      "title": "\"ФЛОРА\" ДОМ",
+      "address": "Алахадзе, улица Абовяна, 25А",
+      "lat": 43.223441,
+      "lon": 40.275597,
+      "url": "/hotels/flora-dom-4763/",
       "cityKey": "alakhadzy"
     },
     {
@@ -152,6 +168,14 @@
       "lat": 43.272357,
       "lon": 40.270217,
       "url": "/hotels/aduney-gostevoy-dom-3181/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "\"АЛЕКСАНДРИЯ\" ДОМИКИ",
+      "address": "Гагра, ул. Русских Добровольцев, 32А",
+      "lat": 43.33032534396032,
+      "lon": 40.22360663558192,
+      "url": "/hotels/aleksandriya-domiki-4743/",
       "cityKey": "gagra"
     },
     {
@@ -215,7 +239,7 @@
       "address": "Гагра, ул. Лакоба 99",
       "lat": 43.26333731982378,
       "lon": 40.268478915343486,
-      "url": "/hotels/boho-kompleks-polnogo-schastya-u-morya-3054/",
+      "url": "/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/",
       "cityKey": "gagra"
     },
     {
@@ -323,6 +347,14 @@
       "cityKey": "gagra"
     },
     {
+      "title": "\"САНРАЙЗ\" ГОСТЕВОЙ ДОМ С ЗАВТРАКАМИ",
+      "address": "Гагра, ул. Адыгаа, 4",
+      "lat": 43.27501277921123,
+      "lon": 40.272835976686466,
+      "url": "/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/",
+      "cityKey": "gagra"
+    },
+    {
       "title": "\"СЕКРЕТ ГАРДЕН\" АПАРТАМЕНТЫ",
       "address": "Гагра, Кабардинская ул, 83",
       "lat": 43.2850267976542,
@@ -344,22 +376,6 @@
       "lat": 43.273932,
       "lon": 40.270261,
       "url": "/kvartira/siti-gagra-kvartira-2k-gagra-1242/",
-      "cityKey": "gagra"
-    },
-    {
-      "title": "«САНРАЙЗ» ГОСТЕВОЙ ДОМ С ЗАВТРАКАМИ",
-      "address": "Гагра, ул. Адыгаа, 4",
-      "lat": 43.27501277921123,
-      "lon": 40.272835976686466,
-      "url": "/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/",
-      "cityKey": "gagra"
-    },
-    {
-      "title": "«СЕКРЕТ ГАРДЕН» АПАРТАМЕНТЫ",
-      "address": "Гагра, Кабардинская ул, 83",
-      "lat": 43.2850267976542,
-      "lon": 40.267194542327736,
-      "url": "/hotels/sekret-garden-apartamenty-4162/",
       "cityKey": "gagra"
     },
     {
@@ -387,19 +403,19 @@
       "cityKey": "gudauta"
     },
     {
-      "title": "\"ДЫШИ ГЛУБЖЕ\" ДОМИКИ В ГОРАХ",
-      "address": "13 км Рицинского ущелья, Рицинское шоссе",
-      "lat": 43.33490775019717,
-      "lon": 40.41151147221202,
-      "url": "/hotels/dyshi-glubzhe-domiki-v-gorah-3459/",
-      "cityKey": "gudauta"
-    },
-    {
       "title": "\"ЛЕОН\" ДОМИКИ",
       "address": "Гудаутский р-н, с. Хыпста, поселок Бамбора",
       "lat": 43.11490385381131,
       "lon": 40.55994301713515,
       "url": "/hotels/leon-domiki-3536/",
+      "cityKey": "gudauta"
+    },
+    {
+      "title": "\"ЛИЛИЯ\" УЮТНЫЙ ОТЕЛЬ С ЗАВТРАКАМИ",
+      "address": "Гудаута, ул. Пушкина, 2",
+      "lat": 43.0975420477468,
+      "lon": 40.626473038027875,
+      "url": "/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/",
       "cityKey": "gudauta"
     },
     {
@@ -413,9 +429,25 @@
     {
       "title": "\"ПЕРЛ\" ДОМ ПОД КЛЮЧ",
       "address": "Гудаута, ул. Гумистинская 34",
-      "lat": 43.089465,
-      "lon": 40.637325,
+      "lat": 43.101056,
+      "lon": 40.640754,
       "url": "/kvartira/perl-dom-pod-klyuch-gudauta-1092/",
+      "cityKey": "gudauta"
+    },
+    {
+      "title": "\"ФУЛЛ ХАУС\" ДОМИКИ С БАССЕЙНОМ",
+      "address": "Гудаута, ул. Агрба, 40",
+      "lat": 43.105894,
+      "lon": 40.61658,
+      "url": "/hotels/full-haus-domiki-s-basseynom-4092/",
+      "cityKey": "gudauta"
+    },
+    {
+      "title": "\"ЭСМА\" ДОМИКИ С БАССЕЙНОМ В ЦЕНТРЕ",
+      "address": "Гудаута, ул. Рафаэля Царгуш 20",
+      "lat": 43.10063196794994,
+      "lon": 40.617331186507855,
+      "url": "/hotels/esma-domiki-s-basseynom-v-tsentre-4032/",
       "cityKey": "gudauta"
     },
     {
@@ -424,30 +456,6 @@
       "lat": 43.10063196794994,
       "lon": 40.617331186507855,
       "url": "/kvartira/esma-studiya-5ti-mestnaya-gudauta-1355/",
-      "cityKey": "gudauta"
-    },
-    {
-      "title": "«ЛИЛИЯ» УЮТНЫЙ ОТЕЛЬ С ЗАВТРАКАМИ",
-      "address": "Гудаута, ул. Пушкина, 2",
-      "lat": 43.0975420477468,
-      "lon": 40.626473038027875,
-      "url": "/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/",
-      "cityKey": "gudauta"
-    },
-    {
-      "title": "«ФУЛЛ ХАУС» ДОМИКИ С БАССЕЙНОМ",
-      "address": "Гудаута, ул. Агрба, 40",
-      "lat": 43.105894,
-      "lon": 40.61658,
-      "url": "/hotels/full-haus-domiki-s-basseynom-4092/",
-      "cityKey": "gudauta"
-    },
-    {
-      "title": "«ЭСМА» ДОМИКИ С БАССЕЙНОМ В ЦЕНТРЕ",
-      "address": "Гудаута, ул. Рафаэля Царгуш 20",
-      "lat": 43.10063196794994,
-      "lon": 40.617331186507855,
-      "url": "/hotels/esma-domiki-s-basseynom-v-tsentre-4032/",
       "cityKey": "gudauta"
     },
     {
@@ -520,6 +528,22 @@
       "lat": 43.174774585974696,
       "lon": 40.40679194661258,
       "url": "/hotels/banan-i-funduk-gostevoy-dom-2849/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"БЕЛЫЙ ДОМ\" ДОМИКИ И АПАРТАМЕНТЫ",
+      "address": "Лдзаа, ул. Речная, 33",
+      "lat": 43.17541289104263,
+      "lon": 40.385679870043525,
+      "url": "/hotels/belyy-dom-domiki-i-apartamenty-4081/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"БЛЭК СИ\" ОТЕЛЬ С БАССЕЙНОМ И ПИТАНИЕМ",
+      "address": "Лдзаа, ул. Аиааира, 34",
+      "lat": 43.17455115783032,
+      "lon": 40.37188082464207,
+      "url": "/hotels/blek-si-otel-s-basseynom-i-pitaniem-3912/",
       "cityKey": "ldzaa"
     },
     {
@@ -619,6 +643,14 @@
       "cityKey": "ldzaa"
     },
     {
+      "title": "\"ЖЕМЧУЖИНА\" ГОСТЕВОЙ ДОМ",
+      "address": "Лдзаа, ул. Рыбзаводская, 73",
+      "lat": 43.17493461387582,
+      "lon": 40.38858755571472,
+      "url": "/hotels/zhemchuzhina-gostevoy-dom-4113/",
+      "cityKey": "ldzaa"
+    },
+    {
       "title": "\"ЗЕЛЕНЫЙ ДВОРИК\" ДОМИКИ И НОМЕРА",
       "address": "Лдзаа, ул. Рыбзаводская, 75/1",
       "lat": 43.175327124909,
@@ -660,14 +692,14 @@
     },
     {
       "title": "\"ЛАВАНДА\" ВИЛЛА С БАССЕЙНОМ",
-      "address": "Лдзаа, ул.Аиааира, д.45",
-      "lat": 43.173987,
-      "lon": 40.373083,
+      "address": "Лдзаа, ул. Аиааира, д.45",
+      "lat": 43.1740007431329,
+      "lon": 40.373026673610354,
       "url": "/hotels/lavanda-villa-s-basseynom-4590/",
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"ЛАЗУРИТ\" НОВЫЙ ОТЕЛЬ С ЗАВТРАКАМИ",
+      "title": "\"ЛАЗУРИТ\" НОВЫЙ ОТЕЛЬ С ЗАВТРАКАМИ 🩵СКИДКА 20% ДО 20 ИЮЛЯ🩵",
       "address": "Лдзаа, ул. Рыбзаводская 47",
       "lat": 43.17475939795848,
       "lon": 40.3816059692409,
@@ -715,11 +747,11 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"МЕЧТА\" АПАРТАМЕНТЫ С КУХНЕЙ",
-      "address": "Лдзаа, координаты 43.173756,40.379626",
-      "lat": 43.173756,
-      "lon": 40.379626,
-      "url": "/kvartira/mechta-apartamenty-ldzaa-1176/",
+      "title": "\"МАНДАРИН\" ОТЕЛЬ У СОСНОВОГО ПЛЯЖА С ЗАВТРАКАМИ",
+      "address": "Лдзаа, ул. Политрука Нозадзе, 34А",
+      "lat": 43.173367041392204,
+      "lon": 40.3727241312826,
+      "url": "/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/",
       "cityKey": "ldzaa"
     },
     {
@@ -727,7 +759,7 @@
       "address": "Лдзаа, координаты 43.173756,40.379626",
       "lat": 43.173756,
       "lon": 40.379626,
-      "url": "/hotels/mechta-apartamenty-s-kuhney-3363/",
+      "url": "/kvartira/mechta-apartamenty-ldzaa-1176/",
       "cityKey": "ldzaa"
     },
     {
@@ -800,14 +832,6 @@
       "lat": 43.175897,
       "lon": 40.382199,
       "url": "/kvartira/nasta-apartamenty-studiya-ldzaa-1264/",
-      "cityKey": "ldzaa"
-    },
-    {
-      "title": "\"НАСТА\" АПАРТАМЕНТЫ",
-      "address": "Абхазия, село Лдзаа, Речная улица, 36Б",
-      "lat": 43.175897,
-      "lon": 40.382199,
-      "url": "/hotels/nasta-apartamenty-3258/",
       "cityKey": "ldzaa"
     },
     {
@@ -884,9 +908,9 @@
     },
     {
       "title": "\"САН АМРА\" ЛЮКС НОМЕРА С ВИДОМ НА МОРЕ",
-      "address": "Гагрский район, село Лдзаа, Рыбзаводская улица, 80А",
-      "lat": 43.174072,
-      "lon": 40.385677,
+      "address": "Лдзаа, ул. Рыбзаводская, 80 А",
+      "lat": 43.17409310756723,
+      "lon": 40.385750090193426,
       "url": "/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/",
       "cityKey": "ldzaa"
     },
@@ -907,11 +931,43 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"СИРИУС\" ОТЕЛЬ У СОСНОВОГО ПЛЯЖА 💥 ОТКРЫТЫЕ БАССЕЙНА С 1 ИЮЛЯ 💦",
+      "title": "\"СИРИУС\" ОТЕЛЬ У СОСНОВОГО ПЛЯЖА 💥 ОТКРЫТЫЕ БАССЕЙНА ВО ВТОРОЙ ПОЛОВИНЕ ИЮЛЯ 💦",
       "address": "Лдзаа, ул. Политрука Нозадзе, 36",
       "lat": 43.172935,
       "lon": 40.372894,
       "url": "/hotels/sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"СОЗВЕЗДИЕ\" МИНИ-ОТЕЛЬ",
+      "address": "Лдзаа. ул. Агрба 69",
+      "lat": 43.178122,
+      "lon": 40.377152,
+      "url": "/hotels/sozvezdie-mini-otel-3933/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"СОЛУНА\" ДОМИКИ И НОМЕРА С ЗАВТРАКАМИ",
+      "address": "Лдзаа, ул. Речная. Точка на карте: 43.176155, 40.382642",
+      "lat": 43.176155,
+      "lon": 40.382642,
+      "url": "/hotels/soluna-domiki-i-nomera-s-zavtrakami-4041/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"СОФИЯ\" ОТЕЛЬ У СОСНОВОГО ПЛЯЖА",
+      "address": "Лдзаа, ул. Политрука Нозадзе, 30",
+      "lat": 43.1730988939832,
+      "lon": 40.37181444907364,
+      "url": "/hotels/sofiya-otel-u-sosnovogo-plyazha-3842/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"СТАРЫЙ ПРИЧАЛ\" ГОСТЕВОЙ ДОМ У МОРЯ",
+      "address": "Лдзаа, ул. Рыбзаводская, 80",
+      "lat": 43.174035449609335,
+      "lon": 40.38583983565046,
+      "url": "/hotels/staryy-prichal-gostevoy-dom-u-morya-3891/",
       "cityKey": "ldzaa"
     },
     {
@@ -920,14 +976,6 @@
       "lat": 43.174072,
       "lon": 40.385677,
       "url": "/kvartira/studio-san-amra-studiya-na-plyazhe-1511/",
-      "cityKey": "ldzaa"
-    },
-    {
-      "title": "\"СТУДИО САН АМРА\" СТУДИЯ НА ПЛЯЖЕ",
-      "address": "Лдзаа, ул. Рыбзаводская, 80 А",
-      "lat": 43.17409310756723,
-      "lon": 40.385750090193426,
-      "url": "/hotels/studio-san-amra-studiya-na-plyazhe-4270/",
       "cityKey": "ldzaa"
     },
     {
@@ -987,70 +1035,6 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "«БЕЛЫЙ ДОМ» ДОМИКИ И АПАРТАМЕНТЫ",
-      "address": "Лдзаа, ул. Речная, 33",
-      "lat": 43.17541289104263,
-      "lon": 40.385679870043525,
-      "url": "/hotels/belyy-dom-domiki-i-apartamenty-4081/",
-      "cityKey": "ldzaa"
-    },
-    {
-      "title": "«БЛЭК СИ» ОТЕЛЬ С БАССЕЙНОМ И ПИТАНИЕМ",
-      "address": "Лдзаа, ул. Аиааира, 34",
-      "lat": 43.17455115783032,
-      "lon": 40.37188082464207,
-      "url": "/hotels/blek-si-otel-s-basseynom-i-pitaniem-3912/",
-      "cityKey": "ldzaa"
-    },
-    {
-      "title": "«ЖЕМЧУЖИНА» ГОСТЕВОЙ ДОМ",
-      "address": "Лдзаа, ул. Рыбзаводская, 73",
-      "lat": 43.17493461387582,
-      "lon": 40.38858755571472,
-      "url": "/hotels/zhemchuzhina-gostevoy-dom-4113/",
-      "cityKey": "ldzaa"
-    },
-    {
-      "title": "«МАНДАРИН» ОТЕЛЬ У СОСНОВОГО ПЛЯЖА С ЗАВТРАКАМИ",
-      "address": "Лдзаа, ул. Политрука Нозадзе, 34А",
-      "lat": 43.173367041392204,
-      "lon": 40.3727241312826,
-      "url": "/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/",
-      "cityKey": "ldzaa"
-    },
-    {
-      "title": "«СОЗВЕЗДИЕ» МИНИ-ОТЕЛЬ",
-      "address": "Лдзаа. ул. Агрба 69",
-      "lat": 43.178122,
-      "lon": 40.377152,
-      "url": "/hotels/sozvezdie-mini-otel-3933/",
-      "cityKey": "ldzaa"
-    },
-    {
-      "title": "«СОЛУНА» ДОМИКИ И НОМЕРА С ЗАВТРАКАМИ",
-      "address": "Лдзаа, ул. Речная. Точка на карте: 43.176155, 40.382642",
-      "lat": 43.176155,
-      "lon": 40.382642,
-      "url": "/hotels/soluna-domiki-i-nomera-s-zavtrakami-4041/",
-      "cityKey": "ldzaa"
-    },
-    {
-      "title": "«СОФИЯ» ОТЕЛЬ У СОСНОВОГО ПЛЯЖА",
-      "address": "Лдзаа, ул. Политрука Нозадзе, 30",
-      "lat": 43.1730988939832,
-      "lon": 40.37181444907364,
-      "url": "/hotels/sofiya-otel-u-sosnovogo-plyazha-3842/",
-      "cityKey": "ldzaa"
-    },
-    {
-      "title": "«СТАРЫЙ ПРИЧАЛ» ГОСТЕВОЙ ДОМ У МОРЯ",
-      "address": "Лдзаа, ул. Рыбзаводская, 80",
-      "lat": 43.174035449609335,
-      "lon": 40.38583983565046,
-      "url": "/hotels/staryy-prichal-gostevoy-dom-u-morya-3891/",
-      "cityKey": "ldzaa"
-    },
-    {
       "title": "\"ДЕЛЬФИН\" ДОМИКИ",
       "address": "Новый Афон, Псырцха, проезд Братьев Джинджолия, 6",
       "lat": 43.081015,
@@ -1059,27 +1043,11 @@
       "cityKey": "new-afon"
     },
     {
-      "title": "\"КАСТЛ\" ВИДОВОЙ ОТЕЛЬ С БАССЕЙНОМ ПРЯМО НА ПЛЯЖЕ",
-      "address": "Гудаутский район, Новый Афон, улица Чакряна, 42А",
-      "lat": 43.07769,
-      "lon": 40.853367,
-      "url": "/hotels/kastl-otel-s-teplym-basseynom-i-vidom-na-more-2859/",
-      "cityKey": "new-afon"
-    },
-    {
       "title": "\"МАНДАРИНОВЫЙ ДВОРИК\" ДОМ ПОД КЛЮЧ",
       "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия, 66",
       "lat": 43.08592885753694,
       "lon": 40.8422572214162,
       "url": "/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/",
-      "cityKey": "new-afon"
-    },
-    {
-      "title": "\"МАНДАРИНОВЫЙ ДВОРИК\" ДОМ ПОД КЛЮЧ",
-      "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия, 66",
-      "lat": 43.08592885753694,
-      "lon": 40.8422572214162,
-      "url": "/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/",
       "cityKey": "new-afon"
     },
     {
@@ -1099,11 +1067,11 @@
       "cityKey": "new-afon"
     },
     {
-      "title": "\"НА ВРЕМЯ В РАЮ\" ЖИЛЬЕ ПОД КЛЮЧ",
-      "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия, 66",
-      "lat": 43.08582727860062,
-      "lon": 40.84252876322878,
-      "url": "/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/",
+      "title": "\"НЕБОСВОД\" ДОМИК-АФРЕЙМ В УЕДИНЕННОМ МЕСТЕ",
+      "address": "Новый Афон, с. Псырцха, 43.0857915, 40.8730787",
+      "lat": 43.0857915,
+      "lon": 40.8730787,
+      "url": "/kvartira/nebosvod-domik-afreym-v-uedinennom-meste-1598/",
       "cityKey": "new-afon"
     },
     {
@@ -1116,9 +1084,9 @@
     },
     {
       "title": "\"НИКОПСИЯ\" ДОМИКИ",
-      "address": "Новый Афон, Псырцха, ул. Абовяна",
-      "lat": 43.07958,
-      "lon": 40.848386,
+      "address": "Новый Афон, Пцырсха, 43.079580, 40.848386",
+      "lat": 43.079575612434056,
+      "lon": 40.84837379325085,
       "url": "/hotels/nikopsiya-domiki-3015/",
       "cityKey": "new-afon"
     },
@@ -1131,7 +1099,7 @@
       "cityKey": "new-afon"
     },
     {
-      "title": "«ЦАРСКОЕ СЕЛО АНХУА» КОТТЕДЖИ",
+      "title": "\"ЦАРСКОЕ СЕЛО АНХУА\" КОТТЕДЖИ",
       "address": "Гудаутский район, Новый Афон, улица Эшба, 9",
       "lat": 43.088896,
       "lon": 40.815,
@@ -1168,6 +1136,14 @@
       "lat": 43.1589327594219,
       "lon": 40.33001574106947,
       "url": "/hotels/arina-mini-otel-2792/",
+      "cityKey": "pitsunda"
+    },
+    {
+      "title": "\"АССИР ПИЦУНДА\" ГОСТЕВОЙ ДОМ В ЦЕНТРЕ",
+      "address": "Пицунда, ул. Тополевая, 14а",
+      "lat": 43.16344,
+      "lon": 40.340052,
+      "url": "/hotels/assir-pitsunda-gostevoy-dom-v-tsentre-4173/",
       "cityKey": "pitsunda"
     },
     {
@@ -1227,11 +1203,11 @@
       "cityKey": "pitsunda"
     },
     {
-      "title": "\"КАРАЛИНА\" АПАРТАМЕНТЫ",
-      "address": "Пицунда, ул. Агрба 30Б",
-      "lat": 43.168078469807554,
-      "lon": 40.344315253963856,
-      "url": "/hotels/karalina-apartamenty-3124/",
+      "title": "\"ЛАЙМ\" МИНИ-ОТЕЛЬ С БАССЕЙНОМ У ЗАПОВЕДНИКА",
+      "address": "Пицунда, ул. Гочуа 11В",
+      "lat": 43.15873321540144,
+      "lon": 40.32887076158341,
+      "url": "/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/",
       "cityKey": "pitsunda"
     },
     {
@@ -1296,6 +1272,14 @@
       "lat": 43.181645209767694,
       "lon": 40.292335678942585,
       "url": "/hotels/nikol-gostevoy-dom-3678/",
+      "cityKey": "pitsunda"
+    },
+    {
+      "title": "\"НОРА\" ГОСТЕВОЙ ДОМ ЭКОНОМ",
+      "address": "Пицунда, ул. Гочуа, 9",
+      "lat": 43.1842947885131,
+      "lon": 40.29133716577558,
+      "url": "/hotels/nora-gostevoy-dom-3851/",
       "cityKey": "pitsunda"
     },
     {
@@ -1395,30 +1379,6 @@
       "cityKey": "pitsunda"
     },
     {
-      "title": "«АССИР ПИЦУНДА» ГОСТЕВОЙ ДОМ В ЦЕНТРЕ",
-      "address": "Пицунда, ул. Тополевая, 14а",
-      "lat": 43.16344,
-      "lon": 40.340052,
-      "url": "/hotels/assir-pitsunda-gostevoy-dom-v-tsentre-4173/",
-      "cityKey": "pitsunda"
-    },
-    {
-      "title": "«ЛАЙМ» МИНИ-ОТЕЛЬ С БАССЕЙНОМ У ЗАПОВЕДНИКА",
-      "address": "Пицунда, ул. Гочуа 11В",
-      "lat": 43.15873321540144,
-      "lon": 40.32887076158341,
-      "url": "/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/",
-      "cityKey": "pitsunda"
-    },
-    {
-      "title": "«НОРА» ГОСТЕВОЙ ДОМ ЭКОНОМ",
-      "address": "Пицунда, ул. Гочуа, 9",
-      "lat": 43.163861,
-      "lon": 40.321394,
-      "url": "/hotels/nora-gostevoy-dom-3851/",
-      "cityKey": "pitsunda"
-    },
-    {
       "title": "\"АКИРА\" 2К КВАРТИРА",
       "address": "Сухум, ул. Акиртава, 7, 6 этаж",
       "lat": 43.00042062454251,
@@ -1463,7 +1423,7 @@
       "address": "Сухум, район Синоп, Кодорское шоссе, д. 665",
       "lat": 42.98262218360361,
       "lon": 41.061426708983966,
-      "url": "/kvartira/bi-heppi-kottedzh-suhum-1130/",
+      "url": "/kvartira/bi-heppi-kottedzh-1121/",
       "cityKey": "sukhum"
     },
     {
@@ -1496,6 +1456,14 @@
       "lat": 42.98680144842712,
       "lon": 41.058149742395635,
       "url": "/hotels/demi-mokko-dva-domika-3353/",
+      "cityKey": "sukhum"
+    },
+    {
+      "title": "\"ДОМИКИ У МАРИНЫ\" ОТДЫХ У МОРЯ",
+      "address": "г. Сухум, пос. Мачара, ул. Солнечная, 46а",
+      "lat": 42.947138,
+      "lon": 41.081557,
+      "url": "/hotels/domiki-u-mariny-otdyh-u-morya-3922/",
       "cityKey": "sukhum"
     },
     {
@@ -1539,11 +1507,11 @@
       "cityKey": "sukhum"
     },
     {
-      "title": "\"МЗИЯ\" АПАРТАМЕНТЫ",
-      "address": "Сухум, улица Услара, 3",
-      "lat": 42.979142,
-      "lon": 41.062629,
-      "url": "/hotels/mziya-apartamenty-1396/",
+      "title": "\"МАЯК\" ГОСТЕВОЙ ДОМ",
+      "address": "Сухум, улица Чукбар, 38",
+      "lat": 42.989853,
+      "lon": 40.972663,
+      "url": "/hotels/mayak-gostevoy-dom-3810/",
       "cityKey": "sukhum"
     },
     {
@@ -1560,6 +1528,14 @@
       "lat": 42.996975,
       "lon": 40.987324,
       "url": "/kvartira/mira-dom-suhum-1345/",
+      "cityKey": "sukhum"
+    },
+    {
+      "title": "\"МОККО БРИЗ\" ДВА ДОМИКА",
+      "address": "Сухум, Кодорское шоссе, 11",
+      "lat": 42.986972086340565,
+      "lon": 41.05791391782438,
+      "url": "/hotels/mokko-briz-dva-domika-4152/",
       "cityKey": "sukhum"
     },
     {
@@ -1587,6 +1563,30 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"ОАЗИС\" АПАРТАМЕНТЫ С КУХНЕЙ",
+      "address": "Сухум, улица Квициния, 31",
+      "lat": 43.001867,
+      "lon": 41.040046,
+      "url": "/hotels/oazis-apartamenty-s-kuhney-4061/",
+      "cityKey": "sukhum"
+    },
+    {
+      "title": "\"ОАЗИС\" ВИЛЛА",
+      "address": "Сухум, улица Квициния, 31",
+      "lat": 43.001867,
+      "lon": 41.040046,
+      "url": "/hotels/oazis-villa-4052/",
+      "cityKey": "sukhum"
+    },
+    {
+      "title": "\"ПАЛЬМА\" ГОСТЕВОЙ ДОМ",
+      "address": "Сухум, ул. Адлейба, 228",
+      "lat": 42.98668329696834,
+      "lon": 40.98284266501199,
+      "url": "/hotels/palma-gostevoy-dom-4071/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"ПАРКОВАЯ\" КВАРТИРА 2К",
       "address": "Сухум, ул. Аидгылара 36",
       "lat": 43.003957,
@@ -1607,7 +1607,7 @@
       "address": "Сухум, Кодорское шоссе, 11",
       "lat": 42.98695534716467,
       "lon": 41.05759607605673,
-      "url": "/hotels/peschanyy-bereg-apartamenty-3697/",
+      "url": "/hotels/peschanyy-bereg-apartamenty-3700/",
       "cityKey": "sukhum"
     },
     {
@@ -1616,6 +1616,14 @@
       "lat": 42.97872,
       "lon": 41.063016,
       "url": "/kvartira/rimma-dve-1k-kvartriry-suhum-1118/",
+      "cityKey": "sukhum"
+    },
+    {
+      "title": "\"СИА ЛЕНД\" БАЗА ОТДЫХА",
+      "address": "Сухум, Абжуйское шоссе, 52",
+      "lat": 42.96153598767279,
+      "lon": 41.07274392988482,
+      "url": "/hotels/sia-lend-baza-otdyha-3800/",
       "cityKey": "sukhum"
     },
     {
@@ -1643,14 +1651,6 @@
       "cityKey": "sukhum"
     },
     {
-      "title": "\"ТИХАЯ ОБИТЕЛЬ\" ДОМ ПОД КЛЮЧ",
-      "address": "Сухум, ул. Пхазария 7",
-      "lat": 42.973217591529,
-      "lon": 41.08001199999958,
-      "url": "/hotels/tihaya-obitel-dom-pod-klyuch-4230/",
-      "cityKey": "sukhum"
-    },
-    {
       "title": "\"У МОРЯ\" ДОМИКИ",
       "address": "Сухум, ул. Кодорское шоссе 665 д. 43",
       "lat": 42.986181,
@@ -1675,7 +1675,7 @@
       "cityKey": "sukhum"
     },
     {
-      "title": "\"ЧЕРНОМОРСКАЯ-1\" КВАРТИРА 2К",
+      "title": "\"ЧЕРНОМОРСКАЯ-2\" КВАРТИРА 2К",
       "address": "Сухум, ул. Лакоба 114, 2 этаж",
       "lat": 42.997535,
       "lon": 41.009323,
@@ -1688,62 +1688,6 @@
       "lat": 43.001373,
       "lon": 41.037306,
       "url": "/hotels/edem-domiki-4409/",
-      "cityKey": "sukhum"
-    },
-    {
-      "title": "«ДОМИКИ У МАРИНЫ» ОТДЫХ У МОРЯ",
-      "address": "г. Сухум, пос. Мачара, ул. Солнечная, 46а",
-      "lat": 42.947138,
-      "lon": 41.081557,
-      "url": "/hotels/domiki-u-mariny-otdyh-u-morya-3922/",
-      "cityKey": "sukhum"
-    },
-    {
-      "title": "«МАЯК» ГОСТЕВОЙ ДОМ",
-      "address": "Сухум, улица Чукбар, 38",
-      "lat": 42.989853,
-      "lon": 40.972663,
-      "url": "/hotels/mayak-gostevoy-dom-3810/",
-      "cityKey": "sukhum"
-    },
-    {
-      "title": "«МОККО БРИЗ» ДВА ДОМИКА",
-      "address": "Сухум, Кодорское шоссе, 11",
-      "lat": 42.986972086340565,
-      "lon": 41.05791391782438,
-      "url": "/hotels/mokko-briz-dva-domika-4152/",
-      "cityKey": "sukhum"
-    },
-    {
-      "title": "«ОАЗИС» АПАРТАМЕНТЫ С КУХНЕЙ",
-      "address": "Сухум, улица Квициния, 31",
-      "lat": 43.001867,
-      "lon": 41.040046,
-      "url": "/hotels/oazis-apartamenty-s-kuhney-4061/",
-      "cityKey": "sukhum"
-    },
-    {
-      "title": "«ОАЗИС» ВИЛЛА",
-      "address": "Сухум, улица Квициния, 31",
-      "lat": 43.001867,
-      "lon": 41.040046,
-      "url": "/hotels/oazis-villa-4052/",
-      "cityKey": "sukhum"
-    },
-    {
-      "title": "«ПАЛЬМА» ГОСТЕВОЙ ДОМ",
-      "address": "Сухум, ул. Адлейба, 228",
-      "lat": 42.98668329696834,
-      "lon": 40.98284266501199,
-      "url": "/hotels/palma-gostevoy-dom-4071/",
-      "cityKey": "sukhum"
-    },
-    {
-      "title": "«СИА ЛЕНД» БАЗА ОТДЫХА",
-      "address": "Сухум, Абжуйское шоссе, 52",
-      "lat": 42.96153598767279,
-      "lon": 41.07274392988482,
-      "url": "/hotels/sia-lend-baza-otdyha-3800/",
       "cityKey": "sukhum"
     },
     {
@@ -1795,7 +1739,7 @@
       "cityKey": "tsandripsh"
     },
     {
-      "title": "«ЭКОХОУМ» КОТТЕДЖ-ОТЕЛЬ",
+      "title": "\"ЭКОХОУМ\" КОТТЕДЖ-ОТЕЛЬ",
       "address": "Цандрипш, Амзара, ул. Горького 3",
       "lat": 43.381001915671234,
       "lon": 40.06077089043541,
@@ -1804,17 +1748,17 @@
     }
   ],
   "stats": {
-    "placemarks_total": 428,
-    "placemarks_unique": 214,
-    "pages_total": 225,
-    "pages_on_disk": 237,
-    "pages_excluded": 12,
-    "from_constructor": 222,
-    "from_page_coords": 1,
-    "from_manual": 2,
-    "skipped_without_constructor": 3,
+    "placemarks_total": 434,
+    "placemarks_unique": 217,
+    "pages_total": 218,
+    "pages_on_disk": 243,
+    "pages_excluded": 25,
+    "from_constructor": 218,
+    "from_page_coords": 0,
+    "from_manual": 0,
+    "skipped_without_constructor": 0,
     "skipped_without_coords": 0,
-    "shared_coordinate_groups": 24,
-    "points_total": 225
+    "shared_coordinate_groups": 16,
+    "points_total": 218
   }
 }

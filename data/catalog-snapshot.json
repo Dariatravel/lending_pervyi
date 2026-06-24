@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-22T19:32:11.279824+00:00",
+  "generated_at": "2026-06-24T09:41:26.358396+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 219,
-  "listings_hotels": 156,
+  "listings_total": 218,
+  "listings_hotels": 155,
   "listings_kvartira": 63,
   "listings": [
     {
@@ -4767,7 +4767,7 @@
       "published_at": "2026-05-18",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/kastl-otel-s-teplym-basseynom-i-vidom-na-more-2859.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Новый Афон. 1 минута до пляжа, размещение до 4 человек.",
         "sections": [
@@ -54575,7 +54575,7 @@
       "source_message_id": 2583,
       "source_topic_id": null,
       "slug": "lazurit-novyy-otel-s-zavtrakami-2583",
-      "title": "\"ЛАЗУРИТ\" новый отель с завтраками",
+      "title": "\"ЛАЗУРИТ\" новый отель с завтраками 🩵скидка 20% до 20 июля🩵",
       "summary": "Лдзаа. 3 минуты, пляж песчано-галечный, размещение до 5 человек.",
       "excerpt": "Идеальное место для тех, кто ищет комфорт и качество. Расположен в живописной прибрежной зоне на первой линии",
       "city": "Лдзаа",

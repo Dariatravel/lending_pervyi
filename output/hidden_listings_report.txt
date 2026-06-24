@@ -1,13 +1,14 @@
 Скрытые объекты (is_active=false, убраны из каталога и подборок)
 
-Всего в hidden_listings.json: 25
-Деактивировано в catalog snapshot: 13
+Всего в hidden_listings.json: 26
+Деактивировано в catalog snapshot: 14
 
 Скрыты:
 - bi-heppi-kottedzh-suhum-1130
 - boho-kompleks-polnogo-schastya-u-morya-3054
 - dyshi-glubzhe-domiki-v-gorah-3459
 - karalina-apartamenty-3124
+- kastl-otel-s-teplym-basseynom-i-vidom-na-more-2859
 - mandarinovyy-dvorik-dom-pod-klyuch-3789
 - mechta-apartamenty-s-kuhney-3363
 - mziya-apartamenty-1396
