@@ -13,9 +13,9 @@ from datetime import datetime
 from pathlib import Path
 from typing import Awaitable, Callable
 
-from telegram import Update
+from telegram import ReplyKeyboardMarkup, Update
 from telegram.error import NetworkError, TimedOut
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 
 ROOT = Path(__file__).resolve().parents[1]
 ENV_PATH = ROOT / ".env.site-update-bot"
@@ -23,6 +23,36 @@ STATE_PATH = ROOT / "output" / "site-update-bot-state.json"
 LOG_DIR = ROOT / "output" / "site-update-bot"
 WATCH_REPORT_PATH = ROOT / "output" / "telegram-watch-report.txt"
 WATCH_TARGETS_PATH = ROOT / "output" / "telegram-watch-changed-targets.json"
+
+BUTTON_STATUS = "Статус"
+BUTTON_CHECK = "Проверить сайт"
+BUTTON_UPDATE_CHANGED = "Обновить изменения"
+BUTTON_UPDATE = "Обновить сайт"
+BUTTON_FULL_UPDATE = "Полный синк"
+BUTTON_HELP = "Помощь"
+
+STEP_LABELS = {
+    "watch-telegram": "проверка новых правок в Telegram",
+    "audit-parity": "сверка текстов сайта с Telegram",
+    "audit-prices": "сверка цен",
+    "verify-media": "проверка медиа",
+    "new-from-sheet": "новые объекты из таблицы",
+    "filters": "фильтры из таблицы",
+    "rebuild": "пересборка сайта",
+    "telegram-details": "обновление описаний",
+    "telegram-prices": "обновление цен",
+    "podborki": "пересборка подборок",
+    "validate-snapshot": "проверка каталога",
+    "accept-watch-state": "сохранение состояния проверки",
+    "targeted-sync": "точечная синхронизация",
+    "full-sync": "полная синхронизация",
+    "git-status-before": "проверка git перед коммитом",
+    "git-add": "подготовка файлов к коммиту",
+    "git-commit": "коммит",
+    "git-push": "публикация в GitHub",
+    "git-status-after": "проверка git после коммита",
+    "changed-targets": "поиск изменённых объектов",
+}
 
 
 @dataclass
@@ -177,6 +207,46 @@ def read_watch_report() -> str:
     return WATCH_REPORT_PATH.read_text(encoding="utf-8", errors="ignore").strip()
 
 
+def menu_markup() -> ReplyKeyboardMarkup:
+    return ReplyKeyboardMarkup(
+        [
+            [BUTTON_CHECK, BUTTON_UPDATE_CHANGED],
+            [BUTTON_STATUS, BUTTON_UPDATE],
+            [BUTTON_FULL_UPDATE, BUTTON_HELP],
+        ],
+        resize_keyboard=True,
+        is_persistent=True,
+    )
+
+
+def help_text() -> str:
+    return (
+        "Я слежу за обновлениями сайта.\n\n"
+        f"{BUTTON_CHECK} — проверить Telegram-посты, цены, тексты и медиа.\n"
+        f"{BUTTON_UPDATE_CHANGED} — обновить только объекты, где изменился Telegram-пост.\n"
+        f"{BUTTON_UPDATE} — быстро обновить сайт: новые объекты, фильтры, цены, описания и подборки.\n"
+        f"{BUTTON_FULL_UPDATE} — полный синк Telegram с медиа; запускать редко, это долго.\n"
+        f"{BUTTON_STATUS} — показать состояние бота.\n\n"
+        "Автообновление сейчас выключено: я уведомляю, а решение об обновлении остаётся за вами."
+    )
+
+
+def format_changed_items(targets: dict[str, object], limit: int = 8) -> str:
+    items = targets.get("items") or []
+    if not isinstance(items, list) or not items:
+        return ""
+    lines = []
+    for item in items[:limit]:
+        if not isinstance(item, dict):
+            continue
+        title = str(item.get("title") or item.get("slug") or "объект")
+        parts = ", ".join(str(part) for part in item.get("changed_parts") or [])
+        lines.append(f"- {title}: {parts}")
+    if len(items) > limit:
+        lines.append(f"- и ещё {len(items) - limit} объект(ов)")
+    return "\n".join(lines)
+
+
 def summarize_check() -> str:
     parity_mismatches = count_report_markers(
         ROOT / "output" / "telegram_site_parity_audit.txt",
@@ -188,17 +258,32 @@ def summarize_check() -> str:
     )
     media_report = ROOT / "output" / "hidden_listings_report.txt"
     media_note = "медиа-проверка выполнена" if media_report.exists() else "медиа-проверка без отчета"
-    return "\n\n".join(
-        [
-            read_watch_report(),
-            (
-                f"Аудит сайта завершён.\n"
-                f"Текстовые расхождения: {parity_mismatches}\n"
-                f"Расхождения цен: {price_mismatches}\n"
-                f"{media_note}"
-            ),
-        ]
+    targets = load_changed_targets()
+    changed_total = int(targets.get("changed_total") or 0)
+    changed_items = format_changed_items(targets)
+    lines = ["Проверка завершена."]
+    if changed_total:
+        lines.append("")
+        lines.append(f"Новые изменения в Telegram: {changed_total} объект(ов).")
+        if changed_items:
+            lines.append(changed_items)
+        lines.append("")
+        lines.append(f"Что делать: нажмите «{BUTTON_UPDATE_CHANGED}», чтобы обновить только эти объекты.")
+    else:
+        lines.append("")
+        lines.append("Новых правок в Telegram-постах не найдено.")
+
+    lines.append("")
+    lines.append("Технический аудит сайта:")
+    lines.append(f"- старые текстовые расхождения: {parity_mismatches}")
+    lines.append(f"- старые расхождения цен: {price_mismatches}")
+    lines.append(f"- медиа: {'проверено' if media_report.exists() else media_note}")
+    lines.append("")
+    lines.append(
+        "Важно: старые расхождения — это накопленный аудит сайта с Telegram. "
+        "Это не значит, что Telegram изменился прямо сейчас."
     )
+    return "\n".join(lines)
 
 
 async def check_updates() -> tuple[str, list[CommandResult]]:
@@ -358,11 +443,18 @@ async def commit_and_push(message: str) -> list[CommandResult]:
 
 
 def format_results(results: list[CommandResult]) -> str:
-    lines = []
+    if not results:
+        return "Технические шаги не запускались."
+    failed = [result for result in results if result.return_code != 0]
+    if not failed:
+        return "Технически всё прошло успешно."
+    lines = ["Есть ошибка в технических шагах:"]
     for result in results:
-        status = "OK" if result.return_code == 0 else f"ERROR {result.return_code}"
+        if result.return_code == 0:
+            continue
+        label = STEP_LABELS.get(result.name, result.name)
         rel_log = result.log_path.relative_to(ROOT)
-        lines.append(f"- {result.name}: {status} (`{rel_log}`)")
+        lines.append(f"- {label}: ошибка {result.return_code}. Лог: {rel_log}")
     return "\n".join(lines)
 
 
@@ -407,14 +499,7 @@ async def send_long_message(bot, chat_id: int, text: str) -> None:
 
 @restricted
 async def start(update: Update, _context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.effective_message.reply_text(
-        "Бот обновления сайта.\n\n"
-        "/check - проверить расхождения\n"
-        "/update_changed - обновить только изменённые Telegram-посты\n"
-        "/update - быстро обновить тексты, цены, фильтры и подборки\n"
-        "/full_update - полный синк Telegram с медиа (долго)\n"
-        "/status - состояние бота"
-    )
+    await update.effective_message.reply_text(help_text(), reply_markup=menu_markup())
 
 
 @restricted
@@ -426,7 +511,8 @@ async def status(update: Update, _context: ContextTypes.DEFAULT_TYPE) -> None:
         f"Проверка каждые {CONFIG.interval_seconds // 60} мин.\n"
         f"Первая автопроверка через {CONFIG.initial_check_delay_seconds // 60} мин. после запуска\n"
         f"Автоприменение: {'включено' if CONFIG.auto_apply else 'выключено'}\n"
-        f"Последняя проверка: {state.get('last_check_at', 'нет')}"
+        f"Последняя проверка: {state.get('last_check_at', 'нет')}",
+        reply_markup=menu_markup(),
     )
 
 
@@ -436,7 +522,7 @@ async def check_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
         await update.effective_message.reply_text("Уже выполняется другая операция.")
         return
     async with RUN_LOCK:
-        await update.effective_message.reply_text("Запускаю проверку...")
+        await update.effective_message.reply_text("Запускаю проверку. Это может занять несколько минут...")
         summary, results = await check_updates()
         await send_long_message(context.bot, update.effective_chat.id, summary + "\n\n" + format_results(results))
 
@@ -447,9 +533,9 @@ async def update_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         await update.effective_message.reply_text("Уже выполняется другая операция.")
         return
     async with RUN_LOCK:
-        await update.effective_message.reply_text("Запускаю быстрое обновление сайта...")
+        await update.effective_message.reply_text("Запускаю обновление сайта. Если будут изменения, я сделаю commit и push...")
         results = await apply_quick_update()
-        await send_long_message(context.bot, update.effective_chat.id, "Быстрое обновление завершено.\n\n" + format_results(results))
+        await send_long_message(context.bot, update.effective_chat.id, "Обновление сайта завершено.\n\n" + format_results(results))
 
 
 @restricted
@@ -458,12 +544,12 @@ async def update_changed_command(update: Update, context: ContextTypes.DEFAULT_T
         await update.effective_message.reply_text("Уже выполняется другая операция.")
         return
     async with RUN_LOCK:
-        await update.effective_message.reply_text("Проверяю изменённые Telegram-посты и запускаю точечное обновление...")
+        await update.effective_message.reply_text("Проверяю изменённые Telegram-посты и обновляю только их...")
         results = await apply_changed_update()
         await send_long_message(
             context.bot,
             update.effective_chat.id,
-            "Точечное обновление завершено.\n\n" + format_results(results),
+            "Обновление изменённых объектов завершено.\n\n" + format_results(results),
         )
 
 
@@ -475,7 +561,34 @@ async def full_update_command(update: Update, context: ContextTypes.DEFAULT_TYPE
     async with RUN_LOCK:
         await update.effective_message.reply_text("Запускаю полный синк. Это может занять несколько часов.")
         results = await apply_full_update()
-        await send_long_message(context.bot, update.effective_chat.id, "Полный синк завершен.\n\n" + format_results(results))
+        await send_long_message(context.bot, update.effective_chat.id, "Полный синк завершён.\n\n" + format_results(results))
+
+
+@restricted
+async def help_command(update: Update, _context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.effective_message.reply_text(help_text(), reply_markup=menu_markup())
+
+
+@restricted
+async def button_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    text = (update.effective_message.text or "").strip()
+    if text == BUTTON_STATUS:
+        await status(update, context)
+    elif text == BUTTON_CHECK:
+        await check_command(update, context)
+    elif text == BUTTON_UPDATE_CHANGED:
+        await update_changed_command(update, context)
+    elif text == BUTTON_UPDATE:
+        await update_command(update, context)
+    elif text == BUTTON_FULL_UPDATE:
+        await full_update_command(update, context)
+    elif text == BUTTON_HELP:
+        await help_command(update, context)
+    else:
+        await update.effective_message.reply_text(
+            "Не понял команду. Выберите действие кнопкой ниже.",
+            reply_markup=menu_markup(),
+        )
 
 
 async def hourly_loop(application: Application) -> None:
@@ -523,11 +636,13 @@ async def post_init(application: Application) -> None:
 def build_application() -> Application:
     application = Application.builder().token(CONFIG.token).build()
     application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("help", help_command))
     application.add_handler(CommandHandler("status", status))
     application.add_handler(CommandHandler("check", check_command))
     application.add_handler(CommandHandler("update_changed", update_changed_command))
     application.add_handler(CommandHandler("update", update_command))
     application.add_handler(CommandHandler("full_update", full_update_command))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, button_command))
     return application
 
 
