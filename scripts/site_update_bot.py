@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Awaitable, Callable
 
 from telegram import Update
+from telegram.error import NetworkError, TimedOut
 from telegram.ext import Application, CommandHandler, ContextTypes
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,6 +30,7 @@ class BotConfig:
     token: str
     allowed_chat_ids: set[int]
     interval_seconds: int
+    initial_check_delay_seconds: int
     auto_apply: bool
     snapshot_only: bool
     command_timeout_seconds: int
@@ -73,6 +75,12 @@ def load_config() -> BotConfig:
         token=token,
         allowed_chat_ids=allowed_chat_ids,
         interval_seconds=int(os.getenv("SITE_UPDATE_CHECK_INTERVAL_SECONDS", "3600")),
+        initial_check_delay_seconds=int(
+            os.getenv(
+                "SITE_UPDATE_INITIAL_CHECK_DELAY_SECONDS",
+                os.getenv("SITE_UPDATE_CHECK_INTERVAL_SECONDS", "3600"),
+            )
+        ),
         auto_apply=bool_env("SITE_UPDATE_AUTO_APPLY", False),
         snapshot_only=bool_env("SITE_UPDATE_SNAPSHOT_ONLY", True),
         command_timeout_seconds=int(os.getenv("SITE_UPDATE_COMMAND_TIMEOUT_SECONDS", "21600")),
@@ -375,14 +383,26 @@ def restricted(handler: Callable[[Update, ContextTypes.DEFAULT_TYPE], Awaitable[
 
 
 async def send_long_message(bot, chat_id: int, text: str) -> None:
-    chunk_size = 3500
+    chunk_size = 2400
     for start in range(0, len(text), chunk_size):
-        await bot.send_message(
-            chat_id=chat_id,
-            text=text[start : start + chunk_size],
-            parse_mode=None,
-            disable_web_page_preview=True,
-        )
+        chunk = text[start : start + chunk_size]
+        for attempt in range(3):
+            try:
+                await bot.send_message(
+                    chat_id=chat_id,
+                    text=chunk,
+                    parse_mode=None,
+                    disable_web_page_preview=True,
+                    read_timeout=45,
+                    write_timeout=45,
+                    connect_timeout=45,
+                    pool_timeout=45,
+                )
+                break
+            except (TimedOut, NetworkError):
+                if attempt == 2:
+                    raise
+                await asyncio.sleep(2 * (attempt + 1))
 
 
 @restricted
@@ -404,6 +424,7 @@ async def status(update: Update, _context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.effective_message.reply_text(
         f"Статус: {'занят' if running else 'свободен'}\n"
         f"Проверка каждые {CONFIG.interval_seconds // 60} мин.\n"
+        f"Первая автопроверка через {CONFIG.initial_check_delay_seconds // 60} мин. после запуска\n"
         f"Автоприменение: {'включено' if CONFIG.auto_apply else 'выключено'}\n"
         f"Последняя проверка: {state.get('last_check_at', 'нет')}"
     )
@@ -458,7 +479,7 @@ async def full_update_command(update: Update, context: ContextTypes.DEFAULT_TYPE
 
 
 async def hourly_loop(application: Application) -> None:
-    await asyncio.sleep(10)
+    await asyncio.sleep(CONFIG.initial_check_delay_seconds)
     chat_ids = sorted(CONFIG.allowed_chat_ids)
     while True:
         try:
