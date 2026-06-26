@@ -3440,8 +3440,7 @@ a.podborki-card--link:hover {
   line-height: 1.58;
 }
 
-.hotel-site-concept .room-overview-card__label,
-.hotel-site-concept .telegram-caption {
+.hotel-site-concept .room-overview-card__label {
   display: inline-flex;
   align-items: center;
   width: fit-content;
@@ -3456,12 +3455,6 @@ a.podborki-card--link:hover {
   color: #245847;
   background: rgba(124, 196, 162, 0.18);
   text-transform: uppercase;
-}
-
-.hotel-site-concept .telegram-caption {
-  padding: 7px 10px;
-  color: rgba(33, 49, 43, 0.68);
-  background: rgba(255, 255, 255, 0.72);
 }
 
 .hotel-site-concept .comment-media-grid {
