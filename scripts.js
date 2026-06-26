@@ -657,10 +657,13 @@
   }
 
   function collectObjectGalleryItems() {
-    const grid = document.querySelector(".hotel-site-concept .media-grid");
-    if (!grid) return [];
+    const grids = document.querySelectorAll(
+      ".hotel-site-concept .media-grid, .hotel-site-concept .comment-media-grid, .hotel-site-concept .comment-review-grid"
+    );
+    if (!grids.length) return [];
 
-    return Array.from(grid.children)
+    return Array.from(grids)
+      .flatMap((grid) => Array.from(grid.children))
       .map((node) => {
         if (node.matches("img")) {
           const src = gallerySrcFromImage(node);
@@ -5004,7 +5007,9 @@
       return;
     }
 
-    const image = event.target.closest(".media-grid img, .hotel-media-section img");
+    const image = event.target.closest(
+      ".media-grid img, .hotel-media-section img, .comment-media-grid img, .comment-review-grid img"
+    );
     if (image) {
       if (image.classList.contains("local-video-preview")) {
         const block = image.closest(".video-embed");
@@ -5028,7 +5033,9 @@
       return;
     }
 
-    const video = event.target.closest(".media-grid video.local-video, .hotel-media-section video.local-video");
+    const video = event.target.closest(
+      ".media-grid video.local-video, .hotel-media-section video.local-video, .comment-media-grid video.local-video, .comment-review-grid video.local-video"
+    );
     if (!video) return;
     if (isVideoControlsClick(video, event)) return;
     event.preventDefault();
