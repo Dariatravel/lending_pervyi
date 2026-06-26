@@ -13,13 +13,14 @@ from pathlib import Path
 from typing import Awaitable, Callable
 
 from telegram import Update
-from telegram.constants import ParseMode
 from telegram.ext import Application, CommandHandler, ContextTypes
 
 ROOT = Path(__file__).resolve().parents[1]
 ENV_PATH = ROOT / ".env.site-update-bot"
 STATE_PATH = ROOT / "output" / "site-update-bot-state.json"
 LOG_DIR = ROOT / "output" / "site-update-bot"
+WATCH_REPORT_PATH = ROOT / "output" / "telegram-watch-report.txt"
+WATCH_TARGETS_PATH = ROOT / "output" / "telegram-watch-changed-targets.json"
 
 
 @dataclass
@@ -123,6 +124,13 @@ async def run_command(name: str, command: list[str], *, timeout: int | None = No
     return CommandResult(name=name, return_code=return_code, log_path=log_path)
 
 
+def note_result(name: str, text: str, *, return_code: int = 0) -> CommandResult:
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    log_path = LOG_DIR / f"{timestamp()}-{name}.log"
+    log_path.write_text(text.rstrip() + "\n", encoding="utf-8")
+    return CommandResult(name=name, return_code=return_code, log_path=log_path)
+
+
 async def run_steps(steps: list[tuple[str, list[str]]], *, stop_on_error: bool = True) -> list[CommandResult]:
     results: list[CommandResult] = []
     for name, command in steps:
@@ -154,6 +162,12 @@ def count_report_markers(path: Path, markers: tuple[str, ...]) -> int:
     return sum(text.count(marker) for marker in markers)
 
 
+def read_watch_report() -> str:
+    if not WATCH_REPORT_PATH.exists():
+        return "Telegram watch: отчёт ещё не создан."
+    return WATCH_REPORT_PATH.read_text(encoding="utf-8", errors="ignore").strip()
+
+
 def summarize_check() -> str:
     parity_mismatches = count_report_markers(
         ROOT / "output" / "telegram_site_parity_audit.txt",
@@ -165,22 +179,38 @@ def summarize_check() -> str:
     )
     media_report = ROOT / "output" / "hidden_listings_report.txt"
     media_note = "медиа-проверка выполнена" if media_report.exists() else "медиа-проверка без отчета"
-    return (
-        f"Проверка завершена.\n"
-        f"Текстовые расхождения: {parity_mismatches}\n"
-        f"Расхождения цен: {price_mismatches}\n"
-        f"{media_note}"
+    return "\n\n".join(
+        [
+            read_watch_report(),
+            (
+                f"Аудит сайта завершён.\n"
+                f"Текстовые расхождения: {parity_mismatches}\n"
+                f"Расхождения цен: {price_mismatches}\n"
+                f"{media_note}"
+            ),
+        ]
     )
 
 
 async def check_updates() -> tuple[str, list[CommandResult]]:
     steps = [
+        ("watch-telegram", [sys.executable, "scripts/watch_telegram_updates.py"]),
         ("audit-parity", [sys.executable, "scripts/audit_telegram_site_parity.py"]),
         ("audit-prices", [sys.executable, "scripts/audit_telegram_site_prices.py"]),
         ("verify-media", [sys.executable, "tools/verify_object_media.py"]),
     ]
     results = await run_steps(steps, stop_on_error=False)
     return summarize_check(), results
+
+
+def load_changed_targets() -> dict[str, object]:
+    if not WATCH_TARGETS_PATH.exists():
+        return {}
+    try:
+        payload = json.loads(WATCH_TARGETS_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    return payload if isinstance(payload, dict) else {}
 
 
 async def apply_quick_update() -> list[CommandResult]:
@@ -193,11 +223,66 @@ async def apply_quick_update() -> list[CommandResult]:
         ("podborki", [sys.executable, "scripts/build_podborki_from_filters.py"]),
         ("verify-media", [sys.executable, "tools/verify_object_media.py"]),
         ("validate-snapshot", [sys.executable, "tools/validate_catalog_snapshot.py"]),
+        ("accept-watch-state", [sys.executable, "scripts/watch_telegram_updates.py", "--accept-changes"]),
     ]
     results = await run_steps(steps)
     if results and results[-1].return_code != 0:
         return results
     results.extend(await commit_and_push("Автообновление сайта из Telegram и таблицы."))
+    return results
+
+
+async def apply_changed_update() -> list[CommandResult]:
+    results = [
+        await run_command(
+            "watch-telegram",
+            [sys.executable, "scripts/watch_telegram_updates.py"],
+            timeout=CONFIG.command_timeout_seconds,
+        )
+    ]
+    if results[-1].return_code != 0:
+        return results
+
+    targets = load_changed_targets()
+    hotel_ids = [str(item) for item in targets.get("hotel_source_ids") or []]
+    kv_topic_ids = [str(item) for item in targets.get("kv_topic_ids") or []]
+    changed_total = int(targets.get("changed_total") or 0)
+    if changed_total == 0:
+        results.append(note_result("changed-targets", "Изменённых Telegram-постов нет."))
+        return results
+    if not hotel_ids and not kv_topic_ids:
+        note = (
+            "Изменения найдены, но нет target id для точечного sync.\n"
+            "Запустите /update или /full_update."
+        )
+        results.append(note_result("changed-targets", note, return_code=2))
+        return results
+
+    command = [
+        sys.executable,
+        "scripts/run_auto_sync_pipeline.py",
+        "--snapshot-only",
+        "--mode",
+        "targeted",
+        "--force-media-refresh",
+    ]
+    if hotel_ids:
+        command.extend(["--target-hotel-source-ids", ",".join(hotel_ids)])
+    if kv_topic_ids:
+        command.extend(["--target-kv-topic-ids", ",".join(kv_topic_ids)])
+    results.append(await run_command("targeted-sync", command, timeout=CONFIG.command_timeout_seconds))
+    if results[-1].return_code != 0:
+        return results
+
+    extra_steps = [
+        ("podborki", [sys.executable, "scripts/build_podborki_from_filters.py"]),
+        ("validate-snapshot", [sys.executable, "tools/validate_catalog_snapshot.py"]),
+        ("accept-watch-state", [sys.executable, "scripts/watch_telegram_updates.py", "--accept-changes"]),
+    ]
+    results.extend(await run_steps(extra_steps))
+    if results and results[-1].return_code != 0:
+        return results
+    results.extend(await commit_and_push("Точечное обновление сайта из изменённых Telegram-постов."))
     return results
 
 
@@ -210,6 +295,15 @@ async def apply_full_update() -> list[CommandResult]:
         "full",
     ]
     results = [await run_command("full-sync", command, timeout=CONFIG.command_timeout_seconds)]
+    if results[-1].return_code != 0:
+        return results
+    results.append(
+        await run_command(
+            "accept-watch-state",
+            [sys.executable, "scripts/watch_telegram_updates.py", "--accept-changes"],
+            timeout=CONFIG.command_timeout_seconds,
+        )
+    )
     if results[-1].return_code != 0:
         return results
     results.extend(await commit_and_push("Полная синхронизация сайта из Telegram."))
@@ -285,7 +379,7 @@ async def send_long_message(bot, chat_id: int, text: str) -> None:
         await bot.send_message(
             chat_id=chat_id,
             text=text[start : start + chunk_size],
-            parse_mode=ParseMode.MARKDOWN,
+            parse_mode=None,
             disable_web_page_preview=True,
         )
 
@@ -295,6 +389,7 @@ async def start(update: Update, _context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.effective_message.reply_text(
         "Бот обновления сайта.\n\n"
         "/check - проверить расхождения\n"
+        "/update_changed - обновить только изменённые Telegram-посты\n"
         "/update - быстро обновить тексты, цены, фильтры и подборки\n"
         "/full_update - полный синк Telegram с медиа (долго)\n"
         "/status - состояние бота"
@@ -336,6 +431,21 @@ async def update_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
 
 @restricted
+async def update_changed_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if RUN_LOCK.locked():
+        await update.effective_message.reply_text("Уже выполняется другая операция.")
+        return
+    async with RUN_LOCK:
+        await update.effective_message.reply_text("Проверяю изменённые Telegram-посты и запускаю точечное обновление...")
+        results = await apply_changed_update()
+        await send_long_message(
+            context.bot,
+            update.effective_chat.id,
+            "Точечное обновление завершено.\n\n" + format_results(results),
+        )
+
+
+@restricted
 async def full_update_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if RUN_LOCK.locked():
         await update.effective_message.reply_text("Уже выполняется другая операция.")
@@ -371,7 +481,7 @@ async def hourly_loop(application: Application) -> None:
                                 "Есть изменения в проверке сайта.\n\n" + summary + "\n\n" + format_results(results),
                             )
                     if CONFIG.auto_apply and changed:
-                        update_results = await apply_quick_update()
+                        update_results = await apply_changed_update()
                         for chat_id in chat_ids:
                             await send_long_message(
                                 application.bot,
@@ -393,6 +503,7 @@ def main() -> int:
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("status", status))
     application.add_handler(CommandHandler("check", check_command))
+    application.add_handler(CommandHandler("update_changed", update_changed_command))
     application.add_handler(CommandHandler("update", update_command))
     application.add_handler(CommandHandler("full_update", full_update_command))
     application.run_polling(allowed_updates=Update.ALL_TYPES)

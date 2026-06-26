@@ -141,13 +141,17 @@ python3 scripts/rebuild_from_catalog_snapshot.py
 Добавлен бот:
 
 - `scripts/site_update_bot.py`
+- `scripts/watch_telegram_updates.py`
 - `.env.site-update-bot.example`
 - `requirements-site-update-bot.txt`
 - `deploy/systemd/abhazbereg-site-update-bot.service`
 
-Бот работает в long polling режиме. По умолчанию он **раз в час проверяет** расхождения в Telegram-постах и присылает уведомление владельцу. Обновление сайта запускается вручную из Telegram:
+Бот работает в long polling режиме. По умолчанию он **раз в час проверяет** расхождения в Telegram-постах и присылает уведомление владельцу. Проверка хранит сигнатуры текста, цен и медиа в `output/telegram-watch-state.json`; найденные изменения остаются в отчёте до успешного точечного обновления.
+
+Обновление сайта запускается вручную из Telegram:
 
 - `/check` — проверить расхождения сейчас;
+- `/update_changed` — обновить только объекты, у которых изменились Telegram-посты;
 - `/update` — быстро обновить новые объекты, фильтры, детальные тексты, цены, подборки, затем сделать commit + push;
 - `/full_update` — полный синк Telegram с медиа, долго;
 - `/status` — состояние бота.
@@ -163,6 +167,8 @@ SITE_UPDATE_AUTO_APPLY=0
 ```env
 SITE_UPDATE_AUTO_APPLY=1
 ```
+
+В этом режиме бот запускает точечный sync по изменённым Telegram-постам (`/update_changed`-логика), а не полный каталог.
 
 ### Установка на VPS
 

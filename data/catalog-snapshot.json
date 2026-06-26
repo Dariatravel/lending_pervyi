@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-26T20:10:11.838000+00:00",
+  "generated_at": "2026-06-26T20:41:38.111552+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 218,
-  "listings_hotels": 155,
+  "listings_total": 219,
+  "listings_hotels": 156,
   "listings_kvartira": 63,
   "listings": [
     {
@@ -31233,31 +31233,32 @@
     {
       "source_kind": "kvartira",
       "source_channel": "abhkvartira",
-      "source_message_id": 1193,
+      "source_message_id": 1185,
       "source_topic_id": 652,
       "slug": "chernomorskaya-kvartira-suhum-1201",
-      "title": "\"ЧЕРНОМОРСКАЯ-2\" квартира 2к",
-      "summary": "Сухум. 2 минуты до центрального пляжа, размещение до 6 человек.",
-      "excerpt": "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\". На той же площадке, что и \"Черноморская-1\"",
+      "title": "\"ЧЕРНОМОРСКАЯ-1\" квартира 2к",
+      "summary": "Сухум. 2 минуты до центрального пляжа, размещение до 5 человек.",
+      "excerpt": "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\"",
       "city": "Сухум",
       "location_text": "Сухум, ул. Лакоба 114, 2 этаж",
       "distance_text": "2 минуты до центрального пляжа",
       "beach_text": "2 минуты до центрального пляжа",
-      "capacity_text": "размещение до 6 человек",
+      "capacity_text": "размещение до 5 человек",
       "page_url": "https://абхазберег.рф/kvartira/chernomorskaya-kvartira-suhum-1201/",
-      "telegram_url": "https://t.me/abhkvartira/1193",
+      "telegram_url": "https://t.me/abhkvartira/1185",
       "published_at": "2026-02-04",
       "has_video": false,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/chernomorskaya-kvartira-suhum-1201-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Сухум. 2 минуты до центрального пляжа, размещение до 6 человек.",
+        "lead": "Сухум. 2 минуты до центрального пляжа, размещение до 5 человек.",
         "sections": [
           {
             "label": "✔️КВАРТИРА:",
             "lines": [
-              "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\". На той же площадке, что и \"Черноморская-1\"",
-              "Есть три односпальные кровати (можно совмещать), двуспальная, диванчик. Оборудованная кухня с посудой. Санузел с ванной, стиральная машинка.",
+              "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\".",
+              "Есть три односпальные кровати (можно совмещать).",
+              "Оборудованная кухня с посудой. Санузел с ванной, стиральная машинка.",
               "Wi-Fi , кондиционер."
             ]
           },
@@ -31407,28 +31408,6 @@
           "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-07.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-07.jpg",
-          "details": {}
-        },
-        {
-          "id": 128009,
-          "media_role": "gallery",
-          "sort_order": 8,
-          "mime_type": "image/jpeg",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-08.jpg",
-          "storage_bucket": "abhazbereg-media",
-          "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-08.jpg",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-08.jpg",
-          "details": {}
-        },
-        {
-          "id": 128010,
-          "media_role": "gallery",
-          "sort_order": 9,
-          "mime_type": "image/jpeg",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-09.jpg",
-          "storage_bucket": "abhazbereg-media",
-          "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-09.jpg",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-09.jpg",
           "details": {}
         }
       ]
@@ -56280,7 +56259,7 @@
             "up-to-10"
           ],
           "food": [
-            "no-food"
+            "cafe"
           ],
           "price": [
             "economy"
@@ -57976,6 +57955,264 @@
           "public_url": "https://t.me/abhazbooking/4838",
           "details": {
             "telegram_post": "abhazbooking/4838"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 4842,
+      "source_topic_id": null,
+      "slug": "barnaba-gostevoy-dom-4842",
+      "title": "\"БАРНАБА\" гостевой дом",
+      "summary": "Гагра. 10 минут до пляжа, размещение до 4 человек.",
+      "excerpt": "Пятнадцать номеров, расположенных на двух этажах",
+      "city": "Гагра",
+      "location_text": "Гагра, ул. Жоэкварская, 21",
+      "distance_text": "10 минут до пляжа",
+      "beach_text": "10 минут до пляжа",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/barnaba-gostevoy-dom-4842/",
+      "telegram_url": "https://t.me/abhazbooking/4842",
+      "published_at": "2026-06-25",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/barnaba-gostevoy-dom-4842.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 10 минут до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Пятнадцать номеров, расположенных на двух этажах.",
+              "Двухместные и трехместные номера с возможностью добавить доп место для 4 человека - раскладную кровать.",
+              "В номерах: двуспальная или две односпальные кровати в двухместных номерах.",
+              "Двуспальная и односпальная кровати или три односпальные кровати в трехместных номерах.",
+              "Шкаф, прикроватные тумбочки, Сан узел с душем.",
+              "Оснащение: кондиционер, телевизор, Wi‑Fi, мини-холодильник, фен."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Кафе на территории с домашней кухней по меню.",
+              "Мангальная зона и зона отдыха.",
+              "Горная речка прямо за забором, можно купаться в жару.",
+              "Парковка рядом."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Живописный район Старой Гагры, Жоэкварское ущелье. Рядом Комсомольский и Приморский парки, дворец принца Ольденбургского.",
+              "В шаговой доступности магазины, кафе, ресторан Аббата, остановка общественного транспорта.",
+              "До набережной и галечного пляжа 10 минут пешком."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Двухместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "2300₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "2700₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "2800₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "2300₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Трехместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "2900₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "3100₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "2700₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место в трехместный номер — 500₽"
+          }
+        ],
+        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/barnaba-gostevoy-dom-4842/index.html",
+        "filters": {
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "economy"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "balcony",
+            "tv"
+          ],
+          "stay": []
+        }
+      },
+      "id": 1166,
+      "media": [
+        {
+          "id": 1166001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/barnaba-gostevoy-dom-4842.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/barnaba-gostevoy-dom-4842.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/barnaba-gostevoy-dom-4842.jpg",
+          "details": {}
+        },
+        {
+          "id": 1166002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/barnaba-gostevoy-dom-4842/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1166003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/barnaba-gostevoy-dom-4842/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1166004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/barnaba-gostevoy-dom-4842/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1166005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/barnaba-gostevoy-dom-4842/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1166006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/barnaba-gostevoy-dom-4842/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1166007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/barnaba-gostevoy-dom-4842/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1166008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/barnaba-gostevoy-dom-4842/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1166009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/barnaba-gostevoy-dom-4842/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1166010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/barnaba-gostevoy-dom-4842/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/barnaba-gostevoy-dom-4842/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1166011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/barnaba-gostevoy-dom-4842/video-01-1800k.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/barnaba-gostevoy-dom-4842/video-01-1800k.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/barnaba-gostevoy-dom-4842/video-01-1800k.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/4851",
+            "telegram_url": "https://t.me/abhazbooking/4851"
           }
         }
       ]
