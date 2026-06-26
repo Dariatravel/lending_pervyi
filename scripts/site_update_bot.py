@@ -23,10 +23,14 @@ STATE_PATH = ROOT / "output" / "site-update-bot-state.json"
 LOG_DIR = ROOT / "output" / "site-update-bot"
 WATCH_REPORT_PATH = ROOT / "output" / "telegram-watch-report.txt"
 WATCH_TARGETS_PATH = ROOT / "output" / "telegram-watch-changed-targets.json"
+MAP_REPORT_PATH = ROOT / "output" / "objects-map-sync-report.txt"
+MAP_SUMMARY_PATH = ROOT / "output" / "objects-map-sync-summary.json"
 
 BUTTON_STATUS = "Статус"
 BUTTON_CHECK = "Проверить сайт"
+BUTTON_CHECK_MAP = "Проверить карту"
 BUTTON_UPDATE_CHANGED = "Обновить изменения"
+BUTTON_UPDATE_MAP = "Обновить карту"
 BUTTON_UPDATE = "Обновить сайт"
 BUTTON_FULL_UPDATE = "Полный синк"
 BUTTON_HELP = "Помощь"
@@ -36,6 +40,8 @@ STEP_LABELS = {
     "audit-parity": "сверка текстов сайта с Telegram",
     "audit-prices": "сверка цен",
     "verify-media": "проверка медиа",
+    "check-map": "проверка точек карты",
+    "update-map": "обновление точек карты",
     "new-from-sheet": "новые объекты из таблицы",
     "filters": "фильтры из таблицы",
     "rebuild": "пересборка сайта",
@@ -211,6 +217,7 @@ def menu_markup() -> ReplyKeyboardMarkup:
     return ReplyKeyboardMarkup(
         [
             [BUTTON_CHECK, BUTTON_UPDATE_CHANGED],
+            [BUTTON_CHECK_MAP, BUTTON_UPDATE_MAP],
             [BUTTON_STATUS, BUTTON_UPDATE],
             [BUTTON_FULL_UPDATE, BUTTON_HELP],
         ],
@@ -223,7 +230,9 @@ def help_text() -> str:
     return (
         "Я слежу за обновлениями сайта.\n\n"
         f"{BUTTON_CHECK} — проверить Telegram-посты, цены, тексты и медиа.\n"
+        f"{BUTTON_CHECK_MAP} — проверить, изменились ли точки интерактивной карты.\n"
         f"{BUTTON_UPDATE_CHANGED} — обновить только объекты, где изменился Telegram-пост.\n"
+        f"{BUTTON_UPDATE_MAP} — применить изменения точек карты и запушить сайт.\n"
         f"{BUTTON_UPDATE} — быстро обновить сайт: новые объекты, фильтры, цены, описания и подборки.\n"
         f"{BUTTON_FULL_UPDATE} — полный синк Telegram с медиа; запускать редко, это долго.\n"
         f"{BUTTON_STATUS} — показать состояние бота.\n\n"
@@ -258,6 +267,7 @@ def summarize_check() -> str:
     )
     media_report = ROOT / "output" / "hidden_listings_report.txt"
     media_note = "медиа-проверка выполнена" if media_report.exists() else "медиа-проверка без отчета"
+    map_summary = load_map_summary()
     targets = load_changed_targets()
     changed_total = int(targets.get("changed_total") or 0)
     changed_items = format_changed_items(targets)
@@ -278,6 +288,11 @@ def summarize_check() -> str:
     lines.append(f"- старые текстовые расхождения: {parity_mismatches}")
     lines.append(f"- старые расхождения цен: {price_mismatches}")
     lines.append(f"- медиа: {'проверено' if media_report.exists() else media_note}")
+    if map_summary:
+        lines.append(
+            f"- карта: {'есть изменения' if map_summary.get('has_changes') else 'без изменений'} "
+            f"({map_summary.get('fresh_points', 0)} точек)"
+        )
     lines.append("")
     lines.append(
         "Важно: старые расхождения — это накопленный аудит сайта с Telegram. "
@@ -289,6 +304,7 @@ def summarize_check() -> str:
 async def check_updates() -> tuple[str, list[CommandResult]]:
     steps = [
         ("watch-telegram", [sys.executable, "scripts/watch_telegram_updates.py"]),
+        ("check-map", [sys.executable, "scripts/sync_objects_map_points.py"]),
         ("audit-parity", [sys.executable, "scripts/audit_telegram_site_parity.py"]),
         ("audit-prices", [sys.executable, "scripts/audit_telegram_site_prices.py"]),
         ("verify-media", [sys.executable, "tools/verify_object_media.py"]),
@@ -307,6 +323,22 @@ def load_changed_targets() -> dict[str, object]:
     return payload if isinstance(payload, dict) else {}
 
 
+def load_map_summary() -> dict[str, object]:
+    if not MAP_SUMMARY_PATH.exists():
+        return {}
+    try:
+        payload = json.loads(MAP_SUMMARY_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def read_map_report() -> str:
+    if not MAP_REPORT_PATH.exists():
+        return "Отчёт карты ещё не создан."
+    return MAP_REPORT_PATH.read_text(encoding="utf-8", errors="ignore").strip()
+
+
 async def apply_quick_update() -> list[CommandResult]:
     steps = [
         ("new-from-sheet", [sys.executable, "scripts/sync_new_objects_from_sheet.py", "--snapshot-only"]),
@@ -315,6 +347,7 @@ async def apply_quick_update() -> list[CommandResult]:
         ("telegram-details", [sys.executable, "scripts/apply_telegram_detail_sections.py", "--from-audit"]),
         ("telegram-prices", [sys.executable, "scripts/sync_prices_from_telegram.py", "--all"]),
         ("podborki", [sys.executable, "scripts/build_podborki_from_filters.py"]),
+        ("update-map", [sys.executable, "scripts/sync_objects_map_points.py", "--apply"]),
         ("verify-media", [sys.executable, "tools/verify_object_media.py"]),
         ("validate-snapshot", [sys.executable, "tools/validate_catalog_snapshot.py"]),
         ("accept-watch-state", [sys.executable, "scripts/watch_telegram_updates.py", "--accept-changes"]),
@@ -323,6 +356,22 @@ async def apply_quick_update() -> list[CommandResult]:
     if results and results[-1].return_code != 0:
         return results
     results.extend(await commit_and_push("Автообновление сайта из Telegram и таблицы."))
+    return results
+
+
+async def check_map_update() -> list[CommandResult]:
+    return [await run_command("check-map", [sys.executable, "scripts/sync_objects_map_points.py"])]
+
+
+async def apply_map_update() -> list[CommandResult]:
+    results = [await run_command("update-map", [sys.executable, "scripts/sync_objects_map_points.py", "--apply"])]
+    if results[-1].return_code != 0:
+        return results
+    summary = load_map_summary()
+    if not summary.get("has_changes"):
+        results.append(note_result("update-map", "Изменений карты нет. Коммит не нужен."))
+        return results
+    results.extend(await commit_and_push("Обновить точки объектов на карте."))
     return results
 
 
@@ -370,6 +419,7 @@ async def apply_changed_update() -> list[CommandResult]:
 
     extra_steps = [
         ("podborki", [sys.executable, "scripts/build_podborki_from_filters.py"]),
+        ("update-map", [sys.executable, "scripts/sync_objects_map_points.py", "--apply"]),
         ("validate-snapshot", [sys.executable, "tools/validate_catalog_snapshot.py"]),
         ("accept-watch-state", [sys.executable, "scripts/watch_telegram_updates.py", "--accept-changes"]),
     ]
@@ -391,6 +441,9 @@ async def apply_full_update() -> list[CommandResult]:
     results = [await run_command("full-sync", command, timeout=CONFIG.command_timeout_seconds)]
     if results[-1].return_code != 0:
         return results
+    results.append(await run_command("update-map", [sys.executable, "scripts/sync_objects_map_points.py", "--apply"]))
+    if results[-1].return_code != 0:
+        return results
     results.append(
         await run_command(
             "accept-watch-state",
@@ -407,6 +460,8 @@ async def apply_full_update() -> list[CommandResult]:
 async def commit_and_push(message: str) -> list[CommandResult]:
     add_targets = [
         "data/catalog-snapshot.json",
+        "data/objects-map-points.json",
+        "data/objects-map-geocode-cache.json",
         "index.html",
         "hotels/",
         "kvartira/",
@@ -420,6 +475,7 @@ async def commit_and_push(message: str) -> list[CommandResult]:
         "output/all_filters_sync_report.txt",
         "output/backfill_missing_report.txt",
         "output/podborki_from_filters_report.txt",
+        "output/objects-map-unmatched.txt",
         "output/telegram_prices_audit.txt",
         "output/telegram_prices_sync_report.txt",
         "output/telegram_site_parity_audit.txt",
@@ -528,6 +584,28 @@ async def check_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
 
 
 @restricted
+async def check_map_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if RUN_LOCK.locked():
+        await update.effective_message.reply_text("Уже выполняется другая операция.")
+        return
+    async with RUN_LOCK:
+        await update.effective_message.reply_text("Проверяю точки интерактивной карты...")
+        results = await check_map_update()
+        await send_long_message(context.bot, update.effective_chat.id, read_map_report() + "\n\n" + format_results(results))
+
+
+@restricted
+async def update_map_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if RUN_LOCK.locked():
+        await update.effective_message.reply_text("Уже выполняется другая операция.")
+        return
+    async with RUN_LOCK:
+        await update.effective_message.reply_text("Обновляю точки карты и, если есть изменения, публикую сайт...")
+        results = await apply_map_update()
+        await send_long_message(context.bot, update.effective_chat.id, read_map_report() + "\n\n" + format_results(results))
+
+
+@restricted
 async def update_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if RUN_LOCK.locked():
         await update.effective_message.reply_text("Уже выполняется другая операция.")
@@ -576,8 +654,12 @@ async def button_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         await status(update, context)
     elif text == BUTTON_CHECK:
         await check_command(update, context)
+    elif text == BUTTON_CHECK_MAP:
+        await check_map_command(update, context)
     elif text == BUTTON_UPDATE_CHANGED:
         await update_changed_command(update, context)
+    elif text == BUTTON_UPDATE_MAP:
+        await update_map_command(update, context)
     elif text == BUTTON_UPDATE:
         await update_command(update, context)
     elif text == BUTTON_FULL_UPDATE:
@@ -639,7 +721,9 @@ def build_application() -> Application:
     application.add_handler(CommandHandler("help", help_command))
     application.add_handler(CommandHandler("status", status))
     application.add_handler(CommandHandler("check", check_command))
+    application.add_handler(CommandHandler("check_map", check_map_command))
     application.add_handler(CommandHandler("update_changed", update_changed_command))
+    application.add_handler(CommandHandler("update_map", update_map_command))
     application.add_handler(CommandHandler("update", update_command))
     application.add_handler(CommandHandler("full_update", full_update_command))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, button_command))

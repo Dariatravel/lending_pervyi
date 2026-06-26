@@ -30,6 +30,7 @@
 |------|----------------|
 | Тексты и медиа новых объектов | Telegram (`@abhazbooking`, `@abhkvartira`) |
 | Фильтры | Google Sheet «СОЦСЕТИ» |
+| Точки карты | Yandex Map Constructor → `data/objects-map-points.json` |
 | Рабочая база каталога | `data/catalog-snapshot.json` |
 | Главная и каталог | `index.html`, `kvartira/index.html` (build artifacts) |
 
@@ -142,22 +143,34 @@ python3 scripts/rebuild_from_catalog_snapshot.py
 
 - `scripts/site_update_bot.py`
 - `scripts/watch_telegram_updates.py`
+- `scripts/sync_objects_map_points.py`
 - `.env.site-update-bot.example`
 - `requirements-site-update-bot.txt`
 - `deploy/systemd/abhazbereg-site-update-bot.service`
 
-Бот работает в long polling режиме. По умолчанию он **раз в час проверяет** расхождения в Telegram-постах и присылает уведомление владельцу. Проверка хранит сигнатуры текста, цен и медиа в `output/telegram-watch-state.json`; найденные изменения остаются в отчёте до успешного точечного обновления.
+Бот работает в long polling режиме. По умолчанию он **раз в час проверяет** расхождения в Telegram-постах, технический аудит сайта и точки интерактивной карты. Проверка хранит сигнатуры текста, цен и медиа в `output/telegram-watch-state.json`; найденные изменения остаются в отчёте до успешного точечного обновления.
 
 Обновление сайта запускается вручную из Telegram через кнопки:
 
-- `Проверить сайт` — проверить Telegram-посты, цены, тексты и медиа;
+- `Проверить сайт` — проверить Telegram-посты, цены, тексты, медиа и точки карты;
+- `Проверить карту` — отдельно сверить точки сайта с интерактивной картой;
 - `Обновить изменения` — обновить только объекты, у которых изменились Telegram-посты;
+- `Обновить карту` — применить изменения точек карты, сделать commit + push;
 - `Обновить сайт` — быстро обновить новые объекты, фильтры, детальные тексты, цены, подборки, затем сделать commit + push;
 - `Полный синк` — полный синк Telegram с медиа, долго;
 - `Статус` — состояние бота;
 - `Помощь` — показать подсказку.
 
-Slash-команды `/check`, `/update_changed`, `/update`, `/full_update`, `/status` и `/help` остаются как запасной вариант.
+Slash-команды `/check`, `/check_map`, `/update_changed`, `/update_map`, `/update`, `/full_update`, `/status` и `/help` остаются как запасной вариант.
+
+Карта обновляется отдельным безопасным скриптом:
+
+```bash
+python3 scripts/sync_objects_map_points.py          # только проверить
+python3 scripts/sync_objects_map_points.py --apply  # применить изменения
+```
+
+Источник точек — Yandex Map Constructor. Скрипт сравнивает новую сборку с текущим `data/objects-map-points.json` и пишет понятный отчёт в `output/objects-map-sync-report.txt`.
 
 Безопасный режим по умолчанию:
 

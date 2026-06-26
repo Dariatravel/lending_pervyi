@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T09:40:56.558222+00:00",
+  "generated_at": "2026-06-26T22:38:09.013936+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -208,6 +208,14 @@
       "lat": 43.35914709396652,
       "lon": 40.12188398698641,
       "url": "/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "\"БАРНАБА\" ГОСТЕВОЙ ДОМ",
+      "address": "Гагра, ул. Жоэкварская, 21",
+      "lat": 43.32964,
+      "lon": 40.223675,
+      "url": "/hotels/barnaba-gostevoy-dom-4842/",
       "cityKey": "gagra"
     },
     {
@@ -1675,7 +1683,7 @@
       "cityKey": "sukhum"
     },
     {
-      "title": "\"ЧЕРНОМОРСКАЯ-2\" КВАРТИРА 2К",
+      "title": "\"ЧЕРНОМОРСКАЯ-1\" КВАРТИРА 2К",
       "address": "Сухум, ул. Лакоба 114, 2 этаж",
       "lat": 42.997535,
       "lon": 41.009323,
@@ -1750,15 +1758,15 @@
   "stats": {
     "placemarks_total": 434,
     "placemarks_unique": 217,
-    "pages_total": 218,
-    "pages_on_disk": 243,
+    "pages_total": 219,
+    "pages_on_disk": 244,
     "pages_excluded": 25,
-    "from_constructor": 218,
+    "from_constructor": 219,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 0,
     "skipped_without_coords": 0,
     "shared_coordinate_groups": 16,
-    "points_total": 218
+    "points_total": 219
   }
 }
