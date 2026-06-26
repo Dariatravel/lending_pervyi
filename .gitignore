@@ -26,5 +26,11 @@ tg_export_topics.py.save
 # Telegram site update bot secrets
 .env.site-update-bot
 
+# Telegram site update bot runtime state/logs
+output/site-update-bot/
+output/telegram-watch-state.json
+output/telegram-watch-report.txt
+output/telegram-watch-changed-targets.json
+
 # generated heavy telegram source videos (intermediate, not for git)
 media/videos/**/video-*-source.mp4
