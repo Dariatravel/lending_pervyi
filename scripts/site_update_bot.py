@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import signal
 import shlex
 import sys
 from dataclasses import dataclass
@@ -498,15 +499,43 @@ async def post_init(application: Application) -> None:
     application.create_task(hourly_loop(application))
 
 
-def main() -> int:
-    application = Application.builder().token(CONFIG.token).post_init(post_init).build()
+def build_application() -> Application:
+    application = Application.builder().token(CONFIG.token).build()
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("status", status))
     application.add_handler(CommandHandler("check", check_command))
     application.add_handler(CommandHandler("update_changed", update_changed_command))
     application.add_handler(CommandHandler("update", update_command))
     application.add_handler(CommandHandler("full_update", full_update_command))
-    application.run_polling(allowed_updates=Update.ALL_TYPES)
+    return application
+
+
+async def run_bot() -> None:
+    application = build_application()
+    stop_event = asyncio.Event()
+    loop = asyncio.get_running_loop()
+    for sig in (signal.SIGINT, signal.SIGTERM):
+        try:
+            loop.add_signal_handler(sig, stop_event.set)
+        except NotImplementedError:
+            pass
+
+    await application.initialize()
+    if application.updater is None:
+        raise RuntimeError("Telegram updater is not available")
+    await application.updater.start_polling(allowed_updates=Update.ALL_TYPES)
+    await application.start()
+    application.create_task(hourly_loop(application))
+    try:
+        await stop_event.wait()
+    finally:
+        await application.updater.stop()
+        await application.stop()
+        await application.shutdown()
+
+
+def main() -> int:
+    asyncio.run(run_bot())
     return 0
 
 
