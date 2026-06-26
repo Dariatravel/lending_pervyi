@@ -1,8 +1,8 @@
 Синхронизация блока ЦЕНЫ из Telegram
 
-Кандидатов: 222
-Обновлено: 22
-Пропущено: 200
+Кандидатов: 228
+Обновлено: 21
+Пропущено: 207
 Ошибок: 0
 
 Обновлены:
@@ -11,10 +11,9 @@
 - flora-dom-4763
 - kashtak-domiki-667
 - kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459
+- lazurnyy-bereg-butik-otel-s-pitaniem-2592
 - liliya-uyutnyy-otel-s-zavtrakami-3832
-- nasta-gostevoy-dom-3249
 - parus-vidovoy-otel-s-basseynom-i-stolovoy-2602
-- pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889
 - sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390
 - staryy-prichal-gostevoy-dom-u-morya-3891
 - v-gostyah-u-belochki-domiki-i-nomera-2879
@@ -50,14 +49,17 @@
 - atmosfernaya-kvartira-2k-3902: already OK after audit
 - bagripsh-domiki-na-beregu-s-pitaniem-4399: already OK after audit
 - banan-i-funduk-gostevoy-dom-2849: already OK after audit
+- barnaba-gostevoy-dom-4842: already OK after audit
 - belaya-dacha-otel-s-pitaniem-4630: already OK after audit
 - belaya-loshad-glemping-s-basseynom-3650: already OK after audit
 - belaya-rechka-gostevoy-dom-s-kafe-3517: already OK after audit
 - belyy-dom-domiki-i-apartamenty-4081: already OK after audit
+- bereg-svyatoy-sofii-otel-4279: already OK after audit
 - bi-heppi-apart-otel-3334: already OK after audit
 - blek-si-otel-s-basseynom-i-pitaniem-3912: already OK after audit
 - boho-kompleks-polnogo-schastya-u-morya-3054: already OK after audit
 - boho-kompleks-polnogo-schastya-u-morya-4783: already OK after audit
+- bonzhur-mini-otel-2542: already OK after audit
 - briz-domiki-na-beregu-4510: already OK after audit
 - bugenvilleya-otel-s-basseynom-3044: already OK after audit
 - bungalo-glemping-3623: already OK after audit
@@ -67,6 +69,3 @@
 - delfin-domiki-3024: already OK after audit
 - demi-mokko-dva-domika-3353: already OK after audit
 - diar-domiki-s-basseynom-4192: already OK after audit
-- domiki-u-mariny-otdyh-u-morya-3922: already OK after audit
-- dyshi-glubzhe-domiki-v-gorah-3459: already OK after audit
-- dyuna-domiki-3717: already OK after audit

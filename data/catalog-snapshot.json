@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T20:41:38.111552+00:00",
+  "generated_at": "2026-06-26T22:52:43.732705+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 219,
@@ -31233,32 +31233,31 @@
     {
       "source_kind": "kvartira",
       "source_channel": "abhkvartira",
-      "source_message_id": 1185,
+      "source_message_id": 1193,
       "source_topic_id": 652,
       "slug": "chernomorskaya-kvartira-suhum-1201",
-      "title": "\"ЧЕРНОМОРСКАЯ-1\" квартира 2к",
-      "summary": "Сухум. 2 минуты до центрального пляжа, размещение до 5 человек.",
-      "excerpt": "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\"",
+      "title": "\"ЧЕРНОМОРСКАЯ-2\" квартира 2к",
+      "summary": "Сухум. 2 минуты до центрального пляжа, размещение до 6 человек.",
+      "excerpt": "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\". На той же площадке, что и \"Черноморская-1\"",
       "city": "Сухум",
       "location_text": "Сухум, ул. Лакоба 114, 2 этаж",
       "distance_text": "2 минуты до центрального пляжа",
       "beach_text": "2 минуты до центрального пляжа",
-      "capacity_text": "размещение до 5 человек",
+      "capacity_text": "размещение до 6 человек",
       "page_url": "https://абхазберег.рф/kvartira/chernomorskaya-kvartira-suhum-1201/",
-      "telegram_url": "https://t.me/abhkvartira/1185",
+      "telegram_url": "https://t.me/abhkvartira/1193",
       "published_at": "2026-02-04",
       "has_video": false,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/chernomorskaya-kvartira-suhum-1201-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Сухум. 2 минуты до центрального пляжа, размещение до 5 человек.",
+        "lead": "Сухум. 2 минуты до центрального пляжа, размещение до 6 человек.",
         "sections": [
           {
             "label": "✔️КВАРТИРА:",
             "lines": [
-              "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\".",
-              "Есть три односпальные кровати (можно совмещать).",
-              "Оборудованная кухня с посудой. Санузел с ванной, стиральная машинка.",
+              "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\". На той же площадке, что и \"Черноморская-1\"",
+              "Есть три односпальные кровати (можно совмещать), двуспальная, диванчик. Оборудованная кухня с посудой. Санузел с ванной, стиральная машинка.",
               "Wi-Fi , кондиционер."
             ]
           },
@@ -31293,7 +31292,7 @@
             "text": "Бронь от 5 дней."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/chernomorskaya-kvartira-suhum-1201/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/kvartira/chernomorskaya-kvartira-suhum-1201/index.html",
         "filters": {
           "city": [
             "sukhum"
@@ -31408,6 +31407,28 @@
           "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-07.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 128009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 128010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-09.jpg",
           "details": {}
         }
       ]
