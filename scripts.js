@@ -656,73 +656,73 @@
     return image.currentSrc || image.src || "";
   }
 
+  function gallerySrcFromVideo(video) {
+    if (!video) return "";
+    return video.querySelector("source")?.getAttribute("src") || video.getAttribute("src") || "";
+  }
+
+  function galleryItemFromNode(node) {
+    if (!node) return null;
+
+    if (node.matches("img")) {
+      const src = gallerySrcFromImage(node);
+      if (!src) return null;
+      return {
+        type: "image",
+        src,
+        alt: node.getAttribute("alt") || "",
+        key: normalizeGallerySrc(src),
+      };
+    }
+
+    if (node.matches("video")) {
+      const src = gallerySrcFromVideo(node);
+      if (!src) return null;
+      return {
+        type: "video",
+        src,
+        alt: node.getAttribute("aria-label") || "Видео объекта",
+        key: normalizeGallerySrc(src),
+      };
+    }
+
+    if (node.matches(".video-embed")) {
+      const preview = node.querySelector(".local-video-preview");
+      const video = node.querySelector("video.local-video");
+      const link = node.querySelector(".video-link");
+      const src = gallerySrcFromImage(preview) || gallerySrcFromVideo(video) || link?.href || "";
+      if (!src) return null;
+      const isVideo = /\.(mp4|webm|mov)(\?|$)/i.test(src) || Boolean(video);
+      return {
+        type: isVideo ? "video" : "image",
+        src,
+        alt: preview?.getAttribute("alt") || "Видео объекта",
+        key: normalizeGallerySrc(src),
+      };
+    }
+
+    return null;
+  }
+
   function collectObjectGalleryItems() {
     const grids = document.querySelectorAll(
       ".hotel-site-concept .media-grid, .hotel-site-concept .comment-media-grid, .hotel-site-concept .comment-review-grid"
     );
     if (!grids.length) return [];
 
-    return Array.from(grids)
-      .flatMap((grid) => Array.from(grid.children))
-      .map((node) => {
-        if (node.matches("img")) {
-          const src = gallerySrcFromImage(node);
-          if (!src) return null;
-          return {
-            type: "image",
-            src,
-            alt: node.getAttribute("alt") || "",
-            key: normalizeGallerySrc(src),
-          };
-        }
+    const items = [];
+    const seen = new Set();
+    Array.from(grids).forEach((grid) => {
+      grid.querySelectorAll(":scope > img, :scope > video, :scope > .video-embed, figure img, figure video").forEach((node) => {
+        if (node.matches("img.local-video-preview") && node.closest(".video-embed")) return;
+        const item = galleryItemFromNode(node);
+        if (!item?.key || seen.has(item.key)) return;
+        seen.add(item.key);
+        items.push(item);
+      });
+    });
 
-        if (node.matches("video")) {
-          const source = node.querySelector("source");
-          const src = source?.getAttribute("src") || node.getAttribute("src") || "";
-          if (!src) return null;
-          return {
-            type: "video",
-            src,
-            alt: node.getAttribute("aria-label") || "Видео объекта",
-            key: normalizeGallerySrc(src),
-          };
-        }
-
-        if (node.matches(".video-embed")) {
-          const preview = node.querySelector(".local-video-preview");
-          const video = node.querySelector("video.local-video");
-          const link = node.querySelector(".video-link");
-          const src =
-            gallerySrcFromImage(preview) ||
-            video?.querySelector("source")?.getAttribute("src") ||
-            video?.getAttribute("src") ||
-            link?.href ||
-            "";
-          if (!src) return null;
-          const isVideo = /\.(mp4|webm|mov)(\?|$)/i.test(src) || Boolean(video);
-          return {
-            type: isVideo ? "video" : "image",
-            src,
-            alt: preview?.getAttribute("alt") || "Видео объекта",
-            key: normalizeGallerySrc(src),
-          };
-        }
-
-        const nestedImage = node.querySelector("img");
-        if (nestedImage) {
-          const src = gallerySrcFromImage(nestedImage);
-          if (!src) return null;
-          return {
-            type: "image",
-            src,
-            alt: nestedImage.getAttribute("alt") || "",
-            key: normalizeGallerySrc(src),
-          };
-        }
-
-        return null;
-      })
-      .filter(Boolean);
+    return items;
   }
 
   function findGalleryIndexByKey(key) {
@@ -744,10 +744,22 @@
 
   function pauseLightboxVideo() {
     if (!lightboxVideo) return;
-    lightboxVideo.pause();
+    try {
+      lightboxVideo.pause();
+      lightboxVideo.currentTime = 0;
+    } catch (error) {
+      /* ignore */
+    }
     lightboxVideo.removeAttribute("src");
     while (lightboxVideo.firstChild) {
       lightboxVideo.removeChild(lightboxVideo.firstChild);
+    }
+    lightboxVideo.removeAttribute("poster");
+    lightboxVideo.removeAttribute("aria-label");
+    try {
+      lightboxVideo.load();
+    } catch (error) {
+      /* ignore */
     }
     lightboxVideo.hidden = true;
   }
@@ -755,11 +767,12 @@
   function pauseInlineGalleryVideos() {
     document
       .querySelectorAll(
-        ".hotel-site-concept .media-grid video, .hotel-site-concept .hotel-media-section video, .hotel-site-concept .hotel-card__gallery video"
+        ".hotel-site-concept .media-grid video, .hotel-site-concept .hotel-media-section video, .hotel-site-concept .hotel-card__gallery video, .hotel-site-concept .comment-media-grid video, .hotel-site-concept .comment-review-grid video"
       )
       .forEach((node) => {
         try {
           node.pause();
+          node.currentTime = 0;
         } catch (error) {
           /* ignore */
         }
@@ -778,7 +791,7 @@
 
   function openInlineGalleryVideoLightbox(video) {
     if (!video) return;
-    const src = video.querySelector("source")?.getAttribute("src") || video.getAttribute("src") || "";
+    const src = gallerySrcFromVideo(video);
     if (!src) return;
     pauseInlineGalleryVideos();
     openGalleryLightboxAtKey(normalizeGallerySrc(src));
@@ -804,10 +817,11 @@
       lightboxVideo.hidden = false;
       const itemKey = normalizeGallerySrc(item.src);
       const gridVideo = Array.from(
-        document.querySelectorAll(".hotel-site-concept .media-grid video.local-video")
+        document.querySelectorAll(
+          ".hotel-site-concept .media-grid video.local-video, .hotel-site-concept .comment-media-grid video.local-video, .hotel-site-concept .comment-review-grid video.local-video"
+        )
       ).find((node) => {
-        const src =
-          node.querySelector("source")?.getAttribute("src") || node.getAttribute("src") || "";
+        const src = gallerySrcFromVideo(node);
         return normalizeGallerySrc(src) === itemKey;
       });
       if (gridVideo?.poster) {

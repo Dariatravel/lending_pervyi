@@ -7770,7 +7770,7 @@ html:has(> body.objects-map-page) {
 }
 
 .lightbox__video {
-  width: min(96vw, 1400px);
+  width: auto;
   background: #000;
 }
 
