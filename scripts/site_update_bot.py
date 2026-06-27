@@ -509,19 +509,91 @@ async def commit_and_push(message: str) -> list[CommandResult]:
     return results
 
 
+def read_result_log(result: CommandResult) -> str:
+    try:
+        return result.log_path.read_text(encoding="utf-8", errors="ignore")
+    except OSError:
+        return ""
+
+
+def is_no_changes_commit(result: CommandResult) -> bool:
+    if result.name != "git-commit" or result.return_code != 1:
+        return False
+    log_text = read_result_log(result)
+    return "nothing added to commit" in log_text or "nothing to commit" in log_text
+
+
+def result_is_failure(result: CommandResult) -> bool:
+    return result.return_code != 0 and not is_no_changes_commit(result)
+
+
+def explain_failure(result: CommandResult) -> str:
+    log_text = read_result_log(result)
+    label = STEP_LABELS.get(result.name, result.name)
+    rel_log = result.log_path.relative_to(ROOT)
+
+    if result.name == "changed-targets" and log_text.strip():
+        return f"- {label}: {log_text.strip()} Лог: {rel_log}"
+    if result.return_code == 124 or "[timeout] process killed" in log_text:
+        return f"- {label}: команда выполнялась слишком долго и была остановлена. Лог: {rel_log}"
+    if ".git/index.lock" in log_text:
+        return (
+            f"- {label}: Git уже занят другим процессом или после сбоя остался lock-файл. "
+            f"Нужно дождаться завершения git-процесса; если его нет — удалить `.git/index.lock`. Лог: {rel_log}"
+        )
+    if "nothing added to commit" in log_text or "nothing to commit" in log_text:
+        return f"- {label}: новых изменений для коммита нет. Сайт уже актуален. Лог: {rel_log}"
+    if "non-fast-forward" in log_text or "tip of your current branch is behind" in log_text:
+        return (
+            f"- {label}: локальная копия отстала от GitHub. "
+            f"Нужно подтянуть свежий `main` и повторить публикацию. Лог: {rel_log}"
+        )
+    if "git-lfs" in log_text and "not found" in log_text:
+        return (
+            f"- {label}: Git LFS не найден в окружении бота. "
+            f"Нужно добавить путь к `git-lfs` в PATH автозапуска. Лог: {rel_log}"
+        )
+    if "Authentication failed" in log_text or "could not read Username" in log_text:
+        return (
+            f"- {label}: GitHub не принял авторизацию. "
+            f"Нужно проверить доступ к репозиторию или токен. Лог: {rel_log}"
+        )
+    if "Permission denied" in log_text:
+        return f"- {label}: не хватает прав доступа к файлу или репозиторию. Лог: {rel_log}"
+    if "merge conflict" in log_text.lower() or "CONFLICT" in log_text:
+        return f"- {label}: возник конфликт Git, нужен ручной разбор изменений. Лог: {rel_log}"
+    return f"- {label}: не удалось выполнить шаг. Код {result.return_code}. Подробности: {rel_log}"
+
+
+def explain_bot_error(error: Exception) -> str:
+    text = str(error)
+    if isinstance(error, asyncio.TimeoutError):
+        return "операция выполнялась слишком долго и была остановлена."
+    if "Timed out" in text or "timed out" in text:
+        return "Telegram или внешний сервис долго не отвечал. Попробуйте повторить позже."
+    if "Conflict" in text and "getUpdates" in text:
+        return "запущена ещё одна копия бота. Нужно оставить только один процесс автозапуска."
+    if "Unauthorized" in text or "Invalid token" in text:
+        return "Telegram-токен бота не принят. Нужно проверить токен в настройках автозапуска."
+    if "database is locked" in text:
+        return "Telegram-сессия занята другим процессом. Нужно дождаться завершения синхронизации или перезапустить бот."
+    if text:
+        return f"неожиданная ошибка: {text}"
+    return "неожиданная ошибка без подробностей."
+
+
 def format_results(results: list[CommandResult]) -> str:
     if not results:
         return "Технические шаги не запускались."
-    failed = [result for result in results if result.return_code != 0]
+    no_changes = any(is_no_changes_commit(result) for result in results)
+    failed = [result for result in results if result_is_failure(result)]
     if not failed:
+        if no_changes:
+            return "Изменений для публикации нет. Сайт уже актуален, коммит не нужен."
         return "Технически всё прошло успешно."
-    lines = ["Есть ошибка в технических шагах:"]
-    for result in results:
-        if result.return_code == 0:
-            continue
-        label = STEP_LABELS.get(result.name, result.name)
-        rel_log = result.log_path.relative_to(ROOT)
-        lines.append(f"- {label}: ошибка {result.return_code}. Лог: {rel_log}")
+    lines = ["Есть проблема в технических шагах:"]
+    for result in failed:
+        lines.append(explain_failure(result))
     return "\n".join(lines)
 
 
@@ -718,7 +790,10 @@ async def hourly_loop(application: Application) -> None:
                             )
         except Exception as error:  # noqa: BLE001 - daemon must report and keep running
             for chat_id in chat_ids:
-                await application.bot.send_message(chat_id=chat_id, text=f"Ошибка бота обновления: {error}")
+                await application.bot.send_message(
+                    chat_id=chat_id,
+                    text="Ошибка бота обновления: " + explain_bot_error(error),
+                )
         await asyncio.sleep(CONFIG.interval_seconds)
 
 
