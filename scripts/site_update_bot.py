@@ -133,6 +133,13 @@ def command_env() -> dict[str, str]:
     load_env_file(ROOT / ".env.supabase.local")
     load_env_file(ROOT / ".env.yandex.local")
     env = os.environ.copy()
+    path_parts = [
+        str(Path.home() / ".local" / "bin"),
+        "/opt/homebrew/bin",
+        "/usr/local/bin",
+        env.get("PATH", ""),
+    ]
+    env["PATH"] = ":".join(part for part in path_parts if part)
     if CONFIG.snapshot_only:
         env["SKIP_SUPABASE_SYNC"] = "1"
     google_creds = ROOT / "google-service-account.json"
