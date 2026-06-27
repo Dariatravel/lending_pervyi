@@ -104,9 +104,15 @@ def has_meaningful_caption(caption: str) -> bool:
 
 def card_title(caption: str, object_title: str) -> str:
     text = normalize_text(caption)
-    object_title = normalize_text(object_title).strip('"«»')
-    for token in object_title.split():
-        text = re.sub(re.escape(token), "", text, flags=re.I)
+    raw_object_title = normalize_text(object_title)
+    object_title_clean = raw_object_title.strip('"«»')
+    candidates = [raw_object_title, object_title_clean]
+    brand_match = re.search(r'["«]([^"»]+)["»]', raw_object_title)
+    if brand_match:
+        brand = brand_match.group(1).strip()
+        candidates.extend([brand, f'"{brand}"', f"«{brand}»"])
+    for candidate in sorted({item for item in candidates if len(item) > 2}, key=len, reverse=True):
+        text = re.sub(re.escape(candidate), "", text, flags=re.I)
     text = re.sub(r'["«»]', "", text).strip(" .,-—")
     if len(text) <= 80:
         return text or normalize_text(caption)
@@ -335,7 +341,6 @@ def render_section_html(target: Target, blocks: list[SupplementalBlock]) -> str:
         [
             "          <section class=\"section hotel-room-overviews hotel-site-concept__detail-section\" id=\"supplemental-comments\">",
             "            <article class=\"card\">",
-            "              <p class=\"eyebrow\">Из комментариев Telegram</p>",
             f"              <h2>{html.escape(section_h2)}</h2>",
             "              <div class=\"room-overview-list\">",
             *cards,
