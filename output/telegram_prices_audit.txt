@@ -1,6 +1,6 @@
 Сверка блока ЦЕНЫ: Telegram (parse_post) ↔ HTML (.price-card__seasons / __notes)
 
-Отели: {'OK': 154, 'FETCH_FAIL': 12, 'MISMATCH': 12, 'NO_TG_PRICES': 1}
+Отели: {'OK': 155, 'FETCH_FAIL': 12, 'MISMATCH': 11, 'NO_TG_PRICES': 1}
 Квартиры: {'OK': 53, 'MISMATCH': 9}
 
 === ОТЕЛИ ===
@@ -23,10 +23,6 @@
     лишнее на сайте: дополнительное место - 1500₽/сутки.
     лишнее на сайте: размещение с питомцем возможно с доплатой 2000₽.
 - kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459 (@abhazbooking/4459): MISMATCH (tg=27, site=51, notes_diff=True)
-- lazurnyy-bereg-butik-otel-s-pitaniem-2592 (@abhazbooking/2592): MISMATCH (tg=22, site=25, notes_diff=True)
-    лишнее на сайте: акция!!!🔥
-    лишнее на сайте: 13500₽/сутки (цена указана за 4 человека) - полупансион (завтрак+обед)
-    лишнее на сайте: на всё лето!
 - liliya-uyutnyy-otel-s-zavtrakami-3832 (@abhazbooking/3832): MISMATCH (tg=36, site=67, notes_diff=True)
 - parus-vidovoy-otel-s-basseynom-i-stolovoy-2602 (@abhazbooking/2602): MISMATCH (tg=33, site=37, notes_diff=True)
     нет на сайте: доп. место+1000₽/сутки
@@ -53,7 +49,7 @@
 - amor-apartamenty-s-kuhney-i-basseynom-3487 (@abhazbooking/3487): OK (tg=6, site=6, notes_diff=False)
 - amor-domiki-v-tsentre-gagry-2986 (@abhazbooking/2986): OK (tg=4, site=4, notes_diff=False)
 - amzara-otel-s-vinodelney-u-zapovednika-2668 (@abhazbooking/2668): OK (tg=6, site=7, notes_diff=False)
-- antaa-gostinitsa-u-sosnovogo-plyazha-2899 (@abhazbooking/2899): OK (tg=4, site=5, notes_diff=False)
+- antaa-gostinitsa-u-sosnovogo-plyazha-2899 (@abhazbooking/2899): OK (tg=7, site=8, notes_diff=False)
 - apra-gostevoy-dom-na-plyazhe-4348 (@abhazbooking/4348): OK (tg=15, site=16, notes_diff=False)
 - apsa-park-otel-v-zapovednike-2611 (@abhazbooking/2611): OK (tg=58, site=66, notes_diff=False)
 - arina-mini-otel-2792 (@abhazbooking/2792): OK (tg=7, site=7, notes_diff=False)
@@ -120,6 +116,7 @@
 - lavanda-villa-s-basseynom-4590 (@abhazbooking/4590): OK (tg=9, site=10, notes_diff=False)
 - laym-mini-otel-s-basseynom-u-zapovednika-3554 (@abhazbooking/3554): FETCH_FAIL (empty message)
 - lazurit-novyy-otel-s-zavtrakami-2583 (@abhazbooking/2583): OK (tg=25, site=26, notes_diff=False)
+- lazurnyy-bereg-butik-otel-s-pitaniem-2592 (@abhazbooking/2592): OK (tg=22, site=22, notes_diff=False)
 - lemar-domiki-v-tsentre-4239 (@abhazbooking/4239): FETCH_FAIL (empty message)
 - leon-domiki-3536 (@abhazbooking/3536): OK (tg=5, site=5, notes_diff=False)
 - limari-domiki-3496 (@abhazbooking/3496): OK (tg=7, site=8, notes_diff=False)

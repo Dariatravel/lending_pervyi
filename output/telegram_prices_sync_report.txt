@@ -1,8 +1,8 @@
 Синхронизация блока ЦЕНЫ из Telegram
 
 Кандидатов: 228
-Обновлено: 21
-Пропущено: 207
+Обновлено: 20
+Пропущено: 208
 Ошибок: 0
 
 Обновлены:
@@ -11,7 +11,6 @@
 - flora-dom-4763
 - kashtak-domiki-667
 - kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459
-- lazurnyy-bereg-butik-otel-s-pitaniem-2592
 - liliya-uyutnyy-otel-s-zavtrakami-3832
 - parus-vidovoy-otel-s-basseynom-i-stolovoy-2602
 - sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390
