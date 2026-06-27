@@ -223,9 +223,14 @@
     лишнее на сайте: весь каталог квартир смотреть тут ⬅️
 - siti-gagra-kvartira-2k-gagra-1242 (@abhkvartira/1233): MISMATCH (tg=4, site=5, notes_diff=True)
     лишнее на сайте: весь каталог квартир смотреть тут ⬅️
-- tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142 (@abhkvartira/1133): MISMATCH (tg=4, site=5, notes_diff=True)
+- tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142 (@abhkvartira/1133): MISMATCH (tg=3, site=5, notes_diff=True)
+    нет на сайте: 10000₽ - июль, август
+    нет на сайте: 7000₽ - сентябрь
+    лишнее на сайте: 10000₽ - июль
+    лишнее на сайте: 11000₽ - август
+    лишнее на сайте: 8000₽ - сентябрь
     лишнее на сайте: весь каталог квартир смотреть тут ⬅️
-- yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152 (@abhkvartira/1143): MISMATCH (tg=5, site=6, notes_diff=True)
+- yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152 (@abhkvartira/1143): MISMATCH (tg=3, site=4, notes_diff=True)
     лишнее на сайте: весь каталог квартир смотреть тут ⬅️
 - afina-kvartira-2k-1488 (@abhkvartira/1488): OK (tg=3, site=3, notes_diff=False)
 - akira-2k-kvartira-1623 (@abhkvartira/1623): OK (tg=3, site=3, notes_diff=False)

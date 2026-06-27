@@ -3,8 +3,8 @@
 Метод: строки из описания поста Telegram (кроме служебных и типового футера бронирования) проверяются на вхождение в видимый текст страницы объекта (main без отзывов), с учётом различий в эмодзи.
 Медиа: на сайте считаются img/video/source в карточке; количество файлов в посте Telegram по статической разметке недоступно — нужен Telegram API (Telethon).
 
-Отели: OK=111, расхождения текста=40, ошибка загрузки TG=0, нет файла=1
-Квартиры: OK=47, расхождения текста=15, ошибка загрузки TG=0, нет файла=0
+Отели: OK=110, расхождения текста=41, ошибка загрузки TG=0, нет файла=1
+Квартиры: OK=42, расхождения текста=20, ошибка загрузки TG=0, нет файла=0
 
 === ОТЕЛИ ===
 - abaza-otel-3614 (@abhazbooking/3614): OK, нет на сайте строк 0/30 из текста поста
@@ -18,8 +18,10 @@
 - alma-domiki-na-beregu-2996 (@abhazbooking/2996): OK, нет на сайте строк 0/26 из текста поста
   сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
 - amor-apartamenty-s-kuhney-i-basseynom-3487 (@abhazbooking/3487): OK, нет на сайте строк 0/24 из текста поста
-  сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
+  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - amor-domiki-v-tsentre-gagry-2986 (@abhazbooking/2986): OK, нет на сайте строк 0/25 из текста поста
+  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
+- antaa-gostinitsa-u-sosnovogo-plyazha-2899 (@abhazbooking/2899): OK, нет на сайте строк 0/27 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - apra-gostevoy-dom-na-plyazhe-4348 (@abhazbooking/4348): OK, нет на сайте строк 0/35 из текста поста
   сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
@@ -74,11 +76,11 @@
 - fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219 (@abhazbooking/3219): OK, нет на сайте строк 0/40 из текста поста
   сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
 - fazenda-otel-s-basseynom-i-pitaniem-3190 (@abhazbooking/3190): OK, нет на сайте строк 0/50 из текста поста
-  сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
+  сайт: img=35, video=0, абсолютных URL медиа=31; Telegram: число вложений по HTTP не извлекается
 - full-haus-domiki-s-basseynom-4092 (@abhazbooking/4092): OK, нет на сайте строк 0/27 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - fyuzhn-tri-domika-s-launzh-zonoy-3162 (@abhazbooking/3162): OK, нет на сайте строк 0/29 из текста поста
-  сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
+  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - grant-apartamenty-2801 (@abhazbooking/2801): OK, нет на сайте строк 0/37 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928 (@abhazbooking/2928): OK, нет на сайте строк 0/47 из текста поста
@@ -92,7 +94,7 @@
 - irsen-domiki-3642 (@abhazbooking/3642): OK, нет на сайте строк 0/23 из текста поста
   сайт: img=11, video=1, абсолютных URL медиа=8; Telegram: число вложений по HTTP не извлекается
 - kameliya-domiki-3084 (@abhazbooking/3084): OK, нет на сайте строк 0/37 из текста поста
-  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
+  сайт: img=14, video=1, абсолютных URL медиа=11; Telegram: число вложений по HTTP не извлекается
 - karin-gostevoy-dom-3267 (@abhazbooking/3267): OK, нет на сайте строк 0/44 из текста поста
   сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - kavo-de-bukso-domiki-3323 (@abhazbooking/3323): OK, нет на сайте строк 0/25 из текста поста
@@ -116,15 +118,13 @@
 - limon-otel-4721 (@abhazbooking/4721): OK, нет на сайте строк 0/41 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - lk-otel-s-basseynom-4123 (@abhazbooking/4711): OK, нет на сайте строк 0/45 из текста поста
-  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
+  сайт: img=13, video=2, абсолютных URL медиа=11; Telegram: число вложений по HTTP не извлекается
 - lnd-gostevoy-dom-v-sinope-3687 (@abhazbooking/3687): OK, нет на сайте строк 0/47 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - madlena-domiki-3344 (@abhazbooking/3344): OK, нет на сайте строк 0/24 из текста поста
   сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
 - mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133 (@abhazbooking/4133): OK, нет на сайте строк 0/38 из текста поста
   сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
-- manon-otel-so-skazochnym-vidom-2512 (@abhazbooking/4329): OK, нет на сайте строк 0/63 из текста поста
-  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - mayak-gostevoy-dom-3810 (@abhazbooking/3810): OK, нет на сайте строк 0/29 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - mika-gostevoy-dom-ekonom-3094 (@abhazbooking/3094): OK, нет на сайте строк 0/24 из текста поста
@@ -160,7 +160,7 @@
 - pegas-otel-na-pervoy-linii-vid-na-more-2574 (@abhazbooking/2574): OK, нет на сайте строк 0/32 из текста поста
   сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
 - pion-gostevoy-dom-4539 (@abhazbooking/4539): OK, нет на сайте строк 0/51 из текста поста
-  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
+  сайт: img=13, video=2, абсолютных URL медиа=11; Telegram: число вложений по HTTP не извлекается
 - plyazhnyy-kompleks-151-na-beregu-4620 (@abhazbooking/4620): OK, нет на сайте строк 0/40 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889 (@abhazbooking/2889): OK, нет на сайте строк 0/53 из текста поста
@@ -170,7 +170,7 @@
 - rd-otel-v-gagre-4561 (@abhazbooking/4561): OK, нет на сайте строк 0/46 из текста поста
   сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - rita-domiki-i-apartamenty-s-pitaniem-3171 (@abhazbooking/3171): OK, нет на сайте строк 0/33 из текста поста
-  сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
+  сайт: img=14, video=1, абсолютных URL медиа=11; Telegram: число вложений по HTTP не извлекается
 - rivera-domiki-na-plyazhe-2966 (@abhazbooking/2966): OK, нет на сайте строк 0/22 из текста поста
   сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
 - rivera-gostinitsa-vidovaya-2706 (@abhazbooking/2706): OK, нет на сайте строк 0/36 из текста поста
@@ -187,8 +187,6 @@
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - sanrayz-gostevoy-dom-s-zavtrakami-3953 (@abhazbooking/3953): OK, нет на сайте строк 0/29 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
-- sanrey-gostevoy-dom-4469 (@abhazbooking/4469): OK, нет на сайте строк 0/43 из текста поста
-  сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - sia-lend-baza-otdyha-3800 (@abhazbooking/3800): OK, нет на сайте строк 0/29 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - simsim-gostevoy-dom-4701 (@abhazbooking/4701): OK, нет на сайте строк 0/26 из текста поста
@@ -208,9 +206,9 @@
 - tihiy-zakat-domiki-s-basseynom-3942 (@abhazbooking/3942): OK, нет на сайте строк 0/21 из текста поста
   сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - tis-kottedzhi-u-zapovednika-3372 (@abhazbooking/3372): OK, нет на сайте строк 0/29 из текста поста
-  сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
+  сайт: img=16, video=1, абсолютных URL медиа=13; Telegram: число вложений по HTTP не извлекается
 - tis-mini-otel-u-zapovednika-3381 (@abhazbooking/3381): OK, нет на сайте строк 0/26 из текста поста
-  сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
+  сайт: img=16, video=1, абсолютных URL медиа=13; Telegram: число вложений по HTTP не извлекается
 - tsarskoe-selo-anhua-kottedzhi-3871 (@abhazbooking/3871): OK, нет на сайте строк 0/36 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - u-morya-domiki-3200 (@abhazbooking/3200): OK, нет на сайте строк 0/25 из текста поста
@@ -238,14 +236,6 @@
 - amzara-otel-s-vinodelney-u-zapovednika-2668 (@abhazbooking/2668): MISMATCH, нет на сайте строк 1/23 из текста поста
   сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
     * ✔️ЦЕНЫ (при двухместном размещении):
-- antaa-gostinitsa-u-sosnovogo-plyazha-2899 (@abhazbooking/2899): MISMATCH, нет на сайте строк 6/27 из текста поста
-  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
-    * Акция🔥
-    * При бронировании номера от 8 дней в период с 1 по 15 июля двухместный номер - 4500₽
-    * трехместный номер - 5500₽
-    * 4000₽ - одноместный номер
-    * 5000₽ - двухместный номер
-    * 6000₽ - трехместный номер
 - apsa-park-otel-v-zapovednike-2611 (@abhazbooking/2611): MISMATCH, нет на сайте строк 2/83 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
     * ✔️ЦЕНЫ ПО АКЦИИ 🔥 ИЮНЬ, ИЮЛЬ:
@@ -280,7 +270,7 @@
   сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
     * “ГРАФИТ ХАУС” гостевой дом с бассейном
 - grant-kompleks-domikov-s-zavtrakami-2811 (@abhazbooking/2811): MISMATCH, нет на сайте строк 21/46 из текста поста
-  сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
+  сайт: img=41, video=0, абсолютных URL медиа=37; Telegram: число вложений по HTTP не извлекается
     * ✔ЦЕНЫ (завтрак включен):
     * 3500 ₽/сутки — май
     * 4000 ₽/сутки — июнь
@@ -290,16 +280,17 @@
     * 4000 ₽/сутки — май
     * 5500 ₽/сутки — июнь
 - grant-otel-nomera-2820 (@abhazbooking/2820): MISMATCH, нет на сайте строк 6/37 из текста поста
-  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
+  сайт: img=14, video=1, абсолютных URL медиа=11; Telegram: число вложений по HTTP не извлекается
     * ✔️ЦЕНЫ (завтрак включен):
     * 2500 ₽ — май
     * 3000 ₽ — июнь
     * 4500 ₽ — июль, август, сентябрь до 20-го
     * 3800 ₽ — с 20 по 30 сентября
     * 3000 ₽ — октябрь (без завтрака)
-- grin-villadzh-domiki-3633 (@abhazbooking/3633): MISMATCH, нет на сайте строк 1/46 из текста поста
-  сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
+- grin-villadzh-domiki-3633 (@abhazbooking/3633): MISMATCH, нет на сайте строк 2/46 из текста поста
+  сайт: img=17, video=1, абсолютных URL медиа=14; Telegram: число вложений по HTTP не извлекается
     * 📍Пицунда, посёлок Цитрусовый, Цитрусовая улица, д. 5
+    * В июне 5+1 день в подарок 🎁
 - kashtak-domiki-667 (@abhazbooking/3668): MISMATCH, нет на сайте строк 3/24 из текста поста
   сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
     * (стоимость указана за домик, до 4 человек)
@@ -307,13 +298,13 @@
     * Размещение с питомцем возможно с доплатой 2000₽.
 - kastl-otel-s-teplym-basseynom-i-vidom-na-more-2859: файл страницы не найден (/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/kastl-otel-s-teplym-basseynom-i-vidom-na-more-2859/index.html)
 - kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459 (@abhazbooking/4459): MISMATCH, нет на сайте строк 1/66 из текста поста
-  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
+  сайт: img=32, video=3, абсолютных URL медиа=31; Telegram: число вложений по HTTP не извлекается
     * Доп. место в люксе — 800₽
 - laym-mini-otel-s-basseynom-u-zapovednika-3554 (@abhazbooking/4807): MISMATCH, нет на сайте строк 1/40 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
     * “ЛАЙМ” мини-отель с бассейном у заповедника
 - liliya-uyutnyy-otel-s-zavtrakami-3832 (@abhazbooking/3832): MISMATCH, нет на сайте строк 32/65 из текста поста
-  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
+  сайт: img=15, video=1, абсолютных URL медиа=12; Telegram: число вложений по HTTP не извлекается
     * ✔️ЦЕНЫ :
     * 2000 ₽ — март
     * 2500 ₽ — апрель
@@ -322,6 +313,16 @@
     * 4500 ₽ — июль
     * 5000 ₽ — август
     * 4500 ₽ — сентябрь
+- manon-otel-so-skazochnym-vidom-2512 (@abhazbooking/4329): MISMATCH, нет на сайте строк 33/63 из текста поста
+  сайт: img=32, video=1, абсолютных URL медиа=29; Telegram: число вложений по HTTP не извлекается
+    * ✔️ЦЕНЫ (указаны при двухместном размещении)
+    * 4200 ₽ — май
+    * 4900 ₽ — майские праздники (01.05–10.05)
+    * 4200 ₽ — июнь
+    * 5500 ₽ — июль, август, сентябрь
+    * 5600 ₽ — май
+    * 6300 ₽ — майские праздники
+    * 5600 ₽ — июнь
 - marta-gostevye-nomera-3574 (@abhazbooking/3574): MISMATCH, нет на сайте строк 1/25 из текста поста
   сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
     * “МАРТА” гостевые номера
@@ -336,7 +337,7 @@
     * 5500 ₽/сутки – сентябрь
     * Доп. место – 500 ₽/сутки
 - more-more-gostevoy-kompleks-3583 (@abhazbooking/3583): MISMATCH, нет на сайте строк 1/46 из текста поста
-  сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
+  сайт: img=27, video=0, абсолютных URL медиа=23; Telegram: число вложений по HTTP не извлекается
     * “МОРЕ-МОРЕ” гостевой комплекс
 - morskaya-laguna-gostinitsa-s-zavtrakami-3418 (@abhazbooking/3418): MISMATCH, нет на сайте строк 1/63 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
@@ -365,6 +366,11 @@
 - san-amra-lyuks-nomera-s-vidom-na-more-2631 (@abhazbooking/2631): MISMATCH, нет на сайте строк 1/28 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
     * ✔️ЦЕНЫ (указаны без завтраков за 4 человека):
+- sanrey-gostevoy-dom-4469 (@abhazbooking/4469): MISMATCH, нет на сайте строк 3/43 из текста поста
+  сайт: img=39, video=0, абсолютных URL медиа=35; Telegram: число вложений по HTTP не извлекается
+    * Доп. место — 500₽
+    * Доп. место — 500₽
+    * Место для 4 человека в июле, августе, сентябре — 500₽
 - saya-domiki-3134 (@abhazbooking/3134): MISMATCH, нет на сайте строк 1/23 из текста поста
   сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
     * ✔ЦЕНЫ (указаны за четырёхместное размещение):
@@ -415,8 +421,6 @@
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - bi-heppi-kottedzh-1121 (@abhkvartira/1121): OK, нет на сайте строк 0/26 из текста поста
   сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
-- chernomorskaya-kvartira-suhum-1201 (@abhkvartira/1193): OK, нет на сайте строк 0/18 из текста поста
-  сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
 - esma-studiya-5ti-mestnaya-gudauta-1355 (@abhkvartira/1348): OK, нет на сайте строк 0/28 из текста поста
   сайт: img=12, video=0, абсолютных URL медиа=8; Telegram: число вложений по HTTP не извлекается
 - feniks-dom-na-bolshuyu-semyu-ldzaa-1282 (@abhkvartira/1276): OK, нет на сайте строк 0/29 из текста поста
@@ -433,8 +437,6 @@
   сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
 - ladariya-kvartira-1k-1542 (@abhkvartira/1542): OK, нет на сайте строк 0/18 из текста поста
   сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
-- letnyaya-kvartira-3k-suhum-1377 (@abhkvartira/1369): OK, нет на сайте строк 0/32 из текста поста
-  сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
 - leto-kvartira-2k-1587 (@abhkvartira/1587): OK, нет на сайте строк 0/21 из текста поста
   сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
 - mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440 (@abhkvartira/1431): OK, нет на сайте строк 0/33 из текста поста
@@ -447,8 +449,6 @@
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - miya-dom-ldzaa-1183 (@abhkvartira/1178): OK, нет на сайте строк 0/24 из текста поста
   сайт: img=9, video=1, абсолютных URL медиа=6; Telegram: число вложений по HTTP не извлекается
-- mokko-apartamenty-suhum-1024 (@abhkvartira/1016): OK, нет на сайте строк 0/27 из текста поста
-  сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
 - mon-amur-kvartira-1k-gagra-1062 (@abhkvartira/1055): OK, нет на сайте строк 0/24 из текста поста
   сайт: img=11, video=1, абсолютных URL медиа=8; Telegram: число вложений по HTTP не извлекается
 - monro-kvartira-3k-suhum-1386 (@abhkvartira/1378): OK, нет на сайте строк 0/18 из текста поста
@@ -473,10 +473,6 @@
   сайт: img=9, video=1, абсолютных URL медиа=6; Telegram: число вложений по HTTP не извлекается
 - sekret-garden-apartamenty-1465 (@abhkvartira/1465): OK, нет на сайте строк 0/31 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
-- solnechnaya-kvartira-2k-pitsunda-1231 (@abhkvartira/1222): OK, нет на сайте строк 0/29 из текста поста
-  сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
-- sosnovaya-kvartira-1k-1610 (@abhkvartira/1610): OK, нет на сайте строк 0/21 из текста поста
-  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
 - studio-san-amra-studiya-na-plyazhe-1511 (@abhkvartira/1511): OK, нет на сайте строк 0/18 из текста поста
   сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
 - suhum-dom-1153 (@abhkvartira/1153): OK, нет на сайте строк 0/27 из текста поста
@@ -493,8 +489,14 @@
   сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
     * ВЕСЬ КАТАЛОГ КВАРТИР СМОТРЕТЬ ТУТ ⬅️
 - biryuza-etazh-pod-klyuch-gagra-1367 (@abhkvartira/1359): MISMATCH, нет на сайте строк 1/25 из текста поста
-  сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
+  сайт: img=20, video=1, абсолютных URL медиа=17; Telegram: число вложений по HTTP не извлекается
     * ✔️ЦЕНЫ (указаны за размещение до 7 человек 2 этаж):
+- chernomorskaya-kvartira-suhum-1201 (@abhkvartira/1193): MISMATCH, нет на сайте строк 4/18 из текста поста
+  сайт: img=11, video=0, абсолютных URL медиа=7; Telegram: число вложений по HTTP не извлекается
+    * "ЧЕРНОМОРСКАЯ-2" квартира 2к
+    * 👥 размещение до 6 человек
+    * Двухкомнатная квартира в центре города, напротив гостиницы "Интер Сухум". На той же площадке, что и "Черноморская-1"
+    * Есть три односпальные кровати (можно совмещать), двуспальная, диванчик. Оборудованная кухня с посудой. Санузел с ванной, стиральная машинка.
 - dyshi-glubzhe-domiki-v-gorah-1335 (@abhkvartira/1326): MISMATCH, нет на сайте строк 1/24 из текста поста
   сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
     * “ДЫШИ ГЛУБЖЕ” домики в горах
@@ -505,11 +507,21 @@
   сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
     * ✔️ЦЕНЫ*:
     * ВЕСЬ КАТАЛОГ КВАРТИР СМОТРЕТЬ ТУТ ⬅️
+- letnyaya-kvartira-3k-suhum-1377 (@abhkvartira/1369): MISMATCH, нет на сайте строк 5/32 из текста поста
+  сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
+    * 3000 ₽/сутки – май
+    * 4000 ₽/сутки – июнь
+    * 5000 ₽/сутки – июль, август
+    * 4000 ₽/сутки – сентябрь
+    * 3500 ₽/сутки – октябрь
 - magnoliya-kvartira-3k-gagra-1253 (@abhkvartira/1244): MISMATCH, нет на сайте строк 1/20 из текста поста
   сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
     * ВЕСЬ КАТАЛОГ КВАРТИР СМОТРЕТЬ ТУТ ⬅️
 - melana-kvartira-3k-pitsunda-1015 (@abhkvartira/1007): MISMATCH, нет на сайте строк 1/29 из текста поста
   сайт: img=13, video=0, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
+    * ВЕСЬ КАТАЛОГ КВАРТИР СМОТРЕТЬ ТУТ ⬅️
+- mokko-apartamenty-suhum-1024 (@abhkvartira/1016): MISMATCH, нет на сайте строк 1/27 из текста поста
+  сайт: img=12, video=1, абсолютных URL медиа=9; Telegram: число вложений по HTTP не извлекается
     * ВЕСЬ КАТАЛОГ КВАРТИР СМОТРЕТЬ ТУТ ⬅️
 - na-plyazhe-apartamenty-3k-ldzaa-1073 (@abhkvartira/1064): MISMATCH, нет на сайте строк 1/22 из текста поста
   сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
@@ -530,10 +542,18 @@
 - siti-gagra-kvartira-2k-gagra-1242 (@abhkvartira/1233): MISMATCH, нет на сайте строк 1/21 из текста поста
   сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
     * ВЕСЬ КАТАЛОГ КВАРТИР СМОТРЕТЬ ТУТ ⬅️
+- solnechnaya-kvartira-2k-pitsunda-1231 (@abhkvartira/1222): MISMATCH, нет на сайте строк 1/29 из текста поста
+  сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
+    * ВЕСЬ КАТАЛОГ КВАРТИР СМОТРЕТЬ ТУТ ⬅️
+- sosnovaya-kvartira-1k-1610 (@abhkvartira/1610): MISMATCH, нет на сайте строк 1/21 из текста поста
+  сайт: img=13, video=1, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
+    * Доп. место — 700₽
 - tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142 (@abhkvartira/1133): MISMATCH, нет на сайте строк 1/20 из текста поста
   сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
     * ВЕСЬ КАТАЛОГ КВАРТИР СМОТРЕТЬ ТУТ ⬅️
-- yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152 (@abhkvartira/1143): MISMATCH, нет на сайте строк 2/22 из текста поста
+- yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152 (@abhkvartira/1143): MISMATCH, нет на сайте строк 4/20 из текста поста
   сайт: img=14, video=0, абсолютных URL медиа=10; Telegram: число вложений по HTTP не извлекается
     * "ЮЖНОЕ УТРО" двухкомнатные апартаменты на 6 спальных мест с видом на море 🏖
+    * 13000₽ - июль, август
+    * 8000₽ - сентябрь
     * ВЕСЬ КАТАЛОГ КВАРТИР СМОТРЕТЬ ТУТ ⬅️
