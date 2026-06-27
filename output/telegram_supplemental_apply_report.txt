@@ -1,0 +1,25 @@
+Apply Telegram supplemental comments
+targets=21 ok=20
+
+[OK] amor-apartamenty-s-kuhney-i-basseynom-3487: updated (1 blocks, 1 files)
+[SKIP] bereg-svyatoy-sofii-otel-4279: section already exists (use --force to replace)
+[OK] biryuza-etazh-pod-klyuch-gagra-1367: updated (1 blocks, 8 files)
+[OK] fazenda-otel-s-basseynom-i-pitaniem-3190: updated (4 blocks, 22 files)
+[OK] femeli-baza-otdyha-s-basseynom-i-pitaniem-4829: updated (5 blocks, 23 files)
+[OK] fyuzhn-tri-domika-s-launzh-zonoy-3162: updated (1 blocks, 1 files)
+[OK] grant-kompleks-domikov-s-zavtrakami-2811: updated (4 blocks, 28 files)
+[OK] grant-otel-nomera-2820: updated (1 blocks, 1 files)
+[OK] grin-villadzh-domiki-3633: updated (1 blocks, 5 files)
+[OK] kameliya-domiki-3084: updated (1 blocks, 1 files)
+[OK] kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459: updated (6 blocks, 21 files)
+[OK] liliya-uyutnyy-otel-s-zavtrakami-3832: updated (1 blocks, 2 files)
+[OK] lk-otel-s-basseynom-4123: updated (1 blocks, 1 files)
+[OK] manon-otel-so-skazochnym-vidom-2512: updated (4 blocks, 19 files)
+[OK] mimi-domiki-s-vidom-na-gory-2869: updated (1 blocks, 1 files)
+[OK] more-more-gostevoy-kompleks-3583: updated (3 blocks, 14 files)
+[OK] pion-gostevoy-dom-4539: updated (1 blocks, 1 files)
+[OK] rita-domiki-i-apartamenty-s-pitaniem-3171: updated (1 blocks, 1 files)
+[OK] sanrey-gostevoy-dom-4469: updated (5 blocks, 25 files)
+[OK] tis-kottedzhi-u-zapovednika-3372: updated (1 blocks, 4 files)
+[OK] tis-mini-otel-u-zapovednika-3381: updated (1 blocks, 4 files)
+
