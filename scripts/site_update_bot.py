@@ -70,6 +70,7 @@ class BotConfig:
     auto_apply: bool
     snapshot_only: bool
     command_timeout_seconds: int
+    check_timeout_seconds: int
 
 
 @dataclass
@@ -120,6 +121,7 @@ def load_config() -> BotConfig:
         auto_apply=bool_env("SITE_UPDATE_AUTO_APPLY", False),
         snapshot_only=bool_env("SITE_UPDATE_SNAPSHOT_ONLY", True),
         command_timeout_seconds=int(os.getenv("SITE_UPDATE_COMMAND_TIMEOUT_SECONDS", "21600")),
+        check_timeout_seconds=int(os.getenv("SITE_UPDATE_CHECK_TIMEOUT_SECONDS", "1800")),
     )
 
 
@@ -309,7 +311,9 @@ async def check_updates() -> tuple[str, list[CommandResult]]:
         ("audit-prices", [sys.executable, "scripts/audit_telegram_site_prices.py"]),
         ("verify-media", [sys.executable, "tools/verify_object_media.py"]),
     ]
-    results = await run_steps(steps, stop_on_error=False)
+    results: list[CommandResult] = []
+    for name, command in steps:
+        results.append(await run_command(name, command, timeout=CONFIG.check_timeout_seconds))
     return summarize_check(), results
 
 
