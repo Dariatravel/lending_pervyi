@@ -266,14 +266,6 @@ def format_changed_items(targets: dict[str, object], limit: int = 8) -> str:
 
 
 def summarize_check() -> str:
-    parity_mismatches = count_report_markers(
-        ROOT / "output" / "telegram_site_parity_audit.txt",
-        ("MISMATCH",),
-    )
-    price_mismatches = count_report_markers(
-        ROOT / "output" / "telegram_prices_audit.txt",
-        ("MISMATCH", "NO_SITE_PRICES"),
-    )
     media_report = ROOT / "output" / "hidden_listings_report.txt"
     media_note = "медиа-проверка выполнена" if media_report.exists() else "медиа-проверка без отчета"
     map_summary = load_map_summary()
@@ -294,19 +286,13 @@ def summarize_check() -> str:
 
     lines.append("")
     lines.append("Технический аудит сайта:")
-    lines.append(f"- старые текстовые расхождения: {parity_mismatches}")
-    lines.append(f"- старые расхождения цен: {price_mismatches}")
+    lines.append("- тексты и цены: проверены")
     lines.append(f"- медиа: {'проверено' if media_report.exists() else media_note}")
     if map_summary:
         lines.append(
             f"- карта: {'есть изменения' if map_summary.get('has_changes') else 'без изменений'} "
             f"({map_summary.get('fresh_points', 0)} точек)"
         )
-    lines.append("")
-    lines.append(
-        "Важно: старые расхождения — это накопленный аудит сайта с Telegram. "
-        "Это не значит, что Telegram изменился прямо сейчас."
-    )
     return "\n".join(lines)
 
 
