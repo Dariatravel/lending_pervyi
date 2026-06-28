@@ -53,6 +53,7 @@ from catalog_snapshot import (  # noqa: E402
 )
 from media_urls import media_src_for_html, yandex_photo_url  # noqa: E402
 from yandex_storage import upload_file as upload_to_yandex  # noqa: E402
+from telegram_runtime import TelegramSessionLock, run_async_entrypoint  # noqa: E402
 
 ROOT_INDEX = ROOT / 'index.html'
 HOTELS_DIR = ROOT / 'hotels'
@@ -1638,6 +1639,8 @@ async def main() -> None:
     ensure_dir(KV_CARD_DIR)
     ensure_dir(CARD_DIR)
 
+    telegram_lock = TelegramSessionLock(SESSION)
+    telegram_lock.__enter__()
     client = TelegramClient(SESSION, API_ID, API_HASH, receive_updates=False)
     await client.connect()
 
@@ -1790,6 +1793,7 @@ async def main() -> None:
         KV_CARDS_FILE.write_text(json.dumps(sorted(kvartira_cards, key=lambda item: item['message_id'], reverse=True), ensure_ascii=False, indent=2), encoding='utf-8')
 
     await client.disconnect()
+    telegram_lock.__exit__(None, None, None)
     print(json.dumps({
         'hotels': len(hotel_objects),
         'kvartira': len(kvartira_objects),
@@ -1805,4 +1809,4 @@ async def main() -> None:
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    raise SystemExit(run_async_entrypoint(main(), name='sync_catalog_from_telegram', default_timeout=1800))

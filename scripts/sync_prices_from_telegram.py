@@ -41,6 +41,7 @@ from sync_catalog_from_telegram import (  # noqa: E402
     SupabaseClient,
     render_prices_html,
 )
+from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 
 SYNC_REPORT = ROOT / "output" / "telegram_prices_sync_report.txt"
 KV_SYNC_REPORT = ROOT / "output" / "telegram_kv_prices_sync_report.txt"
@@ -126,16 +127,16 @@ async def sync_prices(dry_run: bool = False, kv_only: bool = False, sync_all: bo
             if mid:
                 kv_map[mid] = (slug, path)
 
-    client = TelegramClient(SESSION, API_ID, API_HASH, receive_updates=False)
-    await client.connect()
-
     hotel_ids = sorted({r.message_id for r in to_fix if r.kind == "hotel"})
     kv_ids = sorted({r.message_id for r in to_fix if r.kind == "kvartira"})
     hotel_texts: dict[int, str] = {}
-    if hotel_ids:
-        hotel_texts = await fetch_post_texts_batch(client, "abhazbooking", hotel_ids)
-    kv_texts = await fetch_post_texts_batch(client, "abhkvartira", kv_ids) if kv_ids else {}
-    await client.disconnect()
+    kv_texts: dict[int, str] = {}
+    if hotel_ids or kv_ids:
+        async with connected_telegram_client(SESSION, API_ID, API_HASH, receive_updates=False) as client:
+            if hotel_ids:
+                hotel_texts = await fetch_post_texts_batch(client, "abhazbooking", hotel_ids)
+            if kv_ids:
+                kv_texts = await fetch_post_texts_batch(client, "abhkvartira", kv_ids)
 
     updated: list[str] = []
     skipped: list[str] = []
@@ -220,7 +221,11 @@ def main() -> int:
     dry = "--dry-run" in sys.argv
     kv_only = "--kv-only" in sys.argv
     sync_all = "--all" in sys.argv
-    return asyncio.run(sync_prices(dry_run=dry, kv_only=kv_only, sync_all=sync_all))
+    return run_async_entrypoint(
+        sync_prices(dry_run=dry, kv_only=kv_only, sync_all=sync_all),
+        name="sync_prices_from_telegram",
+        default_timeout=900,
+    )
 
 
 if __name__ == "__main__":

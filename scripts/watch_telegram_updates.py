@@ -25,6 +25,7 @@ if str(ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(ROOT / "scripts"))
 
 from sync_abhazbooking_2026 import parse_post  # noqa: E402
+from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 STATE_PATH = ROOT / "output" / "telegram-watch-state.json"
@@ -336,9 +337,7 @@ async def run(args: argparse.Namespace) -> int:
     seen_keys: set[str] = set()
     entities: dict[str, Any] = {}
 
-    client = TelegramClient(session, api_id, api_hash)
-    await client.connect()
-    try:
+    async with connected_telegram_client(session, api_id, api_hash) as client:
         if not await client.is_user_authorized():
             raise RuntimeError(f"Telegram session is not authorized: {session}")
         for item in items:
@@ -395,9 +394,6 @@ async def run(args: argparse.Namespace) -> int:
             else:
                 previous["last_seen_at"] = current_payload["last_seen_at"]
                 state_items[item.key] = previous
-    finally:
-        await client.disconnect()
-
     stale_keys = sorted(set(state_items) - seen_keys)
     if args.accept_changes:
         for key in stale_keys:
@@ -444,7 +440,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> int:
     args = build_parser().parse_args()
-    return asyncio.run(run(args))
+    return run_async_entrypoint(run(args), name="watch_telegram_updates", default_timeout=900)
 
 
 if __name__ == "__main__":

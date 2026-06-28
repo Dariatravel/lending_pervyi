@@ -21,6 +21,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from sync_abhazbooking_2026 import parse_post  # noqa: E402
 from sync_catalog_from_telegram import API_HASH, API_ID, SESSION  # noqa: E402
+from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 
 
 async def collect_group_media(client: TelegramClient, entity: Any, canonical: Any) -> list[Any]:
@@ -344,10 +345,7 @@ async def audit_all(rows: list[Row], *, kv_only: bool = False) -> None:
         msg_id = resolve_kv_message_id(html_text, slug, sid, supabase_kv_ids)
         kv_jobs.append((slug, msg_id, path))
 
-    client = TelegramClient(SESSION, API_ID, API_HASH, receive_updates=False)
-    await client.connect()
-
-    try:
+    async with connected_telegram_client(SESSION, API_ID, API_HASH, receive_updates=False) as client:
         if not kv_only:
             hotel_texts = await fetch_post_texts_batch(client, "abhazbooking", [j[1] for j in hotel_jobs])
             print(f"Загружено постов отелей: {len(hotel_texts)}", flush=True)
@@ -469,9 +467,6 @@ async def audit_all(rows: list[Row], *, kv_only: bool = False) -> None:
                     note_mismatch,
                 )
             )
-    finally:
-        await client.disconnect()
-
 
 def write_report(rows: list[Row], path: Path, *, kv_only: bool = False) -> None:
     hotels = [r for r in rows if r.kind == "hotel"]
@@ -537,7 +532,7 @@ async def main_async() -> int:
 
 
 def main() -> int:
-    return asyncio.run(main_async())
+    return run_async_entrypoint(main_async(), name="audit_telegram_site_prices", default_timeout=900)
 
 
 if __name__ == "__main__":

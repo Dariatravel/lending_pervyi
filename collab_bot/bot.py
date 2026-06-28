@@ -3,6 +3,7 @@ import os
 from dataclasses import dataclass, field
 
 from telegram import ReplyKeyboardRemove, Update
+from telegram.error import NetworkError, TimedOut
 from telegram.ext import (
     Application,
     CommandHandler,
@@ -104,13 +105,21 @@ async def finish(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     form = get_form(context)
     form.contact = update.message.text.strip()
 
-    await context.bot.send_message(
-        chat_id=int(owner_chat_id),
-        text=form.text(
-            user_id=update.effective_user.id,
-            username=update.effective_user.username,
-        ),
-    )
+    try:
+        await context.bot.send_message(
+            chat_id=int(owner_chat_id),
+            text=form.text(
+                user_id=update.effective_user.id,
+                username=update.effective_user.username,
+            ),
+        )
+    except (NetworkError, TimedOut) as error:
+        logging.warning("Нет соединения с Telegram / проблема DNS, бот повторит позже: %s", error)
+        await update.message.reply_text(
+            "Нет соединения с Telegram / проблема DNS, бот повторит позже. "
+            "Это техническая проблема связи, сайт не сломан."
+        )
+        return ConversationHandler.END
 
     await update.message.reply_text(
         "Спасибо! Заявка отправлена. Я скоро вернусь с ответом.",
@@ -129,12 +138,31 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     return ConversationHandler.END
 
 
+async def handle_error(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+    error = context.error
+    if isinstance(error, (NetworkError, TimedOut)):
+        logging.warning("Нет соединения с Telegram / проблема DNS, бот повторит позже: %s", error)
+        if isinstance(update, Update) and update.effective_message:
+            await update.effective_message.reply_text(
+                "Нет соединения с Telegram / проблема DNS, бот повторит позже."
+            )
+        return
+    logging.exception("Неожиданная ошибка бота", exc_info=error)
+
+
 def build_app() -> Application:
     token = os.getenv("BOT_TOKEN")
     if not token:
         raise RuntimeError("BOT_TOKEN is not set")
 
-    app = Application.builder().token(token).build()
+    app = (
+        Application.builder()
+        .token(token)
+        .connect_timeout(20)
+        .read_timeout(30)
+        .write_timeout(30)
+        .build()
+    )
 
     conv = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
@@ -150,6 +178,7 @@ def build_app() -> Application:
 
     app.add_handler(conv)
     app.add_handler(CommandHandler("cancel", cancel))
+    app.add_error_handler(handle_error)
     return app
 
 

@@ -12,10 +12,15 @@ google-service-account.json
 
 # local telegram auth/session artifacts
 tg_session.session
+tg_session.session-journal
+tg_session.session.lock
 tg_session.session.bak*
+tg_vouchers_session.session
+tg_vouchers_session.session-journal
 telegram_login_qr.png
 tg_login_check.py
 tg_export_topics.py.save
+tools/tg_vouchers_auth.py
 
 # local Supabase secrets
 .env.supabase.local
@@ -28,11 +33,13 @@ tg_export_topics.py.save
 
 # Telegram site update bot runtime state/logs
 output/site-update-bot/
+output/auto-sync/*/
 output/telegram-watch-state.json
 output/telegram-watch-report.txt
 output/telegram-watch-changed-targets.json
 output/objects-map-sync-report.txt
 output/objects-map-sync-summary.json
+output/health_check_report.txt
 
 # generated heavy telegram source videos (intermediate, not for git)
 media/videos/**/video-*-source.mp4

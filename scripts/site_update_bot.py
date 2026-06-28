@@ -518,6 +518,21 @@ def explain_failure(result: CommandResult) -> str:
     label = STEP_LABELS.get(result.name, result.name)
     rel_log = result.log_path.relative_to(ROOT)
 
+    if "nodename nor servname provided" in log_text or "Name or service not known" in log_text:
+        return (
+            f"- {label}: нет соединения с Telegram / проблема DNS. "
+            f"Это временная техническая проблема проверки, сайт не сломан. Лог: {rel_log}"
+        )
+    if "key is not registered" in log_text or "AuthKeyUnregistered" in log_text:
+        return (
+            f"- {label}: Telegram-сессия больше не авторизована. "
+            f"Нужно заново войти в Telegram для tg_session. Лог: {rel_log}"
+        )
+    if "database is locked" in log_text:
+        return (
+            f"- {label}: Telegram-сессия занята другим процессом. "
+            f"Проверка повторится позже; сайт не сломан. Лог: {rel_log}"
+        )
     if result.name == "changed-targets" and log_text.strip():
         return f"- {label}: {log_text.strip()} Лог: {rel_log}"
     if result.return_code == 124 or "[timeout] process killed" in log_text:
@@ -562,7 +577,11 @@ def explain_bot_error(error: Exception) -> str:
     if "Unauthorized" in text or "Invalid token" in text:
         return "Telegram-токен бота не принят. Нужно проверить токен в настройках автозапуска."
     if "database is locked" in text:
-        return "Telegram-сессия занята другим процессом. Нужно дождаться завершения синхронизации или перезапустить бот."
+        return "Telegram-сессия занята другим процессом. Проверка повторится позже; сайт не сломан."
+    if "nodename nor servname provided" in text or "Name or service not known" in text:
+        return "нет соединения с Telegram / проблема DNS. Бот повторит позже; сайт не сломан."
+    if "key is not registered" in text or "AuthKeyUnregistered" in text:
+        return "Telegram-сессия больше не авторизована. Нужно заново войти в Telegram для tg_session."
     if text:
         return f"неожиданная ошибка: {text}"
     return "неожиданная ошибка без подробностей."
@@ -581,6 +600,17 @@ def format_results(results: list[CommandResult]) -> str:
     for result in failed:
         lines.append(explain_failure(result))
     return "\n".join(lines)
+
+
+def check_outcome_title(results: list[CommandResult]) -> str:
+    failed = [result for result in results if result_is_failure(result)]
+    if failed:
+        return "Техническая проблема проверки."
+    targets = load_changed_targets()
+    changed_total = int(targets.get("changed_total") or 0)
+    if changed_total:
+        return "Новые изменения найдены."
+    return "Сайт актуален."
 
 
 def is_allowed(update: Update) -> bool:
@@ -649,7 +679,11 @@ async def check_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     async with RUN_LOCK:
         await update.effective_message.reply_text("Запускаю проверку. Это может занять несколько минут...")
         summary, results = await check_updates()
-        await send_long_message(context.bot, update.effective_chat.id, summary + "\n\n" + format_results(results))
+        await send_long_message(
+            context.bot,
+            update.effective_chat.id,
+            check_outcome_title(results) + "\n\n" + summary + "\n\n" + format_results(results),
+        )
 
 
 @restricted
@@ -764,7 +798,7 @@ async def hourly_loop(application: Application) -> None:
                             await send_long_message(
                                 application.bot,
                                 chat_id,
-                                "Есть изменения в проверке сайта.\n\n" + summary + "\n\n" + format_results(results),
+                                check_outcome_title(results) + "\n\n" + summary + "\n\n" + format_results(results),
                             )
                     if CONFIG.auto_apply and changed:
                         update_results = await apply_changed_update()
