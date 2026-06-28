@@ -1,37 +1,18 @@
 Сверка блока ЦЕНЫ: Telegram (parse_post) ↔ HTML (.price-card__seasons / __notes)
 
-Отели: {'OK': 155, 'FETCH_FAIL': 12, 'MISMATCH': 11, 'NO_TG_PRICES': 1}
-Квартиры: {'OK': 53, 'MISMATCH': 9}
+Отели: {'OK': 161, 'FETCH_FAIL': 12, 'MISMATCH': 5, 'NO_TG_PRICES': 1}
+Квартиры: {'OK': 59, 'MISMATCH': 3}
 
 === ОТЕЛИ ===
-- avrora-inn-novyy-otel-v-tsentre-goroda-2641 (@abhazbooking/2641): MISMATCH (tg=26, site=33, notes_diff=True)
-    лишнее на сайте: декабрь с 30.12 - май:
-    лишнее на сайте: июнь:
-    лишнее на сайте: июль - сентябрь:
-    лишнее на сайте: октябрь - декабрь до 30.12:
-    лишнее на сайте: допускаются небольшие собачки, без доплаты (при порче имущества нужно будет компенсировать стоимость порчи).
-    лишнее на сайте: брони от 5 дней.
-    лишнее на сайте: возвратный залог в отеле 5000₽
-- belveder-gostevoy-dom-3602 (@abhazbooking/3602): MISMATCH (tg=14, site=27, notes_diff=True)
 - flora-dom-4763 (@abhazbooking/4763): MISMATCH (tg=5, site=5, notes_diff=True)
     нет на сайте: *цена указана для двоих, каждый дополнительный гость+1000₽ дети до 7 лет - бесплатно
     лишнее на сайте: *цена указана для двоих, каждый дополнительный гость +1000₽ дети до 7 лет - бесплатно
-- kashtak-domiki-667 (@abhazbooking/667): MISMATCH (tg=6, site=8, notes_diff=True)
-    нет на сайте: стоимость указана за домик, до 4 человек.
-    нет на сайте: дополнительное место возможно с доплатой 1500₽.
-    лишнее на сайте: (стоимость указана за домик, до 4 человек)
-    лишнее на сайте: дополнительное место - 1500₽/сутки.
-    лишнее на сайте: размещение с питомцем возможно с доплатой 2000₽.
-- kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459 (@abhazbooking/4459): MISMATCH (tg=27, site=51, notes_diff=True)
-- liliya-uyutnyy-otel-s-zavtrakami-3832 (@abhazbooking/3832): MISMATCH (tg=36, site=67, notes_diff=True)
 - parus-vidovoy-otel-s-basseynom-i-stolovoy-2602 (@abhazbooking/2602): MISMATCH (tg=33, site=37, notes_diff=True)
     нет на сайте: доп. место+1000₽/сутки
     лишнее на сайте: доп. место +1000₽/сутки
 - sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390 (@abhazbooking/3390): MISMATCH (tg=28, site=30, notes_diff=True)
     нет на сайте: доп.место возможно+1.
     лишнее на сайте: доп.место возможно +1.
-- staryy-prichal-gostevoy-dom-u-morya-3891 (@abhazbooking/3891): MISMATCH (tg=7, site=8, notes_diff=True)
-    нет на сайте: парковка платная - 300₽
 - v-gostyah-u-belochki-domiki-i-nomera-2879 (@abhazbooking/2879): MISMATCH (tg=21, site=21, notes_diff=True)
     нет на сайте: *цена на 4 человека, пятое место+500р.
     лишнее на сайте: *цена на 4 человека, пятое место +500р.
@@ -58,12 +39,14 @@
 - assir-gostevoy-dom-2840 (@abhazbooking/2840): OK (tg=21, site=21, notes_diff=False)
 - assir-pitsunda-gostevoy-dom-v-tsentre-4173 (@abhazbooking/4173): OK (tg=25, site=25, notes_diff=False)
 - atmosfernaya-kvartira-2k-3902 (@abhazbooking/3902): OK (tg=6, site=6, notes_diff=False)
+- avrora-inn-novyy-otel-v-tsentre-goroda-2641 (@abhazbooking/2641): OK (tg=26, site=26, notes_diff=False)
 - bagripsh-domiki-na-beregu-s-pitaniem-4399 (@abhazbooking/4399): OK (tg=25, site=26, notes_diff=False)
 - banan-i-funduk-gostevoy-dom-2849 (@abhazbooking/2849): OK (tg=10, site=11, notes_diff=False)
 - barnaba-gostevoy-dom-4842 (@abhazbooking/4842): OK (tg=13, site=13, notes_diff=False)
 - belaya-dacha-otel-s-pitaniem-4630 (@abhazbooking/4630): OK (tg=27, site=31, notes_diff=False)
 - belaya-loshad-glemping-s-basseynom-3650 (@abhazbooking/3650): OK (tg=5, site=5, notes_diff=False)
 - belaya-rechka-gostevoy-dom-s-kafe-3517 (@abhazbooking/3517): OK (tg=5, site=5, notes_diff=False)
+- belveder-gostevoy-dom-3602 (@abhazbooking/3602): OK (tg=14, site=13, notes_diff=False)
 - belyy-dom-domiki-i-apartamenty-4081 (@abhazbooking/4081): OK (tg=16, site=16, notes_diff=False)
 - bereg-svyatoy-sofii-otel-4279 (@abhazbooking/4279): OK (tg=43, site=44, notes_diff=False)
 - bi-heppi-apart-otel-3334 (@abhazbooking/3334): OK (tg=22, site=23, notes_diff=False)
@@ -108,8 +91,10 @@
 - karalina-apartamenty-3124 (@abhazbooking/3124): OK (tg=7, site=7, notes_diff=False)
 - karin-gostevoy-dom-3267 (@abhazbooking/3267): OK (tg=30, site=30, notes_diff=False)
 - kashtak-domiki-3668 (@abhazbooking/3668): OK (tg=6, site=8, notes_diff=False)
+- kashtak-domiki-667 (@abhazbooking/667): OK (tg=6, site=7, notes_diff=False)
 - kavo-de-bukso-domiki-3323 (@abhazbooking/3323): OK (tg=9, site=10, notes_diff=False)
 - kedrovyy-eko-otel-s-basseynom-4419 (@abhazbooking/4419): FETCH_FAIL (empty message)
+- kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459 (@abhazbooking/4459): OK (tg=27, site=27, notes_diff=False)
 - kira-gostevoy-kompleks-2725 (@abhazbooking/2725): OK (tg=8, site=7, notes_diff=False)
 - krylya-domiki-vidovye-dvuhkomnatnye-2765 (@abhazbooking/2765): OK (tg=9, site=9, notes_diff=False)
 - kvarts-domiki-4449 (@abhazbooking/4449): OK (tg=6, site=6, notes_diff=False)
@@ -119,6 +104,7 @@
 - lazurnyy-bereg-butik-otel-s-pitaniem-2592 (@abhazbooking/2592): OK (tg=22, site=22, notes_diff=False)
 - lemar-domiki-v-tsentre-4239 (@abhazbooking/4239): FETCH_FAIL (empty message)
 - leon-domiki-3536 (@abhazbooking/3536): OK (tg=5, site=5, notes_diff=False)
+- liliya-uyutnyy-otel-s-zavtrakami-3832 (@abhazbooking/3832): OK (tg=36, site=39, notes_diff=False)
 - limari-domiki-3496 (@abhazbooking/3496): OK (tg=7, site=8, notes_diff=False)
 - limon-otel-4721 (@abhazbooking/4721): OK (tg=18, site=18, notes_diff=False)
 - lk-otel-s-basseynom-4123 (@abhazbooking/4123): FETCH_FAIL (empty message)
@@ -131,7 +117,7 @@
 - marta-gostevye-nomera-3574 (@abhazbooking/3574): OK (tg=7, site=8, notes_diff=False)
 - mayak-gostevoy-dom-3810 (@abhazbooking/3810): OK (tg=17, site=17, notes_diff=False)
 - mechta-apartamenty-s-kuhney-3363 (@abhazbooking/3363): OK (tg=12, site=12, notes_diff=False)
-- melodi-eko-otel-derevyannye-domiki-3563 (@abhazbooking/3563): OK (tg=6, site=7, notes_diff=False)
+- melodi-eko-otel-derevyannye-domiki-3563 (@abhazbooking/3563): OK (tg=7, site=8, notes_diff=False)
 - mika-gostevoy-dom-ekonom-3094 (@abhazbooking/3094): OK (tg=7, site=8, notes_diff=False)
 - mimi-domiki-s-vidom-na-gory-2869 (@abhazbooking/2869): OK (tg=6, site=6, notes_diff=False)
 - mira-domiki-i-nomera-u-ozera-2956 (@abhazbooking/2956): OK (tg=12, site=12, notes_diff=False)
@@ -190,6 +176,7 @@
 - sofiya-otel-u-sosnovogo-plyazha-3842 (@abhazbooking/3842): OK (tg=7, site=7, notes_diff=False)
 - soluna-domiki-i-nomera-s-zavtrakami-4041 (@abhazbooking/4041): OK (tg=9, site=10, notes_diff=False)
 - sozvezdie-mini-otel-3933 (@abhazbooking/3933): OK (tg=13, site=13, notes_diff=False)
+- staryy-prichal-gostevoy-dom-u-morya-3891 (@abhazbooking/3891): OK (tg=7, site=9, notes_diff=False)
 - studio-san-amra-studiya-na-plyazhe-4270 (@abhazbooking/4270): OK (tg=3, site=3, notes_diff=False)
 - svetlyy-dvorik-gostevoy-dom-ekonom-4259 (@abhazbooking/4259): OK (tg=9, site=9, notes_diff=False)
 - tihaya-obitel-dom-pod-klyuch-4230 (@abhazbooking/4230): OK (tg=1, site=1, notes_diff=False)
@@ -208,30 +195,22 @@
 - zolotaya-veranda-gostevoy-kompleks-3769 (@abhazbooking/3769): OK (tg=21, site=21, notes_diff=False)
 
 === КВАРТИРЫ ===
-- argo-kvartira-1k-pitsunda-940 (@abhkvartira/932): MISMATCH (tg=8, site=10, notes_diff=True)
-    лишнее на сайте: весь каталог квартир смотреть тут ⬅️
 - flora-dom-alahadze-1163 (@abhkvartira/1154): MISMATCH (tg=5, site=5, notes_diff=True)
     нет на сайте: *цена указана для двоих, каждый дополнительный гость+1000₽ дети до 7 лет - бесплатно.
     лишнее на сайте: *цена указана для двоих, каждый дополнительный гость +1000₽ дети до 7 лет - бесплатно.
-- magnoliya-kvartira-3k-gagra-1253 (@abhkvartira/1244): MISMATCH (tg=8, site=9, notes_diff=True)
-    лишнее на сайте: весь каталог квартир смотреть тут ⬅️
-- melana-kvartira-3k-pitsunda-1015 (@abhkvartira/1007): MISMATCH (tg=4, site=5, notes_diff=True)
-    лишнее на сайте: весь каталог квартир смотреть тут ⬅️
-- na-vysote-kvartira-pitsunda-1053 (@abhkvartira/1053): MISMATCH (tg=6, site=7, notes_diff=True)
-    лишнее на сайте: весь каталог квартир смотреть тут ⬅️
-- palma-kvartira-3k-ldzaa-1080 (@abhkvartira/1075): MISMATCH (tg=6, site=8, notes_diff=True)
-    лишнее на сайте: весь каталог квартир смотреть тут ⬅️
-- siti-gagra-kvartira-2k-gagra-1242 (@abhkvartira/1233): MISMATCH (tg=4, site=5, notes_diff=True)
-    лишнее на сайте: весь каталог квартир смотреть тут ⬅️
-- tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142 (@abhkvartira/1133): MISMATCH (tg=3, site=5, notes_diff=True)
+- tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142 (@abhkvartira/1133): MISMATCH (tg=3, site=4, notes_diff=True)
     нет на сайте: 10000₽ - июль, август
     нет на сайте: 7000₽ - сентябрь
     лишнее на сайте: 10000₽ - июль
     лишнее на сайте: 11000₽ - август
     лишнее на сайте: 8000₽ - сентябрь
-    лишнее на сайте: весь каталог квартир смотреть тут ⬅️
-- yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152 (@abhkvartira/1143): MISMATCH (tg=3, site=4, notes_diff=True)
-    лишнее на сайте: весь каталог квартир смотреть тут ⬅️
+- yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152 (@abhkvartira/1143): MISMATCH (tg=3, site=5, notes_diff=True)
+    нет на сайте: 13000₽ - июль, август
+    нет на сайте: 8000₽ - сентябрь
+    лишнее на сайте: 6000₽ - май
+    лишнее на сайте: 13000₽ - июль
+    лишнее на сайте: 15000₽ - август
+    лишнее на сайте: 10000₽ - сентябрь
 - afina-kvartira-2k-1488 (@abhkvartira/1488): OK (tg=3, site=3, notes_diff=False)
 - akira-2k-kvartira-1623 (@abhkvartira/1623): OK (tg=3, site=3, notes_diff=False)
 - akirtava-kvartira-3k-suhum-931 (@abhkvartira/923): OK (tg=4, site=4, notes_diff=False)
@@ -239,6 +218,7 @@
 - amina-dom-suhum-921 (@abhkvartira/912): OK (tg=7, site=9, notes_diff=False)
 - amor-apartamenty-studiya-gagra-1322 (@abhkvartira/1314): OK (tg=4, site=4, notes_diff=False)
 - anisa-kvartira-1k-ldzaa-910 (@abhkvartira/902): OK (tg=5, site=5, notes_diff=False)
+- argo-kvartira-1k-pitsunda-940 (@abhkvartira/932): OK (tg=8, site=9, notes_diff=False)
 - aselina-studiya-i-kottedzhi-s-kuhney-ldzaa-989 (@abhkvartira/977): OK (tg=10, site=9, notes_diff=False)
 - atmosfernaya-kvartira-2k-1454 (@abhkvartira/1454): OK (tg=6, site=7, notes_diff=False)
 - bi-heppi-kottedzh-suhum-1130 (@abhkvartira/1121): OK (tg=5, site=5, notes_diff=False)
@@ -256,8 +236,10 @@
 - ladariya-kvartira-1k-1542 (@abhkvartira/1542): OK (tg=1, site=1, notes_diff=False)
 - letnyaya-kvartira-3k-suhum-1377 (@abhkvartira/1369): OK (tg=5, site=5, notes_diff=False)
 - leto-kvartira-2k-1587 (@abhkvartira/1587): OK (tg=3, site=3, notes_diff=False)
+- magnoliya-kvartira-3k-gagra-1253 (@abhkvartira/1244): OK (tg=8, site=8, notes_diff=False)
 - mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440 (@abhkvartira/1431): OK (tg=8, site=8, notes_diff=False)
 - mechta-apartamenty-ldzaa-1176 (@abhkvartira/1168): OK (tg=13, site=13, notes_diff=False)
+- melana-kvartira-3k-pitsunda-1015 (@abhkvartira/1007): OK (tg=4, site=4, notes_diff=False)
 - mimoza-3k-kvartira-1499 (@abhkvartira/1499): OK (tg=5, site=5, notes_diff=False)
 - mira-dom-suhum-1345 (@abhkvartira/1336): OK (tg=3, site=3, notes_diff=False)
 - miya-dom-ldzaa-1183 (@abhkvartira/1178): OK (tg=5, site=5, notes_diff=False)
@@ -267,8 +249,10 @@
 - moreon-kvartira-2k-pitsunda-1391 (@abhkvartira/1046): OK (tg=5, site=5, notes_diff=False)
 - na-plyazhe-apartamenty-3k-ldzaa-1073 (@abhkvartira/1064): OK (tg=6, site=6, notes_diff=False)
 - na-vremya-v-rayu-zhile-pod-klyuch-1522 (@abhkvartira/1522): OK (tg=4, site=4, notes_diff=False)
+- na-vysote-kvartira-pitsunda-1053 (@abhkvartira/1053): OK (tg=6, site=6, notes_diff=False)
 - nasta-apartamenty-studiya-ldzaa-1264 (@abhkvartira/1255): OK (tg=4, site=4, notes_diff=False)
 - nonna-kvartira-2k-1576 (@abhkvartira/1576): OK (tg=4, site=4, notes_diff=False)
+- palma-kvartira-3k-ldzaa-1080 (@abhkvartira/1075): OK (tg=6, site=7, notes_diff=False)
 - parkovaya-kvartira-2k-suhum-1292 (@abhkvartira/1284): OK (tg=6, site=6, notes_diff=False)
 - perl-dom-pod-klyuch-gudauta-1092 (@abhkvartira/1083): OK (tg=4, site=4, notes_diff=False)
 - peschanyy-bereg-novye-apartamenty-suhum-mokko-1407 (@abhkvartira/1401): OK (tg=5, site=5, notes_diff=False)
@@ -277,6 +261,7 @@
 - sanset-kvartira-1k-ldzaa-1101 (@abhkvartira/1093): OK (tg=4, site=4, notes_diff=False)
 - sekret-garden-apartamenty-1465 (@abhkvartira/1465): OK (tg=8, site=8, notes_diff=False)
 - semeynaya-kvartira-2k-1104 (@abhkvartira/1104): OK (tg=8, site=9, notes_diff=False)
+- siti-gagra-kvartira-2k-gagra-1242 (@abhkvartira/1233): OK (tg=4, site=4, notes_diff=False)
 - solnechnaya-kvartira-2k-pitsunda-1231 (@abhkvartira/1222): OK (tg=9, site=11, notes_diff=False)
 - sosnovaya-kvartira-1k-1610 (@abhkvartira/1610): OK (tg=3, site=5, notes_diff=False)
 - studio-san-amra-studiya-na-plyazhe-1511 (@abhkvartira/1511): OK (tg=3, site=3, notes_diff=False)
