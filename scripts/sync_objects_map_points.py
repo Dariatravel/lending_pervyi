@@ -174,6 +174,7 @@ def save_outputs(report: str, current: dict[str, Any], fresh: dict[str, Any], di
 def main() -> int:
     parser = argparse.ArgumentParser(description="Проверить или обновить точки объектов на карте.")
     parser.add_argument("--apply", action="store_true", help="Записать обновлённые точки в data/objects-map-points.json.")
+    parser.add_argument("--no-write", action="store_true", help="Только проверить и вывести отчёт, не записывать output-файлы.")
     args = parser.parse_args()
 
     current = load_current_payload()
@@ -186,7 +187,8 @@ def main() -> int:
         applied = True
 
     report = render_report(current, fresh, diff, applied=applied)
-    save_outputs(report, current, fresh, diff, applied=applied)
+    if not args.no_write:
+        save_outputs(report, current, fresh, diff, applied=applied)
     print(report, end="")
     return 0
 

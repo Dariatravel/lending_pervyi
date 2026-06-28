@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from media_urls import yandex_photo_url, yandex_video_url  # noqa: E402
+from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 
 AUDIT_PATH = ROOT / "output" / "telegram_supplemental_comments_audit.json"
 REPORT_PATH = ROOT / "output" / "telegram_supplemental_apply_report.txt"
@@ -414,9 +415,7 @@ async def run(args: argparse.Namespace) -> int:
 
     results: list[str] = []
     ok = 0
-    client = TelegramClient(session, api_id, api_hash)
-    await client.connect()
-    try:
+    async with connected_telegram_client(session, api_id, api_hash, receive_updates=False) as client:
         if not await client.is_user_authorized():
             raise RuntimeError(f"Telegram session is not authorized: {session}")
         for index, target in enumerate(targets, 1):
@@ -437,9 +436,6 @@ async def run(args: argparse.Namespace) -> int:
                 line = f"[ERR] {target.slug}: {error}"
                 results.append(line)
                 print(line, flush=True)
-    finally:
-        await client.disconnect()
-
     report = "\n".join(
         [
             "Apply Telegram supplemental comments",
@@ -465,7 +461,7 @@ def main() -> int:
         args.limit = args.limit
     else:
         args.limit = None
-    return asyncio.run(run(args))
+    return run_async_entrypoint(run(args), name="apply_telegram_supplemental_comments", default_timeout=1800)
 
 
 if __name__ == "__main__":

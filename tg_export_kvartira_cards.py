@@ -4,10 +4,15 @@ import re
 import os
 import html
 import urllib.request
+import sys
 from pathlib import Path
-from telethon import TelegramClient
 
 ROOT = Path('/Users/darya_botova/Documents/New project')
+SCRIPT_ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(SCRIPT_ROOT / "scripts"))
+
+from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
+
 TOPICS_FILE = ROOT / 'topics.json'
 OUT_JSON = ROOT / 'kvartira_cards.json'
 MEDIA_DIR = ROOT / 'media' / 'kvartira-cards'
@@ -69,69 +74,67 @@ async def main():
     if not api_id or not api_hash:
         raise RuntimeError("Set TG_API_ID and TG_API_HASH in environment before running.")
     topics = json.loads(TOPICS_FILE.read_text(encoding='utf-8'))
-    client = TelegramClient('tg_session', api_id, api_hash)
-    await client.start()
-    entity = await client.get_entity(chat)
+    async with connected_telegram_client(SCRIPT_ROOT / 'tg_session', api_id, api_hash, receive_updates=False) as client:
+        entity = await client.get_entity(chat)
 
-    cards = []
-    for i, t in enumerate(topics, 1):
-        mid = t.get('top_message_id')
-        if not mid:
-            continue
+        cards = []
+        for i, t in enumerate(topics, 1):
+            mid = t.get('top_message_id')
+            if not mid:
+                continue
 
-        msg = await client.get_messages(entity, ids=mid)
-        if not msg:
-            continue
+            msg = await client.get_messages(entity, ids=mid)
+            if not msg:
+                continue
 
-        title = (t.get('title') or '').strip() or f'Тема {t.get("topic_id")}'
-        text = msg.raw_text or ''
-        card_slug = f"{slugify(title)}-{mid}"
+            title = (t.get('title') or '').strip() or f'Тема {t.get("topic_id")}'
+            text = msg.raw_text or ''
+            card_slug = f"{slugify(title)}-{mid}"
 
-        image_path = ''
-        has_video = bool(msg.video)
+            image_path = ''
+            has_video = bool(msg.video)
 
-        if msg.photo:
-            local = await client.download_media(msg.photo, file=str(MEDIA_DIR / f'{card_slug}.jpg'))
-            if local:
-                image_path = '/media/kvartira-cards/' + Path(local).name
-        elif msg.document and (msg.document.mime_type or '').startswith('image/'):
-            ext = '.jpg'
-            mt = msg.document.mime_type or ''
-            if 'png' in mt:
-                ext = '.png'
-            elif 'webp' in mt:
-                ext = '.webp'
-            local = await client.download_media(msg.document, file=str(MEDIA_DIR / f'{card_slug}{ext}'))
-            if local:
-                image_path = '/media/kvartira-cards/' + Path(local).name
+            if msg.photo:
+                local = await client.download_media(msg.photo, file=str(MEDIA_DIR / f'{card_slug}.jpg'))
+                if local:
+                    image_path = '/media/kvartira-cards/' + Path(local).name
+            elif msg.document and (msg.document.mime_type or '').startswith('image/'):
+                ext = '.jpg'
+                mt = msg.document.mime_type or ''
+                if 'png' in mt:
+                    ext = '.png'
+                elif 'webp' in mt:
+                    ext = '.webp'
+                local = await client.download_media(msg.document, file=str(MEDIA_DIR / f'{card_slug}{ext}'))
+                if local:
+                    image_path = '/media/kvartira-cards/' + Path(local).name
 
-        # Fallback: for many forum topics the top message has no attached photo,
-        # but Telegram public page still exposes a post cover in og:image.
-        if not image_path:
-            try:
-                og_url = fetch_og_image_url(mid)
-                dst = MEDIA_DIR / f'{card_slug}-cover.jpg'
-                if download_remote_image(og_url, dst):
-                    image_path = '/media/kvartira-cards/' + dst.name
-            except Exception:
-                pass
+            # Fallback: for many forum topics the top message has no attached photo,
+            # but Telegram public page still exposes a post cover in og:image.
+            if not image_path:
+                try:
+                    og_url = fetch_og_image_url(mid)
+                    dst = MEDIA_DIR / f'{card_slug}-cover.jpg'
+                    if download_remote_image(og_url, dst):
+                        image_path = '/media/kvartira-cards/' + dst.name
+                except Exception:
+                    pass
 
-        cards.append({
-            'topic_id': t.get('topic_id'),
-            'message_id': mid,
-            'title': title,
-            'slug': card_slug,
-            'url': f'https://t.me/{chat}/{mid}',
-            'excerpt': excerpt(text),
-            'image': image_path,
-            'has_video': has_video,
-        })
-        print(f'[{i}/{len(topics)}] {title}')
+            cards.append({
+                'topic_id': t.get('topic_id'),
+                'message_id': mid,
+                'title': title,
+                'slug': card_slug,
+                'url': f'https://t.me/{chat}/{mid}',
+                'excerpt': excerpt(text),
+                'image': image_path,
+                'has_video': has_video,
+            })
+            print(f'[{i}/{len(topics)}] {title}')
 
     OUT_JSON.write_text(json.dumps(cards, ensure_ascii=False, indent=2), encoding='utf-8')
     print(f'Готово: {len(cards)} карточек -> {OUT_JSON}')
-    await client.disconnect()
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    raise SystemExit(run_async_entrypoint(main(), name='tg_export_kvartira_cards', default_timeout=900))

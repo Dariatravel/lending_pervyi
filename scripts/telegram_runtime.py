@@ -97,13 +97,13 @@ def is_network_error(error: BaseException) -> bool:
 def user_friendly_error(error: BaseException) -> str:
     text = str(error)
     lowered = text.lower()
-    if isinstance(error, asyncio.TimeoutError):
+    if isinstance(error, asyncio.TimeoutError) or "timed out" in lowered or "timeout" in lowered:
         return "Техническая проблема проверки: Telegram не ответил вовремя. Повторите позже."
     if isinstance(error, TelegramRuntimeError):
         return f"Техническая проблема проверки: {text}"
-    if isinstance(error, sqlite3.OperationalError) and "database is locked" in lowered:
+    if "database is locked" in lowered:
         return "Техническая проблема проверки: Telegram-сессия занята другим процессом. Повторите позже."
-    if "key is not registered" in lowered or "authkeyunregistered" in lowered:
+    if "key is not registered" in lowered or "authkeyunregistered" in lowered or "auth key unregistered" in lowered:
         return (
             "Техническая проблема проверки: Telegram-сессия больше не авторизована. "
             "Нужно заново войти в Telegram для tg_session."

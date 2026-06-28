@@ -23,6 +23,7 @@ from sync_catalog_from_telegram import (  # noqa: E402
     transcode_video,
     upload_local_video_public_url,
 )
+from telegram_runtime import connected_telegram_client, run_async_entrypoint
 
 ROOT = Path.cwd()
 VIDEOS_DIR = ROOT / 'media' / 'videos'
@@ -90,125 +91,121 @@ async def main() -> None:
 
     print(f'К миграции видео: {len(media_rows)}', flush=True)
 
-    client = TelegramClient(SESSION, API_ID, API_HASH)
-    await client.connect()
-
     max_bytes = MAX_VIDEO_UPLOAD_MB * 1024 * 1024
     entity_cache: dict[str, Any] = {}
     converted = 0
     failed = 0
 
-    for index, media in enumerate(media_rows, start=1):
-        listing = listing_map.get(media['listing_id'])
-        if not listing:
-            failed += 1
-            print(f'[{index}/{len(media_rows)}] skip media#{media["id"]}: listing not found', flush=True)
-            continue
+    async with connected_telegram_client(SESSION, API_ID, API_HASH, receive_updates=False) as client:
+        for index, media in enumerate(media_rows, start=1):
+            listing = listing_map.get(media['listing_id'])
+            if not listing:
+                failed += 1
+                print(f'[{index}/{len(media_rows)}] skip media#{media["id"]}: listing not found', flush=True)
+                continue
 
-        post = parse_telegram_post(media)
-        if not post:
-            failed += 1
-            print(f'[{index}/{len(media_rows)}] skip media#{media["id"]}: telegram_post empty', flush=True)
-            continue
+            post = parse_telegram_post(media)
+            if not post:
+                failed += 1
+                print(f'[{index}/{len(media_rows)}] skip media#{media["id"]}: telegram_post empty', flush=True)
+                continue
 
-        channel, message_id_text = post.split('/', 1)
-        try:
-            message_id = int(message_id_text)
-        except ValueError:
-            failed += 1
-            print(f'[{index}/{len(media_rows)}] skip media#{media["id"]}: bad message id', flush=True)
-            continue
-
-        try:
-            if channel not in entity_cache:
-                entity_cache[channel] = await client.get_entity(channel)
-            message = await client.get_messages(entity_cache[channel], ids=message_id)
-        except Exception as error:  # noqa: BLE001
-            failed += 1
-            print(f'[{index}/{len(media_rows)}] fail media#{media["id"]}: telegram fetch error: {error}', flush=True)
-            continue
-
-        if not message or not message.media:
-            failed += 1
-            print(f'[{index}/{len(media_rows)}] fail media#{media["id"]}: no media in message', flush=True)
-            continue
-
-        slug = listing['slug']
-        source_kind = listing['source_kind']
-        video_dir = VIDEOS_DIR / storage_kind_prefix(source_kind) / slug
-        ensure_dir(video_dir)
-        source_file = video_dir / f'video-{media["id"]}-source.mp4'
-
-        downloaded = await download_message_media(client, message, source_file)
-        if not downloaded:
-            failed += 1
-            print(f'[{index}/{len(media_rows)}] fail media#{media["id"]}: download failed', flush=True)
-            continue
-        if downloaded != source_file:
-            downloaded.rename(source_file)
-
-        uploaded_public_url = ''
-        uploaded_storage_path = ''
-        uploaded_file: Path | None = None
-
-        def try_upload(candidate: Path) -> bool:
-            nonlocal uploaded_public_url, uploaded_storage_path, uploaded_file
-            if not candidate.exists() or candidate.stat().st_size <= 0:
-                return False
-            if candidate.stat().st_size > max_bytes:
-                return False
-            storage_path = f'videos/{storage_kind_prefix(source_kind)}/{slug}/{candidate.name}'
+            channel, message_id_text = post.split('/', 1)
             try:
-                public_url = upload_local_video_public_url(candidate, storage_path)
-            except Exception:  # noqa: BLE001
-                return False
-            uploaded_public_url = public_url
-            uploaded_storage_path = storage_path
-            uploaded_file = candidate
-            return True
+                message_id = int(message_id_text)
+            except ValueError:
+                failed += 1
+                print(f'[{index}/{len(media_rows)}] skip media#{media["id"]}: bad message id', flush=True)
+                continue
 
-        if not try_upload(source_file):
-            for bitrate in VIDEO_BITRATES:
-                candidate = video_dir / f'video-{media["id"]}-{bitrate}.mp4'
-                if not candidate.exists() or candidate.stat().st_size == 0:
-                    if not transcode_video(source_file, candidate, bitrate):
-                        continue
-                if try_upload(candidate):
-                    break
+            try:
+                if channel not in entity_cache:
+                    entity_cache[channel] = await client.get_entity(channel)
+                message = await client.get_messages(entity_cache[channel], ids=message_id)
+            except Exception as error:  # noqa: BLE001
+                failed += 1
+                print(f'[{index}/{len(media_rows)}] fail media#{media["id"]}: telegram fetch error: {error}', flush=True)
+                continue
 
-        if not uploaded_public_url:
-            failed += 1
-            print(f'[{index}/{len(media_rows)}] fail media#{media["id"]}: upload failed for all candidates', flush=True)
-            continue
+            if not message or not message.media:
+                failed += 1
+                print(f'[{index}/{len(media_rows)}] fail media#{media["id"]}: no media in message', flush=True)
+                continue
 
-        details = dict(media.get('details') or {})
-        details['telegram_post'] = post
-        details['telegram_url'] = f'https://t.me/{post}'
-        patch_payload = {
-            'mime_type': 'video/mp4',
-            'source_url': uploaded_public_url,
-            'storage_bucket': 'abhazbereg-media',
-            'storage_path': uploaded_storage_path,
-            'public_url': uploaded_public_url,
-            'details': details,
-        }
-        supa.request(
-            'PATCH',
-            '/rest/v1/listing_media',
-            params={'id': f'eq.{media["id"]}'},
-            payload=patch_payload,
-            extra_headers={'Prefer': 'return=minimal'},
-        )
-        converted += 1
-        size_mb = uploaded_file.stat().st_size / (1024 * 1024) if uploaded_file else 0
-        print(
-            f'[{index}/{len(media_rows)}] ok media#{media["id"]} {slug} -> {uploaded_file.name if uploaded_file else "unknown"} ({size_mb:.1f} MB)',
-            flush=True,
-        )
+            slug = listing['slug']
+            source_kind = listing['source_kind']
+            video_dir = VIDEOS_DIR / storage_kind_prefix(source_kind) / slug
+            ensure_dir(video_dir)
+            source_file = video_dir / f'video-{media["id"]}-source.mp4'
 
-    await client.disconnect()
+            downloaded = await download_message_media(client, message, source_file)
+            if not downloaded:
+                failed += 1
+                print(f'[{index}/{len(media_rows)}] fail media#{media["id"]}: download failed', flush=True)
+                continue
+            if downloaded != source_file:
+                downloaded.rename(source_file)
+
+            uploaded_public_url = ''
+            uploaded_storage_path = ''
+            uploaded_file: Path | None = None
+
+            def try_upload(candidate: Path) -> bool:
+                nonlocal uploaded_public_url, uploaded_storage_path, uploaded_file
+                if not candidate.exists() or candidate.stat().st_size <= 0:
+                    return False
+                if candidate.stat().st_size > max_bytes:
+                    return False
+                storage_path = f'videos/{storage_kind_prefix(source_kind)}/{slug}/{candidate.name}'
+                try:
+                    public_url = upload_local_video_public_url(candidate, storage_path)
+                except Exception:  # noqa: BLE001
+                    return False
+                uploaded_public_url = public_url
+                uploaded_storage_path = storage_path
+                uploaded_file = candidate
+                return True
+
+            if not try_upload(source_file):
+                for bitrate in VIDEO_BITRATES:
+                    candidate = video_dir / f'video-{media["id"]}-{bitrate}.mp4'
+                    if not candidate.exists() or candidate.stat().st_size == 0:
+                        if not transcode_video(source_file, candidate, bitrate):
+                            continue
+                    if try_upload(candidate):
+                        break
+
+            if not uploaded_public_url:
+                failed += 1
+                print(f'[{index}/{len(media_rows)}] fail media#{media["id"]}: upload failed for all candidates', flush=True)
+                continue
+
+            details = dict(media.get('details') or {})
+            details['telegram_post'] = post
+            details['telegram_url'] = f'https://t.me/{post}'
+            patch_payload = {
+                'mime_type': 'video/mp4',
+                'source_url': uploaded_public_url,
+                'storage_bucket': 'abhazbereg-media',
+                'storage_path': uploaded_storage_path,
+                'public_url': uploaded_public_url,
+                'details': details,
+            }
+            supa.request(
+                'PATCH',
+                '/rest/v1/listing_media',
+                params={'id': f'eq.{media["id"]}'},
+                payload=patch_payload,
+                extra_headers={'Prefer': 'return=minimal'},
+            )
+            converted += 1
+            size_mb = uploaded_file.stat().st_size / (1024 * 1024) if uploaded_file else 0
+            print(
+                f'[{index}/{len(media_rows)}] ok media#{media["id"]} {slug} -> {uploaded_file.name if uploaded_file else "unknown"} ({size_mb:.1f} MB)',
+                flush=True,
+            )
     print({'converted': converted, 'failed': failed, 'total': len(media_rows)}, flush=True)
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    raise SystemExit(run_async_entrypoint(main(), name='migrate_telegram_videos_to_supabase', default_timeout=1800))

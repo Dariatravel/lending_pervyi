@@ -53,7 +53,7 @@ from catalog_snapshot import (  # noqa: E402
 )
 from media_urls import media_src_for_html, yandex_photo_url  # noqa: E402
 from yandex_storage import upload_file as upload_to_yandex  # noqa: E402
-from telegram_runtime import TelegramSessionLock, run_async_entrypoint  # noqa: E402
+from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 
 ROOT_INDEX = ROOT / 'index.html'
 HOTELS_DIR = ROOT / 'hotels'
@@ -1639,137 +1639,133 @@ async def main() -> None:
     ensure_dir(KV_CARD_DIR)
     ensure_dir(CARD_DIR)
 
-    telegram_lock = TelegramSessionLock(SESSION)
-    telegram_lock.__enter__()
-    client = TelegramClient(SESSION, API_ID, API_HASH, receive_updates=False)
-    await client.connect()
+    async with connected_telegram_client(SESSION, API_ID, API_HASH, receive_updates=False) as client:
+        run_hotels = True
+        run_kvartira = True
+        if TARGET_HOTEL_SOURCE_IDS and not TARGET_KV_TOPIC_IDS:
+            run_kvartira = False
+        elif TARGET_KV_TOPIC_IDS and not TARGET_HOTEL_SOURCE_IDS:
+            run_hotels = False
 
-    run_hotels = True
-    run_kvartira = True
-    if TARGET_HOTEL_SOURCE_IDS and not TARGET_KV_TOPIC_IDS:
-        run_kvartira = False
-    elif TARGET_KV_TOPIC_IDS and not TARGET_HOTEL_SOURCE_IDS:
-        run_hotels = False
+        hotel_objects: list[dict[str, Any]] = []
+        kvartira_objects: list[dict[str, Any]] = []
+        topic_dump: list[dict[str, Any]] = []
+        if run_hotels:
+            hotel_objects = await build_hotel_objects(client)
+        if run_kvartira:
+            kvartira_objects, topic_dump = await build_kvartira_objects(client)
+        print(f'Найдено объектов: hotels={len(hotel_objects)}, kvartira={len(kvartira_objects)}', flush=True)
+        if TARGET_SYNC_MODE:
+            print('[info] Включен точечный режим синка: удаление неактивных объектов отключено.', flush=True)
 
-    hotel_objects: list[dict[str, Any]] = []
-    kvartira_objects: list[dict[str, Any]] = []
-    topic_dump: list[dict[str, Any]] = []
-    if run_hotels:
-        hotel_objects = await build_hotel_objects(client)
-    if run_kvartira:
-        kvartira_objects, topic_dump = await build_kvartira_objects(client)
-    print(f'Найдено объектов: hotels={len(hotel_objects)}, kvartira={len(kvartira_objects)}', flush=True)
-    if TARGET_SYNC_MODE:
-        print('[info] Включен точечный режим синка: удаление неактивных объектов отключено.', flush=True)
+        existing_hotels = listings_by_kind('hotel') if run_hotels and SKIP_SUPABASE_SYNC else (supa.fetch_listings('hotel') if run_hotels and supa else [])
+        existing_kvartira = listings_by_kind('kvartira') if run_kvartira and SKIP_SUPABASE_SYNC else (supa.fetch_listings('kvartira') if run_kvartira and supa else [])
 
-    existing_hotels = listings_by_kind('hotel') if run_hotels and SKIP_SUPABASE_SYNC else (supa.fetch_listings('hotel') if run_hotels and supa else [])
-    existing_kvartira = listings_by_kind('kvartira') if run_kvartira and SKIP_SUPABASE_SYNC else (supa.fetch_listings('kvartira') if run_kvartira and supa else [])
+        kvartira_by_topic = {row.get('source_topic_id'): row for row in existing_kvartira}
 
-    kvartira_by_topic = {row.get('source_topic_id'): row for row in existing_kvartira}
+        active_hotel_ids = set()
+        processed_hotel_rows = set()
+        failed_hotel_existing_rows = set()
+        failed_hotel_objects: list[dict[str, Any]] = []
+        current_pages = []
+        slug_pool = {row['slug'] for row in existing_hotels + existing_kvartira}
 
-    active_hotel_ids = set()
-    processed_hotel_rows = set()
-    failed_hotel_existing_rows = set()
-    failed_hotel_objects: list[dict[str, Any]] = []
-    current_pages = []
-    slug_pool = {row['slug'] for row in existing_hotels + existing_kvartira}
+        hotel_exact_by_source = {row['source_message_id']: row for row in existing_hotels}
+        hotel_by_title: dict[str, list[dict[str, Any]]] = {}
+        for row in existing_hotels:
+            hotel_by_title.setdefault(title_key(row.get('title') or ''), []).append(row)
+        hotel_canonical_ids = {obj['canonical'].id for obj in hotel_objects}
+        unused_rows = {row['id']: row for row in existing_hotels if row['source_message_id'] not in hotel_canonical_ids}
 
-    hotel_exact_by_source = {row['source_message_id']: row for row in existing_hotels}
-    hotel_by_title: dict[str, list[dict[str, Any]]] = {}
-    for row in existing_hotels:
-        hotel_by_title.setdefault(title_key(row.get('title') or ''), []).append(row)
-    hotel_canonical_ids = {obj['canonical'].id for obj in hotel_objects}
-    unused_rows = {row['id']: row for row in existing_hotels if row['source_message_id'] not in hotel_canonical_ids}
-
-    for index, obj in enumerate(hotel_objects, start=1):
-        hotel_title = obj['parsed'].get('title') or ''
-        if is_blocked_hotel_title(hotel_title):
-            matched_blocked = hotel_exact_by_source.get(obj['canonical'].id)
-            if matched_blocked is not None:
-                cleanup_removed_listing('hotel', matched_blocked, supa)
-            continue
-        matched_row = hotel_exact_by_source.get(obj['canonical'].id)
-        if matched_row is None:
-            key = title_key(hotel_title)
-            for row in hotel_by_title.get(key, []):
-                if row['id'] in processed_hotel_rows:
-                    continue
-                if row['id'] in unused_rows:
-                    matched_row = row
-                    break
-        try:
-            result = await materialize_object(client, supa, matched_row, obj, slug_pool)
-        except Exception as error:  # noqa: BLE001
-            if matched_row is not None:
-                failed_hotel_existing_rows.add(matched_row['id'])
-            failed_hotel_objects.append(
-                {
-                    'source_id': obj['canonical'].id,
-                    'title': obj['parsed'].get('title') or '',
-                    'error': str(error),
-                }
-            )
-            print(
-                f'[error] hotel materialize failed id={obj["canonical"].id} title="{obj["parsed"].get("title") or ""}": {error}',
-                flush=True,
-            )
-            continue
-        if result.get('hidden'):
+        for index, obj in enumerate(hotel_objects, start=1):
+            hotel_title = obj['parsed'].get('title') or ''
+            if is_blocked_hotel_title(hotel_title):
+                matched_blocked = hotel_exact_by_source.get(obj['canonical'].id)
+                if matched_blocked is not None:
+                    cleanup_removed_listing('hotel', matched_blocked, supa)
+                continue
+            matched_row = hotel_exact_by_source.get(obj['canonical'].id)
+            if matched_row is None:
+                key = title_key(hotel_title)
+                for row in hotel_by_title.get(key, []):
+                    if row['id'] in processed_hotel_rows:
+                        continue
+                    if row['id'] in unused_rows:
+                        matched_row = row
+                        break
+            try:
+                result = await materialize_object(client, supa, matched_row, obj, slug_pool)
+            except Exception as error:  # noqa: BLE001
+                if matched_row is not None:
+                    failed_hotel_existing_rows.add(matched_row['id'])
+                failed_hotel_objects.append(
+                    {
+                        'source_id': obj['canonical'].id,
+                        'title': obj['parsed'].get('title') or '',
+                        'error': str(error),
+                    }
+                )
+                print(
+                    f'[error] hotel materialize failed id={obj["canonical"].id} title="{obj["parsed"].get("title") or ""}": {error}',
+                    flush=True,
+                )
+                continue
+            if result.get('hidden'):
+                if matched_row is not None:
+                    processed_hotel_rows.add(matched_row['id'])
+                continue
             if matched_row is not None:
                 processed_hotel_rows.add(matched_row['id'])
-            continue
-        if matched_row is not None:
-            processed_hotel_rows.add(matched_row['id'])
-        current_pages.append({'slug': result['slug'], 'source_id': result['source_id'], 'title': result['title']})
-        active_hotel_ids.add(result['id'])
-        if index % 10 == 0 or index == len(hotel_objects):
-            print(f'Обновлены отели: {index}/{len(hotel_objects)}', flush=True)
+            current_pages.append({'slug': result['slug'], 'source_id': result['source_id'], 'title': result['title']})
+            active_hotel_ids.add(result['id'])
+            if index % 10 == 0 or index == len(hotel_objects):
+                print(f'Обновлены отели: {index}/{len(hotel_objects)}', flush=True)
 
-    deleted_hotels_count = 0
-    if run_hotels and not TARGET_SYNC_MODE:
-        for row in existing_hotels:
-            if row['id'] not in processed_hotel_rows and row['id'] not in failed_hotel_existing_rows:
-                cleanup_removed_listing('hotel', row, supa)
-                deleted_hotels_count += 1
+        deleted_hotels_count = 0
+        if run_hotels and not TARGET_SYNC_MODE:
+            for row in existing_hotels:
+                if row['id'] not in processed_hotel_rows and row['id'] not in failed_hotel_existing_rows:
+                    cleanup_removed_listing('hotel', row, supa)
+                    deleted_hotels_count += 1
 
-    kvartira_cards = []
-    processed_kv_rows = set()
-    failed_kv_existing_rows = set()
-    failed_kv_objects: list[dict[str, Any]] = []
-    for index, obj in enumerate(kvartira_objects, start=1):
-        matched_row = kvartira_by_topic.get(obj['topic_id'])
-        try:
-            result = await materialize_object(client, supa, matched_row, obj, slug_pool)
-        except Exception as error:  # noqa: BLE001
+        kvartira_cards = []
+        processed_kv_rows = set()
+        failed_kv_existing_rows = set()
+        failed_kv_objects: list[dict[str, Any]] = []
+        for index, obj in enumerate(kvartira_objects, start=1):
+            matched_row = kvartira_by_topic.get(obj['topic_id'])
+            try:
+                result = await materialize_object(client, supa, matched_row, obj, slug_pool)
+            except Exception as error:  # noqa: BLE001
+                if matched_row:
+                    failed_kv_existing_rows.add(matched_row['id'])
+                failed_kv_objects.append(
+                    {
+                        'topic_id': obj['topic_id'],
+                        'title': obj.get('topic_title') or obj['parsed'].get('title') or '',
+                        'error': str(error),
+                    }
+                )
+                print(
+                    f'[error] kvartira materialize failed topic={obj["topic_id"]} title="{obj.get("topic_title") or obj["parsed"].get("title") or ""}": {error}',
+                    flush=True,
+                )
+                continue
             if matched_row:
-                failed_kv_existing_rows.add(matched_row['id'])
-            failed_kv_objects.append(
-                {
-                    'topic_id': obj['topic_id'],
-                    'title': obj.get('topic_title') or obj['parsed'].get('title') or '',
-                    'error': str(error),
-                }
-            )
-            print(
-                f'[error] kvartira materialize failed topic={obj["topic_id"]} title="{obj.get("topic_title") or obj["parsed"].get("title") or ""}": {error}',
-                flush=True,
-            )
-            continue
-        if matched_row:
-            processed_kv_rows.add(matched_row['id'])
-        kvartira_cards.append({
-            'title': result['title'],
-            'slug': result['slug'],
-            'topic_id': obj['topic_id'],
-            'message_id': result['source_id'],
-            'url': result['page_url'],
-            'telegram_url': result['telegram_url'],
-            'image': result['cover_local'],
-            'has_video': result['has_video'],
-            'excerpt': result['excerpt'],
-        })
-        if index % 10 == 0 or index == len(kvartira_objects):
-            print(f'Обновлены квартиры: {index}/{len(kvartira_objects)}', flush=True)
+                processed_kv_rows.add(matched_row['id'])
+            kvartira_cards.append({
+                'title': result['title'],
+                'slug': result['slug'],
+                'topic_id': obj['topic_id'],
+                'message_id': result['source_id'],
+                'url': result['page_url'],
+                'telegram_url': result['telegram_url'],
+                'image': result['cover_local'],
+                'has_video': result['has_video'],
+                'excerpt': result['excerpt'],
+            })
+            if index % 10 == 0 or index == len(kvartira_objects):
+                print(f'Обновлены квартиры: {index}/{len(kvartira_objects)}', flush=True)
 
     deleted_kvartira_count = 0
     if run_kvartira and not TARGET_SYNC_MODE:
@@ -1792,8 +1788,6 @@ async def main() -> None:
         TOPICS_FILE.write_text(json.dumps(topic_dump, ensure_ascii=False, indent=2), encoding='utf-8')
         KV_CARDS_FILE.write_text(json.dumps(sorted(kvartira_cards, key=lambda item: item['message_id'], reverse=True), ensure_ascii=False, indent=2), encoding='utf-8')
 
-    await client.disconnect()
-    telegram_lock.__exit__(None, None, None)
     print(json.dumps({
         'hotels': len(hotel_objects),
         'kvartira': len(kvartira_objects),

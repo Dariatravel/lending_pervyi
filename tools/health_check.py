@@ -234,7 +234,7 @@ def main() -> int:
         ),
         run_command(
             "Карта объектов",
-            [sys.executable, str(ROOT / "scripts" / "build_objects_map_points.py")],
+            [sys.executable, str(ROOT / "scripts" / "sync_objects_map_points.py"), "--no-write"],
             timeout=180,
         ),
         check_key_pages(),

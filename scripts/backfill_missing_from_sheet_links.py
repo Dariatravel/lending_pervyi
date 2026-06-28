@@ -24,6 +24,7 @@ from sync_catalog_from_telegram import (
     normalize_title,
     parse_post,
 )
+from telegram_runtime import connected_telegram_client, run_async_entrypoint
 
 if SKIP_SUPABASE_SYNC:
     from catalog_snapshot import load_listings as snapshot_load_listings
@@ -305,64 +306,60 @@ async def main() -> None:
             }
         )
 
-    client = TelegramClient(SESSION, API_ID, API_HASH, receive_updates=False)
-    await client.connect()
-
     added: list[str] = []
     updated_existing: list[str] = []
     failed: list[str] = []
 
-    for item in pending:
-        object_data = await resolve_object_from_link(
-            client,
-            item["channel"],
-            item["message_id"],
-            item["topic_id"],
-            item["title"],
-            ignore_cutoff_date=args.ignore_cutoff_date,
-        )
-        if not object_data:
-            suffix = ""
-            if not args.ignore_cutoff_date:
-                suffix = f"/оно старше {CUTOFF_DATE}"
-            failed.append(f'row {item["row"]}: {item["raw_link"]} | не удалось получить сообщение{suffix}')
-            continue
+    async with connected_telegram_client(SESSION, API_ID, API_HASH, receive_updates=False) as client:
+        for item in pending:
+            object_data = await resolve_object_from_link(
+                client,
+                item["channel"],
+                item["message_id"],
+                item["topic_id"],
+                item["title"],
+                ignore_cutoff_date=args.ignore_cutoff_date,
+            )
+            if not object_data:
+                suffix = ""
+                if not args.ignore_cutoff_date:
+                    suffix = f"/оно старше {CUTOFF_DATE}"
+                failed.append(f'row {item["row"]}: {item["raw_link"]} | не удалось получить сообщение{suffix}')
+                continue
 
-        existing_listing = None
-        canonical_message_id = int(object_data["canonical"].id)
+            existing_listing = None
+            canonical_message_id = int(object_data["canonical"].id)
 
-        # Частый кейс Telegram-альбома: ссылка в таблице указывает на сообщение без текста,
-        # а подпись и "канонический" текст объекта находятся в соседнем сообщении той же группы.
-        # В таком случае materialize_object использует canonical.id, поэтому сначала ищем
-        # существующую запись именно по canonical message id.
-        existing_listing = existing_by_key.get((item["channel"], canonical_message_id))
+            # Частый кейс Telegram-альбома: ссылка в таблице указывает на сообщение без текста,
+            # а подпись и "канонический" текст объекта находятся в соседнем сообщении той же группы.
+            # В таком случае materialize_object использует canonical.id, поэтому сначала ищем
+            # существующую запись именно по canonical message id.
+            existing_listing = existing_by_key.get((item["channel"], canonical_message_id))
 
-        if item["source_kind"] == "kvartira":
-            topic_id = object_data.get("topic_id")
-            if topic_id:
-                existing_listing = existing_listing or existing_kv_by_topic.get(int(topic_id))
+            if item["source_kind"] == "kvartira":
+                topic_id = object_data.get("topic_id")
+                if topic_id:
+                    existing_listing = existing_listing or existing_kv_by_topic.get(int(topic_id))
 
-        if existing_listing is None:
-            key = (item["source_kind"], title_key(item["title"] or object_data["parsed"].get("title", "")))
-            candidates = existing_by_title.get(key, [])
-            if len(candidates) == 1:
-                existing_listing = candidates[0]
+            if existing_listing is None:
+                key = (item["source_kind"], title_key(item["title"] or object_data["parsed"].get("title", "")))
+                candidates = existing_by_title.get(key, [])
+                if len(candidates) == 1:
+                    existing_listing = candidates[0]
 
-        try:
-            result = await materialize_object(client, supa, existing_listing, object_data, slug_pool)
-        except Exception as error:  # noqa: BLE001
-            failed.append(f'row {item["row"]}: {item["raw_link"]} | ошибка materialize: {error}')
-            continue
+            try:
+                result = await materialize_object(client, supa, existing_listing, object_data, slug_pool)
+            except Exception as error:  # noqa: BLE001
+                failed.append(f'row {item["row"]}: {item["raw_link"]} | ошибка materialize: {error}')
+                continue
 
-        if result.get("hidden"):
-            continue
+            if result.get("hidden"):
+                continue
 
-        if existing_listing:
-            updated_existing.append(f'{result["slug"]} | {result["title"]} | row {item["row"]}')
-        else:
-            added.append(f'{result["slug"]} | {result["title"]} | row {item["row"]}')
-
-    await client.disconnect()
+            if existing_listing:
+                updated_existing.append(f'{result["slug"]} | {result["title"]} | row {item["row"]}')
+            else:
+                added.append(f'{result["slug"]} | {result["title"]} | row {item["row"]}')
 
     report_lines: list[str] = []
     report_lines.append("Backfill недостающих объектов из СОЦСЕТИ → Supabase/сайт")
@@ -423,4 +420,4 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    raise SystemExit(run_async_entrypoint(main(), name="backfill_missing_from_sheet_links", default_timeout=1800))

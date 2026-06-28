@@ -8,6 +8,8 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path('/Users/darya_botova/Documents/New project')
+SCRIPT_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(SCRIPT_DIR))
 sys.path.insert(0, str(ROOT))
 
 from telethon import TelegramClient
@@ -34,6 +36,7 @@ from sync_abhazbooking_2026 import (
     update_index,
     update_sitemap,
 )
+from telegram_runtime import connected_telegram_client, run_async_entrypoint
 
 CURRENT_PAGES = OUTPUT_DIR / 'current_pages.json'
 API_ID = 27444661
@@ -152,74 +155,71 @@ async def main() -> None:
     existing_slugs = {page['slug'] for page in existing_pages}
     pages_by_source = {page['source_id']: page for page in existing_pages}
 
-    client = TelegramClient(SESSION, API_ID, API_HASH)
-    await client.start()
-    entity = await client.get_entity(CHANNEL)
-    candidate_posts = await fetch_candidate_posts(client, entity)
+    async with connected_telegram_client(SESSION, API_ID, API_HASH, receive_updates=False) as client:
+        entity = await client.get_entity(CHANNEL)
+        candidate_posts = await fetch_candidate_posts(client, entity)
 
-    report_posts = []
-    created = []
-    managed_ids: set[int] = set()
-    if REPORT_FILE.exists():
-        try:
-            managed_ids = {item['source_id'] for item in json.loads(REPORT_FILE.read_text(encoding='utf-8')).get('created', [])}
-        except Exception:
-            managed_ids = set()
+        report_posts = []
+        created = []
+        managed_ids: set[int] = set()
+        if REPORT_FILE.exists():
+            try:
+                managed_ids = {item['source_id'] for item in json.loads(REPORT_FILE.read_text(encoding='utf-8')).get('created', [])}
+            except Exception:
+                managed_ids = set()
 
-    for message in candidate_posts:
-        parsed = parse_post(normalize_for_parser(message.raw_text or message.text or ''))
-        report_posts.append({
-            'id': message.id,
-            'date': str(message.date.date()),
-            'text': normalize_for_parser(message.raw_text or message.text or ''),
-            'title': parsed['title'],
-            'grouped_id': message.grouped_id,
-        })
+        for message in candidate_posts:
+            parsed = parse_post(normalize_for_parser(message.raw_text or message.text or ''))
+            report_posts.append({
+                'id': message.id,
+                'date': str(message.date.date()),
+                'text': normalize_for_parser(message.raw_text or message.text or ''),
+                'title': parsed['title'],
+                'grouped_id': message.grouped_id,
+            })
 
-        if message.id in existing_ids and message.id not in managed_ids:
-            continue
-        if not parsed['title']:
-            continue
+            if message.id in existing_ids and message.id not in managed_ids:
+                continue
+            if not parsed['title']:
+                continue
 
-        existing_page = pages_by_source.get(message.id)
-        slug = existing_page['slug'] if existing_page else build_slug(parsed['title'], message.id, existing_slugs)
-        existing_slugs.add(slug)
+            existing_page = pages_by_source.get(message.id)
+            slug = existing_page['slug'] if existing_page else build_slug(parsed['title'], message.id, existing_slugs)
+            existing_slugs.add(slug)
 
-        photos, videos = await fetch_group_media(client, entity, message)
-        photo_count, video_filename, video_post_id = await download_media_set(client, photos, videos, slug)
-        if photo_count == 0:
-            continue
+            photos, videos = await fetch_group_media(client, entity, message)
+            photo_count, video_filename, video_post_id = await download_media_set(client, photos, videos, slug)
+            if photo_count == 0:
+                continue
 
-        MEDIA_CARDS_DIR.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(MEDIA_HOTELS_DIR / slug / 'photo-01.jpg', MEDIA_CARDS_DIR / f'{slug}.jpg')
+            MEDIA_CARDS_DIR.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(MEDIA_HOTELS_DIR / slug / 'photo-01.jpg', MEDIA_CARDS_DIR / f'{slug}.jpg')
 
-        page_dir = HOTELS_DIR / slug
-        page_dir.mkdir(parents=True, exist_ok=True)
-        page_html = render_page(
-            slug,
-            message.id,
-            str(message.date.date()),
-            parsed,
-            photo_count,
-            video_filename,
-            video_post_id,
-        )
-        (page_dir / 'index.html').write_text(page_html, encoding='utf-8')
+            page_dir = HOTELS_DIR / slug
+            page_dir.mkdir(parents=True, exist_ok=True)
+            page_html = render_page(
+                slug,
+                message.id,
+                str(message.date.date()),
+                parsed,
+                photo_count,
+                video_filename,
+                video_post_id,
+            )
+            (page_dir / 'index.html').write_text(page_html, encoding='utf-8')
 
-        created.append({
-            'slug': slug,
-            'source_id': message.id,
-            'title': parsed['title'],
-            'location': parsed['location'],
-            'beach': parsed['beach'],
-            'capacity': parsed['capacity'],
-            'location_text': parsed['location'],
-            'summary': summary_text(parsed['location'], parsed['beach'], parsed['capacity']),
-            'has_video': bool(video_filename),
-            'video_post_id': video_post_id,
-        })
-
-    await client.disconnect()
+            created.append({
+                'slug': slug,
+                'source_id': message.id,
+                'title': parsed['title'],
+                'location': parsed['location'],
+                'beach': parsed['beach'],
+                'capacity': parsed['capacity'],
+                'location_text': parsed['location'],
+                'summary': summary_text(parsed['location'], parsed['beach'], parsed['capacity']),
+                'has_video': bool(video_filename),
+                'video_post_id': video_post_id,
+            })
 
     all_pages = [page for page in existing_pages if page['source_id'] not in {item['source_id'] for item in created}] + created
     update_index(all_pages)
@@ -240,4 +240,4 @@ async def main() -> None:
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    raise SystemExit(run_async_entrypoint(main(), name='sync_new_abhazbooking_from_telegram', default_timeout=1800))

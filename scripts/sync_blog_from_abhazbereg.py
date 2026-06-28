@@ -15,6 +15,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
+from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
+
 API_ID = 32916166
 API_HASH = "eefdec49605521b061de4bdf62ef784e"
 SESSION = os.getenv("TG_SESSION", str(ROOT / "tg_session"))
@@ -837,14 +839,12 @@ async def download_cover_image(client, entity, post_id: int, msg, image_path: Pa
 
 
 async def sync_posts(post_ids: list[int] | None = None) -> list[BuiltArticle]:
-    from telethon import TelegramClient
-
     MEDIA_DIR.mkdir(parents=True, exist_ok=True)
     SOURCES_DIR.mkdir(parents=True, exist_ok=True)
 
     built: list[BuiltArticle] = []
     target_ids = post_ids or POST_IDS
-    async with TelegramClient(SESSION, API_ID, API_HASH) as client:
+    async with connected_telegram_client(SESSION, API_ID, API_HASH, receive_updates=False) as client:
         entity = await client.get_entity(CHANNEL)
         messages = await client.get_messages(entity, ids=target_ids)
         by_id = {m.id: m for m in messages if m}
@@ -922,12 +922,12 @@ def update_sitemap(slugs: list[str]) -> None:
     sitemap.write_text(text, encoding="utf-8")
 
 
-def main() -> int:
+async def main_async() -> int:
     only_ids = os.getenv("TARGET_BLOG_POST_IDS", "").strip()
     post_ids = None
     if only_ids:
         post_ids = [int(part.strip()) for part in only_ids.split(",") if part.strip()]
-    built = asyncio.run(sync_posts(post_ids))
+    built = await sync_posts(post_ids)
     if os.getenv("SKIP_BLOG_INDEX", "").strip().lower() in {"1", "true", "yes", "on"}:
         update_sitemap([art.slug for art in built])
         from build_blog_posts_manifest import main as build_blog_manifest
@@ -957,6 +957,10 @@ def main() -> int:
 
     build_blog_manifest()
     return 0
+
+
+def main() -> int:
+    return run_async_entrypoint(main_async(), name="sync_blog_from_abhazbereg", default_timeout=1800)
 
 
 if __name__ == "__main__":
