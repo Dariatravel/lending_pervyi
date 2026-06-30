@@ -8258,3 +8258,218 @@ html:has(> body.objects-map-page) {
     box-shadow: 0 6px 16px rgba(67, 84, 61, 0.07);
   }
 }
+
+/* PWA/mobile app layer: точечные улучшения без вмешательства в логику каталога */
+.pwa-install-card[hidden],
+.mobile-app-dock {
+  display: none;
+}
+
+.pwa-install-card {
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(135deg, rgba(255, 250, 242, 0.92), rgba(226, 240, 232, 0.9)),
+    rgba(255, 255, 255, 0.82);
+  box-shadow: 0 16px 36px rgba(18, 31, 25, 0.12);
+}
+
+.pwa-install-card__icon {
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1f4a3b, #6f9180);
+  color: #fffaf2;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.pwa-install-card__copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+  color: #223028;
+}
+
+.pwa-install-card__copy strong {
+  font-size: clamp(0.95rem, 3.5vw, 1.05rem);
+  line-height: 1.2;
+}
+
+.pwa-install-card__copy span {
+  color: var(--muted);
+  font-size: clamp(0.78rem, 3.1vw, 0.9rem);
+  line-height: 1.35;
+}
+
+.pwa-install-card__actions {
+  flex: 0 0 auto;
+  display: grid;
+  gap: 6px;
+}
+
+.pwa-install-card__button,
+.pwa-install-card__dismiss,
+.mobile-app-dock__item {
+  appearance: none;
+  border: 0;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pwa-install-card__button,
+.pwa-install-card__dismiss {
+  min-height: 36px;
+  padding: 0.42rem 0.72rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.pwa-install-card__button {
+  background: #1f4a3b;
+  color: #fffaf2;
+}
+
+.pwa-install-card__dismiss {
+  background: rgba(255, 255, 255, 0.62);
+  color: #3f554a;
+  box-shadow: inset 0 0 0 1px rgba(100, 121, 107, 0.16);
+}
+
+@media (max-width: 760px) {
+  html {
+    scroll-padding-bottom: 96px;
+  }
+
+  body {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .site-concept.site-concept--home > #stays .pwa-install-card {
+    display: flex;
+    margin: 0 0 12px;
+  }
+
+  .site-concept__search-submit,
+  .btn-filter,
+  .btn-book,
+  .filter-chip,
+  .filters-modal__close,
+  .catalog-expand-button,
+  .site-concept__contacts .contact-buttons .btn-book,
+  .contact-buttons .btn-book {
+    min-height: 48px;
+  }
+
+  .site-concept__search-field {
+    min-height: 58px;
+  }
+
+  .site-concept__contacts .contact-buttons,
+  .contact-buttons {
+    gap: 8px;
+  }
+
+  .site-concept__guide-messenger-btn,
+  .site-concept__contacts .contact-buttons .btn-book,
+  .contact-buttons .btn-book {
+    padding: 0.55rem 0.45rem;
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  .site-concept .catalog-card {
+    min-height: 128px;
+    touch-action: manipulation;
+  }
+
+  .site-concept .catalog-card img {
+    min-height: 128px;
+  }
+
+  .mobile-app-dock {
+    position: fixed;
+    left: max(10px, env(safe-area-inset-left, 0px));
+    right: max(10px, env(safe-area-inset-right, 0px));
+    bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    z-index: 9980;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 0.9fr 1fr;
+    gap: 6px;
+    padding: 7px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: rgba(255, 250, 242, 0.93);
+    box-shadow: 0 18px 44px rgba(18, 31, 25, 0.2);
+  }
+
+  .mobile-app-dock__item {
+    min-width: 0;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.32rem;
+    border-radius: 18px;
+    background: rgba(232, 240, 232, 0.78);
+    color: #1f4a3b;
+    font-size: clamp(0.68rem, 2.8vw, 0.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    text-align: center;
+    letter-spacing: 0.01em;
+    box-shadow: inset 0 0 0 1px rgba(100, 121, 107, 0.12);
+  }
+
+  .mobile-app-dock__item--primary {
+    background: linear-gradient(180deg, #ebb39b 0%, var(--accent-strong) 100%);
+    color: #fffaf2;
+    box-shadow: 0 10px 22px rgba(199, 119, 90, 0.2);
+  }
+
+  .mobile-app-dock__item:focus-visible,
+  .pwa-install-card__button:focus-visible,
+  .pwa-install-card__dismiss:focus-visible {
+    outline: 2px solid #1f4a3b;
+    outline-offset: 2px;
+  }
+
+  .back-to-top {
+    bottom: calc(86px + env(safe-area-inset-bottom, 0px));
+  }
+
+  body.modal-open .mobile-app-dock {
+    display: none;
+  }
+}
+
+@media (max-width: 430px) {
+  .pwa-install-card {
+    align-items: flex-start;
+  }
+
+  .pwa-install-card__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-app-dock {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media print {
+  .pwa-install-card,
+  .mobile-app-dock {
+    display: none !important;
+  }
+}

@@ -7,6 +7,9 @@
   <meta name="description" content="Интерактивная карта проверенных объектов размещения Абхазберег по курортам Абхазии." />
   <meta name="robots" content="noindex, follow" />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" />
+  <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
+  <link rel="manifest" href="/app.webmanifest" />
+  <meta name="theme-color" content="#d9eee7" />
   <link rel="stylesheet" href="../styles.css?v=202606201215" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <script>
@@ -24,6 +27,7 @@
   <p class="objects-map-page__status" hidden id="objects-map-status"></p>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script defer src="../pwa.js?v=202606301310"></script>
   <script>
     (function () {
       var CITIES = {

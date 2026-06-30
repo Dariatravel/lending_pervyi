@@ -34,6 +34,9 @@
 <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="icon" type="image/png"/>
 <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="shortcut icon" type="image/png"/>
 <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="/app.webmanifest" rel="manifest"/>
+<meta content="#d9eee7" name="theme-color"/>
+<meta content="#d9eee7" name="msapplication-TileColor"/>
 <link href="styles.css?v=202606231600" rel="preload" as="style"/>
 <link href="styles.css?v=202606231600" rel="stylesheet"/>
 <script type="application/ld+json">
@@ -229,6 +232,18 @@
         <span>Цены напрямую</span>
       </div>
     </div>
+
+    <aside class="pwa-install-card" data-pwa-install-card hidden>
+      <div class="pwa-install-card__icon" aria-hidden="true">АБ</div>
+      <div class="pwa-install-card__copy">
+        <strong>Абхазберег можно открыть как приложение</strong>
+        <span data-pwa-install-text>Добавьте сайт на экран домой: каталог, карта и контакты будут всегда под рукой.</span>
+      </div>
+      <div class="pwa-install-card__actions">
+        <button class="pwa-install-card__button" data-pwa-install-button type="button" hidden>Добавить</button>
+        <button class="pwa-install-card__dismiss" data-pwa-install-dismiss type="button" aria-label="Скрыть подсказку">Позже</button>
+      </div>
+    </aside>
 
     <section class="section site-concept__catalog" id="catalog">
 <article class="card catalog-shell">
@@ -601,7 +616,22 @@
 </div>
 </div>
     <script src="image-lite.js" defer></script>
+<script defer src="pwa.js?v=202606301310"></script>
 <script defer src="scripts.js?v=202606231600"></script>
+  <nav class="mobile-app-dock" aria-label="Быстрые действия">
+    <a class="mobile-app-dock__item mobile-app-dock__item--primary" href="#search">
+      <span>Подобрать</span>
+    </a>
+    <button class="mobile-app-dock__item" data-mobile-open-filters type="button">
+      <span>Фильтры</span>
+    </button>
+    <a class="mobile-app-dock__item" href="/karta/">
+      <span>Карта</span>
+    </a>
+    <a class="mobile-app-dock__item" href="#contacts">
+      <span>Написать</span>
+    </a>
+  </nav>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
