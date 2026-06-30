@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-27T21:59:48.775298+00:00",
+  "generated_at": "2026-06-30T20:12:55.154666+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 219,
@@ -29437,7 +29437,7 @@
       "source_message_id": 3390,
       "source_topic_id": null,
       "slug": "sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390",
-      "title": "\"СИРИУС\" отель у соснового пляжа 💥 ОТКРЫТЫЕ БАССЕЙНА ВО ВТОРОЙ ПОЛОВИНЕ ИЮЛЯ 💦",
+      "title": "\"СИРИУС\" отель у соснового пляжа 💥 ОТКРЫТИЕ БАССЕЙНА ВО ВТОРОЙ ПОЛОВИНЕ ИЮЛЯ 💦",
       "summary": "Лдзаа. сосновый пляж в 1 минуте, размещение до 4 человек.",
       "excerpt": "Отель с идеальным расположением. Прямо через калитку вы попадаете на территорию Пицундского заповедника",
       "city": "Лдзаа",
@@ -29611,7 +29611,7 @@
             "text": "На территории 3-этажный каменный корпус и 2-этажный деревянный сруб."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -32730,6 +32730,14 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(указаны без скидки)"
+          },
+          {
+            "kind": "price",
+            "text": "Акция в июле и августе скидка 2000₽🔥"
+          },
+          {
             "kind": "price",
             "text": "Размещение до 8 человек"
           },
@@ -32778,7 +32786,7 @@
             "text": "10000₽/сутки - сентябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -38379,7 +38387,7 @@
             "text": "6000/сутки - сентябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/melana-kvartira-3k-pitsunda-1015/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/kvartira/melana-kvartira-3k-pitsunda-1015/index.html",
         "filters": {
           "city": [
             "pitsunda"
@@ -48195,7 +48203,7 @@
             "text": "Дети до 4 лет размещение бесплатно."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -48502,7 +48510,7 @@
             "text": "4500₽ - октябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/v-gostyah-u-belochki-domiki-i-nomera-2879/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/v-gostyah-u-belochki-domiki-i-nomera-2879/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -48753,7 +48761,7 @@
             "text": "С собаками можно."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/banan-i-funduk-gostevoy-dom-2849/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/banan-i-funduk-gostevoy-dom-2849/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -49041,7 +49049,7 @@
             "text": "2500₽/сутки - октябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/assir-gostevoy-dom-2840/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/assir-gostevoy-dom-2840/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -49301,7 +49309,7 @@
             "text": "Размещение с собачкой возможно, с доплатой 500₽/сутки"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/damira-otel-v-tsentre-goroda-2830/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/damira-otel-v-tsentre-goroda-2830/index.html",
         "filters": {
           "city": [
             "pitsunda"
@@ -49583,7 +49591,7 @@
             "text": "При заезде гостем вносится залог 5000р, который хранится на депозите гостя и возвращается при выселении."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/grant-otel-nomera-2820/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/grant-otel-nomera-2820/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -49890,7 +49898,7 @@
             "text": "При заезде гостем вносится залог, который хранится на депозите гостя и возвращается при выселении. При бронировании однокомнатных вариантов залог составляет 5000 рублей, для двухкомнатных и более — 10000 рублей."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/grant-kompleks-domikov-s-zavtrakami-2811/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/grant-kompleks-domikov-s-zavtrakami-2811/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -50152,7 +50160,7 @@
             "text": "При заезде гостем вносится залог 10000р. Он хранится на депозите гостя и возвращается при выселении."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/grant-apartamenty-2801/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/grant-apartamenty-2801/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -50394,7 +50402,7 @@
             "text": "2000₽/сутки - октябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/arina-mini-otel-2792/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/arina-mini-otel-2792/index.html",
         "filters": {
           "city": [
             "pitsunda"
@@ -50625,7 +50633,7 @@
             "text": "Размещение с собаками возможно."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/krylya-domiki-vidovye-dvuhkomnatnye-2765/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/krylya-domiki-vidovye-dvuhkomnatnye-2765/index.html",
         "filters": {
           "city": [
             "gagra"
@@ -51015,7 +51023,7 @@
             "text": "Дети до 5 лет - проживание без предоставления места и питания - бесплатно."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/index.html",
         "filters": {
           "city": [
             "gagra"
@@ -51238,7 +51246,7 @@
             "text": "3000₽/сутки - сентябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/sabina-domiki-u-morya-2744/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/sabina-domiki-u-morya-2744/index.html",
         "filters": {
           "city": [
             "alakhadzy"
@@ -51471,7 +51479,7 @@
             "text": "500₽/сутки - четвёртое допместо"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/kira-gostevoy-kompleks-2725/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/kira-gostevoy-kompleks-2725/index.html",
         "filters": {
           "city": [
             "gagra"
@@ -51761,7 +51769,7 @@
             "text": "ДОП.МЕСТО в номер для пятого, шестого человека +1000₽/сутки"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -52029,7 +52037,7 @@
             "text": "Возвратный депозит в отеле 5000₽"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/rivera-gostinitsa-vidovaya-2706/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/rivera-gostinitsa-vidovaya-2706/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -52284,7 +52292,7 @@
             "text": "2500₽/сутки - октябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/samshit-domiki-i-nomera-u-zapovednika-2677/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/samshit-domiki-i-nomera-u-zapovednika-2677/index.html",
         "filters": {
           "city": [
             "pitsunda"
@@ -52505,7 +52513,7 @@
             "text": "Доп. место 1000₽/сутки"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/amzara-otel-s-vinodelney-u-zapovednika-2668/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/amzara-otel-s-vinodelney-u-zapovednika-2668/index.html",
         "filters": {
           "city": [
             "pitsunda"
@@ -52781,7 +52789,7 @@
             "text": "На ранее бронирование скидка 5% (при бронировании номера от 10 дней)"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/aisha-otel-s-basseynami-2651/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/aisha-otel-s-basseynami-2651/index.html",
         "filters": {
           "city": [
             "alakhadzy"
@@ -53079,7 +53087,7 @@
             "text": "4-х местный люкс с балконом 5500₽"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/avrora-inn-novyy-otel-v-tsentre-goroda-2641/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/avrora-inn-novyy-otel-v-tsentre-goroda-2641/index.html",
         "filters": {
           "city": [
             "gagra"
@@ -53318,7 +53326,7 @@
             "text": "При въезде отель берет возвратный депозит 10000₽"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -53786,7 +53794,7 @@
             "text": "11000₽/сутки - ноябрь, декабрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/apsa-park-otel-v-zapovednike-2611/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/apsa-park-otel-v-zapovednike-2611/index.html",
         "filters": {
           "city": [
             "pitsunda"
@@ -54151,7 +54159,7 @@
             "text": "Можно с маленькими собачками, доплата 500₽/сутки"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/parus-vidovoy-otel-s-basseynom-i-stolovoy-2602/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/parus-vidovoy-otel-s-basseynom-i-stolovoy-2602/index.html",
         "filters": {
           "city": [
             "gagra"
@@ -54358,18 +54366,6 @@
           },
           {
             "kind": "price",
-            "text": "Акция!!!🔥"
-          },
-          {
-            "kind": "price",
-            "text": "13500 руб/сутки (цена указана за 4 человека) - полупансион (завтрак+обед)"
-          },
-          {
-            "kind": "price",
-            "text": "На всё лето!"
-          },
-          {
-            "kind": "price",
             "text": "ИЮНЬ"
           },
           {
@@ -54453,7 +54449,7 @@
             "text": "В дни экскурсий сытный ланч-бокс с собой."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/lazurnyy-bereg-butik-otel-s-pitaniem-2592/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/lazurnyy-bereg-butik-otel-s-pitaniem-2592/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -54665,7 +54661,7 @@
         "prices": [
           {
             "kind": "note",
-            "text": "(завтраки включены в стоимость)"
+            "text": "(указаны со скидкой, завтраки включены в стоимость)"
           },
           {
             "kind": "price",
@@ -54768,7 +54764,7 @@
             "text": "Пятое доп. место в полулюксе комфорт - 1000 ₽/сутки."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/lazurit-novyy-otel-s-zavtrakami-2583/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/lazurit-novyy-otel-s-zavtrakami-2583/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -55012,7 +55008,7 @@
             "text": "Номер с прямым видом на море + 1000₽/сутки к цене."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/index.html",
         "filters": {
           "city": [
             "ldzaa"

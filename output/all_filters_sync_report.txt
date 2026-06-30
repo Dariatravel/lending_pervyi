@@ -2,8 +2,8 @@
 Режим snapshot-only: True
 
 Режим: только объекты с HTML на сайте
-Строк в СОЦСЕТИ: 244
-Разобрано ссылок Telegram: 225
+Строк в СОЦСЕТИ: 245
+Разобрано ссылок Telegram: 226
 Без ссылки Telegram: 16
 Ссылка не распознана: 1
 Обработано объектов на сайте (есть строка в таблице): 212
@@ -11,29 +11,30 @@
 Обновлено объектов в catalog snapshot: 0
 Без изменений: 212
 Пропущено (нет HTML-страницы на сайте): 1
-Не найдено в Supabase по channel+message_id: 12
+Не найдено в Supabase по channel+message_id: 13
 
 Отчёт по группам фильтров:
 - distance: заполнено по таблице (непустые) у 209 объектов, изменено у 0 объектов
-  значения: up-to-5:131, up-to-10:60, beachfront:33, over-10:32
+  значения: up-to-5:131, up-to-10:60, beachfront:34, over-10:32
 - food: заполнено по таблице (непустые) у 212 объектов, изменено у 0 объектов
-  значения: no-food:179, cafe:43, breakfast:19, full-board:4, half-board:1
+  значения: no-food:180, cafe:43, breakfast:19, full-board:4, half-board:1
 - price: заполнено по таблице (непустые) у 210 объектов, изменено у 0 объектов
-  значения: midrange:98, economy:84, premium:44
+  значения: midrange:98, economy:84, premium:45
 - city: заполнено по таблице (непустые) у 210 объектов, изменено у 0 объектов
-  значения: ldzaa:74, pitsunda:39, sukhum:38, gagra:29, alakhadzy:20, new-afon:10, gudauta:9, tsandripsh:7
+  значения: ldzaa:75, pitsunda:39, sukhum:38, gagra:29, alakhadzy:20, new-afon:10, gudauta:9, tsandripsh:7
 - beach: заполнено по таблице (непустые) у 211 объектов, изменено у 0 объектов
-  значения: pebble:109, pine-pebble-ldzaa-pitsunda:54, pitsunda-bay-mixed:41, sand-sukhum:17, sand-ldzaa:5
+  значения: pebble:109, pine-pebble-ldzaa-pitsunda:55, pitsunda-bay-mixed:41, sand-sukhum:17, sand-ldzaa:5
 - room: заполнено по таблице (непустые) у 211 объектов, изменено у 0 объектов
-  значения: tv:174, five-plus:100, kitchen:83, two-room-plus:76, balcony:73, terrace:70, pool:53, sea-view:34, beachfront-room:29
+  значения: tv:175, five-plus:101, kitchen:83, two-room-plus:77, balcony:73, terrace:71, pool:53, sea-view:34, beachfront-room:30
 - stay: заполнено по таблице (непустые) у 168 объектов, изменено у 0 объектов
-  значения: pets:99, cottages:81, apartments:40, turnkey-house:14, no-small-kids:1
+  значения: pets:100, cottages:82, apartments:40, turnkey-house:14, no-small-kids:1
 
 Нераспознанные ссылки Telegram (из таблицы):
 - описание спрятала в вк видео, скрыт доступ
 
 Ссылки, не найденные в Supabase:
 - https://t.me/abhazbooking/4202?single
+- https://t.me/abhazbooking/4857?single
 - https://t.me/abhazbooking/4377
 - https://t.me/abhazbooking/1694
 - https://t.me/abhazbooking/4367?single
