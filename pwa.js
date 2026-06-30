@@ -4,6 +4,29 @@
     window.matchMedia?.("(display-mode: standalone)")?.matches ||
     window.navigator.standalone === true;
 
+  function initHomeTopStartup() {
+    const path = window.location.pathname || "/";
+    const isHomePage = path === "/" || path === "/index.html";
+    if (!isHomePage || window.location.hash) return;
+
+    try {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      sessionStorage.removeItem("abhaz:selectionScroll");
+    } catch (error) {
+      /* Ignore browser storage/history restrictions. */
+    }
+
+    const scrollToTop = () => {
+      if (window.location.hash) return;
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    };
+    scrollToTop();
+    window.addEventListener("load", () => window.requestAnimationFrame(scrollToTop), { once: true });
+    window.addEventListener("pageshow", () => window.requestAnimationFrame(scrollToTop), { once: true });
+  }
+
   if ("serviceWorker" in navigator && window.location.protocol !== "file:") {
     window.addEventListener("load", () => {
       navigator.serviceWorker.register("/sw.js").catch((error) => {
@@ -88,6 +111,7 @@
     if (isSmallScreen || isiOS) showCard();
   }
 
+  initHomeTopStartup();
   initMobileFilterShortcut();
   initPwaInstallCard();
 })();

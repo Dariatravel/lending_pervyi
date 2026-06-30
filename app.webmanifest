@@ -5,7 +5,7 @@
   "description": "Проверенное жилье в Абхазии: каталог, карта объектов и прямое бронирование.",
   "lang": "ru",
   "dir": "ltr",
-  "start_url": "/?source=pwa",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui", "browser"],
