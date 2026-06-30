@@ -2,5 +2,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://абхазберег.рф/sitemap.xml
+# AI discovery: https://абхазберег.рф/llms.txt
+# AI catalog: https://абхазберег.рф/ai/catalog.json
 
 Host: абхазберег.рф
