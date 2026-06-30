@@ -41,6 +41,7 @@ img[data-image-lite="done"] {
   font-size: clamp(0.68rem, 1.3vw, 1.25rem);
 }
 
+.hotel-card__header h1,
 .hotel-card__header h2 {
   font-size: clamp(0.72rem, 1.05vw, 1rem);
 }
@@ -1751,6 +1752,54 @@ section.site-concept__contacts.section {
   margin-bottom: 6px;
 }
 
+.podborki-seo-copy,
+.podborki-faq {
+  margin: 0 0 clamp(14px, 2vw, 22px);
+  padding: clamp(14px, 2vw, 22px);
+  border-radius: 22px;
+  border: 1px solid rgba(41, 74, 61, 0.1);
+  background:
+    radial-gradient(circle at 96% 0%, rgba(221, 142, 105, 0.16), transparent 34%),
+    rgba(255, 255, 255, 0.82);
+  box-shadow: 0 14px 28px rgba(18, 31, 25, 0.07);
+}
+
+.podborki-seo-copy h2,
+.podborki-faq h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  line-height: 1.2;
+  color: #183d31;
+}
+
+.podborki-seo-copy p,
+.podborki-faq p {
+  margin: 0;
+  color: #4b645b;
+  font-size: clamp(15px, 1.05vw, 16px);
+  line-height: 1.68;
+}
+
+.podborki-faq {
+  display: grid;
+  gap: 10px;
+  margin-top: clamp(14px, 2vw, 22px);
+  margin-bottom: 0;
+}
+
+.podborki-faq article {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(244, 249, 246, 0.78);
+}
+
+.podborki-faq h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: #1f4a3b;
+}
+
 .site-concept .catalog-card .catalog-card__badge--rank {
   left: 0.65rem;
   right: auto;
@@ -3149,6 +3198,7 @@ a.podborki-card--link:hover {
   min-width: 0;
 }
 
+.hotel-card__header h1,
 .hotel-card__header h2 {
   margin: 0 0 8px;
   font-size: clamp(0.72rem, 1.05vw, 1rem);
@@ -7303,6 +7353,7 @@ html:has(> body.objects-map-page) {
 }
 
 /* Единый стиль заголовков разделов в карточках объектов */
+.hotel-card__header h1,
 .hotel-card__header h2,
 .hotel-site-concept .section h2,
 .hotel-site-concept__detail-section .card h2,
@@ -7650,6 +7701,7 @@ html:has(> body.objects-map-page) {
     gap: 10px;
   }
 
+  .hotel-card__header h1,
   .hotel-card__header h2 {
     margin-bottom: 10px;
     font-size: clamp(1.2rem, 6vw, 1.7rem) !important;

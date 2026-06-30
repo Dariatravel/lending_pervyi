@@ -974,7 +974,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
 
           <div class="hotel-card__header">
             <div class="hotel-card__header-main">
-              <h2>{html.escape(title)}</h2>
+              <h1>{html.escape(title)}</h1>
               {location_html}
             </div>
             <div class="partner-badge">

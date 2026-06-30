@@ -5,6 +5,7 @@ import json
 import re
 import time
 import unicodedata
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib.parse import unquote, urlparse
@@ -985,10 +986,13 @@ def rebuild_sitemap(rows: list[dict[str, Any]]) -> None:
             push(str(page_u))
 
     urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+    today = datetime.now(timezone.utc).date().isoformat()
     for u in ordered:
         node = ET.SubElement(urlset, "url")
         loc_el = ET.SubElement(node, "loc")
         loc_el.text = u
+        lastmod_el = ET.SubElement(node, "lastmod")
+        lastmod_el.text = today
     tree = ET.ElementTree(urlset)
     try:
         ET.indent(tree.getroot(), space="  ")
