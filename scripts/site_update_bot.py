@@ -742,7 +742,8 @@ async def full_update_command(update: Update, context: ContextTypes.DEFAULT_TYPE
     async with RUN_LOCK:
         await update.effective_message.reply_text("Запускаю полный синк. Это может занять несколько часов.")
         results = await apply_full_update()
-        await send_long_message(context.bot, update.effective_chat.id, "Полный синк завершён.\n\n" + format_results(results))
+        title = "Полный синк остановлен с проблемой." if any(result_is_failure(result) for result in results) else "Полный синк завершён."
+        await send_long_message(context.bot, update.effective_chat.id, title + "\n\n" + format_results(results))
 
 
 @restricted

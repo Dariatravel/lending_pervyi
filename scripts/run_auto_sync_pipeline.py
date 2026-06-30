@@ -182,6 +182,11 @@ def main() -> int:
     base_env.update(env_file_data)
     if snapshot_only:
         base_env["SKIP_SUPABASE_SYNC"] = "1"
+    if args.mode == "full":
+        base_env.setdefault(
+            "TG_SCRIPT_TIMEOUT_SECONDS",
+            base_env.get("SITE_UPDATE_COMMAND_TIMEOUT_SECONDS", "21600"),
+        )
 
     python = sys.executable
     steps: list[StepResult] = []
