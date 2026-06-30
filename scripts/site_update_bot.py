@@ -265,14 +265,48 @@ def format_changed_items(targets: dict[str, object], limit: int = 8) -> str:
     return "\n".join(lines)
 
 
+def format_new_objects(targets: dict[str, object], limit: int = 8) -> str:
+    items = targets.get("new_objects") or []
+    if not isinstance(items, list) or not items:
+        return ""
+    lines = []
+    for item in items[:limit]:
+        if not isinstance(item, dict):
+            continue
+        title = str(item.get("title") or "новый объект")
+        channel = str(item.get("channel") or "").strip()
+        message_id = str(item.get("message_id") or "").strip()
+        topic_id = item.get("topic_id")
+        url = str(item.get("telegram_url") or "").strip()
+        topic_part = f", тема {topic_id}" if topic_id else ""
+        source = f"{channel}/{message_id}{topic_part}".strip("/")
+        suffix = f"; {url}" if url else ""
+        lines.append(f"- {title}: {source}{suffix}")
+    if len(items) > limit:
+        lines.append(f"- и ещё {len(items) - limit} объект(ов)")
+    return "\n".join(lines)
+
+
 def summarize_check() -> str:
     media_report = ROOT / "output" / "hidden_listings_report.txt"
     media_note = "медиа-проверка выполнена" if media_report.exists() else "медиа-проверка без отчета"
     map_summary = load_map_summary()
     targets = load_changed_targets()
     changed_total = int(targets.get("changed_total") or 0)
+    new_objects_total = int(targets.get("new_objects_total") or 0)
     changed_items = format_changed_items(targets)
+    new_objects = format_new_objects(targets)
     lines = ["Проверка завершена."]
+    if new_objects_total:
+        lines.append("")
+        lines.append(f"Новые объекты в Telegram: {new_objects_total}.")
+        if new_objects:
+            lines.append(new_objects)
+        lines.append("")
+        lines.append(f"Что делать: нажмите «{BUTTON_UPDATE}» для обновления новых объектов или «{BUTTON_FULL_UPDATE}» для полного синка.")
+    else:
+        lines.append("")
+        lines.append("Новых объектов не найдено.")
     if changed_total:
         lines.append("")
         lines.append(f"Новые изменения в Telegram: {changed_total} объект(ов).")
@@ -609,6 +643,9 @@ def check_outcome_title(results: list[CommandResult]) -> str:
     targets = load_changed_targets()
     changed_total = int(targets.get("changed_total") or 0)
     if changed_total:
+        return "Новые изменения найдены."
+    new_objects_total = int(targets.get("new_objects_total") or 0)
+    if new_objects_total:
         return "Новые изменения найдены."
     return "Сайт актуален."
 
