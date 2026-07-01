@@ -1,12 +1,34 @@
 Сверка блока ЦЕНЫ: Telegram (parse_post) ↔ HTML (.price-card__seasons / __notes)
 
-Отели: {'OK': 138, 'NO_SITE_PRICES': 26, 'FETCH_FAIL': 12, 'MISMATCH': 2, 'NO_TG_PRICES': 1}
-Квартиры: {'OK': 58, 'NO_SITE_PRICES': 1, 'MISMATCH': 3}
+Отели: {'OK': 135, 'NO_SITE_PRICES': 26, 'FETCH_FAIL': 12, 'MISMATCH': 5, 'NO_TG_PRICES': 1}
+Квартиры: {'OK': 59, 'MISMATCH': 3}
 
 === ОТЕЛИ ===
+- belaya-loshad-glemping-s-basseynom-3650 (@abhazbooking/3650): MISMATCH (tg=6, site=5, notes_diff=True)
+    нет на сайте: цены динамические, могут незначительно меняться, уточните личным сообщением.
 - flora-dom-4763 (@abhazbooking/4763): MISMATCH (tg=5, site=5, notes_diff=True)
     нет на сайте: *цена указана для двоих, каждый дополнительный гость+1000₽ дети до 7 лет - бесплатно
     лишнее на сайте: *цена указана для двоих, каждый дополнительный гость +1000₽ дети до 7 лет - бесплатно
+- leon-domiki-3536 (@abhazbooking/3536): MISMATCH (tg=6, site=5, notes_diff=True)
+    нет на сайте: акция 🔥в июле домик 4000₽🔥
+- pion-gostevoy-dom-4539 (@abhazbooking/4539): MISMATCH (tg=17, site=19, notes_diff=True)
+    нет на сайте: 6500₽ - июль, сентябрь
+    нет на сайте: 7500₽ - август
+    нет на сайте: 2500₽ - июнь
+    нет на сайте: 4000₽ - июль, август
+    нет на сайте: 3500₽ - сентябрь
+    нет на сайте: 3000₽ - июль, сентябрь
+    нет на сайте: 4000₽ - август
+    нет на сайте: 2000₽ - октябрь
+    лишнее на сайте: 7000₽ - июль, сентябрь
+    лишнее на сайте: 8000₽ - август
+    лишнее на сайте: 2000₽ - май
+    лишнее на сайте: 3000₽ - июнь
+    лишнее на сайте: 4500₽ - июль, сентябрь
+    лишнее на сайте: 5000₽ - август
+    лишнее на сайте: 1500₽ - май
+    лишнее на сайте: 4000₽ - июль, сентябрь
+    лишнее на сайте: 5000₽ - август
 - sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390 (@abhazbooking/3390): MISMATCH (tg=28, site=30, notes_diff=True)
     нет на сайте: доп.место возможно+1.
     лишнее на сайте: доп.место возможно +1.
@@ -106,7 +128,6 @@
     tg: с собаками можно.
 - barnaba-gostevoy-dom-4842 (@abhazbooking/4842): OK (tg=13, site=13, notes_diff=False)
 - belaya-dacha-otel-s-pitaniem-4630 (@abhazbooking/4630): OK (tg=27, site=31, notes_diff=False)
-- belaya-loshad-glemping-s-basseynom-3650 (@abhazbooking/3650): OK (tg=5, site=5, notes_diff=False)
 - belaya-rechka-gostevoy-dom-s-kafe-3517 (@abhazbooking/3517): OK (tg=5, site=5, notes_diff=False)
 - belveder-gostevoy-dom-3602 (@abhazbooking/3602): OK (tg=14, site=13, notes_diff=False)
 - belyy-dom-domiki-i-apartamenty-4081 (@abhazbooking/4081): OK (tg=16, site=16, notes_diff=False)
@@ -254,7 +275,6 @@
     tg: включено:
     tg: - полноценный пансион (завтрак/обед/ужин)
 - lemar-domiki-v-tsentre-4239 (@abhazbooking/4239): FETCH_FAIL (empty message)
-- leon-domiki-3536 (@abhazbooking/3536): OK (tg=5, site=5, notes_diff=False)
 - liliya-uyutnyy-otel-s-zavtrakami-3832 (@abhazbooking/3832): OK (tg=36, site=39, notes_diff=False)
 - limari-domiki-3496 (@abhazbooking/3496): OK (tg=7, site=8, notes_diff=False)
 - limon-otel-4721 (@abhazbooking/4721): OK (tg=18, site=18, notes_diff=False)
@@ -324,7 +344,6 @@
     tg: номер с прямым видом на море +1000₽/сутки к цене.
 - peschanyy-bereg-apartamenty-3697 (@abhazbooking/3697): OK (tg=5, site=6, notes_diff=False)
 - peschanyy-bereg-apartamenty-3700 (@abhazbooking/3700): OK (tg=5, site=6, notes_diff=False)
-- pion-gostevoy-dom-4539 (@abhazbooking/4539): OK (tg=19, site=19, notes_diff=False)
 - plyazhnyy-kompleks-151-na-beregu-4620 (@abhazbooking/4620): OK (tg=10, site=13, notes_diff=False)
 - pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889 (@abhazbooking/2889): NO_SITE_PRICES (tg=34, site=0)
     tg: акция🔥
@@ -487,15 +506,10 @@
 - atmosfernaya-kvartira-2k-1454 (@abhkvartira/1454): OK (tg=6, site=7, notes_diff=False)
 - bi-heppi-kottedzh-suhum-1130 (@abhkvartira/1121): OK (tg=5, site=5, notes_diff=False)
 - biryuza-etazh-pod-klyuch-gagra-1367 (@abhkvartira/1359): OK (tg=5, site=6, notes_diff=False)
-- chernomorskaya-kvartira-suhum-1201 (@abhkvartira/1185): NO_SITE_PRICES (tg=5, site=0)
-    tg: 3000₽/сутки - апрель
-    tg: 3500₽/сутки - май
-    tg: 4000₽/сутки - июнь
-    tg: 5000₽/сутки - июль, август
-    tg: бронь от 5 дней.
+- chernomorskaya-kvartira-suhum-1201 (@abhkvartira/1185): OK (tg=5, site=5, notes_diff=False)
 - dyshi-glubzhe-domiki-v-gorah-1335 (@abhkvartira/1326): OK (tg=3, site=3, notes_diff=False)
 - esma-studiya-5ti-mestnaya-gudauta-1355 (@abhkvartira/1348): OK (tg=6, site=6, notes_diff=False)
-- feniks-dom-na-bolshuyu-semyu-ldzaa-1282 (@abhkvartira/1276): OK (tg=12, site=12, notes_diff=False)
+- feniks-dom-na-bolshuyu-semyu-ldzaa-1282 (@abhkvartira/1276): OK (tg=13, site=14, notes_diff=False)
 - greys-kvartira-1564 (@abhkvartira/1564): OK (tg=2, site=2, notes_diff=False)
 - kamilla-kvartira-2k-pitsunda-968 (@abhkvartira/960): OK (tg=6, site=6, notes_diff=False)
 - karalina-apartamenty-studiya-pitsunda-1274 (@abhkvartira/1265): OK (tg=7, site=7, notes_diff=False)

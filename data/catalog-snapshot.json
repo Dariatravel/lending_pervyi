@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-30T20:12:55.154666+00:00",
+  "generated_at": "2026-07-01T04:48:38.998509+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 219,
@@ -21732,9 +21732,13 @@
           {
             "kind": "price",
             "text": "Доп место - 500₽/сутки"
+          },
+          {
+            "kind": "price",
+            "text": "Цены динамические, могут незначительно меняться, уточните личным сообщением."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/belaya-loshad-glemping-s-basseynom-3650/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/belaya-loshad-glemping-s-basseynom-3650/index.html",
         "filters": {
           "city": [
             "pitsunda"
@@ -25734,6 +25738,10 @@
         "prices": [
           {
             "kind": "price",
+            "text": "Акция 🔥в июле домик 4000₽🔥"
+          },
+          {
+            "kind": "price",
             "text": "4500₽/сутки - июнь"
           },
           {
@@ -25753,7 +25761,7 @@
             "text": "Доп место (на ребенка) - 500₽/сутки."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/leon-domiki-3536/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/leon-domiki-3536/index.html",
         "filters": {
           "city": [
             "gudauta"
