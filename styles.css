@@ -127,11 +127,12 @@ img[data-image-lite="done"] {
   position: relative;
   z-index: 2;
   width: 100%;
-  /* Совпадает с пропорцией hero-banner (2400×796), чтобы при cover не срезать низ/верх */
+  /* Совпадает с пропорцией hero-banner (2400×796), чтобы баннер был виден целиком */
   aspect-ratio: 2400 / 796;
   border-radius: clamp(18px, 2vw, 28px);
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(18, 31, 25, 0.18);
+  background: #c1e3d6;
 }
 
 .site-concept__masthead-bg {
@@ -150,7 +151,7 @@ img[data-image-lite="done"] {
 .site-concept__masthead-photo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center center;
   transform: translateZ(0);
 }
@@ -226,7 +227,6 @@ img[data-image-lite="done"] {
 
   .site-concept.site-concept--home > .site-concept__masthead {
     z-index: 1;
-    min-height: clamp(420px, 34vw, 560px);
   }
 }
 
