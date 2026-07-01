@@ -23,6 +23,9 @@ CANON_ORIGIN = "https://абхазберег.рф"
 YANDEX_MEDIA = "https://storage.yandexcloud.net/abhazbereg-media/media"
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 SITEMAP_PATH = ROOT / "sitemap.xml"
+FAVICON_BLOCK = """<link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="icon" type="image/png"/>
+<link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="shortcut icon" type="image/png"/>
+<link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon"/>"""
 
 
 def read_json(path: Path) -> Any:
@@ -344,6 +347,34 @@ def media_url(value: str) -> str:
     return value
 
 
+def ensure_site_icons(path: Path) -> bool:
+    before = path.read_text(encoding="utf-8")
+    if "</head>" not in before:
+        return False
+    cleaned = "\n".join(
+        line
+        for line in before.splitlines()
+        if "favicon-abhazbereg.png" not in line and "apple-touch-icon.png" not in line
+    )
+    if before.endswith("\n"):
+        cleaned += "\n"
+    stylesheet = re.search(r"(?m)^([ \t]*<link[^>]+rel=[\"']stylesheet[\"'][^>]*>\s*)", cleaned)
+    if stylesheet:
+        insert_at = stylesheet.start()
+        indent = re.match(r"[ \t]*", stylesheet.group(1)).group(0)
+        block = "\n".join(indent + line for line in FAVICON_BLOCK.splitlines()) + "\n"
+        after = cleaned[:insert_at] + block + cleaned[insert_at:]
+    else:
+        head = re.search(r"(?m)^([ \t]*)</head>", cleaned)
+        indent = head.group(1) if head else ""
+        block = "\n".join(indent + line for line in FAVICON_BLOCK.splitlines()) + "\n"
+        after = cleaned.replace("</head>", block + "</head>", 1)
+    if after != before:
+        path.write_text(after, encoding="utf-8")
+        return True
+    return False
+
+
 def update_blog_index() -> bool:
     path = ROOT / "blog" / "index.html"
     if not path.is_file():
@@ -457,6 +488,14 @@ def main() -> int:
             if update_generic_breadcrumbs(path):
                 breadcrumb_updates += 1
 
+    icon_updates = 0
+    for path in sorted(ROOT.rglob("index.html")):
+        rel = path.relative_to(ROOT)
+        if rel.parts[0] in {"output", "node_modules", ".git"} or rel.parts[0].startswith("concept"):
+            continue
+        if ensure_site_icons(path):
+            icon_updates += 1
+
     sitemap_urls = rebuild_sitemap()
 
     print(f"object_pages_updated={object_updates}")
@@ -464,6 +503,7 @@ def main() -> int:
     print(f"collection_pages_updated={collection_updates}")
     print(f"blog_index_media_updated={int(blog_updated)}")
     print(f"generic_breadcrumbs_added={breadcrumb_updates}")
+    print(f"site_icons_added={icon_updates}")
     print(f"sitemap_urls={sitemap_urls}")
     return 0
 

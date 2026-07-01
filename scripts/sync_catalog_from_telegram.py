@@ -946,6 +946,9 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
+    <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="icon" type="image/png" />
+    <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="shortcut icon" type="image/png" />
+    <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
     <link rel="stylesheet" href="../../styles.css?v=202605272305" />
 {ld_block}  </head>
   <body>
