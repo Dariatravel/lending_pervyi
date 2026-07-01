@@ -205,7 +205,8 @@ img[data-image-lite="done"] {
     gap: clamp(6px, 0.8vw, 10px);
   }
 
-  .site-concept.site-concept--home > .site-concept__topbar .site-concept__topnav a {
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__topnav a,
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__copy-home-link {
     min-height: 32px;
     padding: 8px 11px;
     border-radius: 999px;
@@ -220,7 +221,8 @@ img[data-image-lite="done"] {
     -webkit-backdrop-filter: blur(4px);
   }
 
-  .site-concept.site-concept--home > .site-concept__topbar .site-concept__topnav a:hover {
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__topnav a:hover,
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__copy-home-link:hover {
     background: rgba(255, 255, 255, 0.68);
     color: #0f281f;
   }
@@ -334,7 +336,8 @@ img[data-image-lite="done"] {
   min-width: 0;
 }
 
-.site-concept__topnav a {
+.site-concept__topnav a,
+.site-concept__copy-home-link {
   padding: 8px 6px;
   color: #4f7d6c;
   font-family: "Manrope", "Segoe UI", sans-serif;
@@ -349,7 +352,15 @@ img[data-image-lite="done"] {
   transition: color 0.18s ease;
 }
 
-.site-concept__topnav a:hover {
+.site-concept__copy-home-link {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.site-concept__topnav a:hover,
+.site-concept__copy-home-link:hover {
   color: #3d6658;
 }
 
@@ -7427,7 +7438,8 @@ html:has(> body.objects-map-page) {
     display: none;
   }
 
-  .site-concept__topnav a {
+  .site-concept__topnav a,
+  .site-concept__copy-home-link {
     flex: 0 0 auto;
     min-height: 34px;
     padding: 9px 12px;
@@ -7476,7 +7488,8 @@ html:has(> body.objects-map-page) {
     overflow: visible;
   }
 
-  .site-concept.site-concept--home > .site-concept__topbar .site-concept__topnav a {
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__topnav a,
+  .site-concept.site-concept--home > .site-concept__topbar .site-concept__copy-home-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
