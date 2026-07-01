@@ -25,6 +25,7 @@ OUTPUT_PATH = ROOT / "data" / "objects-map-points.json"
 UNMATCHED_REPORT_PATH = ROOT / "output" / "objects-map-unmatched.txt"
 GEOCODE_CACHE_PATH = ROOT / "data" / "objects-map-geocode-cache.json"
 MANUAL_COORDS_PATH = ROOT / "data" / "objects-map-manual-coords.json"
+CATALOG_SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 TELEGRAM_POSTS_PATH = ROOT / "output" / "abhazbooking_2026_posts.json"
 CATALOG_HTML_PATHS = (ROOT / "index.html", ROOT / "kvartira" / "index.html")
 MAPS_CONFIG_PATH = ROOT / "supabase" / "maps-config.js"
@@ -472,17 +473,54 @@ def load_telegram_posts_by_id() -> dict[int, str]:
     return result
 
 
+def load_catalog_snapshot_by_slug() -> dict[str, dict]:
+    if not CATALOG_SNAPSHOT_PATH.is_file():
+        return {}
+    try:
+        payload = json.loads(CATALOG_SNAPSHOT_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    listings = payload.get("listings") if isinstance(payload, dict) else None
+    if not isinstance(listings, list):
+        return {}
+
+    records: dict[str, dict] = {}
+    for item in listings:
+        if not isinstance(item, dict):
+            continue
+        slug = str(item.get("slug") or "").strip()
+        if slug:
+            records[slug] = item
+    return records
+
+
+def snapshot_url_path(snapshot: dict, slug: str, source_kind: str) -> str:
+    page_url = str(snapshot.get("page_url") or "").strip()
+    parsed = urlparse(page_url)
+    url_path = parsed.path
+    if not url_path:
+        prefix = "kvartira" if source_kind == "kvartira" else "hotels"
+        url_path = f"/{prefix}/{slug}/"
+    if not url_path.endswith("/"):
+        url_path += "/"
+    return url_path
+
+
 def page_records() -> list[dict]:
     records: list[dict] = []
+    snapshot_by_slug = load_catalog_snapshot_by_slug()
     for pattern in ("hotels/*/index.html", "kvartira/*/index.html"):
         for path in sorted(ROOT.glob(pattern)):
+            slug = path.parent.name
+            source_kind = "kvartira" if "/kvartira/" in path.as_posix() else "hotel"
+            snapshot = snapshot_by_slug.get(slug, {})
             raw_html = path.read_text(encoding="utf-8", errors="ignore")
             canonical = re.search(r'rel="canonical"\s+href="([^"]+)"', raw_html) or re.search(
                 r'href="([^"]+)"\s+rel="canonical"', raw_html
             )
             page_url = canonical.group(1) if canonical else ""
             parsed = urlparse(page_url)
-            url_path = parsed.path or f"/{path.parent.as_posix().split('/', 1)[-1]}/"
+            url_path = parsed.path or snapshot_url_path(snapshot, slug, source_kind)
             if not url_path.endswith("/"):
                 url_path += "/"
 
@@ -498,21 +536,26 @@ def page_records() -> list[dict]:
                 title = re.sub(r"<[^>]+>", " ", document_title.group(1) if document_title else "")
                 title = html.unescape(re.sub(r"\s+", " ", title).strip())
                 title = re.split(r"\s+[—|]\s+", title, maxsplit=1)[0].strip()
+            if not title:
+                title = str(snapshot.get("title") or "").strip()
 
             loc_match = re.search(r'class="location"[^>]*>(.*?)</p>', raw_html, re.S | re.I)
             loc_text = re.sub(r"<[^>]+>", " ", loc_match.group(1) if loc_match else "")
             loc_text = html.unescape(re.sub(r"\s+", " ", loc_text).strip())
+            if not loc_text:
+                loc_text = str(snapshot.get("location_text") or snapshot.get("summary") or "").strip()
+            city_key = infer_city_key(f"{loc_text} {snapshot.get('city', '')}")
 
             records.append(
                 {
-                    "slug": path.parent.name,
+                    "slug": slug,
                     "page_path": path,
-                    "source_message_id": source_message_id_from_slug(path.parent.name),
+                    "source_message_id": source_message_id_from_slug(slug),
                     "title": title,
                     "title_norm": norm_text(title),
                     "location": loc_text,
                     "address_line": extract_address_line(loc_text),
-                    "city_key": infer_city_key(loc_text),
+                    "city_key": city_key,
                     "url": url_path,
                 }
             )

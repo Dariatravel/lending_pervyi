@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01T07:56:58.448256+00:00",
+  "generated_at": "2026-07-01T10:32:39.925230+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -9,6 +9,14 @@
       "lon": 41.75794,
       "url": "/hotels/radonovyy-istochnik-otel-v-gorah-3064/",
       "cityKey": ""
+    },
+    {
+      "title": "\"АИША\" отель с бассейнами",
+      "address": "Алахадзы, Туманяна 26",
+      "lat": 43.2191174578757,
+      "lon": 40.282772915343465,
+      "url": "/hotels/aisha-otel-s-basseynami-2651/",
+      "cityKey": "alakhadzy"
     },
     {
       "title": "\"АКВА\" отель с бассейном и завтраками",
@@ -91,6 +99,14 @@
       "cityKey": "alakhadzy"
     },
     {
+      "title": "\"САБИНА\" домики у моря",
+      "address": "Алахадзы, ул. Туманяна, 55.",
+      "lat": 43.220846,
+      "lon": 40.274789,
+      "url": "/hotels/sabina-domiki-u-morya-2744/",
+      "cityKey": "alakhadzy"
+    },
+    {
       "title": "\"САНДИ ХАУС\" коттеджный комплекс с бассейном",
       "address": "Алахадзы, ул. Туманяна, 40А",
       "lat": 43.220118875111815,
@@ -137,6 +153,14 @@
       "lon": 40.275597,
       "url": "/hotels/flora-dom-4763/",
       "cityKey": "alakhadzy"
+    },
+    {
+      "title": "\"АВРОРА ИНН\" - новый отель в центре города",
+      "address": "Гагра, улица Рашида Гечба, 1",
+      "lat": 43.283902,
+      "lon": 40.266264,
+      "url": "/hotels/avrora-inn-novyy-otel-v-tsentre-goroda-2641/",
+      "cityKey": "gagra"
     },
     {
       "title": "\"АДУНЕЙ\" гостевой дом",
@@ -227,6 +251,14 @@
       "cityKey": "gagra"
     },
     {
+      "title": "\"ВИЛЛА ЛЕОНА\" отель с бассейном, питанием и собственным пляжем",
+      "address": "Гагра, ул. Гагрипшское ущелье литер “А”",
+      "lat": 43.31791277709123,
+      "lon": 40.24851913359021,
+      "url": "/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/",
+      "cityKey": "gagra"
+    },
+    {
       "title": "\"ЗОЛОТАЯ ВЕРАНДА\" гостевой комплекс",
       "address": "Гостевой комплекс /,",
       "lat": 43.327548,
@@ -251,6 +283,22 @@
       "cityKey": "gagra"
     },
     {
+      "title": "\"КИРА\" гостевой комплекс",
+      "address": "Гагра, ул. Саят-Нова, 29",
+      "lat": 43.270978,
+      "lon": 40.271016,
+      "url": "/hotels/kira-gostevoy-kompleks-2725/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "\"КРЫЛЬЯ\" домики видовые двухкомнатные",
+      "address": "Гагра, ул. Сосновая, 28",
+      "lat": 43.289637,
+      "lon": 40.267926,
+      "url": "/hotels/krylya-domiki-vidovye-dvuhkomnatnye-2765/",
+      "cityKey": "gagra"
+    },
+    {
       "title": "\"КУРОРТНАЯ\" КВАРТИРА 2К",
       "address": "Гагрский район, Багрипш 75/2",
       "lat": 43.36166,
@@ -272,6 +320,14 @@
       "lat": 43.273932,
       "lon": 40.270261,
       "url": "/kvartira/mon-amur-kvartira-1k-gagra-1062/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "\"ПАРУС\" видовой отель с бассейном и столовой",
+      "address": "Гагра, проспект Ардзинба, 65а",
+      "lat": 43.31713849062688,
+      "lon": 40.246073332251974,
+      "url": "/hotels/parus-vidovoy-otel-s-basseynom-i-stolovoy-2602/",
       "cityKey": "gagra"
     },
     {
@@ -467,6 +523,22 @@
       "cityKey": "ldzaa"
     },
     {
+      "title": "\"АССИР\" гостевой дом",
+      "address": "Лдзаа, ул. Рыбзаводская, 51",
+      "lat": 43.175078,
+      "lon": 40.382578,
+      "url": "/hotels/assir-gostevoy-dom-2840/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"БАНАН И ФУНДУК\" гостевой дом",
+      "address": "Лдзаа, Монашеское ущелье 18а (с.Амжикухуа)",
+      "lat": 43.174774585974696,
+      "lon": 40.40679194661258,
+      "url": "/hotels/banan-i-funduk-gostevoy-dom-2849/",
+      "cityKey": "ldzaa"
+    },
+    {
       "title": "\"БЕЛЫЙ ДОМ\" домики и апартаменты",
       "address": "Лдзаа, ул. Речная, 33",
       "lat": 43.17541289104263,
@@ -496,6 +568,46 @@
       "lat": 43.173836,
       "lon": 40.372445,
       "url": "/hotels/bugenvilleya-otel-s-basseynom-3044/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"В ГОСТЯХ У БЕЛОЧКИ\" домики и номера",
+      "address": "Лдзаа, Нозадзе 10",
+      "lat": 43.17128219327671,
+      "lon": 40.36898889275646,
+      "url": "/hotels/v-gostyah-u-belochki-domiki-i-nomera-2879/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"ВИЛЛА ЛЮБОВЬ\" выход из отеля сразу на пляж",
+      "address": "Лдзаа, Рыбзаводская 86.",
+      "lat": 43.17434467272184,
+      "lon": 40.38652249308749,
+      "url": "/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"ГРАНТ\" апартаменты",
+      "address": "Лдзаа, Нозадзе 58",
+      "lat": 43.17588658896105,
+      "lon": 40.37404608332799,
+      "url": "/hotels/grant-apartamenty-2801/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"ГРАНТ\" комплекс домиков с завтраками",
+      "address": "Лдзаа, Нозадзе 58",
+      "lat": 43.17588658896105,
+      "lon": 40.37404608332799,
+      "url": "/hotels/grant-kompleks-domikov-s-zavtrakami-2811/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"ГРАНТ\" отель номера",
+      "address": "Лдзаа, Нозадзе 58",
+      "lat": 43.17588658896105,
+      "lon": 40.37404608332799,
+      "url": "/hotels/grant-otel-nomera-2820/",
       "cityKey": "ldzaa"
     },
     {
@@ -592,6 +704,22 @@
       "lat": 43.1740007431329,
       "lon": 40.373026673610354,
       "url": "/hotels/lavanda-villa-s-basseynom-4590/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"ЛАЗУРИТ\" новый отель с завтраками 🩵скидка 20% до 20 июля🩵",
+      "address": "Лдзаа, ул. Рыбзаводская 47",
+      "lat": 43.17475939795848,
+      "lon": 40.3816059692409,
+      "url": "/hotels/lazurit-novyy-otel-s-zavtrakami-2583/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"ЛАЗУРНЫЙ БЕРЕГ\" бутик-отель с питанием",
+      "address": "Лдзаа, Золотая бухта 2а (с.Амжикухуа)",
+      "lat": 43.16960168736339,
+      "lon": 40.41076966258197,
+      "url": "/hotels/lazurnyy-bereg-butik-otel-s-pitaniem-2592/",
       "cityKey": "ldzaa"
     },
     {
@@ -739,11 +867,27 @@
       "cityKey": "ldzaa"
     },
     {
+      "title": "\"ПЕГАС\" отель на первой линии, вид на море",
+      "address": "Лдзаа, Рыбзаводская 16",
+      "lat": 43.174511535860546,
+      "lon": 40.3941077801801,
+      "url": "/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/",
+      "cityKey": "ldzaa"
+    },
+    {
       "title": "\"ПЛЯЖНЫЙ КОМПЛЕКС 151\" на берегу",
       "address": "Лдзаа, ул. Приморская, 18А",
       "lat": 43.17415114030419,
       "lon": 40.392794571235115,
       "url": "/hotels/plyazhnyy-kompleks-151-na-beregu-4620/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"ПШАДА\" отель с питанием у соснового пляжа",
+      "address": "Лдзаа, улица Политрука Нозадзе, 21Б",
+      "lat": 43.171855991314416,
+      "lon": 40.37100449569966,
+      "url": "/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/",
       "cityKey": "ldzaa"
     },
     {
@@ -755,11 +899,27 @@
       "cityKey": "ldzaa"
     },
     {
+      "title": "\"РИВЬЕРА\" гостиница видовая",
+      "address": "Лдзаа, ул. Рыбзаводская, дом 81/1",
+      "lat": 43.17427933560332,
+      "lon": 40.392140436588754,
+      "url": "/hotels/rivera-gostinitsa-vidovaya-2706/",
+      "cityKey": "ldzaa"
+    },
+    {
       "title": "\"РИВЬЕРА\" домики на пляже",
       "address": "Лдзаа, ул. Рыбзаводская, 89",
       "lat": 43.17427933560332,
       "lon": 40.392140436588754,
       "url": "/hotels/rivera-domiki-na-plyazhe-2966/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"САН АМРА\" люкс номера с видом на море",
+      "address": "Лдзаа, ул. Рыбзаводская, 80 А",
+      "lat": 43.17409310756723,
+      "lon": 40.385750090193426,
+      "url": "/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/",
       "cityKey": "ldzaa"
     },
     {
@@ -955,11 +1115,35 @@
       "cityKey": "new-afon"
     },
     {
+      "title": "\"АМЗАРА\" отель с винодельней у заповедника",
+      "address": "Гагрский район, Пицунда, улица Гочуа, 56А",
+      "lat": 43.156805,
+      "lon": 40.334455,
+      "url": "/hotels/amzara-otel-s-vinodelney-u-zapovednika-2668/",
+      "cityKey": "pitsunda"
+    },
+    {
+      "title": "\"АПСА ПАРК-ОТЕЛЬ\" в заповеднике",
+      "address": "Пицунда, Кипарисовая аллея, 11",
+      "lat": 43.153061,
+      "lon": 40.335224,
+      "url": "/hotels/apsa-park-otel-v-zapovednike-2611/",
+      "cityKey": "pitsunda"
+    },
+    {
       "title": "\"АРГО\" КВАРТИРА 1-К",
       "address": "Пицунда, Агрба 13",
       "lat": 43.158758,
       "lon": 40.334922,
       "url": "/kvartira/argo-kvartira-1k-pitsunda-940/",
+      "cityKey": "pitsunda"
+    },
+    {
+      "title": "\"АРИНА\" мини-отель",
+      "address": "Пицунда, ул. Агрба 1",
+      "lat": 43.1589327594219,
+      "lon": 40.33001574106947,
+      "url": "/hotels/arina-mini-otel-2792/",
       "cityKey": "pitsunda"
     },
     {
@@ -1003,6 +1187,14 @@
       "cityKey": "pitsunda"
     },
     {
+      "title": "\"ДАМИРА\" отель в центре города",
+      "address": "Пицунда, Тополёвая улица, 2",
+      "lat": 43.163614915245766,
+      "lon": 40.34215327843435,
+      "url": "/hotels/damira-otel-v-tsentre-goroda-2830/",
+      "cityKey": "pitsunda"
+    },
+    {
       "title": "\"КАМИЛЛА\" КВАРТИРА 2К",
       "address": "Пицунда, ул. Агрба, 7/1а",
       "lat": 43.158935,
@@ -1040,6 +1232,14 @@
       "lat": 43.15835,
       "lon": 40.334078,
       "url": "/kvartira/melana-kvartira-3k-pitsunda-1015/",
+      "cityKey": "pitsunda"
+    },
+    {
+      "title": "\"МЕЛОДИ\" эко-отель, деревянные домики",
+      "address": "Пицунда, ул. Агрба. Координаты 43.161316, 40.331058",
+      "lat": 43.161316,
+      "lon": 40.331058,
+      "url": "/hotels/melodi-eko-otel-derevyannye-domiki-3563/",
       "cityKey": "pitsunda"
     },
     {
@@ -1096,6 +1296,14 @@
       "lat": 43.1620045878636,
       "lon": 40.33674546279876,
       "url": "/kvartira/pitiunt-kvartira-4k-pitsunda-1428/",
+      "cityKey": "pitsunda"
+    },
+    {
+      "title": "\"САМШИТ\" домики и номера у заповедника",
+      "address": "Пицунда, ул. Гицба, 1.",
+      "lat": 43.16893472412741,
+      "lon": 40.31673977284448,
+      "url": "/hotels/samshit-domiki-i-nomera-u-zapovednika-2677/",
       "cityKey": "pitsunda"
     },
     {
@@ -1550,15 +1758,15 @@
   "stats": {
     "placemarks_total": 436,
     "placemarks_unique": 218,
-    "pages_total": 193,
+    "pages_total": 219,
     "pages_on_disk": 244,
-    "pages_excluded": 51,
-    "from_constructor": 193,
+    "pages_excluded": 25,
+    "from_constructor": 219,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 0,
     "skipped_without_coords": 0,
-    "shared_coordinate_groups": 14,
-    "points_total": 193
+    "shared_coordinate_groups": 16,
+    "points_total": 219
   }
 }
