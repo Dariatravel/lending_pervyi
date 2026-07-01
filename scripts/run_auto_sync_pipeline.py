@@ -388,7 +388,9 @@ def main() -> int:
             )
             return verify_step.return_code
 
-    if snapshot_only:
+    should_rebuild_catalog = snapshot_only or args.mode == "targeted"
+
+    if should_rebuild_catalog:
         rebuild_step = _run_step(
             name="rebuild_from_catalog_snapshot",
             cmd=[python, str(ROOT / "scripts" / "rebuild_from_catalog_snapshot.py")],
