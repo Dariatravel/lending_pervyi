@@ -49,6 +49,7 @@ STEP_LABELS = {
     "telegram-prices": "обновление цен",
     "podborki": "пересборка подборок",
     "validate-snapshot": "проверка каталога",
+    "apply_telegram_supplemental_comments": "добавление фото из комментариев",
     "accept-watch-state": "сохранение состояния проверки",
     "targeted-sync": "точечная синхронизация",
     "full-sync": "полная синхронизация",
@@ -259,7 +260,11 @@ def format_changed_items(targets: dict[str, object], limit: int = 8) -> str:
             continue
         title = str(item.get("title") or item.get("slug") or "объект")
         parts = ", ".join(str(part) for part in item.get("changed_parts") or [])
-        lines.append(f"- {title}: {parts}")
+        old_id = item.get("reposted_from_message_id")
+        if old_id and "перевыкладка" in parts:
+            lines.append(f"- {title}: перевыкладка старого объекта, старый пост {old_id}")
+        else:
+            lines.append(f"- {title}: {parts}")
     if len(items) > limit:
         lines.append(f"- и ещё {len(items) - limit} объект(ов)")
     return "\n".join(lines)
@@ -294,6 +299,11 @@ def summarize_check() -> str:
     targets = load_changed_targets()
     changed_total = int(targets.get("changed_total") or 0)
     new_objects_total = int(targets.get("new_objects_total") or 0)
+    repost_total = sum(
+        1
+        for item in targets.get("items") or []
+        if isinstance(item, dict) and "перевыкладка" in (item.get("changed_parts") or [])
+    )
     changed_items = format_changed_items(targets)
     new_objects = format_new_objects(targets)
     lines = ["Проверка завершена."]
@@ -309,6 +319,8 @@ def summarize_check() -> str:
         lines.append("Новых объектов не найдено.")
     if changed_total:
         lines.append("")
+        if repost_total:
+            lines.append(f"Переопубликованные старые объекты: {repost_total}.")
         lines.append(f"Новые изменения в Telegram: {changed_total} объект(ов).")
         if changed_items:
             lines.append(changed_items)
@@ -420,6 +432,11 @@ async def apply_changed_update() -> list[CommandResult]:
     targets = load_changed_targets()
     hotel_ids = [str(item) for item in targets.get("hotel_source_ids") or []]
     kv_topic_ids = [str(item) for item in targets.get("kv_topic_ids") or []]
+    target_slugs = [
+        str(item.get("slug") or "").strip()
+        for item in targets.get("items") or []
+        if isinstance(item, dict) and str(item.get("slug") or "").strip()
+    ]
     changed_total = int(targets.get("changed_total") or 0)
     if changed_total == 0:
         results.append(note_result("changed-targets", "Изменённых Telegram-постов нет."))
@@ -444,6 +461,8 @@ async def apply_changed_update() -> list[CommandResult]:
         command.extend(["--target-hotel-source-ids", ",".join(hotel_ids)])
     if kv_topic_ids:
         command.extend(["--target-kv-topic-ids", ",".join(kv_topic_ids)])
+    if target_slugs:
+        command.extend(["--supplemental-slugs", ",".join(sorted(set(target_slugs)))])
     results.append(await run_command("targeted-sync", command, timeout=CONFIG.command_timeout_seconds))
     if results[-1].return_code != 0:
         return results

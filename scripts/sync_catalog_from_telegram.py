@@ -499,7 +499,42 @@ def topic_message_score(text: str) -> float:
 
 
 def title_key(value: str) -> str:
-    return clean_line(value).strip().lower()
+    value = html.unescape(clean_line(value or '')).casefold().replace('ё', 'е')
+    value = re.sub(r'[\"\'«»„“”‘’`´]', ' ', value)
+    value = re.sub(r'[^0-9a-zа-я]+', ' ', value)
+    return re.sub(r'\s+', ' ', value).strip()
+
+
+def slug_base(slug: str) -> str:
+    value = re.sub(r'-\d{1,6}(?:-\d+)?$', '', str(slug or '').strip().lower())
+    return re.sub(r'-{2,}', '-', value).strip('-')
+
+
+def title_brand_keys(title: str) -> set[str]:
+    keys: set[str] = set()
+    for match in re.finditer(r'[\"«]([^\"»]{3,80})[\"»]', title or ''):
+        key = title_key(match.group(1))
+        if key:
+            keys.add(key)
+    return keys
+
+
+def object_identity_keys(*, title: str, slug: str = '', message_id: int | None = None) -> set[str]:
+    keys: set[str] = set()
+    key = title_key(title)
+    if key:
+        keys.add(f'title:{key}')
+    for brand_key in title_brand_keys(title):
+        keys.add(f'brand:{brand_key}')
+    if slug:
+        base = slug_base(slug)
+        if base:
+            keys.add(f'slug:{base}')
+    elif title and message_id is not None:
+        base = slug_base(build_slug(title, message_id, set()))
+        if base:
+            keys.add(f'slug:{base}')
+    return keys
 
 
 BLOCKED_HOTEL_TITLE_KEYWORDS = ('коста де ора', 'асман', 'фико')
@@ -1675,8 +1710,11 @@ async def main() -> None:
 
         hotel_exact_by_source = {row['source_message_id']: row for row in existing_hotels}
         hotel_by_title: dict[str, list[dict[str, Any]]] = {}
+        hotel_by_identity: dict[str, list[dict[str, Any]]] = {}
         for row in existing_hotels:
             hotel_by_title.setdefault(title_key(row.get('title') or ''), []).append(row)
+            for key in object_identity_keys(title=row.get('title') or '', slug=row.get('slug') or ''):
+                hotel_by_identity.setdefault(key, []).append(row)
         hotel_canonical_ids = {obj['canonical'].id for obj in hotel_objects}
         unused_rows = {row['id']: row for row in existing_hotels if row['source_message_id'] not in hotel_canonical_ids}
 
@@ -1696,6 +1734,18 @@ async def main() -> None:
                     if row['id'] in unused_rows:
                         matched_row = row
                         break
+            if matched_row is None:
+                identity_candidates: dict[int, dict[str, Any]] = {}
+                for key in object_identity_keys(title=hotel_title, message_id=obj['canonical'].id):
+                    rows = hotel_by_identity.get(key) or []
+                    if len(rows) != 1:
+                        continue
+                    row = rows[0]
+                    if row['id'] in processed_hotel_rows or row['id'] not in unused_rows:
+                        continue
+                    identity_candidates[row['id']] = row
+                if len(identity_candidates) == 1:
+                    matched_row = next(iter(identity_candidates.values()))
             try:
                 result = await materialize_object(client, supa, matched_row, obj, slug_pool)
             except Exception as error:  # noqa: BLE001

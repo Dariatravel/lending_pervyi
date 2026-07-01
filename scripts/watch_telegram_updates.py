@@ -24,7 +24,7 @@ if str(ROOT) not in sys.path:
 if str(ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(ROOT / "scripts"))
 
-from sync_abhazbooking_2026 import clean_line, parse_post  # noqa: E402
+from sync_abhazbooking_2026 import build_slug, clean_line, parse_post  # noqa: E402
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
@@ -77,6 +77,7 @@ class Change:
     topic_id: int | None
     telegram_url: str
     changed_parts: list[str]
+    reposted_from_message_id: int | None = None
 
 
 @dataclass
@@ -89,6 +90,9 @@ class NewObject:
     telegram_url: str
     published_at: str
     reason: str
+    matched_slug: str | None = None
+    matched_title: str | None = None
+    matched_message_id: int | None = None
 
 
 @dataclass
@@ -97,6 +101,7 @@ class KnownSources:
     hotel_message_ids: set[int]
     kvartira_message_ids: set[int]
     kvartira_topic_ids: set[int]
+    repost_index: dict[str, list[WatchItem]]
 
 
 def load_env_files() -> None:
@@ -141,6 +146,47 @@ def normalize_text(value: str) -> str:
     value = re.sub(r"[ \t\r\f\v]+", " ", value)
     value = re.sub(r"\n{3,}", "\n\n", value)
     return value.strip()
+
+
+def identity_key(value: str) -> str:
+    value = normalize_text(clean_line(value or "")).casefold().replace("ё", "е")
+    value = re.sub(r"[\"'«»„“”‘’`´]", " ", value)
+    value = re.sub(r"[^0-9a-zа-я]+", " ", value)
+    return re.sub(r"\s+", " ", value).strip()
+
+
+def slug_base(slug: str) -> str:
+    value = re.sub(r"-\d{2,6}(?:-\d+)?$", "", str(slug or "").strip().lower())
+    return re.sub(r"-{2,}", "-", value).strip("-")
+
+
+def title_brand_keys(title: str) -> set[str]:
+    keys: set[str] = set()
+    title = normalize_text(title)
+    for match in re.finditer(r"[\"«]([^\"»]{3,80})[\"»]", title):
+        key = identity_key(match.group(1))
+        if key:
+            keys.add(key)
+    return keys
+
+
+def repost_match_keys(*, title: str, slug: str = "", message_id: int | None = None) -> set[str]:
+    keys: set[str] = set()
+    title_key = identity_key(title)
+    if title_key:
+        keys.add(f"title:{title_key}")
+    for brand_key in title_brand_keys(title):
+        keys.add(f"brand:{brand_key}")
+    if slug:
+        base = slug_base(slug)
+        if base:
+            keys.add(f"slug:{base}")
+    elif title and message_id is not None:
+        generated = build_slug(title, message_id, set())
+        base = slug_base(generated)
+        if base:
+            keys.add(f"slug:{base}")
+    return keys
 
 
 def is_service_text(text: str) -> bool:
@@ -342,17 +388,32 @@ def load_known_sources() -> KnownSources:
     hotel_message_ids: set[int] = set()
     kvartira_message_ids: set[int] = set()
     kvartira_topic_ids: set[int] = set()
+    repost_index: dict[str, list[WatchItem]] = {}
     for row in payload.get("listings") or []:
         if row.get("is_active") is False:
             continue
         kind = str(row.get("source_kind") or "").strip()
         channel = str(row.get("source_channel") or "").strip().lower()
+        slug = str(row.get("slug") or "").strip()
+        title = str(row.get("title") or slug).strip()
         message_id = int(row.get("source_message_id") or 0)
         topic_id = int(row.get("source_topic_id") or 0)
         if channel and message_id:
             source_pairs.add((channel, message_id))
         if kind == "hotel" and channel == "abhazbooking" and message_id:
             hotel_message_ids.add(message_id)
+            item = WatchItem(
+                key=f"{kind}:{slug}",
+                kind=kind,
+                slug=slug,
+                title=title,
+                channel=channel,
+                message_id=message_id,
+                topic_id=None,
+                telegram_url=str(row.get("telegram_url") or f"https://t.me/{channel}/{message_id}"),
+            )
+            for key in repost_match_keys(title=title, slug=slug):
+                repost_index.setdefault(key, []).append(item)
         if kind == "kvartira" and channel == "abhkvartira":
             if message_id:
                 kvartira_message_ids.add(message_id)
@@ -363,7 +424,21 @@ def load_known_sources() -> KnownSources:
         hotel_message_ids=hotel_message_ids,
         kvartira_message_ids=kvartira_message_ids,
         kvartira_topic_ids=kvartira_topic_ids,
+        repost_index=repost_index,
     )
+
+
+def find_repost_match(known: KnownSources, *, title: str, message_id: int) -> WatchItem | None:
+    candidates: dict[str, WatchItem] = {}
+    for key in repost_match_keys(title=title, message_id=message_id):
+        rows = known.repost_index.get(key) or []
+        if len(rows) != 1:
+            continue
+        row = rows[0]
+        candidates[row.slug] = row
+    if len(candidates) != 1:
+        return None
+    return next(iter(candidates.values()))
 
 
 def load_state() -> dict[str, Any]:
@@ -440,10 +515,32 @@ async def scan_new_hotel_objects(
         text = str(getattr(message, "message", "") or "")
         if not is_hotel_object_message(text):
             continue
+        title = object_title(text)
+        repost_match = find_repost_match(known, title=title, message_id=message_id)
+        if repost_match is not None:
+            found.append(
+                NewObject(
+                    kind="hotel",
+                    title=title,
+                    channel="abhazbooking",
+                    message_id=message_id,
+                    topic_id=None,
+                    telegram_url=f"https://t.me/abhazbooking/{message_id}",
+                    published_at=message_date_iso(message),
+                    reason=(
+                        "переопубликованный старый объект: совпадает с "
+                        f"{repost_match.slug} по нормализованному названию/бренду"
+                    ),
+                    matched_slug=repost_match.slug,
+                    matched_title=repost_match.title,
+                    matched_message_id=repost_match.message_id,
+                )
+            )
+            continue
         found.append(
             NewObject(
                 kind="hotel",
-                title=object_title(text),
+                title=title,
                 channel="abhazbooking",
                 message_id=message_id,
                 topic_id=None,
@@ -607,6 +704,7 @@ def render_report(
     errors: list[str],
     accepted: bool,
 ) -> str:
+    repost_count = sum("перевыкладка" in item.changed_parts for item in changes)
     text_count = sum("текст" in item.changed_parts for item in changes)
     price_count = sum("цены" in item.changed_parts for item in changes)
     media_count = sum("медиа" in item.changed_parts for item in changes)
@@ -615,6 +713,7 @@ def render_report(
         f"Проверено объектов: {checked}",
         f"Новых в watch-базе: {baseline_added}",
         f"Изменений: {len(changes)}",
+        f"Перевыкладок старых объектов: {repost_count}",
         f"Новых объектов: {len(new_objects)}",
         f"Текст: {text_count}, цены: {price_count}, медиа: {media_count}",
     ]
@@ -640,7 +739,12 @@ def render_report(
         lines.append("Что изменилось:")
         for change in changes[:40]:
             parts = ", ".join(change.changed_parts)
-            lines.append(f"- {change.title} ({change.slug}) — {parts}; {change.telegram_url}")
+            repost_note = (
+                f" (старый пост {change.reposted_from_message_id})"
+                if change.reposted_from_message_id
+                else ""
+            )
+            lines.append(f"- {change.title} ({change.slug}) — {parts}{repost_note}; {change.telegram_url}")
         if len(changes) > 40:
             lines.append(f"... и ещё {len(changes) - 40}")
         lines.append("")
@@ -673,6 +777,30 @@ def write_targets(changes: list[Change], new_objects: list[NewObject]) -> None:
     }
     TARGETS_PATH.parent.mkdir(parents=True, exist_ok=True)
     TARGETS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def repost_changes_from_new_objects(new_objects: list[NewObject]) -> tuple[list[Change], list[NewObject]]:
+    changes: list[Change] = []
+    unmatched_new: list[NewObject] = []
+    for item in new_objects:
+        if item.matched_slug and item.matched_message_id:
+            changes.append(
+                Change(
+                    key=f"{item.kind}:{item.matched_slug}",
+                    kind=item.kind,
+                    slug=item.matched_slug,
+                    title=item.matched_title or item.title,
+                    channel=item.channel,
+                    message_id=item.message_id,
+                    topic_id=item.topic_id,
+                    telegram_url=item.telegram_url,
+                    changed_parts=["перевыкладка", "текст", "цены", "медиа"],
+                    reposted_from_message_id=item.matched_message_id,
+                )
+            )
+        else:
+            unmatched_new.append(item)
+    return changes, unmatched_new
 
 
 async def run(args: argparse.Namespace) -> int:
@@ -753,6 +881,8 @@ async def run(args: argparse.Namespace) -> int:
             new_objects = await scan_new_objects(client, known_sources, args)
         except Exception as error:  # noqa: BLE001 - existing-post watch must still report
             errors.append(f"new-objects: {error}")
+    repost_changes, new_objects = repost_changes_from_new_objects(new_objects)
+    changes.extend(repost_changes)
     stale_keys = sorted(set(state_items) - seen_keys)
     if args.accept_changes:
         for key in stale_keys:

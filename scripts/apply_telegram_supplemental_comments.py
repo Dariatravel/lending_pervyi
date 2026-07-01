@@ -16,7 +16,6 @@ from pathlib import Path
 from typing import Any
 
 from bs4 import BeautifulSoup
-from telethon import TelegramClient
 from telethon.tl.functions.messages import GetRepliesRequest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -193,7 +192,7 @@ def media_kind(message: Any) -> str:
     return "other"
 
 
-async def expand_group(client: TelegramClient, entity: Any, message: Any) -> list[Any]:
+async def expand_group(client: Any, entity: Any, message: Any) -> list[Any]:
     grouped_id = getattr(message, "grouped_id", None)
     if not grouped_id:
         return [message] if getattr(message, "media", None) else []
@@ -209,7 +208,7 @@ async def expand_group(client: TelegramClient, entity: Any, message: Any) -> lis
     return sorted(found, key=lambda row: int(row.id))
 
 
-async def fetch_comment_messages(client: TelegramClient, target: Target) -> dict[int, Any]:
+async def fetch_comment_messages(client: Any, target: Target) -> dict[int, Any]:
     entity = await client.get_entity(target.channel)
     messages: dict[int, Any] = {}
     if target.kind == "hotel":
@@ -246,7 +245,7 @@ async def fetch_comment_messages(client: TelegramClient, target: Target) -> dict
 
 
 async def download_block_media(
-    client: TelegramClient,
+    client: Any,
     entity: Any,
     target: Target,
     block: SupplementalBlock,
@@ -370,7 +369,7 @@ def insert_section(page_html: str, section_html: str) -> str:
 
 
 async def apply_target(
-    client: TelegramClient,
+    client: Any,
     target: Target,
     *,
     dry_run: bool,

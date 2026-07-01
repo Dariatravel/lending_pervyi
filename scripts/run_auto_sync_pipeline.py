@@ -140,6 +140,16 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Пропустить verify_object_media.py",
     )
     parser.add_argument(
+        "--skip-supplemental-comments",
+        action="store_true",
+        help="Не восстанавливать блоки фото из комментариев Telegram после targeted sync.",
+    )
+    parser.add_argument(
+        "--supplemental-slugs",
+        default="",
+        help="Slug объектов через запятую для apply_telegram_supplemental_comments.py --force.",
+    )
+    parser.add_argument(
         "--verify-check-files",
         action="store_true",
         help="Добавить в verify проверку наличия локальных photo-01.jpg.",
@@ -424,6 +434,59 @@ def main() -> int:
                 encoding="utf-8",
             )
             return validate_step.return_code
+
+    supplemental_slugs = ",".join(
+        part.strip()
+        for part in (args.supplemental_slugs or "").split(",")
+        if part.strip()
+    )
+    if args.skip_supplemental_comments or not supplemental_slugs:
+        status = "skipped"
+        command = (
+            "SKIPPED (--skip-supplemental-comments)"
+            if args.skip_supplemental_comments
+            else "SKIPPED (нет --supplemental-slugs)"
+        )
+        (run_dir / "06-supplemental-comments.log").write_text(command + "\n", encoding="utf-8")
+        supplemental_step = StepResult(
+            name="apply_telegram_supplemental_comments",
+            command=command,
+            log_file=str(run_dir / "06-supplemental-comments.log"),
+            return_code=0,
+            status=status,
+        )
+    else:
+        supplemental_cmd = [
+            python,
+            str(ROOT / "scripts" / "apply_telegram_supplemental_comments.py"),
+            "--force",
+            "--slug",
+            supplemental_slugs,
+        ]
+        if args.dry_run:
+            supplemental_cmd.append("--dry-run")
+        supplemental_step = _run_step(
+            name="apply_telegram_supplemental_comments",
+            cmd=supplemental_cmd,
+            env=base_env,
+            log_path=run_dir / "06-supplemental-comments.log",
+            dry_run=args.dry_run,
+        )
+    steps.append(supplemental_step)
+    print(f"[auto-sync] {supplemental_step.name}: {supplemental_step.status}")
+    if supplemental_step.return_code != 0 and not args.dry_run:
+        payload = {
+            "run_id": run_id,
+            "status": "failed",
+            "failed_step": supplemental_step.name,
+            "steps": [asdict(step) for step in steps],
+        }
+        summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        summary_txt_path.write_text(
+            f"run_id: {run_id}\nstatus: failed\nfailed_step: {supplemental_step.name}\n",
+            encoding="utf-8",
+        )
+        return supplemental_step.return_code
 
     payload = {
         "run_id": run_id,
