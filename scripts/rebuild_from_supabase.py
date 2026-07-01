@@ -526,10 +526,46 @@ CITY_MAP_LABELS = {
 }
 
 
-def primary_city_key(filters: dict[str, Any]) -> str:
+def normalize_city_lookup_text(value: str) -> str:
+    text = unicodedata.normalize("NFKC", value or "").lower().replace("ё", "е")
+    return re.sub(r"[^a-zа-я0-9]+", " ", text).strip()
+
+
+def city_key_from_text(value: str) -> str:
+    normalized = normalize_city_lookup_text(value)
+    if not normalized:
+        return ""
+    for key, label in CITY_MAP_LABELS.items():
+        if normalize_city_lookup_text(label) == normalized:
+            return key
+    for key, markers in CITY_MAP.items():
+        for marker in markers:
+            marker_normalized = normalize_city_lookup_text(marker)
+            if marker_normalized and re.search(rf"(^|\s){re.escape(marker_normalized)}(\s|$)", normalized):
+                return key
+    return ""
+
+
+def listing_city_key(row: dict[str, Any]) -> str:
+    for value in (row.get("city"), row.get("location_text")):
+        key = city_key_from_text(str(value or ""))
+        if key:
+            return key
+    return ""
+
+
+def filter_city_values(filters: dict[str, Any]) -> list[str]:
     cities = filters.get("city") or []
     if isinstance(cities, str):
         cities = [part.strip() for part in cities.split("|") if part.strip()]
+    return [str(city).strip() for city in cities if str(city).strip()]
+
+
+def primary_city_key(filters: dict[str, Any], row: dict[str, Any] | None = None) -> str:
+    listing_key = listing_city_key(row or {})
+    if listing_key:
+        return listing_key
+    cities = filter_city_values(filters)
     return cities[0] if cities else ""
 
 
@@ -581,7 +617,7 @@ def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]])
     else:
         summary_html = html.escape(summary_fallback)
     alt = title
-    city_key = primary_city_key(filters)
+    city_key = primary_city_key(filters, row)
     map_plaque = render_map_plaque_html(city_key)
     return (
         f'<a class="catalog-card" data-listing-kind="hotel" {attrs} href="{html.escape(href, quote=True)}">'
@@ -630,7 +666,7 @@ def render_kvartira_card(row: dict[str, Any]) -> str:
     summary = html.escape(row.get("summary") or row.get("excerpt") or ((row.get("details") or {}).get("excerpt") or ""))
     image = image_src_for_html(pick_cover_url(row))
     badge = '<span class="catalog-card__badge">Видео</span>' if row.get("has_video") else ""
-    map_plaque = render_map_plaque_html(primary_city_key(filters))
+    map_plaque = render_map_plaque_html(primary_city_key(filters, row))
     return (
         f'<a class="catalog-card" data-listing-kind="kvartira" {attrs} href="{html.escape(href, quote=True)}">'
         f'<div class="catalog-card__media-wrap">{badge}<img src="{html.escape(image, quote=True)}" alt="{title}" loading="lazy" />'

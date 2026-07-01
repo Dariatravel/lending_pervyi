@@ -412,11 +412,40 @@ def main() -> int:
             )
             return rebuild_step.return_code
 
+        if args.mode == "targeted":
+            consistency_cmd = [python, str(ROOT / "tools" / "check_catalog_location_consistency.py")]
+            if args.target_hotel_source_ids:
+                consistency_cmd.extend(["--hotel-source-ids", args.target_hotel_source_ids])
+            if args.target_kv_topic_ids:
+                consistency_cmd.extend(["--kv-topic-ids", args.target_kv_topic_ids])
+            consistency_step = _run_step(
+                name="check_catalog_location_consistency",
+                cmd=consistency_cmd,
+                env=base_env,
+                log_path=run_dir / "05-location-consistency.log",
+                dry_run=args.dry_run,
+            )
+            steps.append(consistency_step)
+            print(f"[auto-sync] {consistency_step.name}: {consistency_step.status}")
+            if consistency_step.return_code != 0 and not args.dry_run:
+                payload = {
+                    "run_id": run_id,
+                    "status": "failed",
+                    "failed_step": consistency_step.name,
+                    "steps": [asdict(step) for step in steps],
+                }
+                summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+                summary_txt_path.write_text(
+                    f"run_id: {run_id}\nstatus: failed\nfailed_step: {consistency_step.name}\n",
+                    encoding="utf-8",
+                )
+                return consistency_step.return_code
+
         validate_step = _run_step(
             name="validate_catalog_snapshot",
             cmd=[python, str(ROOT / "tools" / "validate_catalog_snapshot.py")],
             env=base_env,
-            log_path=run_dir / "05-validate.log",
+            log_path=run_dir / "06-validate.log",
             dry_run=args.dry_run,
         )
         steps.append(validate_step)
@@ -447,11 +476,11 @@ def main() -> int:
             if args.skip_supplemental_comments
             else "SKIPPED (нет --supplemental-slugs)"
         )
-        (run_dir / "06-supplemental-comments.log").write_text(command + "\n", encoding="utf-8")
+        (run_dir / "07-supplemental-comments.log").write_text(command + "\n", encoding="utf-8")
         supplemental_step = StepResult(
             name="apply_telegram_supplemental_comments",
             command=command,
-            log_file=str(run_dir / "06-supplemental-comments.log"),
+            log_file=str(run_dir / "07-supplemental-comments.log"),
             return_code=0,
             status=status,
         )
@@ -469,7 +498,7 @@ def main() -> int:
             name="apply_telegram_supplemental_comments",
             cmd=supplemental_cmd,
             env=base_env,
-            log_path=run_dir / "06-supplemental-comments.log",
+            log_path=run_dir / "07-supplemental-comments.log",
             dry_run=args.dry_run,
         )
     steps.append(supplemental_step)
