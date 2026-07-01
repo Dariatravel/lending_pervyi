@@ -486,9 +486,18 @@ def page_records() -> list[dict]:
             if not url_path.endswith("/"):
                 url_path += "/"
 
-            title_match = re.search(r"<h2[^>]*>(.*?)</h2>", raw_html, re.S | re.I)
+            title_match = (
+                re.search(r'<div class="hotel-card__header-main"[^>]*>.*?<h1[^>]*>(.*?)</h1>', raw_html, re.S | re.I)
+                or re.search(r'<div class="hotel-card__header-main"[^>]*>.*?<h2[^>]*>(.*?)</h2>', raw_html, re.S | re.I)
+                or re.search(r"<h1[^>]*>(.*?)</h1>", raw_html, re.S | re.I)
+            )
             title = re.sub(r"<[^>]+>", " ", title_match.group(1) if title_match else "")
             title = html.unescape(re.sub(r"\s+", " ", title).strip())
+            if not title or title.lower() == "фото и видео":
+                document_title = re.search(r"<title[^>]*>(.*?)</title>", raw_html, re.S | re.I)
+                title = re.sub(r"<[^>]+>", " ", document_title.group(1) if document_title else "")
+                title = html.unescape(re.sub(r"\s+", " ", title).strip())
+                title = re.split(r"\s+[—|]\s+", title, maxsplit=1)[0].strip()
 
             loc_match = re.search(r'class="location"[^>]*>(.*?)</p>', raw_html, re.S | re.I)
             loc_text = re.sub(r"<[^>]+>", " ", loc_match.group(1) if loc_match else "")
