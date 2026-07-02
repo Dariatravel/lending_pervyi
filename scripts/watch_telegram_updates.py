@@ -932,6 +932,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Сканировать свежий диапазон целиком, а не только id после максимального известного.",
     )
     parser.add_argument(
+        "--new-objects-after-known",
+        dest="new_objects_after_known",
+        action="store_true",
+        help="Проверять новые объекты только после максимального известного id.",
+    )
+    parser.add_argument(
         "--no-scan-kvartira",
         dest="scan_kvartira",
         action="store_false",
@@ -951,7 +957,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--strict", action="store_true", help="Вернуть код 1, если были ошибки чтения Telegram.")
     parser.set_defaults(
         write_state=True,
-        new_objects_after_known=not env_bool("TELEGRAM_NEW_OBJECTS_SCAN_RECENT_ALL", False),
+        new_objects_after_known=not env_bool("TELEGRAM_NEW_OBJECTS_SCAN_RECENT_ALL", True),
         scan_kvartira=not env_bool("TELEGRAM_NEW_OBJECTS_SKIP_KVARTIRA", False),
     )
     return parser

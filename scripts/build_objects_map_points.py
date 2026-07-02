@@ -770,12 +770,18 @@ def looks_like_address(text: str) -> bool:
 
 
 def resolve_address(page: dict, placemark: dict | None = None) -> str:
-    if placemark and looks_like_address(placemark.get("address", "")):
-        address = placemark["address"]
-    elif page.get("address_line"):
-        address = page["address_line"]
+    page_address = str(page.get("address_line") or page.get("location") or "").split("\n", 1)[0].strip()
+    placemark_address = str((placemark or {}).get("address") or "").strip()
+    page_city = infer_city_key(page_address.split(",", 1)[0]) or page.get("city_key") or infer_city_key(page_address)
+    placemark_city = infer_city_key(placemark_address.split(",", 1)[0]) or infer_city_key(placemark_address)
+    if page_address and placemark_address and page_city and placemark_city and page_city != placemark_city:
+        address = page_address
+    elif placemark and looks_like_address(placemark_address):
+        address = placemark_address
+    elif page_address:
+        address = page_address
     else:
-        address = page.get("location", "")
+        address = ""
     return address.split("\n", 1)[0].strip() or page["title"]
 
 
