@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-01T04:48:38.998509+00:00",
+  "generated_at": "2026-07-03T09:12:30.811691+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 219,
-  "listings_hotels": 156,
+  "listings_total": 220,
+  "listings_hotels": 157,
   "listings_kvartira": 63,
   "listings": [
     {
@@ -22089,10 +22089,10 @@
       "source_topic_id": null,
       "slug": "grin-villadzh-domiki-3633",
       "title": "\"ГРИН ВИЛЛАДЖ\" домики",
-      "summary": "Алахадзы. 5 минут пешком до пляжа, галечный сосновый, размещение до 5 человек.",
+      "summary": "Пицунда. 5 минут пешком до пляжа, галечный сосновый, размещение до 5 человек.",
       "excerpt": "Комплекс расположен в тихом живописном месте, в окружении южных склонов Кавказского хребта, сосновой рощи и чистого моря",
-      "city": "Алахадзы",
-      "location_text": "Алахадзы, посёлок Цитрусовый, Цитрусовая улица, д. 5",
+      "city": "Пицунда",
+      "location_text": "Пицунда, посёлок Цитрусовый, Цитрусовая улица, д. 5",
       "distance_text": "5 минут пешком до пляжа, галечный сосновый",
       "beach_text": "5 минут пешком до пляжа, галечный сосновый",
       "capacity_text": "размещение до 5 человек",
@@ -22103,7 +22103,7 @@
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/grin-villadzh-domiki-3633.jpg",
       "is_active": true,
       "details": {
-        "lead": "Алахадзы. 5 минут пешком до пляжа, галечный сосновый, размещение до 5 человек.",
+        "lead": "Пицунда. 5 минут пешком до пляжа, галечный сосновый, размещение до 5 человек.",
         "sections": [
           {
             "label": "✔️ТЕРРИТОРИЯ:",
@@ -22145,7 +22145,7 @@
           },
           {
             "kind": "price",
-            "text": "На май, июнь 5+1 день в подарок 🎁"
+            "text": "В июне 5+1 день в подарок 🎁"
           },
           {
             "kind": "price",
@@ -22224,11 +22224,10 @@
             "text": "Можно приехать с животными👌"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/grin-villadzh-domiki-3633/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/grin-villadzh-domiki-3633/index.html",
         "filters": {
           "city": [
-            "pitsunda",
-            "alakhadzy"
+            "pitsunda"
           ],
           "food": [
             "no-food"
@@ -58242,6 +58241,289 @@
           "details": {
             "telegram_post": "abhazbooking/4851",
             "telegram_url": "https://t.me/abhazbooking/4851"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 4857,
+      "source_topic_id": null,
+      "slug": "arash-domiki-u-sosnovogo-plyazha-4857",
+      "title": "\"АРАШ\" домики у соснового пляжа",
+      "summary": "Лдзаа. 1 минута до пляжа, сосновый галечный, размещение до 5 человек.",
+      "excerpt": "Двадцать два уютных домика из бруса",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, ул. Политрука Нозадзе, 17",
+      "distance_text": "1 минута до пляжа, сосновый галечный",
+      "beach_text": "1 минута до пляжа, сосновый галечный",
+      "capacity_text": "размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/arash-domiki-u-sosnovogo-plyazha-4857/",
+      "telegram_url": "https://t.me/abhazbooking/4857",
+      "published_at": "2026-06-30",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/arash-domiki-u-sosnovogo-plyazha-4857.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 1 минута до пляжа, сосновый галечный, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Двадцать два уютных домика из бруса.",
+              "Однокомнатные домики: двуспальная кровать и раскладывающийся диван, прикроватные тумбочки, шкаф. Сан узел с тропическим душем. Размещение до 4 человек.",
+              "Двухкомнатные домики: две двуспальные кровати, прикроватные тумбочки, шкаф. Сан узел с тропическим душем. Доп место для 5 человека - раскладная кровать.",
+              "Оснащение во всех домиках: Wi-Fi, телевизор, кондиционер, мини-холодильник, чайник, водонагреватель, фен.",
+              "У каждого домика своя веранда с ротанговой мебелью."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Ухоженная закрытая территория, имеющая две зоны по одиннадцать домиков на каждой.",
+              "Летняя кухня со всем необходимым для самостоятельного приготовления и стиральная машинка.",
+              "С середины июля будет работать кофейня с возможностью заказать завтрак за доп плату.",
+              "Мангальная зона.",
+              "Зона отдыха со столиками, стульями и зонтиками, кресло-качалка.",
+              "Бесплатно предоставляются велосипеды."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "За территорией реликтовый сосновый заповедник.",
+              "Прогулочные дорожки, качели, спортивная мини-площадка.",
+              "Пляж галечный, сосновый, оборудованный: есть шезлонги, раздевалки, душ, водные развлечения.",
+              "Кафе, столовые, сувенирные, экскурсионные точки, магазины в шаговой доступности."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Возможно размещение с маленькой собачкой по согласованию.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Однокомнатный домик"
+          },
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "9500₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "9500₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - с 1 по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - с 20 сентября по октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Двухкомнатный домик"
+          },
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "6500₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "11500₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "11500₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - с 1 по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - с 20 сентября по октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место в двухкомнатный домик - 1000₽"
+          }
+        ],
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/arash-domiki-u-sosnovogo-plyazha-4857/index.html",
+        "filters": {
+          "distance": [
+            "beachfront"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [
+            "pine-pebble-ldzaa-pitsunda"
+          ],
+          "room": [
+            "terrace",
+            "tv",
+            "five-plus",
+            "two-room-plus",
+            "beachfront-room"
+          ],
+          "stay": [
+            "cottages",
+            "pets"
+          ]
+        }
+      },
+      "id": 1167,
+      "media": [
+        {
+          "id": 1167001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/arash-domiki-u-sosnovogo-plyazha-4857.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/arash-domiki-u-sosnovogo-plyazha-4857.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/arash-domiki-u-sosnovogo-plyazha-4857.jpg",
+          "details": {}
+        },
+        {
+          "id": 1167002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1167003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1167004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1167005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1167006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1167007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1167008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1167009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1167010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/arash-domiki-u-sosnovogo-plyazha-4857/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1167011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/arash-domiki-u-sosnovogo-plyazha-4857/video-01-1800k.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/arash-domiki-u-sosnovogo-plyazha-4857/video-01-1800k.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/arash-domiki-u-sosnovogo-plyazha-4857/video-01-1800k.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/4866",
+            "telegram_url": "https://t.me/abhazbooking/4866"
           }
         }
       ]

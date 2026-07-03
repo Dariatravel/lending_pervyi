@@ -24,7 +24,7 @@ if str(ROOT) not in sys.path:
 if str(ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(ROOT / "scripts"))
 
-from sync_abhazbooking_2026 import build_slug, clean_line, parse_post  # noqa: E402
+from sync_abhazbooking_2026 import build_slug, clean_line, parse_post, summary_text  # noqa: E402
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
@@ -278,6 +278,56 @@ def prices_payload(text: str) -> list[dict[str, str]]:
             }
         )
     return result
+
+
+def normalized_plain(value: Any) -> str:
+    return normalize_text(str(value or "")).casefold().replace("ё", "е")
+
+
+def price_texts(prices: Any) -> list[str]:
+    result: list[str] = []
+    for row in prices or []:
+        text = ""
+        if isinstance(row, dict):
+            text = str(row.get("text") or "")
+        else:
+            text = str(row or "")
+        text = normalize_text(text)
+        if text:
+            result.append(text)
+    return result
+
+
+def site_mismatch_parts(row: dict[str, Any] | None, telegram_text: str) -> list[str]:
+    if not row:
+        return []
+    try:
+        parsed = parse_post(telegram_text)
+    except Exception:  # noqa: BLE001 - watcher should keep checking other objects
+        return []
+    if not isinstance(parsed, dict):
+        return []
+
+    parts: list[str] = []
+    for label, row_key, parsed_key in (
+        ("локация сайта", "location_text", "location"),
+        ("пляж сайта", "beach_text", "beach"),
+        ("размещение сайта", "capacity_text", "capacity"),
+        ("краткое описание сайта", "summary", None),
+    ):
+        expected = (
+            summary_text(parsed.get("location", ""), parsed.get("beach", ""), parsed.get("capacity", ""))
+            if parsed_key is None
+            else parsed.get(parsed_key, "")
+        )
+        current = row.get(row_key)
+        if normalized_plain(current) != normalized_plain(expected):
+            parts.append(label)
+
+    current_details = row.get("details") if isinstance(row.get("details"), dict) else {}
+    if price_texts(current_details.get("prices")) != price_texts(parsed.get("prices")):
+        parts.append("цены сайта")
+    return parts
 
 
 def media_kind(message: Any) -> str:
@@ -809,6 +859,11 @@ async def run(args: argparse.Namespace) -> int:
     api_hash = os.getenv("TELEGRAM_API_HASH", DEFAULT_API_HASH)
     session = os.getenv("TG_SESSION", str(ROOT / "tg_session"))
     items = load_watch_items(limit=args.limit)
+    snapshot_rows = {
+        f"{str(row.get('source_kind') or '').strip()}:{str(row.get('slug') or '').strip()}": row
+        for row in (load_catalog_payload().get("listings") or [])
+        if isinstance(row, dict)
+    }
     known_sources = load_known_sources()
     state = load_state()
     state_items: dict[str, Any] = state.setdefault("items", {})
@@ -858,6 +913,10 @@ async def run(args: argparse.Namespace) -> int:
                 state_items[item.key] = current_payload
                 continue
             parts = changed_parts(previous, signature)
+            site_parts = site_mismatch_parts(snapshot_rows.get(item.key), canonical.message or "")
+            for part in site_parts:
+                if part not in parts:
+                    parts.append(part)
             if parts:
                 changes.append(
                     Change(

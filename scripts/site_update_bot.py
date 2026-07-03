@@ -432,22 +432,37 @@ async def apply_changed_update() -> list[CommandResult]:
     targets = load_changed_targets()
     hotel_ids = [str(item) for item in targets.get("hotel_source_ids") or []]
     kv_topic_ids = [str(item) for item in targets.get("kv_topic_ids") or []]
+    new_objects = [item for item in targets.get("new_objects") or [] if isinstance(item, dict)]
+    for item in new_objects:
+        kind = str(item.get("kind") or "").strip()
+        if kind == "hotel":
+            message_id = str(item.get("message_id") or "").strip()
+            if message_id:
+                hotel_ids.append(message_id)
+        elif kind == "kvartira":
+            topic_id = str(item.get("topic_id") or "").strip()
+            if topic_id:
+                kv_topic_ids.append(topic_id)
     target_slugs = [
         str(item.get("slug") or "").strip()
         for item in targets.get("items") or []
         if isinstance(item, dict) and str(item.get("slug") or "").strip()
     ]
     changed_total = int(targets.get("changed_total") or 0)
-    if changed_total == 0:
-        results.append(note_result("changed-targets", "Изменённых Telegram-постов нет."))
+    new_objects_total = int(targets.get("new_objects_total") or 0)
+    if changed_total == 0 and new_objects_total == 0:
+        results.append(note_result("changed-targets", "Изменённых Telegram-постов и новых объектов нет."))
         return results
     if not hotel_ids and not kv_topic_ids:
         note = (
-            "Изменения найдены, но нет target id для точечного sync.\n"
+            "Изменения или новые объекты найдены, но нет target id для точечного sync.\n"
             "Запустите /update или /full_update."
         )
         results.append(note_result("changed-targets", note, return_code=2))
         return results
+
+    hotel_ids = sorted(set(hotel_ids), key=int)
+    kv_topic_ids = sorted(set(kv_topic_ids), key=int)
 
     command = [
         sys.executable,
@@ -798,8 +813,7 @@ async def full_update_command(update: Update, context: ContextTypes.DEFAULT_TYPE
     async with RUN_LOCK:
         await update.effective_message.reply_text("Запускаю полный синк. Это может занять несколько часов.")
         results = await apply_full_update()
-        title = "Полный синк остановлен с проблемой." if any(result_is_failure(result) for result in results) else "Полный синк завершён."
-        await send_long_message(context.bot, update.effective_chat.id, title + "\n\n" + format_results(results))
+        await send_long_message(context.bot, update.effective_chat.id, "Полный синк завершён.\n\n" + format_results(results))
 
 
 @restricted
