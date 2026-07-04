@@ -29,7 +29,7 @@ YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media"
 
 POST_IDS = [
     2119, 2149, 2166, 2213, 2218, 2240, 2245, 2256, 2261, 2266, 2294, 2313, 2325, 2327, 2336, 2337,
-    2383, 2385, 2392,
+    2383, 2385, 2392, 2411,
 ]
 
 # slug и SEO-поля; title/lead дополняются из текста поста при необходимости
@@ -204,6 +204,15 @@ POST_META: dict[int, dict[str, object]] = {
         "eyebrow": "Здоровье",
         "tags": ("здоровье", "пляж", "SPF"),
         "card_tag": "здоровье",
+    },
+    2411: {
+        "slug": "duty-free-na-granitse-psou",
+        "title": "Duty Free на границе Россия — Абхазия: где находится и как попасть",
+        "lead": "Где расположен магазин на Псоу, как зайти пешком или на машине и чего ждать от цен и режима работы.",
+        "breadcrumb": "Duty Free на Псоу",
+        "eyebrow": "Граница",
+        "tags": ("граница", "Псоу", "Duty Free"),
+        "card_tag": "граница",
     },
 }
 
@@ -671,7 +680,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
         card_blocks.append(
             f"""        <article class="blog-card">
           <a class="blog-card__image-link" href="/blog/{html.escape(card['slug'])}/">
-            <img src="/media/blog/{html.escape(card['image'])}" alt="{html.escape(card['alt'])}" loading="lazy" />
+            <img src="{YANDEX_MEDIA_BASE}/media/blog/{html.escape(card['image'])}" alt="{html.escape(card['alt'])}" loading="lazy" />
           </a>
           <div class="blog-card__body">
             <p class="blog-card__meta"><span>{html.escape(card['card_tag'])}</span><time datetime="{html.escape(card['iso_date'])}">{html.escape(ru_date(card['iso_date']))}</time></p>
@@ -697,11 +706,11 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   <meta property="og:title" content="Полезно узнать об отдыхе в Абхазии" />
   <meta property="og:description" content="Статьи и памятки для тех, кто планирует поездку в Абхазию впервые." />
   <meta property="og:url" content="https://абхазберег.рф/blog/" />
-  <meta property="og:image" content="https://абхазберег.рф/media/blog/{hero_image}" />
+  <meta property="og:image" content="{YANDEX_MEDIA_BASE}/media/blog/{hero_image}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="../media/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/media/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../styles.css?v={CSS_VERSION}" />
 </head>
 <body>
@@ -947,7 +956,28 @@ async def main_async() -> int:
         }
         for art in built
     ]
-    all_cards = new_cards + EXISTING_CARDS
+    if post_ids:
+        from build_blog_posts_manifest import build_manifest
+
+        known_cards = {
+            str(card["slug"]): {
+                "slug": str(card["slug"]),
+                "iso_date": str(card.get("iso_date") or ""),
+                "card_tag": str(card.get("card_tag") or ""),
+                "title": str(card.get("title") or ""),
+                "excerpt": str(card.get("excerpt") or ""),
+                "image": str(card.get("image") or ""),
+                "alt": str(card.get("title") or card["slug"]),
+            }
+            for card in build_manifest()
+        }
+        for card in EXISTING_CARDS:
+            known_cards.setdefault(str(card["slug"]), card)
+        for card in new_cards:
+            known_cards[str(card["slug"])] = card
+        all_cards = list(known_cards.values())
+    else:
+        all_cards = new_cards + EXISTING_CARDS
     all_cards.sort(key=lambda c: c["iso_date"], reverse=True)
     (BLOG_DIR / "index.html").write_text(render_blog_index(all_cards), encoding="utf-8")
     print(f"updated blog/index.html ({len(all_cards)} cards)")

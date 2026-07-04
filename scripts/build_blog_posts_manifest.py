@@ -16,6 +16,8 @@ OUT_PATH = ROOT / "data" / "blog-posts.json"
 def parse_article(path: Path) -> dict[str, object]:
     slug = path.parent.name
     text = path.read_text(encoding="utf-8")
+    if re.search(r'<meta[^>]+http-equiv=["\']refresh["\']', text, re.I):
+        return {}
 
     title_match = re.search(r"<h1>(.*?)</h1>", text, re.S)
     title = html.unescape(re.sub(r"<[^>]+>", "", title_match.group(1)).strip()) if title_match else slug
@@ -52,7 +54,7 @@ def parse_article(path: Path) -> dict[str, object]:
 
 
 def build_manifest() -> list[dict[str, object]]:
-    posts = [parse_article(path) for path in sorted(BLOG_DIR.glob("*/index.html"))]
+    posts = [post for path in sorted(BLOG_DIR.glob("*/index.html")) if (post := parse_article(path))]
     posts.sort(key=lambda item: str(item.get("iso_date") or ""), reverse=True)
     return posts
 

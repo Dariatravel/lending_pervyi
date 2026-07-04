@@ -1,5 +1,18 @@
 [
   {
+    "slug": "duty-free-na-granitse-psou",
+    "title": "Duty Free на границе Россия — Абхазия: где находится и как попасть",
+    "excerpt": "Где расположен магазин на Псоу, как зайти пешком или на машине и чего ждать от цен и режима работы.",
+    "iso_date": "2026-06-30",
+    "card_tag": "граница",
+    "tags": [
+      "граница",
+      "Псоу",
+      "Duty Free"
+    ],
+    "image": ""
+  },
+  {
     "slug": "zagar-i-spf-na-more-abhaziya",
     "title": "Загар и SPF на море в Абхазии: полезная напоминалка",
     "excerpt": "Почему на побережье легко обгореть даже в облачную погоду, какой SPF взять и как не испортить отпуск красными плечами.",
@@ -10,7 +23,7 @@
       "пляж",
       "SPF"
     ],
-    "image": "telegram-bereg-2392.jpg"
+    "image": ""
   },
   {
     "slug": "chto-takoe-citrusovyy-abhaziya",
@@ -23,7 +36,7 @@
       "Пицунда",
       "пляжи"
     ],
-    "image": "telegram-bereg-2383.jpg"
+    "image": ""
   },
   {
     "slug": "vremya-v-abhazii-moskovskoe",
@@ -36,7 +49,7 @@
       "граница",
       "смартфон"
     ],
-    "image": "telegram-bereg-2385.jpg"
+    "image": ""
   },
   {
     "slug": "poezd-po-svidetelstvu-rozhdeniya",
@@ -49,7 +62,7 @@
       "поезд",
       "документы"
     ],
-    "image": "telegram-bereg-2337.jpg"
+    "image": ""
   },
   {
     "slug": "poezda-i-samolet-do-suhuma",
@@ -62,7 +75,7 @@
       "самолёт",
       "Сухум"
     ],
-    "image": "telegram-bereg-2336.jpg"
+    "image": ""
   },
   {
     "slug": "poezdka-v-abhaziyu-s-zhivotnym",
@@ -75,7 +88,7 @@
       "документы",
       "ветеринар"
     ],
-    "image": "telegram-bereg-2327.jpg"
+    "image": ""
   },
   {
     "slug": "proverka-dolgov-pered-poezdkoj",
@@ -88,7 +101,7 @@
       "граница",
       "ФССП"
     ],
-    "image": "telegram-bereg-2325.jpg"
+    "image": ""
   },
   {
     "slug": "edinyj-bilet-v-abhaziyu",
@@ -101,7 +114,7 @@
       "поезд",
       "транспорт"
     ],
-    "image": "telegram-bereg-2313.jpg"
+    "image": ""
   },
   {
     "slug": "parom-sochi-suhum-kometa",
@@ -114,7 +127,7 @@
       "Сухум",
       "Сочи"
     ],
-    "image": "telegram-bereg-2294.jpg"
+    "image": ""
   },
   {
     "slug": "neft-tuapse-i-more-abhaziya",
@@ -127,7 +140,7 @@
       "море",
       "новости"
     ],
-    "image": "telegram-bereg-2266.jpg"
+    "image": ""
   },
   {
     "slug": "marshrutki-ot-granitsy-psou",
@@ -140,7 +153,7 @@
       "граница",
       "маршрутки"
     ],
-    "image": "telegram-bereg-2261.jpg"
+    "image": ""
   },
   {
     "slug": "prava-i-shtrafy-avto-abhaziya",
@@ -153,7 +166,7 @@
       "ПДД",
       "штрафы"
     ],
-    "image": "telegram-bereg-2256.jpg"
+    "image": ""
   },
   {
     "slug": "shtraf-za-kupalnik-v-abhazii",
@@ -166,7 +179,7 @@
       "пляж",
       "штрафы"
     ],
-    "image": "telegram-bereg-2245.jpg"
+    "image": ""
   },
   {
     "slug": "goryachie-istochniki-abhazii",
@@ -179,7 +192,7 @@
       "экскурсии",
       "Рица"
     ],
-    "image": "telegram-bereg-2240.jpg"
+    "image": ""
   },
   {
     "slug": "peschanye-plyazhi-abhazii",
@@ -192,7 +205,7 @@
       "песок",
       "курорты"
     ],
-    "image": "telegram-bereg-2218.jpg"
+    "image": ""
   },
   {
     "slug": "dengi-i-oplata-v-abhazii",
@@ -205,7 +218,7 @@
       "оплата",
       "банкоматы"
     ],
-    "image": "telegram-bereg-2213.jpg"
+    "image": ""
   },
   {
     "slug": "mobilnaya-svyaz-i-internet-abkhaziya",
@@ -218,7 +231,7 @@
       "интернет",
       "первая поездка"
     ],
-    "image": "telegram-3821.jpg"
+    "image": ""
   },
   {
     "slug": "pamyatka-turistu-abkhazia",
@@ -231,7 +244,7 @@
       "первая поездка",
       "граница"
     ],
-    "image": "telegram-3573.jpg"
+    "image": ""
   },
   {
     "slug": "kak-projti-granicu-psou",
@@ -244,7 +257,7 @@
       "документы",
       "КПП Псоу"
     ],
-    "image": "telegram-bereg-2166.jpg"
+    "image": ""
   },
   {
     "slug": "pravila-poezdki-s-detmi-abkhaziya-2026",
@@ -257,7 +270,7 @@
       "документы",
       "граница"
     ],
-    "image": "telegram-3758.jpg"
+    "image": ""
   },
   {
     "slug": "inostrannye-pravila-vezda-abkhazia",
@@ -270,7 +283,7 @@
       "виза",
       "документы"
     ],
-    "image": "telegram-3757.jpg"
+    "image": ""
   },
   {
     "slug": "rotavirus-mify-otdyh-more",
@@ -283,7 +296,7 @@
       "дети",
       "море"
     ],
-    "image": "telegram-bereg-2149.jpg"
+    "image": ""
   },
   {
     "slug": "minusy-otdyha-abkhazia",
@@ -296,7 +309,7 @@
       "ожидания",
       "честно"
     ],
-    "image": "telegram-3745.jpg"
+    "image": ""
   },
   {
     "slug": "kak-vybrat-kurort-abkhaziya-pervyy-raz",
@@ -309,7 +322,7 @@
       "первый раз",
       "гид"
     ],
-    "image": "telegram-3613.jpg"
+    "image": ""
   },
   {
     "slug": "chego-boyatsya-v-abhazii",
@@ -322,7 +335,7 @@
       "безопасность",
       "мифы"
     ],
-    "image": "telegram-bereg-2119.jpg"
+    "image": ""
   },
   {
     "slug": "znakomstvo-darya-bronirovanie-abhaziya",
@@ -335,15 +348,6 @@
       "бронирование",
       "каталог"
     ],
-    "image": "telegram-2572.jpg"
-  },
-  {
-    "slug": "vezda-inostrannye-pravila-abhazbereg",
-    "title": "vezda-inostrannye-pravila-abhazbereg",
-    "excerpt": "",
-    "iso_date": "",
-    "card_tag": "",
-    "tags": [],
     "image": ""
   }
 ]
