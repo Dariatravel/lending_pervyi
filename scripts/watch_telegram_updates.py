@@ -440,8 +440,7 @@ def load_known_sources() -> KnownSources:
     kvartira_topic_ids: set[int] = set()
     repost_index: dict[str, list[WatchItem]] = {}
     for row in payload.get("listings") or []:
-        if row.get("is_active") is False:
-            continue
+        is_active = row.get("is_active") is not False
         kind = str(row.get("source_kind") or "").strip()
         channel = str(row.get("source_channel") or "").strip().lower()
         slug = str(row.get("slug") or "").strip()
@@ -452,23 +451,42 @@ def load_known_sources() -> KnownSources:
             source_pairs.add((channel, message_id))
         if kind == "hotel" and channel == "abhazbooking" and message_id:
             hotel_message_ids.add(message_id)
-            item = WatchItem(
-                key=f"{kind}:{slug}",
-                kind=kind,
-                slug=slug,
-                title=title,
-                channel=channel,
-                message_id=message_id,
-                topic_id=None,
-                telegram_url=str(row.get("telegram_url") or f"https://t.me/{channel}/{message_id}"),
-            )
-            for key in repost_match_keys(title=title, slug=slug):
-                repost_index.setdefault(key, []).append(item)
+            if is_active:
+                item = WatchItem(
+                    key=f"{kind}:{slug}",
+                    kind=kind,
+                    slug=slug,
+                    title=title,
+                    channel=channel,
+                    message_id=message_id,
+                    topic_id=None,
+                    telegram_url=str(row.get("telegram_url") or f"https://t.me/{channel}/{message_id}"),
+                )
+                for key in repost_match_keys(title=title, slug=slug):
+                    repost_index.setdefault(key, []).append(item)
         if kind == "kvartira" and channel == "abhkvartira":
             if message_id:
                 kvartira_message_ids.add(message_id)
             if topic_id:
                 kvartira_topic_ids.add(topic_id)
+    state_items = load_state().get("items") or {}
+    if isinstance(state_items, dict):
+        for row in state_items.values():
+            if not isinstance(row, dict):
+                continue
+            kind = str(row.get("kind") or "").strip()
+            channel = str(row.get("channel") or "").strip().lower()
+            message_id = int(row.get("message_id") or 0)
+            topic_id = int(row.get("topic_id") or 0)
+            if channel and message_id:
+                source_pairs.add((channel, message_id))
+            if kind == "hotel" and channel == "abhazbooking" and message_id:
+                hotel_message_ids.add(message_id)
+            if kind == "kvartira" and channel == "abhkvartira":
+                if message_id:
+                    kvartira_message_ids.add(message_id)
+                if topic_id:
+                    kvartira_topic_ids.add(topic_id)
     return KnownSources(
         source_pairs=source_pairs,
         hotel_message_ids=hotel_message_ids,
