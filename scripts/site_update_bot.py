@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import re
 import signal
 import shlex
 import sys
@@ -59,6 +60,12 @@ STEP_LABELS = {
     "git-push": "публикация в GitHub",
     "git-status-after": "проверка git после коммита",
     "changed-targets": "поиск изменённых объектов",
+    "sync_catalog_from_telegram": "синхронизация каталога из Telegram",
+    "apply_all_filters_from_sheet": "фильтры из таблицы",
+    "verify_object_media": "проверка медиа",
+    "rebuild_from_catalog_snapshot": "пересборка сайта",
+    "check_catalog_location_consistency": "проверка города объектов",
+    "validate_catalog_snapshot": "проверка каталога",
 }
 
 
@@ -570,22 +577,46 @@ def read_result_log(result: CommandResult) -> str:
         return ""
 
 
-def is_no_changes_commit(result: CommandResult) -> bool:
-    if result.name != "git-commit" or result.return_code != 1:
-        return False
-    log_text = read_result_log(result)
-    return "nothing added to commit" in log_text or "nothing to commit" in log_text
+def relative_log_path(path: Path) -> Path | str:
+    try:
+        return path.resolve().relative_to(ROOT.resolve())
+    except ValueError:
+        return path
 
 
-def result_is_failure(result: CommandResult) -> bool:
-    return result.return_code != 0 and not is_no_changes_commit(result)
+def extract_actionable_log_lines(log_text: str, *, limit: int = 4) -> str:
+    lines = []
+    for raw_line in log_text.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        if line.startswith("+ "):
+            continue
+        if line.startswith("[auto-sync]") and not line.endswith(": failed"):
+            continue
+        lines.append(line)
+    if not lines:
+        return ""
+
+    priority_markers = (
+        "ошибка",
+        "не удалось",
+        "fail",
+        "failed",
+        "error",
+        "exception",
+        "traceback",
+        "timeout",
+        "timed out",
+        "auth",
+        "permission denied",
+    )
+    priority = [line for line in lines if any(marker in line.lower() for marker in priority_markers) or line.startswith("- ")]
+    selected = priority[:limit] if priority else lines[-limit:]
+    return "; ".join(selected)
 
 
-def explain_failure(result: CommandResult) -> str:
-    log_text = read_result_log(result)
-    label = STEP_LABELS.get(result.name, result.name)
-    rel_log = result.log_path.relative_to(ROOT)
-
+def explain_failure_from_log(label: str, log_text: str, rel_log: Path | str, return_code: int) -> str:
     if "nodename nor servname provided" in log_text or "Name or service not known" in log_text:
         return (
             f"- {label}: нет соединения с Telegram / проблема DNS. "
@@ -601,10 +632,18 @@ def explain_failure(result: CommandResult) -> str:
             f"- {label}: Telegram-сессия занята другим процессом. "
             f"Проверка повторится позже; сайт не сломан. Лог: {rel_log}"
         )
-    if result.name == "changed-targets" and log_text.strip():
-        return f"- {label}: {log_text.strip()} Лог: {rel_log}"
-    if result.return_code == 124 or "[timeout] process killed" in log_text:
+    if return_code == 124 or "[timeout] process killed" in log_text:
         return f"- {label}: команда выполнялась слишком долго и была остановлена. Лог: {rel_log}"
+    if "Timed out" in log_text or "timed out" in log_text or "TimeoutError" in log_text:
+        return (
+            f"- {label}: Telegram или внешний сервис долго не отвечал. "
+            f"Обычно помогает повторить запуск позже. Лог: {rel_log}"
+        )
+    if "FloodWait" in log_text or "A wait of" in log_text:
+        return (
+            f"- {label}: Telegram временно ограничил частоту запросов. "
+            f"Нужно дождаться указанной паузы и повторить запуск. Лог: {rel_log}"
+        )
     if ".git/index.lock" in log_text:
         return (
             f"- {label}: Git уже занят другим процессом или после сбоя остался lock-файл. "
@@ -627,11 +666,89 @@ def explain_failure(result: CommandResult) -> str:
             f"- {label}: GitHub не принял авторизацию. "
             f"Нужно проверить доступ к репозиторию или токен. Лог: {rel_log}"
         )
+    if "AccessDenied" in log_text or "NoCredentialsError" in log_text or "InvalidAccessKeyId" in log_text:
+        return (
+            f"- {label}: хранилище медиа не приняло ключи доступа. "
+            f"Нужно проверить Yandex Object Storage env-переменные. Лог: {rel_log}"
+        )
+    if "S3UploadFailedError" in log_text or "upload failed" in log_text.lower():
+        return (
+            f"- {label}: не удалось загрузить медиа в хранилище. "
+            f"Проверьте сеть, ключи Yandex Object Storage и вложенный лог. Лог: {rel_log}"
+        )
     if "Permission denied" in log_text:
         return f"- {label}: не хватает прав доступа к файлу или репозиторию. Лог: {rel_log}"
     if "merge conflict" in log_text.lower() or "CONFLICT" in log_text:
         return f"- {label}: возник конфликт Git, нужен ручной разбор изменений. Лог: {rel_log}"
-    return f"- {label}: не удалось выполнить шаг. Код {result.return_code}. Подробности: {rel_log}"
+
+    detail = extract_actionable_log_lines(log_text)
+    if detail:
+        return f"- {label}: {detail}. Лог: {rel_log}"
+    return f"- {label}: не удалось выполнить шаг. Код {return_code}. Подробности: {rel_log}"
+
+
+def explain_auto_sync_failure(log_text: str) -> str | None:
+    match = re.search(r"\[auto-sync\] run_id=(\d{8}-\d{6})", log_text)
+    if not match:
+        return None
+    summary_path = ROOT / "output" / "auto-sync" / match.group(1) / "summary.json"
+    try:
+        payload = json.loads(summary_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not isinstance(payload, dict):
+        return None
+    steps = payload.get("steps")
+    if not isinstance(steps, list):
+        return None
+    failed_step_name = str(payload.get("failed_step") or "")
+    failed_step = None
+    for step in steps:
+        if not isinstance(step, dict):
+            continue
+        if failed_step_name and step.get("name") == failed_step_name:
+            failed_step = step
+            break
+        if failed_step is None and int(step.get("return_code") or 0) != 0:
+            failed_step = step
+    if not isinstance(failed_step, dict):
+        return None
+
+    nested_log = Path(str(failed_step.get("log_file") or ""))
+    if not nested_log.is_absolute():
+        nested_log = ROOT / nested_log
+    try:
+        nested_text = nested_log.read_text(encoding="utf-8", errors="ignore")
+    except OSError:
+        return None
+    step_name = str(failed_step.get("name") or failed_step_name or "auto-sync")
+    return_code = int(failed_step.get("return_code") or 1)
+    label = STEP_LABELS.get(step_name, step_name)
+    return explain_failure_from_log(label, nested_text, relative_log_path(nested_log), return_code)
+
+
+def is_no_changes_commit(result: CommandResult) -> bool:
+    if result.name != "git-commit" or result.return_code != 1:
+        return False
+    log_text = read_result_log(result)
+    return "nothing added to commit" in log_text or "nothing to commit" in log_text
+
+
+def result_is_failure(result: CommandResult) -> bool:
+    return result.return_code != 0 and not is_no_changes_commit(result)
+
+
+def explain_failure(result: CommandResult) -> str:
+    log_text = read_result_log(result)
+    label = STEP_LABELS.get(result.name, result.name)
+    rel_log = relative_log_path(result.log_path)
+
+    if result.name == "changed-targets" and log_text.strip():
+        return f"- {label}: {log_text.strip()} Лог: {rel_log}"
+    nested_failure = explain_auto_sync_failure(log_text)
+    if nested_failure:
+        return nested_failure
+    return explain_failure_from_log(label, log_text, rel_log, result.return_code)
 
 
 def explain_bot_error(error: Exception) -> str:
