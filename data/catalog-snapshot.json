@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-03T09:12:30.811691+00:00",
+  "generated_at": "2026-07-04T13:59:34.497438+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 220,
-  "listings_hotels": 157,
-  "listings_kvartira": 63,
+  "listings_total": 237,
+  "listings_hotels": 173,
+  "listings_kvartira": 64,
   "listings": [
     {
       "source_kind": "kvartira",
@@ -7227,20 +7227,20 @@
     {
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
-      "source_message_id": 4399,
+      "source_message_id": 4868,
       "source_topic_id": null,
       "slug": "bagripsh-domiki-na-beregu-s-pitaniem-4399",
-      "title": "\"БАГРИПШ\" домики на берегу с питанием",
+      "title": "\"БАГРИПШ\" домики на берегу. ВСЁ ВКЛЮЧЕНО!",
       "summary": "Гагрский район. 0 минут до пляжа, размещение до 4 человек.",
       "excerpt": "Семь домиков с видом на море прямо на берегу",
       "city": "Гагрский район",
-      "location_text": "Гагрский район, Холодная речка 43.359115, 40.121660",
+      "location_text": "Гагрский район, Холодная речка 43.359191, 40.123341",
       "distance_text": "0 минут до пляжа",
       "beach_text": "0 минут до пляжа",
       "capacity_text": "размещение до 4 человек",
       "page_url": "https://абхазберег.рф/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/",
-      "telegram_url": "https://t.me/abhazbooking/4399",
-      "published_at": "2026-05-06",
+      "telegram_url": "https://t.me/abhazbooking/4868",
+      "published_at": "2026-06-30",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/bagripsh-domiki-na-beregu-s-pitaniem-4399.jpg",
       "is_active": true,
@@ -7251,7 +7251,7 @@
             "label": "✔️ДОМИКИ:",
             "lines": [
               "Семь домиков с видом на море прямо на берегу.",
-              "В домиках двуспальная и односпальная кровати, прикроватные тумбы, место для хранения вещей. Сан узел с душем. Для ребенка возможно доп место - кроватка. Размещение до 4 человек.",
+              "В домиках двуспальная кровать, односпальная кровать или двуспальный диван, прикроватные тумбы, место для хранения вещей. Сан узел с душем. Для ребенка возможно доп место - кроватка. Размещение до 4 человек.",
               "Оснащение: кондиционер, телевизор, Wi‑Fi, мини-холодильник, чайник, фен.",
               "У каждого домика своя веранда со столиком и стульями."
             ]
@@ -7261,36 +7261,36 @@
             "lines": [
               "В стоимость входит проживание, питание «шведский стол», и пользование всей инфраструктурой пансионата Багрипш.",
               "Питание:",
-              "7:30–8:00 — ранний завтрак",
+              "7:30–8:00 — ранний завтрак (при высокой загрузке)",
               "8:00–10:00 — основной завтрак",
               "13:00–15:00 — обед",
               "18:00–20:00 — ужин",
-              "20:00–20:30 — поздний ужин",
-              "Дополнительное питание по системе «всё включено» с 10:00 до 20:00 в кафе у бассейна или на пляже: слабоалкогольные напитки местного производства, безалкогольные напитки, блинчики с разными начинками, пицца, мороженое.",
+              "20:00–20:30 — поздний ужин (при высокой загрузке)",
+              "Дополнительное питание по системе «всё включено» с 10:00 до 20:00 в кафе у бассейна или на пляже: слабоалкогольные напитки местного производства, безалкогольные напитки, закуски, мороженое, пончики.",
               "В стоимость включен групповой трансфер от Адлера."
             ]
           },
           {
             "label": "✔️ТЕРРИТОРИЯ:",
             "lines": [
-              "Отдельно стоящие домики на берегу. Проход на территорию через дорогу по подземному переходу.",
+              "Отдельно стоящие домики на берегу. Проход на территорию пансионата через дорогу по подземному переходу со ступеньками и на лифте.",
               "Подогреваемый бассейн с пресной водой.",
-              "Есть бар, аптека, продуктовый магазин, магазин бытовой химии.",
+              "Есть бар, аптека, медпункт, продуктовый магазин, магазин бытовой химии.",
               "Зона отдыха, мангальная зона.",
-              "Фитнес-зал с тренажерами.",
-              "Для детей — игровая зона, качели и горки.",
+              "Фитнес-зал с тренажерами с видом на море.",
+              "Для детей — мини игровая зона, качели и горка.",
               "Детская и взрослая анимация.",
               "Настольный тенис и бильярд.",
               "Парковка на территории на 50 авто.",
-              "Дополнительные платные услуги: массаж, экскурсионное бюро, концерты."
+              "Дополнительные платные услуги: экскурсионное бюро, концерты."
             ]
           },
           {
             "label": "✔️РЯДОМ:",
             "lines": [
-              "Свой оборудованный песчано-галечный пляж с шезлонгами и пляжными полотенцами.",
+              "Свой оборудованный галечный пляж с шезлонгами и пляжными полотенцами.",
               "В шаговой доступности Белые скалы и Дача Сталина.",
-              "Магазины, кафе, остановка общественного транспорта."
+              "Магазины, кафе, сувенирные точки, остановка общественного транспорта."
             ]
           },
           {
@@ -7409,7 +7409,7 @@
             "text": "Дети до 5 лет бесплатно без предоставления отдельного места."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/index.html",
         "filters": {
           "city": [
             "gagra"
@@ -7561,8 +7561,8 @@
           "storage_path": "videos/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/video-01-1800k.mp4",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/video-01-1800k.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4408",
-            "telegram_url": "https://t.me/abhazbooking/4408"
+            "telegram_post": "abhazbooking/4877",
+            "telegram_url": "https://t.me/abhazbooking/4877"
           }
         }
       ]
@@ -58524,6 +58524,1129 @@
           "details": {
             "telegram_post": "abhazbooking/4866",
             "telegram_url": "https://t.me/abhazbooking/4866"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 4884,
+      "source_topic_id": null,
+      "slug": "pansionat-bagripsh-glavnyy-korpus-4884",
+      "title": "ПАНСИОНАТ «БАГРИПШ» (ГЛАВНЫЙ КОРПУС)",
+      "summary": "Гагрский район. 2 минуты до пляжа, размещение до 4 человек.",
+      "excerpt": "Главный корпус пансионата Багрипш — 9-этажное здание с лифтами",
+      "city": "Гагрский район",
+      "location_text": "Гагрский район, Холодная речка 43.360393, 40.121178",
+      "distance_text": "2 минуты до пляжа",
+      "beach_text": "2 минуты до пляжа",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/pansionat-bagripsh-glavnyy-korpus-4884/",
+      "telegram_url": "https://t.me/abhazbooking/4884",
+      "published_at": "2026-07-01",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pansionat-bagripsh-glavnyy-korpus-4884.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагрский район. 2 минуты до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Главный корпус пансионата Багрипш — 9-этажное здание с лифтами.",
+              "Стандарт с видом на сторону моря или горы - однокомнатный номер с балконом. Размещение до 3 человек (2 основных + 1 доп место).",
+              "В номере: одна двуспальная или две односпальные кровати, прикроватные тумбочки, светильники, шкаф для одежды, письменный стол, стул. Санузел с тропическим душем.",
+              "Оснащение: кондиционер, телевизор, мини-холодильник.",
+              "Полулюкс двухкомнатный со спальней и гостиной. Размещение до 4 человек (2 основных + 2 доп места).",
+              "Вид на море, горы и территорию.",
+              "Номер без балкона.",
+              "В номере: одна двуспальная и две односпальные кровати, прикроватные тумбочки, светильники, шкаф для одежды, стулья, диван, кресло. Санузел с тропическим душем.",
+              "Оснащение: кондиционер, телевизор, мини-холодильник."
+            ]
+          },
+          {
+            "label": "✔️ВСЁ ВКЛЮЧЕНО:",
+            "lines": [
+              "В стоимость входит проживание, питание «шведский стол», и пользование всей инфраструктурой пансионата Багрипш.",
+              "Питание:",
+              "7:30–8:00 — ранний завтрак (при высокой загрузке)",
+              "8:00–10:00 — основной завтрак",
+              "13:00–15:00 — обед",
+              "18:00–20:00 — ужин",
+              "20:00–20:30 — поздний ужин (при высокой загрузке)",
+              "Дополнительное питание по системе «всё включено» с 10:00 до 20:00 в кафе у бассейна или на пляже: слабоалкогольные напитки местного производства, безалкогольные напитки, закуски, мороженое, пончики.",
+              "В стоимость включен групповой трансфер от Адлера."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ",
+            "lines": [
+              "Подогреваемый бассейн с пресной водой.",
+              "Есть бар, аптека, медпункт, продуктовый магазин, магазин бытовой химии.",
+              "На территории есть Wi-Fi.",
+              "Зона отдыха, мангальная зона.",
+              "Фитнес-зал с тренажерами с видом на море.",
+              "Для детей — мини игровая зона, качели и горка.",
+              "Детская и взрослая анимация.",
+              "Настольный тенис и бильярд.",
+              "Парковка на территории на 50 авто.",
+              "Дополнительные платные услуги: экскурсионное бюро, концерты."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Свой оборудованный галечный пляж с шезлонгами и пляжными полотенцами, спуск к пляжу возможен на лифте либо по лестнице, далее по подземному переходу. На пляже есть Wi-Fi.",
+              "В шаговой доступности Белые скалы и Дача Сталина.",
+              "Магазины, кафе, сувенирные точки, остановка общественного транспорта."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с маленькими животными до 4кг возможно по согласованию.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за одного человека)"
+          },
+          {
+            "kind": "price",
+            "text": "Стандарт с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "Основное место"
+          },
+          {
+            "kind": "price",
+            "text": "6830₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "5830₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4590₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Взрослый на дополнительном месте"
+          },
+          {
+            "kind": "price",
+            "text": "6390₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "5390₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4430₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Ребенок до 12 лет на дополнительном месте"
+          },
+          {
+            "kind": "price",
+            "text": "5630₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "4130₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "3530₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "9920₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "8920₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "6880₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Стандарт с видом на горы"
+          },
+          {
+            "kind": "price",
+            "text": "Основное место"
+          },
+          {
+            "kind": "price",
+            "text": "6730₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "5730₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4490₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Взрослый на дополнительном месте"
+          },
+          {
+            "kind": "price",
+            "text": "6290₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "5290₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4330₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Ребенок до 12 лет на дополнительном месте"
+          },
+          {
+            "kind": "price",
+            "text": "5530₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "4030₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "3430₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "9720₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "8720₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "6680₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Полулюкс двухкомнатный"
+          },
+          {
+            "kind": "price",
+            "text": "Основное место"
+          },
+          {
+            "kind": "price",
+            "text": "7590₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "6590₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5490₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Взрослый на дополнительном месте"
+          },
+          {
+            "kind": "price",
+            "text": "6390₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "5390₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5030₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Ребенок до 12 лет на дополнительном месте"
+          },
+          {
+            "kind": "price",
+            "text": "5690₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "4190₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4440₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 5 лет бесплатно с питанием без предоставления отдельного места."
+          }
+        ],
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/pansionat-bagripsh-glavnyy-korpus-4884/index.html",
+        "filters": {
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "pool",
+            "balcony",
+            "tv",
+            "two-room-plus"
+          ],
+          "stay": [
+            "pets"
+          ]
+        }
+      },
+      "id": 1168,
+      "media": [
+        {
+          "id": 1168001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pansionat-bagripsh-glavnyy-korpus-4884.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/pansionat-bagripsh-glavnyy-korpus-4884.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pansionat-bagripsh-glavnyy-korpus-4884.jpg",
+          "details": {}
+        },
+        {
+          "id": 1168002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1168003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1168004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1168005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1168006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1168007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1168008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1168009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1168010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-glavnyy-korpus-4884/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1168011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-glavnyy-korpus-4884/video-01-1800k.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/pansionat-bagripsh-glavnyy-korpus-4884/video-01-1800k.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-glavnyy-korpus-4884/video-01-1800k.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/4893",
+            "telegram_url": "https://t.me/abhazbooking/4893"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 4914,
+      "source_topic_id": null,
+      "slug": "pansionat-bagripsh-novyy-korpus-4914",
+      "title": "ПАНСИОНАТ «БАГРИПШ» (НОВЫЙ КОРПУС)",
+      "summary": "Гагрский район. 2 минуты до пляжа, размещение до 3 человек.",
+      "excerpt": "Новый корпус пансионата Багрипш - 5-этажное здание, без лифта",
+      "city": "Гагрский район",
+      "location_text": "Гагрский район, Холодная речка 43.360115, 40.122660",
+      "distance_text": "2 минуты до пляжа",
+      "beach_text": "2 минуты до пляжа",
+      "capacity_text": "размещение до 3 человек",
+      "page_url": "https://абхазберег.рф/hotels/pansionat-bagripsh-novyy-korpus-4914/",
+      "telegram_url": "https://t.me/abhazbooking/4914",
+      "published_at": "2026-07-02",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pansionat-bagripsh-novyy-korpus-4914.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагрский район. 2 минуты до пляжа, размещение до 3 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Новый корпус пансионата Багрипш - 5-этажное здание, без лифта.",
+              "Все номера стандарты однокомнатные с балконом и видом на море. Размещение до 3 человек (2 основных + 1 доп место).",
+              "В номере: двуспальная кровать или две односпальные кровати, доп место - односпальная кровать, прикроватные тумбочки, шкаф для одежды. Санузел с тропическим душем.",
+              "Оснащение: кондиционер, телевизор, мини-холодильник."
+            ]
+          },
+          {
+            "label": "✔️ВСЁ ВКЛЮЧЕНО:",
+            "lines": [
+              "В стоимость входит проживание, питание «шведский стол», и пользование всей инфраструктурой пансионата Багрипш.",
+              "Питание:",
+              "7:30–8:00 — ранний завтрак (при высокой загрузке)",
+              "8:00–10:00 — основной завтрак",
+              "13:00–15:00 — обед",
+              "18:00–20:00 — ужин",
+              "20:00–20:30 — поздний ужин (при высокой загрузке)",
+              "Дополнительное питание по системе «всё включено» с 10:00 до 20:00 в кафе у бассейна или на пляже: слабоалкогольные напитки местного производства, безалкогольные напитки, закуски, мороженое, пончики.",
+              "В стоимость включен групповой трансфер от Адлера."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ",
+            "lines": [
+              "Подогреваемый бассейн с пресной водой.",
+              "Есть бар, аптека, медпункт, продуктовый магазин, магазин бытовой химии.",
+              "На территории есть Wi-Fi.",
+              "Зона отдыха, мангальная зона.",
+              "Фитнес-зал с тренажерами с видом на море.",
+              "Для детей — мини игровая зона, качели и горка.",
+              "Детская и взрослая анимация.",
+              "Настольный тенис и бильярд.",
+              "Парковка на территории на 50 авто.",
+              "Дополнительные платные услуги: экскурсионное бюро, концерты."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Свой оборудованный галечный пляж с шезлонгами и пляжными полотенцами, спуск к пляжу возможен на лифте либо по лестнице, далее по подземному переходу. На пляже есть Wi-Fi.",
+              "В шаговой доступности Белые скалы и Дача Сталина.",
+              "Магазины, кафе, сувенирные точки, остановка общественного транспорта."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с маленькими животными до 4кг возможно по согласованию.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за одного человека)"
+          },
+          {
+            "kind": "price",
+            "text": "Стандартный номер с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "Основное место"
+          },
+          {
+            "kind": "price",
+            "text": "6830₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "5830₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4590₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Взрослый на дополнительном месте"
+          },
+          {
+            "kind": "price",
+            "text": "6390₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "5390₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4430₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Ребенок до 12 лет на дополнительном месте"
+          },
+          {
+            "kind": "price",
+            "text": "5630₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "4130₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "3530₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "9920₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "8920₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "6880₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 5 лет бесплатно с питанием без предоставления отдельного места."
+          }
+        ],
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/pansionat-bagripsh-novyy-korpus-4914/index.html",
+        "filters": {
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "pool",
+            "balcony",
+            "tv"
+          ],
+          "stay": [
+            "pets"
+          ]
+        }
+      },
+      "id": 1169,
+      "media": [
+        {
+          "id": 1169001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pansionat-bagripsh-novyy-korpus-4914.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/pansionat-bagripsh-novyy-korpus-4914.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pansionat-bagripsh-novyy-korpus-4914.jpg",
+          "details": {}
+        },
+        {
+          "id": 1169002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-novyy-korpus-4914/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1169003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-novyy-korpus-4914/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1169004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-novyy-korpus-4914/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1169005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-novyy-korpus-4914/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1169006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-novyy-korpus-4914/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1169007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-novyy-korpus-4914/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1169008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-novyy-korpus-4914/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1169009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-novyy-korpus-4914/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1169010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-novyy-korpus-4914/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-novyy-korpus-4914/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1169011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-novyy-korpus-4914/video-01-1800k.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/pansionat-bagripsh-novyy-korpus-4914/video-01-1800k.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-novyy-korpus-4914/video-01-1800k.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/4923",
+            "telegram_url": "https://t.me/abhazbooking/4923"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 4925,
+      "source_topic_id": null,
+      "slug": "pansionat-bagripsh-korpus-adel-4925",
+      "title": "ПАНСИОНАТ «БАГРИПШ» (КОРПУС «АДЕЛЬ»)",
+      "summary": "Гагрский район. 2 минуты до пляжа, размещение до 3 человек.",
+      "excerpt": "Корпус Адель пансионата Багрипш — 9-этажное здание с лифтами",
+      "city": "Гагрский район",
+      "location_text": "Гагрский район, Холодная речка, 43.360021, 40.120392",
+      "distance_text": "2 минуты до пляжа",
+      "beach_text": "2 минуты до пляжа",
+      "capacity_text": "размещение до 3 человек",
+      "page_url": "https://абхазберег.рф/hotels/pansionat-bagripsh-korpus-adel-4925/",
+      "telegram_url": "https://t.me/abhazbooking/4925",
+      "published_at": "2026-07-03",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pansionat-bagripsh-korpus-adel-4925.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагрский район. 2 минуты до пляжа, размещение до 3 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Корпус Адель пансионата Багрипш — 9-этажное здание с лифтами.",
+              "Комфортабельные однокомнатные номера Делюкс с видом на море или на территорию. Размещение до 3 человек (2 основных + 1 доп место).",
+              "В номере: одна двуспальная или две односпальные кровати, кресло-кровать (доп место), прикроватные тумбочки, шкаф, стол. Санузел с тропическим душем.",
+              "Оснащение: кондиционер, телевизор, мини-холодильник, сейф, фен, чайник.",
+              "У каждого номера просторный балкон с мягкой мебелью."
+            ]
+          },
+          {
+            "label": "✔️ВСЁ ВКЛЮЧЕНО:",
+            "lines": [
+              "В стоимость входит проживание, питание «шведский стол», и пользование всей инфраструктурой пансионата Багрипш.",
+              "Питание:",
+              "7:30–8:00 — ранний завтрак (при высокой загрузке)",
+              "8:00–10:00 — основной завтрак",
+              "13:00–15:00 — обед",
+              "18:00–20:00 — ужин",
+              "20:00–20:30 — поздний ужин (при высокой загрузке)",
+              "Дополнительное питание по системе «всё включено» с 10:00 до 20:00 в кафе у бассейна или на пляже: слабоалкогольные напитки местного производства, безалкогольные напитки, закуски, мороженое, пончики.",
+              "В стоимость включен групповой трансфер от Адлера."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ",
+            "lines": [
+              "Подогреваемый бассейн с пресной водой.",
+              "Есть бар, аптека, медпункт, продуктовый магазин, магазин бытовой химии.",
+              "На территории есть Wi-Fi.",
+              "Зона отдыха, мангальная зона.",
+              "Фитнес-зал с тренажерами с видом на море.",
+              "Для детей — мини игровая зона, качели и горка.",
+              "Детская и взрослая анимация.",
+              "Настольный тенис и бильярд.",
+              "Парковка на территории на 50 авто.",
+              "Дополнительные платные услуги: экскурсионное бюро, концерты."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Свой оборудованный галечный пляж с шезлонгами и пляжными полотенцами, спуск к пляжу возможен на лифте либо по лестнице, далее по подземному переходу. На пляже есть Wi-Fi.",
+              "В шаговой доступности Белые скалы и Дача Сталина.",
+              "Магазины, кафе, сувенирные точки, остановка общественного транспорта."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за одного человека)"
+          },
+          {
+            "kind": "price",
+            "text": "Делюкс с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "Основное место"
+          },
+          {
+            "kind": "price",
+            "text": "7680₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "6680₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5670₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Взрослый на дополнительном месте"
+          },
+          {
+            "kind": "price",
+            "text": "7230₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "6230₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5510₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Ребенок до 12 лет на дополнительном месте"
+          },
+          {
+            "kind": "price",
+            "text": "5630₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "4630₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "3870₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "11230₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "10230₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "7990₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Делюкс с видом на территорию"
+          },
+          {
+            "kind": "price",
+            "text": "Основное место"
+          },
+          {
+            "kind": "price",
+            "text": "7580₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "6580₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5570₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Взрослый на дополнительном месте"
+          },
+          {
+            "kind": "price",
+            "text": "7130₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "6130₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5410₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Ребенок до 12 лет на дополнительном месте"
+          },
+          {
+            "kind": "price",
+            "text": "5530₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "4530₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "3870₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "11030₽ - с 1 по 9 июля"
+          },
+          {
+            "kind": "price",
+            "text": "10030₽ - с 10 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "7790₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 5 лет бесплатно с питанием без предоставления отдельного места."
+          }
+        ],
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/pansionat-bagripsh-korpus-adel-4925/index.html",
+        "filters": {
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "pool",
+            "balcony",
+            "tv"
+          ],
+          "stay": []
+        }
+      },
+      "id": 1170,
+      "media": [
+        {
+          "id": 1170001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pansionat-bagripsh-korpus-adel-4925.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/pansionat-bagripsh-korpus-adel-4925.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pansionat-bagripsh-korpus-adel-4925.jpg",
+          "details": {}
+        },
+        {
+          "id": 1170002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-korpus-adel-4925/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1170003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-korpus-adel-4925/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1170004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-korpus-adel-4925/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1170005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-korpus-adel-4925/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1170006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-korpus-adel-4925/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1170007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-korpus-adel-4925/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1170008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-korpus-adel-4925/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1170009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-korpus-adel-4925/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1170010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pansionat-bagripsh-korpus-adel-4925/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pansionat-bagripsh-korpus-adel-4925/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1170011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-korpus-adel-4925/video-01-1800k.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/pansionat-bagripsh-korpus-adel-4925/video-01-1800k.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-korpus-adel-4925/video-01-1800k.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/4934",
+            "telegram_url": "https://t.me/abhazbooking/4934"
           }
         }
       ]

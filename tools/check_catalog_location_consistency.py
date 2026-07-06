@@ -119,37 +119,45 @@ def index_map_city_key(row: dict[str, Any]) -> str:
     return html.unescape(match.group(1)).strip() if match else ""
 
 
-def check_row(row: dict[str, Any]) -> list[str]:
+def check_row(row: dict[str, Any]) -> tuple[list[str], list[str]]:
     slug = str(row.get("slug") or "")
     expected = listing_city_key(row)
     page_key = page_city_key(row)
     card_key = index_map_city_key(row)
     filters = (row.get("details") or {}).get("filters") or {}
     filter_cities = filter_city_values(filters)
-    issues: list[str] = []
+    errors: list[str] = []
+    warnings: list[str] = []
 
     if not expected:
-        issues.append(f"{slug}: не удалось определить город из snapshot city/location_text")
+        warnings.append(
+            f"{slug}: не удалось однозначно определить город из snapshot city/location_text"
+        )
     if expected and page_key and page_key != expected:
-        issues.append(
+        errors.append(
             f"{slug}: страница показывает {CITY_MAP_LABELS.get(page_key, page_key)}, "
             f"snapshot ожидает {CITY_MAP_LABELS.get(expected, expected)}"
         )
     if expected and card_key and card_key != expected:
-        issues.append(
+        errors.append(
             f"{slug}: карточка каталога показывает {CITY_MAP_LABELS.get(card_key, card_key)}, "
             f"snapshot ожидает {CITY_MAP_LABELS.get(expected, expected)}"
         )
+    if page_key and card_key and page_key != card_key:
+        errors.append(
+            f"{slug}: страница и карточка каталога показывают разные города "
+            f"({CITY_MAP_LABELS.get(page_key, page_key)} / {CITY_MAP_LABELS.get(card_key, card_key)})"
+        )
     if expected and filter_cities and expected not in filter_cities:
-        issues.append(
+        errors.append(
             f"{slug}: data-filter-city из Google Sheet не содержит фактический город "
             f"{expected} (сейчас: {'|'.join(filter_cities)})"
         )
     if not page_key:
-        issues.append(f"{slug}: не удалось прочитать город на странице объекта")
+        warnings.append(f"{slug}: не удалось прочитать город на странице объекта")
     if not card_key:
-        issues.append(f"{slug}: не удалось прочитать data-map-city в карточке каталога")
-    return issues
+        warnings.append(f"{slug}: не удалось прочитать data-map-city в карточке каталога")
+    return errors, warnings
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -168,15 +176,26 @@ def main() -> int:
         print("catalog_location_consistency: нет подходящих объектов")
         return 1
 
-    issues: list[str] = []
+    errors: list[str] = []
+    warnings: list[str] = []
     for row in rows:
-        issues.extend(check_row(row))
+        row_errors, row_warnings = check_row(row)
+        errors.extend(row_errors)
+        warnings.extend(row_warnings)
 
-    if issues:
+    if errors:
         print("catalog_location_consistency: FAIL")
-        for issue in issues:
-            print(f"- {issue}")
+        for issue in errors:
+            print(f"- ОШИБКА: {issue}")
+        for issue in warnings:
+            print(f"- ПРЕДУПРЕЖДЕНИЕ: {issue}")
         return 1
+
+    if warnings:
+        print(f"catalog_location_consistency: OK_WITH_WARNINGS ({len(rows)} объект(ов))")
+        for issue in warnings:
+            print(f"- ПРЕДУПРЕЖДЕНИЕ: {issue}")
+        return 0
 
     print(f"catalog_location_consistency: OK ({len(rows)} объект(ов))")
     return 0

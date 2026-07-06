@@ -640,11 +640,6 @@
     "title": "\"АПРА\" гостевой дом на пляже"
   },
   {
-    "slug": "bagripsh-domiki-na-beregu-s-pitaniem-4399",
-    "source_id": 4399,
-    "title": "\"БАГРИПШ\" домики на берегу с питанием"
-  },
-  {
     "slug": "edem-domiki-4409",
     "source_id": 4409,
     "title": "\"ЭДЕМ\" домики"
@@ -783,5 +778,25 @@
     "slug": "arash-domiki-u-sosnovogo-plyazha-4857",
     "source_id": 4857,
     "title": "\"АРАШ\" домики у соснового пляжа"
+  },
+  {
+    "slug": "bagripsh-domiki-na-beregu-s-pitaniem-4399",
+    "source_id": 4868,
+    "title": "\"БАГРИПШ\" домики на берегу. ВСЁ ВКЛЮЧЕНО!"
+  },
+  {
+    "slug": "pansionat-bagripsh-glavnyy-korpus-4884",
+    "source_id": 4884,
+    "title": "ПАНСИОНАТ «БАГРИПШ» (ГЛАВНЫЙ КОРПУС)"
+  },
+  {
+    "slug": "pansionat-bagripsh-novyy-korpus-4914",
+    "source_id": 4914,
+    "title": "ПАНСИОНАТ «БАГРИПШ» (НОВЫЙ КОРПУС)"
+  },
+  {
+    "slug": "pansionat-bagripsh-korpus-adel-4925",
+    "source_id": 4925,
+    "title": "ПАНСИОНАТ «БАГРИПШ» (КОРПУС «АДЕЛЬ»)"
   }
 ]
