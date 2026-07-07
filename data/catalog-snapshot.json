@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-04T13:59:34.497438+00:00",
+  "generated_at": "2026-07-07T08:39:34.700088+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 237,
-  "listings_hotels": 173,
-  "listings_kvartira": 64,
+  "listings_total": 223,
+  "listings_hotels": 161,
+  "listings_kvartira": 62,
   "listings": [
     {
       "source_kind": "kvartira",
@@ -2127,22 +2127,18 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - июль"
+            "text": "3000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "4500₽ - август"
-          },
-          {
-            "kind": "price",
-            "text": "3500₽ - сентябрь"
+            "text": "3500₽ - август, сентябрь"
           },
           {
             "kind": "price",
             "text": "3000₽ - октябрь, ноябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/nebosvod-domik-afreym-v-uedinennom-meste-4640/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/nebosvod-domik-afreym-v-uedinennom-meste-4640/index.html",
         "filters": {
           "city": [
             "new-afon"
@@ -2563,7 +2559,7 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Номер с завтраками"
+            "text": "Номер с завтраками с боковым видом на море"
           },
           {
             "kind": "note",
@@ -2583,15 +2579,15 @@
           },
           {
             "kind": "price",
-            "text": "5500 - сентябрь"
+            "text": "5500₽ - сентябрь"
           },
           {
             "kind": "price",
-            "text": "4000 - октябрь"
+            "text": "4000₽ - октябрь"
           },
           {
             "kind": "price",
-            "text": "Номер с питанием полный пансион"
+            "text": "Номер с питанием полный пансион с боковым видом на море"
           },
           {
             "kind": "note",
@@ -2611,15 +2607,15 @@
           },
           {
             "kind": "price",
-            "text": "8000 - сентябрь"
+            "text": "8000₽ - сентябрь"
           },
           {
             "kind": "price",
-            "text": "6500 - октябрь"
+            "text": "6500₽ - октябрь"
           },
           {
             "kind": "price",
-            "text": "Двухкомнатный номер с завтраками"
+            "text": "Двухкомнатный номер с завтраками с боковым видом на море"
           },
           {
             "kind": "note",
@@ -2639,15 +2635,15 @@
           },
           {
             "kind": "price",
-            "text": "9500 - сентябрь"
+            "text": "9500₽ - сентябрь"
           },
           {
             "kind": "price",
-            "text": "8000 - октябрь"
+            "text": "8000₽ - октябрь"
           },
           {
             "kind": "price",
-            "text": "Двухкомнатный номер с питанием полный пансион"
+            "text": "Двухкомнатный номер с питанием полный пансион с боковым видом на море"
           },
           {
             "kind": "note",
@@ -2667,11 +2663,15 @@
           },
           {
             "kind": "price",
-            "text": "15000 - сентябрь"
+            "text": "15000₽ - сентябрь"
           },
           {
             "kind": "price",
-            "text": "12000 - октябрь"
+            "text": "12000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Номер с прямым видом на море+ 500₽"
           },
           {
             "kind": "price",
@@ -2682,7 +2682,7 @@
             "text": "Доп место с питанием полный пансион - 2700₽"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/belaya-dacha-otel-s-pitaniem-4630/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/belaya-dacha-otel-s-pitaniem-4630/index.html",
         "filters": {
           "city": [
             "gagra"
@@ -3497,7 +3497,7 @@
           },
           {
             "kind": "price",
-            "text": "6900₽ - с 20 сентября по 30 октября"
+            "text": "6900₽ - с 16 сентября по 30 октября"
           },
           {
             "kind": "price",
@@ -3536,7 +3536,7 @@
             "text": "Завтраки включены с 1 июня по 30 сентября."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/dzhannat-otel-na-beregu-s-zavtrakami-4571/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/dzhannat-otel-na-beregu-s-zavtrakami-4571/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -4320,11 +4320,11 @@
           },
           {
             "kind": "price",
-            "text": "7000₽ - июль, сентябрь"
+            "text": "6500₽ - июль, сентябрь"
           },
           {
             "kind": "price",
-            "text": "8000₽ - август"
+            "text": "7500₽ - август"
           },
           {
             "kind": "price",
@@ -4336,19 +4336,15 @@
           },
           {
             "kind": "price",
-            "text": "2000₽ - май"
+            "text": "2500₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "3000₽ - июнь"
+            "text": "4000₽ - июль, август"
           },
           {
             "kind": "price",
-            "text": "4500₽ - июль, сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ - август"
+            "text": "3500₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -4364,30 +4360,26 @@
           },
           {
             "kind": "price",
-            "text": "1500₽ - май"
-          },
-          {
-            "kind": "price",
             "text": "2000₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "4000₽ - июль, сентябрь"
+            "text": "3000₽ - июль, сентябрь"
           },
           {
             "kind": "price",
-            "text": "5000₽ - август"
+            "text": "4000₽ - август"
           },
           {
             "kind": "price",
-            "text": "3000₽ - октябрь"
+            "text": "2000₽ - октябрь"
           },
           {
             "kind": "price",
             "text": "1500₽ - ноябрь-апрель"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/pion-gostevoy-dom-4539/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/pion-gostevoy-dom-4539/index.html",
         "filters": {
           "city": [
             "gagra"
@@ -4605,7 +4597,11 @@
         "prices": [
           {
             "kind": "price",
-            "text": "10000₽ - июль, август"
+            "text": "9000₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - август"
           },
           {
             "kind": "price",
@@ -4624,7 +4620,7 @@
             "text": "При бронировании домика от 7 дней + 1 день в подарок🔥"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/briz-domiki-na-beregu-4510/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/briz-domiki-na-beregu-4510/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -5982,6 +5978,14 @@
         ],
         "prices": [
           {
+            "kind": "price",
+            "text": "АКЦИЯ🔥"
+          },
+          {
+            "kind": "price",
+            "text": "В июле и августе двухместный номер и трехместный эконом номер- 3500₽"
+          },
+          {
             "kind": "heading",
             "text": "Люкс номер"
           },
@@ -6088,17 +6092,9 @@
           {
             "kind": "price",
             "text": "4500₽ - сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "АКЦИЯ🔥"
-          },
-          {
-            "kind": "price",
-            "text": "До 15 июня любой номер - 2500₽"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459/index.html",
         "filters": {
           "city": [
             "tsandripsh"
@@ -10722,9 +10718,13 @@
           {
             "kind": "price",
             "text": "2500₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "При бронировании от 10 дней трансфер от границы в подарок."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/diar-domiki-s-basseynom-4192/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/diar-domiki-s-basseynom-4192/index.html",
         "filters": {
           "city": [
             "alakhadzy"
@@ -11977,15 +11977,15 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция с 1 до 15 июня🔥"
+            "text": "Акция в июне🔥"
           },
           {
             "kind": "price",
-            "text": "номер без питания на двоих - 4000₽"
+            "text": "номер без питания на двоих - 3000₽"
           },
           {
             "kind": "price",
-            "text": "номер с завтраком на двоих - 5000₽"
+            "text": "номер семейный двухкомнатный без питания на 4 человека - 6000₽"
           },
           {
             "kind": "price",
@@ -12040,7 +12040,7 @@
             "text": "Дети до 5 лет размещаются бесплатно без доп места и питания."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -13786,19 +13786,11 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - март, апрель, май"
+            "text": "5000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "5500₽ - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "6500₽ - июль"
-          },
-          {
-            "kind": "price",
-            "text": "7000₽ - август"
+            "text": "6000₽ - август"
           },
           {
             "kind": "price",
@@ -13810,19 +13802,11 @@
           },
           {
             "kind": "price",
-            "text": "4500₽ - март, апрель, май"
+            "text": "6000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "6000₽ - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "7000₽ - июль"
-          },
-          {
-            "kind": "price",
-            "text": "7500₽ - август"
+            "text": "6500₽ - август"
           },
           {
             "kind": "price",
@@ -13833,7 +13817,7 @@
             "text": "Дополнительное место (евро раскладная кровать) - 1000₽"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/oazis-villa-4052/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/oazis-villa-4052/index.html",
         "filters": {
           "city": [
             "sukhum"
@@ -14030,19 +14014,11 @@
           },
           {
             "kind": "price",
-            "text": "10000 ₽ - март, апрель, май"
+            "text": "10000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "12000₽ - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "13000₽ - июль"
-          },
-          {
-            "kind": "price",
-            "text": "15000₽ - август"
+            "text": "12000₽ - август"
           },
           {
             "kind": "price",
@@ -14054,26 +14030,18 @@
           },
           {
             "kind": "price",
-            "text": "6000₽ - март, апрель, май"
+            "text": "7000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "7000₽ - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "8000₽ - июль"
-          },
-          {
-            "kind": "price",
-            "text": "9000₽ - август"
+            "text": "8000₽ - август"
           },
           {
             "kind": "price",
             "text": "7000₽ - сентябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/oazis-apartamenty-s-kuhney-4061/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/oazis-apartamenty-s-kuhney-4061/index.html",
         "filters": {
           "city": [
             "sukhum"
@@ -22141,35 +22109,11 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция!"
-          },
-          {
-            "kind": "price",
-            "text": "В июне 5+1 день в подарок 🎁"
-          },
-          {
-            "kind": "price",
             "text": "Домики №1 и №8"
           },
           {
             "kind": "price",
-            "text": "1500₽ - апрель, май"
-          },
-          {
-            "kind": "price",
-            "text": "2500₽ - июнь до 15го"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - июнь с 15го"
-          },
-          {
-            "kind": "price",
-            "text": "5500₽ - июль до 20го"
-          },
-          {
-            "kind": "price",
-            "text": "6500₽ - июль c 21го"
+            "text": "6000₽ - июль"
           },
           {
             "kind": "price",
@@ -22189,23 +22133,7 @@
           },
           {
             "kind": "price",
-            "text": "1500₽ - апрель, май"
-          },
-          {
-            "kind": "price",
-            "text": "2500₽ - июнь до 15го"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - июнь с 15го"
-          },
-          {
-            "kind": "price",
-            "text": "6000₽ - июль до 20го"
-          },
-          {
-            "kind": "price",
-            "text": "6500₽ - июль c 21го"
+            "text": "6500₽ - июль"
           },
           {
             "kind": "price",
@@ -22405,7 +22333,8 @@
           {
             "label": "✔️ТЕРРИТОРИЯ:",
             "lines": [
-              "На каждые два домика отдельная кухонная зона. Все расходные материалы для приготовления и сервировки\n- чай, кофе, сахар, соль – всегда в наличии.",
+              "На каждые два домика отдельная кухонная зона. Все расходные материалы для приготовления и сервировки",
+              "- чай, кофе, сахар, соль – всегда в наличии.",
               "Бытовые удобства: стиральная машина и сушилка для белья, гладильные принадлежности, средства для стирки. Для детей - безопасная игровая площадка.",
               "Варианты активного отдыха от отеля: джип-туры с самыми захватывающими видами с высоты птичьего полета, пешие прогулки по живописным тропам каньона.",
               "Комплекс расположен у подножия горной реки (до реки 100м - 2 минуты пешком). Высота над уровнем моря всего 50м.",
@@ -22417,6 +22346,14 @@
           {
             "kind": "note",
             "text": "(проживание без питания в независимости от количества гостей, в каждом домике можно разместить до 5 человек):"
+          },
+          {
+            "kind": "price",
+            "text": "Горящее предложение🔥"
+          },
+          {
+            "kind": "price",
+            "text": "При бронировании домика от 5 дней в период с 1 по 10 июля или с 22 июля по 5 августа стоимость 4000₽"
           },
           {
             "kind": "price",
@@ -22483,7 +22420,7 @@
             "text": "С животными - депозит 5000₽, при выселении возвращается, если имущество отеля не повреждено."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/bungalo-glemping-3623/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/bungalo-glemping-3623/index.html",
         "filters": {
           "city": [
             "tsandripsh"
@@ -25749,11 +25686,11 @@
           },
           {
             "kind": "price",
-            "text": "6000₽/сутки - август"
+            "text": "5000₽/сутки - август"
           },
           {
             "kind": "price",
-            "text": "4500₽/сутки - сентябрь"
+            "text": "4000₽/сутки - сентябрь"
           },
           {
             "kind": "price",
@@ -26178,6 +26115,10 @@
           },
           {
             "kind": "price",
+            "text": "Акция на проживание в период с 3 по 12 июля 5500₽🔥"
+          },
+          {
+            "kind": "price",
             "text": "3500₽/сутки - май"
           },
           {
@@ -26201,7 +26142,7 @@
             "text": "5000₽/сутки - сентябрь с 15го"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/limari-domiki-3496/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/limari-domiki-3496/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -34555,22 +34496,18 @@
           },
           {
             "kind": "price",
-            "text": "4000₽/сутки - июнь"
+            "text": "4000₽/сутки - июнь, июль, август"
           },
           {
             "kind": "price",
-            "text": "5000₽/сутки - июль / август"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽/сутки - сентябрь"
+            "text": "3000₽/сутки - сентябрь"
           },
           {
             "kind": "price",
             "text": "3000₽/сутки - с декабря по май"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/mon-amur-kvartira-1k-gagra-1062/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/kvartira/mon-amur-kvartira-1k-gagra-1062/index.html",
         "filters": {
           "city": [
             "gagra"
@@ -36001,18 +35938,14 @@
           },
           {
             "kind": "price",
-            "text": "10000₽ - июль"
+            "text": "10000₽ - июль, август"
           },
           {
             "kind": "price",
-            "text": "11000₽ - август"
-          },
-          {
-            "kind": "price",
-            "text": "8000₽ - сентябрь"
+            "text": "7000₽ - сентябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/kvartira/tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -36219,26 +36152,18 @@
         "prices": [
           {
             "kind": "price",
-            "text": "6000₽ - май"
-          },
-          {
-            "kind": "price",
             "text": "8000₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "13000₽ - июль"
+            "text": "13000₽ - июль, август"
           },
           {
             "kind": "price",
-            "text": "15000₽ - август"
-          },
-          {
-            "kind": "price",
-            "text": "10000₽ - сентябрь"
+            "text": "8000₽ - сентябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -47613,26 +47538,38 @@
         "prices": [
           {
             "kind": "price",
+            "text": "Акция🔥"
+          },
+          {
+            "kind": "price",
+            "text": "При бронировании номера от 8 дней в период с 1 по 15 июля двухместный номер - 4500₽"
+          },
+          {
+            "kind": "price",
+            "text": "трехместный номер - 5500₽"
+          },
+          {
+            "kind": "price",
             "text": "с 1 июня по 1 октября"
           },
           {
             "kind": "price",
-            "text": "4000₽/сутки - одноместный номер"
+            "text": "4000₽ - одноместный номер"
           },
           {
             "kind": "price",
-            "text": "5000₽/сутки - двухместный номер"
+            "text": "5000₽ - двухместный номер"
           },
           {
             "kind": "price",
-            "text": "6000₽/сутки - трехместный номер"
+            "text": "6000₽ - трехместный номер"
           },
           {
             "kind": "note",
             "text": "Дополнительное место - раскладная кровать 1000р."
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/antaa-gostinitsa-u-sosnovogo-plyazha-2899/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/antaa-gostinitsa-u-sosnovogo-plyazha-2899/index.html",
         "filters": {
           "city": [
             "ldzaa"
@@ -47841,6 +47778,14 @@
         "prices": [
           {
             "kind": "price",
+            "text": "Акция🔥"
+          },
+          {
+            "kind": "price",
+            "text": "До 12 июля домик 3500₽"
+          },
+          {
+            "kind": "price",
             "text": "2500₽/сутки - май"
           },
           {
@@ -47864,7 +47809,7 @@
             "text": "2500₽/сутки - октябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/mimi-domiki-s-vidom-na-gory-2869/index.html",
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/mimi-domiki-s-vidom-na-gory-2869/index.html",
         "filters": {
           "distance": [
             "up-to-5"
@@ -51234,6 +51179,14 @@
         "prices": [
           {
             "kind": "price",
+            "text": "Акция🔥"
+          },
+          {
+            "kind": "price",
+            "text": "При проживании до 10 июля домик 3500₽"
+          },
+          {
+            "kind": "price",
             "text": "1500₽/сутки - май"
           },
           {
@@ -52256,7 +52209,7 @@
             "label": "✔️НОМЕРА:",
             "lines": [
               "Три стандартных номера на первом этаже площадью 24 кв.м.",
-              "Двуспальная и односпальная кровати, шкаф, стулья, прикроватные тумбочки, стол, вешалка, зеркало. Санузел с душем.",
+              "Две двуспальные кровати, шкаф, стулья, прикроватные тумбочки, стол, вешалка, зеркало. Санузел с душем.",
               "Оснащение: сплит-система, Wi-Fi, телевизор, спутниковое ТВ, интернет, холодильник, фен."
             ]
           },
@@ -53004,14 +52957,6 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция 🔥"
-          },
-          {
-            "kind": "price",
-            "text": "Скидка 30% при бронировании номера с 1 по 30 июня 2026."
-          },
-          {
-            "kind": "price",
             "text": "2-х местный стандарт с балконом 4000₽"
           },
           {
@@ -53033,6 +52978,10 @@
           {
             "kind": "price",
             "text": "4-х местный люкс с балконом 5500₽"
+          },
+          {
+            "kind": "price",
+            "text": "5-тиместный семейный с балконом 6000₽"
           },
           {
             "kind": "price",
@@ -53060,6 +53009,10 @@
           },
           {
             "kind": "price",
+            "text": "5-тиместный семейный с балконом 6500₽"
+          },
+          {
+            "kind": "price",
             "text": "2-х местный стандарт с балконом 5000₽"
           },
           {
@@ -53084,6 +53037,10 @@
           },
           {
             "kind": "price",
+            "text": "5-тиместный семейный с балконом 7500₽"
+          },
+          {
+            "kind": "price",
             "text": "2-х местный стандарт с балконом 4000₽"
           },
           {
@@ -53105,6 +53062,10 @@
           {
             "kind": "price",
             "text": "4-х местный люкс с балконом 5500₽"
+          },
+          {
+            "kind": "price",
+            "text": "5-тиместный семейный с балконом 6000₽"
           }
         ],
         "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/avrora-inn-novyy-otel-v-tsentre-goroda-2641/index.html",
@@ -54778,10 +54739,6 @@
           {
             "kind": "price",
             "text": "8000 ₽/сутки - октябрь"
-          },
-          {
-            "kind": "price",
-            "text": "Пятое доп. место в полулюксе комфорт - 1000 ₽/сутки."
           }
         ],
         "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/lazurit-novyy-otel-s-zavtrakami-2583/index.html",
@@ -59660,6 +59617,240 @@
           "details": {
             "telegram_post": "abhazbooking/4934",
             "telegram_url": "https://t.me/abhazbooking/4934"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 4937,
+      "source_topic_id": null,
+      "slug": "briz-domiki-na-beregu-4937",
+      "title": "\"БРИЗ\" домики на берегу",
+      "summary": "Лдзаа. 0 минут до пляжа, размещение до 4 человек.",
+      "excerpt": "Новые домики у самого моря в популярном районе. Все свежее и современное",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, ул. Рыбзаводская, 43.174132, 40.392175",
+      "distance_text": "0 минут до пляжа",
+      "beach_text": "0 минут до пляжа",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/briz-domiki-na-beregu-4937/",
+      "telegram_url": "https://t.me/abhazbooking/4937",
+      "published_at": "2026-07-06",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/briz-domiki-na-beregu-4937.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 0 минут до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "",
+            "lines": [
+              "Новые домики у самого моря в популярном районе. Все свежее и современное."
+            ]
+          },
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Всего 6 домиков, размещение до 4 человек.",
+              "В домиках двуспальная кровать и две односпальные кровати, полочки, реле для одежды, тумба под тв. Сан узел с душем.",
+              "Оснащение: Wi-Fi. кондиционер, телевизор, мини-холодильник, чайник, фен, утюг, гладильная доска.",
+              "Веранда у каждого домика со стульями и видом на море."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "На территории пляж, мангал."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Рядом остановка, кафе, столовая, Гастробар 151, экскурсионные точки, сувенирные, большая детская площадка, прачечная, где можно постирать вещи.",
+              "Пляж песок/мелкая галька. Чуть в отдалении пляж платный с бунгало и напитками прямо в руки. Водные развлечения, сап-борды."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с животными возможно.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "9000₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - с 1 по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "АКЦИЯ на всё лето!🔥"
+          },
+          {
+            "kind": "price",
+            "text": "При бронировании домика от 7 дней + 1 день в подарок🔥"
+          }
+        ],
+        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/briz-domiki-na-beregu-4937/index.html",
+        "filters": {
+          "distance": [
+            "beachfront",
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [
+            "pitsunda-bay-mixed"
+          ],
+          "room": [
+            "sea-view",
+            "terrace",
+            "tv",
+            "beachfront-room"
+          ],
+          "stay": [
+            "cottages",
+            "pets"
+          ]
+        }
+      },
+      "id": 1171,
+      "media": [
+        {
+          "id": 1171001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/briz-domiki-na-beregu-4937.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/briz-domiki-na-beregu-4937.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/briz-domiki-na-beregu-4937.jpg",
+          "details": {}
+        },
+        {
+          "id": 1171002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/briz-domiki-na-beregu-4937/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1171003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/briz-domiki-na-beregu-4937/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1171004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/briz-domiki-na-beregu-4937/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1171005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/briz-domiki-na-beregu-4937/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1171006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/briz-domiki-na-beregu-4937/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1171007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/briz-domiki-na-beregu-4937/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1171008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/briz-domiki-na-beregu-4937/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1171009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/briz-domiki-na-beregu-4937/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/briz-domiki-na-beregu-4937/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1171010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/briz-domiki-na-beregu-4937/video-01-1800k.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/briz-domiki-na-beregu-4937/video-01-1800k.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/briz-domiki-na-beregu-4937/video-01-1800k.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/4945",
+            "telegram_url": "https://t.me/abhazbooking/4945"
           }
         }
       ]
