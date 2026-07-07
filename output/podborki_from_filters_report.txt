@@ -12,7 +12,7 @@
 - alahadzy-vse-varianty: 15
 - varianty-do-5-tr-ekonom: 82
 - varianty-5-12-tr-srednyak: 92
-- balkony: 72
+- balkony: 73
 - veranda: 64
 - televizor-v-nomere: 159
 - dvuhkomnatnye-i-bolee: 71
