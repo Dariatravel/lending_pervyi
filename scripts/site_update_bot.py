@@ -592,6 +592,8 @@ def extract_actionable_log_lines(log_text: str, *, limit: int = 4) -> str:
             continue
         if line.startswith("+ "):
             continue
+        if "FutureWarning:" in line or line.startswith("warnings.warn("):
+            continue
         if line.startswith("[auto-sync]") and not line.endswith(": failed"):
             continue
         lines.append(line)
@@ -627,7 +629,7 @@ def explain_failure_from_log(label: str, log_text: str, rel_log: Path | str, ret
             f"- {label}: Telegram-сессия больше не авторизована. "
             f"Нужно заново войти в Telegram для tg_session. Лог: {rel_log}"
         )
-    if "database is locked" in log_text:
+    if "database is locked" in log_text or "Не удалось получить lock" in log_text or "Telegram-сессия занята" in log_text:
         return (
             f"- {label}: Telegram-сессия занята другим процессом. "
             f"Проверка повторится позже; сайт не сломан. Лог: {rel_log}"
