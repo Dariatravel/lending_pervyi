@@ -213,6 +213,7 @@ async def fetch_comment_messages(client: Any, target: Target) -> dict[int, Any]:
     messages: dict[int, Any] = {}
     if target.kind == "hotel":
         offset_id = 0
+        seen_page_ids: set[int] = set()
         while True:
             result = await client(
                 GetRepliesRequest(
@@ -230,11 +231,15 @@ async def fetch_comment_messages(client: Any, target: Target) -> dict[int, Any]:
             batch = list(getattr(result, "messages", []) or [])
             if not batch:
                 break
+            batch_ids = {int(message.id) for message in batch if int(getattr(message, "id", 0) or 0)}
+            if batch_ids and batch_ids.issubset(seen_page_ids):
+                break
+            seen_page_ids.update(batch_ids)
             for message in batch:
                 messages[int(message.id)] = message
             if len(batch) < 100:
                 break
-            offset_id = batch[-1].id
+            offset_id = min(batch_ids) if batch_ids else int(batch[-1].id)
             await asyncio.sleep(0.1)
     else:
         topic_id = target.topic_id or target.message_id
@@ -261,7 +266,19 @@ async def download_block_media(
         seed = messages_by_id.get(message_id)
         if not seed:
             continue
-        for message in await expand_group(client, entity, seed):
+        grouped_id = getattr(seed, "grouped_id", None)
+        if grouped_id:
+            group_messages = sorted(
+                [
+                    message
+                    for message in messages_by_id.values()
+                    if getattr(message, "grouped_id", None) == grouped_id and getattr(message, "media", None)
+                ],
+                key=lambda row: int(row.id),
+            )
+        else:
+            group_messages = []
+        for message in group_messages or await expand_group(client, entity, seed):
             mid = int(message.id)
             if mid in seen_ids:
                 continue
