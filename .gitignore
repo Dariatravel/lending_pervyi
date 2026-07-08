@@ -31,6 +31,10 @@ tools/tg_vouchers_auth.py
 # Telegram site update bot secrets
 .env.site-update-bot
 
+# local AI/operator notes, not for GitHub Pages
+CODEX_TASK.md
+CURSOR_TASK.md
+
 # Telegram site update bot runtime state/logs
 output/site-update-bot/
 output/auto-sync/*/
