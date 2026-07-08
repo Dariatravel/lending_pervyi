@@ -12,6 +12,7 @@ REVIEWS_DIR = ROOT / "media" / "reviews"
 PAGES_FILE = ROOT / "output" / "current_pages.json"
 MANIFEST_FILE = REVIEWS_DIR / "manifest.json"
 UNMATCHED_DIR = REVIEWS_DIR / "_unmatched"
+YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 
 CYR_TO_LAT = {
     "а": "a",
@@ -347,7 +348,7 @@ def organize_reviews() -> dict:
         files = sorted([item for item in folder.iterdir() if item.is_file()])
         if not files:
             continue
-        manifest[folder.name] = [f"/media/reviews/{folder.name}/{item.name}" for item in files]
+        manifest[folder.name] = [f"{YANDEX_MEDIA_BASE}/reviews/{folder.name}/{item.name}" for item in files]
 
     MANIFEST_FILE.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
