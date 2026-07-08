@@ -236,23 +236,16 @@ def pick_catalog_row(headline_line: str, by_qp: dict[str, list[dict[str, Any]]])
 def local_card_image(row: dict[str, Any]) -> str:
     slug = row["slug"]
     kind = row["kind"]
+    remote = str(row.get("img_remote") or "").strip()
+    if remote.startswith("https://storage.yandexcloud.net/"):
+        return remote
+    if remote.startswith("/media/"):
+        return YANDEX_MEDIA_BASE + remote.removeprefix("/media")
+    if remote.startswith("http://") or remote.startswith("https://"):
+        return remote
     if kind == "hotels":
-        p = REPO / "media" / "cards" / f"{slug}.jpg"
-        if p.is_file():
-            return f"../../media/cards/{slug}.jpg"
-    else:
-        p = REPO / "media" / "kvartira-cards" / f"{slug}-cover.jpg"
-        if p.is_file():
-            return f"../../media/kvartira-cards/{slug}-cover.jpg"
-    # fallback: как на главной (абсолютный путь от корня сайта)
-    if row.get("img_remote"):
-        u = row["img_remote"]
-        if u.startswith("/"):
-            return f"..{u}"
-        return u
-    if kind == "hotels":
-        return f"../../media/cards/{slug}.jpg"
-    return f"../../media/kvartira-cards/{slug}-cover.jpg"
+        return f"{YANDEX_MEDIA_BASE}/cards/{slug}.jpg"
+    return f"{YANDEX_MEDIA_BASE}/kvartira-cards/{slug}-cover.jpg"
 
 
 def is_hotel_headline_line(line: str) -> bool:

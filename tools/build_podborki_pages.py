@@ -21,6 +21,8 @@ PODBORKI_ROOT = Path("/Users/darya_botova/Documents/ПОДБОРКИ")
 OUT_DIR = REPO / "podborki"
 CURRENT_PAGES = REPO / "output" / "current_pages.json"
 KVARTIRA_CARDS = REPO / "kvartira_cards.json"
+ASSET_VERSION = "202607081500"
+YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 
 from podborki_hotel_match import (
     guess_podborki_href_from_title,
@@ -253,7 +255,7 @@ def resolve_item_href(
 
 
 def item_card_cover(href: str | None, kv: dict[int, dict]) -> str:
-    """Относительный URL обложки для страницы podborki/.../index.html (два уровня вверх до корня)."""
+    """Public card cover URL for generated podborki pages."""
     if not href:
         return ""
     h = href.strip().rstrip("/")
@@ -262,15 +264,19 @@ def item_card_cover(href: str | None, kv: dict[int, dict]) -> str:
         return ""
     kind, slug = parts[1], parts[2]
     if kind == "hotels":
-        return f"../../media/cards/{slug}.jpg"
+        return f"{YANDEX_MEDIA_BASE}/cards/{slug}.jpg"
     if kind == "kvartira":
         for row in kv.values():
             if row.get("slug") == slug:
                 img = (row.get("image") or "").strip()
-                if img.startswith("/"):
-                    return "../.." + img
+                if img.startswith("https://storage.yandexcloud.net/"):
+                    return img
+                if img.startswith("/media/"):
+                    return YANDEX_MEDIA_BASE + img.removeprefix("/media")
+                if img.startswith("http://") or img.startswith("https://"):
+                    return img
                 break
-        return f"../../media/kvartira-cards/{slug}-cover.jpg"
+        return f"{YANDEX_MEDIA_BASE}/kvartira-cards/{slug}-cover.jpg"
     return ""
 
 
@@ -359,8 +365,8 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="../../media/branding/favicon-abhazbereg.png" />
-  <link rel="stylesheet" href="../../styles.css?v=202607081500" />
+  <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-abhazbereg.png" />
+  <link rel="stylesheet" href="../../styles.css?v={ASSET_VERSION}" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -370,7 +376,7 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
 
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="../../media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="{YANDEX_MEDIA_BASE}/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy">
           <strong>АБХАЗБЕРЕГ - жилье напрямую</strong>
         </span>
@@ -394,8 +400,8 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
 {body_blocks}
     </section>
   </main>
-  <script src="../../image-lite.js?v=202607081500" defer></script>
-  <script src="../../scripts.js?v=202607081500" defer></script>
+  <script src="../../image-lite.js?v={ASSET_VERSION}" defer></script>
+  <script src="../../scripts.js?v={ASSET_VERSION}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -457,8 +463,8 @@ def main() -> None:
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="../media/branding/favicon-abhazbereg.png" />
-  <link rel="stylesheet" href="../styles.css?v=202607081500" />
+  <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-abhazbereg.png" />
+  <link rel="stylesheet" href="../styles.css?v={ASSET_VERSION}" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -467,7 +473,7 @@ def main() -> None:
     <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="../media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="{YANDEX_MEDIA_BASE}/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy"><strong>АБХАЗБЕРЕГ - жилье напрямую</strong></span>
       </a>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
@@ -488,8 +494,8 @@ def main() -> None:
       </ul>
     </section>
   </main>
-  <script src="../image-lite.js?v=202607081500" defer></script>
-  <script src="../scripts.js?v=202607081500" defer></script>
+  <script src="../image-lite.js?v={ASSET_VERSION}" defer></script>
+  <script src="../scripts.js?v={ASSET_VERSION}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
