@@ -9,7 +9,7 @@ const APP_SHELL_URLS = [
   "/styles.css?v=202607081500",
   "/image-lite.js?v=202607081500",
   "/scripts.js?v=202607081500",
-  "/pwa.js?v=202606301525",
+  "/pwa.js?v=202607081500",
   "/app.webmanifest",
   "/app-icons/icon-192.png",
   "/app-icons/icon-512.png",
