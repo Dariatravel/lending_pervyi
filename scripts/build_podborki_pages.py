@@ -34,6 +34,8 @@ META_JSON = PODBORI_TXT / "_collection_meta.json"
 INDEX_HTML = REPO / "index.html"
 KVARTIRA_INDEX = REPO / "kvartira" / "index.html"
 CSS_VERSION = "202607081500"
+JS_VERSION = "202607081500"
+YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 # Публичный URL раздела подборок (канон: кирилический .рф)
 CANONICAL_ORIGIN = "https://абхазберег.рф"
 
@@ -504,7 +506,7 @@ def render_collection_page(
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="../../media/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../../styles.css?v={CSS_VERSION}" />
 </head>
 <body>
@@ -515,7 +517,7 @@ def render_collection_page(
 
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="../../media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="{YANDEX_MEDIA_BASE}/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy">
           <strong>АБХАЗБЕРЕГ - жилье напрямую</strong>
         </span>
@@ -538,7 +540,8 @@ def render_collection_page(
 {body_html}
     </section>
   </main>
-  <script src="../../scripts.js?v=202607081500" defer></script>
+  <script src="../../image-lite.js?v={JS_VERSION}" defer></script>
+  <script src="../../scripts.js?v={JS_VERSION}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
