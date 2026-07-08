@@ -398,11 +398,11 @@ PODBORKI_INDEX_VISUALS: dict[str, tuple[str, str]] = {
 # Ручная обложка на индексе подборок (если авто-выбор неудачен)
 PODBORKI_INDEX_COVER_OVERRIDES: dict[str, tuple[str, str]] = {
     "gudauta-vse-varianty": (
-        "/media/cards/full-haus-domiki-s-basseynom-4092.jpg",
+        f"{CDN_MEDIA_BASE}/cards/full-haus-domiki-s-basseynom-4092.jpg",
         '"ФУЛЛ ХАУС" домики с бассейном',
     ),
     "gory-oteli-v-gorah": (
-        "/media/cards/bungalo-glemping-3623.jpg",
+        f"{CDN_MEDIA_BASE}/cards/bungalo-glemping-3623.jpg",
         '"БУНГАЛО" глэмпинг',
     ),
 }

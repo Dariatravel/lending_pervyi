@@ -948,7 +948,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         ),
         '',
     )
-    og_image = absolute_site_url(image_src_for_html(first_photo_url or '/media/branding/site-cover.jpg'))
+    og_image = absolute_site_url(image_src_for_html(first_photo_url or f'{CDN_MEDIA_BASE}/branding/site-cover.jpg'))
     schema_type = "LodgingBusiness" if source_kind == "kvartira" else "Hotel"
     listing_schema_name = (normalize_title(parsed.get("title", "") or "").strip() or title)
     ld_blob: dict[str, Any] = {
