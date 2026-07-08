@@ -1,5 +1,8 @@
 const APP_SHELL_CACHE = "abhazbereg-app-shell-v202607081500";
 const RUNTIME_CACHE = "abhazbereg-runtime-v202607081500";
+const YANDEX_MEDIA_ORIGIN = "https://storage.yandexcloud.net";
+const YANDEX_MEDIA_PATH_PREFIX = "/abhazbereg-media/media/";
+const MAX_RUNTIME_MEDIA_ENTRIES = 80;
 
 const APP_SHELL_URLS = [
   "/",
@@ -55,11 +58,33 @@ function isStaticAsset(requestUrl) {
   return /\.(?:css|js|webmanifest|png|jpg|jpeg|webp|svg|ico)$/i.test(requestUrl.pathname);
 }
 
+function isYandexMediaRequest(requestUrl) {
+  return requestUrl.origin === YANDEX_MEDIA_ORIGIN && requestUrl.pathname.startsWith(YANDEX_MEDIA_PATH_PREFIX);
+}
+
+function canCacheResponse(response) {
+  return response && (response.ok || response.type === "opaque");
+}
+
+async function trimRuntimeCache() {
+  const cache = await caches.open(RUNTIME_CACHE);
+  const keys = (await cache.keys()).filter((request) => {
+    try {
+      return isYandexMediaRequest(new URL(request.url));
+    } catch {
+      return false;
+    }
+  });
+  if (keys.length <= MAX_RUNTIME_MEDIA_ENTRIES) return;
+
+  await Promise.all(keys.slice(0, keys.length - MAX_RUNTIME_MEDIA_ENTRIES).map((request) => cache.delete(request)));
+}
+
 async function networkFirst(request) {
   const cache = await caches.open(RUNTIME_CACHE);
   try {
     const response = await fetch(request);
-    if (response && response.ok) {
+    if (canCacheResponse(response)) {
       cache.put(request, response.clone()).catch(() => undefined);
     }
     return response;
@@ -70,15 +95,21 @@ async function networkFirst(request) {
   }
 }
 
-async function cacheFirst(request) {
+async function cacheFirst(request, cacheName = APP_SHELL_CACHE) {
   const cached = await caches.match(request);
   if (cached) return cached;
 
   const response = await fetch(request);
-  if (response && response.ok) {
-    const cache = await caches.open(APP_SHELL_CACHE);
+  if (canCacheResponse(response)) {
+    const cache = await caches.open(cacheName);
     cache.put(request, response.clone()).catch(() => undefined);
   }
+  return response;
+}
+
+async function mediaCacheFirst(request) {
+  const response = await cacheFirst(request, RUNTIME_CACHE);
+  trimRuntimeCache().catch(() => undefined);
   return response;
 }
 
@@ -87,6 +118,11 @@ self.addEventListener("fetch", (event) => {
   if (request.method !== "GET") return;
 
   const requestUrl = new URL(request.url);
+  if (isYandexMediaRequest(requestUrl)) {
+    event.respondWith(mediaCacheFirst(request));
+    return;
+  }
+
   if (!isSameOrigin(requestUrl)) return;
 
   if (isHtmlRequest(request) || isJsonRequest(requestUrl)) {
