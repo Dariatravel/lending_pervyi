@@ -30,6 +30,8 @@ tools/tg_vouchers_auth.py
 
 # Telegram site update bot secrets
 .env.site-update-bot
+.env*.example
+**/.env*.example
 
 # local AI/operator notes, not for GitHub Pages
 CODEX_TASK.md
