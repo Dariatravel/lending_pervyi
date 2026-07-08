@@ -416,11 +416,25 @@ def robots_allows_index(soup: BeautifulSoup) -> bool:
 
 
 def rebuild_sitemap() -> int:
+    excluded_roots = {
+        ".git",
+        ".venv",
+        ".venv-banner",
+        "app-icons",
+        "collab_bot",
+        "config",
+        "media",
+        "node_modules",
+        "output",
+        "scripts",
+        "supabase",
+        "tools",
+    }
     urls: list[tuple[str, Path]] = []
     seen: set[str] = set()
     for path in sorted(ROOT.rglob("index.html")):
         rel = path.relative_to(ROOT)
-        if rel.parts[0] in {"output", "node_modules", ".git"}:
+        if not rel.parts or rel.parts[0] in excluded_roots:
             continue
         if rel.parts[0].startswith("concept"):
             continue
