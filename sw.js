@@ -11,6 +11,7 @@ const APP_SHELL_URLS = [
   "/scripts.js?v=202607081500",
   "/pwa.js?v=202607081500",
   "/app.webmanifest",
+  "/404.html",
   "/app-icons/icon-192.png",
   "/app-icons/icon-512.png",
   "/app-icons/icon.svg",
