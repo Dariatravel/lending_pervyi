@@ -7,6 +7,8 @@ import html
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+ASSET_VERSION = '202607081500'
+YANDEX_MEDIA_BASE = 'https://storage.yandexcloud.net/abhazbereg-media/media'
 
 
 def telegram_chunks_to_ps(raw: str) -> str:
@@ -106,13 +108,13 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
   <meta property="og:title" content="{og_title}" />
   <meta property="og:description" content="{og_desc}" />
   <meta property="og:url" content="https://абхазберег.рф/blog/{slug}/" />
-  <meta property="og:image" content="https://абхазберег.рф/media/blog/telegram-{tid}.jpg" />
+  <meta property="og:image" content="{blog_image_url}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="../../media/branding/favicon-abhazbereg.png" />
-  <link rel="stylesheet" href="../../styles.css?v=202607081500" />
+  <link rel="icon" type="image/png" href="{yandex_media_base}/branding/favicon-abhazbereg.png" />
+  <link rel="stylesheet" href="../../styles.css?v={asset_version}" />
   <script type="application/ld+json">{json_ld}</script>
 </head>
 <body>
@@ -123,7 +125,7 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
 
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="../../media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ - жилье напрямую — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="{yandex_media_base}/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ - жилье напрямую — на главную" decoding="async" />
         <span class="site-concept__brand-copy"><strong>АБХАЗБЕРЕГ - жилье напрямую</strong></span>
       </a>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
@@ -145,7 +147,7 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
       <div class="blog-article__layout">
         <div class="blog-article__main">
           <div class="blog-article__content blog-article__content--telegram">
-        <img class="blog-article__cover-inline" src="/media/blog/telegram-{tid}.jpg" alt="{cover_alt_esc}" loading="eager" />
+        <img class="blog-article__cover-inline" src="{blog_image_url}" alt="{cover_alt_esc}" loading="eager" />
 {body_ps}
 
         <p class="blog-source">Источник: <a href="https://t.me/abhazbooking/{tid}" target="_blank" rel="noopener noreferrer">пост Телеграм @abhazbooking/{tid}</a>.</p>
@@ -241,7 +243,8 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
   </section>
 
 </main>
-  <script src="../../scripts.js?v=202607081500" defer></script>
+  <script src="../../image-lite.js?v={asset_version}" defer></script>
+  <script src="../../scripts.js?v={asset_version}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -261,6 +264,7 @@ def main() -> None:
         meta_desc = art['meta_desc'][:300]
         og_desc = meta_desc[:180]
         tags_html = ''.join(f'<span>{html.escape(t)}</span>' for t in art['tags'])
+        blog_image_url = f'{YANDEX_MEDIA_BASE}/blog/telegram-{tid}.jpg'
         json_ld = json_lib.dumps(
             {
                 '@context': 'https://schema.org',
@@ -269,7 +273,7 @@ def main() -> None:
                 'datePublished': iso_date,
                 'dateModified': iso_date,
                 'author': {'@type': 'Person', 'name': 'Дарья'},
-                'image': [f'https://абхазберег.рф/media/blog/telegram-{tid}.jpg'],
+                'image': [blog_image_url],
                 'mainEntityOfPage': f'https://абхазберег.рф/blog/{slug}/',
             },
             ensure_ascii=False,
@@ -282,6 +286,9 @@ def main() -> None:
             slug=slug,
             og_title=html.escape(title),
             og_desc=html.escape(og_desc),
+            blog_image_url=blog_image_url,
+            yandex_media_base=YANDEX_MEDIA_BASE,
+            asset_version=ASSET_VERSION,
             tid=tid,
             json_ld=json_ld,
             breadcrumb_esc=html.escape(art['breadcrumb']),
