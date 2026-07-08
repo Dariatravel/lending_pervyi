@@ -38,6 +38,7 @@ CODEX_TASK.md
 CURSOR_TASK.md
 
 # Telegram site update bot runtime state/logs
+output/
 output/site-update-bot/
 output/auto-sync/*/
 output/telegram-watch-state.json

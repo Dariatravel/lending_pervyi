@@ -1,5 +1,0 @@
-Apply Telegram supplemental comments
-targets=1 ok=1
-
-[OK] grin-villadzh-domiki-3633: updated (1 blocks, 5 files)
-

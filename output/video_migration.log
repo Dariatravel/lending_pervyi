@@ -1,5 +1,0 @@
-/Users/darya_botova/Documents/New project/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
-  warnings.warn(
-К миграции видео: 160
-[1/160] fail media#27488: upload failed for all candidates
-[2/160] ok media#27498 sabina-domiki-u-morya-2744 -> video-27498-source.mp4 (21.9 MB)

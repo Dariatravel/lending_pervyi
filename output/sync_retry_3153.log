@@ -1,5 +1,0 @@
-Найдено объектов: hotels=1, kvartira=0
-[info] Включен точечный режим синка: удаление неактивных объектов отключено.
-[warn] Не удалось скачать media msg=3155 -> photo-03.jpg: Request was unsuccessful 6 time(s)
-Обновлены отели: 1/1
-{"hotels": 1, "kvartira": 0, "failed_hotels": 0, "failed_kvartira": 0, "deleted_hotels": 0, "deleted_kvartira": 0}

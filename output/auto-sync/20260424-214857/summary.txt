@@ -1,9 +1,0 @@
-run_id: 20260424-214857
-status: ok
-
-- sync_catalog_from_telegram: dry-run (rc=0)
-  log: /Users/darya_botova/Documents/New project/output/auto-sync/20260424-214857/01-sync.log
-- apply_all_filters_from_sheet: dry-run (rc=0)
-  log: /Users/darya_botova/Documents/New project/output/auto-sync/20260424-214857/02-filters.log
-- verify_object_media: dry-run (rc=0)
-  log: /Users/darya_botova/Documents/New project/output/auto-sync/20260424-214857/03-verify.log
