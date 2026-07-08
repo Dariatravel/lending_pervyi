@@ -753,12 +753,11 @@ def render_prices_html(prices: Any) -> str:
         return ''
 
     mod = _apply_design_mod()
-    fmt = mod.format_price_line_to_html
 
     def li_html(entry: dict[str, str]) -> str:
         text = entry["text"]
         cls = mod.price_season_li_class_attr(text)
-        return f'            <li{cls}>{fmt(text)}</li>'
+        return f'            <li{cls}>{html.escape(text)}</li>'
 
     def emit_group(heading: str | None, lines: list[str]) -> str:
         if not lines:

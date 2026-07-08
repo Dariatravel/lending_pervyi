@@ -416,6 +416,10 @@ def parse_post(raw_text: str):
         )
         starts_check = bool(re.match(r"^[^\wА-Яа-яЁё]*[✔✅☑]\s*.+", simple))
         is_label = starts_check or (simple.endswith(":") and caps_only)
+        current_is_price_section = "ЦЕН" in current_label.upper() or "СТОИМОСТ" in current_label.upper()
+        if current_is_price_section and is_label and not starts_check:
+            current_lines.append(simple)
+            continue
         if is_label:
             flush_section()
             current_label = simple
@@ -677,7 +681,6 @@ def render_prices(prices):
     if not prices:
         return ""
     items: list[str] = []
-    fmt = _format_price_line_html
     for entry in prices:
         if isinstance(entry, dict):
             kind = str(entry.get("kind") or "price")
@@ -685,11 +688,11 @@ def render_prices(prices):
             if not text:
                 continue
             if kind == "heading":
-                items.append(f"            <li><strong>{html.escape(text)}</strong></li>")
+                items.append(f"            <li>{html.escape(text)}</li>")
             else:
-                items.append(f"            <li>{fmt(text)}</li>")
+                items.append(f"            <li>{html.escape(text)}</li>")
         else:
-            items.append(f"            <li>{fmt(str(entry))}</li>")
+            items.append(f"            <li>{html.escape(str(entry))}</li>")
     ul_body = "\n".join(items)
     return f"""      <section class="section">
         <article class="card price-card">
