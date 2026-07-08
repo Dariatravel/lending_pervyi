@@ -6,6 +6,7 @@ __pycache__/
 
 # Supabase service role (never commit)
 .env.supabase.local
+supabase/
 
 # Google Sheets service account (never commit)
 google-service-account.json
