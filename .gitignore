@@ -37,6 +37,7 @@ tools/tg_vouchers_auth.py
 # local AI/operator notes, not for GitHub Pages
 CODEX_TASK.md
 CURSOR_TASK.md
+TASKS_FOR_CODEX_SITE_HEALTH.txt
 
 # Telegram site update bot runtime state/logs
 output/

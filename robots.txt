@@ -9,6 +9,9 @@ Disallow: /tools/
 Disallow: /supabase/
 Disallow: /output/
 Disallow: /collab_bot/
+Disallow: /podbori_txt/
+Disallow: /TASKS_FOR_CODEX_SITE_HEALTH.txt
+Disallow: /requirements-site-update-bot.txt
 Disallow: /*.py$
 Disallow: /*.md$
 Allow: /
