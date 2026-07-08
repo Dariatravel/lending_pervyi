@@ -10,6 +10,7 @@ Disallow: /supabase/
 Disallow: /output/
 Disallow: /collab_bot/
 Disallow: /*.py$
+Disallow: /*.md$
 Allow: /
 
 Sitemap: https://абхазберег.рф/sitemap.xml
