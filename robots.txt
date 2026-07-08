@@ -4,6 +4,12 @@ Disallow: /CURSOR_TASK.md
 Disallow: /concept-*.html
 Disallow: /.env*
 Disallow: /*/.env*
+Disallow: /scripts/
+Disallow: /tools/
+Disallow: /supabase/
+Disallow: /output/
+Disallow: /collab_bot/
+Disallow: /*.py$
 Allow: /
 
 Sitemap: https://абхазберег.рф/sitemap.xml
