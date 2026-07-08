@@ -12,11 +12,9 @@
   <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="shortcut icon" type="image/png"/>
   <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon"/>
   <link rel="stylesheet" href="../styles.css?v=202607081500" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <script>
     window.__ABHAZBEREG_MAPS_CONFIG__ = window.__ABHAZBEREG_MAPS_CONFIG__ || {};
   </script>
-  <script src="../config/maps-config.js"></script>
 <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
 </head>
 <body class="objects-map-page">
@@ -28,10 +26,15 @@
   <div id="objects-map" role="region" aria-label="Интерактивная карта объектов"></div>
   <p class="objects-map-page__status" hidden id="objects-map-status"></p>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script defer src="../pwa.js?v=202607081500"></script>
   <script>
     (function () {
+      var LEAFLET_CSS_URL = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+      var LEAFLET_JS_URL = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+      var LEAFLET_CSS_INTEGRITY = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=";
+      var LEAFLET_JS_INTEGRITY = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
+      var leafletLoadPromise = null;
+
       var CITIES = {
         ldzaa: { label: "Лдзаа", lon: 40.32, lat: 43.05, z: 13 },
         pitsunda: { label: "Пицунда", lon: 40.34, lat: 43.16, z: 13 },
@@ -120,6 +123,40 @@
         statusNode.hidden = !text;
       }
 
+      function ensureLeafletAssets() {
+        if (window.L) return Promise.resolve();
+        if (leafletLoadPromise) return leafletLoadPromise;
+
+        leafletLoadPromise = new Promise(function (resolve, reject) {
+          if (!document.querySelector('link[data-leaflet-css="true"]')) {
+            var css = document.createElement("link");
+            css.rel = "stylesheet";
+            css.href = LEAFLET_CSS_URL;
+            css.integrity = LEAFLET_CSS_INTEGRITY;
+            css.crossOrigin = "";
+            css.dataset.leafletCss = "true";
+            document.head.appendChild(css);
+          }
+
+          var script = document.createElement("script");
+          script.src = LEAFLET_JS_URL;
+          script.integrity = LEAFLET_JS_INTEGRITY;
+          script.crossOrigin = "";
+          script.async = true;
+          script.onload = function () {
+            if (window.L) {
+              resolve();
+            } else {
+              reject(new Error("leaflet-unavailable"));
+            }
+          };
+          script.onerror = reject;
+          document.head.appendChild(script);
+        });
+
+        return leafletLoadPromise;
+      }
+
       function scheduleMapResize(map) {
         if (!map) return;
         window.requestAnimationFrame(function () {
@@ -197,6 +234,16 @@
         });
       }
 
+      function initLeafletFallback(points) {
+        ensureLeafletAssets()
+          .then(function () {
+            initLeafletMap(points);
+          })
+          .catch(function () {
+            showStatus("Не удалось загрузить карту. Попробуйте обновить страницу.");
+          });
+      }
+
       function initYandexMap(points, apiKey) {
         if (!mapHost) return;
         var script = document.createElement("script");
@@ -257,12 +304,12 @@
           });
         };
         script.onerror = function () {
-          initLeafletMap(points);
+          initLeafletFallback(points);
         };
         document.head.appendChild(script);
       }
 
-      fetch("../data/objects-map-points.json?v=202606130930", { cache: "no-cache" })
+      fetch("../data/objects-map-points.json?v=202607081500", { cache: "no-cache" })
         .then(function (response) {
           if (!response.ok) throw new Error("map-data");
           return response.json();
@@ -273,7 +320,7 @@
             showStatus("На карте пока нет объектов для выбранного фильтра.");
           }
           if (window.location.protocol === "file:") {
-            initLeafletMap(points);
+            initLeafletFallback(points);
           } else {
             initYandexMap(points, mapsConfig.apiKey);
           }
