@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 CANON_ORIGIN = "https://абхазберег.рф"
-CSS_VERSION = "202606231600"
+CSS_VERSION = "202607081500"
 BRAND = "АБХАЗБЕРЕГ"
 
 
@@ -392,6 +392,7 @@ def render_answer_page(page: dict[str, Any]) -> str:
   <meta property="og:url" content="{canonical}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../../styles.css?v={CSS_VERSION}" />
@@ -442,8 +443,8 @@ def render_answer_page(page: dict[str, Any]) -> str:
       </div>
     </article>
   </main>
-  <script src="../../image-lite.js" defer></script>
-  <script src="../../scripts.js" defer></script>
+  <script src="../../image-lite.js?v=202607081500" defer></script>
+  <script src="../../scripts.js?v=202607081500" defer></script>
 </body>
 </html>
 """
@@ -472,6 +473,7 @@ def write_answer_pages() -> None:
   <link rel="canonical" href="{CANON_ORIGIN}/answers/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../styles.css?v={CSS_VERSION}" />
@@ -510,8 +512,8 @@ def write_answer_pages() -> None:
       </div>
     </section>
   </main>
-  <script src="../image-lite.js" defer></script>
-  <script src="../scripts.js" defer></script>
+  <script src="../image-lite.js?v=202607081500" defer></script>
+  <script src="../scripts.js?v=202607081500" defer></script>
 </body>
 </html>
 """

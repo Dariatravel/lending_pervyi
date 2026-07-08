@@ -109,9 +109,10 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
   <meta property="og:image" content="https://абхазберег.рф/media/blog/telegram-{tid}.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="../../media/branding/favicon-abhazbereg.png" />
-  <link rel="stylesheet" href="../../styles.css?v=2026042207" />
+  <link rel="stylesheet" href="../../styles.css?v=202607081500" />
   <script type="application/ld+json">{json_ld}</script>
 </head>
 <body>
@@ -240,7 +241,7 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
   </section>
 
 </main>
-  <script src="../../scripts.js" defer></script>
+  <script src="../../scripts.js?v=202607081500" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

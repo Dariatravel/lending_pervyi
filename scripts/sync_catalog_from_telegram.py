@@ -979,11 +979,12 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <meta property="og:image" content="{og_image}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="icon" type="image/png" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="shortcut icon" type="image/png" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.css?v=202605272305" />
+    <link rel="stylesheet" href="../../styles.css?v=202607081500" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1070,8 +1071,8 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../image-lite.js" defer></script>
-    <script src="../../scripts.js" defer></script>
+    <script src="../../image-lite.js?v=202607081500" defer></script>
+    <script src="../../scripts.js?v=202607081500" defer></script>
   </body>
 </html>'''
 

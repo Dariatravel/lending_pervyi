@@ -20,7 +20,7 @@ INDEX_PATH = ROOT / "index.html"
 KVARTIRA_INDEX_PATH = ROOT / "kvartira" / "index.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 REPORT_PATH = ROOT / "output" / "podborki_from_filters_report.txt"
-CSS_VERSION = "202605272305"
+CSS_VERSION = "202607081500"
 CANONICAL_ORIGIN = "https://абхазберег.рф"
 CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 
@@ -321,7 +321,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/{selection.slug}/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://chnyazvybzzryduhgopa.supabase.co" crossorigin />
+  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../../styles.css?v={CSS_VERSION}" />
@@ -356,8 +356,8 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
 {body_html}
     </section>
   </main>
-  <script src="../../image-lite.js" defer></script>
-  <script src="../../scripts.js" defer></script>
+  <script src="../../image-lite.js?v=202607081500" defer></script>
+  <script src="../../scripts.js?v=202607081500" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -444,7 +444,7 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://chnyazvybzzryduhgopa.supabase.co" crossorigin />
+  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../styles.css?v={CSS_VERSION}" />
@@ -506,8 +506,8 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
       </article>
     </section>
   </main>
-  <script src="../image-lite.js" defer></script>
-  <script src="../scripts.js" defer></script>
+  <script src="../image-lite.js?v=202607081500" defer></script>
+  <script src="../scripts.js?v=202607081500" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

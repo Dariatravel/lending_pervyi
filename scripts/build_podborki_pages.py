@@ -33,7 +33,7 @@ PODBORI_TXT = REPO / "podbori_txt"
 META_JSON = PODBORI_TXT / "_collection_meta.json"
 INDEX_HTML = REPO / "index.html"
 KVARTIRA_INDEX = REPO / "kvartira" / "index.html"
-CSS_VERSION = "202605031315"
+CSS_VERSION = "202607081500"
 # Публичный URL раздела подборок (канон: кирилический .рф)
 CANONICAL_ORIGIN = "https://абхазберег.рф"
 
@@ -502,6 +502,7 @@ def render_collection_page(
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/{slug}/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="../../media/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../../styles.css?v={CSS_VERSION}" />
@@ -537,7 +538,7 @@ def render_collection_page(
 {body_html}
     </section>
   </main>
-  <script src="../../scripts.js" defer></script>
+  <script src="../../scripts.js?v=202607081500" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

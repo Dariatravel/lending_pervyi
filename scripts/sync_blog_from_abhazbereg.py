@@ -24,7 +24,7 @@ CHANNEL = "abhazbereg"
 MEDIA_DIR = ROOT / "media" / "blog"
 SOURCES_DIR = ROOT / "scripts" / "blog_telegram_sources"
 BLOG_DIR = ROOT / "blog"
-CSS_VERSION = "202605272305"
+CSS_VERSION = "202607081500"
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media"
 
 POST_IDS = [
@@ -508,6 +508,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   <meta property="og:image" content="{yandex_media_base}/media/blog/{image_name}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{yandex_media_base}/media/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../../styles.css?v={css_version}" />
@@ -624,8 +625,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   </section>
 
 </main>
-  <script src="../../image-lite.js" defer></script>
-  <script src="../../scripts.js" defer></script>
+  <script src="../../image-lite.js?v=202607081500" defer></script>
+  <script src="../../scripts.js?v=202607081500" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -709,6 +710,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   <meta property="og:image" content="{YANDEX_MEDIA_BASE}/media/blog/{hero_image}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/media/branding/favicon-abhazbereg.png" />
   <link rel="stylesheet" href="../styles.css?v={CSS_VERSION}" />
@@ -805,8 +807,8 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   </section>
 
 </main>
-  <script src="../image-lite.js" defer></script>
-  <script src="../scripts.js" defer></script>
+  <script src="../image-lite.js?v=202607081500" defer></script>
+  <script src="../scripts.js?v=202607081500" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

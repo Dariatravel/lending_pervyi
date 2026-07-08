@@ -357,10 +357,10 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
   <link rel="canonical" href="https://абхазберег.рф/podborki/{esc(slug)}/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://chnyazvybzzryduhgopa.supabase.co" crossorigin />
+  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="../../media/branding/favicon-abhazbereg.png" />
-  <link rel="stylesheet" href="../../styles.css?v=202605272305" />
+  <link rel="stylesheet" href="../../styles.css?v=202607081500" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -394,8 +394,8 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
 {body_blocks}
     </section>
   </main>
-  <script src="../../image-lite.js" defer></script>
-  <script src="../../scripts.js" defer></script>
+  <script src="../../image-lite.js?v=202607081500" defer></script>
+  <script src="../../scripts.js?v=202607081500" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -455,10 +455,10 @@ def main() -> None:
   <link rel="canonical" href="https://абхазберег.рф/podborki/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://chnyazvybzzryduhgopa.supabase.co" crossorigin />
+  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="../media/branding/favicon-abhazbereg.png" />
-  <link rel="stylesheet" href="../styles.css?v=202605272305" />
+  <link rel="stylesheet" href="../styles.css?v=202607081500" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -488,8 +488,8 @@ def main() -> None:
       </ul>
     </section>
   </main>
-  <script src="../image-lite.js" defer></script>
-  <script src="../scripts.js" defer></script>
+  <script src="../image-lite.js?v=202607081500" defer></script>
+  <script src="../scripts.js?v=202607081500" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

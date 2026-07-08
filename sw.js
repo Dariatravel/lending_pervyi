@@ -1,10 +1,11 @@
-const APP_SHELL_CACHE = "abhazbereg-app-shell-v1";
-const RUNTIME_CACHE = "abhazbereg-runtime-v1";
+const APP_SHELL_CACHE = "abhazbereg-app-shell-v202607081500";
+const RUNTIME_CACHE = "abhazbereg-runtime-v202607081500";
 
 const APP_SHELL_URLS = [
   "/",
-  "/styles.css?v=202606231600",
-  "/image-lite.js",
+  "/styles.css?v=202607081500",
+  "/image-lite.js?v=202607081500",
+  "/scripts.js?v=202607081500",
   "/pwa.js?v=202606301525",
   "/app.webmanifest",
   "/app-icons/icon-192.png",
