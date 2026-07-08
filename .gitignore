@@ -46,6 +46,16 @@ output/telegram-watch-changed-targets.json
 output/objects-map-sync-report.txt
 output/objects-map-sync-summary.json
 output/health_check_report.txt
+output/*.log
+output/*_audit.txt
+output/*_audit.json
+output/*_report.txt
+output/*_report.json
+output/*_fixes.txt
+output/*_missing.txt
+output/*_parity.txt
+output/migration_stage*_*.json
+output/supabase_archive_*/
 
 # generated heavy telegram source videos (intermediate, not for git)
 media/videos/**/video-*-source.mp4
