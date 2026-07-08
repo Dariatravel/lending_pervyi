@@ -723,7 +723,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
 
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="../media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ - жилье напрямую — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="{YANDEX_MEDIA_BASE}/media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ - жилье напрямую — на главную" decoding="async" />
         <span class="site-concept__brand-copy"><strong>АБХАЗБЕРЕГ - жилье напрямую</strong></span>
       </a>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
