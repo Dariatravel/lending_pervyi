@@ -133,14 +133,14 @@ def validate_snapshot(listings: list[dict]) -> list[str]:
         if not row.get("page_url"):
             issues.append(f"missing page_url: {slug}")
         cover = str(row.get("cover_url") or "")
-        if cover and "storage.yandexcloud.net" not in cover and not cover.startswith("/media/"):
+        if cover and "storage.yandexcloud.net" not in cover:
             issues.append(f"cover not on Yandex: {slug}")
         for media in row.get("media") or []:
             mime = str(media.get("mime_type") or "")
             url = str(media.get("public_url") or media.get("source_url") or "")
             if mime.startswith("video/") and url and "storage.yandexcloud.net" not in url:
                 issues.append(f"video not on Yandex: {slug} -> {url[:80]}")
-            if mime.startswith("image/") and url and "storage.yandexcloud.net" not in url and not url.startswith("/media/"):
+            if mime.startswith("image/") and url and "storage.yandexcloud.net" not in url:
                 issues.append(f"image not on Yandex: {slug} -> {url[:80]}")
     return issues
 

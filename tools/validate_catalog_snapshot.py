@@ -36,7 +36,7 @@ def main() -> int:
         if not row.get("page_url"):
             issues.append(f"missing page_url: {slug}")
         cover = str(row.get("cover_url") or "")
-        if cover and "storage.yandexcloud.net" not in cover and not cover.startswith("/media/"):
+        if cover and "storage.yandexcloud.net" not in cover:
             issues.append(f"cover not yandex: {slug}")
         details = row.get("details") or {}
         filters = details.get("filters") or {}
@@ -47,7 +47,7 @@ def main() -> int:
             url = str(media.get("public_url") or media.get("source_url") or "")
             if mime.startswith("video/") and url and "storage.yandexcloud.net" not in url:
                 issues.append(f"video not yandex: {slug}")
-            if mime.startswith("image/") and url and "storage.yandexcloud.net" not in url and not url.startswith("/media/"):
+            if mime.startswith("image/") and url and "storage.yandexcloud.net" not in url:
                 issues.append(f"image not yandex: {slug}")
 
     active = sum(1 for row in listings if row.get("is_active", True))
