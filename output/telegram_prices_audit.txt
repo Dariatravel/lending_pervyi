@@ -1,6 +1,6 @@
 Сверка блока ЦЕНЫ: Telegram (parse_post) ↔ HTML (.price-card__seasons / __notes)
 
-Отели: {'OK': 163, 'FETCH_FAIL': 12, 'MISMATCH': 8, 'NO_TG_PRICES': 1}
+Отели: {'OK': 165, 'FETCH_FAIL': 12, 'MISMATCH': 6, 'NO_TG_PRICES': 1}
 Квартиры: {'OK': 60, 'MISMATCH': 1, 'FETCH_FAIL': 1}
 
 === ОТЕЛИ ===
@@ -13,32 +13,6 @@
 - parus-vidovoy-otel-s-basseynom-i-stolovoy-2602 (@abhazbooking/2602): MISMATCH (tg=33, site=37, notes_diff=True)
     нет на сайте: доп. место+1000₽/сутки
     лишнее на сайте: доп. место +1000₽/сутки
-- pion-gostevoy-dom-4539 (@abhazbooking/4539): MISMATCH (tg=22, site=17, notes_diff=True)
-    нет на сайте: четырехместный семейный номер с кухней
-    нет на сайте: четырехместный номер с двухъярусной кроватью
-    нет на сайте: 3500₽ - июнь
-    нет на сайте: 4500₽ - июль, сентябрь
-    нет на сайте: 5500₽ - август
-    лишнее на сайте: семейный номер с кухней
-- pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889 (@abhazbooking/2889): MISMATCH (tg=23, site=34, notes_diff=True)
-    нет на сайте: 2чел - 8500₽
-    нет на сайте: 3чел - 9000₽
-    нет на сайте: 4чел - 95000₽
-    нет на сайте: 2чел - 9800₽
-    нет на сайте: 3чел - 11600₽
-    нет на сайте: 4чел - 12600₽
-    лишнее на сайте: акция🔥
-    лишнее на сайте: скидка 30% до конца июня на тарифы с завтраком и полный пансион🔥
-    лишнее на сайте: июнь с 15 по 30 (цены указаны без скидки)
-    лишнее на сайте: 2чел - 6500₽/сутки
-    лишнее на сайте: 3чел - 8000₽/сутки
-    лишнее на сайте: 4чел - 9500₽/сутки
-    лишнее на сайте: 2чел - 8500₽/сутки
-    лишнее на сайте: 3чел - 9900₽/сутки
-    лишнее на сайте: 4чел - 12000₽/сутки
-    лишнее на сайте: 2чел - 8500₽/сутки
-    лишнее на сайте: 3чел - 10500₽/сутки
-    лишнее на сайте: 4чел - 13000₽/сутки
 - sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390 (@abhazbooking/3390): MISMATCH (tg=28, site=30, notes_diff=True)
     нет на сайте: доп.место возможно+1.
     лишнее на сайте: доп.место возможно +1.
@@ -178,7 +152,9 @@
 - pegas-otel-na-pervoy-linii-vid-na-more-2574 (@abhazbooking/2574): OK (tg=8, site=8, notes_diff=False)
 - peschanyy-bereg-apartamenty-3697 (@abhazbooking/3697): OK (tg=5, site=6, notes_diff=False)
 - peschanyy-bereg-apartamenty-3700 (@abhazbooking/3700): OK (tg=5, site=6, notes_diff=False)
+- pion-gostevoy-dom-4539 (@abhazbooking/4539): OK (tg=22, site=22, notes_diff=False)
 - plyazhnyy-kompleks-151-na-beregu-4620 (@abhazbooking/4620): OK (tg=10, site=13, notes_diff=False)
+- pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889 (@abhazbooking/2889): OK (tg=23, site=23, notes_diff=False)
 - radonovyy-istochnik-otel-v-gorah-3064 (@abhazbooking/3064): OK (tg=10, site=11, notes_diff=False)
 - rancho-elivel-mini-otel-2938 (@abhazbooking/2938): OK (tg=9, site=9, notes_diff=False)
 - rayskiy-bereg-mini-otel-3277 (@abhazbooking/3277): OK (tg=5, site=7, notes_diff=False)
