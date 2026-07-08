@@ -1,4 +1,7 @@
 User-agent: *
+Disallow: /CODEX_TASK.md
+Disallow: /CURSOR_TASK.md
+Disallow: /concept-*.html
 Allow: /
 
 Sitemap: https://абхазберег.рф/sitemap.xml
