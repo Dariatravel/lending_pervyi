@@ -11,10 +11,8 @@
   <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png"/>
   <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon"/>
   <link rel="stylesheet" href="../styles.css?v=202607091245" />
-  <script>
-    window.__ABHAZBEREG_MAPS_CONFIG__ = window.__ABHAZBEREG_MAPS_CONFIG__ || {};
-  </script>
 <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
+<link rel="preconnect" href="https://unpkg.com" crossorigin />
 </head>
 <body class="objects-map-page">
   <header class="objects-map-page__bar">
@@ -30,8 +28,9 @@
     (function () {
       var LEAFLET_CSS_URL = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
       var LEAFLET_JS_URL = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
-      var LEAFLET_CSS_INTEGRITY = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=";
-      var LEAFLET_JS_INTEGRITY = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
+      var LEAFLET_CLUSTER_CSS_URL = "https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css";
+      var LEAFLET_CLUSTER_DEFAULT_CSS_URL = "https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css";
+      var LEAFLET_CLUSTER_JS_URL = "https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js";
       var leafletLoadPromise = null;
 
       var CITIES = {
@@ -45,7 +44,6 @@
         tsandripsh: { label: "Цандрипш", lon: 40.34, lat: 43.38, z: 13 },
       };
       var DEFAULT_GEO = { label: "Абхазия", lon: 40.5, lat: 43.15, z: 10 };
-      var mapsConfig = window.__ABHAZBEREG_MAPS_CONFIG__ || {};
       var cityKey = new URLSearchParams(window.location.search).get("city") || "";
       var geo = CITIES[cityKey] || DEFAULT_GEO;
       var cityNode = document.getElementById("objects-map-city");
@@ -123,34 +121,46 @@
       }
 
       function ensureLeafletAssets() {
-        if (window.L) return Promise.resolve();
+        if (window.L && window.L.markerClusterGroup) return Promise.resolve();
         if (leafletLoadPromise) return leafletLoadPromise;
 
-        leafletLoadPromise = new Promise(function (resolve, reject) {
-          if (!document.querySelector('link[data-leaflet-css="true"]')) {
-            var css = document.createElement("link");
-            css.rel = "stylesheet";
-            css.href = LEAFLET_CSS_URL;
-            css.integrity = LEAFLET_CSS_INTEGRITY;
-            css.crossOrigin = "";
-            css.dataset.leafletCss = "true";
-            document.head.appendChild(css);
-          }
+        function loadStyle(url, flag) {
+          if (document.querySelector('link[data-map-asset="' + flag + '"]')) return;
+          var css = document.createElement("link");
+          css.rel = "stylesheet";
+          css.href = url;
+          css.dataset.mapAsset = flag;
+          document.head.appendChild(css);
+        }
 
-          var script = document.createElement("script");
-          script.src = LEAFLET_JS_URL;
-          script.integrity = LEAFLET_JS_INTEGRITY;
-          script.crossOrigin = "";
-          script.async = true;
-          script.onload = function () {
-            if (window.L) {
+        function loadScript(url, ready) {
+          return new Promise(function (resolve, reject) {
+            if (ready()) {
               resolve();
-            } else {
-              reject(new Error("leaflet-unavailable"));
+              return;
             }
-          };
-          script.onerror = reject;
-          document.head.appendChild(script);
+            var script = document.createElement("script");
+            script.src = url;
+            script.async = true;
+            script.onload = function () {
+              if (ready()) resolve();
+              else reject(new Error("map-asset-unavailable"));
+            };
+            script.onerror = reject;
+            document.head.appendChild(script);
+          });
+        }
+
+        loadStyle(LEAFLET_CSS_URL, "leaflet-css");
+        loadStyle(LEAFLET_CLUSTER_CSS_URL, "leaflet-cluster-css");
+        loadStyle(LEAFLET_CLUSTER_DEFAULT_CSS_URL, "leaflet-cluster-default-css");
+
+        leafletLoadPromise = loadScript(LEAFLET_JS_URL, function () {
+          return Boolean(window.L);
+        }).then(function () {
+          return loadScript(LEAFLET_CLUSTER_JS_URL, function () {
+            return Boolean(window.L && window.L.markerClusterGroup);
+          });
         });
 
         return leafletLoadPromise;
@@ -201,7 +211,11 @@
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         }).addTo(map);
 
-        var group = window.L.featureGroup();
+        var group = window.L.markerClusterGroup({
+          chunkedLoading: true,
+          showCoverageOnHover: false,
+          maxClusterRadius: cityKey ? 40 : 56,
+        });
         points.forEach(function (point) {
           if (!Number.isFinite(point.lat) || !Number.isFinite(point.lon)) return;
           var marker = window.L.marker([point.lat, point.lon], {
@@ -233,7 +247,7 @@
         });
       }
 
-      function initLeafletFallback(points) {
+      function initLeafletPrimary(points) {
         ensureLeafletAssets()
           .then(function () {
             initLeafletMap(points);
@@ -243,72 +257,7 @@
           });
       }
 
-      function initYandexMap(points, apiKey) {
-        if (!mapHost) return;
-        var script = document.createElement("script");
-        script.src = "https://api-maps.yandex.ru/2.1/?lang=ru_RU&load=package.full";
-        if (apiKey) {
-          script.src += "&apikey=" + encodeURIComponent(apiKey);
-        }
-        script.onload = function () {
-          window.ymaps.ready(function () {
-            var map = new window.ymaps.Map(mapHost, {
-              center: [geo.lat, geo.lon],
-              zoom: geo.z,
-              controls: ["zoomControl", "typeSelector", "fullscreenControl"],
-            });
-            var labelLayout = window.ymaps.templateLayoutFactory.createClass(
-              '<span class="objects-map-marker">' +
-                '<span class="objects-map-marker__dot" aria-hidden="true"></span>' +
-                '<span class="objects-map-marker__label">{{ properties.markerTitle }}</span>' +
-              '</span>'
-            );
-            var geoObjects = points
-              .filter(function (point) {
-                return Number.isFinite(point.lat) && Number.isFinite(point.lon);
-              })
-              .map(function (point) {
-                var popup = createPopupContent(point, { showTitle: false });
-                return new window.ymaps.Placemark(
-                  [point.lat, point.lon],
-                  {
-                    balloonContentHeader: decodeHtmlText(point.title),
-                    balloonContentBody: popup.outerHTML,
-                    hintContent: decodeHtmlText(point.title),
-                    markerTitle: createMarkerTitle(point),
-                  },
-                  {
-                    iconLayout: labelLayout,
-                    iconOffset: [-6, 0],
-                    iconShape: { type: "Rectangle", coordinates: [[-6, -14], [190, 14]] },
-                  }
-                );
-              });
-            geoObjects.forEach(function (geoObject) {
-              map.geoObjects.add(geoObject);
-            });
-            if (geoObjects.length) {
-              map.setBounds(map.geoObjects.getBounds(), {
-                checkZoomRange: true,
-                zoomMargin: cityKey ? 40 : 24,
-                preciseZoom: true,
-              });
-              if (!cityKey && map.getZoom() > 10) {
-                map.setZoom(10, { checkZoomRange: true });
-              }
-            } else {
-              showStatus("Для выбранного города пока нет точек с привязкой к страницам сайта.");
-            }
-            bindMapResize(map);
-          });
-        };
-        script.onerror = function () {
-          initLeafletFallback(points);
-        };
-        document.head.appendChild(script);
-      }
-
-      fetch("../data/objects-map-points.json?v=202607091245", { cache: "no-cache" })
+      fetch("../data/objects-map-points.json?v=202607091245")
         .then(function (response) {
           if (!response.ok) throw new Error("map-data");
           return response.json();
@@ -318,11 +267,7 @@
           if (!points.length) {
             showStatus("На карте пока нет объектов для выбранного фильтра.");
           }
-          if (window.location.protocol === "file:") {
-            initLeafletFallback(points);
-          } else {
-            initYandexMap(points, mapsConfig.apiKey);
-          }
+          initLeafletPrimary(points);
         })
         .catch(function () {
           showStatus("Не удалось загрузить точки карты. Попробуйте обновить страницу.");
