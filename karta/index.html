@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#d9eee7" />
   <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png"/>
   <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon"/>
-  <link rel="stylesheet" href="../styles.css?v=202607091130" />
+  <link rel="stylesheet" href="../styles.css?v=202607091245" />
   <script>
     window.__ABHAZBEREG_MAPS_CONFIG__ = window.__ABHAZBEREG_MAPS_CONFIG__ || {};
   </script>
@@ -25,7 +25,7 @@
   <div id="objects-map" role="region" aria-label="Интерактивная карта объектов"></div>
   <p class="objects-map-page__status" hidden id="objects-map-status"></p>
 
-  <script defer src="../pwa.js?v=202607091130"></script>
+  <script defer src="../pwa.js?v=202607091245"></script>
   <script>
     (function () {
       var LEAFLET_CSS_URL = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
@@ -308,7 +308,7 @@
         document.head.appendChild(script);
       }
 
-      fetch("../data/objects-map-points.json?v=202607091130", { cache: "no-cache" })
+      fetch("../data/objects-map-points.json?v=202607091245", { cache: "no-cache" })
         .then(function (response) {
           if (!response.ok) throw new Error("map-data");
           return response.json();
