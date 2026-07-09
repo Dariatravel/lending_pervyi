@@ -3,6 +3,7 @@ import importlib.util
 import json
 import re
 import shutil
+import sys
 import time
 import urllib.request
 import urllib.error
@@ -10,6 +11,12 @@ from pathlib import Path
 from typing import Optional
 
 from bs4 import BeautifulSoup
+
+LOCAL_ROOT = Path(__file__).resolve().parent
+if str(LOCAL_ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(LOCAL_ROOT / "scripts"))
+
+from responsive_images import responsive_img_html  # noqa: E402
 
 
 ROOT = Path("/Users/darya_botova/Documents/New project")
@@ -708,8 +715,9 @@ def render_prices(prices):
 def render_media(photo_count: int, slug: str, title: str, video_filename: str, video_post_id: Optional[int]):
     items = []
     for index in range(1, photo_count + 1):
+        src = cdn_media_url(f"hotels/{slug}/photo-{index:02d}.jpg")
         items.append(
-            f'            <img src="{cdn_media_url(f"hotels/{slug}/photo-{index:02d}.jpg")}" alt="{html.escape(title)} фото {index}" loading="lazy" />'
+            f"            {responsive_img_html(src, f'{title} фото {index}', loading='lazy', sizes='(max-width: 720px) 92vw, (max-width: 1180px) 45vw, 520px')}"
         )
     if video_filename:
         items.append(

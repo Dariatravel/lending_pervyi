@@ -52,6 +52,7 @@ from catalog_snapshot import (  # noqa: E402
     upsert_listing as snapshot_upsert_listing,
 )
 from media_urls import media_src_for_html, yandex_photo_url  # noqa: E402
+from responsive_images import responsive_img_html  # noqa: E402
 from yandex_storage import upload_file as upload_to_yandex  # noqa: E402
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 
@@ -846,7 +847,9 @@ def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
     for item in media_items:
         if item['kind'] == 'photo':
             src = image_src_for_html(str(item.get('source_url') or ''))
-            parts.append(f'            <img src="{html.escape(src)}" alt="{html.escape(title)} фото {image_index}" loading="lazy" />')
+            parts.append(
+                f"            {responsive_img_html(src, f'{title} фото {image_index}', loading='lazy', sizes='(max-width: 720px) 92vw, (max-width: 1180px) 45vw, 520px')}"
+            )
             image_index += 1
         else:
             source_url = media_src_for_html(str(item.get('source_url') or ''), mime_type='video/mp4')
@@ -868,11 +871,22 @@ def render_top_gallery(media_items: list[dict[str, Any]], title: str) -> str:
     if photos:
         main = photos[0]
         thumbs = ''.join(
-            f'<img src="{html.escape(image_src_for_html(str(item.get("source_url") or "")))}" alt="{html.escape(title)} фото {index + 2}" loading="lazy" />'
+            responsive_img_html(
+                image_src_for_html(str(item.get("source_url") or "")),
+                f"{title} фото {index + 2}",
+                loading="lazy",
+                sizes="(max-width: 720px) 30vw, 180px",
+            )
             for index, item in enumerate(photos[1:4])
         )
         main_src = image_src_for_html(str(main.get('source_url') or ''))
-        return f'''          <div class="hotel-card__gallery">\n            <div class="hotel-card__main-photo">\n              <img src="{html.escape(main_src)}" alt="{html.escape(title)} фото 1" loading="eager" />\n              <div class="hotel-card__floating">\n                <span class="pill pill--accent">Проверенный объект</span>\n              </div>\n            </div>\n            <div class="hotel-card__thumbs">\n              {thumbs}\n            </div>\n          </div>'''
+        main_img = responsive_img_html(
+            main_src,
+            f"{title} фото 1",
+            loading="eager",
+            sizes="(max-width: 720px) 92vw, 620px",
+        )
+        return f'''          <div class="hotel-card__gallery">\n            <div class="hotel-card__main-photo">\n              {main_img}\n              <div class="hotel-card__floating">\n                <span class="pill pill--accent">Проверенный объект</span>\n              </div>\n            </div>\n            <div class="hotel-card__thumbs">\n              {thumbs}\n            </div>\n          </div>'''
 
     videos = [
         item

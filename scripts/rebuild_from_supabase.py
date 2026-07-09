@@ -827,7 +827,7 @@ def render_media_grid(row: dict[str, Any], title: str) -> str:
         if mime.startswith("image/") and preferred_url:
             preferred_url = image_src_for_html(preferred_url)
             parts.append(
-                f'            <img src="{html.escape(preferred_url, quote=True)}" alt="{html.escape(title)} фото {image_index}" loading="lazy" />'
+                f"            {responsive_img_html(preferred_url, f'{title} фото {image_index}', loading='lazy', sizes='(max-width: 720px) 92vw, (max-width: 1180px) 45vw, 520px')}"
             )
             image_index += 1
             continue
