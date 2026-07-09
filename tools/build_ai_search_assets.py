@@ -394,8 +394,7 @@ def render_answer_page(page: dict[str, Any]) -> str:
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" />
-  <link rel="shortcut icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
   <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
   <link rel="stylesheet" href="../../styles.css?v={CSS_VERSION}" />
 {schema}
@@ -477,8 +476,7 @@ def write_answer_pages() -> None:
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" />
-  <link rel="shortcut icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
   <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
   <link rel="stylesheet" href="../styles.css?v={CSS_VERSION}" />
   <script type="application/ld+json" data-schema="breadcrumbs">{json_ld({

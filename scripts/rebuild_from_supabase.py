@@ -869,7 +869,7 @@ def update_hotel_page(row: dict[str, Any]) -> None:
     text = replace_once(text, r'<meta property="og:description" content=".*?" ?/?>', f'<meta property="og:description" content="{html.escape(summary, quote=True)}" />')
     text = replace_once(text, r'<meta property="og:url" content=".*?" ?/?>', f'<meta property="og:url" content="{html.escape(page_url, quote=True)}" />')
     if cover:
-        text = replace_once(text, r'<meta property="og:image" content=".*?" ?/?>', f'<meta property="og:image" content="{html.escape(image_src_for_html(cover), quote=True)}" />')
+        text = replace_once(text, r'<meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg" ?/?>', f'<meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg" />')
     text = replace_once(text, r"<h1>.*?</h1>", f"<h1>{html.escape(title)}</h1>")
     if lead_html:
         text = replace_once(text, r'<p class="lead">.*?</p>', f'<p class="lead">{lead_html}</p>')

@@ -23,8 +23,7 @@ CANON_ORIGIN = "https://абхазберег.рф"
 YANDEX_MEDIA = "https://storage.yandexcloud.net/abhazbereg-media/media"
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 SITEMAP_PATH = ROOT / "sitemap.xml"
-FAVICON_BLOCK = """<link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="icon" type="image/png"/>
-<link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="shortcut icon" type="image/png"/>
+FAVICON_BLOCK = """<link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png"/>
 <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon"/>"""
 
 
@@ -354,7 +353,7 @@ def ensure_site_icons(path: Path) -> bool:
     cleaned = "\n".join(
         line
         for line in before.splitlines()
-        if "favicon-abhazbereg.png" not in line and "apple-touch-icon.png" not in line
+        if "favicon-48.png" not in line and "apple-touch-icon.png" not in line
     )
     if before.endswith("\n"):
         cleaned += "\n"

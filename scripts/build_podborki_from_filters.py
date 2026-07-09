@@ -323,7 +323,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.css?v={CSS_VERSION}" />
 </head>
 <body>
@@ -446,7 +446,7 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../styles.css?v={CSS_VERSION}" />
 </head>
 <body>

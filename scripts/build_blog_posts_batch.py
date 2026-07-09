@@ -108,12 +108,12 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
   <meta property="og:title" content="{og_title}" />
   <meta property="og:description" content="{og_desc}" />
   <meta property="og:url" content="https://абхазберег.рф/blog/{slug}/" />
-  <meta property="og:image" content="{blog_image_url}" />
+  <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="{yandex_media_base}/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="{yandex_media_base}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.css?v={asset_version}" />
   <script type="application/ld+json">{json_ld}</script>
 </head>

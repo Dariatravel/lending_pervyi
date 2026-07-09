@@ -365,7 +365,7 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.css?v={ASSET_VERSION}" />
 </head>
 <body>
@@ -463,7 +463,7 @@ def main() -> None:
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../styles.css?v={ASSET_VERSION}" />
 </head>
 <body>

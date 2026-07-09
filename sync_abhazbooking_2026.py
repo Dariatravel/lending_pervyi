@@ -758,11 +758,13 @@ def render_page(slug: str, message_id: int, date_text: str, parsed: dict, photo_
     <meta property="og:title" content="{html.escape(parsed["title"])} — обзор и цены" />
     <meta property="og:description" content="{html.escape(og_description)}" />
     <meta property="og:url" content="https://абхазберег.рф/hotels/{slug}/" />
-    <meta property="og:image" content="{cdn_media_url(f"hotels/{slug}/photo-01.jpg")}" />
+    <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
+    <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
     <link rel="stylesheet" href="../../styles.css?v=202607091130" />
   </head>
   <body>

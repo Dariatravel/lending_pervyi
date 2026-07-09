@@ -505,12 +505,12 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   <meta property="og:title" content="{og_title}" />
   <meta property="og:description" content="{og_desc}" />
   <meta property="og:url" content="https://абхазберег.рф/blog/{slug}/" />
-  <meta property="og:image" content="{yandex_media_base}/media/blog/{image_name}" />
+  <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="{yandex_media_base}/media/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="{yandex_media_base}/media/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.css?v={css_version}" />
   <script type="application/ld+json">{json_ld}</script>
 </head>
@@ -707,12 +707,12 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   <meta property="og:title" content="Полезно узнать об отдыхе в Абхазии" />
   <meta property="og:description" content="Статьи и памятки для тех, кто планирует поездку в Абхазию впервые." />
   <meta property="og:url" content="https://абхазберег.рф/blog/" />
-  <meta property="og:image" content="{YANDEX_MEDIA_BASE}/media/blog/{hero_image}" />
+  <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/media/branding/favicon-abhazbereg.png" />
+  <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/media/branding/favicon-48.png" />
   <link rel="stylesheet" href="../styles.css?v={CSS_VERSION}" />
 </head>
 <body>
