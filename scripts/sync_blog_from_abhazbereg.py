@@ -24,7 +24,7 @@ CHANNEL = "abhazbereg"
 MEDIA_DIR = ROOT / "media" / "blog"
 SOURCES_DIR = ROOT / "scripts" / "blog_telegram_sources"
 BLOG_DIR = ROOT / "blog"
-CSS_VERSION = "202607091530"
+CSS_VERSION = "202607091700"
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media"
 
 POST_IDS = [
@@ -625,7 +625,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   </section>
 
 </main>
-  <script src="../../scripts.min.js?v=202607091530" defer></script>
+  <script src="../../scripts.min.js?v=202607091700" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -806,7 +806,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   </section>
 
 </main>
-  <script src="../scripts.min.js?v=202607091530" defer></script>
+  <script src="../scripts.min.js?v=202607091700" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

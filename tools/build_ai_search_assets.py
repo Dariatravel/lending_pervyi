@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 CANON_ORIGIN = "https://абхазберег.рф"
-CSS_VERSION = "202607091530"
+CSS_VERSION = "202607091700"
 BRAND = "АБХАЗБЕРЕГ"
 
 
@@ -444,7 +444,7 @@ def render_answer_page(page: dict[str, Any]) -> str:
       </div>
     </article>
   </main>
-  <script src="../../scripts.min.js?v=202607091530" defer></script>
+  <script src="../../scripts.min.js?v=202607091700" defer></script>
 </body>
 </html>
 """
@@ -513,7 +513,7 @@ def write_answer_pages() -> None:
       </div>
     </section>
   </main>
-  <script src="../scripts.min.js?v=202607091530" defer></script>
+  <script src="../scripts.min.js?v=202607091700" defer></script>
 </body>
 </html>
 """
