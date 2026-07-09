@@ -206,10 +206,11 @@
     /** Отдельный URL-парам (hotel / guesthouse / cabin), не смешиваем с группами `data-filter-*` на карточках. Состояние категории живёт рядом с группами в createFilterStore (committedCat / draftCat). */
     catalogParamKey: "catalog",
     groupOrder: ["distance", "food", "price", "city", "beach", "room", "stay"],
-    /** OR внутри группы по умолчанию; для room — AND (все выбранные чипы). Между группами — AND. */
+    /** OR внутри группы по умолчанию; для room/stay — AND (все выбранные чипы). Между группами — AND. */
     combineWithinGroup: "any",
     combineWithinGroupByGroup: {
       room: "all",
+      stay: "all",
     },
     combineAcrossGroups: "all",
     groupLabels: {
