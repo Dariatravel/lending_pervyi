@@ -1,15 +1,15 @@
-const APP_SHELL_CACHE = "abhazbereg-app-shell-v202607091330";
-const RUNTIME_CACHE = "abhazbereg-runtime-v202607091330";
+const APP_SHELL_CACHE = "abhazbereg-app-shell-v202607091430";
+const RUNTIME_CACHE = "abhazbereg-runtime-v202607091430";
 const YANDEX_MEDIA_ORIGIN = "https://storage.yandexcloud.net";
 const YANDEX_MEDIA_PATH_PREFIX = "/abhazbereg-media/media/";
 const MAX_RUNTIME_MEDIA_ENTRIES = 80;
 
 const APP_SHELL_URLS = [
   "/",
-  "/styles.min.css?v=202607091330",
-  "/image-lite.js?v=202607091330",
-  "/scripts.min.js?v=202607091330",
-  "/pwa.js?v=202607091330",
+  "/styles.min.css?v=202607091430",
+  "/image-lite.js?v=202607091430",
+  "/scripts.min.js?v=202607091430",
+  "/pwa.js?v=202607091430",
   "/app.webmanifest",
   "/404.html",
   "/app-icons/icon-192.png",

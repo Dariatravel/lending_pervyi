@@ -103,14 +103,17 @@
   initCanonicalUrlDisplay();
   initPublicUrlCopyNormalization();
 
-  function initMetrika() {
+  function setupMetrikaQueue() {
     window.ym =
       window.ym ||
       function metrikaShim(...args) {
         (window.ym.a = window.ym.a || []).push(args);
       };
     window.ym.l = window.ym.l || Date.now();
+  }
 
+  function initMetrika() {
+    setupMetrikaQueue();
     if (!document.querySelector(`script[src*="mc.yandex.ru/metrika/tag.js?id=${METRIKA_ID}"]`)) {
       const script = document.createElement("script");
       script.async = true;
@@ -126,14 +129,17 @@
     });
   }
 
-  function initGA4() {
+  function setupGA4Queue() {
     window.dataLayer = window.dataLayer || [];
     window.gtag =
       window.gtag ||
       function gtagShim() {
         window.dataLayer.push(arguments);
       };
+  }
 
+  function initGA4() {
+    setupGA4Queue();
     if (!document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${GA4_ID}"]`)) {
       const script = document.createElement("script");
       script.async = true;
@@ -159,11 +165,40 @@
     }
   }
 
-  initMetrika();
-  initGA4();
+  function initDeferredAnalytics() {
+    setupMetrikaQueue();
+    setupGA4Queue();
+
+    let started = false;
+    const events = ["scroll", "pointerdown", "keydown", "touchstart"];
+    const cleanup = () => {
+      events.forEach((eventName) => {
+        window.removeEventListener(eventName, startAnalytics);
+      });
+    };
+    const startAnalytics = () => {
+      if (started) return;
+      started = true;
+      cleanup();
+      initMetrika();
+      initGA4();
+    };
+
+    events.forEach((eventName) => {
+      window.addEventListener(eventName, startAnalytics, { once: true, passive: true });
+    });
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(startAnalytics, { timeout: 5000 });
+    } else {
+      window.setTimeout(startAnalytics, 3000);
+    }
+  }
+
+  initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607091330";
+  const ASSET_VERSION = "202607091430";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_BANK_URL = `${CDN_MEDIA_BASE}/reviews/review_text_bank.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */

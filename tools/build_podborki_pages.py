@@ -21,7 +21,7 @@ PODBORKI_ROOT = Path("/Users/darya_botova/Documents/ПОДБОРКИ")
 OUT_DIR = REPO / "podborki"
 CURRENT_PAGES = REPO / "output" / "current_pages.json"
 KVARTIRA_CARDS = REPO / "kvartira_cards.json"
-ASSET_VERSION = "202607091330"
+ASSET_VERSION = "202607091430"
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 
 from podborki_hotel_match import (

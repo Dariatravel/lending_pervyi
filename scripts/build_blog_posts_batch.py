@@ -7,7 +7,7 @@ import html
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSET_VERSION = '202607091330'
+ASSET_VERSION = '202607091430'
 YANDEX_MEDIA_BASE = 'https://storage.yandexcloud.net/abhazbereg-media/media'
 
 
