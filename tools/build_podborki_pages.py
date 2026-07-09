@@ -21,7 +21,7 @@ PODBORKI_ROOT = Path("/Users/darya_botova/Documents/ПОДБОРКИ")
 OUT_DIR = REPO / "podborki"
 CURRENT_PAGES = REPO / "output" / "current_pages.json"
 KVARTIRA_CARDS = REPO / "kvartira_cards.json"
-ASSET_VERSION = "202607091430"
+ASSET_VERSION = "202607091530"
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 
 from podborki_hotel_match import (
@@ -400,7 +400,6 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
 {body_blocks}
     </section>
   </main>
-  <script src="../../image-lite.js?v={ASSET_VERSION}" defer></script>
   <script src="../../scripts.min.js?v={ASSET_VERSION}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
@@ -494,7 +493,6 @@ def main() -> None:
       </ul>
     </section>
   </main>
-  <script src="../image-lite.js?v={ASSET_VERSION}" defer></script>
   <script src="../scripts.min.js?v={ASSET_VERSION}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>

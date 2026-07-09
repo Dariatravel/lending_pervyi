@@ -13,7 +13,6 @@ REPORT = ROOT / "output" / "migration_stage7_prod_audit.json"
 
 PROD_GLOBS = ("*.html", "*.js", "*.css", "*.json")
 SKIP_PARTS = {"node_modules", "output", "media", ".git", "supabase", "scripts", "tools", "collab_bot", "cashback_tracker"}
-LEGACY_FALLBACK_JS = {"scripts.js", "image-lite.js"}
 PATTERNS = {
     "supabase.co_url": re.compile(r"https?://[^\s\"']*supabase\.co", re.I),
     "site_media_storage": re.compile(r"storage/v1/object/public/site-media", re.I),
@@ -45,8 +44,6 @@ def main() -> int:
         rel = str(path.relative_to(ROOT))
         for name, pattern in PATTERNS.items():
             if pattern.search(text):
-                if name == "site_media_storage" and path.name in LEGACY_FALLBACK_JS:
-                    continue
                 findings[name].append(rel)
 
     payload = {

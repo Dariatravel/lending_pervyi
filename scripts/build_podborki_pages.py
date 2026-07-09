@@ -33,8 +33,8 @@ PODBORI_TXT = REPO / "podbori_txt"
 META_JSON = PODBORI_TXT / "_collection_meta.json"
 INDEX_HTML = REPO / "index.html"
 KVARTIRA_INDEX = REPO / "kvartira" / "index.html"
-CSS_VERSION = "202607091430"
-JS_VERSION = "202607091430"
+CSS_VERSION = "202607091530"
+JS_VERSION = "202607091530"
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 # Публичный URL раздела подборок (канон: кирилический .рф)
 CANONICAL_ORIGIN = "https://абхазберег.рф"
@@ -533,7 +533,6 @@ def render_collection_page(
 {body_html}
     </section>
   </main>
-  <script src="../../image-lite.js?v={JS_VERSION}" defer></script>
   <script src="../../scripts.min.js?v={JS_VERSION}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>

@@ -7,7 +7,7 @@ import html
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSET_VERSION = '202607091430'
+ASSET_VERSION = '202607091530'
 YANDEX_MEDIA_BASE = 'https://storage.yandexcloud.net/abhazbereg-media/media'
 
 
@@ -243,7 +243,6 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
   </section>
 
 </main>
-  <script src="../../image-lite.js?v={asset_version}" defer></script>
   <script src="../../scripts.min.js?v={asset_version}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>

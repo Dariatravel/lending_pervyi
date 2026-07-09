@@ -26,16 +26,6 @@
   display: none !important;
 }
 
-img[data-image-lite="done"] {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(217, 238, 231, 0.45)),
-    var(--paper-muted);
-}
-
-.network-lite img[data-image-lite="done"] {
-  image-rendering: auto;
-}
-
 /* По задаче: заголовки такого типа уменьшаем примерно вдвое на всех страницах */
 .podborki-hero h1 {
   font-size: clamp(0.68rem, 1.3vw, 1.25rem);
