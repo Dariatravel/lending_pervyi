@@ -619,8 +619,9 @@ def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]])
     alt = title
     city_key = primary_city_key(filters, row)
     map_plaque = render_map_plaque_html(city_key)
+    video_attr = ' data-has-video="1"' if row.get("has_video") else ""
     return (
-        f'<a class="catalog-card" data-listing-kind="hotel" {attrs} href="{html.escape(href, quote=True)}">'
+        f'<a class="catalog-card" data-listing-kind="hotel"{video_attr} {attrs} href="{html.escape(href, quote=True)}">'
         f'<div class="catalog-card__media-wrap"><img alt="{alt}" loading="lazy" src="{html.escape(image, quote=True)}"/>'
         f"{map_plaque}</div>"
         f"<h3>{title}</h3>"

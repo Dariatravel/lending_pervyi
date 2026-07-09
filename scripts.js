@@ -164,7 +164,7 @@
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
   const ASSET_VERSION = "202607091130";
-  const CATALOG_SNAPSHOT_URL = "/data/catalog-snapshot.json";
+  const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const LEGACY_STORAGE_BUCKET = "site-media";
   const SCREENSHOT_REVIEW_BANK_URL = `${CDN_MEDIA_BASE}/reviews/review_text_bank.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -619,7 +619,7 @@
       ],
     },
   };
-  let catalogSnapshotPromise = null;
+  let catalogIndexPromise = null;
   let screenshotReviewBank = null;
   let screenshotReviewBankPromise = null;
 
@@ -1689,38 +1689,43 @@
     targets.forEach((target) => observer.observe(target));
   }
 
-  function normalizeSnapshotListing(row) {
+  function normalizeIndexListing(row) {
     if (!row || typeof row !== "object") return row;
     const listing = { ...row };
-    if (!Array.isArray(listing.listing_media) && Array.isArray(listing.media)) {
-      listing.listing_media = listing.media;
+    const details = listing.details && typeof listing.details === "object" ? listing.details : {};
+    listing.details = {
+      ...details,
+      filters: details.filters && typeof details.filters === "object" ? details.filters : {},
+    };
+    if (typeof listing.has_video !== "boolean") {
+      listing.has_video = Boolean(listing.has_video);
     }
     return listing;
   }
 
-  async function loadCatalogSnapshot() {
-    if (!catalogSnapshotPromise) {
-      catalogSnapshotPromise = fetch(CATALOG_SNAPSHOT_URL, { credentials: "same-origin" })
+  async function loadCatalogIndex() {
+    if (!catalogIndexPromise) {
+      catalogIndexPromise = fetch(CATALOG_INDEX_URL, { credentials: "same-origin" })
         .then((response) => {
           if (!response.ok) {
-            throw new Error(`catalog snapshot HTTP ${response.status}`);
+            throw new Error(`catalog index HTTP ${response.status}`);
           }
           return response.json();
         })
         .then((payload) => {
           const rows = Array.isArray(payload?.listings) ? payload.listings : [];
-          return rows.map(normalizeSnapshotListing);
+          return rows.map(normalizeIndexListing);
         })
         .catch((error) => {
-          catalogSnapshotPromise = null;
+          catalogIndexPromise = null;
           throw error;
         });
     }
-    return catalogSnapshotPromise;
+    return catalogIndexPromise;
   }
 
   async function fetchListings(options = {}) {
-    const rows = await loadCatalogSnapshot();
+    const rows = await loadCatalogIndex();
     let filtered = rows.filter((row) => row?.is_active !== false);
     if (options.sourceKind) {
       filtered = filtered.filter((row) => row.source_kind === options.sourceKind);
@@ -2670,6 +2675,7 @@
       const card = document.createElement("a");
       card.className = "catalog-card";
       card.href = pathnameFromUrl(row.page_url, `/hotels/${row.slug}/`);
+      if (row.has_video) card.dataset.hasVideo = "1";
       applyFilterData(card, row.details?.filters);
 
       const mediaWrap = document.createElement("div");
@@ -4851,44 +4857,26 @@
     root.dataset.mapPlaqueWired = "1";
   }
 
-  async function addHotelVideoBadges(grid) {
+  function addHotelVideoBadges(grid) {
     if (!grid) return;
-    try {
-      const rows = await fetchListings({ sourceKind: "hotel" });
-      if (!rows.length) return;
-
-      const videoPaths = new Set(
-        rows
-          .filter((row) => row?.has_video)
-          .map((row) => pathnameFromUrl(row.page_url, row.slug ? `/hotels/${row.slug}/` : ""))
-          .filter(Boolean)
-      );
-      if (!videoPaths.size) return;
-
-      grid.querySelectorAll(".catalog-card").forEach((card) => {
-        const href = card.getAttribute("href") || "";
-        const cardPath = pathnameFromUrl(href, href);
-        if (!videoPaths.has(cardPath)) return;
-        let mediaWrap = card.querySelector(".catalog-card__media-wrap");
-        if (!mediaWrap) {
-          const firstImage = card.querySelector("img");
-          if (firstImage) {
-            mediaWrap = document.createElement("div");
-            mediaWrap.className = "catalog-card__media-wrap";
-            firstImage.parentNode?.insertBefore(mediaWrap, firstImage);
-            mediaWrap.appendChild(firstImage);
-          }
+    grid.querySelectorAll('.catalog-card[data-has-video="1"]').forEach((card) => {
+      let mediaWrap = card.querySelector(".catalog-card__media-wrap");
+      if (!mediaWrap) {
+        const firstImage = card.querySelector("img");
+        if (firstImage) {
+          mediaWrap = document.createElement("div");
+          mediaWrap.className = "catalog-card__media-wrap";
+          firstImage.parentNode?.insertBefore(mediaWrap, firstImage);
+          mediaWrap.appendChild(firstImage);
         }
-        if (!mediaWrap || mediaWrap.querySelector(".catalog-card__badge")) return;
+      }
+      if (!mediaWrap || mediaWrap.querySelector(".catalog-card__badge")) return;
 
-        const badge = document.createElement("span");
-        badge.className = "catalog-card__badge";
-        badge.textContent = "Видео";
-        mediaWrap.appendChild(badge);
-      });
-    } catch (error) {
-      console.error("Не удалось добавить плашки Видео на карточки отелей", error);
-    }
+      const badge = document.createElement("span");
+      badge.className = "catalog-card__badge";
+      badge.textContent = "Видео";
+      mediaWrap.prepend(badge);
+    });
   }
 
   async function hydrateHomeCatalog(filtersController) {

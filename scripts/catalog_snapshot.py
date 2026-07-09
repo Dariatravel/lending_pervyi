@@ -9,6 +9,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
+CATALOG_INDEX_PATH = ROOT / "data" / "catalog-index.json"
 SCHEMA_VERSION = 1
 STORAGE_BUCKET = "abhazbereg-media"
 
@@ -31,11 +32,43 @@ def load_listings() -> list[dict[str, Any]]:
     return list(load_payload().get("listings") or [])
 
 
+def compact_listing_for_index(row: dict[str, Any]) -> dict[str, Any]:
+    details = row.get("details") if isinstance(row.get("details"), dict) else {}
+    filters = details.get("filters") if isinstance(details.get("filters"), dict) else {}
+    return {
+        "source_kind": row.get("source_kind"),
+        "slug": row.get("slug"),
+        "title": row.get("title"),
+        "summary": row.get("summary"),
+        "page_url": row.get("page_url"),
+        "has_video": bool(row.get("has_video")),
+        "cover_url": row.get("cover_url"),
+        "details": {"filters": filters},
+    }
+
+
+def write_catalog_index(listings: list[dict[str, Any]], *, generated_at: str = "") -> None:
+    active = [row for row in listings if row.get("is_active", True)]
+    payload = {
+        "generated_at": generated_at or datetime.now(timezone.utc).isoformat(),
+        "schema_version": SCHEMA_VERSION,
+        "source": "catalog-snapshot-index",
+        "listings_total": len(active),
+        "listings": [compact_listing_for_index(row) for row in active],
+    }
+    CATALOG_INDEX_PATH.parent.mkdir(parents=True, exist_ok=True)
+    CATALOG_INDEX_PATH.write_text(
+        json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n",
+        encoding="utf-8",
+    )
+
+
 def save_listings(listings: list[dict[str, Any]], *, source: str = "local-sync") -> None:
     hotels = sum(1 for row in listings if row.get("source_kind") == "hotel" and row.get("is_active", True))
     kv = sum(1 for row in listings if row.get("source_kind") == "kvartira" and row.get("is_active", True))
+    generated_at = datetime.now(timezone.utc).isoformat()
     payload = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": generated_at,
         "schema_version": SCHEMA_VERSION,
         "source": source,
         "listings_total": sum(1 for row in listings if row.get("is_active", True)),
@@ -45,6 +78,7 @@ def save_listings(listings: list[dict[str, Any]], *, source: str = "local-sync")
     }
     SNAPSHOT_PATH.parent.mkdir(parents=True, exist_ok=True)
     SNAPSHOT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_catalog_index(listings, generated_at=generated_at)
 
 
 def next_listing_id(listings: list[dict[str, Any]]) -> int:

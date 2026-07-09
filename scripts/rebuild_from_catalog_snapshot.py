@@ -11,16 +11,21 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
+from catalog_snapshot import write_catalog_index  # noqa: E402
 from rebuild_from_supabase import rebuild_catalog  # noqa: E402
 
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 CURRENT_PAGES_PATH = ROOT / "output" / "current_pages.json"
 
 
-def load_snapshot_rows() -> list[dict[str, Any]]:
+def load_snapshot_payload() -> dict[str, Any]:
     if not SNAPSHOT_PATH.exists():
         raise FileNotFoundError(f"Snapshot not found: {SNAPSHOT_PATH}")
     payload = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+    return payload
+
+
+def load_snapshot_rows(payload: dict[str, Any]) -> list[dict[str, Any]]:
     rows = payload.get("listings") or []
     if not rows:
         raise RuntimeError("Snapshot has no listings")
@@ -51,10 +56,12 @@ def write_current_pages(rows: list[dict[str, Any]]) -> None:
 
 
 def main() -> int:
-    rows = load_snapshot_rows()
+    payload = load_snapshot_payload()
+    rows = load_snapshot_rows(payload)
     rebuild_catalog(rows)
+    write_catalog_index(rows, generated_at=str(payload.get("generated_at") or ""))
     write_current_pages(rows)
-    print(f"snapshot={SNAPSHOT_PATH.name} generated_at={json.loads(SNAPSHOT_PATH.read_text(encoding='utf-8')).get('generated_at')}")
+    print(f"snapshot={SNAPSHOT_PATH.name} generated_at={payload.get('generated_at')}")
     return 0
 
 

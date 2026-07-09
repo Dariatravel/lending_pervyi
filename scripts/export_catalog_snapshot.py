@@ -13,6 +13,8 @@ import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+from catalog_snapshot import write_catalog_index  # noqa: E402
+
 ENV_PATH = ROOT / ".env.supabase.local"
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 SCHEMA_VERSION = 1
@@ -192,6 +194,7 @@ def main() -> int:
 
     SNAPSHOT_PATH.parent.mkdir(parents=True, exist_ok=True)
     SNAPSHOT_PATH.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_catalog_index(listings, generated_at=snapshot["generated_at"])
 
     print(f"snapshot={SNAPSHOT_PATH}")
     print(
