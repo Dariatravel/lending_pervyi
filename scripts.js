@@ -198,7 +198,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607091700";
+  const ASSET_VERSION = "202607091805";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_BANK_URL = `${CDN_MEDIA_BASE}/reviews/review_text_bank.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -1594,6 +1594,53 @@
   function extractObjectSlugFromPathname() {
     const match = window.location.pathname.match(/^\/(?:hotels|kvartira)\/([^/]+)\/?$/);
     return match ? match[1] : "";
+  }
+
+  function ensureEmojiLine(value, emoji) {
+    const text = String(value || "").replace(/<br\s*\/?>/gi, " ").replace(/\s+/g, " ").trim();
+    if (!text) return "";
+    if (/^[📍🏖🏝]/.test(text)) return text;
+    return `${emoji} ${text}`;
+  }
+
+  function extractHotelSummaryLines(row) {
+    const source = [row?.summary, row?.excerpt, row?.details?.lead]
+      .filter(Boolean)
+      .join("\n")
+      .replace(/<br\s*\/?>/gi, "\n");
+
+    let location = ensureEmojiLine(row?.location_text, "📍");
+    let beach = ensureEmojiLine(row?.beach_text, "🏖");
+    if (location && beach) return { location, beach };
+
+    const lines = source
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean);
+
+    for (const line of lines) {
+      const lower = line.toLowerCase();
+      if (!location && (line.includes("📍") || lower.includes("ул.") || lower.includes("улиц") || lower.includes("пос."))) {
+        location = ensureEmojiLine(line.replace("📍", "").trim(), "📍");
+        continue;
+      }
+      if (!beach && (line.includes("🏖") || line.includes("🏝") || lower.includes("пляж") || lower.includes("мор"))) {
+        beach = ensureEmojiLine(line.replace("🏖", "").replace("🏝", "").trim(), "🏖");
+      }
+    }
+
+    if (!location) {
+      const filters = row?.details?.filters || {};
+      const city = CITY_LABELS[firstValue(filters.city)] || extractCityFromSummary(source) || "Абхазия";
+      location = ensureEmojiLine(city, "📍");
+    }
+    if (!beach) {
+      const filters = row?.details?.filters || {};
+      const distance = DISTANCE_BY_FILTER[firstValue(filters.distance)] || extractDistanceFromSummary(source) || "до пляжа";
+      beach = ensureEmojiLine(distance, "🏖");
+    }
+
+    return { location, beach };
   }
 
   function extractObjectReviewContext(row) {
@@ -3312,6 +3359,13 @@
         }
         if (!ok) return false;
       }
+    }
+    if (
+      selected.stay &&
+      selected.stay.has("cottages") &&
+      !matchesCatalogSlug("cabin", catalogTextForCard(entry.el))
+    ) {
+      return false;
     }
     if (slug && !matchesCatalogSlug(slug, catalogTextForCard(entry.el))) {
       return false;
