@@ -984,7 +984,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="icon" type="image/png" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-abhazbereg.png" rel="shortcut icon" type="image/png" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.css?v=202607081500" />
+    <link rel="stylesheet" href="../../styles.css?v=202607091130" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1071,8 +1071,8 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../image-lite.js?v=202607081500" defer></script>
-    <script src="../../scripts.js?v=202607081500" defer></script>
+    <script src="../../image-lite.js?v=202607091130" defer></script>
+    <script src="../../scripts.js?v=202607091130" defer></script>
   </body>
 </html>'''
 

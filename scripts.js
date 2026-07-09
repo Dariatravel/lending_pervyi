@@ -163,9 +163,10 @@
   initGA4();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
+  const ASSET_VERSION = "202607091130";
   const CATALOG_SNAPSHOT_URL = "/data/catalog-snapshot.json";
   const LEGACY_STORAGE_BUCKET = "site-media";
-  const SCREENSHOT_REVIEW_BANK_URL = `${CDN_MEDIA_BASE}/reviews/review_text_bank.json`;
+  const SCREENSHOT_REVIEW_BANK_URL = `${CDN_MEDIA_BASE}/reviews/review_text_bank.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
   const FILTER_CONFIG = {
     /** Отдельный URL-парам (hotel / guesthouse / cabin), не смешиваем с группами `data-filter-*` на карточках. Состояние категории живёт рядом с группами в createFilterStore (committedCat / draftCat). */
@@ -1446,7 +1447,7 @@
     if (screenshotReviewBank) return screenshotReviewBank;
     if (screenshotReviewBankPromise) return screenshotReviewBankPromise;
 
-    screenshotReviewBankPromise = fetch(SCREENSHOT_REVIEW_BANK_URL, { cache: "no-store" })
+    screenshotReviewBankPromise = fetch(SCREENSHOT_REVIEW_BANK_URL)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Не удалось загрузить ${SCREENSHOT_REVIEW_BANK_URL}: ${response.status}`);
@@ -1650,6 +1651,42 @@
     } else {
       renderGenericReviews();
     }
+  }
+
+  function getScreenshotReviewTargets() {
+    return Array.from(
+      document.querySelectorAll(".reviews-panel, .reviews-scroller:not([data-random-reviews])")
+    );
+  }
+
+  function initLazyScreenshotReviews() {
+    const targets = getScreenshotReviewTargets();
+    if (!targets.length) return;
+
+    let started = false;
+    const hydrate = () => {
+      if (started) return;
+      started = true;
+      loadScreenshotReviewBank().then(() => {
+        renderReviewsForCurrentPage();
+      });
+    };
+
+    if (!("IntersectionObserver" in window)) {
+      setTimeout(hydrate, 1200);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        hydrate();
+      },
+      { rootMargin: "600px 0px" }
+    );
+
+    targets.forEach((target) => observer.observe(target));
   }
 
   function normalizeSnapshotListing(row) {
@@ -5171,9 +5208,7 @@
   absolutizeHotelSiteConceptMedia();
   void initRandomGuestReviews();
 
-  loadScreenshotReviewBank().then(() => {
-    renderReviewsForCurrentPage();
-  });
+  initLazyScreenshotReviews();
 
   const filtersController = initFilters();
   initSearchBar(filtersController);

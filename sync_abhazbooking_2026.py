@@ -763,7 +763,7 @@ def render_page(slug: str, message_id: int, date_text: str, parsed: dict, photo_
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../../styles.css?v=202607081500" />
+    <link rel="stylesheet" href="../../styles.css?v=202607091130" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -843,7 +843,7 @@ def render_page(slug: str, message_id: int, date_text: str, parsed: dict, photo_
         </div>
       </section>
     </main>
-    <script src="../../scripts.js?v=202607081500" defer></script>
+    <script src="../../scripts.js?v=202607091130" defer></script>
   </body>
 </html>
 """
