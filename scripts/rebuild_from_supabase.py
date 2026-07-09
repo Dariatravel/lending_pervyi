@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 import requests
 
 from media_urls import media_src_for_html, yandex_photo_url  # noqa: E402
+from responsive_images import responsive_img_html  # noqa: E402
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -616,13 +617,18 @@ def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]])
         summary_html = "<br />".join(html.escape(line) for line in card_lines)
     else:
         summary_html = html.escape(summary_fallback)
-    alt = title
     city_key = primary_city_key(filters, row)
     map_plaque = render_map_plaque_html(city_key)
     video_attr = ' data-has-video="1"' if row.get("has_video") else ""
+    image_html = responsive_img_html(
+        image,
+        html.unescape(title),
+        loading="lazy",
+        sizes="(max-width: 720px) 92vw, (max-width: 1180px) 45vw, 320px",
+    )
     return (
         f'<a class="catalog-card" data-listing-kind="hotel"{video_attr} {attrs} href="{html.escape(href, quote=True)}">'
-        f'<div class="catalog-card__media-wrap"><img alt="{alt}" loading="lazy" src="{html.escape(image, quote=True)}"/>'
+        f'<div class="catalog-card__media-wrap">{image_html}'
         f"{map_plaque}</div>"
         f"<h3>{title}</h3>"
         f"<p>{summary_html}</p>"
@@ -668,9 +674,15 @@ def render_kvartira_card(row: dict[str, Any]) -> str:
     image = image_src_for_html(pick_cover_url(row))
     badge = '<span class="catalog-card__badge">Видео</span>' if row.get("has_video") else ""
     map_plaque = render_map_plaque_html(primary_city_key(filters, row))
+    image_html = responsive_img_html(
+        image,
+        html.unescape(title),
+        loading="lazy",
+        sizes="(max-width: 720px) 92vw, (max-width: 1180px) 45vw, 320px",
+    )
     return (
         f'<a class="catalog-card" data-listing-kind="kvartira" {attrs} href="{html.escape(href, quote=True)}">'
-        f'<div class="catalog-card__media-wrap">{badge}<img src="{html.escape(image, quote=True)}" alt="{title}" loading="lazy" />'
+        f'<div class="catalog-card__media-wrap">{badge}{image_html}'
         f"{map_plaque}</div>"
         f"<h3>{title}</h3>"
         f"<p>{summary}</p>"
