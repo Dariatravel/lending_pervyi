@@ -33,8 +33,8 @@ PODBORI_TXT = REPO / "podbori_txt"
 META_JSON = PODBORI_TXT / "_collection_meta.json"
 INDEX_HTML = REPO / "index.html"
 KVARTIRA_INDEX = REPO / "kvartira" / "index.html"
-CSS_VERSION = "202607091245"
-JS_VERSION = "202607091245"
+CSS_VERSION = "202607091330"
+JS_VERSION = "202607091330"
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 # Публичный URL раздела подборок (канон: кирилический .рф)
 CANONICAL_ORIGIN = "https://абхазберег.рф"
@@ -500,7 +500,7 @@ def render_collection_page(
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-48.png" />
-  <link rel="stylesheet" href="../../styles.css?v={CSS_VERSION}" />
+  <link rel="stylesheet" href="../../styles.min.css?v={CSS_VERSION}" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -534,7 +534,7 @@ def render_collection_page(
     </section>
   </main>
   <script src="../../image-lite.js?v={JS_VERSION}" defer></script>
-  <script src="../../scripts.js?v={JS_VERSION}" defer></script>
+  <script src="../../scripts.min.js?v={JS_VERSION}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

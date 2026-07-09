@@ -24,7 +24,7 @@ CHANNEL = "abhazbereg"
 MEDIA_DIR = ROOT / "media" / "blog"
 SOURCES_DIR = ROOT / "scripts" / "blog_telegram_sources"
 BLOG_DIR = ROOT / "blog"
-CSS_VERSION = "202607091245"
+CSS_VERSION = "202607091330"
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media"
 
 POST_IDS = [
@@ -511,7 +511,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{yandex_media_base}/media/branding/favicon-48.png" />
-  <link rel="stylesheet" href="../../styles.css?v={css_version}" />
+  <link rel="stylesheet" href="../../styles.min.css?v={css_version}" />
   <script type="application/ld+json">{json_ld}</script>
 </head>
 <body>
@@ -625,8 +625,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   </section>
 
 </main>
-  <script src="../../image-lite.js?v=202607091245" defer></script>
-  <script src="../../scripts.js?v=202607091245" defer></script>
+  <script src="../../image-lite.js?v=202607091330" defer></script>
+  <script src="../../scripts.min.js?v=202607091330" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -713,7 +713,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/media/branding/favicon-48.png" />
-  <link rel="stylesheet" href="../styles.css?v={CSS_VERSION}" />
+  <link rel="stylesheet" href="../styles.min.css?v={CSS_VERSION}" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -807,8 +807,8 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   </section>
 
 </main>
-  <script src="../image-lite.js?v=202607091245" defer></script>
-  <script src="../scripts.js?v=202607091245" defer></script>
+  <script src="../image-lite.js?v=202607091330" defer></script>
+  <script src="../scripts.min.js?v=202607091330" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

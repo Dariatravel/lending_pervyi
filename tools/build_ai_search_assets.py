@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 CANON_ORIGIN = "https://абхазберег.рф"
-CSS_VERSION = "202607091245"
+CSS_VERSION = "202607091330"
 BRAND = "АБХАЗБЕРЕГ"
 
 
@@ -396,7 +396,7 @@ def render_answer_page(page: dict[str, Any]) -> str:
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
   <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
-  <link rel="stylesheet" href="../../styles.css?v={CSS_VERSION}" />
+  <link rel="stylesheet" href="../../styles.min.css?v={CSS_VERSION}" />
 {schema}
 </head>
 <body>
@@ -444,8 +444,8 @@ def render_answer_page(page: dict[str, Any]) -> str:
       </div>
     </article>
   </main>
-  <script src="../../image-lite.js?v=202607091245" defer></script>
-  <script src="../../scripts.js?v=202607091245" defer></script>
+  <script src="../../image-lite.js?v=202607091330" defer></script>
+  <script src="../../scripts.min.js?v=202607091330" defer></script>
 </body>
 </html>
 """
@@ -478,7 +478,7 @@ def write_answer_pages() -> None:
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
   <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
-  <link rel="stylesheet" href="../styles.css?v={CSS_VERSION}" />
+  <link rel="stylesheet" href="../styles.min.css?v={CSS_VERSION}" />
   <script type="application/ld+json" data-schema="breadcrumbs">{json_ld({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -514,8 +514,8 @@ def write_answer_pages() -> None:
       </div>
     </section>
   </main>
-  <script src="../image-lite.js?v=202607091245" defer></script>
-  <script src="../scripts.js?v=202607091245" defer></script>
+  <script src="../image-lite.js?v=202607091330" defer></script>
+  <script src="../scripts.min.js?v=202607091330" defer></script>
 </body>
 </html>
 """

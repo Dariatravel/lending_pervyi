@@ -7,7 +7,7 @@ import html
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSET_VERSION = '202607091245'
+ASSET_VERSION = '202607091330'
 YANDEX_MEDIA_BASE = 'https://storage.yandexcloud.net/abhazbereg-media/media'
 
 
@@ -114,7 +114,7 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{yandex_media_base}/branding/favicon-48.png" />
-  <link rel="stylesheet" href="../../styles.css?v={asset_version}" />
+  <link rel="stylesheet" href="../../styles.min.css?v={asset_version}" />
   <script type="application/ld+json">{json_ld}</script>
 </head>
 <body>
@@ -244,7 +244,7 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
 
 </main>
   <script src="../../image-lite.js?v={asset_version}" defer></script>
-  <script src="../../scripts.js?v={asset_version}" defer></script>
+  <script src="../../scripts.min.js?v={asset_version}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

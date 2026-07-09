@@ -21,7 +21,7 @@ PODBORKI_ROOT = Path("/Users/darya_botova/Documents/ПОДБОРКИ")
 OUT_DIR = REPO / "podborki"
 CURRENT_PAGES = REPO / "output" / "current_pages.json"
 KVARTIRA_CARDS = REPO / "kvartira_cards.json"
-ASSET_VERSION = "202607091245"
+ASSET_VERSION = "202607091330"
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 
 from podborki_hotel_match import (
@@ -366,7 +366,7 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-48.png" />
-  <link rel="stylesheet" href="../../styles.css?v={ASSET_VERSION}" />
+  <link rel="stylesheet" href="../../styles.min.css?v={ASSET_VERSION}" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -401,7 +401,7 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
     </section>
   </main>
   <script src="../../image-lite.js?v={ASSET_VERSION}" defer></script>
-  <script src="../../scripts.js?v={ASSET_VERSION}" defer></script>
+  <script src="../../scripts.min.js?v={ASSET_VERSION}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -464,7 +464,7 @@ def main() -> None:
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-48.png" />
-  <link rel="stylesheet" href="../styles.css?v={ASSET_VERSION}" />
+  <link rel="stylesheet" href="../styles.min.css?v={ASSET_VERSION}" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -495,7 +495,7 @@ def main() -> None:
     </section>
   </main>
   <script src="../image-lite.js?v={ASSET_VERSION}" defer></script>
-  <script src="../scripts.js?v={ASSET_VERSION}" defer></script>
+  <script src="../scripts.min.js?v={ASSET_VERSION}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

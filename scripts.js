@@ -163,9 +163,8 @@
   initGA4();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607091245";
+  const ASSET_VERSION = "202607091330";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
-  const LEGACY_STORAGE_BUCKET = "site-media";
   const SCREENSHOT_REVIEW_BANK_URL = `${CDN_MEDIA_BASE}/reviews/review_text_bank.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
   const FILTER_CONFIG = {
@@ -1759,13 +1758,10 @@
     if (!n) return "";
     if (n.startsWith(CDN_MEDIA_BASE)) return n;
 
-    const supabaseMarker = `/storage/v1/object/public/${LEGACY_STORAGE_BUCKET}/`;
     const yandexFolders = /^(cards|hotels|kvartira|kvartira-cards|branding|blog|reviews)\//;
     let rel = "";
 
-    if (n.includes(supabaseMarker)) {
-      rel = n.slice(n.indexOf(supabaseMarker) + supabaseMarker.length).split("?")[0].replace(/^\/+/, "");
-    } else if (n.includes("/media/")) {
+    if (n.includes("/media/")) {
       rel = n.slice(n.indexOf("/media/") + "/media/".length).split("?")[0].replace(/^\/+/, "");
     } else if (!/^https?:\/\//i.test(n)) {
       rel = n.replace(/^(\.\.\/)+/, "").replace(/^\/+/, "").replace(/^media\//, "");
@@ -1788,7 +1784,7 @@
     return n;
   }
 
-  /** Turn local/Supabase media image paths into Yandex Object Storage URLs. */
+  /** Turn local media image paths into Yandex Object Storage URLs. */
   function absolutizeKvartiraCoverUrl(url) {
     const n = normalizeMediaUrl(url);
     if (!n) return "";
@@ -1821,228 +1817,7 @@
     const raw = value.trim();
     if (!raw) return "";
 
-    if (raw.includes("/storage/v1/object/public/site-media/http")) {
-      const marker = "/storage/v1/object/public/site-media/";
-      const idx = raw.indexOf(marker);
-      const nested = raw.slice(idx + marker.length);
-      try {
-        const decoded = decodeURIComponent(nested);
-        if (decoded.startsWith("http://") || decoded.startsWith("https://")) {
-          return decoded;
-        }
-      } catch (error) {
-        console.warn("Не удалось декодировать вложенный URL медиа", raw, error);
-      }
-    }
-
     return raw;
-  }
-
-  const SUPABASE_PUBLIC_MEDIA_MARKER = `/storage/v1/object/public/${LEGACY_STORAGE_BUCKET}/`;
-
-  function isSupabaseStorageUrl(url) {
-    const normalized = normalizeMediaUrl(url);
-    if (!normalized || !normalized.includes("supabase.co")) return false;
-    return normalized.includes(SUPABASE_PUBLIC_MEDIA_MARKER);
-  }
-
-  /** Supabase Storage URL → CDN для фото или локальный путь для видео. */
-  function supabaseStorageUrlToLocalPath(url) {
-    const normalized = normalizeMediaUrl(url);
-    if (!normalized) return "";
-    const markerIndex = normalized.indexOf(SUPABASE_PUBLIC_MEDIA_MARKER);
-    if (markerIndex === -1) return "";
-    const relative = normalized.slice(markerIndex + SUPABASE_PUBLIC_MEDIA_MARKER.length).split("?")[0];
-    try {
-      return toCdnMediaUrl(`/media/${decodeURIComponent(relative)}`);
-    } catch (error) {
-      return toCdnMediaUrl(`/media/${relative}`);
-    }
-  }
-
-  function localMediaFallbackChain(url) {
-    const primary = supabaseStorageUrlToLocalPath(url);
-    if (!primary) return [];
-
-    const chain = [primary];
-
-    if (primary.includes(`${CDN_MEDIA_BASE}/kvartira-cards/`)) {
-      const withoutCover = primary.replace(/-cover\.jpg$/i, ".jpg");
-      const withCover = primary.replace(/\.jpg$/i, "-cover.jpg");
-      if (withoutCover !== primary && !chain.includes(withoutCover)) chain.push(withoutCover);
-      if (withCover !== primary && !chain.includes(withCover)) chain.push(withCover);
-    }
-
-    if (/\.mp4$/i.test(primary)) {
-      const match = primary.match(/^(.*?\/video-\d+-)([^/]+)(\.mp4)$/i);
-      if (match) {
-        const [, prefix, , ext] = match;
-        ["source", "1800k", "1200k", "900k", "700k", "500k", "350k"].forEach((variant) => {
-          const candidate = `${prefix}${variant}${ext}`;
-          if (!chain.includes(candidate)) chain.push(candidate);
-        });
-      }
-      if (primary.includes("vertical-high")) {
-        const low = primary.replace("vertical-high", "vertical-low");
-        if (!chain.includes(low)) chain.push(low);
-      }
-    }
-
-    return chain;
-  }
-
-  const SUPABASE_MEDIA_FALLBACK_TIMEOUT_MS = 2600;
-
-  function sourceLooksLoaded(mediaEl) {
-    if (!mediaEl) return false;
-    if (mediaEl.tagName === "IMG") {
-      return mediaEl.complete && mediaEl.naturalWidth > 0;
-    }
-    if (mediaEl.tagName === "VIDEO") {
-      return mediaEl.readyState >= 1;
-    }
-    return false;
-  }
-
-  async function firstReachableLocalMedia(candidates, startAt = 0) {
-    for (let index = startAt; index < candidates.length; index += 1) {
-      const candidate = candidates[index];
-      try {
-        const response = await fetch(candidate, { method: "HEAD", cache: "force-cache" });
-        if (response.ok) return { candidate, nextAttempt: index + 1 };
-      } catch (error) {
-        /* try next fallback candidate */
-      }
-    }
-    return null;
-  }
-
-  function attachSupabaseMediaFallbackToImage(img) {
-    if (!img || img.dataset.supabaseFallbackWired === "1") return;
-
-    const initial = normalizeMediaUrl(img.getAttribute("src") || img.currentSrc || "");
-    if (!isSupabaseStorageUrl(initial)) return;
-
-    const candidates = localMediaFallbackChain(initial);
-    if (!candidates.length) return;
-
-    img.dataset.supabaseFallbackWired = "1";
-    let attempt = 0;
-    let timerId = 0;
-
-    const tryLocalMediaFallback = () => {
-      if (timerId) {
-        window.clearTimeout(timerId);
-        timerId = 0;
-      }
-      if (attempt >= candidates.length) {
-        img.removeEventListener("error", tryLocalMediaFallback);
-        return;
-      }
-      img.src = candidates[attempt];
-      attempt += 1;
-    };
-
-    img.addEventListener("error", tryLocalMediaFallback);
-    tryLocalMediaFallback();
-
-    if (img.complete && img.naturalWidth === 0) {
-      img.dispatchEvent(new Event("error"));
-    } else if (!sourceLooksLoaded(img)) {
-      timerId = window.setTimeout(() => {
-        if (!sourceLooksLoaded(img)) tryLocalMediaFallback();
-      }, SUPABASE_MEDIA_FALLBACK_TIMEOUT_MS);
-    }
-  }
-
-  function restoreVideoPlaybackSource(video, sourceEl, url) {
-    if (!video || !url) return;
-    if (sourceEl) {
-      sourceEl.src = url;
-      video.removeAttribute("src");
-    } else {
-      video.src = url;
-    }
-    video.removeAttribute("crossorigin");
-    try {
-      video.load();
-    } catch (error) {
-      /* ignore */
-    }
-  }
-
-  function attachSupabaseMediaFallbackToVideo(video) {
-    if (!video || video.dataset.supabaseFallbackWired === "1") return;
-
-    const sourceEl = video.querySelector("source[src]");
-    const initial = normalizeMediaUrl(video.getAttribute("src") || sourceEl?.getAttribute("src") || "");
-    if (!isSupabaseStorageUrl(initial)) return;
-
-    const candidates = localMediaFallbackChain(initial);
-    if (!candidates.length) return;
-
-    video.dataset.supabaseFallbackWired = "1";
-    let attempt = 0;
-    let timerId = 0;
-
-    const applyCandidate = (candidateUrl) => {
-      if (sourceEl) {
-        sourceEl.src = candidateUrl;
-        video.removeAttribute("src");
-      } else {
-        video.src = candidateUrl;
-      }
-      try {
-        video.load();
-      } catch (error) {
-        /* ignore */
-      }
-    };
-
-    const switchToReachableLocalVideo = (restoreSupabaseIfMissing) => {
-      if (timerId) {
-        window.clearTimeout(timerId);
-        timerId = 0;
-      }
-
-      void firstReachableLocalMedia(candidates, attempt).then((match) => {
-        if (sourceLooksLoaded(video)) return;
-
-        if (!match) {
-          if (restoreSupabaseIfMissing) {
-            video.removeEventListener("error", switchToReachableLocalVideoOnError);
-            restoreVideoPlaybackSource(video, sourceEl, initial);
-          }
-          return;
-        }
-
-        attempt = match.nextAttempt;
-        applyCandidate(match.candidate);
-      });
-    };
-
-    const switchToReachableLocalVideoOnError = () => switchToReachableLocalVideo(true);
-
-    video.addEventListener("error", switchToReachableLocalVideoOnError);
-    video.addEventListener("loadedmetadata", () => {
-      if (timerId) {
-        window.clearTimeout(timerId);
-        timerId = 0;
-      }
-    }, { once: true });
-
-    timerId = window.setTimeout(() => {
-      if (sourceLooksLoaded(video)) return;
-      switchToReachableLocalVideo(false);
-    }, SUPABASE_MEDIA_FALLBACK_TIMEOUT_MS);
-  }
-
-  /** Подключает fallback Supabase → /media/ для статической вёрстки и динамических блоков. */
-  function wireSupabaseMediaFallback(root = document) {
-    if (!root || !root.querySelectorAll) return;
-    root.querySelectorAll("img[src]").forEach(attachSupabaseMediaFallbackToImage);
-    root.querySelectorAll("video").forEach(attachSupabaseMediaFallbackToVideo);
-    initLocalVideoPosters(root);
   }
 
   function pickLocalVideoFallbackPoster(video) {
@@ -2703,7 +2478,7 @@
     });
 
     grid.replaceChildren(fragment);
-    wireSupabaseMediaFallback(grid);
+    initLocalVideoPosters(grid);
     initCatalogMapPlaques(grid);
   }
 
@@ -2741,7 +2516,7 @@
     });
 
     grid.replaceChildren(fragment);
-    wireSupabaseMediaFallback(grid);
+    initLocalVideoPosters(grid);
     initCatalogMapPlaques(grid);
   }
 
@@ -3135,7 +2910,7 @@
       const fragment = document.createDocumentFragment();
       similarRows.forEach((row) => fragment.appendChild(buildSimilarCatalogCard(row, sourceKind)));
       grid.replaceChildren(fragment);
-      wireSupabaseMediaFallback(grid);
+      initLocalVideoPosters(grid);
       section.hidden = false;
     } catch (error) {
       console.warn("Не удалось показать похожие объекты", error);
@@ -3179,7 +2954,7 @@
     element.replaceChildren(fragment);
   }
 
-  function resolveSupabaseMediaUrl(item, row) {
+  function resolveMediaUrl(item, row) {
     if (item && typeof item.source_url === "string" && item.source_url.startsWith("/media/")) {
       return toCdnMediaUrl(item.source_url);
     }
@@ -3187,17 +2962,6 @@
     const raw = (item && item.storage_path) || (item && item.source_url) || '';
     if (!raw) return '';
     if (/^https?:\/\//i.test(raw)) {
-      const marker = `/storage/v1/object/public/${LEGACY_STORAGE_BUCKET}/`;
-      const idx = raw.indexOf(marker);
-      if (idx !== -1) {
-        let rel = decodeURIComponent(raw.slice(idx + marker.length));
-        while (/^https?:\/\//i.test(rel)) {
-          const nextIdx = rel.indexOf(marker);
-          if (nextIdx === -1) break;
-          rel = decodeURIComponent(rel.slice(nextIdx + marker.length));
-        }
-        return toCdnMediaUrl(`/media/${rel}`);
-      }
       return toCdnMediaUrl(raw);
     }
     const rel = raw.replace(/^\/+/, '');
@@ -3212,7 +2976,7 @@
       .sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
       .forEach((item, index) => {
         if ((item.mime_type || "").startsWith("video/")) {
-          const resolvedUrl = resolveSupabaseMediaUrl(item, row);
+          const resolvedUrl = resolveMediaUrl(item, row);
           if (!resolvedUrl) return;
           const video = document.createElement("video");
           video.className = "local-video";
@@ -3241,7 +3005,7 @@
           return;
         }
 
-        const resolvedUrl = resolveSupabaseMediaUrl(item, row);
+        const resolvedUrl = resolveMediaUrl(item, row);
         if (!resolvedUrl) return;
         const image = document.createElement("img");
         image.loading = "lazy";
@@ -3253,7 +3017,7 @@
 
     if (fragment.childNodes.length > 0) {
       grid.replaceChildren(fragment);
-      wireSupabaseMediaFallback(grid);
+      initLocalVideoPosters(grid);
     }
   }
 
@@ -5190,7 +4954,7 @@
   }
 
   initHeroVideoQuality();
-  wireSupabaseMediaFallback();
+  initLocalVideoPosters();
   initCatalogMapPlaques();
   initObjectPageMapPlaque();
   absolutizeHotelSiteConceptMedia();
