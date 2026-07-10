@@ -1,11 +1,11 @@
 {
   "name": "АБХАЗБЕРЕГ - каталог жилья в Абхазии",
   "url": "https://абхазберег.рф/",
-  "generated_at": "2026-07-08T12:52:21.857381+00:00",
+  "generated_at": "2026-07-10T14:38:17.546433+00:00",
   "language": "ru",
   "description": "Машиночитаемый каталог проверенных отелей, домиков, апартаментов и квартир в Абхазии для AI-поиска и агентных рекомендаций.",
   "usage_note": "Используйте page url как канонический источник, цены подтверждайте перед бронированием.",
-  "total": 223,
+  "total": 224,
   "listings": [
     {
       "name": "\"АКИРА\" 2к квартира",
@@ -3275,13 +3275,13 @@
       "updated_at": "2026-02-04"
     },
     {
-      "name": "\"ЧЕРНОМОРСКАЯ-2\" квартира 2к",
+      "name": "\"ЧЕРНОМОРСКАЯ-1\" квартира 2к",
       "type": "apartment",
       "city": "Сухум",
       "location": "Сухум, ул. Лакоба 114, 2 этаж",
       "beach_distance": "2 минуты до центрального пляжа",
-      "capacity": "размещение до 6 человек",
-      "summary": "Сухум. 2 минуты до центрального пляжа, размещение до 6 человек.",
+      "capacity": "размещение до 5 человек",
+      "summary": "Сухум. 2 минуты до центрального пляжа, размещение до 5 человек.",
       "amenities": [
         "питание",
         "своя кухня",
@@ -3297,7 +3297,7 @@
       "price_range": "3000-5000 RUB",
       "url": "https://абхазберег.рф/kvartira/chernomorskaya-kvartira-suhum-1201/",
       "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/chernomorskaya-kvartira-suhum-1201-cover.jpg",
-      "telegram_source": "https://t.me/abhkvartira/1193",
+      "telegram_source": "https://t.me/abhkvartira/1185",
       "updated_at": "2026-02-04"
     },
     {
@@ -6458,6 +6458,39 @@
       "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/briz-domiki-na-beregu-4937.jpg",
       "telegram_source": "https://t.me/abhazbooking/4937",
       "updated_at": "2026-07-06"
+    },
+    {
+      "name": "\"РЕГИНА ПЕРВЫЙ КОРПУС\" отель с завтраками",
+      "type": "hotel",
+      "city": "Лдзаа",
+      "location": "Лдзаа, ул. Рыбзаводская, 22",
+      "beach_distance": "3 минуты до пляжа, сосновый галечный",
+      "capacity": "размещение до 4 человек",
+      "summary": "Лдзаа. 3 минуты до пляжа, сосновый галечный, размещение до 4 человек.",
+      "amenities": [
+        "бассейн",
+        "питание",
+        "балкон"
+      ],
+      "prices": [
+        "Люкс одноместное размещение",
+        "7200₽ - июль",
+        "8100₽ - с 1 августа по 15 сентября",
+        "6300₽ - с 16 сентября по 31 октября",
+        "3300₽ - с 1 ноября по 27 декабря",
+        "Люкс двухместное размещение",
+        "8700₽ - июль",
+        "9600₽ - с 1 августа по 15 сентября",
+        "7800₽ - с 16 сентября по 31 октября",
+        "4800₽ - с 1 ноября по 27 декабря",
+        "Стандарт с балконом одноместное размещение",
+        "5400₽ - июль"
+      ],
+      "price_range": "3300-9600 RUB",
+      "url": "https://абхазберег.рф/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/",
+      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/regina-pervyy-korpus-otel-s-zavtrakami-4957.jpg",
+      "telegram_source": "https://t.me/abhazbooking/4957",
+      "updated_at": "2026-07-08"
     }
   ]
 }
