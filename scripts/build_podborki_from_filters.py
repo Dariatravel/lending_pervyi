@@ -20,7 +20,7 @@ INDEX_PATH = ROOT / "index.html"
 KVARTIRA_INDEX_PATH = ROOT / "kvartira" / "index.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 REPORT_PATH = ROOT / "output" / "podborki_from_filters_report.txt"
-CSS_VERSION = "202607091715"
+CSS_VERSION = "202607102046"
 CANONICAL_ORIGIN = "https://абхазберег.рф"
 CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 
@@ -319,10 +319,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
   <meta name="description" content="{html.escape(description)}" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/{selection.slug}/" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={CSS_VERSION}" />
 </head>
@@ -356,7 +353,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
 {body_html}
     </section>
   </main>
-  <script src="../../scripts.min.js?v=202607091715" defer></script>
+  <script src="../../scripts.min.js?v=202607102046" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -441,10 +438,7 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
   <title>Подборки жилья в Абхазии — АБХАЗБЕРЕГ</title>
   <meta name="description" content="Тематические подборки отелей, домов и квартир в Абхазии: море, бюджет, удобства, локации." />
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../styles.min.css?v={CSS_VERSION}" />
 </head>
@@ -505,7 +499,7 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
       </article>
     </section>
   </main>
-  <script src="../scripts.min.js?v=202607091715" defer></script>
+  <script src="../scripts.min.js?v=202607102046" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

@@ -33,8 +33,8 @@ PODBORI_TXT = REPO / "podbori_txt"
 META_JSON = PODBORI_TXT / "_collection_meta.json"
 INDEX_HTML = REPO / "index.html"
 KVARTIRA_INDEX = REPO / "kvartira" / "index.html"
-CSS_VERSION = "202607091715"
-JS_VERSION = "202607091715"
+CSS_VERSION = "202607102046"
+JS_VERSION = "202607102046"
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 # Публичный URL раздела подборок (канон: кирилический .рф)
 CANONICAL_ORIGIN = "https://абхазберег.рф"
@@ -495,10 +495,7 @@ def render_collection_page(
   <meta name="description" content="{html.escape(description)}" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/{slug}/" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={CSS_VERSION}" />
 </head>

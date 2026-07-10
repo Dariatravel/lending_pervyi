@@ -21,7 +21,7 @@ PODBORKI_ROOT = Path("/Users/darya_botova/Documents/ПОДБОРКИ")
 OUT_DIR = REPO / "podborki"
 CURRENT_PAGES = REPO / "output" / "current_pages.json"
 KVARTIRA_CARDS = REPO / "kvartira_cards.json"
-ASSET_VERSION = "202607091715"
+ASSET_VERSION = "202607102046"
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 
 from podborki_hotel_match import (
@@ -361,10 +361,7 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
   <meta name="description" content="{esc(title_clean)}: подборка проверенных вариантов размещения в Абхазии." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://абхазберег.рф/podborki/{esc(slug)}/" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={ASSET_VERSION}" />
 </head>
@@ -458,10 +455,7 @@ def main() -> None:
   <title>Подборки жилья в Абхазии — АБХАЗБЕРЕГ</title>
   <meta name="description" content="Тематические подборки отелей, домов и квартир в Абхазии: море, бюджет, удобства, локации." />
   <link rel="canonical" href="https://абхазберег.рф/podborki/" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../styles.min.css?v={ASSET_VERSION}" />
 </head>

@@ -145,6 +145,16 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Не восстанавливать блоки фото из комментариев Telegram после targeted sync.",
     )
     parser.add_argument(
+        "--skip-review-banks",
+        action="store_true",
+        help="Не собирать и не выгружать CDN-банки отзывов.",
+    )
+    parser.add_argument(
+        "--skip-page-health",
+        action="store_true",
+        help="Не запускать финальные guardrail-проверки HTML/CSS/JS.",
+    )
+    parser.add_argument(
         "--supplemental-slugs",
         default="",
         help="Slug объектов через запятую для apply_telegram_supplemental_comments.py --force.",
@@ -201,6 +211,68 @@ def main() -> int:
     python = sys.executable
     steps: list[StepResult] = []
 
+    def append_review_bank_step(step_index: str) -> int:
+        if args.skip_review_banks:
+            path = run_dir / f"{step_index}-review-banks.log"
+            path.write_text("SKIPPED (--skip-review-banks)\n", encoding="utf-8")
+            step = StepResult(
+                name="build_cdn_review_banks",
+                command="SKIPPED (--skip-review-banks)",
+                log_file=str(path),
+                return_code=0,
+                status="skipped",
+            )
+        else:
+            cmd = [python, str(ROOT / "tools" / "build_cdn_review_banks.py"), "--upload", "--check"]
+            if args.dry_run:
+                cmd.append("--dry-run")
+            step = _run_step(
+                name="build_cdn_review_banks",
+                cmd=cmd,
+                env=base_env,
+                log_path=run_dir / f"{step_index}-review-banks.log",
+                dry_run=args.dry_run,
+            )
+        steps.append(step)
+        print(f"[auto-sync] {step.name}: {step.status}")
+        return step.return_code
+
+    def append_page_health_step(step_index: str) -> int:
+        if args.skip_page_health:
+            path = run_dir / f"{step_index}-page-health.log"
+            path.write_text("SKIPPED (--skip-page-health)\n", encoding="utf-8")
+            step = StepResult(
+                name="check_page_health",
+                command="SKIPPED (--skip-page-health)",
+                log_file=str(path),
+                return_code=0,
+                status="skipped",
+            )
+        else:
+            step = _run_step(
+                name="check_page_health",
+                cmd=[python, str(ROOT / "tools" / "check_page_health.py")],
+                env=base_env,
+                log_path=run_dir / f"{step_index}-page-health.log",
+                dry_run=args.dry_run,
+            )
+        steps.append(step)
+        print(f"[auto-sync] {step.name}: {step.status}")
+        return step.return_code
+
+    def write_failed_summary(failed_step: StepResult) -> None:
+        payload = {
+            "run_id": run_id,
+            "status": "failed",
+            "failed_step": failed_step.name,
+            "steps": [asdict(step) for step in steps],
+        }
+        summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        summary_txt_path.write_text(
+            f"run_id: {run_id}\nstatus: failed\nfailed_step: {failed_step.name}\n",
+            encoding="utf-8",
+        )
+
     print(f"[auto-sync] run_id={run_id}")
     if snapshot_only:
         print("[auto-sync] режим: snapshot-only (без Supabase)")
@@ -223,35 +295,23 @@ def main() -> int:
             log_path=run_dir / "01-new-from-sheet.log",
             dry_run=args.dry_run,
         )
+        steps.append(sync_result)
         print(f"[auto-sync] {sync_result.name}: {sync_result.status}")
         if sync_result.return_code != 0 and not args.dry_run:
-            payload = {
-                "run_id": run_id,
-                "status": "failed",
-                "failed_step": sync_result.name,
-                "steps": [asdict(sync_result)],
-            }
-            summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-            summary_txt_path.write_text(
-                f"run_id: {run_id}\nstatus: failed\nfailed_step: {sync_result.name}\n",
-                encoding="utf-8",
-            )
+            write_failed_summary(sync_result)
             return sync_result.return_code
-        payload_ok = {"run_id": run_id, "status": "ok", "steps": [asdict(sync_result)]}
+        for idx, runner in (("02", append_review_bank_step), ("03", append_page_health_step)):
+            rc = runner(idx)
+            if rc != 0 and not args.dry_run:
+                write_failed_summary(steps[-1])
+                return rc
+        payload_ok = {"run_id": run_id, "status": "ok", "steps": [asdict(step) for step in steps]}
         summary_path.write_text(json.dumps(payload_ok, ensure_ascii=False, indent=2), encoding="utf-8")
-        summary_txt_path.write_text(
-            "\n".join(
-                [
-                    f"run_id: {run_id}",
-                    "status: ok",
-                    "",
-                    f"- {sync_result.name}: {sync_result.status} (rc={sync_result.return_code})",
-                    f"  log: {sync_result.log_file}",
-                ]
-            )
-            + "\n",
-            encoding="utf-8",
-        )
+        lines = [f"run_id: {run_id}", "status: ok", ""]
+        for step in steps:
+            lines.append(f"- {step.name}: {step.status} (rc={step.return_code})")
+            lines.append(f"  log: {step.log_file}")
+        summary_txt_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
         print(f"[auto-sync] completed, отчёт: {summary_txt_path}")
         return 0
 
@@ -471,12 +531,13 @@ def main() -> int:
         for part in (args.supplemental_slugs or "").split(",")
         if part.strip()
     )
-    if args.skip_supplemental_comments or not supplemental_slugs:
+    supplemental_audit_exists = (ROOT / "output" / "telegram_supplemental_comments_audit.json").exists()
+    if args.skip_supplemental_comments or (not supplemental_slugs and not supplemental_audit_exists):
         status = "skipped"
         command = (
             "SKIPPED (--skip-supplemental-comments)"
             if args.skip_supplemental_comments
-            else "SKIPPED (нет --supplemental-slugs)"
+            else "SKIPPED (нет --supplemental-slugs и output/telegram_supplemental_comments_audit.json)"
         )
         (run_dir / "07-supplemental-comments.log").write_text(command + "\n", encoding="utf-8")
         supplemental_step = StepResult(
@@ -491,9 +552,9 @@ def main() -> int:
             python,
             str(ROOT / "scripts" / "apply_telegram_supplemental_comments.py"),
             "--force",
-            "--slug",
-            supplemental_slugs,
         ]
+        if supplemental_slugs:
+            supplemental_cmd.extend(["--slug", supplemental_slugs])
         if args.dry_run:
             supplemental_cmd.append("--dry-run")
         supplemental_step = _run_step(
@@ -506,18 +567,14 @@ def main() -> int:
     steps.append(supplemental_step)
     print(f"[auto-sync] {supplemental_step.name}: {supplemental_step.status}")
     if supplemental_step.return_code != 0 and not args.dry_run:
-        payload = {
-            "run_id": run_id,
-            "status": "failed",
-            "failed_step": supplemental_step.name,
-            "steps": [asdict(step) for step in steps],
-        }
-        summary_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-        summary_txt_path.write_text(
-            f"run_id: {run_id}\nstatus: failed\nfailed_step: {supplemental_step.name}\n",
-            encoding="utf-8",
-        )
+        write_failed_summary(supplemental_step)
         return supplemental_step.return_code
+
+    for idx, runner in (("08", append_review_bank_step), ("09", append_page_health_step)):
+        rc = runner(idx)
+        if rc != 0 and not args.dry_run:
+            write_failed_summary(steps[-1])
+            return rc
 
     payload = {
         "run_id": run_id,

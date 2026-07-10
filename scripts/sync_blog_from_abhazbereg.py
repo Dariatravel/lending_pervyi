@@ -24,7 +24,7 @@ CHANNEL = "abhazbereg"
 MEDIA_DIR = ROOT / "media" / "blog"
 SOURCES_DIR = ROOT / "scripts" / "blog_telegram_sources"
 BLOG_DIR = ROOT / "blog"
-CSS_VERSION = "202607091715"
+CSS_VERSION = "202607102046"
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media"
 
 POST_IDS = [
@@ -506,10 +506,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   <meta property="og:description" content="{og_desc}" />
   <meta property="og:url" content="https://абхазберег.рф/blog/{slug}/" />
   <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{yandex_media_base}/media/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={css_version}" />
   <script type="application/ld+json">{json_ld}</script>
@@ -625,7 +622,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   </section>
 
 </main>
-  <script src="../../scripts.min.js?v=202607091715" defer></script>
+  <script src="../../scripts.min.js?v=202607102046" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -707,10 +704,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   <meta property="og:description" content="Статьи и памятки для тех, кто планирует поездку в Абхазию впервые." />
   <meta property="og:url" content="https://абхазберег.рф/blog/" />
   <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/media/branding/favicon-48.png" />
   <link rel="stylesheet" href="../styles.min.css?v={CSS_VERSION}" />
 </head>
@@ -806,7 +800,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   </section>
 
 </main>
-  <script src="../scripts.min.js?v=202607091715" defer></script>
+  <script src="../scripts.min.js?v=202607102046" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

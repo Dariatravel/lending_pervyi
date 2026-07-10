@@ -991,13 +991,10 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <meta property="og:description" content="{html.escape(summary)}" />
     <meta property="og:url" content="https://абхазберег.рф{page_href}" />
     <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202607091715" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202607102046" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1084,7 +1081,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202607091715" defer></script>
+    <script src="../../scripts.min.js?v=202607102046" defer></script>
   </body>
 </html>'''
 

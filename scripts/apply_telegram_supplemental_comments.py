@@ -99,7 +99,7 @@ def slugify(value: str, *, max_len: int = 48) -> str:
 
 def has_meaningful_caption(caption: str) -> bool:
     cap = normalize_text(caption)
-    return bool(cap) and cap != "(без подписи)" and len(cap) >= 5 and not REVIEW_RE.search(cap)
+    return bool(cap) and cap != "(без подписи)" and len(cap) >= 3 and not REVIEW_RE.search(cap)
 
 
 def card_title(caption: str, object_title: str) -> str:

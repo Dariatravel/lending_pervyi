@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 CANON_ORIGIN = "https://абхазберег.рф"
-CSS_VERSION = "202607091715"
+CSS_VERSION = "202607102046"
 BRAND = "АБХАЗБЕРЕГ"
 
 
@@ -390,10 +390,7 @@ def render_answer_page(page: dict[str, Any]) -> str:
   <meta property="og:title" content="{html.escape(page["title"], quote=True)}" />
   <meta property="og:description" content="{html.escape(page["description"], quote=True)}" />
   <meta property="og:url" content="{canonical}" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
   <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={CSS_VERSION}" />
@@ -444,7 +441,7 @@ def render_answer_page(page: dict[str, Any]) -> str:
       </div>
     </article>
   </main>
-  <script src="../../scripts.min.js?v=202607091715" defer></script>
+  <script src="../../scripts.min.js?v=202607102046" defer></script>
 </body>
 </html>
 """
@@ -471,10 +468,7 @@ def write_answer_pages() -> None:
   <meta name="description" content="Короткие экспертные ответы об отдыхе, жилье, районах, пляжах, ценах и безопасном бронировании в Абхазии." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="{CANON_ORIGIN}/answers/" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Prata&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
   <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
   <link rel="stylesheet" href="../styles.min.css?v={CSS_VERSION}" />
@@ -513,7 +507,7 @@ def write_answer_pages() -> None:
       </div>
     </section>
   </main>
-  <script src="../scripts.min.js?v=202607091715" defer></script>
+  <script src="../scripts.min.js?v=202607102046" defer></script>
 </body>
 </html>
 """

@@ -1,14 +1,23 @@
-const APP_SHELL_CACHE = "abhazbereg-app-shell-v202607101400";
-const RUNTIME_CACHE = "abhazbereg-runtime-v202607101400";
+const APP_SHELL_CACHE = "abhazbereg-app-shell-v202607102046";
+const RUNTIME_CACHE = "abhazbereg-runtime-v202607102046";
 const YANDEX_MEDIA_ORIGIN = "https://storage.yandexcloud.net";
 const YANDEX_MEDIA_PATH_PREFIX = "/abhazbereg-media/media/";
 const MAX_RUNTIME_MEDIA_ENTRIES = 80;
 
 const APP_SHELL_URLS = [
   "/",
-  "/styles.min.css?v=202607101400",
-  "/scripts.min.js?v=202607101400",
-  "/pwa.js?v=202607101400",
+  "/styles.min.css?v=202607102046",
+  "/scripts.min.js?v=202607102046",
+  "/pwa.js?v=202607102046",
+  "/vendor/fonts/manrope-cyrillic.woff2",
+  "/vendor/fonts/manrope-latin.woff2",
+  "/vendor/fonts/prata-cyrillic.woff2",
+  "/vendor/fonts/prata-latin.woff2",
+  "/vendor/leaflet/leaflet.css?v=202607102046",
+  "/vendor/leaflet/leaflet.js?v=202607102046",
+  "/vendor/leaflet-markercluster/MarkerCluster.css?v=202607102046",
+  "/vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202607102046",
+  "/vendor/leaflet-markercluster/leaflet.markercluster.js?v=202607102046",
   "/app.webmanifest",
   "/404.html",
   "/app-icons/icon-192.png",
@@ -55,7 +64,7 @@ function isJsonRequest(requestUrl) {
 }
 
 function isStaticAsset(requestUrl) {
-  return /\.(?:css|js|webmanifest|png|jpg|jpeg|webp|svg|ico)$/i.test(requestUrl.pathname);
+  return /\.(?:css|js|webmanifest|png|jpg|jpeg|webp|svg|ico|woff2?)$/i.test(requestUrl.pathname);
 }
 
 function isYandexMediaRequest(requestUrl) {
