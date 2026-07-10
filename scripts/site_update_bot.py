@@ -498,6 +498,7 @@ async def apply_full_update() -> list[CommandResult]:
 async def commit_and_push(message: str) -> list[CommandResult]:
     add_targets = [
         "data/catalog-snapshot.json",
+        "data/catalog-index.json",
         "data/objects-map-points.json",
         "data/objects-map-geocode-cache.json",
         "index.html",
@@ -505,11 +506,6 @@ async def commit_and_push(message: str) -> list[CommandResult]:
         "kvartira/",
         "podborki/",
         "sitemap.xml",
-        "media/cards/",
-        "media/hotels/",
-        "media/kvartira/",
-        "media/kvartira-cards/",
-        "media/videos/",
         "output/all_filters_sync_report.txt",
         "output/backfill_missing_report.txt",
         "output/podborki_from_filters_report.txt",

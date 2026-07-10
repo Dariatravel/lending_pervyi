@@ -61,5 +61,6 @@ output/migration_stage*_*.json
 output/supabase_seed.json
 output/supabase_archive_*/
 
-# generated heavy telegram source videos (intermediate, not for git)
-media/videos/**/video-*-source.mp4
+# Local media staging only — not in git. Source of truth: Yandex Object Storage.
+# After sync/generators: python3 tools/upload_yandex_media.py --workers 48 media/cards media/hotels ...
+media/

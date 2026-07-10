@@ -1,3 +1,1 @@
-media/videos/hero/*.mp4 filter=lfs diff=lfs merge=lfs -text
-media/videos/hero/*.mov filter=lfs diff=lfs merge=lfs -text
-media/videos/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
+# Media is not stored in git (see .gitignore). Upload via tools/upload_yandex_media.py.

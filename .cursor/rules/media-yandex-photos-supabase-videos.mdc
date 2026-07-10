@@ -30,9 +30,15 @@ alwaysApply: true
 - `scripts/media_urls.py` — `yandex_photo_url()`, `yandex_video_url()`, `to_yandex_media_url()`, `media_src_for_html()`
 - `scripts/yandex_storage.py` — загрузка файлов в bucket
 
+## Git vs локальный кэш
+
+- Папка `media/` — **только локальный staging-кэш**, в git **не коммитить** (см. `.gitignore`).
+- В git остаются HTML, JSON (`data/`, страницы объектов), CSS/JS — без бинарных фото/видео.
+- Проверка: `python3 tools/audit_git_media.py` (ожидается `OK`).
+
 ## Новый объект
 
-1. Локальные файлы могут лежать в repo: `media/cards`, `media/hotels`, `media/kvartira`, `media/kvartira-cards`, `media/videos`.
+1. Локально файлы скачиваются/генерируются в `media/cards`, `media/hotels`, `media/kvartira`, `media/kvartira-cards`, `media/videos` — затем загрузка в Яндекс.
 2. В **HTML / JSON / JS / CSS** ссылки — только абсолютные Яндекс-URL.
 3. После добавления фото:
 
