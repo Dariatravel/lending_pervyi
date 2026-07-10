@@ -198,9 +198,9 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607091805";
+  const ASSET_VERSION = "202607091830";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
-  const SCREENSHOT_REVIEW_BANK_URL = `${CDN_MEDIA_BASE}/reviews/review_text_bank.json?v=${ASSET_VERSION}`;
+  const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
   const FILTER_CONFIG = {
     /** Отдельный URL-парам (hotel / guesthouse / cabin), не смешиваем с группами `data-filter-*` на карточках. Состояние категории живёт рядом с группами в createFilterStore (committedCat / draftCat). */
@@ -1478,19 +1478,62 @@
     return Math.round(ratio * 1000) + common.length;
   }
 
+  function reviewObjectBankUrl(slug) {
+    return `${CDN_MEDIA_BASE}/reviews/${encodeURIComponent(slug)}/bank.json?v=${ASSET_VERSION}`;
+  }
+
+  function fetchReviewBankJson(url, options = {}) {
+    return fetch(url).then((response) => {
+      if (options.optional && response.status === 404) return null;
+      if (!response.ok) {
+        throw new Error(`Не удалось загрузить ${url}: ${response.status}`);
+      }
+      return response.json();
+    });
+  }
+
+  function sanitizeSplitBankPayload(globalPayload, objectPayload, slug) {
+    const globalBank = sanitizeBankPayload({
+      global: Array.isArray(globalPayload?.global) ? globalPayload.global : [],
+      excluded_fuzzy_slugs: Array.isArray(globalPayload?.excluded_fuzzy_slugs)
+        ? globalPayload.excluded_fuzzy_slugs
+        : [],
+    });
+    const byObject = {};
+    const objectSlug = String(objectPayload?.slug || slug || "").trim();
+    const objectEntries = Array.isArray(objectPayload?.reviews) ? objectPayload.reviews : [];
+    const objectReviews = objectEntries
+      .map((entry, index) => normalizeBankReview(entry, `ocr-${objectSlug || slug}-${index + 1}`, objectSlug || slug))
+      .filter(Boolean);
+
+    if (objectReviews.length) {
+      if (slug) byObject[slug] = objectReviews;
+      if (objectSlug && objectSlug !== slug) byObject[objectSlug] = objectReviews;
+    }
+
+    return {
+      global: globalBank.global,
+      by_object: byObject,
+      excluded_fuzzy_slugs: globalBank.excluded_fuzzy_slugs,
+    };
+  }
+
   async function loadScreenshotReviewBank() {
     if (screenshotReviewBank) return screenshotReviewBank;
     if (screenshotReviewBankPromise) return screenshotReviewBankPromise;
 
-    screenshotReviewBankPromise = fetch(SCREENSHOT_REVIEW_BANK_URL)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Не удалось загрузить ${SCREENSHOT_REVIEW_BANK_URL}: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((payload) => {
-        screenshotReviewBank = sanitizeBankPayload(payload);
+    const slug = isObjectPage() ? extractObjectSlugFromPathname() : "";
+    const globalPromise = fetchReviewBankJson(SCREENSHOT_REVIEW_GLOBAL_URL);
+    const objectPromise = slug
+      ? fetchReviewBankJson(reviewObjectBankUrl(slug), { optional: true }).catch((error) => {
+          console.warn("Не удалось загрузить OCR-отзывы объекта", slug, error);
+          return null;
+        })
+      : Promise.resolve(null);
+
+    screenshotReviewBankPromise = Promise.all([globalPromise, objectPromise])
+      .then(([globalPayload, objectPayload]) => {
+        screenshotReviewBank = sanitizeSplitBankPayload(globalPayload, objectPayload, slug);
         return screenshotReviewBank;
       })
       .catch((error) => {
@@ -3359,13 +3402,6 @@
         }
         if (!ok) return false;
       }
-    }
-    if (
-      selected.stay &&
-      selected.stay.has("cottages") &&
-      !matchesCatalogSlug("cabin", catalogTextForCard(entry.el))
-    ) {
-      return false;
     }
     if (slug && !matchesCatalogSlug(slug, catalogTextForCard(entry.el))) {
       return false;

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08T11:55:49.174309+00:00",
+  "generated_at": "2026-07-10T08:16:17.097459+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 223,
@@ -3231,7 +3231,6 @@
             "beachfront-room"
           ],
           "stay": [
-            "cottages",
             "pets"
           ],
           "beach": [
@@ -3555,7 +3554,6 @@
             "beachfront-room"
           ],
           "stay": [
-            "cottages",
             "pets"
           ],
           "beach": [
@@ -15921,7 +15919,6 @@
             "two-room-plus"
           ],
           "stay": [
-            "cottages",
             "pets"
           ],
           "beach": [
@@ -18046,7 +18043,6 @@
             "tv"
           ],
           "stay": [
-            "cottages",
             "pets"
           ],
           "beach": [
@@ -18541,7 +18537,6 @@
             "terrace"
           ],
           "stay": [
-            "cottages",
             "apartments",
             "turnkey-house",
             "kids",
@@ -18856,7 +18851,6 @@
             "five-plus"
           ],
           "stay": [
-            "cottages",
             "pets"
           ],
           "beach": [
@@ -31828,7 +31822,8 @@
             "five-plus"
           ],
           "stay": [
-            "apartments"
+            "apartments",
+            "pets"
           ],
           "beach": [
             "pebble"
@@ -32053,8 +32048,7 @@
             "two-room-plus"
           ],
           "stay": [
-            "apartments",
-            "pets"
+            "apartments"
           ],
           "beach": [
             "pebble"
@@ -39103,7 +39097,8 @@
             "kitchen"
           ],
           "stay": [
-            "apartments"
+            "apartments",
+            "pets"
           ],
           "beach": [
             "pitsunda-bay-mixed"
