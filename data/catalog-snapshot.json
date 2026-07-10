@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-10T08:16:17.097459+00:00",
+  "generated_at": "2026-07-10T09:45:16.881205+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 223,
-  "listings_hotels": 161,
+  "listings_total": 224,
+  "listings_hotels": 162,
   "listings_kvartira": 62,
   "listings": [
     {
@@ -31201,31 +31201,32 @@
     {
       "source_kind": "kvartira",
       "source_channel": "abhkvartira",
-      "source_message_id": 1193,
+      "source_message_id": 1185,
       "source_topic_id": 652,
       "slug": "chernomorskaya-kvartira-suhum-1201",
-      "title": "\"ЧЕРНОМОРСКАЯ-2\" квартира 2к",
-      "summary": "Сухум. 2 минуты до центрального пляжа, размещение до 6 человек.",
-      "excerpt": "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\". На той же площадке, что и \"Черноморская-1\"",
+      "title": "\"ЧЕРНОМОРСКАЯ-1\" квартира 2к",
+      "summary": "Сухум. 2 минуты до центрального пляжа, размещение до 5 человек.",
+      "excerpt": "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\"",
       "city": "Сухум",
       "location_text": "Сухум, ул. Лакоба 114, 2 этаж",
       "distance_text": "2 минуты до центрального пляжа",
       "beach_text": "2 минуты до центрального пляжа",
-      "capacity_text": "размещение до 6 человек",
+      "capacity_text": "размещение до 5 человек",
       "page_url": "https://абхазберег.рф/kvartira/chernomorskaya-kvartira-suhum-1201/",
-      "telegram_url": "https://t.me/abhkvartira/1193",
+      "telegram_url": "https://t.me/abhkvartira/1185",
       "published_at": "2026-02-04",
       "has_video": false,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/chernomorskaya-kvartira-suhum-1201-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Сухум. 2 минуты до центрального пляжа, размещение до 6 человек.",
+        "lead": "Сухум. 2 минуты до центрального пляжа, размещение до 5 человек.",
         "sections": [
           {
             "label": "✔️КВАРТИРА:",
             "lines": [
-              "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\". На той же площадке, что и \"Черноморская-1\"",
-              "Есть три односпальные кровати (можно совмещать), двуспальная, диванчик. Оборудованная кухня с посудой. Санузел с ванной, стиральная машинка.",
+              "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\".",
+              "Есть три односпальные кровати (можно совмещать).",
+              "Оборудованная кухня с посудой. Санузел с ванной, стиральная машинка.",
               "Wi-Fi , кондиционер."
             ]
           },
@@ -31260,7 +31261,7 @@
             "text": "Бронь от 5 дней."
           }
         ],
-        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/kvartira/chernomorskaya-kvartira-suhum-1201/index.html",
+        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/kvartira/chernomorskaya-kvartira-suhum-1201/index.html",
         "filters": {
           "city": [
             "sukhum"
@@ -31375,28 +31376,6 @@
           "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-07.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-07.jpg",
-          "details": {}
-        },
-        {
-          "id": 128009,
-          "media_role": "gallery",
-          "sort_order": 8,
-          "mime_type": "image/jpeg",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-08.jpg",
-          "storage_bucket": "abhazbereg-media",
-          "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-08.jpg",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-08.jpg",
-          "details": {}
-        },
-        {
-          "id": 128010,
-          "media_role": "gallery",
-          "sort_order": 9,
-          "mime_type": "image/jpeg",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-09.jpg",
-          "storage_bucket": "abhazbereg-media",
-          "storage_path": "kvartira/chernomorskaya-kvartira-suhum-1201/photo-09.jpg",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/chernomorskaya-kvartira-suhum-1201/photo-09.jpg",
           "details": {}
         }
       ]
@@ -59850,6 +59829,350 @@
           "details": {
             "telegram_post": "abhazbooking/4945",
             "telegram_url": "https://t.me/abhazbooking/4945"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 4957,
+      "source_topic_id": null,
+      "slug": "regina-pervyy-korpus-otel-s-zavtrakami-4957",
+      "title": "\"РЕГИНА ПЕРВЫЙ КОРПУС\" отель с завтраками",
+      "summary": "Лдзаа. 3 минуты до пляжа, сосновый галечный, размещение до 4 человек.",
+      "excerpt": "В первом корпусе 30 номеров различных категорий, пять этажей, есть лифт",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, ул. Рыбзаводская, 22",
+      "distance_text": "3 минуты до пляжа, сосновый галечный",
+      "beach_text": "3 минуты до пляжа, сосновый галечный",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/",
+      "telegram_url": "https://t.me/abhazbooking/4957",
+      "published_at": "2026-07-08",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/regina-pervyy-korpus-otel-s-zavtrakami-4957.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 3 минуты до пляжа, сосновый галечный, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "В первом корпусе 30 номеров различных категорий, пять этажей, есть лифт.",
+              "Стандарты без балкона расположены на 1 и 5 этажах, площадь номера 18 м²: две односпальные кровати или одна двуспальная кровать, доп место для 3 человека - диванчик, Сан узел с душем.",
+              "Стандарты с балконом расположены на 2, 3, 4 этажах, площадь номера 18 м²: две односпальные кровати или одна двуспальная кровать, доп место для 3 человека - диванчик, Сан узел с душем.",
+              "На 4 этаже в номерах ковролин.",
+              "Люксы - просторные двухкомнатные номера площадью 41 м².",
+              "В номере: двуспальная кровать, раскладывающийся диван, ковролин. Сан узел с душем. Балкон со столиком и стульями.",
+              "Оснащение во всех номерах: Wi-Fi, кондиционер, телевизор, кондиционер, холодильник, чайник, сейф, фен."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "На крыше, на 5 этаже, расположен открытый подогреваемый бассейн и зона отдыха.",
+              "Столовая находится во втором корпусе в 3 минутах ходьбы. Завтраки включены с 8 до 9.",
+              "Есть мангал.",
+              "Дополнительно на ресепшене можно заказать экскурсии.",
+              "В отеле паровое отопление, работает круглый год."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Отель расположен в 3 минутах от соснового галечного пляжа. Пляж оборудован кабинками для переодевания, шезлонгами, есть водные развлечения, беседки в аренду.",
+              "Рядом магазины, киоски с фруктами, сувенирные и экскурсионные точки, различные кафе, выпечка, аптека, остановка общественного транспорта."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с маленькими собачками возможно в номерах без ковролина.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Люкс одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "7200₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "8100₽ - с 1 августа по 15 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "6300₽ - с 16 сентября по 31 октября"
+          },
+          {
+            "kind": "price",
+            "text": "3300₽ - с 1 ноября по 27 декабря"
+          },
+          {
+            "kind": "price",
+            "text": "Люкс двухместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "8700₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "9600₽ - с 1 августа по 15 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "7800₽ - с 16 сентября по 31 октября"
+          },
+          {
+            "kind": "price",
+            "text": "4800₽ - с 1 ноября по 27 декабря"
+          },
+          {
+            "kind": "price",
+            "text": "Стандарт с балконом одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "5400₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "6300₽ - с 1 августа по 15 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - с 16 сентября по 31 октября"
+          },
+          {
+            "kind": "price",
+            "text": "2800₽ - с 1 ноября по 27 декабря"
+          },
+          {
+            "kind": "price",
+            "text": "Стандарт с балконом двухместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "6900₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "7800₽ - с 1 августа по 15 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - с 16 сентября по 31 октября"
+          },
+          {
+            "kind": "price",
+            "text": "4300₽ - с 1 ноября по 27 декабря"
+          },
+          {
+            "kind": "price",
+            "text": "Стандарт без балкона одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "4400₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "5400₽ - с 1 августа по 15 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - с 16 сентября по 31 октября"
+          },
+          {
+            "kind": "price",
+            "text": "2300₽ - с 1 ноября по 27 декабря"
+          },
+          {
+            "kind": "price",
+            "text": "Стандарт без балкона двухместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "5900₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "6900₽ - с 1 августа по 15 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - с 16 сентября по 31 октября"
+          },
+          {
+            "kind": "price",
+            "text": "3800₽ - с 1 ноября по 27 декабря"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место — 1500₽"
+          }
+        ],
+        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/index.html",
+        "filters": {
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [
+            "pine-pebble-ldzaa-pitsunda"
+          ],
+          "room": [
+            "pool",
+            "balcony",
+            "tv",
+            "two-room-plus"
+          ],
+          "stay": [
+            "pets"
+          ]
+        }
+      },
+      "id": 1172,
+      "media": [
+        {
+          "id": 1172001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/regina-pervyy-korpus-otel-s-zavtrakami-4957.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/regina-pervyy-korpus-otel-s-zavtrakami-4957.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/regina-pervyy-korpus-otel-s-zavtrakami-4957.jpg",
+          "details": {}
+        },
+        {
+          "id": 1172002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1172003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1172004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1172005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1172006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1172007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1172008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1172009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1172010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1172011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/video-01-1800k.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/video-01-1800k.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/video-01-1800k.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/4966",
+            "telegram_url": "https://t.me/abhazbooking/4966"
           }
         }
       ]
