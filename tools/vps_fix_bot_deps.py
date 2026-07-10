@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Fix missing VPS deps and generate output/current_pages.json."""
+"""Fix VPS bot deps, env, systemd and restart the service."""
 from __future__ import annotations
 
 import os
 import sys
+import textwrap
 
 import paramiko
 
@@ -11,6 +12,12 @@ HOST = os.environ.get("VPS_HOST", "81.31.247.74")
 USER = os.environ.get("VPS_USER", "root")
 PASSWORD = os.environ["VPS_PASSWORD"]
 PROJECT = "/srv/lending_pervyi"
+
+ENV_OVERRIDES = {
+    "TELEGRAM_NEW_OBJECTS_SCAN_LIMIT": "120",
+    "TELEGRAM_NEW_OBJECTS_SCAN_DAYS": "45",
+    "TELEGRAM_NEW_OBJECTS_SCAN_RECENT_ALL": "0",
+}
 
 
 def run(client: paramiko.SSHClient, command: str, *, timeout: int = 600) -> int:
@@ -32,22 +39,68 @@ def main() -> int:
     print(f"Connecting to {USER}@{HOST} ...")
     client.connect(HOST, username=USER, password=PASSWORD, timeout=30, allow_agent=False, look_for_keys=False)
 
-    code = run(client, f"cd {PROJECT} && .venv/bin/pip install Pillow")
-    if code != 0:
-        return code
+    run(client, f"cd {PROJECT} && git pull --ff-only origin main", timeout=300)
+    run(client, f"cd {PROJECT} && .venv/bin/pip install -r requirements-site-update-bot.txt", timeout=900)
 
-    code = run(client, f"cd {PROJECT} && .venv/bin/python scripts/rebuild_from_catalog_snapshot.py", timeout=900)
-    if code != 0:
-        return code
+    patch_env = textwrap.dedent(
+        f"""
+        python3 - <<'PY'
+        from pathlib import Path
 
-    code = run(client, f"test -f {PROJECT}/output/current_pages.json")
-    if code != 0:
-        return code
+        path = Path("{PROJECT}/.env.site-update-bot")
+        overrides = {ENV_OVERRIDES!r}
+        lines = path.read_text(encoding="utf-8").splitlines()
+        seen = set()
+        out = []
+        for line in lines:
+            key = line.split("=", 1)[0].strip() if "=" in line else ""
+            if key in overrides:
+                out.append(f"{{key}}={{overrides[key]}}")
+                seen.add(key)
+            else:
+                out.append(line)
+        for key, value in overrides.items():
+            if key not in seen:
+                out.append(f"{{key}}={{value}}")
+        path.write_text("\\n".join(out).rstrip() + "\\n", encoding="utf-8")
+        PY
+        """
+    ).strip()
+    run(client, patch_env)
 
+    systemd_unit = textwrap.dedent(
+        f"""
+        cat > /etc/systemd/system/abhazbereg-site-update-bot.service <<'EOF'
+        [Unit]
+        Description=Abhazbereg Telegram site update bot
+        After=network-online.target
+        Wants=network-online.target
+
+        [Service]
+        Type=simple
+        WorkingDirectory={PROJECT}
+        EnvironmentFile={PROJECT}/.env.site-update-bot
+        ExecStart={PROJECT}/.venv/bin/python {PROJECT}/scripts/site_update_bot.py
+        Restart=always
+        RestartSec=10
+        KillMode=control-group
+        TimeoutStopSec=30
+
+        [Install]
+        WantedBy=multi-user.target
+        EOF
+        """
+    ).strip()
+    run(client, systemd_unit)
+    run(client, "systemctl daemon-reload")
+
+    run(client, "pkill -f 'scripts/watch_telegram_updates.py' || true")
+    run(client, "pkill -f 'scripts/site_update_bot.py' || true")
+    run(client, "systemctl reset-failed abhazbereg-site-update-bot || true")
     run(client, "systemctl restart abhazbereg-site-update-bot")
     run(client, "systemctl is-active abhazbereg-site-update-bot")
     client.close()
-    print("\nVPS bot deps fixed.")
+    print("\nVPS bot updated.")
     return 0
 
 

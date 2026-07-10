@@ -10,6 +10,8 @@ EnvironmentFile=/srv/lending_pervyi/.env.site-update-bot
 ExecStart=/srv/lending_pervyi/.venv/bin/python /srv/lending_pervyi/scripts/site_update_bot.py
 Restart=always
 RestartSec=10
+KillMode=control-group
+TimeoutStopSec=30
 
 [Install]
 WantedBy=multi-user.target

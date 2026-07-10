@@ -139,6 +139,8 @@ def main() -> int:
             ExecStart={PROJECT}/.venv/bin/python {PROJECT}/scripts/site_update_bot.py
             Restart=always
             RestartSec=10
+            KillMode=control-group
+            TimeoutStopSec=30
 
             [Install]
             WantedBy=multi-user.target

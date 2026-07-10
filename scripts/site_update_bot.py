@@ -316,16 +316,27 @@ def summarize_check() -> str:
 
 
 async def check_updates() -> tuple[str, list[CommandResult]]:
-    steps = [
+    steps: list[tuple[str, list[str]]] = [
         ("watch-telegram", [sys.executable, "scripts/watch_telegram_updates.py"]),
         ("check-map", [sys.executable, "scripts/sync_objects_map_points.py"]),
-        ("audit-parity", [sys.executable, "scripts/audit_telegram_site_parity.py"]),
-        ("audit-prices", [sys.executable, "scripts/audit_telegram_site_prices.py"]),
-        ("verify-media", [sys.executable, "tools/verify_object_media.py"]),
     ]
+    if not CONFIG.auto_apply:
+        steps.extend(
+            [
+                ("audit-parity", [sys.executable, "scripts/audit_telegram_site_parity.py"]),
+                ("audit-prices", [sys.executable, "scripts/audit_telegram_site_prices.py"]),
+                ("verify-media", [sys.executable, "tools/verify_object_media.py"]),
+            ]
+        )
+
+    step_timeouts = {
+        "watch-telegram": CONFIG.command_timeout_seconds,
+        "check-map": CONFIG.check_timeout_seconds,
+    }
     results: list[CommandResult] = []
     for name, command in steps:
-        results.append(await run_command(name, command, timeout=CONFIG.check_timeout_seconds))
+        timeout = step_timeouts.get(name, CONFIG.check_timeout_seconds)
+        results.append(await run_command(name, command, timeout=timeout))
     return summarize_check(), results
 
 
@@ -878,7 +889,11 @@ async def hourly_loop(application: Application) -> None:
                     state["last_check_at"] = datetime.now().isoformat(timespec="seconds")
                     write_state(state)
 
-                    check_failed = any(result_is_failure(result) for result in check_results)
+                    check_failed = any(
+                        result_is_failure(result)
+                        for result in check_results
+                        if result.name in {"watch-telegram", "check-map"}
+                    )
                     if check_failed:
                         report = "Ошибка при проверке сайта.\n\n" + format_results(check_results)
                         for chat_id in chat_ids:
