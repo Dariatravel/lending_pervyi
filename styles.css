@@ -3576,7 +3576,7 @@ a.podborki-card--link:hover {
 
 .hotel-site-concept .room-overview-card {
   display: grid;
-  grid-template-columns: minmax(190px, 0.75fr) minmax(0, 1.6fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 16px;
   padding: 16px;
   border-radius: 26px;
@@ -3614,12 +3614,13 @@ a.podborki-card--link:hover {
 
 .hotel-site-concept .comment-media-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .hotel-site-concept .comment-media-grid img,
 .hotel-site-concept .comment-review-grid img {
+  display: block;
   width: 100%;
   border-radius: 18px;
   object-fit: cover;
@@ -3628,6 +3629,7 @@ a.podborki-card--link:hover {
 
 .hotel-site-concept .comment-media-grid img {
   aspect-ratio: 4 / 3;
+  height: clamp(190px, 22vw, 320px);
 }
 
 .hotel-site-concept .comment-review-grid {
