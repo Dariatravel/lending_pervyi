@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Telegram bot for scheduled site update checks and manual sync runs on VPS."""
+"""Telegram bot for scheduled site update checks and automatic sync on VPS."""
 from __future__ import annotations
 
 import asyncio
@@ -14,9 +14,9 @@ from datetime import datetime
 from pathlib import Path
 from typing import Awaitable, Callable
 
-from telegram import ReplyKeyboardMarkup, Update
+from telegram import ReplyKeyboardRemove, Update
 from telegram.error import NetworkError, TimedOut
-from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
+from telegram.ext import Application, CommandHandler, ContextTypes
 
 ROOT = Path(__file__).resolve().parents[1]
 ENV_PATH = ROOT / ".env.site-update-bot"
@@ -26,15 +26,6 @@ WATCH_REPORT_PATH = ROOT / "output" / "telegram-watch-report.txt"
 WATCH_TARGETS_PATH = ROOT / "output" / "telegram-watch-changed-targets.json"
 MAP_REPORT_PATH = ROOT / "output" / "objects-map-sync-report.txt"
 MAP_SUMMARY_PATH = ROOT / "output" / "objects-map-sync-summary.json"
-
-BUTTON_STATUS = "Статус"
-BUTTON_CHECK = "Проверить сайт"
-BUTTON_CHECK_MAP = "Проверить карту"
-BUTTON_UPDATE_CHANGED = "Обновить изменения"
-BUTTON_UPDATE_MAP = "Обновить карту"
-BUTTON_UPDATE = "Обновить сайт"
-BUTTON_FULL_UPDATE = "Полный синк"
-BUTTON_HELP = "Помощь"
 
 STEP_LABELS = {
     "watch-telegram": "проверка новых правок в Telegram",
@@ -230,31 +221,10 @@ def read_watch_report() -> str:
     return WATCH_REPORT_PATH.read_text(encoding="utf-8", errors="ignore").strip()
 
 
-def menu_markup() -> ReplyKeyboardMarkup:
-    return ReplyKeyboardMarkup(
-        [
-            [BUTTON_CHECK, BUTTON_UPDATE_CHANGED],
-            [BUTTON_CHECK_MAP, BUTTON_UPDATE_MAP],
-            [BUTTON_STATUS, BUTTON_UPDATE],
-            [BUTTON_FULL_UPDATE, BUTTON_HELP],
-        ],
-        resize_keyboard=True,
-        is_persistent=True,
-    )
-
-
-def help_text() -> str:
-    return (
-        "Я слежу за обновлениями сайта.\n\n"
-        f"{BUTTON_CHECK} — проверить Telegram-посты, цены, тексты и медиа.\n"
-        f"{BUTTON_CHECK_MAP} — проверить, изменились ли точки интерактивной карты.\n"
-        f"{BUTTON_UPDATE_CHANGED} — обновить только объекты, где изменился Telegram-пост.\n"
-        f"{BUTTON_UPDATE_MAP} — применить изменения точек карты и запушить сайт.\n"
-        f"{BUTTON_UPDATE} — быстро обновить сайт: новые объекты, фильтры, цены, описания и подборки.\n"
-        f"{BUTTON_FULL_UPDATE} — полный синк Telegram с медиа; запускать редко, это долго.\n"
-        f"{BUTTON_STATUS} — показать состояние бота.\n\n"
-        "Автообновление сейчас выключено: я уведомляю, а решение об обновлении остаётся за вами."
-    )
+AUTO_MODE_TEXT = (
+    "Бот работает автоматически: каждый час проверяет Telegram и обновляет сайт.\n"
+    "Сообщения приходят только когда изменения опубликованы или если возникла ошибка."
+)
 
 
 def format_changed_items(targets: dict[str, object], limit: int = 8) -> str:
@@ -319,8 +289,6 @@ def summarize_check() -> str:
         lines.append(f"Новые объекты в Telegram: {new_objects_total}.")
         if new_objects:
             lines.append(new_objects)
-        lines.append("")
-        lines.append(f"Что делать: нажмите «{BUTTON_UPDATE}» для обновления новых объектов или «{BUTTON_FULL_UPDATE}» для полного синка.")
     else:
         lines.append("")
         lines.append("Новых объектов не найдено.")
@@ -331,8 +299,6 @@ def summarize_check() -> str:
         lines.append(f"Новые изменения в Telegram: {changed_total} объект(ов).")
         if changed_items:
             lines.append(changed_items)
-        lines.append("")
-        lines.append(f"Что делать: нажмите «{BUTTON_UPDATE_CHANGED}», чтобы обновить только эти объекты.")
     else:
         lines.append("")
         lines.append("Новых правок в Telegram-постах не найдено.")
@@ -803,6 +769,60 @@ def check_outcome_title(results: list[CommandResult]) -> str:
     return "Сайт актуален."
 
 
+def has_pending_changes(targets: dict[str, object] | None = None) -> bool:
+    payload = targets if targets is not None else load_changed_targets()
+    changed_total = int(payload.get("changed_total") or 0)
+    new_objects_total = int(payload.get("new_objects_total") or 0)
+    if changed_total or new_objects_total:
+        return True
+    map_summary = load_map_summary()
+    return bool(map_summary.get("has_changes"))
+
+
+def apply_was_published(results: list[CommandResult]) -> bool:
+    commit_result = next((item for item in results if item.name == "git-commit"), None)
+    return bool(commit_result and commit_result.return_code == 0)
+
+
+def should_notify_apply_results(results: list[CommandResult]) -> bool:
+    if any(result_is_failure(result) for result in results):
+        return True
+    return apply_was_published(results)
+
+
+def build_apply_report(results: list[CommandResult]) -> str:
+    targets = load_changed_targets()
+    changed_items = format_changed_items(targets)
+    new_objects = format_new_objects(targets)
+    map_summary = load_map_summary()
+    lines: list[str] = []
+
+    if apply_was_published(results):
+        lines.append("Сайт обновлён и опубликован.")
+    elif any(result_is_failure(result) for result in results):
+        lines.append("Не удалось обновить сайт.")
+    else:
+        lines.append("Обновление завершено.")
+
+    if new_objects:
+        lines.append("")
+        lines.append("Новые объекты:")
+        lines.append(new_objects)
+    if changed_items:
+        lines.append("")
+        lines.append("Обновлённые объекты:")
+        lines.append(changed_items)
+    if map_summary.get("has_changes"):
+        lines.append("")
+        lines.append(f"Карта: обновлено точек — {map_summary.get('fresh_points', 0)}.")
+
+    result_text = format_results(results)
+    if result_text:
+        lines.append("")
+        lines.append(result_text)
+    return "\n".join(lines)
+
+
 def is_allowed(update: Update) -> bool:
     chat_id = update.effective_chat.id if update.effective_chat else None
     return chat_id in CONFIG.allowed_chat_ids
@@ -844,126 +864,7 @@ async def send_long_message(bot, chat_id: int, text: str) -> None:
 
 @restricted
 async def start(update: Update, _context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.effective_message.reply_text(help_text(), reply_markup=menu_markup())
-
-
-@restricted
-async def status(update: Update, _context: ContextTypes.DEFAULT_TYPE) -> None:
-    state = read_state()
-    running = RUN_LOCK.locked()
-    await update.effective_message.reply_text(
-        f"Статус: {'занят' if running else 'свободен'}\n"
-        f"Проверка каждые {CONFIG.interval_seconds // 60} мин.\n"
-        f"Первая автопроверка через {CONFIG.initial_check_delay_seconds // 60} мин. после запуска\n"
-        f"Автоприменение: {'включено' if CONFIG.auto_apply else 'выключено'}\n"
-        f"Последняя проверка: {state.get('last_check_at', 'нет')}",
-        reply_markup=menu_markup(),
-    )
-
-
-@restricted
-async def check_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    if RUN_LOCK.locked():
-        await update.effective_message.reply_text("Уже выполняется другая операция.")
-        return
-    async with RUN_LOCK:
-        await update.effective_message.reply_text("Запускаю проверку. Это может занять несколько минут...")
-        summary, results = await check_updates()
-        await send_long_message(
-            context.bot,
-            update.effective_chat.id,
-            check_outcome_title(results) + "\n\n" + summary + "\n\n" + format_results(results),
-        )
-
-
-@restricted
-async def check_map_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    if RUN_LOCK.locked():
-        await update.effective_message.reply_text("Уже выполняется другая операция.")
-        return
-    async with RUN_LOCK:
-        await update.effective_message.reply_text("Проверяю точки интерактивной карты...")
-        results = await check_map_update()
-        await send_long_message(context.bot, update.effective_chat.id, read_map_report() + "\n\n" + format_results(results))
-
-
-@restricted
-async def update_map_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    if RUN_LOCK.locked():
-        await update.effective_message.reply_text("Уже выполняется другая операция.")
-        return
-    async with RUN_LOCK:
-        await update.effective_message.reply_text("Обновляю точки карты и, если есть изменения, публикую сайт...")
-        results = await apply_map_update()
-        await send_long_message(context.bot, update.effective_chat.id, read_map_report() + "\n\n" + format_results(results))
-
-
-@restricted
-async def update_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    if RUN_LOCK.locked():
-        await update.effective_message.reply_text("Уже выполняется другая операция.")
-        return
-    async with RUN_LOCK:
-        await update.effective_message.reply_text("Запускаю обновление сайта. Если будут изменения, я сделаю commit и push...")
-        results = await apply_quick_update()
-        await send_long_message(context.bot, update.effective_chat.id, "Обновление сайта завершено.\n\n" + format_results(results))
-
-
-@restricted
-async def update_changed_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    if RUN_LOCK.locked():
-        await update.effective_message.reply_text("Уже выполняется другая операция.")
-        return
-    async with RUN_LOCK:
-        await update.effective_message.reply_text("Проверяю изменённые Telegram-посты и обновляю только их...")
-        results = await apply_changed_update()
-        await send_long_message(
-            context.bot,
-            update.effective_chat.id,
-            "Обновление изменённых объектов завершено.\n\n" + format_results(results),
-        )
-
-
-@restricted
-async def full_update_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    if RUN_LOCK.locked():
-        await update.effective_message.reply_text("Уже выполняется другая операция.")
-        return
-    async with RUN_LOCK:
-        await update.effective_message.reply_text("Запускаю полный синк. Это может занять несколько часов.")
-        results = await apply_full_update()
-        await send_long_message(context.bot, update.effective_chat.id, "Полный синк завершён.\n\n" + format_results(results))
-
-
-@restricted
-async def help_command(update: Update, _context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.effective_message.reply_text(help_text(), reply_markup=menu_markup())
-
-
-@restricted
-async def button_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    text = (update.effective_message.text or "").strip()
-    if text == BUTTON_STATUS:
-        await status(update, context)
-    elif text == BUTTON_CHECK:
-        await check_command(update, context)
-    elif text == BUTTON_CHECK_MAP:
-        await check_map_command(update, context)
-    elif text == BUTTON_UPDATE_CHANGED:
-        await update_changed_command(update, context)
-    elif text == BUTTON_UPDATE_MAP:
-        await update_map_command(update, context)
-    elif text == BUTTON_UPDATE:
-        await update_command(update, context)
-    elif text == BUTTON_FULL_UPDATE:
-        await full_update_command(update, context)
-    elif text == BUTTON_HELP:
-        await help_command(update, context)
-    else:
-        await update.effective_message.reply_text(
-            "Не понял команду. Выберите действие кнопкой ниже.",
-            reply_markup=menu_markup(),
-        )
+    await update.effective_message.reply_text(AUTO_MODE_TEXT, reply_markup=ReplyKeyboardRemove())
 
 
 async def hourly_loop(application: Application) -> None:
@@ -973,31 +874,25 @@ async def hourly_loop(application: Application) -> None:
         try:
             if not RUN_LOCK.locked():
                 async with RUN_LOCK:
-                    summary, results = await check_updates()
+                    _summary, check_results = await check_updates()
                     state = read_state()
-                    current = {
-                        "summary": summary,
-                        "result_codes": [item.return_code for item in results],
+                    state["last_check"] = {
+                        "result_codes": [item.return_code for item in check_results],
                     }
-                    changed = current != state.get("last_check")
-                    state["last_check"] = current
                     state["last_check_at"] = datetime.now().isoformat(timespec="seconds")
                     write_state(state)
-                    if changed:
+
+                    check_failed = any(result_is_failure(result) for result in check_results)
+                    if check_failed:
+                        report = "Ошибка при проверке сайта.\n\n" + format_results(check_results)
                         for chat_id in chat_ids:
-                            await send_long_message(
-                                application.bot,
-                                chat_id,
-                                check_outcome_title(results) + "\n\n" + summary + "\n\n" + format_results(results),
-                            )
-                    if CONFIG.auto_apply and changed:
-                        update_results = await apply_changed_update()
-                        for chat_id in chat_ids:
-                            await send_long_message(
-                                application.bot,
-                                chat_id,
-                                "Автообновление по таймеру завершено.\n\n" + format_results(update_results),
-                            )
+                            await send_long_message(application.bot, chat_id, report)
+                    elif CONFIG.auto_apply and has_pending_changes():
+                        apply_results = await apply_changed_update()
+                        if should_notify_apply_results(apply_results):
+                            report = build_apply_report(apply_results)
+                            for chat_id in chat_ids:
+                                await send_long_message(application.bot, chat_id, report)
         except Exception as error:  # noqa: BLE001 - daemon must report and keep running
             for chat_id in chat_ids:
                 await application.bot.send_message(
@@ -1007,23 +902,22 @@ async def hourly_loop(application: Application) -> None:
         await asyncio.sleep(CONFIG.interval_seconds)
 
 
-async def post_init(application: Application) -> None:
-    application.create_task(hourly_loop(application))
-
-
 def build_application() -> Application:
     application = Application.builder().token(CONFIG.token).build()
     application.add_handler(CommandHandler("start", start))
-    application.add_handler(CommandHandler("help", help_command))
-    application.add_handler(CommandHandler("status", status))
-    application.add_handler(CommandHandler("check", check_command))
-    application.add_handler(CommandHandler("check_map", check_map_command))
-    application.add_handler(CommandHandler("update_changed", update_changed_command))
-    application.add_handler(CommandHandler("update_map", update_map_command))
-    application.add_handler(CommandHandler("update", update_command))
-    application.add_handler(CommandHandler("full_update", full_update_command))
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, button_command))
     return application
+
+
+async def notify_auto_mode(application: Application) -> None:
+    for chat_id in sorted(CONFIG.allowed_chat_ids):
+        try:
+            await application.bot.send_message(
+                chat_id=chat_id,
+                text=AUTO_MODE_TEXT,
+                reply_markup=ReplyKeyboardRemove(),
+            )
+        except (TimedOut, NetworkError):
+            pass
 
 
 async def run_bot() -> None:
@@ -1041,6 +935,7 @@ async def run_bot() -> None:
         raise RuntimeError("Telegram updater is not available")
     await application.updater.start_polling(allowed_updates=Update.ALL_TYPES)
     await application.start()
+    await notify_auto_mode(application)
     application.create_task(hourly_loop(application))
     try:
         await stop_event.wait()
