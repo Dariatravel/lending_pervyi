@@ -148,6 +148,15 @@ def check_size_budgets(base_url: str, timeout: int) -> tuple[list[dict[str, obje
     return results, errors
 
 
+def check_legacy_review_bank_removed(timeout: int) -> tuple[dict[str, object], list[str]]:
+    url = f"{YANDEX_MEDIA}reviews/review_text_bank.json"
+    ok, status, size = head_ok(url, timeout)
+    result = {"url": url, "status": status, "size": size, "ok": not ok}
+    if ok:
+        return result, [f"legacy review_text_bank.json всё ещё доступен: {url}"]
+    return result, []
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", default=DEFAULT_BASE)
@@ -195,6 +204,10 @@ def main() -> int:
     budget_results, budget_errors = check_size_budgets(args.base_url, args.timeout)
     checks.append({"kind": "size_budgets", "results": budget_results, "errors": budget_errors})
     errors.extend(budget_errors)
+
+    legacy_result, legacy_errors = check_legacy_review_bank_removed(args.timeout)
+    checks.append({"kind": "legacy_review_bank_removed", "result": legacy_result, "errors": legacy_errors})
+    errors.extend(legacy_errors)
 
     recent_results = []
     for item in recent_catalog_items(args.recent_count):
