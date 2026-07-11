@@ -373,7 +373,7 @@ def render_page(slug: str, page_title: str, items: list[dict], hotels, kv) -> st
 
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="{YANDEX_MEDIA_BASE}/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="{YANDEX_MEDIA_BASE}/branding/logo-emblem-160.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy">
           <strong>АБХАЗБЕРЕГ - жилье напрямую</strong>
         </span>
@@ -466,7 +466,7 @@ def main() -> None:
     <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="{YANDEX_MEDIA_BASE}/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="{YANDEX_MEDIA_BASE}/branding/logo-emblem-160.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy"><strong>АБХАЗБЕРЕГ - жилье напрямую</strong></span>
       </a>
       <nav class="site-concept__topnav" aria-label="Основная навигация">

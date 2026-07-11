@@ -344,7 +344,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
 
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="{CDN_MEDIA_BASE}/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="{CDN_MEDIA_BASE}/branding/logo-emblem-160.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy">
           <strong>АБХАЗБЕРЕГ - жилье напрямую</strong>
         </span>
@@ -366,7 +366,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
 {body_html}
     </section>
   </main>
-  <script src="../../scripts.min.js?v=202607111035" defer></script>
+  <script src="../../scripts.min.js?v=202607111837" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -462,7 +462,7 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
     <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="{CDN_MEDIA_BASE}/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="{CDN_MEDIA_BASE}/branding/logo-emblem-160.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy"><strong>АБХАЗБЕРЕГ - жилье напрямую</strong></span>
       </a>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
@@ -512,7 +512,7 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
       </article>
     </section>
   </main>
-  <script src="../scripts.min.js?v=202607111035" defer></script>
+  <script src="../scripts.min.js?v=202607111837" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

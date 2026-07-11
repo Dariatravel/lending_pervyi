@@ -19,6 +19,7 @@ FORBIDDEN_CLIENT_STRINGS = (
     "review_text_bank",
     "catalog-snapshot.json",
     "supabase",
+    "logo-emblem" + ".png",
 )
 
 
