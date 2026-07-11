@@ -10,8 +10,11 @@
   <meta name="theme-color" content="#d9eee7" />
   <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png"/>
   <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon"/>
-<link rel="stylesheet" href="../styles.min.css?v=202607111851" />
+<link rel="stylesheet" href="../styles.min.css?v=202607111903" />
 <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
+<link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin />
+<link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin />
+<link rel="preconnect" href="https://c.tile.openstreetmap.org" crossorigin />
 </head>
 <body class="objects-map-page">
   <header class="objects-map-page__bar">
@@ -22,14 +25,14 @@
   <div id="objects-map" role="region" aria-label="Интерактивная карта объектов"></div>
   <p class="objects-map-page__status" hidden id="objects-map-status"></p>
 
-  <script defer src="../pwa.js?v=202607111851"></script>
+  <script defer src="../pwa.js?v=202607111903"></script>
   <script>
     (function () {
-      var LEAFLET_CSS_URL = "../vendor/leaflet/leaflet.css?v=202607111851";
-      var LEAFLET_JS_URL = "../vendor/leaflet/leaflet.js?v=202607111851";
-      var LEAFLET_CLUSTER_CSS_URL = "../vendor/leaflet-markercluster/MarkerCluster.css?v=202607111851";
-      var LEAFLET_CLUSTER_DEFAULT_CSS_URL = "../vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202607111851";
-      var LEAFLET_CLUSTER_JS_URL = "../vendor/leaflet-markercluster/leaflet.markercluster.js?v=202607111851";
+      var LEAFLET_CSS_URL = "../vendor/leaflet/leaflet.css?v=202607111903";
+      var LEAFLET_JS_URL = "../vendor/leaflet/leaflet.js?v=202607111903";
+      var LEAFLET_CLUSTER_CSS_URL = "../vendor/leaflet-markercluster/MarkerCluster.css?v=202607111903";
+      var LEAFLET_CLUSTER_DEFAULT_CSS_URL = "../vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202607111903";
+      var LEAFLET_CLUSTER_JS_URL = "../vendor/leaflet-markercluster/leaflet.markercluster.js?v=202607111903";
       var leafletLoadPromise = null;
 
       var CITIES = {
@@ -204,9 +207,12 @@
         var map = window.L.map(mapHost, {
           zoomControl: true,
           attributionControl: true,
+          fadeAnimation: false,
         }).setView([geo.lat, geo.lon], geo.z);
         window.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
           maxZoom: 19,
+          updateWhenIdle: true,
+          keepBuffer: 4,
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         }).addTo(map);
 
@@ -256,7 +262,7 @@
           });
       }
 
-      fetch("../data/objects-map-points.json?v=202607111851")
+      fetch("../data/objects-map-points.json?v=202607111903")
         .then(function (response) {
           if (!response.ok) throw new Error("map-data");
           return response.json();

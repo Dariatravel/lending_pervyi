@@ -441,7 +441,7 @@ def render_answer_page(page: dict[str, Any]) -> str:
       </div>
     </article>
   </main>
-  <script src="../../scripts.min.js?v=202607111851" defer></script>
+  <script src="../../scripts.min.js?v=202607111903" defer></script>
 </body>
 </html>
 """
@@ -507,7 +507,7 @@ def write_answer_pages() -> None:
       </div>
     </section>
   </main>
-  <script src="../scripts.min.js?v=202607111851" defer></script>
+  <script src="../scripts.min.js?v=202607111903" defer></script>
 </body>
 </html>
 """
