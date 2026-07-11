@@ -10,11 +10,33 @@ from pathlib import Path
 
 import paramiko
 
-HOST = os.environ.get("VPS_HOST", "81.31.247.74")
-USER = os.environ.get("VPS_USER", "root")
-PASSWORD = os.environ["VPS_PASSWORD"]
+DEFAULT_VPS_ENV = Path("/Users/darya_botova/abhazbereg-bot/.env.vps.local")
+DEFAULT_SSH_KEY = Path.home() / ".ssh" / "id_ed25519_github"
 PROJECT = "/srv/lending_pervyi"
 LOCAL_ROOT = Path(os.environ.get("LOCAL_BOT_ROOT", "/Users/darya_botova/abhazbereg-bot/lending_pervyi"))
+
+
+def load_vps_env() -> None:
+    for path in (
+        Path(os.environ.get("VPS_ENV_FILE", str(DEFAULT_VPS_ENV))),
+        Path(__file__).resolve().parents[1] / ".env.vps.local",
+    ):
+        if not path.is_file():
+            continue
+        for raw_line in path.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+        return
+
+
+load_vps_env()
+HOST = os.environ.get("VPS_HOST", "").strip()
+USER = os.environ.get("VPS_USER", "").strip()
+PASSWORD = os.environ.get("VPS_PASSWORD", "").strip()
+SSH_KEY = Path(os.environ.get("VPS_SSH_KEY", str(DEFAULT_SSH_KEY))).expanduser()
 
 
 def run(client: paramiko.SSHClient, command: str, *, timeout: int = 600) -> tuple[int, str, str]:
@@ -41,11 +63,28 @@ def main() -> int:
     if not LOCAL_ROOT.exists():
         print(f"Missing local bot root: {LOCAL_ROOT}", file=sys.stderr)
         return 2
+    if not HOST or not USER:
+        print("Missing VPS_HOST/VPS_USER. Set env or create .env.vps.local", file=sys.stderr)
+        return 2
 
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    print(f"Connecting to {USER}@{HOST} ...")
-    client.connect(HOST, username=USER, password=PASSWORD, timeout=30, allow_agent=False, look_for_keys=False)
+    print("Connecting to VPS ...")
+    connect_kwargs: dict[str, object] = {
+        "hostname": HOST,
+        "username": USER,
+        "timeout": 30,
+        "allow_agent": False,
+        "look_for_keys": False,
+    }
+    if SSH_KEY.is_file():
+        connect_kwargs["key_filename"] = str(SSH_KEY)
+    elif PASSWORD:
+        connect_kwargs["password"] = PASSWORD
+    else:
+        print("Missing VPS_SSH_KEY or VPS_PASSWORD for SSH auth", file=sys.stderr)
+        return 2
+    client.connect(**connect_kwargs)
 
     code, out, _ = run(
         client,

@@ -10,10 +10,11 @@ from pathlib import Path
 import paramiko
 
 DEFAULT_VPS_ENV = Path("/Users/darya_botova/abhazbereg-bot/.env.vps.local")
+DEFAULT_SSH_KEY = Path.home() / ".ssh" / "id_ed25519_github"
 
 
 def load_vps_env() -> None:
-    if os.getenv("VPS_PASSWORD", "").strip():
+    if os.getenv("VPS_HOST", "").strip() and os.getenv("VPS_USER", "").strip():
         return
     for path in (
         Path(os.environ.get("VPS_ENV_FILE", str(DEFAULT_VPS_ENV))),
@@ -31,9 +32,10 @@ def load_vps_env() -> None:
 
 
 load_vps_env()
-HOST = os.environ.get("VPS_HOST", "81.31.247.74")
-USER = os.environ.get("VPS_USER", "root")
-PASSWORD = os.environ.get("VPS_PASSWORD", "")
+HOST = os.environ.get("VPS_HOST", "").strip()
+USER = os.environ.get("VPS_USER", "").strip()
+PASSWORD = os.environ.get("VPS_PASSWORD", "").strip()
+SSH_KEY = Path(os.environ.get("VPS_SSH_KEY", str(DEFAULT_SSH_KEY))).expanduser()
 PROJECT = "/srv/lending_pervyi"
 
 ENV_OVERRIDES = {
@@ -59,13 +61,27 @@ def run(client: paramiko.SSHClient, command: str, *, timeout: int = 600) -> int:
 
 
 def main() -> int:
-    if not PASSWORD.strip():
-        print("Missing VPS_PASSWORD. Set env or create .env.vps.local", file=sys.stderr)
+    if not HOST or not USER:
+        print("Missing VPS_HOST/VPS_USER. Set env or create .env.vps.local", file=sys.stderr)
         return 2
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    print(f"Connecting to {USER}@{HOST} ...")
-    client.connect(HOST, username=USER, password=PASSWORD, timeout=30, allow_agent=False, look_for_keys=False)
+    print("Connecting to VPS ...")
+    connect_kwargs: dict[str, object] = {
+        "hostname": HOST,
+        "username": USER,
+        "timeout": 30,
+        "allow_agent": False,
+        "look_for_keys": False,
+    }
+    if SSH_KEY.is_file():
+        connect_kwargs["key_filename"] = str(SSH_KEY)
+    elif PASSWORD:
+        connect_kwargs["password"] = PASSWORD
+    else:
+        print("Missing VPS_SSH_KEY or VPS_PASSWORD for SSH auth", file=sys.stderr)
+        return 2
+    client.connect(**connect_kwargs)
 
     run(client, f"cd {PROJECT} && git pull --ff-only origin main", timeout=300)
     run(client, f"cd {PROJECT} && .venv/bin/pip install -r requirements-site-update-bot.txt", timeout=900)
