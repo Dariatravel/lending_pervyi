@@ -6,6 +6,23 @@
 
 - `scripts/run_auto_sync_pipeline.py`
 
+## Lighthouse mobile baseline
+
+Прогон выполнен 2026-07-11 на продакшене `https://абхазберег.рф/`.
+Отчёты сохранены локально в `output/lighthouse/` и не добавляются в git.
+
+| Страница | Performance | FCP | LCP | Speed Index | TBT | CLS | TTI | Вес |
+|----------|-------------|-----|-----|-------------|-----|-----|-----|-----|
+| Главная | 87 | 1.6 s | 3.1 s | 4.2 s | 240 ms | 0 | 5.5 s | 1,323 KiB |
+| Отель: Регина | 71 | 1.4 s | 7.4 s | 3.8 s | 220 ms | 0 | 7.8 s | 1,424 KiB |
+| Карта | 75 | 1.5 s | 4.4 s | 10.4 s | 20 ms | 0 | 4.4 s | 343 KiB |
+
+Файлы отчётов:
+
+- `output/lighthouse/home.report.html`
+- `output/lighthouse/hotel-regina.report.html`
+- `output/lighthouse/map.report.html`
+
 Скрипты автозапуска (macOS `launchd`):
 
 - `scripts/install_auto_sync_launchd.sh`
