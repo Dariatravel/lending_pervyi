@@ -1043,7 +1043,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> int:
     load_env_files()
     args = build_parser().parse_args()
-    return run_async_entrypoint(run(args), name="watch_telegram_updates", default_timeout=900)
+    return run_async_entrypoint(run(args), name="watch_telegram_updates", default_timeout=7200)
 
 
 if __name__ == "__main__":

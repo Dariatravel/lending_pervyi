@@ -141,6 +141,8 @@ def command_env() -> dict[str, str]:
     env["PATH"] = ":".join(part for part in path_parts if part)
     if CONFIG.snapshot_only:
         env["SKIP_SUPABASE_SYNC"] = "1"
+    env.setdefault("TG_SCRIPT_TIMEOUT_SECONDS", str(CONFIG.command_timeout_seconds))
+    env.setdefault("TG_CONNECT_TIMEOUT_SECONDS", "120")
     google_creds = ROOT / "google-service-account.json"
     if google_creds.exists():
         env.setdefault("GOOGLE_SERVICE_ACCOUNT_JSON", str(google_creds))
