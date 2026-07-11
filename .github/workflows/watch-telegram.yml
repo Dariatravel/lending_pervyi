@@ -46,9 +46,9 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Установить Telethon
+      - name: Установить зависимости
         if: steps.gate.outputs.enabled == 'true'
-        run: pip install --quiet telethon
+        run: pip install --quiet -r requirements-site-update-bot.txt
 
       - name: Восстановить watch-state
         if: steps.gate.outputs.enabled == 'true'
