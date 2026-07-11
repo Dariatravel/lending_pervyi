@@ -92,14 +92,6 @@
     actions.insertBefore(btn, catalogBtn);
   }
 
-  function initHomepageShareLink() {
-    const btn = document.getElementById("copy-home-link");
-    if (!btn) return;
-    btn.addEventListener("click", () => {
-      void copyPublicUrl(btn);
-    });
-  }
-
   initCanonicalUrlDisplay();
   initPublicUrlCopyNormalization();
 
@@ -5094,7 +5086,6 @@
   hydrateHomeCatalog(filtersController);
   hydrateKvartiraCatalog(filtersController);
   hydrateHotelPage();
-  initHomepageShareLink();
   initListingPageShareLink();
   void initSimilarListings();
   void initSimilarBlogPosts();
