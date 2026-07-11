@@ -5,12 +5,35 @@ from __future__ import annotations
 import os
 import sys
 import textwrap
+from pathlib import Path
 
 import paramiko
 
+DEFAULT_VPS_ENV = Path("/Users/darya_botova/abhazbereg-bot/.env.vps.local")
+
+
+def load_vps_env() -> None:
+    if os.getenv("VPS_PASSWORD", "").strip():
+        return
+    for path in (
+        Path(os.environ.get("VPS_ENV_FILE", str(DEFAULT_VPS_ENV))),
+        Path(__file__).resolve().parents[1] / ".env.vps.local",
+    ):
+        if not path.is_file():
+            continue
+        for raw_line in path.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+        return
+
+
+load_vps_env()
 HOST = os.environ.get("VPS_HOST", "81.31.247.74")
 USER = os.environ.get("VPS_USER", "root")
-PASSWORD = os.environ["VPS_PASSWORD"]
+PASSWORD = os.environ.get("VPS_PASSWORD", "")
 PROJECT = "/srv/lending_pervyi"
 
 ENV_OVERRIDES = {
@@ -36,6 +59,9 @@ def run(client: paramiko.SSHClient, command: str, *, timeout: int = 600) -> int:
 
 
 def main() -> int:
+    if not PASSWORD.strip():
+        print("Missing VPS_PASSWORD. Set env or create .env.vps.local", file=sys.stderr)
+        return 2
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     print(f"Connecting to {USER}@{HOST} ...")
