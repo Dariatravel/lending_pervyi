@@ -1,14 +1,16 @@
 name: Watch Telegram
 
-# Telethon (MTProto) фильтруется на RU-хостингах (Timeweb): подключение к DC
-# обрывается на рукопожатии. Раннеры GitHub находятся вне РФ, поэтому проверка
-# каналов выполняется здесь. Bot API-бот на VPS продолжает слать уведомления.
+# Telethon (MTProto) фильтруется на RU-хостингах (Timeweb), поэтому проверка
+# каналов и автосинк выполняются на раннерах GitHub (вне РФ).
 #
-# Требуемые секреты (Settings → Secrets and variables → Actions):
-#   TG_STRING_SESSION — из tools/make_tg_string_session.py (запуск на Mac)
-#   TELEGRAM_API_ID / TELEGRAM_API_HASH — необязательно (есть значения по умолчанию)
-#   TG_BOT_TOKEN / TG_REPORT_CHAT_ID — необязательно, для уведомлений об изменениях
-# Пока TG_STRING_SESSION не задан, workflow завершается успешно с подсказкой.
+# Секреты (Settings → Secrets and variables → Actions):
+#   TG_STRING_SESSION            — обязательный; tools/make_tg_string_session.py
+#   YANDEX_S3_ACCESS_KEY_ID      — для автосинка (медиа в бакет)
+#   YANDEX_S3_SECRET_ACCESS_KEY  — для автосинка
+#   TG_BOT_TOKEN / TG_REPORT_CHAT_ID — уведомления в Telegram (необязательно)
+#   TELEGRAM_API_ID / TELEGRAM_API_HASH — необязательно (в коде есть значения)
+# Логика: нет TG_STRING_SESSION → зелёный пропуск; есть изменения, но нет
+# ключей Yandex → только уведомление; есть всё → синк + commit + push.
 
 on:
   workflow_dispatch:
@@ -22,7 +24,9 @@ concurrency:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 170
+    permissions:
+      contents: write
     env:
       TG_STRING_SESSION: ${{ secrets.TG_STRING_SESSION }}
     steps:
@@ -49,15 +53,26 @@ jobs:
         run: pip install --quiet -r requirements-site-update-bot.txt
 
       # Пустая env-переменная ломает int(TELEGRAM_API_ID) в скрипте — экспортируем
-      # необязательные креденшалы только если секреты реально заданы.
-      - name: Экспортировать необязательные API-креденшалы
+      # необязательные значения только если секреты реально заданы.
+      - name: Экспортировать необязательные секреты
         if: steps.gate.outputs.enabled == 'true'
         env:
           OPT_API_ID: ${{ secrets.TELEGRAM_API_ID }}
           OPT_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          YC_KEY: ${{ secrets.YANDEX_S3_ACCESS_KEY_ID }}
+          YC_SECRET: ${{ secrets.YANDEX_S3_SECRET_ACCESS_KEY }}
         run: |
           if [ -n "$OPT_API_ID" ]; then echo "TELEGRAM_API_ID=$OPT_API_ID" >> "$GITHUB_ENV"; fi
           if [ -n "$OPT_API_HASH" ]; then echo "TELEGRAM_API_HASH=$OPT_API_HASH" >> "$GITHUB_ENV"; fi
+          if [ -n "$YC_KEY" ] && [ -n "$YC_SECRET" ]; then
+            echo "YANDEX_S3_ACCESS_KEY_ID=$YC_KEY" >> "$GITHUB_ENV"
+            echo "YANDEX_S3_SECRET_ACCESS_KEY=$YC_SECRET" >> "$GITHUB_ENV"
+            echo "SYNC_ENABLED=true" >> "$GITHUB_ENV"
+            echo "Ключи Yandex Storage заданы — автосинк включён."
+          else
+            echo "SYNC_ENABLED=false" >> "$GITHUB_ENV"
+            echo "Ключи Yandex Storage не заданы — только наблюдение."
+          fi
 
       - name: Восстановить watch-state
         if: steps.gate.outputs.enabled == 'true'
@@ -72,6 +87,53 @@ jobs:
         if: steps.gate.outputs.enabled == 'true'
         run: python scripts/watch_telegram_updates.py --strict
 
+      - name: Определить, есть ли изменения
+        id: detect
+        if: steps.gate.outputs.enabled == 'true'
+        run: |
+          COUNT=$(python -c "import json;d=json.load(open('output/telegram-watch-changed-targets.json'));print(int(d.get('changed_total') or 0)+int(d.get('new_objects_total') or 0))" 2>/dev/null || echo 0)
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          if [ "$COUNT" != "0" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Обнаружены изменения в Telegram: $COUNT целей."
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Изменений нет."
+          fi
+
+      - name: Синк сайта из Telegram
+        id: sync
+        if: steps.gate.outputs.enabled == 'true' && steps.detect.outputs.changed == 'true' && env.SYNC_ENABLED == 'true'
+        run: |
+          python scripts/run_auto_sync_pipeline.py --mode full --snapshot-only --skip-filters --skip-review-banks --skip-page-health
+          echo "done=true" >> "$GITHUB_OUTPUT"
+
+      - name: Контрольные аудиты после синка
+        if: steps.sync.outputs.done == 'true'
+        run: |
+          python tools/audit_supabase_prod_deps.py
+          python tools/validate_catalog_snapshot.py
+          python tools/verify_object_media.py
+
+      - name: Опубликовать изменения
+        id: publish
+        if: steps.sync.outputs.done == 'true'
+        run: |
+          git config user.name "abhazbereg-autosync"
+          git config user.email "darya.tiande@gmail.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Файлы сайта не изменились — публиковать нечего."
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          FILES=$(git diff --cached --name-only | wc -l)
+          git commit -m "Авто-синк каталога из Telegram (GitHub Actions)"
+          git pull --rebase origin main || true
+          git push origin main
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+
       - name: Сохранить watch-state
         if: steps.gate.outputs.enabled == 'true' && always()
         uses: actions/cache/save@v4
@@ -79,25 +141,28 @@ jobs:
           path: output/telegram-watch-state.json
           key: telegram-watch-state-${{ github.run_id }}
 
-      - name: Уведомить об изменениях
-        if: steps.gate.outputs.enabled == 'true'
+      - name: Уведомить в Telegram
+        if: steps.gate.outputs.enabled == 'true' && steps.detect.outputs.changed == 'true'
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
+          PUSHED: ${{ steps.publish.outputs.pushed }}
+          FILES: ${{ steps.publish.outputs.files }}
         run: |
-          TARGETS=output/telegram-watch-changed-targets.json
-          if [ ! -s "$TARGETS" ] || [ "$(python -c "import json;d=json.load(open('$TARGETS'));print(len(d) if isinstance(d,list) else len(d.get('targets') or d))" 2>/dev/null || echo 0)" = "0" ]; then
-            echo "Изменений нет — уведомление не требуется."
+          if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
+            echo "TG_BOT_TOKEN/TG_REPORT_CHAT_ID не заданы — уведомление пропущено."
             exit 0
           fi
-          echo "::notice::Обнаружены изменения в Telegram-каналах — нужен запуск синка."
-          if [ -n "$TG_BOT_TOKEN" ] && [ -n "$TG_REPORT_CHAT_ID" ]; then
-            REPORT=$(head -c 3500 output/telegram-watch-report.txt 2>/dev/null || true)
-            MSG=$(printf '🔭 watch-telegram (GitHub Actions): есть изменения.\n\n%s' "$REPORT")
-            curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
-              --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
-              --data-urlencode "text=${MSG}" >/dev/null
-            echo "Уведомление отправлено в Telegram."
+          REPORT=$(head -c 3000 output/telegram-watch-report.txt 2>/dev/null || true)
+          if [ "$PUSHED" = "true" ]; then
+            HEAD_MSG="✅ Автосинк: изменения из Telegram опубликованы на сайт (файлов: ${FILES})."
+          elif [ "$SYNC_ENABLED" = "true" ]; then
+            HEAD_MSG="ℹ️ Изменения в Telegram обработаны, публикация не потребовалась."
           else
-            echo "TG_BOT_TOKEN/TG_REPORT_CHAT_ID не заданы — уведомление пропущено."
+            HEAD_MSG="🔭 Есть изменения в Telegram. Автосинк выключен (нет ключей Yandex) — нужен ручной синк."
           fi
+          MSG=$(printf '%s\n\n%s' "$HEAD_MSG" "$REPORT")
+          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
+            --data-urlencode "text=${MSG}" >/dev/null
+          echo "Уведомление отправлено."
