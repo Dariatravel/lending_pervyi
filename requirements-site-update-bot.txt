@@ -1,5 +1,7 @@
 python-telegram-bot==21.11.1
 telethon
+PySocks
+python-socks[asyncio]
 Pillow
 google-auth
 google-auth-oauthlib

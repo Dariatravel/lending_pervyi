@@ -5,9 +5,10 @@ import os
 import socket
 import sqlite3
 import time
-from contextlib import asynccontextmanager
+from contextlib import asynccontextmanager, nullcontext
 from pathlib import Path
 from typing import Any, Awaitable
+from urllib.parse import urlparse
 
 import fcntl
 from telethon import TelegramClient
@@ -113,6 +114,62 @@ def user_friendly_error(error: BaseException) -> str:
     return f"Техническая проблема проверки: {text}"
 
 
+def telegram_proxy_kwargs() -> dict[str, Any]:
+    """TG_PROXY → kwargs для TelegramClient.
+
+    Поддерживаемые форматы (Timeweb/RU-хостинги фильтруют MTProto, нужен обход):
+      socks5://host:port            socks5://user:pass@host:port
+      socks4://host:port            http://host:port
+      mtproxy://SECRET@host:port    (MTProxy, секрет dd... или ee...)
+    """
+    raw = os.getenv("TG_PROXY", "").strip()
+    if not raw:
+        return {}
+    parsed = urlparse(raw)
+    scheme = (parsed.scheme or "").lower()
+    host = parsed.hostname
+    port = parsed.port
+    if not host or not port:
+        raise TelegramRuntimeError(f"TG_PROXY должен содержать host:port, получено: {raw}")
+    if scheme in {"socks5", "socks4", "http"}:
+        try:
+            import python_socks  # noqa: F401  Telethon использует его для async-прокси
+            import socks  # PySocks — для типов SOCKS5/SOCKS4/HTTP и sync-путей
+        except ImportError as error:
+            raise TelegramRuntimeError(
+                "Для TG_PROXY нужны пакеты: .venv/bin/pip install \"python-socks[asyncio]\" PySocks"
+            ) from error
+        proxy_type = {"socks5": socks.SOCKS5, "socks4": socks.SOCKS4, "http": socks.HTTP}[scheme]
+        if parsed.username:
+            return {"proxy": (proxy_type, host, port, True, parsed.username, parsed.password or "")}
+        return {"proxy": (proxy_type, host, port, True)}
+    if scheme in {"mtproxy", "mtproto"}:
+        secret = parsed.username or ""
+        if not secret:
+            raise TelegramRuntimeError("Формат MTProxy: mtproxy://SECRET@host:port (секрет обязателен)")
+        from telethon.network import connection as tl_connection
+
+        return {
+            "connection": tl_connection.ConnectionTcpMTProxyRandomizedIntermediate,
+            "proxy": (host, port, secret),
+        }
+    raise TelegramRuntimeError(f"Неизвестная схема TG_PROXY: {scheme} (ждём socks5/socks4/http/mtproxy)")
+
+
+def _resolve_session(session: str | os.PathLike[str]) -> tuple[Any, bool]:
+    """TG_STRING_SESSION (строковая сессия Telethon) имеет приоритет над файловой.
+
+    Строковая сессия живёт в памяти процесса — файловый lock для неё не нужен.
+    Это позволяет запускать watch-скрипты в CI (GitHub Actions), где нет файла tg_session.
+    """
+    string_session = os.getenv("TG_STRING_SESSION", "").strip()
+    if string_session:
+        from telethon.sessions import StringSession
+
+        return StringSession(string_session), False
+    return str(session), True
+
+
 @asynccontextmanager
 async def connected_telegram_client(
     session: str | os.PathLike[str],
@@ -123,8 +180,16 @@ async def connected_telegram_client(
     connect_timeout: int | None = None,
     lock_timeout: int | None = None,
 ):
-    with TelegramSessionLock(session, timeout=lock_timeout):
-        client = TelegramClient(str(session), api_id, api_hash, receive_updates=receive_updates)
+    resolved_session, needs_lock = _resolve_session(session)
+    lock_ctx = TelegramSessionLock(session, timeout=lock_timeout) if needs_lock else nullcontext()
+    with lock_ctx:
+        client = TelegramClient(
+            resolved_session,
+            api_id,
+            api_hash,
+            receive_updates=receive_updates,
+            **telegram_proxy_kwargs(),
+        )
         try:
             await asyncio.wait_for(client.connect(), timeout=connect_timeout or telegram_connect_timeout())
             yield client
