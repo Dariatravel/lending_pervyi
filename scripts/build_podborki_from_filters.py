@@ -253,6 +253,17 @@ def cover_image_key(src: str) -> str:
     return normalize_index_image(src) or normalize_image(src) or src.strip()
 
 
+def responsive_srcset(src: str) -> str:
+    if not src.startswith(CDN_MEDIA_BASE):
+        return ""
+    if "/media/branding/" in src:
+        return ""
+    if not re.search(r"\.(?:jpe?g|png)$", src, flags=re.I):
+        return ""
+    stem = re.sub(r"\.(?:jpe?g|png)$", "", src, flags=re.I)
+    return f"{stem}-480.webp 480w"
+
+
 def pick_cover_card(selected: list[Card], used_images: set[str]) -> Card | None:
     """Обложка индекса подборок: первое фото объекта из подборки, ещё не занятое на странице."""
     if not selected:
@@ -271,7 +282,9 @@ def pick_cover_card(selected: list[Card], used_images: set[str]) -> Card | None:
 
 def render_card(card: Card, rank: int) -> str:
     if card.image:
-        media_inner = f'<img src="{html.escape(card.image)}" alt="{html.escape(card.alt)}" loading="lazy" decoding="async" />'
+        srcset = responsive_srcset(card.image)
+        srcset_attr = f' srcset="{html.escape(srcset)}" sizes="(max-width: 720px) 92vw, (max-width: 1180px) 45vw, 320px"' if srcset else ""
+        media_inner = f'<img src="{html.escape(card.image)}"{srcset_attr} alt="{html.escape(card.alt)}" loading="lazy" decoding="async" />'
     else:
         media_inner = '<div class="catalog-card__media-fallback" role="img" aria-hidden="true">Фото</div>'
     return (
@@ -353,7 +366,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
 {body_html}
     </section>
   </main>
-  <script src="../../scripts.min.js?v=202607111024" defer></script>
+  <script src="../../scripts.min.js?v=202607111035" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -499,7 +512,7 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
       </article>
     </section>
   </main>
-  <script src="../scripts.min.js?v=202607111024" defer></script>
+  <script src="../scripts.min.js?v=202607111035" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

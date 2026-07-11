@@ -156,6 +156,31 @@ def check_review_banks(errors: list[str]) -> None:
         errors.append("Не найден локальный источник media/reviews/global.json для CDN-банка отзывов")
 
 
+def html_attr(tag: str, name: str) -> str:
+    match = re.search(rf'\b{name}\s*=\s*(["\'])(.*?)\1', tag, flags=re.I | re.S)
+    return match.group(2) if match else ""
+
+
+def check_catalog_card_srcsets(errors: list[str]) -> None:
+    for path in html_files():
+        text = read_text(path)
+        rel = path.relative_to(ROOT).as_posix()
+        cards = re.findall(r'<a\b[^>]*class=["\'][^"\']*\bcatalog-card\b[^"\']*["\'][\s\S]*?</a>', text, flags=re.I)
+        for index, card in enumerate(cards, start=1):
+            img_match = re.search(r"<img\b[^>]*>", card, flags=re.I | re.S)
+            if not img_match:
+                continue
+            img = img_match.group(0)
+            src = html_attr(img, "src")
+            if "storage.yandexcloud.net/abhazbereg-media/media/" not in src:
+                continue
+            if "/media/branding/" in src:
+                continue
+            srcset = html_attr(img, "srcset")
+            if "-480.webp" not in srcset:
+                errors.append(f"{rel}: catalog-card #{index} без srcset с -480.webp")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--skip-minify-check", action="store_true")
@@ -168,6 +193,7 @@ def main() -> int:
     check_object_meta(errors)
     check_sitemap(errors)
     check_review_banks(errors)
+    check_catalog_card_srcsets(errors)
     if not args.skip_minify_check:
         check_minified_freshness(errors)
 
