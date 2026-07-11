@@ -101,8 +101,31 @@ def attrs_to_html(attrs: dict[str, str]) -> str:
     return "".join(f' {name}="{html.escape(value, quote=True)}"' for name, value in attrs.items() if value)
 
 
-def responsive_img_html(src: str, alt: str, *, loading: str, sizes: str, root: Path = ROOT) -> str:
+def responsive_preload_link(src: str, *, sizes: str, root: Path = ROOT) -> str:
+    src = yandex_photo_url(src)
+    srcset = srcset_for_image(src, root=root)
+    href = variant_url(src, 960)
+    if not srcset or f"{href} 960w" not in srcset:
+        return ""
+    return (
+        f'<link rel="preload" as="image" href="{html.escape(href, quote=True)}" '
+        f'imagesrcset="{html.escape(srcset, quote=True)}" '
+        f'imagesizes="{html.escape(sizes, quote=True)}" />'
+    )
+
+
+def responsive_img_html(
+    src: str,
+    alt: str,
+    *,
+    loading: str,
+    sizes: str,
+    root: Path = ROOT,
+    fetchpriority: str = "",
+) -> str:
     escaped_src = html.escape(yandex_photo_url(src), quote=True)
     escaped_alt = html.escape(alt, quote=True)
     attrs = responsive_image_attrs(src, sizes=sizes, root=root)
+    if fetchpriority:
+        attrs["fetchpriority"] = fetchpriority
     return f'<img src="{escaped_src}"{attrs_to_html(attrs)} alt="{escaped_alt}" loading="{html.escape(loading, quote=True)}" />'

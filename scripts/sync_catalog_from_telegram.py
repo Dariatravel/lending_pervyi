@@ -52,7 +52,7 @@ from catalog_snapshot import (  # noqa: E402
     upsert_listing as snapshot_upsert_listing,
 )
 from media_urls import media_src_for_html, yandex_photo_url  # noqa: E402
-from responsive_images import responsive_img_html  # noqa: E402
+from responsive_images import responsive_img_html, responsive_preload_link  # noqa: E402
 from yandex_storage import upload_file as upload_to_yandex  # noqa: E402
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 
@@ -885,6 +885,7 @@ def render_top_gallery(media_items: list[dict[str, Any]], title: str) -> str:
             f"{title} фото 1",
             loading="eager",
             sizes="(max-width: 720px) 92vw, 620px",
+            fetchpriority="high",
         )
         return f'''          <div class="hotel-card__gallery">\n            <div class="hotel-card__main-photo">\n              {main_img}\n              <div class="hotel-card__floating">\n                <span class="pill pill--accent">Проверенный объект</span>\n              </div>\n            </div>\n            <div class="hotel-card__thumbs">\n              {thumbs}\n            </div>\n          </div>'''
 
@@ -975,6 +976,15 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     img_abs = absolute_site_url(image_src_for_html(first_photo_url)) if first_photo_url else ""
     if img_abs:
         ld_blob["image"] = [img_abs]
+    preload_link = (
+        responsive_preload_link(
+            image_src_for_html(first_photo_url),
+            sizes="(max-width: 720px) 92vw, 620px",
+        )
+        if first_photo_url
+        else ""
+    )
+    preload_block = f"    {preload_link}\n" if preload_link else ""
     ld_json = json.dumps(ld_blob, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
     ld_block = f'    <script type="application/ld+json" data-schema="listing">\n      {ld_json}\n    </script>\n'
     return f'''<!doctype html>
@@ -992,9 +1002,9 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <meta property="og:url" content="https://абхазберег.рф{page_href}" />
     <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg" />
     <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-    <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png" />
+{preload_block}    <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202607111837" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202607111851" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1081,7 +1091,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202607111837" defer></script>
+    <script src="../../scripts.min.js?v=202607111851" defer></script>
   </body>
 </html>'''
 

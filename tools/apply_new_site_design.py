@@ -1908,7 +1908,7 @@ def build_homepage() -> None:
 
     rebuilt = replace_main(text, new_main)
     if "scripts.js" not in rebuilt:
-        rebuilt = rebuilt.replace("</body>", '  <script src="scripts.min.js?v=202607111837" defer></script>\n</body>')
+        rebuilt = rebuilt.replace("</body>", '  <script src="scripts.min.js?v=202607111851" defer></script>\n</body>')
     INDEX_FILE.write_text(clean_html_block(rebuilt) + "\n", encoding="utf-8")
 
 
@@ -2033,7 +2033,7 @@ def build_listing_pages() -> None:
             gallery_html = f"""
           <div class="hotel-card__gallery">
             <div class="hotel-card__main-photo">
-              <img src="{main_image[0]}" alt="{main_image[1] or title}" loading="eager" />
+              <img src="{main_image[0]}" alt="{main_image[1] or title}" loading="eager" fetchpriority="high" />
               <div class="hotel-card__floating">
                 <span class="pill pill--accent">Проверенный объект</span>
               </div>
