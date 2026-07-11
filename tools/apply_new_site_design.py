@@ -1695,7 +1695,7 @@ def build_homepage() -> None:
 
   <header class="site-concept__topbar" role="banner">
     <a class="site-concept__brand" href="#search">
-      <img class="site-concept__brand-mark" src="media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ - жилье напрямую — на главную" decoding="async" />
+      <img class="site-concept__brand-mark" src="media/branding/logo-emblem-160.png" width="80" height="80" alt="АБХАЗБЕРЕГ - жилье напрямую — на главную" decoding="async" />
       <span class="site-concept__brand-copy">
         <strong>АБХАЗБЕРЕГ - жилье напрямую</strong>
       </span>
@@ -1908,7 +1908,7 @@ def build_homepage() -> None:
 
     rebuilt = replace_main(text, new_main)
     if "scripts.js" not in rebuilt:
-        rebuilt = rebuilt.replace("</body>", '  <script src="scripts.min.js?v=202607102046" defer></script>\n</body>')
+        rebuilt = rebuilt.replace("</body>", '  <script src="scripts.min.js?v=202607111024" defer></script>\n</body>')
     INDEX_FILE.write_text(clean_html_block(rebuilt) + "\n", encoding="utf-8")
 
 

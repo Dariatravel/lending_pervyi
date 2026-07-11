@@ -401,7 +401,7 @@ def render_answer_page(page: dict[str, Any]) -> str:
   <main class="page-shell site-concept blog-article-page">
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="https://storage.yandexcloud.net/abhazbereg-media/media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="https://storage.yandexcloud.net/abhazbereg-media/media/branding/logo-emblem-160.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy"><strong>АБХАЗБЕРЕГ - жилье напрямую</strong></span>
       </a>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
@@ -441,7 +441,7 @@ def render_answer_page(page: dict[str, Any]) -> str:
       </div>
     </article>
   </main>
-  <script src="../../scripts.min.js?v=202607102046" defer></script>
+  <script src="../../scripts.min.js?v=202607111024" defer></script>
 </body>
 </html>
 """
@@ -486,7 +486,7 @@ def write_answer_pages() -> None:
   <main class="page-shell site-concept blog-page">
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="https://storage.yandexcloud.net/abhazbereg-media/media/branding/logo-emblem.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="https://storage.yandexcloud.net/abhazbereg-media/media/branding/logo-emblem-160.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy"><strong>АБХАЗБЕРЕГ - жилье напрямую</strong></span>
       </a>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
@@ -507,7 +507,7 @@ def write_answer_pages() -> None:
       </div>
     </section>
   </main>
-  <script src="../scripts.min.js?v=202607102046" defer></script>
+  <script src="../scripts.min.js?v=202607111024" defer></script>
 </body>
 </html>
 """
@@ -549,7 +549,7 @@ def update_home_schema() -> bool:
             "name": "АБХАЗБЕРЕГ",
             "alternateName": "АБХАЗБЕРЕГ - жилье напрямую",
             "url": CANON_ORIGIN + "/",
-            "logo": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/logo-emblem.png",
+            "logo": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/logo-emblem-160.png",
             "description": "Подбор и прямое бронирование проверенного жилья в Абхазии без накруток.",
             "areaServed": ["Абхазия", "Гагра", "Пицунда", "Лдзаа", "Сухум", "Гудаута", "Новый Афон", "Алахадзы"],
             "knowsAbout": [
