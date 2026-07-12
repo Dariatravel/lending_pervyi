@@ -553,7 +553,9 @@ async def run(args: argparse.Namespace) -> int:
                     dry_run=args.dry_run,
                     force=args.force,
                 )
-                line = f"[{'OK' if success else 'SKIP' if 'already exists' in message else 'ERR'}] {target.slug}: {message}"
+                skip_markers = ("already exists", "no captioned media", "missing page")
+                status = 'OK' if success else ('SKIP' if any(m in message for m in skip_markers) else 'ERR')
+                line = f"[{status}] {target.slug}: {message}"
                 results.append(line)
                 print(f"{index}/{len(targets)} {line}", flush=True)
                 if success:
