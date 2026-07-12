@@ -105,7 +105,12 @@ jobs:
         id: sync
         if: steps.gate.outputs.enabled == 'true' && steps.detect.outputs.changed == 'true' && env.SYNC_ENABLED == 'true'
         run: |
-          python scripts/run_auto_sync_pipeline.py --mode full --snapshot-only --skip-filters --skip-review-banks --skip-page-health
+          # Точечный синк по спискам из watch-отчёта; полный проход (--mode full,
+          # ~2.5 часа: медиа скачиваются заново на чистом раннере) — только если
+          # точечные цели собрать не удалось.
+          TARGET_ARGS=$(python tools/watch_targets_args.py)
+          echo "Аргументы синка: ${TARGET_ARGS:---mode full}"
+          python scripts/run_auto_sync_pipeline.py ${TARGET_ARGS:---mode full} --snapshot-only --skip-filters --skip-review-banks --skip-page-health
           echo "done=true" >> "$GITHUB_OUTPUT"
 
       - name: Контрольные аудиты после синка
