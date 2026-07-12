@@ -79,7 +79,7 @@ CUTOFF_DATE = '2026-01-01'
 API_ID = 32916166
 API_HASH = 'eefdec49605521b061de4bdf62ef784e'
 SESSION = os.getenv('TG_SESSION', str(ROOT / 'tg_session'))
-MAX_VIDEO_UPLOAD_MB = 48
+MAX_VIDEO_UPLOAD_MB = 200
 VIDEO_BITRATES = ('1800k', '1200k', '900k', '700k', '500k', '350k')
 MAX_LOCAL_SOURCE_KEEP_MB = 95
 VIDEO_MAX_WIDTH = 960
@@ -603,13 +603,35 @@ def upload_local_image_public_url(_supa: SupabaseClient, local_path: Path, stora
         return local_to_public_path(local_path)
     mime = mimetypes.guess_type(local_path.name)[0] or 'image/jpeg'
     try:
-        return upload_to_yandex(local_path, storage_path, mime)
+        public_url = upload_to_yandex(local_path, storage_path, mime)
+        upload_webp_variants(local_path, storage_path)
+        return public_url
     except Exception as error:  # noqa: BLE001
         print(
             f'[warn] Не удалось загрузить фото в Яндекс ({storage_path}): {error} — используем локальный путь.',
             flush=True,
         )
         return local_to_public_path(local_path)
+
+
+def upload_webp_variants(local_path: Path, storage_path: str) -> None:
+    """Страницы ссылаются на -480/-960/-1440.webp через srcset — варианты
+    обязаны приезжать в бакет вместе с оригиналом, иначе фото «пропадает»."""
+    if not storage_path.lower().endswith(('.jpg', '.jpeg')):
+        return
+    try:
+        from image_variants import build_webp_variants_for_file, variant_key
+        import tempfile
+        for width, blob in build_webp_variants_for_file(local_path):
+            with tempfile.NamedTemporaryFile(suffix='.webp', delete=False) as tmp:
+                tmp.write(blob)
+                tmp_path = Path(tmp.name)
+            try:
+                upload_to_yandex(tmp_path, variant_key(storage_path, width), 'image/webp')
+            finally:
+                tmp_path.unlink(missing_ok=True)
+    except Exception as error:  # noqa: BLE001
+        print(f'[warn] Не удалось создать/залить webp-варианты для {storage_path}: {error}', flush=True)
 
 
 def upload_local_video_public_url(local_path: Path, storage_path: str) -> str:

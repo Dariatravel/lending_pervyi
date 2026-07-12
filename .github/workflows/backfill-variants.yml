@@ -1,0 +1,29 @@
+name: Backfill image variants
+
+# Разовая/ручная дозаливка недостающих WebP-вариантов фото в бакет.
+# Нужна после случаев, когда страницы ссылаются на -480/-960.webp,
+# а вариантов в хранилище нет (битые фото).
+
+on:
+  workflow_dispatch:
+    inputs:
+      prefix:
+        description: "Префикс бакета (пусто = все стандартные)"
+        required: false
+        default: ""
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      YANDEX_S3_ACCESS_KEY_ID: ${{ secrets.YANDEX_S3_ACCESS_KEY_ID }}
+      YANDEX_S3_SECRET_ACCESS_KEY: ${{ secrets.YANDEX_S3_SECRET_ACCESS_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install --quiet boto3 pillow
+      - name: Дозалить варианты
+        run: python tools/backfill_image_variants.py --prefix "${{ inputs.prefix }}"

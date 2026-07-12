@@ -14,6 +14,15 @@ name: Watch Telegram
 
 on:
   workflow_dispatch:
+    inputs:
+      force_hotel_ids:
+        description: "Принудительный синк: id постов отелей через запятую"
+        required: false
+        default: ""
+      force_kv_topics:
+        description: "Принудительный синк: topic id квартир через запятую"
+        required: false
+        default: ""
   schedule:
     - cron: "41 * * * *"
 
@@ -50,7 +59,9 @@ jobs:
 
       - name: Установить зависимости
         if: steps.gate.outputs.enabled == 'true'
-        run: pip install --quiet -r requirements-site-update-bot.txt
+        run: |
+          pip install --quiet -r requirements-site-update-bot.txt
+          sudo apt-get -yq install ffmpeg >/dev/null 2>&1 || true
 
       # Пустая env-переменная ломает int(TELEGRAM_API_ID) в скрипте — экспортируем
       # необязательные значения только если секреты реально заданы.
@@ -93,9 +104,10 @@ jobs:
         run: |
           COUNT=$(python -c "import json;d=json.load(open('output/telegram-watch-changed-targets.json'));print(int(d.get('changed_total') or 0)+int(d.get('new_objects_total') or 0))" 2>/dev/null || echo 0)
           echo "count=$COUNT" >> "$GITHUB_OUTPUT"
-          if [ "$COUNT" != "0" ]; then
+          FORCE="${{ inputs.force_hotel_ids }}${{ inputs.force_kv_topics }}"
+          if [ "$COUNT" != "0" ] || [ -n "$FORCE" ]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "::notice::Обнаружены изменения в Telegram: $COUNT целей."
+            echo "::notice::Целей из watch: $COUNT; принудительных: '${FORCE}'."
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "Изменений нет."
@@ -108,7 +120,7 @@ jobs:
           # Точечный синк по спискам из watch-отчёта; полный проход (--mode full,
           # ~2.5 часа: медиа скачиваются заново на чистом раннере) — только если
           # точечные цели собрать не удалось.
-          TARGET_ARGS=$(python tools/watch_targets_args.py)
+          TARGET_ARGS=$(EXTRA_HOTEL_IDS="${{ inputs.force_hotel_ids }}" EXTRA_KV_TOPICS="${{ inputs.force_kv_topics }}" python tools/watch_targets_args.py)
           echo "Аргументы синка: ${TARGET_ARGS:---mode full}"
           python scripts/run_auto_sync_pipeline.py ${TARGET_ARGS:---mode full} --snapshot-only --skip-filters --skip-review-banks --skip-page-health
           echo "done=true" >> "$GITHUB_OUTPUT"

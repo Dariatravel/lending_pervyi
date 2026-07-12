@@ -17,14 +17,16 @@ TARGETS_PATH = Path(__file__).resolve().parents[1] / "output" / "telegram-watch-
 
 
 def main() -> int:
+    import os
+    extra_hotels = {p.strip() for p in os.getenv("EXTRA_HOTEL_IDS", "").split(",") if p.strip()}
+    extra_topics = {p.strip() for p in os.getenv("EXTRA_KV_TOPICS", "").split(",") if p.strip()}
     try:
         data = json.loads(TARGETS_PATH.read_text(encoding="utf-8"))
     except (OSError, ValueError):
-        print("")
-        return 0
+        data = {}
 
-    hotels = {str(x) for x in (data.get("hotel_source_ids") or [])}
-    topics = {str(x) for x in (data.get("kv_topic_ids") or [])}
+    hotels = {str(x) for x in (data.get("hotel_source_ids") or [])} | extra_hotels
+    topics = {str(x) for x in (data.get("kv_topic_ids") or [])} | extra_topics
     loose_kv = list(data.get("kv_message_ids_without_topic") or [])
 
     for item in data.get("new_objects") or []:
