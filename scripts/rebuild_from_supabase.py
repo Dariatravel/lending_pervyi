@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 import requests
 
 from media_urls import media_src_for_html, yandex_photo_url  # noqa: E402
+from supplemental_store import apply_to_page_html as supplemental_apply_to_page  # noqa: E402
 from responsive_images import responsive_img_html  # noqa: E402
 
 
@@ -974,6 +975,8 @@ def rebuild_kvartira_pages(rows: list[dict[str, Any]]) -> None:
 
         page_href = page_path_from_url(page_url, f"/kvartira/{row['slug']}/")
         html_page = render_detail_page("kvartira", row["slug"], row.get("telegram_url") or "", row.get("published_at") or "", parsed, media_items, page_href)
+        # Возвращаем блок «Дополнительные обзоры» из манифеста (переживает пересборки).
+        html_page = supplemental_apply_to_page(html_page, row["slug"])
         path.write_text(html_page, encoding="utf-8")
 
 

@@ -55,6 +55,7 @@ from media_urls import media_src_for_html, yandex_photo_url  # noqa: E402
 from responsive_images import responsive_img_html, responsive_preload_link  # noqa: E402
 from yandex_storage import upload_file as upload_to_yandex  # noqa: E402
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
+from supplemental_store import apply_to_page_html as supplemental_apply_to_page  # noqa: E402
 
 ROOT_INDEX = ROOT / 'index.html'
 HOTELS_DIR = ROOT / 'hotels'
@@ -1431,6 +1432,41 @@ def cleanup_removed_listing(source_kind: str, listing: dict[str, Any], supa: Sup
         supa.delete_listing(listing['id'])
 
 
+def find_active_duplicate_by_title(source_kind: str, title: str) -> dict[str, Any] | None:
+    """Активный объект того же типа с тем же названием (правило: один объект — одно название)."""
+    wanted = normalize_title(title or '').strip().upper()
+    if not wanted:
+        return None
+    for row in snapshot_load_listings():
+        if row.get('source_kind') != source_kind or row.get('is_active') is False:
+            continue
+        if normalize_title(str(row.get('title') or '')).strip().upper() == wanted:
+            return row
+    return None
+
+
+def retire_replaced_listing(old_row: dict[str, Any], new_slug: str, source_kind: str) -> None:
+    """Деактивировать заменённый объект и оставить редирект со старого URL на новый."""
+    old_slug = str(old_row.get('slug') or '').strip()
+    if not old_slug or old_slug == new_slug:
+        return
+    snapshot_deactivate_listing(old_slug)
+    base = 'hotels' if source_kind == 'hotel' else 'kvartira'
+    page_dir = (HOTELS_DIR if source_kind == 'hotel' else KVARTIRA_DIR) / old_slug
+    page_dir.mkdir(parents=True, exist_ok=True)
+    new_href = f'/{base}/{new_slug}/'
+    (page_dir / 'index.html').write_text(
+        '<!DOCTYPE html>\n<html lang="ru"><head><meta charset="utf-8"/>\n'
+        f'<meta http-equiv="refresh" content="0;url={new_href}"/>\n'
+        f'<link rel="canonical" href="https://абхазберег.рф{new_href}"/>\n'
+        '<meta name="robots" content="noindex"/>\n'
+        f'<title>Страница переехала</title></head>\n'
+        f'<body><p>Объект переехал: <a href="{new_href}">открыть актуальную страницу</a>.</p></body></html>\n',
+        encoding='utf-8',
+    )
+    print(f"[dedup] '{old_slug}' заменён новым '{new_slug}': деактивирован, страница — редирект")
+
+
 async def materialize_object(client: TelegramClient, supa: SupabaseClient | None, existing_listing: dict[str, Any] | None, object_data: dict[str, Any], slug_pool: set[str]) -> dict[str, Any]:
     source_kind = object_data['source_kind']
     canonical = object_data['canonical']
@@ -1439,9 +1475,27 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient | None
     title = normalize_title(parsed.get('title') or object_data.get('topic_title') or '')
     if existing_listing:
         slug = existing_listing['slug']
+        duplicate_row = None
     else:
+        duplicate_row = find_active_duplicate_by_title(source_kind, title)
+        if duplicate_row is not None and int(duplicate_row.get('source_message_id') or 0) >= canonical.id:
+            # Пост старее уже опубликованного объекта с тем же названием
+            # (остаток перевыкладки) — копию не создаём.
+            print(f"[dedup] '{title}': пост {canonical.id} старее активного "
+                  f"{duplicate_row['slug']} — пропуск дубля")
+            return {
+                'id': 0,
+                'slug': duplicate_row['slug'],
+                'title': title,
+                'source_id': canonical.id,
+                'hidden': True,
+            }
         slug = build_slug(title, canonical.id, slug_pool)
         slug_pool.add(slug)
+        if duplicate_row is not None:
+            # Новый пост заменяет старый объект: старый деактивируем,
+            # его страницу превращаем в редирект на новый slug.
+            retire_replaced_listing(duplicate_row, slug, source_kind)
 
     if slug in load_hidden_slugs():
         if existing_listing:
@@ -1621,6 +1675,9 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient | None
     summary = summary_text(parsed.get('location', ''), parsed.get('beach', ''), parsed.get('capacity', ''))
     excerpt = build_excerpt(parsed)
     html_page = render_detail_page(source_kind, slug, object_data['telegram_url'], object_data['published_at'], parsed, local_media_items, page_href)
+    # Пересборка не должна терять блок «Дополнительные обзоры» из комментариев —
+    # возвращаем сохранённую секцию из data/supplemental-blocks.json.
+    html_page = supplemental_apply_to_page(html_page, slug)
     page_path.write_text(html_page, encoding='utf-8')
 
     payload = listing_payload(

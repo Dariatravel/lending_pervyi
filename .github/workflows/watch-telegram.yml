@@ -127,8 +127,11 @@ jobs:
           git config user.name "abhazbereg-autosync"
           git config user.email "darya.tiande@gmail.com"
           git add -A
-          if git diff --cached --quiet; then
-            echo "Файлы сайта не изменились — публиковать нечего."
+          # Игнорируем строки generated_at: если, кроме меток времени, ничего не
+          # изменилось — не коммитим (иначе каждый час пустой коммит и деплой).
+          if git diff --cached --quiet -I '"generated_at"'; then
+            echo "Содержательных изменений нет (только метки времени) — публиковать нечего."
+            git reset -q
             echo "pushed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi

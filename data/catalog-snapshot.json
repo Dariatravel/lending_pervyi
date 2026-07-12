@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-12T18:39:24.281765+00:00",
+  "generated_at": "2026-07-12T19:01:01.049311+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 224,
-  "listings_hotels": 163,
+  "listings_total": 223,
+  "listings_hotels": 162,
   "listings_kvartira": 61,
   "listings": [
     {
@@ -60149,7 +60149,7 @@
       "published_at": "2026-01-13",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716-2.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Лдзаа. пляж мелко-галечный, частично песчаный, размещение до 6 человек.",
         "sections": [

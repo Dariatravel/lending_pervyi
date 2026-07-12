@@ -23,6 +23,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from media_urls import yandex_photo_url, yandex_video_url  # noqa: E402
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
+from supplemental_store import save_section as save_supplemental_section  # noqa: E402
 
 AUDIT_PATH = ROOT / "output" / "telegram_supplemental_comments_audit.json"
 REPORT_PATH = ROOT / "output" / "telegram_supplemental_apply_report.txt"
@@ -414,6 +415,9 @@ async def apply_target(
     upload_media_dirs([media_root(target)], dry_run=dry_run)
     updated = insert_section(page_html, section_html)
     path.write_text(updated, encoding="utf-8")
+    # Секция сохраняется в data/supplemental-blocks.json, чтобы переживать
+    # любые пересборки страниц (генераторы вставляют её обратно).
+    save_supplemental_section(target.slug, target.kind, section_html)
     return True, f"updated ({len(target.blocks)} blocks, {sum(len(b.media) for b in target.blocks)} files)"
 
 
