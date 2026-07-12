@@ -181,6 +181,99 @@ def load_targets(limit: int | None = None, only_slugs: set[str] | None = None) -
     return targets[:limit] if limit else targets
 
 
+SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
+WATCH_TARGETS_PATH = ROOT / "output" / "telegram-watch-changed-targets.json"
+
+
+def _snapshot_rows() -> list[dict]:
+    try:
+        payload = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    return [row for row in payload.get("listings") or [] if isinstance(row, dict)]
+
+
+def load_targets_from_snapshot(only_slugs: set[str] | None = None, limit: int | None = None) -> list[Target]:
+    """Цели без аудит-файла: объект из снапшота, блоки будут собраны сканом комментариев."""
+    targets: list[Target] = []
+    for row in _snapshot_rows():
+        slug = str(row.get("slug") or "").strip()
+        if not slug or row.get("is_active") is False:
+            continue
+        if only_slugs is not None and slug not in only_slugs:
+            continue
+        channel = str(row.get("source_channel") or "").strip()
+        message_id = int(row.get("source_message_id") or 0)
+        if not channel or not message_id:
+            continue
+        targets.append(
+            Target(
+                kind=str(row.get("source_kind") or "hotel"),
+                slug=slug,
+                title=str(row.get("title") or slug),
+                channel=channel,
+                message_id=message_id,
+                topic_id=int(row["source_topic_id"]) if row.get("source_topic_id") else None,
+                blocks=[],  # признак: собрать блоки сканированием комментариев
+            )
+        )
+    targets.sort(key=lambda item: item.slug)
+    return targets[:limit] if limit else targets
+
+
+def resolve_slugs_from_watch_targets() -> set[str]:
+    """Slug'и изменённых/новых объектов из отчёта watch-telegram (после синка)."""
+    try:
+        data = json.loads(WATCH_TARGETS_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return set()
+    slugs = {str(item.get("slug") or "").strip() for item in data.get("items") or [] if isinstance(item, dict)}
+    slugs.discard("")
+    hotel_ids = {int(x) for x in data.get("hotel_source_ids") or []}
+    topic_ids = {int(x) for x in data.get("kv_topic_ids") or []}
+    for item in data.get("new_objects") or []:
+        if not isinstance(item, dict):
+            continue
+        if item.get("kind") == "hotel" and item.get("message_id"):
+            hotel_ids.add(int(item["message_id"]))
+        elif item.get("kind") == "kvartira" and item.get("topic_id"):
+            topic_ids.add(int(item["topic_id"]))
+    if hotel_ids or topic_ids:
+        for row in _snapshot_rows():
+            if row.get("is_active") is False:
+                continue
+            if row.get("source_kind") == "hotel" and int(row.get("source_message_id") or 0) in hotel_ids:
+                slugs.add(str(row.get("slug") or ""))
+            elif row.get("source_kind") == "kvartira" and int(row.get("source_topic_id") or 0) in topic_ids:
+                slugs.add(str(row.get("slug") or ""))
+    slugs.discard("")
+    return slugs
+
+
+def build_blocks_from_comments(messages_by_id: dict[int, Any]) -> list[SupplementalBlock]:
+    """Собрать блоки прямо из комментариев: альбом/одиночное медиа + осмысленная подпись."""
+    groups: dict[Any, list[Any]] = {}
+    for message in messages_by_id.values():
+        if media_kind(message) not in {"photo", "video"}:
+            continue
+        key = getattr(message, "grouped_id", None) or f"single-{int(message.id)}"
+        groups.setdefault(key, []).append(message)
+    blocks: list[SupplementalBlock] = []
+    for members in groups.values():
+        members.sort(key=lambda row: int(row.id))
+        caption = ""
+        for member in members:
+            text = normalize_text(str(getattr(member, "message", "") or ""))
+            if text:
+                caption = text
+                break
+        if not has_meaningful_caption(caption):
+            continue
+        blocks.append(SupplementalBlock(caption=caption, message_ids=[int(m.id) for m in members]))
+    blocks.sort(key=lambda block: block.message_ids[0])
+    return blocks
+
+
 def media_kind(message: Any) -> str:
     file_obj = getattr(message, "file", None)
     mime = str(getattr(file_obj, "mime_type", "") or "")
@@ -402,6 +495,10 @@ async def apply_target(
 
     entity = await client.get_entity(target.channel)
     messages_by_id = await fetch_comment_messages(client, target)
+    if not target.blocks:
+        target.blocks = build_blocks_from_comments(messages_by_id)
+        if not target.blocks:
+            return False, "no captioned media in comments"
     for index, block in enumerate(target.blocks, 1):
         await download_block_media(client, entity, target, block, index, messages_by_id)
         if not block.media:
@@ -424,10 +521,20 @@ async def apply_target(
 async def run(args: argparse.Namespace) -> int:
     load_env_files()
     only_slugs = {part.strip() for part in args.slug.split(",") if part.strip()} if args.slug else None
-    targets = load_targets(limit=args.limit, only_slugs=only_slugs)
+    auto_mode = bool(args.from_watch_targets or args.scan)
+    if args.from_watch_targets:
+        watch_slugs = resolve_slugs_from_watch_targets()
+        only_slugs = (only_slugs | watch_slugs) if only_slugs else watch_slugs
+        if not only_slugs:
+            print("Watch-цели пусты — переносить нечего.")
+            return 0
+    if args.scan or args.from_watch_targets or not AUDIT_PATH.exists():
+        targets = load_targets_from_snapshot(only_slugs=only_slugs, limit=args.limit)
+    else:
+        targets = load_targets(limit=args.limit, only_slugs=only_slugs)
     if not targets:
         print("No targets found.")
-        return 1
+        return 0 if auto_mode else 1
 
     api_id = int(os.getenv("TELEGRAM_API_ID", str(DEFAULT_API_ID)))
     api_hash = os.getenv("TELEGRAM_API_HASH", DEFAULT_API_HASH)
@@ -467,12 +574,25 @@ async def run(args: argparse.Namespace) -> int:
     )
     REPORT_PATH.write_text(report + "\n", encoding="utf-8")
     print(report)
+    errors = sum(1 for line in results if line.startswith("[ERR]"))
+    if auto_mode:
+        return 1 if errors else 0
     return 0 if ok else 1
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--scan",
+        action="store_true",
+        help="Собирать блоки сканированием комментариев (без аудит-файла).",
+    )
+    parser.add_argument(
+        "--from-watch-targets",
+        action="store_true",
+        help="Slug'и из output/telegram-watch-changed-targets.json (для CI после синка).",
+    )
     parser.add_argument("--force", action="store_true", help="Replace existing supplemental section.")
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--slug", default="", help="Comma-separated slugs")

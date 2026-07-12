@@ -113,6 +113,10 @@ jobs:
           python scripts/run_auto_sync_pipeline.py ${TARGET_ARGS:---mode full} --snapshot-only --skip-filters --skip-review-banks --skip-page-health
           echo "done=true" >> "$GITHUB_OUTPUT"
 
+      - name: Перенести медиа с подписями из комментариев
+        if: steps.sync.outputs.done == 'true'
+        run: python scripts/apply_telegram_supplemental_comments.py --from-watch-targets --force
+
       - name: Контрольные аудиты после синка
         if: steps.sync.outputs.done == 'true'
         run: |
