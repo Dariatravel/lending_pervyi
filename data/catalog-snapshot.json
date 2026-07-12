@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T19:01:01.049311+00:00",
+  "generated_at": "2026-07-12T20:12:18.033507+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 223,
@@ -61043,13 +61043,14 @@
           "id": 1175011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4996",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/regina-otel-vtoroy-korpus-4987/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4996",
+          "storage_path": "videos/hotels/regina-otel-vtoroy-korpus-4987/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/regina-otel-vtoroy-korpus-4987/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4996"
+            "telegram_post": "abhazbooking/4996",
+            "telegram_url": "https://t.me/abhazbooking/4996"
           }
         }
       ]
