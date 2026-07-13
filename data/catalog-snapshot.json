@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-13T11:02:49.813175+00:00",
+  "generated_at": "2026-07-13T12:13:13.896671+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 221,
@@ -8894,13 +8894,15 @@
           "id": 1101011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4338",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/manon-otel-so-skazochnym-vidom-2512/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4338",
+          "storage_path": "videos/hotels/manon-otel-so-skazochnym-vidom-2512/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/manon-otel-so-skazochnym-vidom-2512/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4338"
+            "telegram_post": "abhazbooking/4338",
+            "telegram_url": "https://t.me/abhazbooking/4338",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/manon-otel-so-skazochnym-vidom-2512/video-01-source-poster.jpg"
           }
         }
       ]
@@ -10203,13 +10205,15 @@
           "id": 1100011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4268",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/svetlyy-dvorik-gostevoy-dom-ekonom-4259/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4268",
+          "storage_path": "videos/hotels/svetlyy-dvorik-gostevoy-dom-ekonom-4259/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/svetlyy-dvorik-gostevoy-dom-ekonom-4259/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4268"
+            "telegram_post": "abhazbooking/4268",
+            "telegram_url": "https://t.me/abhazbooking/4268",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/svetlyy-dvorik-gostevoy-dom-ekonom-4259/video-01-source-poster.jpg"
           }
         }
       ]
@@ -10863,13 +10867,15 @@
           "id": 1087011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4201",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/diar-domiki-s-basseynom-4192/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4201",
+          "storage_path": "videos/hotels/diar-domiki-s-basseynom-4192/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/diar-domiki-s-basseynom-4192/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4201"
+            "telegram_post": "abhazbooking/4201",
+            "telegram_url": "https://t.me/abhazbooking/4201",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/diar-domiki-s-basseynom-4192/video-01-source-poster.jpg"
           }
         }
       ]
@@ -11186,13 +11192,15 @@
           "id": 995010,
           "media_role": "gallery",
           "sort_order": 9,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4181",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/assir-pitsunda-gostevoy-dom-v-tsentre-4173/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4181",
+          "storage_path": "videos/hotels/assir-pitsunda-gostevoy-dom-v-tsentre-4173/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/assir-pitsunda-gostevoy-dom-v-tsentre-4173/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4181"
+            "telegram_post": "abhazbooking/4181",
+            "telegram_url": "https://t.me/abhazbooking/4181",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/assir-pitsunda-gostevoy-dom-v-tsentre-4173/video-01-source-poster.jpg"
           }
         }
       ]
@@ -11899,13 +11907,15 @@
           "id": 977011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4161",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mokko-briz-dva-domika-4152/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4161",
+          "storage_path": "videos/hotels/mokko-briz-dva-domika-4152/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mokko-briz-dva-domika-4152/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4161"
+            "telegram_post": "abhazbooking/4161",
+            "telegram_url": "https://t.me/abhazbooking/4161",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mokko-briz-dva-domika-4152/video-01-source-poster.jpg"
           }
         }
       ]
@@ -12164,13 +12174,15 @@
           "id": 969010,
           "media_role": "gallery",
           "sort_order": 9,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4141",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4141",
+          "storage_path": "videos/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4141"
+            "telegram_post": "abhazbooking/4141",
+            "telegram_url": "https://t.me/abhazbooking/4141",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/video-01-source-poster.jpg"
           }
         }
       ]
@@ -12438,13 +12450,15 @@
           "id": 967011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4122",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/zhemchuzhina-gostevoy-dom-4113/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4122",
+          "storage_path": "videos/hotels/zhemchuzhina-gostevoy-dom-4113/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/zhemchuzhina-gostevoy-dom-4113/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4122"
+            "telegram_post": "abhazbooking/4122",
+            "telegram_url": "https://t.me/abhazbooking/4122",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/zhemchuzhina-gostevoy-dom-4113/video-01-source-poster.jpg"
           }
         }
       ]
@@ -12671,13 +12685,15 @@
           "id": 984011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4101",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/full-haus-domiki-s-basseynom-4092/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4101",
+          "storage_path": "videos/hotels/full-haus-domiki-s-basseynom-4092/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/full-haus-domiki-s-basseynom-4092/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4101"
+            "telegram_post": "abhazbooking/4101",
+            "telegram_url": "https://t.me/abhazbooking/4101",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/full-haus-domiki-s-basseynom-4092/video-01-source-poster.jpg"
           }
         }
       ]
@@ -12964,13 +12980,15 @@
           "id": 966011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4090",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/belyy-dom-domiki-i-apartamenty-4081/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4090",
+          "storage_path": "videos/hotels/belyy-dom-domiki-i-apartamenty-4081/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/belyy-dom-domiki-i-apartamenty-4081/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4090"
+            "telegram_post": "abhazbooking/4090",
+            "telegram_url": "https://t.me/abhazbooking/4090",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/belyy-dom-domiki-i-apartamenty-4081/video-01-source-poster.jpg"
           }
         }
       ]
@@ -55683,13 +55701,15 @@
           "id": 1163010,
           "media_role": "gallery",
           "sort_order": 9,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4287",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bereg-svyatoy-sofii-otel-4279/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4287",
+          "storage_path": "videos/hotels/bereg-svyatoy-sofii-otel-4279/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bereg-svyatoy-sofii-otel-4279/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4287"
+            "telegram_post": "abhazbooking/4287",
+            "telegram_url": "https://t.me/abhazbooking/4287",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bereg-svyatoy-sofii-otel-4279/video-01-source-poster.jpg"
           }
         }
       ]
