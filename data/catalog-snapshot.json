@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-13T05:13:37.180890+00:00",
+  "generated_at": "2026-07-13T06:34:52.329376+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 223,
@@ -59775,13 +59775,14 @@
           "id": 1171010,
           "media_role": "gallery",
           "sort_order": 9,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4945",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/briz-domiki-na-beregu-4937/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4945",
+          "storage_path": "videos/hotels/briz-domiki-na-beregu-4937/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/briz-domiki-na-beregu-4937/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4945"
+            "telegram_post": "abhazbooking/4945",
+            "telegram_url": "https://t.me/abhazbooking/4945"
           }
         }
       ]
@@ -60119,13 +60120,14 @@
           "id": 1172011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4966",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4966",
+          "storage_path": "videos/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4966"
+            "telegram_post": "abhazbooking/4966",
+            "telegram_url": "https://t.me/abhazbooking/4966"
           }
         }
       ]
