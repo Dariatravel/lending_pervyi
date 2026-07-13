@@ -770,6 +770,7 @@ def render_report(
     changes: list[Change],
     new_objects: list[NewObject],
     errors: list[str],
+    missing: list[str],
     accepted: bool,
 ) -> str:
     repost_count = sum("перевыкладка" in item.changed_parts for item in changes)
@@ -817,6 +818,13 @@ def render_report(
             lines.append(f"... и ещё {len(changes) - 40}")
         lines.append("")
         lines.append("Для точечного обновления: /update_changed")
+    if missing:
+        lines.append("")
+        lines.append(f"Посты удалены из Telegram (объект остаётся на сайте): {len(missing)}")
+        for item in missing[:20]:
+            lines.append(f"- {item}")
+        if len(missing) > 20:
+            lines.append(f"... и ещё {len(missing) - 20}")
     if errors:
         lines.append("")
         lines.append(f"Ошибки чтения Telegram: {len(errors)}")
@@ -890,6 +898,7 @@ async def run(args: argparse.Namespace) -> int:
     changes: list[Change] = []
     new_objects: list[NewObject] = []
     errors: list[str] = []
+    missing: list[str] = []
     seen_keys: set[str] = set()
     entities: dict[str, Any] = {}
 
@@ -906,7 +915,9 @@ async def run(args: argparse.Namespace) -> int:
                     entities[item.channel] = entity
                 canonical = await client.get_messages(entity, ids=item.message_id)
                 if canonical is None:
-                    errors.append(f"{item.slug}: message {item.channel}/{item.message_id} not found")
+                    # Пост удалили из канала: это постоянное состояние, а не сбой
+                    # связи — strict-режим (и часовой workflow) падать не должен.
+                    missing.append(f"{item.slug}: {item.channel}/{item.message_id}")
                     continue
                 media_messages = await album_media_messages(client, entity, canonical)
                 signature = build_signature(canonical.message or "", media_messages)
@@ -979,6 +990,7 @@ async def run(args: argparse.Namespace) -> int:
         changes=changes,
         new_objects=new_objects,
         errors=errors,
+        missing=missing,
         accepted=args.accept_changes,
     )
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
