@@ -877,6 +877,12 @@ async def start(update: Update, _context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def hourly_loop(application: Application) -> None:
+    if os.getenv("SITE_UPDATE_DISABLE_HOURLY_CHECK", "").strip().lower() in {"1", "true", "yes", "on"}:
+        # Наблюдение за Telegram и автосинк выполняет GitHub Actions
+        # (workflow watch-telegram); с RU-VPS MTProto заблокирован, и часовые
+        # попытки только спамят ошибками. Бот остаётся жить ради Bot API.
+        print("[site-update-bot] hourly check отключён (SITE_UPDATE_DISABLE_HOURLY_CHECK=1)")
+        return
     await asyncio.sleep(CONFIG.initial_check_delay_seconds)
     chat_ids = sorted(CONFIG.allowed_chat_ids)
     while True:
