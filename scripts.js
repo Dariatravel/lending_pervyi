@@ -190,7 +190,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607111903";
+  const ASSET_VERSION = "202607130531";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -5071,6 +5071,28 @@
     }
   }
 
+  function initInPageAnchorFix() {
+    /* content-visibility на карточках каталога делает высоту свёрнутых карточек
+       приблизительной — прыжок к якорю ниже каталога промахивается. Докручиваем. */
+    function correctScroll(hash) {
+      const id = decodeURIComponent(String(hash || "").replace(/^#/, ""));
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      const scroll = () => target.scrollIntoView({ block: "start" });
+      window.requestAnimationFrame(scroll);
+      window.setTimeout(scroll, 250);
+      window.setTimeout(scroll, 700);
+    }
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest ? event.target.closest('a[href^="#"]') : null;
+      if (!link) return;
+      correctScroll(link.getAttribute("href"));
+    });
+    window.addEventListener("load", () => correctScroll(window.location.hash), { once: true });
+  }
+
+  initInPageAnchorFix();
   initHeroVideoQuality();
   initLocalVideoPosters();
   initCatalogMapPlaques();

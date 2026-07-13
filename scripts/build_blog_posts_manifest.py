@@ -35,7 +35,7 @@ def parse_article(path: Path) -> dict[str, object]:
     eyebrow_match = re.search(r'class="site-concept__eyebrow">([^<]+)</p>', text)
     card_tag = tag_spans[0] if tag_spans else (eyebrow_match.group(1).strip() if eyebrow_match else "")
 
-    img_match = re.search(r'class="blog-article__cover-inline" src="([^"]+)"', text)
+    img_match = re.search(r'class="blog-article__cover-inline"[^>]*\ssrc="([^"]+)"', text)
     img_src = img_match.group(1) if img_match else ""
     if "/media/blog/" in img_src:
         image = img_src.split("/media/blog/", 1)[1]
