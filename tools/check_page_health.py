@@ -21,6 +21,10 @@ FORBIDDEN_CLIENT_STRINGS = (
     "supabase",
     "logo-emblem" + ".png",
 )
+EMPTY_MEDIA_ATTR_RE = re.compile(
+    r"""\b(?:src|srcset)\s*=\s*(["'])(?P<value>[^"']*media/(?:blog|cards|hotels|kvartira|kvartira-cards)/)\1""",
+    re.I,
+)
 
 
 def read_text(path: Path) -> str:
@@ -182,6 +186,14 @@ def check_catalog_card_srcsets(errors: list[str]) -> None:
                 errors.append(f"{rel}: catalog-card #{index} без srcset с -480.webp")
 
 
+def check_empty_media_attribute_urls(errors: list[str]) -> None:
+    for path in html_files():
+        text = read_text(path)
+        rel = path.relative_to(ROOT).as_posix()
+        for match in EMPTY_MEDIA_ATTR_RE.finditer(text):
+            errors.append(f"{rel}: пустой медиа-URL в {match.group(0)[:80]}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--skip-minify-check", action="store_true")
@@ -195,6 +207,7 @@ def main() -> int:
     check_sitemap(errors)
     check_review_banks(errors)
     check_catalog_card_srcsets(errors)
+    check_empty_media_attribute_urls(errors)
     if not args.skip_minify_check:
         check_minified_freshness(errors)
 

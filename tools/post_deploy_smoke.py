@@ -86,6 +86,31 @@ def extract_asset_urls(base_url: str, html: str) -> list[str]:
     return sorted(set(urls))
 
 
+def first_srcset_url(srcset: str) -> str:
+    first = srcset.split(",", 1)[0].strip()
+    return first.split()[0] if first else ""
+
+
+def extract_blog_card_cover_urls(base_url: str, html: str, limit: int = 5) -> list[str]:
+    covers: list[str] = []
+    cards = re.findall(r'<article\b[^>]*class=["\'][^"\']*\bblog-card\b[^"\']*["\'][\s\S]*?</article>', html, flags=re.I)
+    for card in cards:
+        img_match = re.search(r"<img\b[^>]*>", card, flags=re.I | re.S)
+        if not img_match:
+            continue
+        img = img_match.group(0)
+        srcset_match = re.search(r'\bsrcset=["\']([^"\']+)["\']', img, flags=re.I | re.S)
+        src_match = re.search(r'\bsrc=["\']([^"\']+)["\']', img, flags=re.I | re.S)
+        raw_url = first_srcset_url(srcset_match.group(1)) if srcset_match else ""
+        if not raw_url and src_match:
+            raw_url = src_match.group(1)
+        if raw_url:
+            covers.append(urljoin(base_url, raw_url))
+        if len(covers) >= limit:
+            break
+    return covers
+
+
 def slug_sort_key(slug: str) -> int:
     match = re.search(r"-(\d+)$", slug)
     return int(match.group(1)) if match else -1
@@ -208,6 +233,27 @@ def main() -> int:
     legacy_result, legacy_errors = check_legacy_review_bank_removed(args.timeout)
     checks.append({"kind": "legacy_review_bank_removed", "result": legacy_result, "errors": legacy_errors})
     errors.extend(legacy_errors)
+
+    blog_url = urljoin(args.base_url.rstrip("/") + "/", "blog/")
+    blog_errors: list[str] = []
+    blog_cover_results = []
+    try:
+        blog_status, blog_html = fetch(blog_url, args.timeout)
+    except Exception as exc:
+        blog_errors.append(f"{blog_url}: не загрузилась страница блога: {exc}")
+    else:
+        if blog_status != 200:
+            blog_errors.append(f"{blog_url}: HTML status={blog_status}")
+        cover_urls = extract_blog_card_cover_urls(blog_url, blog_html, limit=5)
+        if len(cover_urls) < 5:
+            blog_errors.append(f"{blog_url}: найдено только {len(cover_urls)} обложек карточек блога, ожидалось 5")
+        for cover_url in cover_urls:
+            ok, cover_status, cover_size = head_ok(cover_url, args.timeout)
+            blog_cover_results.append({"url": cover_url, "status": cover_status, "size": cover_size, "ok": ok})
+            if not ok:
+                blog_errors.append(f"{blog_url}: обложка блога недоступна: {cover_url} status={cover_status}")
+    checks.append({"kind": "blog_card_covers", "url": blog_url, "covers": blog_cover_results, "errors": blog_errors})
+    errors.extend(blog_errors)
 
     recent_results = []
     for item in recent_catalog_items(args.recent_count):

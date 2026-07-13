@@ -11,6 +11,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BLOG_DIR = ROOT / "blog"
 OUT_PATH = ROOT / "data" / "blog-posts.json"
+EMPTY_BLOG_IMAGE_RE = re.compile(r"(?:^|/)media/blog/?$")
+
+
+def extract_cover_image(text: str) -> str:
+    img_match = re.search(r'class="blog-article__cover-inline"[^>]*\ssrc="([^"]+)"', text)
+    img_src = img_match.group(1).strip() if img_match else ""
+    if not img_src or EMPTY_BLOG_IMAGE_RE.search(img_src.rstrip("/")):
+        raise ValueError("Пустая обложка статьи блога")
+    if "/media/blog/" in img_src:
+        image = img_src.split("/media/blog/", 1)[1]
+    else:
+        image = img_src.rsplit("/", 1)[-1]
+    if not image:
+        raise ValueError("Пустое имя файла обложки статьи блога")
+    return image
 
 
 def parse_article(path: Path) -> dict[str, object]:
@@ -35,12 +50,7 @@ def parse_article(path: Path) -> dict[str, object]:
     eyebrow_match = re.search(r'class="site-concept__eyebrow">([^<]+)</p>', text)
     card_tag = tag_spans[0] if tag_spans else (eyebrow_match.group(1).strip() if eyebrow_match else "")
 
-    img_match = re.search(r'class="blog-article__cover-inline"[^>]*\ssrc="([^"]+)"', text)
-    img_src = img_match.group(1) if img_match else ""
-    if "/media/blog/" in img_src:
-        image = img_src.split("/media/blog/", 1)[1]
-    else:
-        image = img_src.rsplit("/", 1)[-1]
+    image = extract_cover_image(text)
 
     return {
         "slug": slug,
