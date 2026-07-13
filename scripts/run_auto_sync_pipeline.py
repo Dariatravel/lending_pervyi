@@ -84,6 +84,17 @@ def _run_step(
             check=False,
             text=True,
         )
+    if process.returncode == 0:
+        # Предупреждения шагов (например, «не удалось загрузить фото») иначе
+        # остаются в недоступном лог-файле раннера.
+        try:
+            warns = [l for l in log_path.read_text(encoding="utf-8").splitlines() if "[warn]" in l.lower()]
+            for line in warns[:40]:
+                print(f"[auto-sync] warn {name}: {line}", flush=True)
+            if len(warns) > 40:
+                print(f"[auto-sync] warn {name}: ... и ещё {len(warns) - 40}", flush=True)
+        except OSError:
+            pass
     if process.returncode != 0:
         # На CI лог-файлы шагов недоступны после завершения run'а — печатаем
         # хвост упавшего шага прямо в stdout, иначе причину не найти.
