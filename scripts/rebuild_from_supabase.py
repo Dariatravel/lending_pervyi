@@ -835,8 +835,13 @@ def render_media_grid(row: dict[str, Any], title: str) -> str:
 
         if mime.startswith("video/") and preferred_url:
             preferred_url = media_src_for_html(preferred_url, mime_type=mime)
+            details = item.get("details") or {}
+            poster_url = str(details.get("poster_url") or "").strip()
+            poster_attr = (
+                f' poster="{html.escape(poster_url, quote=True)}"' if poster_url.startswith("http") else ""
+            )
             parts.append(
-                f"""            <video class="local-video" controls preload="metadata" playsinline>
+                f"""            <video class="local-video" controls preload="metadata" playsinline{poster_attr}>
               <source src="{html.escape(preferred_url, quote=True)}" type="{html.escape(mime or 'video/mp4', quote=True)}" />
             </video>"""
             )
