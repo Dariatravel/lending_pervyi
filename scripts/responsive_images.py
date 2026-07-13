@@ -110,7 +110,7 @@ def responsive_preload_link(src: str, *, sizes: str, root: Path = ROOT) -> str:
     return (
         f'<link rel="preload" as="image" href="{html.escape(href, quote=True)}" '
         f'imagesrcset="{html.escape(srcset, quote=True)}" '
-        f'imagesizes="{html.escape(sizes, quote=True)}" />'
+        f'imagesizes="{html.escape(sizes, quote=True)}" fetchpriority="high" />'
     )
 
 

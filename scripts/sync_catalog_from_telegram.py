@@ -903,7 +903,7 @@ def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
                 poster_url = str(item.get('poster') or '').strip()
                 poster_attr = f' poster="{html.escape(poster_url)}"' if poster_url.startswith('http') else ''
                 parts.append(
-                    f'''            <video class="local-video" controls preload="metadata" playsinline{poster_attr}>\n              <source src="{html.escape(source_url)}" type="video/mp4" />\n            </video>'''
+                    f'''            <video class="local-video" controls preload="none" playsinline{poster_attr}>\n              <source src="{html.escape(source_url)}" type="video/mp4" />\n            </video>'''
                 )
             elif telegram_post:
                 parts.append(
@@ -923,6 +923,7 @@ def render_top_gallery(media_items: list[dict[str, Any]], title: str) -> str:
                 f"{title} фото {index + 2}",
                 loading="lazy",
                 sizes="(max-width: 720px) 30vw, 180px",
+                fetchpriority="low",
             )
             for index, item in enumerate(photos[1:4])
         )
@@ -948,7 +949,7 @@ def render_top_gallery(media_items: list[dict[str, Any]], title: str) -> str:
     escaped_title = html.escape(title)
     return f'''          <div class="hotel-card__gallery hotel-card__gallery--video">
             <div class="hotel-card__main-photo hotel-card__main-photo--video">
-              <video class="local-video hotel-card__preview-video" preload="metadata" muted playsinline aria-label="{escaped_title} видео">
+              <video class="local-video hotel-card__preview-video" preload="none" muted playsinline aria-label="{escaped_title} видео">
                 <source src="{main_src}" type="video/mp4" />
               </video>
               <div class="hotel-card__floating">
@@ -1051,7 +1052,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
 {preload_block}    <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202607131532" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202607131650" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1138,7 +1139,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202607131532" defer></script>
+    <script src="../../scripts.min.js?v=202607131650" defer></script>
   </body>
 </html>'''
 

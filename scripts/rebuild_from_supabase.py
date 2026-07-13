@@ -841,7 +841,7 @@ def render_media_grid(row: dict[str, Any], title: str) -> str:
                 f' poster="{html.escape(poster_url, quote=True)}"' if poster_url.startswith("http") else ""
             )
             parts.append(
-                f"""            <video class="local-video" controls preload="metadata" playsinline{poster_attr}>
+                f"""            <video class="local-video" controls preload="none" playsinline{poster_attr}>
               <source src="{html.escape(preferred_url, quote=True)}" type="{html.escape(mime or 'video/mp4', quote=True)}" />
             </video>"""
             )

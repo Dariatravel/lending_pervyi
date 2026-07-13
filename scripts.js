@@ -190,7 +190,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607131532";
+  const ASSET_VERSION = "202607131650";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -1979,52 +1979,8 @@
     if (!video || !video.classList.contains("local-video")) return;
     if (video.dataset.posterWired === "1" || video.dataset.posterReady === "frame") return;
 
-    const source = video.querySelector("source[src]");
-    const initialSrc = (video.getAttribute("src") || source?.getAttribute("src") || "").trim();
-    if (!initialSrc) return;
-
     video.dataset.posterWired = "1";
     applyLocalVideoPoster(video, pickLocalVideoFallbackPoster(video), "fallback");
-
-    const probe = document.createElement("video");
-    probe.muted = true;
-    probe.playsInline = true;
-    probe.preload = "metadata";
-    probe.crossOrigin = "anonymous";
-    probe.setAttribute("aria-hidden", "true");
-    probe.tabIndex = -1;
-    probe.style.cssText =
-      "position:fixed;width:0;height:0;opacity:0;pointer-events:none;left:-9999px;top:-9999px";
-
-    const cleanup = () => probe.remove();
-
-    probe.addEventListener("error", cleanup, { once: true });
-    probe.addEventListener(
-      "loadedmetadata",
-      () => {
-        const duration = Number.isFinite(probe.duration) ? probe.duration : 0;
-        const target = duration > 1.2 ? Math.min(1.2, duration * 0.08) : 0.12;
-        probe.addEventListener(
-          "seeked",
-          () => {
-            if (!captureVideoFrameToPoster(video, probe)) {
-              applyLocalVideoPoster(video, pickLocalVideoFallbackPoster(video), "fallback");
-            }
-            cleanup();
-          },
-          { once: true }
-        );
-        try {
-          probe.currentTime = target;
-        } catch (error) {
-          cleanup();
-        }
-      },
-      { once: true }
-    );
-
-    probe.src = initialSrc;
-    document.body.appendChild(probe);
   }
 
   function initLocalVideoPosters(root = document) {
@@ -3111,7 +3067,7 @@
           const video = document.createElement("video");
           video.className = "local-video";
           video.controls = true;
-          video.preload = "metadata";
+          video.preload = "none";
           video.playsInline = true;
           video.src = resolvedUrl;
           fragment.appendChild(video);

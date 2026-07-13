@@ -722,7 +722,7 @@ def render_media(photo_count: int, slug: str, title: str, video_filename: str, v
     if video_filename:
         items.append(
             f"""            <div class="video-embed">
-              <video controls preload="metadata" playsinline class="local-video">
+              <video controls preload="none" playsinline class="local-video">
                 <source src="/media/videos/{video_filename}" type="video/mp4" />
               </video>
               <a class="video-link" href="https://t.me/abhazbooking/{video_post_id}?single" target="_blank" rel="noopener noreferrer">Открыть видео в Telegram</a>
@@ -770,7 +770,7 @@ def render_page(slug: str, message_id: int, date_text: str, parsed: dict, photo_
     <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
     <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
     <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202607131532" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202607131650" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -850,7 +850,7 @@ def render_page(slug: str, message_id: int, date_text: str, parsed: dict, photo_
         </div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202607131532" defer></script>
+    <script src="../../scripts.min.js?v=202607131650" defer></script>
   </body>
 </html>
 """
