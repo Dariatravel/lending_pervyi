@@ -127,6 +127,41 @@ _LEADING_THANKS = re.compile(
 
 _LEADING_PUNCT = re.compile(r'^\s*[.,;:!?…]+\s*')
 
+# Обвязка агрегаторов (Яндекс.Путешествия и похожие площадки).
+_AGG_REVIEW_PREFIX = re.compile(r'^\s*Отзыв:\s*[^()]{0,60}\([^)]{0,40}\)\s*[-–—]\s*', re.I)
+_AGG_DATE_REPLY_TAIL = re.compile(
+    r'\s*\d{1,2}\s+[а-яё]{3,8}\.?\s+20\d{2}\s*(?:г\.?)?\s*(?:в\s+)?Ответить\b.*$',
+    re.I | re.S,
+)
+_AGG_REPLY_TAIL = re.compile(r'\s*Ответить\s*(?:Поделиться)?\s*[O0О]?\s*\d*\s*\.?\s*$', re.I)
+_NO_CONS_VALUE = r'(?:нет|не было|у нас их не было|минусов нет|их нет)'
+_AGG_LABELS = [
+    (re.compile(rf'(?<=[.!?…)»])\s*Недостатки:\s*{_NO_CONS_VALUE}[!.\s]*', re.I), ' '),
+    (re.compile(rf'\s*Недостатки:\s*{_NO_CONS_VALUE}[!.\s]*', re.I), '. '),
+    (re.compile(r'(?<=[.!?…)»])\s*Достоинства:\s*', re.I), ' '),
+    (re.compile(r'\s*Достоинства:\s*', re.I), '. '),
+]
+# Латинское имя автора (и опц. дата) в начале скрина: «Gala Kolchina Бронировала…»
+_LATIN_AUTHOR_PREFIX = re.compile(
+    r'^\s*(?:[A-Z][A-Za-z]+\s+[A-Z][A-Za-z]+\s+(?:\d{1,2}[./]\d{1,2}[./]\d{2,4}\s*)?'
+    r'|[A-Z][A-Za-z]+\s+\d{1,2}[./]\d{1,2}[./]\d{2,4}\s*)(?:в\s+)?(?=[А-ЯЁ«])'
+)
+# Кириллическое ФИО автора перед названием в кавычках: «Рания Курбатова «Вилла Любовь»…»
+_CYR_AUTHOR_BEFORE_QUOTE = re.compile(r'^\s*[А-ЯЁ][а-яё]+\s+[А-ЯЁ][а-яё]+\s+(?=«)')
+
+
+def _strip_aggregator_chrome(text: str) -> str:
+    text = _AGG_REVIEW_PREFIX.sub('', text)
+    text = _AGG_DATE_REPLY_TAIL.sub('', text)
+    text = _AGG_REPLY_TAIL.sub('', text)
+    for pattern, repl in _AGG_LABELS:
+        text = pattern.sub(repl, text)
+    text = _LATIN_AUTHOR_PREFIX.sub('', text)
+    text = _CYR_AUTHOR_BEFORE_QUOTE.sub('', text)
+    # «Название» -это … → Название -это … (кавычки-обёртка заголовка площадки)
+    text = re.sub(r'^\s*«([^»]{1,60})»\s*(?=[-–—])', r'\1 ', text)
+    return text.strip()
+
 
 def _looks_like_review_start(text: str) -> bool:
     lower = text.lower()
@@ -172,6 +207,8 @@ def clean_ocr_review_text(value: str, *, ensure_sentence_end: bool = True) -> st
     text = re.sub(r'\s+', ' ', str(value or '')).strip()
     if not text:
         return ''
+
+    text = _strip_aggregator_chrome(text)
 
     text = re.sub(r'(?:раскрыть\s+детали|что\s+было\s+хорошо|подписаться)', ' ', text, flags=re.I)
     text = re.sub(r'оценка\s*wi[\s-]*fi[^.?!]*[.?!]?', ' ', text, flags=re.I)
