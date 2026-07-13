@@ -24,8 +24,18 @@ CHANNEL = "abhazbereg"
 MEDIA_DIR = ROOT / "media" / "blog"
 SOURCES_DIR = ROOT / "scripts" / "blog_telegram_sources"
 BLOG_DIR = ROOT / "blog"
-CSS_VERSION = "202607102046"
+CSS_VERSION = (ROOT / "data" / "asset-version.txt").read_text(encoding="utf-8").strip()
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media"
+BLOG_CARD_IMAGE_SIZES = "(max-width: 760px) 100vw, 220px"
+BLOG_ARTICLE_IMAGE_SIZES = "(max-width: 760px) 100vw, 320px"
+
+
+def blog_image_srcset(src: str) -> str:
+    clean = src.split("?", 1)[0]
+    stem, dot, ext = clean.rpartition(".")
+    if not dot or ext.lower() not in {"jpg", "jpeg", "png", "webp"}:
+        return ""
+    return ", ".join(f"{stem}-{width}.webp {width}w" for width in (480, 960, 1440))
 
 POST_IDS = [
     2119, 2149, 2166, 2213, 2218, 2240, 2245, 2256, 2261, 2266, 2294, 2313, 2325, 2327, 2336, 2337,
@@ -541,7 +551,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       <div class="blog-article__layout">
         <div class="blog-article__main">
           <div class="blog-article__content blog-article__content--sections">
-        <img class="blog-article__cover-inline" src="{yandex_media_base}/media/blog/{image_name}" alt="{cover_alt_esc}" loading="eager" />
+        <img class="blog-article__cover-inline" src="{image_src}" srcset="{image_srcset}" sizes="{article_image_sizes}" width="480" height="640" alt="{cover_alt_esc}" loading="eager" decoding="async" />
 {body_html}
 
         <p class="blog-source">Источник: <a href="https://t.me/abhazbereg/{post_id}" target="_blank" rel="noopener noreferrer">пост Телеграм @abhazbereg/{post_id}</a>.</p>
@@ -622,7 +632,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   </section>
 
 </main>
-  <script src="../../scripts.min.js?v=202607130531" defer></script>
+  <script src="../../scripts.min.js?v=202607131242" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -646,6 +656,7 @@ def render_article_page(art: BuiltArticle, body_html: str) -> str:
         },
         ensure_ascii=False,
     )
+    image_src = f"{YANDEX_MEDIA_BASE}/media/blog/{art.image_name}"
     return PAGE_TEMPLATE.format(
         html_title=html.escape(f"{art.title_short} — АБХАЗБЕРЕГ"),
         meta_desc=html.escape(meta_desc),
@@ -653,6 +664,9 @@ def render_article_page(art: BuiltArticle, body_html: str) -> str:
         og_title=html.escape(art.title),
         og_desc=html.escape(og_desc),
         image_name=art.image_name,
+        image_src=image_src,
+        image_srcset=blog_image_srcset(image_src),
+        article_image_sizes=BLOG_ARTICLE_IMAGE_SIZES,
         css_version=CSS_VERSION,
         json_ld=json_ld,
         breadcrumb_esc=html.escape(art.breadcrumb),
@@ -674,10 +688,11 @@ def render_article_page(art: BuiltArticle, body_html: str) -> str:
 def render_blog_index(cards: list[dict[str, str]]) -> str:
     card_blocks = []
     for card in cards:
+        image_src = f"{YANDEX_MEDIA_BASE}/media/blog/{html.escape(card['image'])}"
         card_blocks.append(
             f"""        <article class="blog-card">
           <a class="blog-card__image-link" href="/blog/{html.escape(card['slug'])}/">
-            <img src="{YANDEX_MEDIA_BASE}/media/blog/{html.escape(card['image'])}" alt="{html.escape(card['alt'])}" loading="lazy" />
+            <img src="{image_src}" srcset="{blog_image_srcset(image_src)}" sizes="{BLOG_CARD_IMAGE_SIZES}" width="480" height="330" alt="{html.escape(card['alt'])}" loading="lazy" decoding="async" />
           </a>
           <div class="blog-card__body">
             <p class="blog-card__meta"><span>{html.escape(card['card_tag'])}</span><time datetime="{html.escape(card['iso_date'])}">{html.escape(ru_date(card['iso_date']))}</time></p>
@@ -800,7 +815,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   </section>
 
 </main>
-  <script src="../scripts.min.js?v=202607130531" defer></script>
+  <script src="../scripts.min.js?v=202607131242" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

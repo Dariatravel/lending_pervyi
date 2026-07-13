@@ -190,7 +190,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607130531";
+  const ASSET_VERSION = "202607131242";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -2871,6 +2871,13 @@
     return `https://storage.yandexcloud.net/abhazbereg-media/media/blog/${raw.replace(/^\/+/, "")}`;
   }
 
+  function blogCardImageSrcset(src) {
+    const clean = String(src || "").split("?")[0];
+    const stem = clean.replace(/\.(?:jpe?g|png|webp)$/i, "");
+    if (!stem || stem === clean) return "";
+    return [480, 960, 1440].map((width) => `${stem}-${width}.webp ${width}w`).join(", ");
+  }
+
   function buildSimilarBlogCard(post) {
     const article = document.createElement("article");
     article.className = "blog-card";
@@ -2884,8 +2891,13 @@
     if (imageSrc) {
       const image = document.createElement("img");
       image.loading = "lazy";
+      image.decoding = "async";
       image.alt = post.title || "";
       image.src = imageSrc;
+      image.srcset = blogCardImageSrcset(imageSrc);
+      image.sizes = "(max-width: 760px) 100vw, 220px";
+      image.width = 480;
+      image.height = 330;
       imageLink.appendChild(image);
     }
     article.appendChild(imageLink);

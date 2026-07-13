@@ -7,8 +7,17 @@ import html
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSET_VERSION = '202607102046'
+ASSET_VERSION = (ROOT / 'data' / 'asset-version.txt').read_text(encoding='utf-8').strip()
 YANDEX_MEDIA_BASE = 'https://storage.yandexcloud.net/abhazbereg-media/media'
+BLOG_ARTICLE_IMAGE_SIZES = '(max-width: 760px) 100vw, 320px'
+
+
+def blog_image_srcset(src: str) -> str:
+    clean = src.split('?', 1)[0]
+    stem, dot, ext = clean.rpartition('.')
+    if not dot or ext.lower() not in {'jpg', 'jpeg', 'png', 'webp'}:
+        return ''
+    return ', '.join(f'{stem}-{width}.webp {width}w' for width in (480, 960, 1440))
 
 
 def telegram_chunks_to_ps(raw: str) -> str:
@@ -144,7 +153,7 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
       <div class="blog-article__layout">
         <div class="blog-article__main">
           <div class="blog-article__content blog-article__content--telegram">
-        <img class="blog-article__cover-inline" src="{blog_image_url}" alt="{cover_alt_esc}" loading="eager" />
+        <img class="blog-article__cover-inline" src="{blog_image_url}" srcset="{blog_image_srcset}" sizes="{blog_article_image_sizes}" width="480" height="640" alt="{cover_alt_esc}" loading="eager" decoding="async" />
 {body_ps}
 
         <p class="blog-source">Источник: <a href="https://t.me/abhazbooking/{tid}" target="_blank" rel="noopener noreferrer">пост Телеграм @abhazbooking/{tid}</a>.</p>
@@ -283,6 +292,8 @@ def main() -> None:
             og_title=html.escape(title),
             og_desc=html.escape(og_desc),
             blog_image_url=blog_image_url,
+            blog_image_srcset=blog_image_srcset(blog_image_url),
+            blog_article_image_sizes=BLOG_ARTICLE_IMAGE_SIZES,
             yandex_media_base=YANDEX_MEDIA_BASE,
             asset_version=ASSET_VERSION,
             tid=tid,

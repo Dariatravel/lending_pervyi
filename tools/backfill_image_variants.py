@@ -27,6 +27,7 @@ import boto3  # noqa: E402
 import os  # noqa: E402
 
 PREFIXES = (
+    "media/blog/",
     "media/cards/",
     "media/kvartira-cards/",
     "media/hotels/",
