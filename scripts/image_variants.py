@@ -29,10 +29,12 @@ def build_webp_variants(jpeg_bytes: bytes, *, widths: tuple[int, ...] = RESPONSI
         source_width = im.width
         out: list[tuple[int, bytes]] = []
         for width in widths:
-            if width > source_width:
-                continue
-            ratio = width / float(source_width)
-            resized = im.resize((width, max(1, round(im.height * ratio))), Image.LANCZOS)
+            # Страницы ссылаются на все стандартные ширины независимо от размера
+            # оригинала — ключ обязан существовать. Маленькие оригиналы не
+            # апскейлим: кодируем в исходной ширине, но кладём под нужным именем.
+            target = min(width, source_width)
+            ratio = target / float(source_width)
+            resized = im.resize((target, max(1, round(im.height * ratio))), Image.LANCZOS)
             buf = io.BytesIO()
             resized.save(buf, format="WEBP", quality=WEBP_QUALITY, method=4)
             out.append((width, buf.getvalue()))
