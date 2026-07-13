@@ -1,0 +1,115 @@
+name: Weekly Lighthouse
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 5 * * 1"
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Lighthouse
+        run: npm install --global lighthouse@12.6.0
+
+      - name: Measure production pages
+        id: lh
+        shell: bash
+        run: |
+          set -u
+          mkdir -p output/lighthouse-weekly
+
+          SUMMARY="output/lighthouse-weekly/summary.md"
+          echo "## Weekly Lighthouse — абхазберег.рф" > "$SUMMARY"
+          echo "" >> "$SUMMARY"
+          echo "| Страница | Performance | FCP | LCP | TBT | CLS | Вес | Порог |" >> "$SUMMARY"
+          echo "|---|---:|---:|---:|---:|---:|---:|---:|" >> "$SUMMARY"
+
+          FAILED=false
+
+          run_lighthouse() {
+            local name="$1"
+            local url="$2"
+            local threshold="$3"
+            local file="output/lighthouse-weekly/${name}.json"
+
+            echo "::group::Lighthouse ${name}"
+            if ! lighthouse "$url" \
+              --output=json \
+              --output-path="$file" \
+              --chrome-flags="--headless=new --no-sandbox"; then
+              echo "| ${name} | ERROR | — | — | — | — | — | ${threshold:-—} |" >> "$SUMMARY"
+              FAILED=true
+              echo "::endgroup::"
+              return
+            fi
+
+            node - "$file" "$name" "$threshold" >> "$SUMMARY" <<'NODE'
+          const fs = require("fs");
+          const [file, name, thresholdRaw] = process.argv.slice(2);
+          const report = JSON.parse(fs.readFileSync(file, "utf8"));
+          const audits = report.audits;
+          const score = Math.round((report.categories.performance.score || 0) * 100);
+          const fcp = audits["first-contentful-paint"]?.displayValue || "—";
+          const lcp = audits["largest-contentful-paint"]?.displayValue || "—";
+          const tbt = audits["total-blocking-time"]?.displayValue || "—";
+          const cls = audits["cumulative-layout-shift"]?.displayValue || "—";
+          const weight = audits["total-byte-weight"]?.displayValue || "—";
+          const threshold = thresholdRaw ? Number(thresholdRaw) : null;
+          const marker = threshold && score < threshold ? " ❌" : "";
+          console.log(`| ${name} | ${score}${marker} | ${fcp} | ${lcp} | ${tbt} | ${cls} | ${weight} | ${thresholdRaw || "—"} |`);
+          NODE
+
+            local score
+            score=$(node -e "const r=require('./${file}'); console.log(Math.round((r.categories.performance.score||0)*100));")
+            if [ -n "$threshold" ] && [ "$score" -lt "$threshold" ]; then
+              FAILED=true
+            fi
+            echo "::endgroup::"
+          }
+
+          run_lighthouse "Главная" "https://xn--80aacbklan7f0b.xn--p1ai/" "80"
+          run_lighthouse "Отель" "https://xn--80aacbklan7f0b.xn--p1ai/hotels/regina-otel-vtoroy-korpus-4987/" "65"
+          run_lighthouse "Карта" "https://xn--80aacbklan7f0b.xn--p1ai/karta/" ""
+          run_lighthouse "Блог" "https://xn--80aacbklan7f0b.xn--p1ai/blog/" ""
+
+          cat "$SUMMARY"
+          cat "$SUMMARY" >> "$GITHUB_STEP_SUMMARY"
+          echo "failed=$FAILED" >> "$GITHUB_OUTPUT"
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-weekly
+          path: output/lighthouse-weekly/
+          if-no-files-found: ignore
+
+      - name: Notify Telegram on threshold failure
+        if: steps.lh.outputs.failed == 'true'
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
+        run: |
+          if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
+            echo "TG_BOT_TOKEN/TG_REPORT_CHAT_ID не заданы — уведомление пропущено."
+            exit 0
+          fi
+          REPORT=$(head -c 3500 output/lighthouse-weekly/summary.md)
+          MSG=$(printf '⚠️ Weekly Lighthouse: просела скорость сайта.\n\n%s' "$REPORT")
+          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
+            --data-urlencode "text=${MSG}" >/dev/null
+
+      - name: Fail on threshold failure
+        if: steps.lh.outputs.failed == 'true'
+        run: exit 1
