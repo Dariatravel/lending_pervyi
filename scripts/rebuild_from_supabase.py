@@ -576,11 +576,10 @@ def render_map_plaque_html(city_key: str) -> str:
         return ""
     label = CITY_MAP_LABELS.get(city_key, "Абхазия")
     city_attr = html.escape(city_key, quote=True)
-    label_attr = html.escape(f"Показать на карте объектов: {label}", quote=True)
     label_text = html.escape(label)
     return (
         f'<span class="catalog-card__map-plaque catalog-card__map-plaque--{city_attr}" '
-        f'data-map-city="{city_attr}" role="link" tabindex="0" aria-label="{label_attr}">'
+        f'data-map-city="{city_attr}" role="link" tabindex="0">'
         f'<span class="catalog-card__map-plaque-pin" aria-hidden="true"></span>'
         f'<span class="catalog-card__map-plaque-city">{label_text}</span>'
         f'<span class="catalog-card__map-plaque-map" aria-hidden="true">карта</span>'

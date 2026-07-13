@@ -190,7 +190,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607131650";
+  const ASSET_VERSION = "202607131849";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -4608,7 +4608,6 @@
     plaque.dataset.mapCity = cityKey || "";
     plaque.setAttribute("role", "link");
     plaque.setAttribute("tabindex", "0");
-    plaque.setAttribute("aria-label", `Показать на карте объектов: ${geo.label}`);
 
     const pin = document.createElement("span");
     pin.className = "catalog-card__map-plaque-pin";

@@ -262,3 +262,21 @@ sudo systemctl status abhazbereg-site-update-bot
 journalctl -u abhazbereg-site-update-bot -f
 ls -lah output/site-update-bot/
 ```
+
+## D4 — 404 и мини-аудит доступности, 13.07.2026
+
+Что сделано:
+
+- `404.html` переведена на общий легкий стиль сайта: только `styles.min.css?v=202607131849`, без отдельных изображений, inline CSS и preconnect к медиа.
+- На 404 добавлены понятные переходы: каталог, подборки, блог, Telegram.
+- На главной исправлены критичные пункты доступности: лишние ARIA-роли у соцссылок, контраст описаний карточек каталога, порядок заголовков в блоке выгод, доступное имя кнопки «Позже».
+- У плашек города/карты убраны конфликтующие `aria-label`, чтобы видимый текст совпадал с доступным именем; источник поправлен в `scripts.js` и `scripts/rebuild_from_supabase.py`.
+
+Lighthouse Accessibility:
+
+| Страница | До | После | Что было | Что осталось |
+|---|---:|---:|---|---|
+| Главная | 95 | 100 | `aria-allowed-role` 6, `color-contrast` 20, `heading-order` 1, `label-content-name-mismatch` 21 | балл 100; справочные замечания по соцссылкам без влияния на score |
+| Отель `regina-otel-vtoroy-korpus-4987` | 100 | 100 | `label-content-name-mismatch` 2 | нет failed-аудитов |
+
+Файлы отчётов Lighthouse сохранены локально в `output/lighthouse/20260713-d4-*.json`.

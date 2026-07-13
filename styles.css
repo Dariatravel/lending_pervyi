@@ -1410,7 +1410,7 @@ a.site-concept__destination-card:focus-visible {
   font-size: 14px;
   line-height: 1.45;
   text-align: center;
-  color: #7a847d;
+  color: #4f5d53;
   margin-top: auto;
 }
 
@@ -7205,7 +7205,7 @@ html:has(> body.objects-map-page) {
 
 .catalog-card p {
   margin: 0;
-  color: var(--muted);
+  color: #4f5d53;
   font-size: 0.95rem;
 }
 
