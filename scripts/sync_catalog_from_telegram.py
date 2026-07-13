@@ -638,6 +638,28 @@ def upload_local_video_public_url(local_path: Path, storage_path: str) -> str:
     return upload_to_yandex(local_path, storage_path, 'video/mp4')
 
 
+def make_and_upload_video_poster(video_path: Path, video_storage_path: str) -> str:
+    """Кадр-постер для <video poster=...>: без него iOS показывает чёрную плитку."""
+    if not FFMPEG_BIN:
+        return ''
+    poster_local = video_path.with_suffix('.poster.jpg')
+    try:
+        subprocess.run(
+            [FFMPEG_BIN, '-y', '-ss', '1', '-i', str(video_path), '-frames:v', '1', '-q:v', '4', str(poster_local)],
+            check=True, capture_output=True, timeout=120,
+        )
+        if not poster_local.exists() or poster_local.stat().st_size == 0:
+            return ''
+        stem, _, _ = video_storage_path.rpartition('.')
+        poster_storage = f'{stem or video_storage_path}-poster.jpg'
+        return upload_to_yandex(poster_local, poster_storage, 'image/jpeg')
+    except Exception as error:  # noqa: BLE001
+        print(f'[warn] Не удалось сделать постер видео ({video_storage_path}): {error}', flush=True)
+        return ''
+    finally:
+        poster_local.unlink(missing_ok=True)
+
+
 def resolve_ffmpeg_binary() -> str | None:
     path = shutil.which('ffmpeg')
     if path:
@@ -878,8 +900,10 @@ def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
             source_url = media_src_for_html(str(item.get('source_url') or ''), mime_type='video/mp4')
             telegram_post = str(item.get('telegram_post') or '').strip()
             if source_url and source_url.startswith('http') and not telegram_post:
+                poster_url = str(item.get('poster') or '').strip()
+                poster_attr = f' poster="{html.escape(poster_url)}"' if poster_url.startswith('http') else ''
                 parts.append(
-                    f'''            <video class="local-video" controls preload="metadata" playsinline>\n              <source src="{html.escape(source_url)}" type="video/mp4" />\n            </video>'''
+                    f'''            <video class="local-video" controls preload="metadata" playsinline{poster_attr}>\n              <source src="{html.escape(source_url)}" type="video/mp4" />\n            </video>'''
                 )
             elif telegram_post:
                 parts.append(
@@ -1628,6 +1652,9 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient | None
                         break
 
             if uploaded_public_url:
+                poster_public_url = make_and_upload_video_poster(chosen_file, uploaded_storage_path)
+                if poster_public_url:
+                    chosen_details['poster_url'] = poster_public_url
                 cleanup_large_source_file(source_file, chosen_file)
                 local_media_items.append(
                     {
@@ -1635,6 +1662,7 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient | None
                         'source_url': uploaded_public_url,
                         'public_url': uploaded_public_url,
                         'telegram_url': telegram_url,
+                        'poster': poster_public_url,
                     }
                 )
                 media_payload.append(

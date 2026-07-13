@@ -1,11 +1,11 @@
 {
   "name": "АБХАЗБЕРЕГ - каталог жилья в Абхазии",
   "url": "https://абхазберег.рф/",
-  "generated_at": "2026-07-12T19:02:34.765427+00:00",
+  "generated_at": "2026-07-13T08:37:41.857454+00:00",
   "language": "ru",
   "description": "Машиночитаемый каталог проверенных отелей, домиков, апартаментов и квартир в Абхазии для AI-поиска и агентных рекомендаций.",
   "usage_note": "Используйте page url как канонический источник, цены подтверждайте перед бронированием.",
-  "total": 223,
+  "total": 221,
   "listings": [
     {
       "name": "\"АКИРА\" 2к квартира",
@@ -513,33 +513,6 @@
       "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pion-gostevoy-dom-4539.jpg",
       "telegram_source": "https://t.me/abhazbooking/4539",
       "updated_at": "2026-05-20"
-    },
-    {
-      "name": "\"БРИЗ\" домики на берегу",
-      "type": "hotel",
-      "city": "Лдзаа",
-      "location": "Лдзаа, ул. Рыбзаводская, 43.174132, 40.392175",
-      "beach_distance": "0 минут до пляжа",
-      "capacity": "размещение до 4 человек",
-      "summary": "Лдзаа. 0 минут до пляжа, размещение до 4 человек.",
-      "amenities": [
-        "питание",
-        "у моря",
-        "вид на море"
-      ],
-      "prices": [
-        "9000₽ - июль",
-        "10000₽ - август",
-        "8000₽ - с 1 по 20 сентября",
-        "5000₽ - с 21 по 30 сентября",
-        "АКЦИЯ на всё лето!🔥",
-        "При бронировании домика от 7 дней + 1 день в подарок🔥"
-      ],
-      "price_range": "5000-10000 RUB",
-      "url": "https://абхазберег.рф/hotels/briz-domiki-na-beregu-4510/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/briz-domiki-na-beregu-4510.jpg",
-      "telegram_source": "https://t.me/abhazbooking/4510",
-      "updated_at": "2026-05-18"
     },
     {
       "name": "\"АРТ ОТЕЛЬ\" с питанием и бассейном",
@@ -6401,38 +6374,6 @@
       "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/regina-pervyy-korpus-otel-s-zavtrakami-4957.jpg",
       "telegram_source": "https://t.me/abhazbooking/4957",
       "updated_at": "2026-07-08"
-    },
-    {
-      "name": "\"БАГРИПШ\" домики на берегу. ВСЁ ВКЛЮЧЕНО!",
-      "type": "hotel",
-      "city": "Гагрский район",
-      "location": "Гагрский район, Холодная речка 43.359115, 40.121660",
-      "beach_distance": "0 минут до пляжа",
-      "capacity": "размещение до 4 человек",
-      "summary": "Гагрский район. 0 минут до пляжа, размещение до 4 человек.",
-      "amenities": [
-        "у моря",
-        "подходит для семьи"
-      ],
-      "prices": [
-        "(за одного человека)",
-        "Основное место",
-        "4090₽ - с 20 по 31 мая",
-        "4100₽ - с 1 по 19 июня",
-        "4590₽ - с 20 по 30 июня",
-        "6830₽ - с 1 июля по 20 сентября",
-        "6390₽ - с 21 по 30 сентября",
-        "Взрослый на дополнительном месте",
-        "3900₽ - с 20 по 31 мая",
-        "3940₽ - с 1 по 19 июня",
-        "4430₽ - с 20 по 30 июня",
-        "6390₽ - с 1 июля по 20 сентября"
-      ],
-      "price_range": "3900-6830 RUB",
-      "url": "https://абхазберег.рф/hotels/bagripsh-domiki-na-beregu-vse-vklyucheno-4399/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/bagripsh-domiki-na-beregu-vse-vklyucheno-4399.jpg",
-      "telegram_source": "https://t.me/abhazbooking/4399",
-      "updated_at": "2026-05-06"
     },
     {
       "name": "\"РЕГИНА\" ОТЕЛЬ (ВТОРОЙ КОРПУС)",

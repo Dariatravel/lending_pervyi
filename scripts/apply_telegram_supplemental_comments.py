@@ -222,15 +222,17 @@ def load_targets_from_snapshot(only_slugs: set[str] | None = None, limit: int | 
 
 
 def resolve_slugs_from_watch_targets() -> set[str]:
-    """Slug'и изменённых/новых объектов из отчёта watch-telegram (после синка)."""
+    """Slug'и изменённых/новых объектов из отчёта watch (+ принудительные из env)."""
     try:
         data = json.loads(WATCH_TARGETS_PATH.read_text(encoding="utf-8"))
     except (OSError, ValueError):
-        return set()
+        data = {}
     slugs = {str(item.get("slug") or "").strip() for item in data.get("items") or [] if isinstance(item, dict)}
     slugs.discard("")
     hotel_ids = {int(x) for x in data.get("hotel_source_ids") or []}
     topic_ids = {int(x) for x in data.get("kv_topic_ids") or []}
+    hotel_ids |= {int(x) for x in os.getenv("EXTRA_HOTEL_IDS", "").split(",") if x.strip().isdigit()}
+    topic_ids |= {int(x) for x in os.getenv("EXTRA_KV_TOPICS", "").split(",") if x.strip().isdigit()}
     for item in data.get("new_objects") or []:
         if not isinstance(item, dict):
             continue

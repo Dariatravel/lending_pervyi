@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-13T06:34:52.329376+00:00",
+  "generated_at": "2026-07-13T08:37:33.688186+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 223,
-  "listings_hotels": 162,
+  "listings_total": 221,
+  "listings_hotels": 160,
   "listings_kvartira": 61,
   "listings": [
     {
@@ -4560,7 +4560,7 @@
       "published_at": "2026-05-18",
       "has_video": false,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/briz-domiki-na-beregu-4510.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Лдзаа. 0 минут до пляжа, размещение до 4 человек.",
         "sections": [
@@ -60415,7 +60415,7 @@
       "published_at": "2026-05-06",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/bagripsh-domiki-na-beregu-vse-vklyucheno-4399.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Гагрский район. 0 минут до пляжа, размещение до 4 человек.",
         "sections": [

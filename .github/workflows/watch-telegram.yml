@@ -127,6 +127,9 @@ jobs:
 
       - name: Перенести медиа с подписями из комментариев
         if: steps.sync.outputs.done == 'true'
+        env:
+          EXTRA_HOTEL_IDS: ${{ inputs.force_hotel_ids }}
+          EXTRA_KV_TOPICS: ${{ inputs.force_kv_topics }}
         run: python scripts/apply_telegram_supplemental_comments.py --from-watch-targets --force
 
       - name: Контрольные аудиты после синка
