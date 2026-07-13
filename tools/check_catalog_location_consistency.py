@@ -149,9 +149,11 @@ def check_row(row: dict[str, Any]) -> tuple[list[str], list[str]]:
             f"({CITY_MAP_LABELS.get(page_key, page_key)} / {CITY_MAP_LABELS.get(card_key, card_key)})"
         )
     if expected and filter_cities and expected not in filter_cities:
-        errors.append(
+        # Фильтры приезжают из Google Sheets и обновляются только с Mac —
+        # в CI это расхождение не исправить, поэтому не блокируем публикацию.
+        warnings.append(
             f"{slug}: data-filter-city из Google Sheet не содержит фактический город "
-            f"{expected} (сейчас: {'|'.join(filter_cities)})"
+            f"{expected} (сейчас: {'|'.join(filter_cities)}) — обновите город в Google-таблице"
         )
     if not page_key:
         warnings.append(f"{slug}: не удалось прочитать город на странице объекта")
