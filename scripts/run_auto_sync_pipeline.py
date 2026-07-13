@@ -84,6 +84,17 @@ def _run_step(
             check=False,
             text=True,
         )
+    if process.returncode != 0:
+        # На CI лог-файлы шагов недоступны после завершения run'а — печатаем
+        # хвост упавшего шага прямо в stdout, иначе причину не найти.
+        try:
+            tail = log_path.read_text(encoding="utf-8").splitlines()[-80:]
+            print(f"[auto-sync] ---- хвост лога шага {name} ({log_path.name}) ----", flush=True)
+            for line in tail:
+                print(f"[auto-sync] | {line}", flush=True)
+            print(f"[auto-sync] ---- конец лога шага {name} ----", flush=True)
+        except OSError:
+            pass
     return StepResult(
         name=name,
         command=command_str,
