@@ -156,8 +156,30 @@ jobs:
           fi
           FILES=$(git diff --cached --name-only | wc -l)
           git commit -m "Авто-синк каталога из Telegram (GitHub Actions)"
-          git pull --rebase origin main || true
-          git push origin main
+          # Параллельный run (GitHub иногда не выдерживает concurrency-группу)
+          # мог запушить свой авто-синк: ребейзимся с повторами. Конфликты в
+          # сгенерированных файлах решаем в пользу НАШЕГО коммита (--theirs при
+          # rebase) — расхождение доснимет следующий часовой запуск по watch.
+          PUSH_OK=false
+          for attempt in 1 2 3 4; do
+            if ! git pull --rebase origin main; then
+              CONFLICTS=$(git diff --name-only --diff-filter=U)
+              if [ -n "$CONFLICTS" ]; then
+                echo "$CONFLICTS" | xargs git checkout --theirs --
+                echo "$CONFLICTS" | xargs git add --
+              fi
+              GIT_EDITOR=true git rebase --continue || { git rebase --abort || true; sleep 10; continue; }
+            fi
+            if git push origin main; then
+              PUSH_OK=true
+              break
+            fi
+            sleep 10
+          done
+          if [ "$PUSH_OK" != "true" ]; then
+            echo "::error::Не удалось опубликовать изменения после 4 попыток (см. лог)."
+            exit 1
+          fi
           echo "pushed=true" >> "$GITHUB_OUTPUT"
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
 
