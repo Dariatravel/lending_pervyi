@@ -8,23 +8,27 @@
 
 ## Lighthouse mobile baseline
 
-Прогон выполнен 2026-07-11 на продакшене `https://абхазберег.рф/`.
-Отчёты сохранены локально в `output/lighthouse/` и не добавляются в git.
+Прогон выполнен 2026-07-13 на продакшене `https://абхазберег.рф/` после D1-оптимизации медиа. Отчёты сохранены локально в `output/lighthouse/` и не добавляются в git.
 
 | Страница | Performance | FCP | LCP | Speed Index | TBT | CLS | TTI | Вес |
 |----------|-------------|-----|-----|-------------|-----|-----|-----|-----|
-| Главная | 87 | 1.6 s | 3.1 s | 4.2 s | 240 ms | 0 | 5.5 s | 1,323 KiB |
-| Отель: Регина | 71 | 1.4 s | 7.4 s | 3.8 s | 220 ms | 0 | 7.8 s | 1,424 KiB |
-| Карта | 75 | 1.5 s | 4.4 s | 10.4 s | 20 ms | 0 | 4.4 s | 343 KiB |
+| Главная | 87 | 1.3 s | 3.9 s | 2.5 s | 106 ms | 0 | 5.4 s | 1,296 KiB |
+| Отель: Регина 2 корпус | 92 | 1.3 s | 3.3 s | 2.5 s | 22 ms | 0 | 5.0 s | 1,361 KiB |
+| Старый отель: Парус | 91 | 1.2 s | 3.5 s | 2.5 s | 60 ms | 0 | 5.3 s | 1,606 KiB |
+| Карта | 85 | 1.3 s | 4.0 s | 4.2 s | 46 ms | 0 | 4.0 s | 351 KiB |
+| Блог | 76 | 1.1 s | 7.4 s | 2.1 s | 74 ms | 0.018 | 7.4 s | 3,475 KiB |
 
 Контроль после C3: 2026-07-11 локальный Lighthouse текущей сборки для «Регины» — Performance 71, LCP 7.4 s.
 Контроль после C4: 2026-07-12 локальный Lighthouse текущей сборки для карты — Performance 75, LCP 4.4 s, Speed Index 10.4 s.
+Контроль после D1: 2026-07-13 продакшен для «Регины 2 корпус» — Performance 92, LCP 3.3 s, вес 1,361 KiB. Цель LCP ≤3 s почти достигнута, но итоговый замер остался на 0.3 s выше: LCP-элемент — первое фото карточки, запрос обнаруживается в исходном HTML, не lazy-loaded, `fetchpriority="high"` есть; основной остаток по Lighthouse приходится на сетевые фазы загрузки LCP-фото из Storage/CDN, а не на блокировку JS. Дополнительно отключена ранняя автозагрузка видео (`preload="none"` и без скрытого probe-видео для постеров), чтобы слабый интернет не тратился на видео до клика пользователя.
 
 Файлы отчётов:
 
-- `output/lighthouse/home.report.html`
-- `output/lighthouse/hotel-regina.report.html`
-- `output/lighthouse/map.report.html`
+- `output/lighthouse/20260713-final-home.json`
+- `output/lighthouse/20260713-final-hotel-regina-v2.json`
+- `output/lighthouse/20260713-final-hotel-parus.json`
+- `output/lighthouse/20260713-final-map.json`
+- `output/lighthouse/20260713-final-blog.json`
 
 Скрипты автозапуска (macOS `launchd`):
 
