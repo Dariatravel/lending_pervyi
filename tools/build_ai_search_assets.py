@@ -15,7 +15,6 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 CANON_ORIGIN = "https://абхазберег.рф"
-CSS_VERSION = "202607102046"
 BRAND = "АБХАЗБЕРЕГ"
 
 
@@ -180,6 +179,16 @@ ANSWER_PAGES: list[dict[str, Any]] = [
 ]
 
 
+def asset_version() -> str:
+    match = re.search(
+        r'const\s+ASSET_VERSION\s*=\s*"([^"]+)"',
+        (ROOT / "scripts.js").read_text(encoding="utf-8"),
+    )
+    if not match:
+        raise RuntimeError("Не найден ASSET_VERSION в scripts.js")
+    return match.group(1)
+
+
 def load_snapshot() -> dict[str, Any]:
     return json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
 
@@ -323,7 +332,7 @@ def json_ld(data: dict[str, Any]) -> str:
     return json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
 
 
-def render_answer_page(page: dict[str, Any]) -> str:
+def render_answer_page(page: dict[str, Any], version: str) -> str:
     canonical = f"{CANON_ORIGIN}/answers/{page['slug']}/"
     links = "\n".join(
         f'          <a class="blog-note-card__nav-link" href="{html.escape(href)}">{html.escape(label)}</a>'
@@ -393,7 +402,7 @@ def render_answer_page(page: dict[str, Any]) -> str:
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
   <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
-  <link rel="stylesheet" href="../../styles.min.css?v={CSS_VERSION}" />
+  <link rel="stylesheet" href="../../styles.min.css?v={version}" />
 {schema}
 </head>
 <body>
@@ -441,13 +450,13 @@ def render_answer_page(page: dict[str, Any]) -> str:
       </div>
     </article>
   </main>
-  <script src="../../scripts.min.js?v=202607131849" defer></script>
+  <script src="../../scripts.min.js?v={version}" defer></script>
 </body>
 </html>
 """
 
 
-def write_answer_pages() -> None:
+def write_answer_pages(version: str) -> None:
     index_dir = ROOT / "answers"
     index_dir.mkdir(parents=True, exist_ok=True)
     cards = "\n".join(
@@ -471,7 +480,7 @@ def write_answer_pages() -> None:
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
   <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
-  <link rel="stylesheet" href="../styles.min.css?v={CSS_VERSION}" />
+  <link rel="stylesheet" href="../styles.min.css?v={version}" />
   <script type="application/ld+json" data-schema="breadcrumbs">{json_ld({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -507,7 +516,7 @@ def write_answer_pages() -> None:
       </div>
     </section>
   </main>
-  <script src="../scripts.min.js?v=202607131849" defer></script>
+  <script src="../scripts.min.js?v={version}" defer></script>
 </body>
 </html>
 """
@@ -515,7 +524,7 @@ def write_answer_pages() -> None:
     for page in ANSWER_PAGES:
         out_dir = ROOT / "answers" / page["slug"]
         out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / "index.html").write_text(render_answer_page(page), encoding="utf-8")
+        (out_dir / "index.html").write_text(render_answer_page(page, version), encoding="utf-8")
 
 
 def update_home_schema() -> bool:
@@ -589,6 +598,7 @@ def update_home_schema() -> bool:
 
 def main() -> int:
     snapshot = load_snapshot()
+    version = asset_version()
     ai_dir = ROOT / "ai"
     ai_dir.mkdir(parents=True, exist_ok=True)
     (ai_dir / "catalog.json").write_text(
@@ -596,7 +606,7 @@ def main() -> int:
         encoding="utf-8",
     )
     write_llms_txt(snapshot)
-    write_answer_pages()
+    write_answer_pages(version)
     home_schema_updated = update_home_schema()
     print("llms_txt=1")
     print("ai_catalog=1")

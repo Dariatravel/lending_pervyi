@@ -226,7 +226,6 @@ cd /srv/lending_pervyi
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-site-update-bot.txt
-pip install -r collab_bot/requirements.txt
 
 cp .env.site-update-bot.example .env.site-update-bot
 nano .env.site-update-bot
@@ -280,3 +279,23 @@ Lighthouse Accessibility:
 | Отель `regina-otel-vtoroy-korpus-4987` | 100 | 100 | `label-content-name-mismatch` 2 | нет failed-аудитов |
 
 Файлы отчётов Lighthouse сохранены локально в `output/lighthouse/20260713-d4-*.json`.
+
+## D6 — вынос внутренних файлов из публикации, 13.07.2026
+
+Что сделано:
+
+- Перед удалением создан локальный архив внутренних файлов: `~/Downloads/abhazbereg-internal-backup-20260713-200607.tar.gz`.
+- Из `main` удалены 17 файлов `concept-*.{html,css,js}`.
+- Из `main` удалены внутренние папки `collab_bot/` и `cashback_tracker/`, чтобы GitHub Pages больше их не публиковал.
+- В `.gitignore` добавлены правила против случайного возврата этих прототипов и внутренних папок.
+- `podbori_txt/` оставлена в репозитории: её читают `scripts/build_podborki_pages.py` и `scripts/build_podborki_from_filters.py`.
+- Пересобраны `sitemap.xml` и AI-ассеты через `tools/build_ai_search_assets.py`.
+- Попутно исправлен генератор AI-страниц: версия CSS/JS теперь берётся из `scripts.js`, а не из старой константы.
+
+Проверки:
+
+- `python3 tools/audit_supabase_prod_deps.py` → нули.
+- `python3 tools/validate_catalog_snapshot.py` → `active_listings: 221`, `issues: 0`.
+- `python3 tools/verify_object_media.py` → OK.
+- `python3 tools/check_page_health.py` → OK, `ASSET_VERSION=202607131849`.
+- `python3 tools/post_deploy_smoke.py` → OK.

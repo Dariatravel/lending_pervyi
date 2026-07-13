@@ -40,6 +40,13 @@ CODEX_TASK.md
 CURSOR_TASK.md
 TASKS_FOR_CODEX_SITE_HEALTH.txt
 
+# internal prototypes and bot code, not for GitHub Pages
+concept-*.html
+concept-*.css
+concept-*.js
+collab_bot/
+cashback_tracker/
+
 # Telegram site update bot runtime state/logs
 output/
 output/site-update-bot/

@@ -1,14 +1,12 @@
 User-agent: *
 Disallow: /CODEX_TASK.md
 Disallow: /CURSOR_TASK.md
-Disallow: /concept-*.html
 Disallow: /.env*
 Disallow: /*/.env*
 Disallow: /scripts/
 Disallow: /tools/
 Disallow: /supabase/
 Disallow: /output/
-Disallow: /collab_bot/
 Disallow: /podbori_txt/
 Disallow: /TASKS_FOR_CODEX_SITE_HEALTH.txt
 Disallow: /requirements-site-update-bot.txt
