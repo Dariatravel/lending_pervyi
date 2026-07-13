@@ -1,5 +1,11 @@
 # Telethon на Timeweb VPS: диагноз и решения
 
+> **VPS выведен из эксплуатации 13.07.2026.** Сервер Timeweb удалён: сайт живёт
+> на GitHub Pages, медиа — в Yandex Object Storage, наблюдение за Telegram,
+> автосинк и уведомления — в GitHub Actions (см. разделы ниже про workflow).
+> Разделы про VPS/прокси оставлены как история решения и на случай возврата
+> к собственному серверу.
+
 ## Диагноз (2026-07-11)
 
 Симптом: `watch-telegram` на VPS падает с `Attempt 1–6 at connecting failed:
