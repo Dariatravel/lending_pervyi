@@ -190,7 +190,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607131849";
+  const ASSET_VERSION = "202607141317";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -1986,6 +1986,25 @@
   function initLocalVideoPosters(root = document) {
     if (!root?.querySelectorAll) return;
     root.querySelectorAll("video.local-video").forEach(wireLocalVideoPoster);
+  }
+
+  /**
+   * Плитка видео обрезана под фото (object-fit: cover), поэтому вертикальные
+   * ролики до старта выглядят горизонтальными. После нажатия «плей» снимаем
+   * кадрирование, и видео играет в своих настоящих пропорциях.
+   * Событие play не всплывает — ловим его на фазе перехвата.
+   */
+  function initLocalVideoNaturalPlayback() {
+    document.addEventListener(
+      "play",
+      (event) => {
+        const video = event.target;
+        if (!(video instanceof HTMLVideoElement)) return;
+        if (!video.classList.contains("local-video")) return;
+        video.classList.add("is-playing");
+      },
+      true
+    );
   }
 
   /**
@@ -5062,6 +5081,7 @@
   initInPageAnchorFix();
   initHeroVideoQuality();
   initLocalVideoPosters();
+  initLocalVideoNaturalPlayback();
   initCatalogMapPlaques();
   initObjectPageMapPlaque();
   absolutizeHotelSiteConceptMedia();

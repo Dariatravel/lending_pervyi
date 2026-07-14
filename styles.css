@@ -7279,6 +7279,17 @@ html:has(> body.objects-map-page) {
   background: #101010;
 }
 
+/* После старта воспроизведения снимаем фото-кадрирование плитки:
+   вертикальные ролики играют в своих настоящих пропорциях. */
+.media-grid video.local-video.is-playing,
+.hotel-site-concept .media-grid video.local-video.is-playing {
+  aspect-ratio: auto;
+  height: auto;
+  max-height: 78vh;
+  object-fit: contain;
+  background: #101010;
+}
+
 /* Унифицируем заголовок медиа-блока: без формулировки "из поста" */
 .hotel-media-section .card > h2 {
   position: relative;

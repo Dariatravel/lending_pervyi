@@ -1,23 +1,23 @@
-const APP_SHELL_CACHE = "abhazbereg-app-shell-v202607131849";
-const RUNTIME_CACHE = "abhazbereg-runtime-v202607131849";
+const APP_SHELL_CACHE = "abhazbereg-app-shell-v202607141317";
+const RUNTIME_CACHE = "abhazbereg-runtime-v202607141317";
 const YANDEX_MEDIA_ORIGIN = "https://storage.yandexcloud.net";
 const YANDEX_MEDIA_PATH_PREFIX = "/abhazbereg-media/media/";
 const MAX_RUNTIME_MEDIA_ENTRIES = 80;
 
 const APP_SHELL_URLS = [
   "/",
-  "/styles.min.css?v=202607131849",
-  "/scripts.min.js?v=202607131849",
-  "/pwa.js?v=202607131849",
+  "/styles.min.css?v=202607141317",
+  "/scripts.min.js?v=202607141317",
+  "/pwa.js?v=202607141317",
   "/vendor/fonts/manrope-cyrillic.woff2",
   "/vendor/fonts/manrope-latin.woff2",
   "/vendor/fonts/prata-cyrillic.woff2",
   "/vendor/fonts/prata-latin.woff2",
-  "/vendor/leaflet/leaflet.css?v=202607131849",
-  "/vendor/leaflet/leaflet.js?v=202607131849",
-  "/vendor/leaflet-markercluster/MarkerCluster.css?v=202607131849",
-  "/vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202607131849",
-  "/vendor/leaflet-markercluster/leaflet.markercluster.js?v=202607131849",
+  "/vendor/leaflet/leaflet.css?v=202607141317",
+  "/vendor/leaflet/leaflet.js?v=202607141317",
+  "/vendor/leaflet-markercluster/MarkerCluster.css?v=202607141317",
+  "/vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202607141317",
+  "/vendor/leaflet-markercluster/leaflet.markercluster.js?v=202607141317",
   "/app.webmanifest",
   "/404.html",
   "/app-icons/icon-192.png",
