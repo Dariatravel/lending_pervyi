@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T09:09:42.530668+00:00",
+  "generated_at": "2026-07-14T10:11:27.546752+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 222,
@@ -508,13 +508,15 @@
           "id": 1153011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4740",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sanni-houm-domiki-s-basseynom-4731/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4740",
+          "storage_path": "videos/hotels/sanni-houm-domiki-s-basseynom-4731/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sanni-houm-domiki-s-basseynom-4731/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4740"
+            "telegram_post": "abhazbooking/4740",
+            "telegram_url": "https://t.me/abhazbooking/4740",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sanni-houm-domiki-s-basseynom-4731/video-01-source-poster.jpg"
           }
         }
       ]
@@ -787,13 +789,15 @@
           "id": 1142011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4730",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/limon-otel-4721/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4730",
+          "storage_path": "videos/hotels/limon-otel-4721/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/limon-otel-4721/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4730"
+            "telegram_post": "abhazbooking/4730",
+            "telegram_url": "https://t.me/abhazbooking/4730",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/limon-otel-4721/video-01-source-poster.jpg"
           }
         }
       ]
@@ -1071,13 +1075,15 @@
           "id": 968011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4720",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lk-otel-s-basseynom-4123/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4720",
+          "storage_path": "videos/hotels/lk-otel-s-basseynom-4123/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lk-otel-s-basseynom-4123/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4720"
+            "telegram_post": "abhazbooking/4720",
+            "telegram_url": "https://t.me/abhazbooking/4720",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lk-otel-s-basseynom-4123/video-01-source-poster.jpg"
           }
         }
       ]
@@ -1308,13 +1314,15 @@
           "id": 1145011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4710",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/simsim-gostevoy-dom-4701/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4710",
+          "storage_path": "videos/hotels/simsim-gostevoy-dom-4701/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/simsim-gostevoy-dom-4701/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4710"
+            "telegram_post": "abhazbooking/4710",
+            "telegram_url": "https://t.me/abhazbooking/4710",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/simsim-gostevoy-dom-4701/video-01-source-poster.jpg"
           }
         }
       ]
@@ -1526,13 +1534,15 @@
           "id": 1143011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4680",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/oliva-domiki-4671/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4680",
+          "storage_path": "videos/hotels/oliva-domiki-4671/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/oliva-domiki-4671/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4680"
+            "telegram_post": "abhazbooking/4680",
+            "telegram_url": "https://t.me/abhazbooking/4680",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/oliva-domiki-4671/video-01-source-poster.jpg"
           }
         }
       ]
@@ -2819,13 +2829,15 @@
           "id": 1138011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4639",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/belaya-dacha-otel-s-pitaniem-4630/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4639",
+          "storage_path": "videos/hotels/belaya-dacha-otel-s-pitaniem-4630/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/belaya-dacha-otel-s-pitaniem-4630/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4639"
+            "telegram_post": "abhazbooking/4639",
+            "telegram_url": "https://t.me/abhazbooking/4639",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/belaya-dacha-otel-s-pitaniem-4630/video-01-source-poster.jpg"
           }
         }
       ]
@@ -3352,13 +3364,15 @@
           "id": 1135011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4629",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4629",
+          "storage_path": "videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4629"
+            "telegram_post": "abhazbooking/4629",
+            "telegram_url": "https://t.me/abhazbooking/4629",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01-source-poster.jpg"
           }
         }
       ]
@@ -3674,13 +3688,15 @@
           "id": 1134011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4580",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/dzhannat-otel-na-beregu-s-zavtrakami-4571/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4580",
+          "storage_path": "videos/hotels/dzhannat-otel-na-beregu-s-zavtrakami-4571/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/dzhannat-otel-na-beregu-s-zavtrakami-4571/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4580"
+            "telegram_post": "abhazbooking/4580",
+            "telegram_url": "https://t.me/abhazbooking/4580",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/dzhannat-otel-na-beregu-s-zavtrakami-4571/video-01-source-poster.jpg"
           }
         }
       ]
@@ -4530,13 +4546,15 @@
           "id": 1133011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4548",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pion-gostevoy-dom-4539/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4548",
+          "storage_path": "videos/hotels/pion-gostevoy-dom-4539/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pion-gostevoy-dom-4539/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4548"
+            "telegram_post": "abhazbooking/4548",
+            "telegram_url": "https://t.me/abhazbooking/4548",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pion-gostevoy-dom-4539/video-01-source-poster.jpg"
           }
         }
       ]
@@ -6248,13 +6266,15 @@
           "id": 1116011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4468",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4468",
+          "storage_path": "videos/hotels/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4468"
+            "telegram_post": "abhazbooking/4468",
+            "telegram_url": "https://t.me/abhazbooking/4468",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459/video-01-source-poster.jpg"
           }
         }
       ]
@@ -6954,13 +6974,15 @@
           "id": 1114011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4438",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4438",
+          "storage_path": "videos/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4438"
+            "telegram_post": "abhazbooking/4438",
+            "telegram_url": "https://t.me/abhazbooking/4438",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/video-01-source-poster.jpg"
           }
         }
       ]
@@ -7214,13 +7236,15 @@
           "id": 1112011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4418",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/edem-domiki-4409/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4418",
+          "storage_path": "videos/hotels/edem-domiki-4409/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/edem-domiki-4409/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4418"
+            "telegram_post": "abhazbooking/4418",
+            "telegram_url": "https://t.me/abhazbooking/4418",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/edem-domiki-4409/video-01-source-poster.jpg"
           }
         }
       ]
@@ -7556,13 +7580,15 @@
           "id": 1111011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4877",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4877",
+          "storage_path": "videos/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4877"
+            "telegram_post": "abhazbooking/4877",
+            "telegram_url": "https://t.me/abhazbooking/4877",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/video-01-source-poster.jpg"
           }
         }
       ]
@@ -8504,13 +8530,15 @@
           "id": 1107010,
           "media_role": "gallery",
           "sort_order": 9,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4356",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/apra-gostevoy-dom-na-plyazhe-4348/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4356",
+          "storage_path": "videos/hotels/apra-gostevoy-dom-na-plyazhe-4348/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/apra-gostevoy-dom-na-plyazhe-4348/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4356"
+            "telegram_post": "abhazbooking/4356",
+            "telegram_url": "https://t.me/abhazbooking/4356",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/apra-gostevoy-dom-na-plyazhe-4348/video-01-source-poster.jpg"
           }
         }
       ]
@@ -24912,13 +24940,15 @@
           "id": 1077011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4816",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4816",
+          "storage_path": "videos/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4816"
+            "telegram_post": "abhazbooking/4816",
+            "telegram_url": "https://t.me/abhazbooking/4816",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/video-01-source-poster.jpg"
           }
         }
       ]
@@ -51830,13 +51860,15 @@
           "id": 1008011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4955",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4955",
+          "storage_path": "videos/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4955"
+            "telegram_post": "abhazbooking/4955",
+            "telegram_url": "https://t.me/abhazbooking/4955",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/video-01-source-poster.jpg"
           }
         }
       ]
@@ -56362,13 +56394,15 @@
           "id": 1155011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4752",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/aleksandriya-domiki-4743/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4752",
+          "storage_path": "videos/hotels/aleksandriya-domiki-4743/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/aleksandriya-domiki-4743/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4752"
+            "telegram_post": "abhazbooking/4752",
+            "telegram_url": "https://t.me/abhazbooking/4752",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/aleksandriya-domiki-4743/video-01-source-poster.jpg"
           }
         }
       ]
@@ -56610,13 +56644,15 @@
           "id": 1156010,
           "media_role": "gallery",
           "sort_order": 9,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4791",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4791",
+          "storage_path": "videos/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4791"
+            "telegram_post": "abhazbooking/4791",
+            "telegram_url": "https://t.me/abhazbooking/4791",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/video-01-source-poster.jpg"
           }
         }
       ]
@@ -57913,13 +57949,15 @@
           "id": 1165011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4838",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4838",
+          "storage_path": "videos/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4838"
+            "telegram_post": "abhazbooking/4838",
+            "telegram_url": "https://t.me/abhazbooking/4838",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/video-01-source-poster.jpg"
           }
         }
       ]
@@ -58170,13 +58208,15 @@
           "id": 1166011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4851",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/barnaba-gostevoy-dom-4842/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4851",
+          "storage_path": "videos/hotels/barnaba-gostevoy-dom-4842/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/barnaba-gostevoy-dom-4842/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4851"
+            "telegram_post": "abhazbooking/4851",
+            "telegram_url": "https://t.me/abhazbooking/4851",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/barnaba-gostevoy-dom-4842/video-01-source-poster.jpg"
           }
         }
       ]
@@ -58452,13 +58492,15 @@
           "id": 1167011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4866",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/arash-domiki-u-sosnovogo-plyazha-4857/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4866",
+          "storage_path": "videos/hotels/arash-domiki-u-sosnovogo-plyazha-4857/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/arash-domiki-u-sosnovogo-plyazha-4857/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4866"
+            "telegram_post": "abhazbooking/4866",
+            "telegram_url": "https://t.me/abhazbooking/4866",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/arash-domiki-u-sosnovogo-plyazha-4857/video-01-source-poster.jpg"
           }
         }
       ]
@@ -58890,13 +58932,15 @@
           "id": 1168011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4893",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-glavnyy-korpus-4884/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4893",
+          "storage_path": "videos/hotels/pansionat-bagripsh-glavnyy-korpus-4884/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-glavnyy-korpus-4884/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4893"
+            "telegram_post": "abhazbooking/4893",
+            "telegram_url": "https://t.me/abhazbooking/4893",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-glavnyy-korpus-4884/video-01-source-poster.jpg"
           }
         }
       ]
@@ -59202,13 +59246,15 @@
           "id": 1169011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4923",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-novyy-korpus-4914/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4923",
+          "storage_path": "videos/hotels/pansionat-bagripsh-novyy-korpus-4914/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-novyy-korpus-4914/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4923"
+            "telegram_post": "abhazbooking/4923",
+            "telegram_url": "https://t.me/abhazbooking/4923",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-novyy-korpus-4914/video-01-source-poster.jpg"
           }
         }
       ]
@@ -59572,13 +59618,15 @@
           "id": 1170011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhazbooking/4934",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-korpus-adel-4925/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhazbooking/4934",
+          "storage_path": "videos/hotels/pansionat-bagripsh-korpus-adel-4925/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-korpus-adel-4925/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4934"
+            "telegram_post": "abhazbooking/4934",
+            "telegram_url": "https://t.me/abhazbooking/4934",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pansionat-bagripsh-korpus-adel-4925/video-01-source-poster.jpg"
           }
         }
       ]
