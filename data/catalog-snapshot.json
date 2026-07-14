@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-14T15:23:42.618311+00:00",
+  "generated_at": "2026-07-14T17:05:26.995348+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 219,
-  "listings_hotels": 160,
+  "listings_total": 220,
+  "listings_hotels": 161,
   "listings_kvartira": 59,
   "listings": [
     {
@@ -61485,6 +61485,225 @@
             "telegram_post": "abhazbooking/5006",
             "telegram_url": "https://t.me/abhazbooking/5006",
             "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/brigantina-gostevoy-dom-4997/video-01-source-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5007,
+      "source_topic_id": null,
+      "slug": "san-sebastian-domiki-s-basseynom-5007",
+      "title": "\"САН СЕБАСТИАН\" домики с бассейном",
+      "summary": "Алахадзы. 6 минут до пляжа, галечный, размещение до 5 человек.",
+      "excerpt": "22 современных комфортных домиков с дизайнерской планировкой, площадь каждого 42 м²",
+      "city": "Алахадзы",
+      "location_text": "Алахадзы, ул. Туманяна, 45",
+      "distance_text": "6 минут до пляжа, галечный",
+      "beach_text": "6 минут до пляжа, галечный",
+      "capacity_text": "размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/san-sebastian-domiki-s-basseynom-5007/",
+      "telegram_url": "https://t.me/abhazbooking/5007",
+      "published_at": "2026-07-14",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/san-sebastian-domiki-s-basseynom-5007.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Алахадзы. 6 минут до пляжа, галечный, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "22 современных комфортных домиков с дизайнерской планировкой, площадь каждого 42 м².",
+              "В домиках двуспальная кровать, два раскладывающихся кресла, гардеробная, прикроватные тумбы, стол, стулья. Сан узел с душевой кабиной. Доп место для 5 человека - раскладная кровать.",
+              "Оснащение: кондиционер, телевизор, Wi‑Fi, мини-холодильник, фен.",
+              "Веранда у каждого домика с креслами-качелями, вид на бассейн."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Бассейн с подогревом: взрослая и детская зоны.",
+              "Зона отдыха вокруг бассейна с шезлонгами и зонтиками.",
+              "Летняя зона кухни с микроволновкой и чайником, без плиты.",
+              "Свое кафе сразу за территорией."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До моря 6 минут пешком. Чистое море, широкая береговая линия. На пляже есть где переодеться и сполоснуться. Есть водные развлечения, кафе.",
+              "В шаговой доступности кафе с кавказской и европейской кухней, кафе-столовая \"Мандарин\", магазины, аптека."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - октябрь"
+          },
+          {
+            "kind": "note",
+            "text": "Доп. место - 1000₽"
+          },
+          {
+            "kind": "price",
+            "text": "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/san-sebastian-domiki-s-basseynom-5007/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1177,
+      "media": [
+        {
+          "id": 1177001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/san-sebastian-domiki-s-basseynom-5007.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/san-sebastian-domiki-s-basseynom-5007.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/san-sebastian-domiki-s-basseynom-5007.jpg",
+          "details": {}
+        },
+        {
+          "id": 1177002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/san-sebastian-domiki-s-basseynom-5007/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1177003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/san-sebastian-domiki-s-basseynom-5007/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1177004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/san-sebastian-domiki-s-basseynom-5007/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1177005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/san-sebastian-domiki-s-basseynom-5007/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1177006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/san-sebastian-domiki-s-basseynom-5007/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1177007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/san-sebastian-domiki-s-basseynom-5007/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1177008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/san-sebastian-domiki-s-basseynom-5007/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1177009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/san-sebastian-domiki-s-basseynom-5007/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1177010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/san-sebastian-domiki-s-basseynom-5007/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/san-sebastian-domiki-s-basseynom-5007/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1177011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/san-sebastian-domiki-s-basseynom-5007/video-01-source.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/san-sebastian-domiki-s-basseynom-5007/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/san-sebastian-domiki-s-basseynom-5007/video-01-source.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5016",
+            "telegram_url": "https://t.me/abhazbooking/5016",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/san-sebastian-domiki-s-basseynom-5007/video-01-source-poster.jpg"
           }
         }
       ]
