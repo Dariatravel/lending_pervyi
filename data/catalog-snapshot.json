@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-13T12:13:13.896671+00:00",
+  "generated_at": "2026-07-14T09:09:42.530668+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 221,
-  "listings_hotels": 160,
+  "listings_total": 222,
+  "listings_hotels": 161,
   "listings_kvartira": 61,
   "listings": [
     {
@@ -41259,6 +41259,14 @@
         "prices": [
           {
             "kind": "price",
+            "text": "Акция на четырехместный номер🔥"
+          },
+          {
+            "kind": "price",
+            "text": "При проживании с 14 по 23 июля 3000₽"
+          },
+          {
+            "kind": "price",
             "text": "четырехместный номер"
           },
           {
@@ -43697,24 +43705,8 @@
         ],
         "prices": [
           {
-            "kind": "price",
-            "text": "АКЦИЯ В ИЮНЕ🔥"
-          },
-          {
-            "kind": "price",
-            "text": "домики комфорт - 4000₽"
-          },
-          {
-            "kind": "price",
-            "text": "домики семейные - 6000₽"
-          },
-          {
             "kind": "heading",
             "text": "Домики семейные"
-          },
-          {
-            "kind": "price",
-            "text": "7000₽/сутки - июнь"
           },
           {
             "kind": "price",
@@ -43735,10 +43727,6 @@
           {
             "kind": "heading",
             "text": "Домики комфорт"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽/сутки - июнь"
           },
           {
             "kind": "price",
@@ -43904,7 +43892,8 @@
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/kameliya-domiki-3084/video-01-source.mp4",
           "details": {
             "telegram_post": "abhazbooking/3093",
-            "telegram_url": "https://t.me/abhazbooking/3093"
+            "telegram_url": "https://t.me/abhazbooking/3093",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/kameliya-domiki-3084/video-01-source-poster.jpg"
           }
         }
       ]
@@ -59666,11 +59655,19 @@
           },
           {
             "kind": "price",
-            "text": "8000₽ - июль, август, с 1 по 20 сентября"
+            "text": "8000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "5000₽ - с 21 по 30 сентября"
+            "text": "9000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - с 1 до 15 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - с 15 по 30 сентября"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/briz-domiki-na-beregu-4937/index.html",
@@ -61087,6 +61084,275 @@
           "details": {
             "telegram_post": "abhazbooking/4996",
             "telegram_url": "https://t.me/abhazbooking/4996"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 4997,
+      "source_topic_id": null,
+      "slug": "brigantina-gostevoy-dom-4997",
+      "title": "\"БРИГАНТИНА\" гостевой дом",
+      "summary": "Лдзаа. 3 минуты до пляжа, сосновый галечный, размещение до 4 человек.",
+      "excerpt": "Два номера в отдельном здании на первом этаже",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, ул. Нозадзе, 41А",
+      "distance_text": "3 минуты до пляжа, сосновый галечный",
+      "beach_text": "3 минуты до пляжа, сосновый галечный",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/brigantina-gostevoy-dom-4997/",
+      "telegram_url": "https://t.me/abhazbooking/4997",
+      "published_at": "2026-07-13",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/brigantina-gostevoy-dom-4997.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 3 минуты до пляжа, сосновый галечный, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Два номера в отдельном здании на первом этаже.",
+              "В номерах: двуспальная и односпальная кровати, доп место - кресло-кровать. Размещение до 4 человек.",
+              "Вся мебель деревянная, на кроватях удобные ортопедические матрасы. Сан узел с душем.",
+              "Оснащение: кондиционер, телевизор, Wi-Fi, фен.",
+              "На два номера отдельная кухня со стиральной машинкой.",
+              "Два номера комфорт в отдельном здании на первом и втором этажах.",
+              "В номерах: двуспальная кровать и кресло-кровать. Доп место - раскладная кровать, удобные ортопедические матрасы, ортопедические подушки и вся мебель из Италии. Гардеробная для хранения вещей. Размещение до 3 человек. Сан узел с тропическим душем.",
+              "Оснащение: кондиционер, Wi-Fi, телевизор, мини-холодильник, фен.",
+              "Веранда со столиком и стульями."
+            ]
+          },
+          {
+            "label": "✔️ДОМИК:",
+            "lines": [
+              "Отдельный домик на территории. Размещение до 3 человек.",
+              "Двуспальная кровать. Доп место - кресло-кровать. Сан узел с душем.",
+              "Веранда со столиком и стульями."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Большой зеленый сад, много цветов, спокойная домашняя атмосфера.",
+              "Кухня для самостоятельного приготовления полностью укомплектована: газовая и электрическая плита, микроволновая печь, холодильник, посуда, сковородки.",
+              "Зона отдыха и мангал.",
+              "Парковка во дворе на 5 автомобилей."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "В 3 минутах ходьбы реликтовый сосновый заповедник.",
+              "Прогулочные дорожки, качели, спортивная мини-площадка.",
+              "Пляж галечный, сосновый, оборудованный: есть шезлонги, раздевалки, душ, водные развлечения.",
+              "Кафе, столовые, сувенирные, экскурсионные точки, магазины в шаговой доступности."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с небольшими собачками возможно по согласованию, без доплаты.",
+              "Один ребенок до 4 лет размещается бесплатно без предоставления отдельного места.",
+              "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Номер на первом этаже"
+          },
+          {
+            "kind": "note",
+            "text": "(за трехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - июль, август, сентябрь до 15го"
+          },
+          {
+            "kind": "price",
+            "text": "2800₽ - сентябрь с 16го"
+          },
+          {
+            "kind": "heading",
+            "text": "Номер комфорт на первом и втором этаже"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - июль, август, сентябрь до 15го"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - сентябрь с 16го"
+          },
+          {
+            "kind": "price",
+            "text": "Отдельный домик"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - июль, август, сентябрь до 15го"
+          },
+          {
+            "kind": "price",
+            "text": "2800₽ - сентябрь с 16го"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место - 300₽"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/brigantina-gostevoy-dom-4997/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1176,
+      "media": [
+        {
+          "id": 1176001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/brigantina-gostevoy-dom-4997.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/brigantina-gostevoy-dom-4997.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/brigantina-gostevoy-dom-4997.jpg",
+          "details": {}
+        },
+        {
+          "id": 1176002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/brigantina-gostevoy-dom-4997/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1176003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/brigantina-gostevoy-dom-4997/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1176004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/brigantina-gostevoy-dom-4997/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1176005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/brigantina-gostevoy-dom-4997/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1176006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/brigantina-gostevoy-dom-4997/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1176007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/brigantina-gostevoy-dom-4997/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1176008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/brigantina-gostevoy-dom-4997/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1176009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/brigantina-gostevoy-dom-4997/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1176010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/brigantina-gostevoy-dom-4997/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/brigantina-gostevoy-dom-4997/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1176011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/brigantina-gostevoy-dom-4997/video-01-source.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/brigantina-gostevoy-dom-4997/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/brigantina-gostevoy-dom-4997/video-01-source.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5006",
+            "telegram_url": "https://t.me/abhazbooking/5006",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/brigantina-gostevoy-dom-4997/video-01-source-poster.jpg"
           }
         }
       ]
