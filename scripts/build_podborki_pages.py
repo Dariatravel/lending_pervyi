@@ -3,6 +3,9 @@
 Генерация страниц podborki/*.html из текстовых источников podbori_txt/*.txt
 и метаданных podbori_txt/_collection_meta.json.
 
+Боевой генератор — build_podborki_from_filters.py; этот скрипт —
+ручной импорт/экспорт txt, в автопайплайне не используется.
+
 Команды:
   python3 scripts/build_podborki_pages.py export-html
       — из текущих podborki/*/index.html создаёт источники в podbori_txt/
@@ -33,8 +36,7 @@ PODBORI_TXT = REPO / "podbori_txt"
 META_JSON = PODBORI_TXT / "_collection_meta.json"
 INDEX_HTML = REPO / "index.html"
 KVARTIRA_INDEX = REPO / "kvartira" / "index.html"
-CSS_VERSION = "202607102046"
-JS_VERSION = "202607102046"
+ASSET_VERSION_PATH = REPO / "data" / "asset-version.txt"
 YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 # Публичный URL раздела подборок (канон: кирилический .рф)
 CANONICAL_ORIGIN = "https://абхазберег.рф"
@@ -78,6 +80,10 @@ for k, v in {
     "сухум все варианты": "suhum-vse-varianty",
 }.items():
     FOLDER_TO_SLUG[unicodedata.normalize("NFC", k.casefold())] = v
+
+
+def asset_version() -> str:
+    return ASSET_VERSION_PATH.read_text(encoding="utf-8").strip()
 
 
 def simp(s: str) -> str:
@@ -437,6 +443,7 @@ def render_collection_page(
     regions: list[tuple[str, list[tuple[str, list[str]]]]],
     meta: dict[str, Any],
     by_qp: dict[str, list[dict[str, Any]]],
+    version: str,
 ) -> str:
     m = meta.get(slug, {})
     page_title = m.get("page_title") or f"{slug} — подборка | АБХАЗБЕРЕГ"
@@ -497,7 +504,7 @@ def render_collection_page(
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/{slug}/" />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-48.png" />
-  <link rel="stylesheet" href="../../styles.min.css?v={CSS_VERSION}" />
+  <link rel="stylesheet" href="../../styles.min.css?v={version}" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -530,7 +537,7 @@ def render_collection_page(
 {body_html}
     </section>
   </main>
-  <script src="../../scripts.min.js?v={JS_VERSION}" defer></script>
+  <script src="../../scripts.min.js?v={version}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -542,6 +549,7 @@ def build_pages() -> None:
         print("Нет", META_JSON, "— сначала запустите export-html", file=sys.stderr)
         sys.exit(1)
     meta = json.loads(META_JSON.read_text(encoding="utf-8"))
+    version = asset_version()
     by_qp = load_catalog_resolver()
     for sub in sorted(PODBORKI_DIR.iterdir()):
         if not sub.is_dir():
@@ -552,7 +560,7 @@ def build_pages() -> None:
             print("пропуск (нет txt):", slug, file=sys.stderr)
             continue
         regions = parse_podbori_txt(txt_path.read_text(encoding="utf-8"))
-        page = render_collection_page(slug, regions, meta, by_qp)
+        page = render_collection_page(slug, regions, meta, by_qp, version)
         out = sub / "index.html"
         out.write_text(page, encoding="utf-8")
         print("build:", out.relative_to(REPO))

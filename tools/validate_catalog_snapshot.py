@@ -13,6 +13,15 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 GROUPS = ("distance", "food", "price", "city", "beach", "room", "stay")
+CANONICAL_FILTER_VALUES = {
+    "distance": {"beachfront", "up-to-5", "up-to-10", "over-10"},
+    "food": {"no-food", "half-board", "full-board", "breakfast", "cafe"},
+    "price": {"economy", "midrange", "premium"},
+    "city": {"ldzaa", "pitsunda", "gagra", "alakhadzy", "gudauta", "new-afon", "sukhum", "tsandripsh"},
+    "beach": {"pine-pebble-ldzaa-pitsunda", "pitsunda-bay-mixed", "sand-ldzaa", "sand-sukhum", "pebble"},
+    "room": {"sea-view", "pool", "balcony", "terrace", "tv", "kitchen", "five-plus", "two-room-plus", "beachfront-room"},
+    "stay": {"cottages", "apartments", "turnkey-house", "pets", "no-small-kids"},
+}
 
 
 def main() -> int:
@@ -42,6 +51,21 @@ def main() -> int:
         filters = details.get("filters") or {}
         if filters and not isinstance(filters, dict):
             issues.append(f"bad filters type: {slug}")
+        if isinstance(filters, dict):
+            for group, raw_values in filters.items():
+                if group not in GROUPS:
+                    issues.append(f"unknown filter group: {slug} {group}")
+                    continue
+                if isinstance(raw_values, str):
+                    values = [part.strip() for part in raw_values.split("|") if part.strip()]
+                elif isinstance(raw_values, list):
+                    values = [str(value).strip() for value in raw_values if str(value).strip()]
+                else:
+                    issues.append(f"bad filter values type: {slug} {group}")
+                    continue
+                for value in values:
+                    if value not in CANONICAL_FILTER_VALUES[group]:
+                        issues.append(f"unknown filter code: {slug} {group}={value}")
         for media in row.get("media") or []:
             mime = str(media.get("mime_type") or "")
             url = str(media.get("public_url") or media.get("source_url") or "")

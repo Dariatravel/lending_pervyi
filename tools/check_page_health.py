@@ -12,6 +12,8 @@ import sys
 import tempfile
 from pathlib import Path
 
+from PIL import Image
+
 ROOT = Path(__file__).resolve().parents[1]
 OBJECT_ROOTS = (ROOT / "hotels", ROOT / "kvartira")
 FORBIDDEN_CLIENT_STRINGS = (
@@ -166,6 +168,27 @@ def html_attr(tag: str, name: str) -> str:
     return match.group(2) if match else ""
 
 
+def local_media_path(src: str) -> Path | None:
+    clean = src.split("?", 1)[0]
+    marker = "storage.yandexcloud.net/abhazbereg-media/media/"
+    if marker not in clean:
+        return None
+    rel = clean.split(marker, 1)[1].lstrip("/")
+    path = ROOT / "media" / rel
+    return path if path.is_file() else None
+
+
+def source_width(src: str) -> int | None:
+    path = local_media_path(src)
+    if not path:
+        return None
+    try:
+        with Image.open(path) as image:
+            return int(image.size[0])
+    except OSError:
+        return None
+
+
 def check_catalog_card_srcsets(errors: list[str]) -> None:
     for path in html_files():
         text = read_text(path)
@@ -180,6 +203,9 @@ def check_catalog_card_srcsets(errors: list[str]) -> None:
             if "storage.yandexcloud.net/abhazbereg-media/media/" not in src:
                 continue
             if "/media/branding/" in src:
+                continue
+            width = source_width(src)
+            if width is not None and width < 480:
                 continue
             srcset = html_attr(img, "srcset")
             if "-480.webp" not in srcset:

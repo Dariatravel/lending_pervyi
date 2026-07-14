@@ -30,6 +30,35 @@ BEACH_FILTERS = {
     "PITSUNDA_BAY_MIXED": "pitsunda-bay-mixed",
     "PEBBLE": "pebble",
 }
+CANONICAL_FILTER_VALUES = {
+    "distance": {"beachfront", "up-to-5", "up-to-10", "over-10"},
+    "food": {"no-food", "half-board", "full-board", "breakfast", "cafe"},
+    "price": {"economy", "midrange", "premium"},
+    "city": {"ldzaa", "pitsunda", "gagra", "alakhadzy", "gudauta", "new-afon", "sukhum", "tsandripsh"},
+    "beach": set(BEACH_FILTERS.values()),
+    "room": {"sea-view", "pool", "balcony", "terrace", "tv", "kitchen", "five-plus", "two-room-plus", "beachfront-room"},
+    "stay": {"cottages", "apartments", "turnkey-house", "pets", "no-small-kids"},
+}
+LEGACY_FILTER_VALUE_MAP = {
+    "price": {
+        "up-to-3000": "economy",
+        "up-to-4000": "economy",
+        "up-to-5000": "economy",
+        "up-to-6000": "midrange",
+        "up-to-7000": "midrange",
+        "up-to-8000": "midrange",
+        "up-to-9000": "midrange",
+        "up-to-10000": "midrange",
+    },
+    "beach": {
+        "sand": "sand-ldzaa",
+        "pine-pebble": "pine-pebble-ldzaa-pitsunda",
+        "mixed": "pitsunda-bay-mixed",
+    },
+    "room": {
+        "two-room": "two-room-plus",
+    },
+}
 
 DEFAULT_PODBORKI = Path.home() / "Documents" / "ПОДБОРКИ"
 
@@ -52,6 +81,8 @@ def to_filter_array(raw: str) -> list[str]:
 
 
 def normalize_price(raw: str) -> str:
+    if raw in LEGACY_FILTER_VALUE_MAP["price"]:
+        return LEGACY_FILTER_VALUE_MAP["price"][raw]
     lower = raw.lower()
     if "12000" in lower or "12 000" in lower or "дороже" in lower:
         return "premium"
@@ -61,14 +92,6 @@ def normalize_price(raw: str) -> str:
         return "midrange"
     if raw in ("economy", "midrange", "premium"):
         return raw
-    m = re.match(r"^up-to-(\d{3,5})$", raw)
-    if m:
-        price = int(m.group(1))
-        if price <= 5000:
-            return "economy"
-        if price <= 10000:
-            return "midrange"
-        return "premium"
     return raw
 
 
@@ -88,10 +111,12 @@ def normalize_beach_value(raw: str, city_values: list[str]) -> str:
     }
     if raw in special:
         return raw
-    if raw == "sand":
-        return BEACH_FILTERS["SAND_SUKHUM"] if is_sukhum else BEACH_FILTERS["SAND_LDZAA"]
-    if raw == "pine-pebble":
-        return BEACH_FILTERS["PINE_PEBBLE_LDZAA_PITSUNDA"]
+    if raw in LEGACY_FILTER_VALUE_MAP["beach"]:
+        if raw == "sand":
+            return BEACH_FILTERS["SAND_SUKHUM"] if is_sukhum else BEACH_FILTERS["SAND_LDZAA"]
+        if raw == "mixed":
+            return BEACH_FILTERS["PITSUNDA_BAY_MIXED"] if is_ldzaa_or_pitsunda else BEACH_FILTERS["PEBBLE"]
+        return LEGACY_FILTER_VALUE_MAP["beach"][raw]
     if raw == "mixed":
         return BEACH_FILTERS["PITSUNDA_BAY_MIXED"] if is_ldzaa_or_pitsunda else BEACH_FILTERS["PEBBLE"]
     if "песчан" in lower and "сухум" in lower:
@@ -116,8 +141,8 @@ def normalize_room_value(value: str) -> str:
     lower = raw.lower()
     if not raw or raw in ("ac", "one-room"):
         return ""
-    if raw == "two-room":
-        return "two-room-plus"
+    if raw in LEGACY_FILTER_VALUE_MAP["room"]:
+        return LEGACY_FILTER_VALUE_MAP["room"][raw]
     if raw == "beachfront-room":
         return "beachfront-room"
     if "вид на море" in lower:

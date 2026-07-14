@@ -20,7 +20,8 @@ INDEX_PATH = ROOT / "index.html"
 KVARTIRA_INDEX_PATH = ROOT / "kvartira" / "index.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 REPORT_PATH = ROOT / "output" / "podborki_from_filters_report.txt"
-CSS_VERSION = "202607102046"
+ASSET_VERSION_PATH = ROOT / "data" / "asset-version.txt"
+SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 CANONICAL_ORIGIN = "https://абхазберег.рф"
 CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
 
@@ -35,23 +36,16 @@ CITY_LABELS = {
     "tsandripsh": "ЦАНДРИПШ",
 }
 CITY_ORDER = list(CITY_LABELS)
-# Горные объекты без привязки к побережью — только они попадают в «ДРУГИЕ ЛОКАЦИИ».
-MOUNTAIN_OTHER_HREFS = {
-    "/hotels/bungalo-glemping-3623/",
-    "/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/",
-    "/hotels/dyshi-glubzhe-domiki-v-gorah-3459/",
-    "/hotels/radonovyy-istochnik-otel-v-gorah-3064/",
-}
 
-# Ручной состав подборок (источник: podbori_txt/*.txt). Автофильтр их не перезаписывает.
-MANUAL_SELECTION_HREFS: dict[str, list[str]] = {
+MANUAL_SELECTION_SLUGS: dict[str, list[str]] = {
     "gory-oteli-v-gorah": [
-        "/hotels/bungalo-glemping-3623/",
-        "/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/",
-        "/kvartira/dyshi-glubzhe-domiki-v-gorah-1335/",
-        "/hotels/radonovyy-istochnik-otel-v-gorah-3064/",
+        "bungalo-glemping-3623",
+        "grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928",
+        "dyshi-glubzhe-domiki-v-gorah-1335",
+        "radonovyy-istochnik-otel-v-gorah-3064",
     ],
 }
+MOUNTAIN_OTHER_SLUGS = set(MANUAL_SELECTION_SLUGS["gory-oteli-v-gorah"])
 
 
 @dataclass(frozen=True)
@@ -70,6 +64,45 @@ class Selection:
     title: str
     predicate: Callable[[Card], bool]
     group_by_city: bool = True
+
+
+def asset_version() -> str:
+    return ASSET_VERSION_PATH.read_text(encoding="utf-8").strip()
+
+
+def page_path_from_url(value: str) -> str:
+    match = re.search(r"https?://[^/]+(/[^?#]*)", value or "")
+    return match.group(1) if match else (value or "")
+
+
+def load_manual_selection_hrefs() -> dict[str, list[str]]:
+    payload = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+    active_by_slug = {
+        str(row.get("slug") or ""): row
+        for row in payload.get("listings") or []
+        if row.get("is_active", True)
+    }
+    out: dict[str, list[str]] = {}
+    for selection_slug, slugs in MANUAL_SELECTION_SLUGS.items():
+        hrefs: list[str] = []
+        for slug in slugs:
+            row = active_by_slug.get(slug)
+            if not row:
+                raise RuntimeError(f"{selection_slug}: активный объект со slug {slug!r} не найден в catalog-snapshot.json")
+            kind = str(row.get("source_kind") or "")
+            expected_prefix = "/hotels/" if kind == "hotel" else "/kvartira/" if kind == "kvartira" else ""
+            if not expected_prefix:
+                raise RuntimeError(f"{selection_slug}: у {slug!r} неизвестный source_kind={kind!r}")
+            expected_href = f"{expected_prefix}{slug}/"
+            page_url = str(row.get("page_url") or "")
+            actual_href = page_path_from_url(page_url)
+            if actual_href != expected_href:
+                raise RuntimeError(
+                    f"{selection_slug}: page_url для {slug!r} = {actual_href!r}, ожидалось {expected_href!r}"
+                )
+            hrefs.append(expected_href)
+        out[selection_slug] = hrefs
+    return out
 
 
 def strip_tags(value: str) -> str:
@@ -173,11 +206,6 @@ def any_of(*predicates: Callable[[Card], bool]) -> Callable[[Card], bool]:
     return lambda card: any(predicate(card) for predicate in predicates)
 
 
-def keyword(*needles: str) -> Callable[[Card], bool]:
-    lowered = tuple(needle.lower() for needle in needles)
-    return lambda card: any(needle in f"{card.title} {card.summary}".lower() for needle in lowered)
-
-
 def selections() -> list[Selection]:
     return [
         Selection("doma-pod-klyuch-vse-varianty", "Варианты домов под ключ", has("stay", "turnkey-house")),
@@ -200,7 +228,7 @@ def selections() -> list[Selection]:
         Selection(
             "gory-oteli-v-gorah",
             "Горы - отели в горах",
-            any_of(keyword("гор", "ущель", "источник"), lambda card: card.href in MOUNTAIN_OTHER_HREFS),
+            lambda card: href_slug(card.href) in MOUNTAIN_OTHER_SLUGS,
         ),
         Selection("ldzaa-vse-varianty", "Именно в Лдзаа есть такие варианты", has("city", "ldzaa"), False),
         Selection("sosnovyy-plyazh", "На пляже с соснами у меня есть варианты", has("beach", "pine-pebble-ldzaa-pitsunda")),
@@ -216,7 +244,7 @@ def selections() -> list[Selection]:
 
 
 def city_key(card: Card) -> str:
-    if card.href in MOUNTAIN_OTHER_HREFS:
+    if href_slug(card.href) in MOUNTAIN_OTHER_SLUGS:
         return "other"
     for city in CITY_ORDER:
         if city in card.filters.get("city", set()):
@@ -295,7 +323,7 @@ def render_card(card: Card, rank: int) -> str:
     )
 
 
-def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[str, str]]) -> str:
+def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[str, str]], version: str) -> str:
     page_meta = meta.get(selection.slug, {})
     h1 = page_meta.get("h1") or selection.title
     page_title = page_meta.get("page_title") or f"{h1} — подборка | АБХАЗБЕРЕГ"
@@ -334,7 +362,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/{selection.slug}/" />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-48.png" />
-  <link rel="stylesheet" href="../../styles.min.css?v={CSS_VERSION}" />
+  <link rel="stylesheet" href="../../styles.min.css?v={version}" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -366,7 +394,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
 {body_html}
     </section>
   </main>
-  <script src="../../scripts.min.js?v=202607141317" defer></script>
+  <script src="../../scripts.min.js?v={version}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -438,7 +466,7 @@ def render_index_link(slug: str, title: str, cover_image: str = "", cover_alt: s
     )
 
 
-def render_index(items: list[tuple[str, str, str, str]]) -> str:
+def render_index(items: list[tuple[str, str, str, str]], version: str) -> str:
     links = "\n".join(
         render_index_link(slug, title, cover_image, cover_alt)
         for slug, title, cover_image, cover_alt in sorted(items, key=lambda row: row[1].lower())
@@ -453,7 +481,7 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/" />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-48.png" />
-  <link rel="stylesheet" href="../styles.min.css?v={CSS_VERSION}" />
+  <link rel="stylesheet" href="../styles.min.css?v={version}" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -512,7 +540,7 @@ def render_index(items: list[tuple[str, str, str, str]]) -> str:
       </article>
     </section>
   </main>
-  <script src="../scripts.min.js?v=202607141317" defer></script>
+  <script src="../scripts.min.js?v={version}" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -536,6 +564,8 @@ def update_sitemap(slugs: list[str]) -> None:
 
 
 def main() -> int:
+    version = asset_version()
+    manual_selection_hrefs = load_manual_selection_hrefs()
     meta = json.loads(META_PATH.read_text(encoding="utf-8")) if META_PATH.is_file() else {}
     cards = load_cards()
     report = [
@@ -550,12 +580,12 @@ def main() -> int:
     used_cover_images: set[str] = set()
     cards_by_href = {card.href: card for card in cards}
     for selection in selections():
-        manual_hrefs = MANUAL_SELECTION_HREFS.get(selection.slug)
+        manual_hrefs = manual_selection_hrefs.get(selection.slug)
         if manual_hrefs:
-            selected = [cards_by_href[href] for href in manual_hrefs if href in cards_by_href]
             missing = [href for href in manual_hrefs if href not in cards_by_href]
             if missing:
-                print(f"warn: {selection.slug} — нет в каталоге: {', '.join(missing)}", file=sys.stderr)
+                raise RuntimeError(f"{selection.slug}: карточки из ручного списка не найдены в index.html: {', '.join(missing)}")
+            selected = [cards_by_href[href] for href in manual_hrefs]
             page_selection = Selection(selection.slug, selection.title, selection.predicate, group_by_city=False)
         else:
             selected = [card for card in cards if selection.predicate(card)]
@@ -563,7 +593,7 @@ def main() -> int:
             page_selection = selection
         out_dir = PODBORKI_DIR / selection.slug
         out_dir.mkdir(parents=True, exist_ok=True)
-        (out_dir / "index.html").write_text(render_page(page_selection, selected, meta), encoding="utf-8")
+        (out_dir / "index.html").write_text(render_page(page_selection, selected, meta, version), encoding="utf-8")
         title = meta.get(selection.slug, {}).get("h1") or selection.title
         cover_card = pick_cover_card(selected, used_cover_images)
         override = PODBORKI_INDEX_COVER_OVERRIDES.get(selection.slug)
@@ -579,7 +609,7 @@ def main() -> int:
         slugs.append(selection.slug)
         report.append(f"- {selection.slug}: {len(selected)}")
     PODBORKI_DIR.mkdir(parents=True, exist_ok=True)
-    (PODBORKI_DIR / "index.html").write_text(render_index(index_items), encoding="utf-8")
+    (PODBORKI_DIR / "index.html").write_text(render_index(index_items, version), encoding="utf-8")
     update_sitemap(slugs)
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
     REPORT_PATH.write_text("\n".join(report) + "\n", encoding="utf-8")
