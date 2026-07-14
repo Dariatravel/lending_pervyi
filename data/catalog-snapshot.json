@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T11:24:22.516144+00:00",
+  "generated_at": "2026-07-14T12:20:25.319996+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 222,
@@ -209,13 +209,15 @@
           "id": 1154011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhkvartira/1632",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/akira-2k-kvartira-1623/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhkvartira/1632",
+          "storage_path": "videos/kvartira/akira-2k-kvartira-1623/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/akira-2k-kvartira-1623/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1632"
+            "telegram_post": "abhkvartira/1632",
+            "telegram_url": "https://t.me/abhkvartira/1632",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/akira-2k-kvartira-1623/video-01-source-poster.jpg"
           }
         }
       ]
@@ -2064,13 +2066,15 @@
           "id": 1146011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhkvartira/1619",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sosnovaya-kvartira-1k-1610/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhkvartira/1619",
+          "storage_path": "videos/kvartira/sosnovaya-kvartira-1k-1610/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sosnovaya-kvartira-1k-1610/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1619"
+            "telegram_post": "abhkvartira/1619",
+            "telegram_url": "https://t.me/abhkvartira/1619",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sosnovaya-kvartira-1k-1610/video-01-source-poster.jpg"
           }
         }
       ]
@@ -2485,13 +2489,15 @@
           "id": 1139010,
           "media_role": "gallery",
           "sort_order": 9,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhkvartira/1595",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/leto-kvartira-2k-1587/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhkvartira/1595",
+          "storage_path": "videos/kvartira/leto-kvartira-2k-1587/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/leto-kvartira-2k-1587/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1595"
+            "telegram_post": "abhkvartira/1595",
+            "telegram_url": "https://t.me/abhkvartira/1595",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/leto-kvartira-2k-1587/video-01-source-poster.jpg"
           }
         }
       ]
@@ -8022,13 +8028,15 @@
           "id": 1120011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhkvartira/1531",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/na-vremya-v-rayu-zhile-pod-klyuch-1522/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhkvartira/1531",
+          "storage_path": "videos/kvartira/na-vremya-v-rayu-zhile-pod-klyuch-1522/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/na-vremya-v-rayu-zhile-pod-klyuch-1522/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1531"
+            "telegram_post": "abhkvartira/1531",
+            "telegram_url": "https://t.me/abhkvartira/1531",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/na-vremya-v-rayu-zhile-pod-klyuch-1522/video-01-source-poster.jpg"
           }
         }
       ]
@@ -9128,13 +9136,15 @@
           "id": 1121010,
           "media_role": "gallery",
           "sort_order": 9,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhkvartira/1519",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/studio-san-amra-studiya-na-plyazhe-1511/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhkvartira/1519",
+          "storage_path": "videos/kvartira/studio-san-amra-studiya-na-plyazhe-1511/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/studio-san-amra-studiya-na-plyazhe-1511/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1519"
+            "telegram_post": "abhkvartira/1519",
+            "telegram_url": "https://t.me/abhkvartira/1519",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/studio-san-amra-studiya-na-plyazhe-1511/video-01-source-poster.jpg"
           }
         }
       ]
@@ -9782,13 +9792,15 @@
           "id": 1105011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhkvartira/1508",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mimoza-3k-kvartira-1499/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhkvartira/1508",
+          "storage_path": "videos/kvartira/mimoza-3k-kvartira-1499/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mimoza-3k-kvartira-1499/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1508"
+            "telegram_post": "abhkvartira/1508",
+            "telegram_url": "https://t.me/abhkvartira/1508",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mimoza-3k-kvartira-1499/video-01-source-poster.jpg"
           }
         }
       ]
@@ -10449,13 +10461,15 @@
           "id": 1091010,
           "media_role": "gallery",
           "sort_order": 9,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhkvartira/1485",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/tihaya-obitel-dom-pod-klyuch-1477/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhkvartira/1485",
+          "storage_path": "videos/kvartira/tihaya-obitel-dom-pod-klyuch-1477/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/tihaya-obitel-dom-pod-klyuch-1477/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1485"
+            "telegram_post": "abhkvartira/1485",
+            "telegram_url": "https://t.me/abhkvartira/1485",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/tihaya-obitel-dom-pod-klyuch-1477/video-01-source-poster.jpg"
           }
         }
       ]
@@ -11467,13 +11481,15 @@
           "id": 986011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhkvartira/1474",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sekret-garden-apartamenty-1465/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhkvartira/1474",
+          "storage_path": "videos/kvartira/sekret-garden-apartamenty-1465/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sekret-garden-apartamenty-1465/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1474"
+            "telegram_post": "abhkvartira/1474",
+            "telegram_url": "https://t.me/abhkvartira/1474",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sekret-garden-apartamenty-1465/video-01-source-poster.jpg"
           }
         }
       ]
@@ -16294,13 +16310,15 @@
           "id": 789011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhkvartira/1463",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/atmosfernaya-kvartira-2k-1454/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhkvartira/1463",
+          "storage_path": "videos/kvartira/atmosfernaya-kvartira-2k-1454/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/atmosfernaya-kvartira-2k-1454/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1463"
+            "telegram_post": "abhkvartira/1463",
+            "telegram_url": "https://t.me/abhkvartira/1463",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/atmosfernaya-kvartira-2k-1454/video-01-source-poster.jpg"
           }
         }
       ]
@@ -18692,13 +18710,15 @@
           "id": 730011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhkvartira/1440",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhkvartira/1440",
+          "storage_path": "videos/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1440"
+            "telegram_post": "abhkvartira/1440",
+            "telegram_url": "https://t.me/abhkvartira/1440",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/video-01-source-poster.jpg"
           }
         }
       ]
@@ -30551,13 +30571,15 @@
           "id": 132001,
           "media_role": "gallery",
           "sort_order": 1,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhkvartira/1153",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/suhum-dom-1153/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhkvartira/1153",
+          "storage_path": "videos/kvartira/suhum-dom-1153/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/suhum-dom-1153/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1153"
+            "telegram_post": "abhkvartira/1153",
+            "telegram_url": "https://t.me/abhkvartira/1153",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/suhum-dom-1153/video-01-source-poster.jpg"
           }
         }
       ]
@@ -35499,13 +35521,15 @@
           "id": 137010,
           "media_role": "gallery",
           "sort_order": 9,
-          "mime_type": "application/x-telegram-embed",
-          "source_url": "https://t.me/abhkvartira/1101",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sanset-kvartira-1k-ldzaa-1101/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "",
-          "public_url": "https://t.me/abhkvartira/1101",
+          "storage_path": "videos/kvartira/sanset-kvartira-1k-ldzaa-1101/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sanset-kvartira-1k-ldzaa-1101/video-01-source.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1101"
+            "telegram_post": "abhkvartira/1101",
+            "telegram_url": "https://t.me/abhkvartira/1101",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sanset-kvartira-1k-ldzaa-1101/video-01-source-poster.jpg"
           }
         }
       ]
