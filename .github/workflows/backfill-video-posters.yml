@@ -1,0 +1,63 @@
+name: Backfill video posters
+
+# Ручная дозаливка кадров-обложек (-poster.jpg) для видео, залитых до
+# автогенерации постеров: делает кадры ffmpeg'ом из бакета, прописывает
+# poster_url в снапшот и блоки обзоров, пересобирает страницы и публикует.
+
+on:
+  workflow_dispatch:
+
+# Публикуем в main — сериализуемся с автосинком, чтобы не гоняться пушами.
+concurrency:
+  group: watch-telegram
+  cancel-in-progress: false
+
+jobs:
+  posters:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: write
+    env:
+      YANDEX_S3_ACCESS_KEY_ID: ${{ secrets.YANDEX_S3_ACCESS_KEY_ID }}
+      YANDEX_S3_SECRET_ACCESS_KEY: ${{ secrets.YANDEX_S3_SECRET_ACCESS_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: |
+          pip install --quiet -r requirements-site-update-bot.txt
+          sudo apt-get -yq install ffmpeg >/dev/null 2>&1 || true
+
+      - name: Сгенерировать и залить постеры
+        run: python tools/backfill_video_posters.py
+
+      - name: Пересобрать страницы из снапшота
+        run: python scripts/rebuild_from_catalog_snapshot.py
+
+      - name: Контрольные аудиты
+        run: |
+          python tools/audit_supabase_prod_deps.py
+          python tools/validate_catalog_snapshot.py
+          python tools/verify_object_media.py
+
+      - name: Опубликовать
+        run: |
+          git config user.name "abhazbereg-autosync"
+          git config user.email "darya.tiande@gmail.com"
+          git add -A
+          if git diff --cached --quiet -I '"generated_at"'; then
+            echo "Постеры уже на месте — публиковать нечего."
+            exit 0
+          fi
+          git commit -m "Обложки видео: дозаливка постеров для старых роликов"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main && git push origin main && exit 0
+            echo "Попытка $attempt не удалась, повтор через 5с..."
+            sleep 5
+          done
+          exit 1
