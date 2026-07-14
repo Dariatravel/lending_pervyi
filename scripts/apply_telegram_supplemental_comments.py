@@ -564,7 +564,14 @@ async def run(args: argparse.Namespace) -> int:
                     ok += 1
                 await asyncio.sleep(0.3)
             except Exception as error:  # noqa: BLE001
-                line = f"[ERR] {target.slug}: {error}"
+                # «The message ID used in the peer was invalid» от GetRepliesRequest
+                # означает, что у поста нет треда комментариев — это нормальное
+                # состояние объекта, а не сбой: пропускаем, не валя весь прогон.
+                text = str(error)
+                if "message id used in the peer was invalid" in text.lower() or "MSG_ID_INVALID" in text:
+                    line = f"[SKIP] {target.slug}: comments thread unavailable ({text})"
+                else:
+                    line = f"[ERR] {target.slug}: {error}"
                 results.append(line)
                 print(line, flush=True)
     report = "\n".join(
