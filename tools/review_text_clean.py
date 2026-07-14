@@ -150,7 +150,17 @@ _LATIN_AUTHOR_PREFIX = re.compile(
 _CYR_AUTHOR_BEFORE_QUOTE = re.compile(r'^\s*[А-ЯЁ][а-яё]+\s+[А-ЯЁ][а-яё]+\s+(?=«)')
 
 
+# Рекламная шапка канала в начале скрина: «Абхазия | ОТЕЛИ | ЖИЛЬЕ … ОСТАВЬ СВОЙ ОТЗЫВ»
+_AD_HEADER_PREFIXES = [
+    re.compile(r'^.{0,160}?ОСТАВЬ\s+СВОЙ\s+ОТ?ЗЫВ\W*', re.I | re.S),
+    re.compile(r'^\s*(?:Д\s+)?Все\s+любят\s+читать\s+отзывы\s+от\s*[.…]*\s*', re.I),
+    re.compile(r'^\s*[А-ЯЁ][а-яё]+\s+[А-ЯЁ][а-яё]+\s*\|\s*[А-ЯЁ][а-яё]+\s+[а-яё]+\s+(?=[А-ЯЁ])'),
+]
+
+
 def _strip_aggregator_chrome(text: str) -> str:
+    for pattern in _AD_HEADER_PREFIXES:
+        text = pattern.sub('', text)
     text = _AGG_REVIEW_PREFIX.sub('', text)
     text = _AGG_DATE_REPLY_TAIL.sub('', text)
     text = _AGG_REPLY_TAIL.sub('', text)

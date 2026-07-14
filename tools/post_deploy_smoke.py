@@ -10,6 +10,7 @@ import re
 import sys
 from datetime import datetime
 from pathlib import Path
+from urllib.error import HTTPError
 from urllib.parse import urljoin, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
 
@@ -74,6 +75,8 @@ def head_ok(url: str, timeout: int) -> tuple[bool, int | None, int | None]:
             body = response.read(1)
             size = int(response.headers.get("Content-Length") or len(body) or 0)
             return 200 <= int(response.status) < 300, int(response.status), size
+    except HTTPError as error:
+        return False, int(error.code), None
     except Exception:
         return False, None, None
 
@@ -220,6 +223,11 @@ def main() -> int:
         asset_results = []
         for asset_url in sorted(set(asset_urls)):
             ok, asset_status, asset_size = head_ok(asset_url, args.timeout)
+            # У объекта может не быть OCR-отзывов: 404 объектного bank.json —
+            # штатный случай, клиент подставляет общие отзывы из global.json.
+            optional_bank = re.search(r"/media/reviews/[^/]+/bank\.json$", asset_url.split("?")[0])
+            if not ok and optional_bank and asset_status == 404:
+                ok = True
             asset_results.append({"url": asset_url, "status": asset_status, "size": asset_size, "ok": ok})
             if not ok:
                 page_errors.append(f"asset недоступен: {asset_url} status={asset_status}")
