@@ -733,6 +733,18 @@ def render_paragraph_block(lines: list[str]) -> str:
     return render_paragraph_lines_html(lines)
 
 
+# Обязательная последняя строка раздела «УСЛОВИЯ» на каждой странице объекта
+# (решение Дарьи, 15.07.2026). Дублируется в apply_telegram_detail_sections.py.
+NO_COMMISSION_LINE = (
+    'Я работаю с ценами точь в точь как у объекта размещения. '
+    'Комиссии за мои услуги нет.'
+)
+
+
+def _is_conditions_label(label: str) -> bool:
+    return 'УСЛОВИЯ' in (label or '').strip().upper().replace('Ё', 'Е')
+
+
 def _section_heading_markup(label: str) -> str:
     t = (label or '').strip()
     if not t or t.casefold() == 'обзор':
@@ -742,14 +754,29 @@ def _section_heading_markup(label: str) -> str:
 
 def render_sections_html(sections: list[dict[str, Any]], parsed: dict[str, Any] | None = None) -> str:
     parts: list[str] = []
+    has_conditions = False
+    has_no_commission_line = any(
+        'точь в точь' in str(line)
+        for section in sections
+        for line in section.get('lines', [])
+    )
     for section in sections:
         lines = list(section.get('lines', []))
+        label = str(section.get('label', ''))
+        if _is_conditions_label(label):
+            has_conditions = True
+            if not has_no_commission_line:
+                lines.append(NO_COMMISSION_LINE)
         block = render_paragraph_block(lines)
         if not block:
             continue
-        heading = _section_heading_markup(str(section.get('label', '')))
+        heading = _section_heading_markup(label)
         parts.append(
             f'''      <section class="section hotel-site-concept__detail-section">\n        <article class="card">\n{heading}          <div class="paragraph-blocks">\n{block}\n          </div>\n        </article>\n      </section>'''
+        )
+    if not has_conditions and not has_no_commission_line:
+        parts.append(
+            f'''      <section class="section hotel-site-concept__detail-section">\n        <article class="card">\n          <h2>✔️УСЛОВИЯ:</h2>\n          <div class="paragraph-blocks">\n            <p>{html.escape(NO_COMMISSION_LINE)}</p>\n          </div>\n        </article>\n      </section>'''
         )
     return ''.join(parts)
 

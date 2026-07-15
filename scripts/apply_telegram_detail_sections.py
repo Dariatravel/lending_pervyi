@@ -35,6 +35,19 @@ SESSION.headers["User-Agent"] = "Mozilla/5.0 (compatible; AbhazberegSync/1.0)"
 
 HEADER_RE = re.compile(r"^\s*✔️?\s*(.+?):\s*$")
 
+# Обязательная последняя строка раздела «УСЛОВИЯ» (решение Дарьи, 15.07.2026).
+# Дублируется в sync_catalog_from_telegram.py (NO_COMMISSION_LINE).
+NO_COMMISSION_LINE = (
+    "Я работаю с ценами точь в точь как у объекта размещения. "
+    "Комиссии за мои услуги нет."
+)
+
+
+def ensure_no_commission_last(paras: list[str]) -> list[str]:
+    if any("точь в точь" in p for p in paras):
+        return paras
+    return [*paras, NO_COMMISSION_LINE]
+
 FOOTER_LINE = re.compile(
     r"abhazbooking_online|whatsapp|telegram\.me|t\.me/|\+7|\+7940|только этот контакт|"
     r"будьте внимательны|по бронированию и наличию|я на связи",
@@ -191,6 +204,8 @@ def apply_to_page(path: Path, channel: str, message_id: int, dry_run: bool) -> t
         paras = paragraphs_from_block(body)
         if not paras:
             continue
+        if canon == "УСЛОВИЯ":
+            paras = ensure_no_commission_last(paras)
 
         for tag in block.find_all(True):
             tag.decompose()
@@ -211,6 +226,7 @@ def apply_to_page(path: Path, channel: str, message_id: int, dry_run: bool) -> t
         if not has_uslov:
             paras = paragraphs_from_block(sections["УСЛОВИЯ"])
             paras = [p for p in paras if not FOOTER_LINE.search(p)]
+            paras = ensure_no_commission_last(paras) if paras else paras
             if paras:
                 new_sec = soup.new_tag(
                     "section", attrs={"class": "section hotel-site-concept__detail-section"}
