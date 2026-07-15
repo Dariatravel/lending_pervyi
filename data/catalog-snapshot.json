@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T13:21:59.312529+00:00",
+  "generated_at": "2026-07-15T15:38:03.068222+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 221,
@@ -2731,7 +2731,7 @@
         {
           "id": 1138003,
           "media_role": "gallery",
-          "sort_order": 3,
+          "sort_order": 2,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-02.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2742,7 +2742,7 @@
         {
           "id": 1138004,
           "media_role": "gallery",
-          "sort_order": 4,
+          "sort_order": 3,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-03.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2753,7 +2753,7 @@
         {
           "id": 1138005,
           "media_role": "gallery",
-          "sort_order": 5,
+          "sort_order": 4,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-04.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2764,7 +2764,7 @@
         {
           "id": 1138006,
           "media_role": "gallery",
-          "sort_order": 6,
+          "sort_order": 5,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-05.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2775,7 +2775,7 @@
         {
           "id": 1138007,
           "media_role": "gallery",
-          "sort_order": 7,
+          "sort_order": 6,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-06.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2786,7 +2786,7 @@
         {
           "id": 1138008,
           "media_role": "gallery",
-          "sort_order": 8,
+          "sort_order": 7,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-07.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2797,7 +2797,7 @@
         {
           "id": 1138009,
           "media_role": "gallery",
-          "sort_order": 9,
+          "sort_order": 8,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-08.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2807,6 +2807,17 @@
         },
         {
           "id": 1138010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/belaya-dacha-otel-s-pitaniem-4630/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1138011,
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
