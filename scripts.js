@@ -180,17 +180,19 @@
       window.addEventListener(eventName, startAnalytics, { once: true, passive: true });
     });
 
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(startAnalytics, { timeout: 5000 });
-    } else {
-      window.setTimeout(startAnalytics, 3000);
-    }
+    window.setTimeout(() => {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(startAnalytics, { timeout: 4000 });
+      } else {
+        startAnalytics();
+      }
+    }, 12000);
   }
 
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607141317";
+  const ASSET_VERSION = "202607150955";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -3455,7 +3457,11 @@
         }
         if (img.dataset.deferredSrc) return;
         img.dataset.deferredSrc = img.getAttribute("src") || "";
+        img.dataset.deferredSrcset = img.getAttribute("srcset") || "";
+        img.dataset.deferredSizes = img.getAttribute("sizes") || "";
         img.removeAttribute("src");
+        img.removeAttribute("srcset");
+        img.removeAttribute("sizes");
         img.loading = "lazy";
       });
     });
@@ -3468,7 +3474,11 @@
         const src = img.dataset.deferredSrc || "";
         if (!src) return;
         img.setAttribute("src", src);
+        if (img.dataset.deferredSrcset) img.setAttribute("srcset", img.dataset.deferredSrcset);
+        if (img.dataset.deferredSizes) img.setAttribute("sizes", img.dataset.deferredSizes);
         img.removeAttribute("data-deferred-src");
+        img.removeAttribute("data-deferred-srcset");
+        img.removeAttribute("data-deferred-sizes");
       });
     });
   }
@@ -3654,6 +3664,7 @@
     let catalogExpanded = false;
     const CATALOG_INITIAL_LIMIT = 20;
     let catalogMediaDeferred = false;
+    let catalogIndexReady = false;
 
     const filtersDrawerState = { reopenFocusEl: null, isOpen: false };
 
@@ -3742,7 +3753,12 @@
     function rebuildCardIndex() {
       selectionPodborka.restoreCardsToGrid();
       catalogMatch.rebuild();
+      catalogIndexReady = true;
       selectionPodborka.rememberAnchors();
+    }
+
+    function ensureCardIndex() {
+      if (!catalogIndexReady) rebuildCardIndex();
     }
 
     function notifySubscribers(reason, snapshot) {
@@ -3766,14 +3782,17 @@
     }
 
     function countShownOnly(selected, slug, nameQuery) {
+      ensureCardIndex();
       return catalogMatch.countAllMatching(selected, slug, nameQuery ?? filt.committedNameQuery);
     }
 
     function countTotalMatching(selected, slug, nameQuery) {
+      ensureCardIndex();
       return catalogMatch.countAllMatching(selected, slug, nameQuery ?? filt.committedNameQuery);
     }
 
     function applyVisibilityCommitted() {
+      ensureCardIndex();
       return catalogMatch.applyHiddenForSelection(
         filt.committedSel,
         filt.committedCat,
@@ -3835,6 +3854,45 @@
       return shouldLimit
         ? Math.min(visibility.totalShown, CATALOG_INITIAL_LIMIT)
         : visibility.totalShown;
+    }
+
+    function hasActiveCommittedFilters() {
+      return countActivePins(filt.committedSel, filt.committedCat, filt.committedNameQuery) > 0;
+    }
+
+    function applyInitialCatalogLimitWithoutIndex() {
+      const cards = getCards();
+      if (!catalogMediaDeferred) {
+        deferCatalogCardImages(cards, CATALOG_INITIAL_LIMIT);
+        catalogMediaDeferred = true;
+      }
+
+      let shown = 0;
+      cards.forEach((card) => {
+        shown += 1;
+        card.hidden = shown > CATALOG_INITIAL_LIMIT;
+      });
+
+      if (catalogExpandBtn) {
+        catalogExpandBtn.hidden = cards.length <= CATALOG_INITIAL_LIMIT;
+      }
+      if (visibleCount) {
+        visibleCount.textContent = String(Math.min(cards.length, CATALOG_INITIAL_LIMIT));
+      }
+      if (clearBtn) clearBtn.hidden = true;
+      if (emptyNote) emptyNote.hidden = true;
+
+      syncOpenBadge();
+      renderActiveRemovalChips();
+      syncChipUi(filt.committedSel, filt.committedCat);
+      draftPreviewCount = Math.min(cards.length, CATALOG_INITIAL_LIMIT);
+      syncApplyFooterText();
+      notifySubscribers("commit", {
+        pins: 0,
+        primaryShown: Math.min(cards.length, CATALOG_INITIAL_LIMIT),
+        totalMatching: cards.length,
+        resultCount: Math.min(cards.length, CATALOG_INITIAL_LIMIT),
+      });
     }
 
     const { renderActiveRemovalChips, syncOpenBadge, updateEmptyLead } = attachCatalogFilterSummaryChrome({
@@ -4343,7 +4401,6 @@
     }
 
     function bootstrapFiltersFromUrlAndDom() {
-      rebuildCardIndex();
       if (!catalogMediaDeferred) {
         deferCatalogCardImages(getCards(), CATALOG_INITIAL_LIMIT);
         catalogMediaDeferred = true;
@@ -4351,6 +4408,11 @@
       suppressUrlSync = true;
       catalogUrl.absorbLocationIntoCommitted();
       suppressUrlSync = false;
+      if (!hasActiveCommittedFilters()) {
+        applyInitialCatalogLimitWithoutIndex();
+        return;
+      }
+      rebuildCardIndex();
       rollbackDraftFromCommitted();
       rebuildRecentStackFromSelections();
       syncNameSearchInputs(filt.committedNameQuery);
@@ -4756,7 +4818,6 @@
     if (grid.querySelector(".catalog-card")) {
       addHotelVideoBadges(grid);
       initCatalogMapPlaques(grid);
-      filtersController.refresh();
       return;
     }
 
