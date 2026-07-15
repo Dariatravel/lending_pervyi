@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T06:55:00.666799+00:00",
+  "generated_at": "2026-07-15T09:15:58.636306+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 220,
@@ -2576,15 +2576,11 @@
           },
           {
             "kind": "price",
-            "text": "4500₽ - июнь"
-          },
-          {
-            "kind": "price",
             "text": "5500₽ - июль"
           },
           {
             "kind": "price",
-            "text": "6500₽ - август"
+            "text": "7500₽ - август"
           },
           {
             "kind": "price",
@@ -2604,15 +2600,11 @@
           },
           {
             "kind": "price",
-            "text": "7000₽ - июнь"
-          },
-          {
-            "kind": "price",
             "text": "9000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "10000₽ - август"
+            "text": "11000₽ - август"
           },
           {
             "kind": "price",
@@ -2632,15 +2624,11 @@
           },
           {
             "kind": "price",
-            "text": "8100₽ - июнь"
-          },
-          {
-            "kind": "price",
             "text": "9900₽ - июль"
           },
           {
             "kind": "price",
-            "text": "11700₽ - август"
+            "text": "12700₽ - август"
           },
           {
             "kind": "price",
@@ -2660,15 +2648,11 @@
           },
           {
             "kind": "price",
-            "text": "12600₽ - июнь"
-          },
-          {
-            "kind": "price",
             "text": "16200₽ - июль"
           },
           {
             "kind": "price",
-            "text": "18000₽ - август"
+            "text": "19000₽ - август"
           },
           {
             "kind": "price",
@@ -6805,19 +6789,11 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - май"
+            "text": "7500₽ - июль"
           },
           {
             "kind": "price",
-            "text": "7000₽ - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "8000₽ - июль"
-          },
-          {
-            "kind": "price",
-            "text": "9000₽ - август"
+            "text": "8000₽ - август"
           },
           {
             "kind": "price",
@@ -6833,7 +6809,7 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - май, июнь, июль, август, сентябрь, октябрь"
+            "text": "5000₽ - июль, август, сентябрь, октябрь"
           },
           {
             "kind": "note",
@@ -43788,15 +43764,19 @@
           },
           {
             "kind": "price",
-            "text": "9000₽/сутки - июль, август"
+            "text": "9000₽ - июль, август"
           },
           {
             "kind": "price",
-            "text": "8000₽/сутки - сентябрь до 15го"
+            "text": "8000₽ - сентябрь до 15го"
           },
           {
             "kind": "price",
-            "text": "6000₽/сутки - сентябрь с 15го"
+            "text": "6000₽ - сентябрь с 15го"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - октябрь"
           },
           {
             "kind": "price",
@@ -43808,15 +43788,19 @@
           },
           {
             "kind": "price",
-            "text": "6500₽/сутки - июль, август"
+            "text": "6500₽ - июль, август"
           },
           {
             "kind": "price",
-            "text": "5000₽/сутки - сентябрь до 15го"
+            "text": "5000₽ - сентябрь до 15го"
           },
           {
             "kind": "price",
-            "text": "4000₽/сутки - сентябрь с 15го"
+            "text": "4000₽ - сентябрь с 15го"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - октябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/kameliya-domiki-3084/index.html",
@@ -59794,6 +59778,10 @@
           {
             "kind": "price",
             "text": "5000₽ - с 15 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - октябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/briz-domiki-na-beregu-4937/index.html",
