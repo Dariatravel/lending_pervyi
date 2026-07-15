@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T21:03:22.513986+00:00",
+  "generated_at": "2026-07-15T21:43:32.622868+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 220,
@@ -26587,11 +26587,15 @@
           },
           {
             "kind": "price",
-            "text": "8000₽ - июль, август, сентябрь"
+            "text": "8000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "3500₽ - октябрь"
+            "text": "7500₽ - август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - октябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/amor-apartamenty-s-kuhney-i-basseynom-3487/index.html",
@@ -45884,15 +45888,11 @@
         "prices": [
           {
             "kind": "price",
-            "text": "3000₽ - май с 15 числа"
+            "text": "7000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "3500₽ - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "7000₽ - июль, август, сентябрь"
+            "text": "6700₽ - август, сентябрь"
           },
           {
             "kind": "price",
