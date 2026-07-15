@@ -817,7 +817,7 @@ def render_report(
         if len(changes) > 40:
             lines.append(f"... и ещё {len(changes) - 40}")
         lines.append("")
-        lines.append("Для точечного обновления: /update_changed")
+        lines.append("Изменения применяются автоматически следующим шагом автосинка.")
     if missing:
         lines.append("")
         lines.append(f"Посты удалены из Telegram (объект остаётся на сайте): {len(missing)}")
