@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T07:46:18.504785+00:00",
+  "generated_at": "2026-07-15T19:07:49.839167+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1059,6 +1059,14 @@
       "cityKey": "ldzaa"
     },
     {
+      "title": "\"ФЛАМИНГО\" гостевой дом",
+      "address": "Лдзаа, Лидзавское шоссе, 22",
+      "lat": 43.17156185311346,
+      "lon": 40.36120527116393,
+      "url": "/hotels/flamingo-gostevoy-dom-5018/",
+      "cityKey": "ldzaa"
+    },
+    {
       "title": "\"ХЭППИ ЛЭНД\" домики двухэтажные",
       "address": "Лдзаа, ул. Речная",
       "lat": 43.17487186981105,
@@ -1764,18 +1772,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 444,
-    "placemarks_unique": 222,
-    "pages_total": 226,
-    "pages_on_disk": 252,
+    "placemarks_total": 446,
+    "placemarks_unique": 223,
+    "pages_total": 227,
+    "pages_on_disk": 253,
     "pages_excluded": 26,
-    "from_constructor": 226,
+    "from_constructor": 227,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 0,
     "skipped_without_coords": 0,
     "shared_coordinate_groups": 20,
     "deduped_redirect_points": 6,
-    "points_total": 220
+    "points_total": 221
   }
 }
