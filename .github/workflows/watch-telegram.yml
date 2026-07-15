@@ -98,6 +98,22 @@ jobs:
         if: steps.gate.outputs.enabled == 'true'
         run: python scripts/watch_telegram_updates.py --strict
 
+      # Точки карты живут в Яндекс-конструкторе (Дарья ставит их руками),
+      # синк конструктор → data/objects-map-points.json секретов не требует.
+      # При телеграм-изменениях карта уедет общим коммитом «Опубликовать
+      # изменения» (git add -A); без них — отдельным шагом ниже.
+      - name: Обновить точки карты из Яндекс-конструктора
+        if: steps.gate.outputs.enabled == 'true'
+        continue-on-error: true
+        run: |
+          python scripts/sync_objects_map_points.py --apply
+          COUNT=$(python -c "import json;print(len(json.load(open('data/objects-map-points.json'))['points']))" 2>/dev/null || echo 0)
+          echo "Точек карты после синка: $COUNT"
+          if [ "$COUNT" -lt 150 ]; then
+            echo "::warning::Подозрительно мало точек ($COUNT) — конструктор мог отдать мусор, откатываю карту."
+            git checkout -- data/objects-map-points.json
+          fi
+
       - name: Определить, есть ли изменения
         id: detect
         if: steps.gate.outputs.enabled == 'true'
@@ -182,6 +198,30 @@ jobs:
           fi
           echo "pushed=true" >> "$GITHUB_OUTPUT"
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
+
+      # Карта могла измениться и без изменений в Telegram — тогда общий
+      # publish не выполнялся и точки публикуем отдельным коммитом.
+      - name: Опубликовать обновление карты
+        if: steps.gate.outputs.enabled == 'true' && steps.sync.outputs.done != 'true'
+        run: |
+          if git diff --quiet -I '"generated_at"' -- data/objects-map-points.json; then
+            echo "Точки карты не изменились (или только метка времени) — публиковать нечего."
+            git checkout -q -- data/objects-map-points.json 2>/dev/null || true
+            exit 0
+          fi
+          git config user.name "abhazbereg-autosync"
+          git config user.email "darya.tiande@gmail.com"
+          git add data/objects-map-points.json
+          git commit -m "Авто-синк точек карты из Яндекс-конструктора (GitHub Actions)"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep 10
+          done
+          echo "::error::Не удалось опубликовать обновление карты после 3 попыток."
+          exit 1
 
       - name: Сохранить watch-state
         if: steps.gate.outputs.enabled == 'true' && always()
