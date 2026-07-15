@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T04:44:41.180798+00:00",
+  "generated_at": "2026-07-15T06:55:00.666799+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 220,
@@ -35395,10 +35395,6 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция 🔥 До 15 июля 6000₽🔥"
-          },
-          {
-            "kind": "price",
             "text": "7000₽ - июль, август"
           },
           {
@@ -35407,7 +35403,7 @@
           },
           {
             "kind": "price",
-            "text": "В июне квартира занята."
+            "text": "4500₽ - октябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/sanset-kvartira-1k-ldzaa-1101/index.html",
