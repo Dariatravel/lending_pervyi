@@ -536,8 +536,11 @@ def page_records() -> list[dict]:
                 title = re.sub(r"<[^>]+>", " ", document_title.group(1) if document_title else "")
                 title = html.unescape(re.sub(r"\s+", " ", title).strip())
                 title = re.split(r"\s+[—|]\s+", title, maxsplit=1)[0].strip()
-            if not title:
-                title = str(snapshot.get("title") or "").strip()
+            if not title or "страница переехала" in title.lower():
+                # Redirect-страница: заголовок берём из снапшота по целевому слагу
+                resolved_slug = url_path.strip("/").split("/")[-1]
+                resolved = snapshot_by_slug.get(resolved_slug) or snapshot
+                title = str(resolved.get("title") or "").strip()
 
             loc_match = re.search(r'class="location"[^>]*>(.*?)</p>', raw_html, re.S | re.I)
             loc_text = re.sub(r"<[^>]+>", " ", loc_match.group(1) if loc_match else "")
@@ -1467,7 +1470,18 @@ def build_points() -> dict:
         coord_groups[key].append(slug)
     stats["shared_coordinate_groups"] = sum(1 for slugs in coord_groups.values() if len(slugs) > 1)
 
-    points = list(points_by_slug.values())
+    # Дедупликация: страница объекта и её redirect-страница канонизируются
+    # в один url — оставляем запись самой страницы объекта.
+    points_by_url: dict[str, tuple[str, dict[str, Any]]] = {}
+    for slug, point in points_by_slug.items():
+        url = str(point.get("url") or "")
+        url_slug = url.strip("/").split("/")[-1] if url else slug
+        current = points_by_url.get(url)
+        if current is None or (slug == url_slug and current[0] != url_slug):
+            points_by_url[url] = (slug, point)
+    stats["deduped_redirect_points"] = len(points_by_slug) - len(points_by_url)
+
+    points = [point for _, point in points_by_url.values()]
     for point in points:
         point.pop("source", None)
     points.sort(key=lambda item: (item.get("cityKey") or "", item["title"]))

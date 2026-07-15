@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T08:39:49.826539+00:00",
+  "generated_at": "2026-07-15T07:46:18.504785+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -107,6 +107,14 @@
       "cityKey": "alakhadzy"
     },
     {
+      "title": "\"САН СЕБАСТИАН\" домики с бассейном",
+      "address": "Алахадзы, ул. Туманяна, 45",
+      "lat": 43.21943445654182,
+      "lon": 40.279252160712446,
+      "url": "/hotels/san-sebastian-domiki-s-basseynom-5007/",
+      "cityKey": "alakhadzy"
+    },
+    {
       "title": "\"САНДИ ХАУС\" коттеджный комплекс с бассейном",
       "address": "Алахадзы, ул. Туманяна, 40А",
       "lat": 43.220118875111815,
@@ -136,14 +144,6 @@
       "lat": 43.22488,
       "lon": 40.279334,
       "url": "/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/",
-      "cityKey": "alakhadzy"
-    },
-    {
-      "title": "\"ФЛОРА\" ДОМ",
-      "address": "Алахадзе, улица Абовяна, 25А",
-      "lat": 43.223441,
-      "lon": 40.275597,
-      "url": "/kvartira/flora-dom-alahadze-1163/",
       "cityKey": "alakhadzy"
     },
     {
@@ -204,9 +204,9 @@
     },
     {
       "title": "\"БАГРИПШ\" домики на берегу. ВСЁ ВКЛЮЧЕНО!",
-      "address": "Гагрский район, Холодная речка, 43.360021, 40.120392",
-      "lat": 43.360021,
-      "lon": 40.120392,
+      "address": "Гагрский район, Холодная речка 43.359191, 40.123341",
+      "lat": 43.35920580873396,
+      "lon": 40.12286031106655,
       "url": "/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/",
       "cityKey": "gagra"
     },
@@ -368,14 +368,6 @@
       "lat": 43.2850267976542,
       "lon": 40.267194542327736,
       "url": "/kvartira/sekret-garden-apartamenty-1465/",
-      "cityKey": "gagra"
-    },
-    {
-      "title": "\"СЕМЕЙНАЯ\" КВАРТИРА 2К",
-      "address": "Гагра, ул. Абазгаа, 49/2, 1 этаж",
-      "lat": 43.2768,
-      "lon": 40.267567,
-      "url": "/kvartira/semeynaya-kvartira-2k-1104/",
       "cityKey": "gagra"
     },
     {
@@ -587,11 +579,11 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"БРИЗ\" домики на берегу",
-      "address": "Лдзаа, ул. Рыбзаводская, 43.174132, 40.392175",
-      "lat": 43.17416733643677,
-      "lon": 40.39211330919209,
-      "url": "/hotels/briz-domiki-na-beregu-4937/",
+      "title": "\"БРИГАНТИНА\" гостевой дом",
+      "address": "Лдзаа, ул. Нозадзе, 41А",
+      "lat": 43.173437607653014,
+      "lon": 40.37385493981094,
+      "url": "/hotels/brigantina-gostevoy-dom-4997/",
       "cityKey": "ldzaa"
     },
     {
@@ -599,7 +591,7 @@
       "address": "Лдзаа, ул. Рыбзаводская, 43.174132, 40.392175",
       "lat": 43.17416733643677,
       "lon": 40.39211330919209,
-      "url": "/hotels/briz-domiki-na-beregu-4510/",
+      "url": "/hotels/briz-domiki-na-beregu-4937/",
       "cityKey": "ldzaa"
     },
     {
@@ -931,6 +923,22 @@
       "cityKey": "ldzaa"
     },
     {
+      "title": "\"РЕГИНА\" ОТЕЛЬ (ВТОРОЙ КОРПУС)",
+      "address": "Лдзаа, ул. Рыбзаводская, 31",
+      "lat": 43.174449483553566,
+      "lon": 40.37917229695884,
+      "url": "/hotels/regina-otel-vtoroy-korpus-4987/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"РЕГИНА\" ОТЕЛЬ (ПЕРВЫЙ КОРПУС)",
+      "address": "Лдзаа, ул. Рыбзаводская, 22",
+      "lat": 43.173454,
+      "lon": 40.377368,
+      "url": "/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/",
+      "cityKey": "ldzaa"
+    },
+    {
       "title": "\"РИВЬЕРА\" гостиница видовая",
       "address": "Лдзаа, ул. Рыбзаводская, дом 81/1",
       "lat": 43.17427933560332,
@@ -1107,14 +1115,6 @@
       "cityKey": "new-afon"
     },
     {
-      "title": "\"НЕБОСВОД\" ДОМИК-АФРЕЙМ В УЕДИНЕННОМ МЕСТЕ",
-      "address": "Новый Афон, с. Псырцха, 43.0857915, 40.8730787",
-      "lat": 43.0857915,
-      "lon": 40.8730787,
-      "url": "/kvartira/nebosvod-domik-afreym-v-uedinennom-meste-1598/",
-      "cityKey": "new-afon"
-    },
-    {
       "title": "\"НЕБОСВОД\" домик-афрейм в уединенном месте",
       "address": "Новый Афон, с. Псырцха, 43.0857915, 40.8730787",
       "lat": 43.0857915,
@@ -1200,14 +1200,6 @@
       "lat": 43.17853,
       "lon": 40.316147,
       "url": "/hotels/belaya-loshad-glemping-s-basseynom-3650/",
-      "cityKey": "pitsunda"
-    },
-    {
-      "title": "\"БОНЖУР\" мини-отель",
-      "address": "Пицунда, ул. Гицба",
-      "lat": 43.16243775008196,
-      "lon": 40.32340698475784,
-      "url": "/hotels/bonzhur-mini-otel-2542/",
       "cityKey": "pitsunda"
     },
     {
@@ -1643,14 +1635,6 @@
       "cityKey": "sukhum"
     },
     {
-      "title": "\"ПЕСЧАНЫЙ БЕРЕГ\" апартаменты",
-      "address": "Сухум, Кодорское шоссе, 11",
-      "lat": 42.98695534716467,
-      "lon": 41.05759607605673,
-      "url": "/hotels/peschanyy-bereg-apartamenty-3700/",
-      "cityKey": "sukhum"
-    },
-    {
       "title": "\"РИММА\" ДВЕ КВАРТИРЫ С КУХНЕЙ",
       "address": "Сухум, ул. Услара 4Б (Армянское ущелье)",
       "lat": 42.97872,
@@ -1692,9 +1676,9 @@
     },
     {
       "title": "\"У МОРЯ\" домики",
-      "address": "Сухум, ул. Кодорское шоссе 665 д. 43",
-      "lat": 42.986181,
-      "lon": 41.05675,
+      "address": "Сухум Кодорское шоссе 665 дом 31-а",
+      "lat": 42.98264936342466,
+      "lon": 41.06252391037565,
       "url": "/hotels/u-morya-domiki-3200/",
       "cityKey": "sukhum"
     },
@@ -1771,14 +1755,6 @@
       "cityKey": "tsandripsh"
     },
     {
-      "title": "\"МИМИ\" домики с видом на горы",
-      "address": "Цандрипш, ул. 6 Октября, д. 11А",
-      "lat": 43.387446,
-      "lon": 40.038999,
-      "url": "/hotels/mimi-domiki-s-vidom-na-gory-2869/",
-      "cityKey": "tsandripsh"
-    },
-    {
       "title": "\"ЭКОХОУМ\" коттедж-отель",
       "address": "Цандрипш, Амзара, ул. Горького 3",
       "lat": 43.381001915671234,
@@ -1788,17 +1764,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 438,
-    "placemarks_unique": 219,
-    "pages_total": 223,
-    "pages_on_disk": 249,
+    "placemarks_total": 444,
+    "placemarks_unique": 222,
+    "pages_total": 226,
+    "pages_on_disk": 252,
     "pages_excluded": 26,
-    "from_constructor": 223,
+    "from_constructor": 226,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 0,
     "skipped_without_coords": 0,
-    "shared_coordinate_groups": 17,
-    "points_total": 223
+    "shared_coordinate_groups": 20,
+    "deduped_redirect_points": 6,
+    "points_total": 220
   }
 }
