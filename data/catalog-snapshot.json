@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-15T11:35:15.579711+00:00",
+  "generated_at": "2026-07-15T13:21:59.312529+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 220,
-  "listings_hotels": 161,
+  "listings_total": 221,
+  "listings_hotels": 162,
   "listings_kvartira": 59,
   "listings": [
     {
@@ -2731,7 +2731,7 @@
         {
           "id": 1138003,
           "media_role": "gallery",
-          "sort_order": 2,
+          "sort_order": 3,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-02.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2742,7 +2742,7 @@
         {
           "id": 1138004,
           "media_role": "gallery",
-          "sort_order": 3,
+          "sort_order": 4,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-03.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2753,7 +2753,7 @@
         {
           "id": 1138005,
           "media_role": "gallery",
-          "sort_order": 4,
+          "sort_order": 5,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-04.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2764,7 +2764,7 @@
         {
           "id": 1138006,
           "media_role": "gallery",
-          "sort_order": 5,
+          "sort_order": 6,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-05.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2775,7 +2775,7 @@
         {
           "id": 1138007,
           "media_role": "gallery",
-          "sort_order": 6,
+          "sort_order": 7,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-06.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2786,7 +2786,7 @@
         {
           "id": 1138008,
           "media_role": "gallery",
-          "sort_order": 7,
+          "sort_order": 8,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-07.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2797,7 +2797,7 @@
         {
           "id": 1138009,
           "media_role": "gallery",
-          "sort_order": 8,
+          "sort_order": 9,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-08.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -2807,17 +2807,6 @@
         },
         {
           "id": 1138010,
-          "media_role": "gallery",
-          "sort_order": 9,
-          "mime_type": "image/jpeg",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-09.jpg",
-          "storage_bucket": "abhazbereg-media",
-          "storage_path": "hotels/belaya-dacha-otel-s-pitaniem-4630/photo-09.jpg",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/belaya-dacha-otel-s-pitaniem-4630/photo-09.jpg",
-          "details": {}
-        },
-        {
-          "id": 1138011,
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
@@ -14761,15 +14750,7 @@
           },
           {
             "kind": "price",
-            "text": "2100₽\\2500₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "2600₽\\3000₽ - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "3600₽\\4000₽ - июль, август, сентябрь по 15 число"
+            "text": "4000₽\\4500₽ - июль, август, сентябрь по 15 число"
           },
           {
             "kind": "price",
@@ -14782,14 +14763,6 @@
           {
             "kind": "note",
             "text": "Доп. место — 700₽"
-          },
-          {
-            "kind": "price",
-            "text": "АКЦИЯ🔥 до 20 июня🔥"
-          },
-          {
-            "kind": "price",
-            "text": "1900₽ за двухместное размещение без завтрака"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/index.html",
@@ -61689,6 +61662,236 @@
             "telegram_url": "https://t.me/abhazbooking/5016",
             "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/san-sebastian-domiki-s-basseynom-5007/video-01-source-poster.jpg"
           }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5018,
+      "source_topic_id": null,
+      "slug": "flamingo-gostevoy-dom-5018",
+      "title": "\"ФЛАМИНГО\" гостевой дом",
+      "summary": "Лдзаа. 8 минут до пляжа, сосновый галечный, размещение до 4 человек.",
+      "excerpt": "Небольшой двухэтажный гостевой дом. Восемь номеров площадью 24 м². Размещение до 4 человек",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, Лидзавское шоссе, 22",
+      "distance_text": "8 минут до пляжа, сосновый галечный",
+      "beach_text": "8 минут до пляжа, сосновый галечный",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/flamingo-gostevoy-dom-5018/",
+      "telegram_url": "https://t.me/abhazbooking/5018",
+      "published_at": "2026-07-15",
+      "has_video": false,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/flamingo-gostevoy-dom-5018.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 8 минут до пляжа, сосновый галечный, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Небольшой двухэтажный гостевой дом. Восемь номеров площадью 24 м². Размещение до 4 человек.",
+              "В номере: двуспальная и односпальная кровати, раскладывающийся диван на 1 человека, прикроватные тумбочки, вместительный шкаф с зеркалом. Сан узел с душем. Предоставляются пляжные полотенца.",
+              "Оснащение: кондиционер, телевизор, Wi-Fi , фен."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Небольшой уютный дворик, ухоженная территория.",
+              "Своя столовая с домашней едой.",
+              "Кухни для самостоятельного приготовления нет.",
+              "Зона отдыха с качелями.",
+              "Парковка с видеонаблюдением."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Сразу за территорией сосновый парк, десткая площадка, спортивные турники.",
+              "До соснового галечного пляжа 8 минут пешком. Чистейшая вода, панорамный вид на бухту. Шезлонги в прокат. Есть водные развлечения.",
+              "В шаговой доступности несколько кафе, столовая, магазины."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Это бюджетный вариант размещения, уборка самостоятельная.",
+              "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Трехместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - с 1 июля по 10 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - с 11 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Четырехместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - с 1 июля по 10 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - с 11 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - октябрь"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/flamingo-gostevoy-dom-5018/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1178,
+      "media": [
+        {
+          "id": 1178001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/flamingo-gostevoy-dom-5018.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/flamingo-gostevoy-dom-5018.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/flamingo-gostevoy-dom-5018.jpg",
+          "details": {}
+        },
+        {
+          "id": 1178002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/flamingo-gostevoy-dom-5018/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1178003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/flamingo-gostevoy-dom-5018/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1178004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/flamingo-gostevoy-dom-5018/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1178005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/flamingo-gostevoy-dom-5018/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1178006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/flamingo-gostevoy-dom-5018/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1178007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/flamingo-gostevoy-dom-5018/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1178008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/flamingo-gostevoy-dom-5018/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1178009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/flamingo-gostevoy-dom-5018/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1178010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/flamingo-gostevoy-dom-5018/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1178011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/flamingo-gostevoy-dom-5018/photo-10.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-10.jpg",
+          "details": {}
         }
       ]
     }
