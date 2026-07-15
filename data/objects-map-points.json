@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T19:07:49.839167+00:00",
+  "generated_at": "2026-07-15T20:27:17.017698+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1683,14 +1683,6 @@
       "cityKey": "sukhum"
     },
     {
-      "title": "\"У МОРЯ\" домики",
-      "address": "Сухум Кодорское шоссе 665 дом 31-а",
-      "lat": 42.98264936342466,
-      "lon": 41.06252391037565,
-      "url": "/hotels/u-morya-domiki-3200/",
-      "cityKey": "sukhum"
-    },
-    {
       "title": "\"ФЬЮЖН\" три домика с лаунж-зоной",
       "address": "Сухум, ул. Братьев Эзугбая, д. 686",
       "lat": 43.010516,
@@ -1774,16 +1766,16 @@
   "stats": {
     "placemarks_total": 446,
     "placemarks_unique": 223,
-    "pages_total": 227,
+    "pages_total": 226,
     "pages_on_disk": 253,
-    "pages_excluded": 26,
-    "from_constructor": 227,
+    "pages_excluded": 27,
+    "from_constructor": 226,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 0,
     "skipped_without_coords": 0,
-    "shared_coordinate_groups": 20,
+    "shared_coordinate_groups": 19,
     "deduped_redirect_points": 6,
-    "points_total": 221
+    "points_total": 220
   }
 }

@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-15T19:24:17.395328+00:00",
+  "generated_at": "2026-07-15T20:24:38.267792+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 221,
-  "listings_hotels": 162,
+  "listings_total": 220,
+  "listings_hotels": 161,
   "listings_kvartira": 59,
   "listings": [
     {
@@ -40696,7 +40696,7 @@
       "published_at": "2026-01-30",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/u-morya-domiki-3200.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Сухум. 2 минуты до знаменитого пляжа Мокко, размещение до 4 человек.",
         "sections": [
