@@ -155,6 +155,12 @@ jobs:
           python tools/validate_catalog_snapshot.py
           python tools/verify_object_media.py
 
+      # Изменения применены и проверены — фиксируем их сигнатуры в watch-state,
+      # чтобы тот же самый дифф не попадал в отчёт и синк повторно каждый час.
+      - name: Принять применённые изменения в watch-state
+        if: steps.sync.outputs.done == 'true'
+        run: python tools/accept_watch_changes.py
+
       - name: Опубликовать изменения
         id: publish
         if: steps.sync.outputs.done == 'true'

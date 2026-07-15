@@ -29,6 +29,9 @@ from telegram_runtime import connected_telegram_client, run_async_entrypoint  # 
 
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 STATE_PATH = ROOT / "output" / "telegram-watch-state.json"
+# Сигнатуры обнаруженных изменений: после УСПЕШНОГО синка их принимает
+# tools/accept_watch_changes.py, чтобы изменение не повторялось в отчётах.
+PENDING_STATE_PATH = ROOT / "output" / "telegram-watch-pending-state.json"
 REPORT_PATH = ROOT / "output" / "telegram-watch-report.txt"
 TARGETS_PATH = ROOT / "output" / "telegram-watch-changed-targets.json"
 ENV_PATHS = (
@@ -900,6 +903,7 @@ async def run(args: argparse.Namespace) -> int:
     errors: list[str] = []
     missing: list[str] = []
     seen_keys: set[str] = set()
+    pending_state_items: dict[str, Any] = {}
     entities: dict[str, Any] = {}
 
     async with connected_telegram_client(session, api_id, api_hash, receive_updates=False) as client:
@@ -962,6 +966,8 @@ async def run(args: argparse.Namespace) -> int:
                 )
                 if args.accept_changes:
                     state_items[item.key] = current_payload
+                else:
+                    pending_state_items[item.key] = current_payload
             else:
                 previous["last_seen_at"] = current_payload["last_seen_at"]
                 state_items[item.key] = previous
@@ -982,6 +988,12 @@ async def run(args: argparse.Namespace) -> int:
     state["last_new_objects_total"] = len(new_objects)
     if args.write_state:
         save_state(state)
+
+    PENDING_STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    PENDING_STATE_PATH.write_text(
+        json.dumps({"items": pending_state_items}, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
     write_targets(changes, new_objects)
     report = render_report(
