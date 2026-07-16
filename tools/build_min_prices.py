@@ -108,9 +108,15 @@ def extract_price(text: str) -> int | None:
 
 
 def monthly_min_prices(price_rows: list) -> dict[int, int]:
-    """Stateful-проход: строка-заголовок с месяцами задаёт контекст для цен ниже."""
+    """Stateful-проход: строка-заголовок с месяцами задаёт контекст для цен ниже.
+
+    Заголовок со стоп-словами («Дополнительное место:», «За ребёнка:»…)
+    блокирует все цены под ним до следующего заголовка — иначе доп.места
+    попадают в «Цену от …» (кейс «Манон»: 1500 ₽ за доп.место).
+    """
     result: dict[int, int] = {}
     context_months: set[int] = set()
+    blocked_context = False
     for item in price_rows:
         text = str(item.get("text") if isinstance(item, dict) else item or "").strip()
         if not text:
@@ -118,8 +124,12 @@ def monthly_min_prices(price_rows: list) -> dict[int, int]:
         line_months = months_in(text)
         price = extract_price(text)
         if price is None:
-            if line_months:
+            # Любая строка-заголовок устанавливает или сбрасывает блокировку.
+            blocked_context = bool(STOP_WORDS.search(text))
+            if line_months and not blocked_context:
                 context_months = line_months  # «Июнь до 15 числа», «Апрель (без питания)»
+            continue
+        if blocked_context:
             continue
         target = line_months or context_months
         for month in target:

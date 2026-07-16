@@ -234,10 +234,9 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
         <p>
           Проверить наличие номеров и задать вопросы можно по номеру<br />
           <strong class="contact-phone">+7 940 900-33-40</strong><br />
-          <span class="contact-messengers">(Ватсап, Телеграм, Макс, ВК-чат)</span>
+          <span class="contact-messengers">(max, whatsapp, telegram - только сообщения, обычный звонок не пройдёт)</span>
         </p>
-        <p class="note">Только сообщения, обычный звонок не пройдёт.</p>
-        <p class="note">Прежде чем написать в МАКС, добавьте номер в контакты (иначе макс не даст ответить на входящее сообщение). Обращайтесь!</p>
+        <p class="note">ВАЖНО: прежде чем написать в максе, добавьте номер в контакты телефона (иначе макс не даст ответить на входящее сообщение)</p>
       </div>
       <div class="contact-buttons">
         <a class="btn-book" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В МАКС</a>
