@@ -192,7 +192,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607160911";
+  const ASSET_VERSION = "202607160918";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -3357,12 +3357,13 @@
   }
 
   /**
-   * Расстояние — иерархия, а не категории: «до 10 минут» включает
-   * «до 5 минут» и береговую линию. «Больше 10» остаётся отдельным.
+   * Расстояние — иерархия, а не категории: каждый уровень включает все
+   * более близкие. «Больше 10 минут» = расстояние не важно, все объекты.
    */
   const DISTANCE_FILTER_EXPANSION = {
     "up-to-5": ["beachfront", "up-to-5"],
     "up-to-10": ["beachfront", "up-to-5", "up-to-10"],
+    "over-10": ["beachfront", "up-to-5", "up-to-10", "over-10"],
   };
 
   function expandSelectedGroupValues(group, selectedSet) {
