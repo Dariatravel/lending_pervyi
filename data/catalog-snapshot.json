@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T17:01:31.272296+00:00",
+  "generated_at": "2026-07-16T19:14:02.199200+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 221,
@@ -62242,13 +62242,31 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/pitsunda-otel-5028/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "pitsunda"
+          ],
+          "beach": [
+            "pine-pebble-ldzaa-pitsunda"
+          ],
+          "room": [
+            "balcony",
+            "tv",
+            "kitchen",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "pets"
+          ]
         }
       },
       "id": 1179,
