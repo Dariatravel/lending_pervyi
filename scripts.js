@@ -192,7 +192,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607150955";
+  const ASSET_VERSION = "202607160911";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -3356,6 +3356,29 @@
     return FILTER_CONFIG.combineWithinGroup || "any";
   }
 
+  /**
+   * Расстояние — иерархия, а не категории: «до 10 минут» включает
+   * «до 5 минут» и береговую линию. «Больше 10» остаётся отдельным.
+   */
+  const DISTANCE_FILTER_EXPANSION = {
+    "up-to-5": ["beachfront", "up-to-5"],
+    "up-to-10": ["beachfront", "up-to-5", "up-to-10"],
+  };
+
+  function expandSelectedGroupValues(group, selectedSet) {
+    if (group !== "distance") return selectedSet;
+    const expanded = new Set();
+    selectedSet.forEach((choice) => {
+      const extra = DISTANCE_FILTER_EXPANSION[choice];
+      if (extra) {
+        extra.forEach((value) => expanded.add(value));
+      } else {
+        expanded.add(choice);
+      }
+    });
+    return expanded;
+  }
+
   function catalogIndexedEntryPassesFilters(
     entry,
     selected,
@@ -3369,13 +3392,14 @@
       if (!selected[group] || selected[group].size === 0) continue;
       const bucket = entry.byGroup[group];
       const combineMode = filterGroupCombineMode(group);
+      const choices = expandSelectedGroupValues(group, selected[group]);
       if (combineMode === "all") {
-        for (const choice of selected[group]) {
+        for (const choice of choices) {
           if (!bucket.has(choice)) return false;
         }
       } else {
         let ok = false;
-        for (const choice of selected[group]) {
+        for (const choice of choices) {
           if (bucket.has(choice)) {
             ok = true;
             break;
