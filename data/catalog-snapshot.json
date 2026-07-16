@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-16T09:46:53.301822+00:00",
+  "generated_at": "2026-07-16T13:15:06.582706+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 220,
-  "listings_hotels": 161,
+  "listings_total": 221,
+  "listings_hotels": 162,
   "listings_kvartira": 59,
   "listings": [
     {
@@ -61898,6 +61898,390 @@
           "storage_path": "hotels/flamingo-gostevoy-dom-5018/photo-10.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/flamingo-gostevoy-dom-5018/photo-10.jpg",
           "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5028,
+      "source_topic_id": null,
+      "slug": "pitsunda-otel-5028",
+      "title": "\"ПИЦУНДА\" отель",
+      "summary": "Пицунда. 6 минут до пляжа, размещение до 5 человек.",
+      "excerpt": "Трехэтажный отель с разными категориями размещения",
+      "city": "Пицунда",
+      "location_text": "Пицунда, ул. Тополевая, 2",
+      "distance_text": "6 минут до пляжа",
+      "beach_text": "6 минут до пляжа",
+      "capacity_text": "размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/pitsunda-otel-5028/",
+      "telegram_url": "https://t.me/abhazbooking/5028",
+      "published_at": "2026-07-16",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pitsunda-otel-5028.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Пицунда. 6 минут до пляжа, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️АПАРТАМЕНТЫ:",
+            "lines": [
+              "Трехэтажный отель с разными категориями размещения.",
+              "Апартаменты однокомнатные",
+              "Всего 3 номера. Размещение до 4 человек.",
+              "Двуспальная кровать и раскладной диван на двоих или раскладное кресло на одного.",
+              "В апартаментах есть кухонная зона: мини-холодильник, микроволновка, чайник, варочная поверхность, вытяжка, набор посуды.",
+              "Апартаменты двухкомнатные",
+              "Всего 3 номера. Размещение до 5 человек",
+              "Двуспальная кровать и раскладной диван на двоих. Доп место для 5 человека - раскладная кровать.",
+              "В апартаментах есть кухонная зона: мини-холодильник, микроволновка, чайник, варочная поверхность, вытяжка, набор посуды.",
+              "В каждом апартаменте свой сан узел с душем.",
+              "Оснащение во всех апартаментах: кондиционер, телевизор, Wi-Fi, фен."
+            ]
+          },
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Стандарт",
+              "Всего 20 номеров. Размещение до 2 человек.",
+              "Двуспальная или две односпальные кровати.",
+              "Люкс двухместный",
+              "Всего 6 номеров. Размещение до 3 человек.",
+              "Двуспальная кровать и доп место - раскладной диванчик на 1 человека.",
+              "Люкс трехместный",
+              "Всего 12 номеров. Размещение до 4 человек (4 доп место).",
+              "Двуспальная кровать и раскладной двухместный диван.",
+              "Семейный люкс",
+              "Один номер. Размещение до 5 человек.",
+              "Двуспальная кровать и раскладной двухместный диван. Доп место для 5 человека - раскладная кровать.",
+              "Двухкомнатный номер",
+              "Один номер. Размещение до 5 человек.",
+              "Двуспальная кровать и раскладной диван на двоих человек. Доп место для 5 человека - раскладная кровать.",
+              "Есть мини-кухонная зона с микроволновкой и чайником.",
+              "В каждом номере свой сан узел с душем.",
+              "Оснащение во всех номерах: кондиционер, мини-холодильник, телевизор, Wi-Fi, чайник, фен."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Есть свое кафе. Завтраки за доп плату.",
+              "Тренажерный зал.",
+              "Ногтевой сервис и парикмахерская.",
+              "Массажный салон.",
+              "Прокат велосипедов.",
+              "Во дворе несколько зон отдыха: лавочки, беседки, столы с диванами.",
+              "Есть мангальная зона.",
+              "Парковка во дворе на 30 автомобилей.",
+              "Есть генератор.",
+              "Для детей на территории есть качели."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Это центр Пицунды, есть всё. Множество кафе поблизости. Рынок, супермаркет, аптеки, остановка общественного транспорта.",
+              "Напротив отеля большая детская площадка.",
+              "Напротив отеля Патриарший собор в честь Апостола Андрея Первозванного, концертный зал.",
+              "До пляжа ОПК Курорт Пицунда 6 минут. Для гостей отеля проход бесплатный.",
+              "Пляж сосновый галечный, оборудованный. Водные развлечения."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с животными возможно бесплатно.",
+              "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Апартаменты однокомнатные"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "10500₽ - с 1 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "8500₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Апартаменты двухкомнатные"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "10700₽ - с 1 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "9500₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "6500₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Двухместный стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "6500₽ - с 1 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "3700₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Двухместный люкс"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - с 1 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "6250₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Трехместный люкс"
+          },
+          {
+            "kind": "price",
+            "text": "7800₽ - с 1 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "7050₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Семейный люкс"
+          },
+          {
+            "kind": "note",
+            "text": "(за трехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - с 1 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "7450₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Двухкомнатный номер"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "9500₽ - с 1 июля по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "8300₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место взрослый - 1000₽."
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для ребенка от 5 до 12 лет - 700₽."
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 5 лет бесплатно без предоставления отдельного места."
+          },
+          {
+            "kind": "price",
+            "text": "Завтрак - 560₽ с человека."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/pitsunda-otel-5028/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1179,
+      "media": [
+        {
+          "id": 1179001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pitsunda-otel-5028.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/pitsunda-otel-5028.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pitsunda-otel-5028.jpg",
+          "details": {}
+        },
+        {
+          "id": 1179002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pitsunda-otel-5028/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1179003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pitsunda-otel-5028/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1179004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pitsunda-otel-5028/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1179005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pitsunda-otel-5028/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1179006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pitsunda-otel-5028/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1179007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pitsunda-otel-5028/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1179008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pitsunda-otel-5028/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1179009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pitsunda-otel-5028/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1179010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/pitsunda-otel-5028/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/pitsunda-otel-5028/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1179011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pitsunda-otel-5028/video-01-source.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/pitsunda-otel-5028/video-01-source.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pitsunda-otel-5028/video-01-source.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5037",
+            "telegram_url": "https://t.me/abhazbooking/5037",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pitsunda-otel-5028/video-01-source-poster.jpg"
+          }
         }
       ]
     }
