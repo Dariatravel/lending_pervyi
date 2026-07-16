@@ -733,12 +733,27 @@ def render_paragraph_block(lines: list[str]) -> str:
     return render_paragraph_lines_html(lines)
 
 
-# Обязательная последняя строка раздела «УСЛОВИЯ» на каждой странице объекта
-# (решение Дарьи, 15.07.2026). Дублируется в apply_telegram_detail_sections.py.
-NO_COMMISSION_LINE = (
-    'Я работаю с ценами точь в точь как у объекта размещения. '
-    'Комиссии за мои услуги нет.'
+# Блок «✔️ВАЖНО:» — на каждой странице объекта (решение Дарьи, 16.07.2026).
+# Строка про цены переехала сюда из «УСЛОВИЙ»; из условий она вырезается.
+IMPORTANT_LINES = (
+    'Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет.',
+    'Обращайтесь в чат мессенджера за консультацией и бронированием.',
+    'Если нашли дешевле - напишите, проверю и сделаю для вас цену еще ниже =)',
 )
+
+
+def render_important_section_html() -> str:
+    paras = '\n'.join(f'            <p>{html.escape(line)}</p>' for line in IMPORTANT_LINES)
+    return (
+        '      <section class="section hotel-site-concept__detail-section">\n'
+        '        <article class="card" data-static-important="1">\n'
+        '          <h2>✔️ВАЖНО:</h2>\n'
+        '          <div class="paragraph-blocks">\n'
+        f'{paras}\n'
+        '          </div>\n'
+        '        </article>\n'
+        '      </section>'
+    )
 
 
 def _is_conditions_label(label: str) -> bool:
@@ -754,19 +769,10 @@ def _section_heading_markup(label: str) -> str:
 
 def render_sections_html(sections: list[dict[str, Any]], parsed: dict[str, Any] | None = None) -> str:
     parts: list[str] = []
-    has_conditions = False
-    has_no_commission_line = any(
-        'точь в точь' in str(line)
-        for section in sections
-        for line in section.get('lines', [])
-    )
     for section in sections:
-        lines = list(section.get('lines', []))
+        # Строка про цены живёт в блоке «ВАЖНО» — из текстов постов вырезаем.
+        lines = [line for line in section.get('lines', []) if 'точь' not in str(line).lower()]
         label = str(section.get('label', ''))
-        if _is_conditions_label(label):
-            has_conditions = True
-            if not has_no_commission_line:
-                lines.append(NO_COMMISSION_LINE)
         block = render_paragraph_block(lines)
         if not block:
             continue
@@ -774,10 +780,7 @@ def render_sections_html(sections: list[dict[str, Any]], parsed: dict[str, Any] 
         parts.append(
             f'''      <section class="section hotel-site-concept__detail-section">\n        <article class="card">\n{heading}          <div class="paragraph-blocks">\n{block}\n          </div>\n        </article>\n      </section>'''
         )
-    if not has_conditions and not has_no_commission_line:
-        parts.append(
-            f'''      <section class="section hotel-site-concept__detail-section">\n        <article class="card">\n          <h2>✔️УСЛОВИЯ:</h2>\n          <div class="paragraph-blocks">\n            <p>{html.escape(NO_COMMISSION_LINE)}</p>\n          </div>\n        </article>\n      </section>'''
-        )
+    parts.append(render_important_section_html())
     return ''.join(parts)
 
 
