@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T11:27:45.040876+00:00",
+  "generated_at": "2026-07-16T15:26:55.573452+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1331,6 +1331,14 @@
       "cityKey": "pitsunda"
     },
     {
+      "title": "\"ПИЦУНДА\" отель",
+      "address": "Пицунда, ул. Тополевая, 2",
+      "lat": 43.16065390796233,
+      "lon": 40.34082269050644,
+      "url": "/hotels/pitsunda-otel-5028/",
+      "cityKey": "pitsunda"
+    },
+    {
       "title": "\"САМШИТ\" домики и номера у заповедника",
       "address": "Пицунда, ул. Гицба, 1.",
       "lat": 43.16893472412741,
@@ -1764,18 +1772,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 446,
-    "placemarks_unique": 223,
-    "pages_total": 226,
-    "pages_on_disk": 253,
+    "placemarks_total": 448,
+    "placemarks_unique": 224,
+    "pages_total": 227,
+    "pages_on_disk": 254,
     "pages_excluded": 27,
-    "from_constructor": 226,
+    "from_constructor": 227,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 0,
     "skipped_without_coords": 0,
     "shared_coordinate_groups": 19,
     "deduped_redirect_points": 6,
-    "points_total": 220
+    "points_total": 221
   }
 }
