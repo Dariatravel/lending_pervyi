@@ -32,6 +32,33 @@ HOTEL_POSTS_PATH = ROOT / "output" / "abhazbooking_2026_posts.json"
 
 
 FILTER_GROUPS = ("distance", "food", "price", "city", "beach", "room", "stay")
+
+# «Цена от …» в карточках каталога: файл фиксируется ежедневно в 03:00 МСК
+# workflow'ом price-refresh (tools/build_min_prices.py), пересборки в течение
+# дня используют зафиксированные значения.
+MIN_PRICES_PATH = ROOT / "data" / "min-prices-today.json"
+
+
+def _load_min_prices() -> tuple[dict[str, int], str]:
+    try:
+        payload = json.loads(MIN_PRICES_PATH.read_text(encoding="utf-8"))
+        return dict(payload.get("prices") or {}), str(payload.get("month_label") or "")
+    except Exception:  # noqa: BLE001 — нет файла = карточки без строки цены
+        return {}, ""
+
+
+MIN_PRICES, MIN_PRICES_MONTH_LABEL = _load_min_prices()
+
+
+def render_card_price_html(slug: str) -> str:
+    value = MIN_PRICES.get(str(slug))
+    if not value or not MIN_PRICES_MONTH_LABEL:
+        return ""
+    pretty = f"{value:,}".replace(",", " ")
+    return (
+        f'<p class="catalog-card__price">Цена от <strong>{pretty} ₽</strong>/сутки '
+        f"{MIN_PRICES_MONTH_LABEL}</p>"
+    )
 CITY_MAP = {
     "sukhum": ("сухум",),
     "new-afon": ("новый афон", "приморское"),
@@ -273,6 +300,7 @@ def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]])
         f"{map_plaque}</div>"
         f"<h3>{title}</h3>"
         f"<p>{summary_html}</p>"
+        f"{render_card_price_html(row.get('slug') or '')}"
         f"</a>"
     )
 
@@ -327,6 +355,7 @@ def render_kvartira_card(row: dict[str, Any]) -> str:
         f"{map_plaque}</div>"
         f"<h3>{title}</h3>"
         f"<p>{summary}</p>"
+        f"{render_card_price_html(row.get('slug') or '')}"
         f"</a>"
     )
 

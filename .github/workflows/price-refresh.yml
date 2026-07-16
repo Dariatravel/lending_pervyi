@@ -1,0 +1,64 @@
+name: Daily price refresh
+
+# Ежедневная фиксация «Цена от …» в карточках каталога: 03:00 МСК
+# (00:00 UTC), после ночных прогонов watch-telegram (23:41, 00:41…),
+# которые уже подтянули изменения цен из постов. В течение дня все
+# пересборки используют зафиксированный data/min-prices-today.json.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+concurrency:
+  group: watch-telegram   # не толкаться с автосинком за push в main
+  cancel-in-progress: false
+
+jobs:
+  prices:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: pip install --quiet -r requirements-site-update-bot.txt
+
+      - name: Зафиксировать минимальные цены месяца
+        run: python tools/build_min_prices.py
+
+      - name: Пересобрать карточки каталога и подборки
+        run: |
+          python scripts/rebuild_from_catalog_snapshot.py
+          python scripts/build_podborki_from_filters.py
+
+      - name: Контрольные аудиты
+        run: |
+          python tools/audit_supabase_prod_deps.py
+          python tools/validate_catalog_snapshot.py
+
+      - name: Опубликовать
+        run: |
+          git config user.name "abhazbereg-autosync"
+          git config user.email "darya.tiande@gmail.com"
+          git add -A
+          if git diff --cached --quiet -I '"generated_at"'; then
+            echo "Цены не изменились — публиковать нечего."
+            exit 0
+          fi
+          git commit -m "Ежедневная фиксация цен в карточках каталога (03:00 МСК)"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep 10
+          done
+          echo "::error::Не удалось опубликовать фиксацию цен."
+          exit 1

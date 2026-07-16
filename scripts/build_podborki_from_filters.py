@@ -56,6 +56,7 @@ class Card:
     image: str
     alt: str
     filters: dict[str, set[str]]
+    price_html: str = ""  # готовая строка «Цена от …» из карточки каталога
 
 
 @dataclass(frozen=True)
@@ -162,6 +163,8 @@ def parse_catalog_cards(path: Path, prefix: str) -> list[Card]:
         img_attrs = parse_attrs(im.group(1)) if im else {}
         title = html.unescape(strip_tags(h3m.group(1))).strip() if h3m else ""
         summary = html.unescape(strip_tags(pm.group(1))).strip() if pm else ""
+        price_m = re.search(r'<p class="catalog-card__price">.*?</p>', body, re.I | re.S)
+        price_html = price_m.group(0) if price_m else ""
         image = normalize_image(img_attrs.get("src", ""))
         alt = img_attrs.get("alt", "").strip() or title
         cards.append(
@@ -171,6 +174,7 @@ def parse_catalog_cards(path: Path, prefix: str) -> list[Card]:
                 summary=summary,
                 image=image,
                 alt=alt or title,
+                price_html=price_html,
                 filters={
                     group: filter_values(attrs, group)
                     for group in ("distance", "food", "price", "city", "beach", "room", "stay")
@@ -319,7 +323,7 @@ def render_card(card: Card, rank: int) -> str:
         f'          <a class="catalog-card podborki-catalog-card" href="{html.escape(card.href)}">'
         f'<div class="catalog-card__media-wrap">'
         f'<span class="catalog-card__badge catalog-card__badge--rank" aria-label="Место в подборке — {rank}">{rank}</span>'
-        f"{media_inner}</div><h3>{html.escape(card.title)}</h3><p>{html.escape(card.summary) or ' '}</p></a>"
+        f"{media_inner}</div><h3>{html.escape(card.title)}</h3><p>{html.escape(card.summary) or ' '}</p>{card.price_html}</a>"
     )
 
 
