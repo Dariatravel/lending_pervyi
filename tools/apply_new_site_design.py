@@ -1908,7 +1908,7 @@ def build_homepage() -> None:
 
     rebuilt = replace_main(text, new_main)
     if "scripts.js" not in rebuilt:
-        rebuilt = rebuilt.replace("</body>", '  <script src="scripts.min.js?v=202607162224" defer></script>\n</body>')
+        rebuilt = rebuilt.replace("</body>", '  <script src="scripts.min.js?v=202607162228" defer></script>\n</body>')
     INDEX_FILE.write_text(clean_html_block(rebuilt) + "\n", encoding="utf-8")
 
 
@@ -2133,8 +2133,8 @@ def build_listing_pages() -> None:
 
       <div class="hotel-card__footer">
         <div class="hotel-card__actions">
-          <a class="button button--ghost" href="#contacts">Что-то нужно уточнить?</a>
-          <a class="button button--accent" href="#contacts">Написать мне</a>
+          <a class="button button--ghost" href="#contacts">Забронировать</a>
+          <a class="button button--accent" href="#contacts">Задать вопрос онлайн</a>
         </div>
       </div>
     </div>

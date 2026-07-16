@@ -192,7 +192,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607162224";
+  const ASSET_VERSION = "202607162228";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -4851,6 +4851,12 @@
     const plaque = createCatalogMapPlaque(cityKey);
     plaque.classList.add("object-card__map-plaque");
     if (variant) plaque.dataset.mapVariant = variant;
+    if (variant === "header") {
+      // Под названием объекта плашка превращается в текстовую кнопку карты.
+      const cityEl = plaque.querySelector(".catalog-card__map-plaque-city");
+      if (cityEl) cityEl.textContent = "Смотреть на карте";
+      plaque.querySelector(".catalog-card__map-plaque-map")?.remove();
+    }
     wireCatalogMapPlaque(plaque);
     host.appendChild(plaque);
   }
@@ -4870,8 +4876,9 @@
       if (!row) {
         row = document.createElement("div");
         row.className = "object-card__map-plaque-row";
-        const h2 = headerMain.querySelector("h2");
-        if (h2) h2.insertAdjacentElement("afterend", row);
+        // Кнопка карты живёт ПОД названием объекта.
+        const title = headerMain.querySelector("h1, h2");
+        if (title) title.insertAdjacentElement("afterend", row);
         else headerMain.prepend(row);
       }
       appendObjectPageMapPlaque(row, cityKey, "header");
