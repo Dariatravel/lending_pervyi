@@ -42,9 +42,9 @@
   --paper-muted: #f2eadf;
   --ink: #223028;
   --muted: #697267;
-  --accent: #eba88c;
-  --accent-strong: #d48767;
-  --accent-soft: #f6dfd1;
+  --accent: #b7cf52;
+  --accent-strong: #94ad35;
+  --accent-soft: #e9f1c6;
   --sage: #b7d1c1;
   --sage-deep: #6f9180;
   --line: rgba(100, 121, 107, 0.18);
@@ -128,7 +128,7 @@
   right: -40px;
   width: 300px;
   height: 220px;
-  background: rgba(245, 228, 198, 0.72);
+  background: rgba(228, 239, 199, 0.72);
 }
 
 .site-concept__topbar,
@@ -668,9 +668,9 @@
   justify-content: center;
   min-width: 0;
   padding: 10px 14px;
-  background: linear-gradient(180deg, #ff8e69 0%, #e15f3b 100%);
-  color: #fff;
-  box-shadow: 0 16px 28px rgba(225, 95, 59, 0.22);
+  background: linear-gradient(180deg, #c9db76 0%, #a9c344 100%);
+  color: #223028;
+  box-shadow: 0 16px 28px rgba(125, 148, 52, 0.22);
 }
 
 .site-concept__search-submit {
@@ -678,7 +678,7 @@
   font-size: 15px;
   font-weight: 800;
   letter-spacing: 0.01em;
-  box-shadow: 0 14px 26px rgba(225, 95, 59, 0.22);
+  box-shadow: 0 14px 26px rgba(125, 148, 52, 0.22);
 }
 
 .site-concept__search-submit:hover,
@@ -1424,7 +1424,7 @@ a.site-concept__destination-card:focus-visible {
 .site-concept .catalog-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 18px 34px rgba(67, 84, 61, 0.12);
-  border-color: rgba(199, 119, 90, 0.22);
+  border-color: rgba(125, 148, 52, 0.22);
 }
 
 .site-concept__guide-grid {
@@ -1785,7 +1785,7 @@ section.site-concept__contacts.section {
   border-radius: 22px;
   border: 1px solid rgba(41, 74, 61, 0.1);
   background:
-    radial-gradient(circle at 96% 0%, rgba(221, 142, 105, 0.16), transparent 34%),
+    radial-gradient(circle at 96% 0%, rgba(148, 173, 53, 0.16), transparent 34%),
     rgba(255, 255, 255, 0.82);
   box-shadow: 0 14px 28px rgba(18, 31, 25, 0.07);
 }
@@ -2185,7 +2185,7 @@ a.podborki-card--link:hover {
   overflow: hidden;
   border-radius: 26px;
   background:
-    radial-gradient(circle at 92% 10%, rgba(232, 176, 143, 0.22), transparent 34%),
+    radial-gradient(circle at 92% 10%, rgba(183, 207, 82, 0.22), transparent 34%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.97), rgba(244, 250, 246, 0.88));
   border: 1px solid rgba(34, 57, 47, 0.1);
   box-shadow: 0 18px 42px rgba(18, 31, 25, 0.08);
@@ -2691,11 +2691,11 @@ a.podborki-card--link:hover {
   scroll-margin-top: 84px;
   padding: clamp(14px, 1.8vw, 20px);
   border: 1px solid rgba(41, 74, 61, 0.1);
-  border-left: 4px solid rgba(221, 142, 105, 0.78);
+  border-left: 4px solid rgba(148, 173, 53, 0.78);
   border-radius: 18px;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(249, 245, 236, 0.72)),
-    radial-gradient(circle at 100% 0%, rgba(226, 168, 118, 0.16), transparent 36%);
+    radial-gradient(circle at 100% 0%, rgba(148, 173, 53, 0.16), transparent 36%);
   box-shadow: 0 14px 28px rgba(18, 31, 25, 0.07);
 }
 
@@ -2727,7 +2727,7 @@ a.podborki-card--link:hover {
   flex: 0 0 auto;
   border-radius: 999px;
   background: linear-gradient(135deg, #dd8e69, #f0c08d);
-  box-shadow: 0 0 0 5px rgba(221, 142, 105, 0.16);
+  box-shadow: 0 0 0 5px rgba(148, 173, 53, 0.16);
 }
 
 .blog-article__content--guide .blog-section--summary {
@@ -2836,8 +2836,8 @@ a.podborki-card--link:hover {
 }
 
 .blog-note-card__nav a:hover {
-  background: rgba(221, 142, 105, 0.16);
-  color: #693c2c;
+  background: rgba(148, 173, 53, 0.16);
+  color: #3c4a1f;
 }
 
 .blog-source {
@@ -3096,8 +3096,8 @@ a.podborki-card--link:hover {
 }
 
 .hotel-site-concept .pill--accent {
-  background: linear-gradient(180deg, #ff946f 0%, #e1643f 100%);
-  color: #fff;
+  background: linear-gradient(180deg, #c9db76 0%, #a9c344 100%);
+  color: #223028;
 }
 
 .hotel-card__content {
@@ -4023,7 +4023,7 @@ a.podborki-card--link:hover {
 body {
   background:
     radial-gradient(circle at top left, rgba(216, 236, 223, 0.92), transparent 26%),
-    radial-gradient(circle at top right, rgba(243, 223, 196, 0.72), transparent 24%),
+    radial-gradient(circle at top right, rgba(228, 239, 199, 0.72), transparent 24%),
     linear-gradient(180deg, #e8f2ea 0%, #f7f2e9 52%, #eef5ef 100%);
   overflow-x: hidden;
 }
@@ -4525,7 +4525,7 @@ body {
   right: -20px;
   width: 280px;
   height: 220px;
-  background: rgba(245, 226, 194, 0.72);
+  background: rgba(228, 239, 199, 0.72);
 }
 
 .hotel-hero-shell {
@@ -5684,7 +5684,7 @@ main.page-shell.site-concept {
   height: 200px;
   right: -80px;
   bottom: 40px;
-  background: radial-gradient(circle, rgba(241, 214, 198, 0.7), rgba(241, 214, 198, 0) 72%);
+  background: radial-gradient(circle, rgba(228, 239, 199, 0.7), rgba(228, 239, 199, 0) 72%);
 }
 
 .hero-home__chrome {
@@ -6267,10 +6267,10 @@ body.modal-open .back-to-top {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.9rem 1.35rem;
-  color: #fff8f4;
-  background: linear-gradient(180deg, #ebb39b 0%, var(--accent-strong) 100%);
-  border-color: rgba(167, 94, 71, 0.3);
-  box-shadow: 0 14px 28px rgba(199, 119, 90, 0.24);
+  color: #223028;
+  background: linear-gradient(180deg, #cfe084 0%, var(--accent) 100%);
+  border-color: rgba(125, 148, 52, 0.35);
+  box-shadow: 0 14px 28px rgba(125, 148, 52, 0.24);
 }
 
 .btn-book:hover,
@@ -6306,9 +6306,9 @@ body.modal-open .back-to-top {
 
 .btn-filter--primary {
   padding-inline: 1.25rem;
-  background: linear-gradient(180deg, #f7e4dc 0%, rgba(237, 199, 180, 0.95) 100%);
-  border-color: rgba(199, 119, 90, 0.35);
-  box-shadow: 0 12px 22px rgba(199, 119, 90, 0.12);
+  background: linear-gradient(180deg, #eff5d6 0%, rgba(205, 222, 131, 0.95) 100%);
+  border-color: rgba(125, 148, 52, 0.35);
+  box-shadow: 0 12px 22px rgba(125, 148, 52, 0.12);
 }
 
 .btn-filter__inner {
@@ -6334,10 +6334,10 @@ body.modal-open .back-to-top {
   font-size: 0.74rem;
   font-weight: 800;
   line-height: 1;
-  color: #fff8f5;
-  background: linear-gradient(180deg, #ebb39b 0%, var(--accent-strong) 100%);
-  border: 1px solid rgba(148, 86, 64, 0.35);
-  box-shadow: 0 2px 10px rgba(199, 119, 90, 0.22);
+  color: #223028;
+  background: linear-gradient(180deg, #cfe084 0%, var(--accent) 100%);
+  border: 1px solid rgba(125, 148, 52, 0.35);
+  box-shadow: 0 2px 10px rgba(125, 148, 52, 0.22);
 }
 
 .btn-filter__badge[hidden],
@@ -6392,7 +6392,7 @@ body.modal-open .back-to-top {
   max-width: 100%;
   padding: 0.35rem 0.55rem 0.35rem 0.65rem;
   border-radius: 999px;
-  border: 1px solid rgba(199, 119, 90, 0.28);
+  border: 1px solid rgba(125, 148, 52, 0.28);
   background: rgba(244, 236, 223, 0.55);
   color: var(--ink);
   font: inherit;
@@ -6415,7 +6415,7 @@ body.modal-open .back-to-top {
 
 .filter-pill-removable:hover {
   background: rgba(235, 224, 208, 0.95);
-  border-color: rgba(199, 119, 90, 0.45);
+  border-color: rgba(125, 148, 52, 0.45);
 }
 
 .filter-pill-removable--muted {
@@ -6427,7 +6427,7 @@ body.modal-open .back-to-top {
   padding: 0.85rem 1rem;
   border-radius: 14px;
   background: rgba(255, 250, 242, 0.85);
-  border: 1px dashed rgba(199, 119, 90, 0.28);
+  border: 1px dashed rgba(125, 148, 52, 0.28);
 }
 
 .filter-empty__lead {
@@ -6480,7 +6480,7 @@ body.modal-open .back-to-top {
   letter-spacing: 0.01em;
   color: #4a3b33;
   background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(199, 119, 90, 0.18);
+  border: 1px solid rgba(125, 148, 52, 0.18);
 }
 
 .filters-modal__footer-actions {
@@ -6687,11 +6687,11 @@ body.modal-open .back-to-top {
 
 .filter-group[open] summary {
   background: rgba(244, 236, 223, 0.55);
-  border-color: rgba(199, 119, 90, 0.16);
+  border-color: rgba(125, 148, 52, 0.16);
 }
 
 .filter-group summary:focus-visible {
-  outline: 2px solid rgba(199, 119, 90, 0.45);
+  outline: 2px solid rgba(125, 148, 52, 0.45);
   outline-offset: 2px;
 }
 
@@ -6722,7 +6722,7 @@ body.modal-open .back-to-top {
 }
 
 .filter-chip:focus-visible {
-  outline: 2px solid rgba(199, 119, 90, 0.55);
+  outline: 2px solid rgba(125, 148, 52, 0.55);
   outline-offset: 2px;
 }
 
@@ -6733,7 +6733,7 @@ body.modal-open .back-to-top {
 .filter-chip.is-active {
   background: var(--accent-soft);
   color: #6d4333;
-  border-color: rgba(199, 119, 90, 0.35);
+  border-color: rgba(125, 148, 52, 0.35);
   padding-inline-start: 0.52rem;
 }
 
@@ -6799,7 +6799,7 @@ body.modal-open .back-to-top {
 .catalog-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 18px 34px rgba(67, 84, 61, 0.12);
-  border-color: rgba(199, 119, 90, 0.22);
+  border-color: rgba(125, 148, 52, 0.22);
 }
 
 .catalog-card__media-wrap {
@@ -6814,7 +6814,7 @@ body.modal-open .back-to-top {
   padding: 0.2rem 0.48rem;
   border-radius: 999px;
   background: rgba(33, 53, 43, 0.78);
-  color: #fffaf2;
+  color: #223028;
   font-size: 0.72rem;
 }
 
@@ -8324,7 +8324,7 @@ html:has(> body.objects-map-page) {
   place-items: center;
   border-radius: 16px;
   background: linear-gradient(135deg, #1f4a3b, #6f9180);
-  color: #fffaf2;
+  color: #223028;
   font-size: 0.8rem;
   font-weight: 900;
   letter-spacing: 0.06em;
@@ -8376,7 +8376,7 @@ html:has(> body.objects-map-page) {
 
 .pwa-install-card__button {
   background: #1f4a3b;
-  color: #fffaf2;
+  color: #223028;
 }
 
 .pwa-install-card__dismiss {
@@ -8471,9 +8471,9 @@ html:has(> body.objects-map-page) {
   }
 
   .mobile-app-dock__item--primary {
-    background: linear-gradient(180deg, #ebb39b 0%, var(--accent-strong) 100%);
-    color: #fffaf2;
-    box-shadow: 0 10px 22px rgba(199, 119, 90, 0.2);
+    background: linear-gradient(180deg, #cfe084 0%, var(--accent) 100%);
+    color: #223028;
+    box-shadow: 0 10px 22px rgba(125, 148, 52, 0.2);
   }
 
   .mobile-app-dock__item:focus-visible,
