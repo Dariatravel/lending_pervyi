@@ -192,7 +192,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607160918";
+  const ASSET_VERSION = "202607160926";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -4840,7 +4840,9 @@
     // Главная уже содержит полную сетку карточек из статической сборки (разметка с 📍 / 🏖 и <br>).
     // Повторная отрисовка из Supabase заменяет DOM и даёт «мигание»: сначала верстка из HTML/CSS,
     // затем упрощённые карточки из formatHotelCardSummary. Не перезаписываем готовую сетку.
-    if (grid.querySelector(".catalog-card")) {
+    // Важно: режим «подборка по параметрам» переносит карточки из сетки в
+    // #selection-podborka-view — пустая сетка ещё не значит, что каталога нет.
+    if (grid.querySelector(".catalog-card") || document.querySelector("#selection-podborka-view .catalog-card")) {
       addHotelVideoBadges(grid);
       initCatalogMapPlaques(grid);
       return;
