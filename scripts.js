@@ -192,7 +192,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607162144";
+  const ASSET_VERSION = "202607162201";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -1769,6 +1769,75 @@
       renderHotelReviews();
     } else {
       renderGenericReviews();
+    }
+  }
+
+  /**
+   * Якоря (#guide, #contacts…) на длинных страницах: ленивый контент выше
+   * цели доезжает после перехода, и блок уплывает. Доводим скролл до цели,
+   * пока вёрстка не стабилизируется; ручной скролл пользователя — стоп.
+   */
+  function initStableAnchorScroll() {
+    let cancelCurrent = null;
+
+    function settleScrollTo(target) {
+      if (typeof cancelCurrent === "function") cancelCurrent();
+      let cancelled = false;
+      const stop = () => {
+        cancelled = true;
+      };
+      ["wheel", "touchstart", "keydown"].forEach((eventName) =>
+        window.addEventListener(eventName, stop, { once: true, passive: true })
+      );
+      cancelCurrent = stop;
+
+      const align = (smooth) => {
+        target.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+      };
+      align(true);
+      let lastTop = null;
+      let settledTicks = 0;
+      const started = Date.now();
+      const timer = window.setInterval(() => {
+        if (cancelled || Date.now() - started > 2600) {
+          window.clearInterval(timer);
+          return;
+        }
+        const top = Math.round(target.getBoundingClientRect().top);
+        if (lastTop !== null && Math.abs(top - lastTop) <= 2) {
+          settledTicks += 1;
+          if (Math.abs(top) > 4) align(false);
+          if (settledTicks >= 3 && Math.abs(top) <= 4) {
+            window.clearInterval(timer);
+            return;
+          }
+        } else {
+          settledTicks = 0;
+          if (lastTop !== null) align(false);
+        }
+        lastTop = Math.round(target.getBoundingClientRect().top);
+      }, 220);
+    }
+
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
+      const id = decodeURIComponent(link.getAttribute("href").slice(1));
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      event.preventDefault();
+      if (typeof history.pushState === "function") {
+        history.pushState(null, "", `#${id}`);
+      }
+      settleScrollTo(target);
+    });
+
+    if (window.location.hash) {
+      const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+      if (target) {
+        window.setTimeout(() => settleScrollTo(target), 150);
+      }
     }
   }
 
@@ -5176,6 +5245,7 @@
   void initRandomGuestReviews();
 
   initLazyScreenshotReviews();
+  initStableAnchorScroll();
 
   const filtersController = initFilters();
   initSearchBar(filtersController);
