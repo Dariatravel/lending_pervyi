@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T15:26:55.573452+00:00",
+  "generated_at": "2026-07-17T21:34:27.818340+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -32,6 +32,14 @@
       "lat": 43.22395,
       "lon": 40.273705,
       "url": "/hotels/bereg-svyatoy-sofii-otel-4279/",
+      "cityKey": "alakhadzy"
+    },
+    {
+      "title": "\"ВИЛЛА МАГНОЛИЯ\" эко-отель с завтраками",
+      "address": "Пицунда, пос. Цитрусовый, 43.198984,40.282403",
+      "lat": 43.199003623342286,
+      "lon": 40.28252906382326,
+      "url": "/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/",
       "cityKey": "alakhadzy"
     },
     {
@@ -1772,18 +1780,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 448,
-    "placemarks_unique": 224,
-    "pages_total": 227,
-    "pages_on_disk": 254,
+    "placemarks_total": 450,
+    "placemarks_unique": 225,
+    "pages_total": 228,
+    "pages_on_disk": 255,
     "pages_excluded": 27,
-    "from_constructor": 227,
+    "from_constructor": 228,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 0,
     "skipped_without_coords": 0,
     "shared_coordinate_groups": 19,
     "deduped_redirect_points": 6,
-    "points_total": 221
+    "points_total": 222
   }
 }
