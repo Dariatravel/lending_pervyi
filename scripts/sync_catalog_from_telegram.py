@@ -81,6 +81,7 @@ API_HASH = 'eefdec49605521b061de4bdf62ef784e'
 SESSION = os.getenv('TG_SESSION', str(ROOT / 'tg_session'))
 MAX_VIDEO_UPLOAD_MB = 200
 VIDEO_BITRATES = ('1800k', '1200k', '900k', '700k', '500k', '350k')
+WEB_VIDEO_BITRATE = '1200k'  # основной web-вариант видео (как convert-videos-web)
 MAX_LOCAL_SOURCE_KEEP_MB = 95
 VIDEO_MAX_WIDTH = 960
 FORCE_MEDIA_REFRESH = os.getenv('FORCE_MEDIA_REFRESH', '').strip().lower() in {'1', 'true', 'yes', 'on'}
@@ -1666,8 +1667,16 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient | None
                 chosen_file = candidate
                 return True
 
-            # 1) Пытаемся загрузить исходник как есть (самый быстрый путь).
-            _ = try_upload(source_file)
+            # 1) Всегда готовим лёгкий web-вариант (960px/1200k) — посетитель
+            #    не должен качать исходник на 100-200 МБ (оптимизация трафика
+            #    бакета, 17.07.2026). Исходник «как есть» — только фолбэк.
+            if FFMPEG_BIN:
+                web_candidate = video_dir / f'video-{video_count:02d}.mp4'
+                if not web_candidate.exists() or web_candidate.stat().st_size == 0:
+                    transcode_video(source_file, web_candidate, WEB_VIDEO_BITRATE)
+                _ = try_upload(web_candidate)
+            if not uploaded_public_url:
+                _ = try_upload(source_file)
 
             # 2) Если не вышло (обычно из-за размера), понижаем битрейт и пробуем снова.
             if not uploaded_public_url and FFMPEG_BIN:
