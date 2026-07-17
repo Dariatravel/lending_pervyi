@@ -38,6 +38,7 @@ tools/tg_vouchers_auth.py
 # local AI/operator notes, not for GitHub Pages
 CODEX_TASK.md
 CURSOR_TASK.md
+CLAUDE_TASK.md
 TASKS_FOR_CODEX_SITE_HEALTH.txt
 
 # internal prototypes and bot code, not for GitHub Pages
