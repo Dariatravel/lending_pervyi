@@ -3607,6 +3607,7 @@ a.podborki-card--link:hover {
   text-decoration: none;
 }
 
+.hotel-site-concept .save-button,
 .hotel-site-concept .button--ghost {
   display: inline-flex;
   align-items: center;
