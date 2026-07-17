@@ -6250,7 +6250,7 @@ body.modal-open .back-to-top {
   padding: 0.2rem 0.48rem;
   border-radius: 999px;
   background: rgba(33, 53, 43, 0.78);
-  color: #223028;
+  color: #fffaf2;
   font-size: 0.72rem;
 }
 
@@ -7806,7 +7806,7 @@ html:has(> body.objects-map-page) {
   place-items: center;
   border-radius: 16px;
   background: linear-gradient(135deg, #1f4a3b, #6f9180);
-  color: #223028;
+  color: #fffaf2;
   font-size: 0.8rem;
   font-weight: 900;
   letter-spacing: 0.06em;
@@ -7858,7 +7858,7 @@ html:has(> body.objects-map-page) {
 
 .pwa-install-card__button {
   background: #1f4a3b;
-  color: #223028;
+  color: #fffaf2;
 }
 
 .pwa-install-card__dismiss {
