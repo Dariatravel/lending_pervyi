@@ -279,37 +279,6 @@
   }
 }
 
-.site-concept__brand-signal {
-  display: grid;
-  justify-items: start;
-  gap: 10px;
-  padding: 4px 2px 2px;
-}
-
-.site-concept__brand-signal-kicker {
-  margin: 0;
-  font-family: "Manrope", "Segoe UI", sans-serif;
-  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  line-height: 1.1;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-
-.site-concept__brand-signal-text {
-  margin: 0;
-  max-width: 42rem;
-  font-size: clamp(0.98rem, 1.4vw, 1.12rem);
-  line-height: 1.45;
-  color: var(--muted);
-}
-
-.site-concept__brand-signal-cta {
-  min-height: 48px;
-  padding-inline: 22px;
-}
-
 .site-concept__search-note {
   margin: 10px 2px 0;
   font-size: 0.92rem;
@@ -1768,14 +1737,14 @@ section.site-concept__contacts.section {
 }
 
 .site-concept__contacts .contact-channel-card__copy strong {
-  margin-bottom: 2px;
-  font-size: 14px;
+  margin-bottom: 3px;
+  font-size: 17px;
   line-height: 1.25;
 }
 
 .site-concept__contacts .contact-channel-card__copy small {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13.5px;
   line-height: 1.35;
 }
 
@@ -7028,11 +6997,7 @@ html:has(> body.objects-map-page) {
     display: none;
   }
 
-  .site-concept__brand-signal {
-    padding: 0 4px 6px;
-  }
-
-  .site-concept.site-concept--home > .site-concept__masthead {
+    .site-concept.site-concept--home > .site-concept__masthead {
     aspect-ratio: 9 / 16;
     min-height: min(760px, calc(100svh - 32px));
     border-radius: 22px;
@@ -7057,22 +7022,7 @@ html:has(> body.objects-map-page) {
     -webkit-backdrop-filter: none;
   }
 
-  .site-concept.site-concept--home > #stays > .site-concept__brand-signal {
-    margin-bottom: 10px;
-    padding: 10px 8px 4px;
-  }
-
-  .site-concept.site-concept--home > #stays > .site-concept__brand-signal .site-concept__brand-signal-kicker {
-    color: #fff;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
-  }
-
-  .site-concept.site-concept--home > #stays > .site-concept__brand-signal .site-concept__brand-signal-text {
-    color: rgba(255, 255, 255, 0.92);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
-  }
-
-  .site-concept.site-concept--home > #stays > .site-concept__filter-pills {
+  .site-concept.site-concept--home > #stays >   .site-concept.site-concept--home > #stays >   .site-concept.site-concept--home > #stays >   .site-concept.site-concept--home > #stays > .site-concept__filter-pills {
     width: calc(100% + 8px);
     margin-inline: -4px;
     padding: 0 4px 4px;
