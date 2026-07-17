@@ -679,7 +679,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   </section>
 
 </main>
-  <script src="../../scripts.min.js?v=202607172145" defer></script>
+  <script src="../../scripts.min.js?v=202607172233" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -732,12 +732,29 @@ def render_article_page(art: BuiltArticle, body_html: str) -> str:
     )
 
 
-def render_blog_index(cards: list[dict[str, str]]) -> str:
-    card_blocks = []
-    for card in cards:
-        image_src = f"{YANDEX_MEDIA_BASE}/media/blog/{html.escape(card['image'])}"
-        card_blocks.append(
-            f"""        <article class="blog-card">
+# Тематические разделы блога: статьи группируются по card_tag, а не свалены
+# в одну кучу. Порядок разделов = порядок показа; внутри — по дате (свежие выше).
+BLOG_SECTIONS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("Дорога в Абхазию", ("поезд", "паром", "билеты", "транспорт", "авто", "дети")),
+    ("Граница и документы", ("граница", "документы", "въезд", "животные", "долги")),
+    ("Пляжи, курорты и места", ("пляжи", "курорты", "экскурсии", "источники")),
+    ("Деньги, связь и правила", ("деньги", "связь", "правила", "время")),
+    ("Здоровье и перед поездкой", ("здоровье", "экология", "мифы", "первый раз", "первая поездка", "о проекте")),
+)
+_BLOG_SECTION_OTHER = "Полезно знать"  # для тем, не попавших в карту выше
+
+
+def _blog_section_for_tag(tag: str) -> str:
+    key = (tag or "").strip().lower()
+    for title, tags in BLOG_SECTIONS:
+        if key in tags:
+            return title
+    return _BLOG_SECTION_OTHER
+
+
+def _render_blog_card(card: dict[str, str]) -> str:
+    image_src = f"{YANDEX_MEDIA_BASE}/media/blog/{html.escape(card['image'])}"
+    return f"""        <article class="blog-card">
           <a class="blog-card__image-link" href="/blog/{html.escape(card['slug'])}/">
             <img src="{image_src}" srcset="{blog_image_srcset(image_src)}" sizes="{BLOG_CARD_IMAGE_SIZES}" width="480" height="330" alt="{html.escape(card['alt'])}" loading="lazy" decoding="async" />
           </a>
@@ -748,8 +765,36 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
             <a class="blog-card__cta" href="/blog/{html.escape(card['slug'])}/">Читать статью</a>
           </div>
         </article>"""
+
+
+def render_blog_index(cards: list[dict[str, str]]) -> str:
+    # Раскладываем карточки по разделам, сохраняя порядок BLOG_SECTIONS.
+    grouped: dict[str, list[dict[str, str]]] = {}
+    for card in cards:
+        grouped.setdefault(_blog_section_for_tag(card.get("card_tag", "")), []).append(card)
+
+    section_order = [title for title, _ in BLOG_SECTIONS] + [_BLOG_SECTION_OTHER]
+    section_html_parts: list[str] = []
+    for position, title in enumerate(section_order, start=1):
+        group = grouped.get(title)
+        if not group:
+            continue
+        anchor = str(position)
+        cards_block = "\n\n".join(_render_blog_card(c) for c in group)
+        section_html_parts.append(
+            f"""    <section class="site-concept__section-block blog-listing" aria-labelledby="blog-sec-{anchor}">
+      <div class="site-concept__section-head">
+        <div>
+          <p class="site-concept__eyebrow">Раздел</p>
+          <h2 id="blog-sec-{anchor}">{html.escape(title)}</h2>
+        </div>
+      </div>
+      <div class="blog-grid">
+{cards_block}
+      </div>
+    </section>"""
         )
-    cards_html = "\n\n".join(card_blocks)
+    sections_html = "\n\n".join(section_html_parts)
     hero_image = cards[0]["image"] if cards else "telegram-3821.jpg"
 
     return f"""<!DOCTYPE html>
@@ -801,17 +846,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
       </div>
     </section>
 
-    <section class="site-concept__section-block blog-listing" aria-labelledby="blog-all-articles">
-      <div class="site-concept__section-head">
-        <div>
-          <p class="site-concept__eyebrow">Актуальные материалы</p>
-          <h2 id="blog-all-articles">Все статьи</h2>
-        </div>
-      </div>
-      <div class="blog-grid">
-{cards_html}
-      </div>
-    </section>
+{sections_html}
 
   <section class="site-concept__section-block" id="guide">
     <div class="site-concept__section-head">
@@ -882,7 +917,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   </section>
 
 </main>
-  <script src="../scripts.min.js?v=202607172145" defer></script>
+  <script src="../scripts.min.js?v=202607172233" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

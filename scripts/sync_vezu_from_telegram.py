@@ -46,6 +46,58 @@ CSS_VERSION = (ROOT / "data" / "asset-version.txt").read_text(encoding="utf-8").
 MIN_POST_CHARS = 200  # служебные/короткие посты канала не становятся страницами
 
 
+def is_video_message(msg: object) -> bool:
+    file_obj = getattr(msg, "file", None)
+    mime_type = str(getattr(file_obj, "mime_type", "") or "")
+    return bool(getattr(msg, "video", None)) or mime_type.startswith("video/")
+
+
+def is_photo_message(msg: object) -> bool:
+    return bool(getattr(msg, "photo", None))
+
+
+def render_media_gallery(media_items: list[dict[str, str]]) -> str:
+    if not media_items:
+        return ""
+    cards: list[str] = []
+    for item in media_items:
+        kind = item.get("kind", "")
+        src = html.escape(item.get("src", ""), quote=True)
+        alt = html.escape(item.get("alt", "Фото экскурсии"), quote=True)
+        if not src:
+            continue
+        if kind == "telegram":
+            post_ref = html.escape(item.get("telegram_post", ""), quote=True)
+            if not post_ref:
+                continue
+            cards.append(
+                "            <figure class=\"blog-article__media-item blog-article__media-item--telegram\">"
+                f"<script async src=\"https://telegram.org/js/telegram-widget.js?22\" data-telegram-post=\"{post_ref}\" data-width=\"100%\" data-userpic=\"false\" data-single=\"1\"></script>"
+                "</figure>"
+            )
+            continue
+        if kind == "video":
+            poster = item.get("poster", "")
+            poster_attr = f' poster="{html.escape(poster, quote=True)}"' if poster else ""
+            cards.append(
+                "            <figure class=\"blog-article__media-item blog-article__media-item--video\">"
+                f"<video controls preload=\"metadata\" playsinline{poster_attr}>"
+                f"<source src=\"{src}\" type=\"video/mp4\" />"
+                "</video></figure>"
+            )
+        else:
+            srcset = item.get("srcset", "")
+            srcset_attr = f' srcset="{html.escape(srcset, quote=True)}"' if srcset else ""
+            cards.append(
+                "            <figure class=\"blog-article__media-item\">"
+                f"<img src=\"{src}\"{srcset_attr} sizes=\"(max-width: 760px) 100vw, 360px\" alt=\"{alt}\" loading=\"lazy\" decoding=\"async\" />"
+                "</figure>"
+            )
+    if not cards:
+        return ""
+    return "\n          <div class=\"blog-article__media-gallery\" aria-label=\"Фото и видео экскурсии\">\n" + "\n".join(cards) + "\n          </div>\n"
+
+
 _TRANSLIT = {
     "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "e", "ё": "e", "ж": "zh",
     "з": "z", "и": "i", "й": "y", "к": "k", "л": "l", "м": "m", "н": "n", "о": "o",
@@ -82,7 +134,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
-  <main class="page-shell site-concept blog-page blog-article-page">
+  <main class="page-shell site-concept blog-page blog-article-page vezu-page">
     <div class="bg-blur bg-blur--mint" aria-hidden="true"></div>
     <div class="bg-blur bg-blur--sand" aria-hidden="true"></div>
 
@@ -110,6 +162,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
           <div class="blog-article__content blog-article__content--sections">
         <img class="blog-article__cover-inline" src="{image_src}" srcset="{image_srcset}" sizes="{article_image_sizes}" width="480" height="640" alt="{cover_alt_esc}" loading="eager" decoding="async" />
 {body_html}
+{media_gallery_html}
           </div>
         </div>
         <aside class="blog-article__aside">
@@ -294,13 +347,15 @@ async def sync_vezu(post_ids: list[int] | None = None) -> list[dict[str, object]
         posts: dict[int, dict[str, object]] = {}
         async for msg in client.iter_messages(entity, limit=400):
             group_key = int(getattr(msg, "grouped_id", None) or msg.id)
-            row = posts.setdefault(group_key, {"text": "", "text_id": 0, "photo_msg": None, "date": None})
+            row = posts.setdefault(group_key, {"text": "", "text_id": 0, "photo_msg": None, "media_msgs": [], "date": None})
             text = (msg.message or "").strip()
             if text and len(text) > len(str(row["text"])):
                 row["text"] = text
                 row["text_id"] = msg.id
                 row["date"] = msg.date
-            if row["photo_msg"] is None and getattr(msg, "photo", None) is not None:
+            if is_photo_message(msg) or is_video_message(msg):
+                row["media_msgs"].append(msg)
+            if row["photo_msg"] is None and is_photo_message(msg):
                 row["photo_msg"] = msg
 
         skip_ids: set[int] = set()
@@ -319,6 +374,7 @@ async def sync_vezu(post_ids: list[int] | None = None) -> list[dict[str, object]
             title = clean_title_line(text.split("\n", 1)[0])
             if not title:
                 continue
+            title_short = title if len(title) <= 72 else title[:69] + "…"
             slug = f"{slugify(title)}-{post_id}"
             (SOURCES_DIR / f"{CHANNEL}-{post_id}.txt").write_text(text + "\n", encoding="utf-8")
 
@@ -327,6 +383,7 @@ async def sync_vezu(post_ids: list[int] | None = None) -> list[dict[str, object]
             photo_msg = row["photo_msg"]
             image_src = f"{YANDEX_MEDIA_BASE}/media/branding/site-cover.jpg"
             image_srcset = ""
+            media_items: list[dict[str, str]] = []
             if photo_msg is not None:
                 if not image_path.exists():
                     await client.download_media(photo_msg, file=str(image_path))
@@ -335,10 +392,39 @@ async def sync_vezu(post_ids: list[int] | None = None) -> list[dict[str, object]
                     image_src = f"{YANDEX_MEDIA_BASE}/media/vezu/{image_name}"
                     image_srcset = blog_image_srcset(image_src)
 
+            cover_msg_id = int(getattr(photo_msg, "id", 0) or 0)
+            for media_index, media_msg in enumerate(sorted(row["media_msgs"], key=lambda item: item.id), start=1):
+                media_msg_id = int(getattr(media_msg, "id", 0) or 0)
+                if media_msg_id == cover_msg_id:
+                    continue
+                if is_photo_message(media_msg):
+                    gallery_name = f"telegram-vezu-{post_id}-{media_index:02d}.jpg"
+                    gallery_path = MEDIA_DIR / gallery_name
+                    if not gallery_path.exists():
+                        await client.download_media(media_msg, file=str(gallery_path))
+                    if gallery_path.exists():
+                        public_url = upload_local_image_public_url(None, gallery_path, f"media/vezu/{gallery_name}")
+                        media_items.append(
+                            {
+                                "kind": "image",
+                                "src": public_url,
+                                "srcset": blog_image_srcset(public_url),
+                                "alt": f"{title_short} — фото {media_index}",
+                            }
+                        )
+                elif is_video_message(media_msg):
+                    media_items.append(
+                        {
+                            "kind": "telegram",
+                            "src": f"https://t.me/{CHANNEL}/{media_msg_id}",
+                            "telegram_post": f"{CHANNEL}/{media_msg_id}",
+                            "alt": f"{title_short} — видео {media_index}",
+                        }
+                    )
+
             lead = first_meaningful_paragraph(text, title)[:220]
             iso_date = row["date"].strftime("%Y-%m-%d") if row["date"] else "2026-01-01"
             body_html = telegram_text_to_sections_html(text)
-            title_short = title if len(title) <= 72 else title[:69] + "…"
 
             page = PAGE_TEMPLATE.format(
                 html_title=html.escape(f"{title_short} — экскурсии АБХАЗБЕРЕГ"),
@@ -358,6 +444,7 @@ async def sync_vezu(post_ids: list[int] | None = None) -> list[dict[str, object]
                 reading_min=estimate_reading_min(text),
                 cover_alt_esc=html.escape(title_short),
                 body_html=body_html,
+                media_gallery_html=render_media_gallery(media_items),
                 yandex_media_base=YANDEX_MEDIA_BASE,
             )
             out_dir = VEZU_DIR / slug
@@ -372,6 +459,7 @@ async def sync_vezu(post_ids: list[int] | None = None) -> list[dict[str, object]
                     "iso_date": iso_date,
                     "image_src": image_src,
                     "image_srcset": image_srcset,
+                    "media_items": media_items,
                 }
             )
             print(f"wrote vezu/{slug}/index.html")
