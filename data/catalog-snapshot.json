@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-16T19:14:02.199200+00:00",
+  "generated_at": "2026-07-17T19:52:51.432979+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 221,
-  "listings_hotels": 162,
+  "listings_total": 222,
+  "listings_hotels": 163,
   "listings_kvartira": 59,
   "listings": [
     {
@@ -62394,6 +62394,231 @@
             "telegram_post": "abhazbooking/5037",
             "telegram_url": "https://t.me/abhazbooking/5037",
             "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pitsunda-otel-5028/video-01-source-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5038,
+      "source_topic_id": null,
+      "slug": "villa-magnoliya-eko-otel-s-zavtrakami-5038",
+      "title": "\"ВИЛЛА МАГНОЛИЯ\" эко-отель с завтраками",
+      "summary": "Пицунда. 5 минут до пляжа, размещение до 5 человек.",
+      "excerpt": "Шесть двухэтажных домиков в стиле а-фрейм",
+      "city": "Пицунда",
+      "location_text": "Пицунда, пос. Цитрусовый, 43.198984,40.282403",
+      "distance_text": "5 минут до пляжа",
+      "beach_text": "5 минут до пляжа",
+      "capacity_text": "размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/",
+      "telegram_url": "https://t.me/abhazbooking/5038",
+      "published_at": "2026-07-17",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/villa-magnoliya-eko-otel-s-zavtrakami-5038.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Пицунда. 5 минут до пляжа, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Шесть двухэтажных домиков в стиле а-фрейм.",
+              "В домике: двуспальная и две односпальные кровати, раскладной диван, кухонный уголок без плиты, обеденная зона со столом и стульями. Сан узел с тропическим душем. Размещение до 5 человек.",
+              "Веранда со столиком и стульями.",
+              "Оснащение: Wi-Fi, кондиционер, холодильник, телевизор, микроволновка, чайник, фен."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Есть свое кафе, завтраки включены.",
+              "Зона отдыха.",
+              "Парковка во дворе."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До оборудованного пляжа 5 минут пешком через красивый сосновый бор. Пляж сосновый галечный, море чистое.",
+              "В шаговой доступности продуктовый магазин, столовая, кафе, остановка общественного транспорта.",
+              "В 15 минутах езды на машине центр Пицунды. В 25 минутах езды - Гагра."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Возможно размещение с маленькими собачками без доп платы.",
+              "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место с завтраками — 1500₽"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1180,
+      "media": [
+        {
+          "id": 1180001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/villa-magnoliya-eko-otel-s-zavtrakami-5038.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/villa-magnoliya-eko-otel-s-zavtrakami-5038.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/villa-magnoliya-eko-otel-s-zavtrakami-5038.jpg",
+          "details": {}
+        },
+        {
+          "id": 1180002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1180003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1180004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1180005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1180006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1180007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1180008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1180009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1180010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1180011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5047",
+            "telegram_url": "https://t.me/abhazbooking/5047",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/video-01-poster.jpg"
           }
         }
       ]
