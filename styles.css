@@ -8894,6 +8894,11 @@ html:has(> body.objects-map-page) {
   min-width: 0;
   height: 100%;
   border-radius: 22px;
+  text-decoration: none;
+}
+
+.blog-page > .site-concept__section-block:not(.blog-listing) > .blog-grid > .blog-card :is(.blog-card__tag, h2, .blog-card__excerpt, .blog-card__more) {
+  text-decoration: none;
 }
 
 .blog-page > .site-concept__section-block:not(.blog-listing) .blog-card__cover {
