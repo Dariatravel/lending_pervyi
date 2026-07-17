@@ -192,7 +192,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607170900";
+  const ASSET_VERSION = "202607170947";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -1270,9 +1270,27 @@
     return Math.max(existing || 2, 1);
   }
 
+  function markObjectReviewPanelsPending() {
+    if (!isObjectPage()) return;
+    document.querySelectorAll(".reviews-panel").forEach((panel) => {
+      panel.dataset.reviewsState = "pending";
+      const grid = panel.querySelector(".reviews-grid");
+      if (grid) grid.hidden = true;
+    });
+  }
+
   function renderObjectReviewPanels(context, objectPool) {
     const panels = Array.from(document.querySelectorAll(".reviews-panel"));
-    if (!panels.length || !objectPool.length) return false;
+    if (!panels.length) return false;
+
+    if (!objectPool.length) {
+      panels.forEach((panel) => {
+        panel.dataset.reviewsState = "empty";
+        panel.hidden = true;
+      });
+      return false;
+    }
+
     let hydrated = false;
 
     panels.forEach((panel, index) => {
@@ -1285,6 +1303,9 @@
         count,
         `abhaz:reviews:panel:${context.slug || window.location.pathname}:${index}`
       );
+      grid.hidden = false;
+      panel.hidden = false;
+      panel.dataset.reviewsState = "ready";
       grid.replaceChildren(...reviews.map(createObjectReviewCard));
       hydrated = true;
     });
@@ -1750,15 +1771,23 @@
     );
     if (!scrollers.length) return;
 
-    const pool = objectPool.length ? objectPool : getGlobalReviewPool();
-    if (!pool.length) return;
+    // Только отзывы, привязанные к объекту — без подмены глобальным пулом с чужими именами.
+    if (!objectPool.length) {
+      scrollers.forEach((scroller) => {
+        scroller.hidden = true;
+        scroller.dataset.reviewsState = "empty";
+      });
+      return;
+    }
 
     scrollers.forEach((scroller, index) => {
+      scroller.hidden = false;
+      scroller.dataset.reviewsState = "ready";
       const count = getReviewSlotCount(scroller, 4);
       const reviews = pickReviews(
-        pool,
+        objectPool,
         count,
-        `abhaz:reviews:object:${context.slug || window.location.pathname}:${index}:${objectPool.length ? "specific" : "fallback"}`
+        `abhaz:reviews:object:${context.slug || window.location.pathname}:${index}:specific`
       );
       renderReviewItems(scroller, reviews);
     });
@@ -3954,6 +3983,13 @@
       return countActivePins(filt.committedSel, filt.committedCat, filt.committedNameQuery) > 0;
     }
 
+    const catalogMatchTotal = document.getElementById("catalog-match-total");
+
+    function updateVisibleCountLabel(shown, totalMatching) {
+      if (visibleCount) visibleCount.textContent = String(shown);
+      if (catalogMatchTotal) catalogMatchTotal.textContent = String(totalMatching);
+    }
+
     function applyInitialCatalogLimitWithoutIndex() {
       const cards = getCards();
       if (!catalogMediaDeferred) {
@@ -3961,31 +3997,30 @@
         catalogMediaDeferred = true;
       }
 
-      let shown = 0;
+      let index = 0;
       cards.forEach((card) => {
-        shown += 1;
-        card.hidden = shown > CATALOG_INITIAL_LIMIT;
+        index += 1;
+        card.hidden = index > CATALOG_INITIAL_LIMIT;
       });
 
       if (catalogExpandBtn) {
         catalogExpandBtn.hidden = cards.length <= CATALOG_INITIAL_LIMIT;
       }
-      if (visibleCount) {
-        visibleCount.textContent = String(Math.min(cards.length, CATALOG_INITIAL_LIMIT));
-      }
+      const shown = Math.min(cards.length, CATALOG_INITIAL_LIMIT);
+      updateVisibleCountLabel(shown, cards.length);
       if (clearBtn) clearBtn.hidden = true;
       if (emptyNote) emptyNote.hidden = true;
 
       syncOpenBadge();
       renderActiveRemovalChips();
       syncChipUi(filt.committedSel, filt.committedCat);
-      draftPreviewCount = Math.min(cards.length, CATALOG_INITIAL_LIMIT);
+      draftPreviewCount = shown;
       syncApplyFooterText();
       notifySubscribers("commit", {
         pins: 0,
-        primaryShown: Math.min(cards.length, CATALOG_INITIAL_LIMIT),
+        primaryShown: shown,
         totalMatching: cards.length,
-        resultCount: Math.min(cards.length, CATALOG_INITIAL_LIMIT),
+        resultCount: shown,
       });
     }
 
@@ -4158,7 +4193,7 @@
         if (emptyNote) emptyNote.hidden = true;
       }
 
-      if (visibleCount) visibleCount.textContent = String(resultCount);
+      updateVisibleCountLabel(resultCount, totalMatching);
       if (clearBtn) clearBtn.hidden = pins === 0;
 
       draftPreviewCount = countShownOnly(filt.draftSel, filt.draftCat);
@@ -4423,6 +4458,7 @@
       });
 
       clearBtn?.addEventListener("click", () => {
+        catalogExpanded = false;
         clearSelectionGroups(filt.committedSel, FILTER_GROUPS, true);
         filt.committedCat = null;
         filt.committedNameQuery = "";
@@ -4550,8 +4586,6 @@
     const beachSelect = document.getElementById("search-beach");
     const priceSelect = document.getElementById("search-price");
     const guestsInput = document.getElementById("search-guests");
-    const checkinInput = document.getElementById("search-checkin");
-    const checkoutInput = document.getElementById("search-checkout");
 
     if (citySelect) {
       const cities = Array.from(document.querySelectorAll('.filter-chip[data-group="city"]'));
@@ -4567,11 +4601,6 @@
       });
     }
 
-    const today = new Date();
-    const plusWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
-    const toISODate = (d) => d.toISOString().slice(0, 10);
-    if (checkinInput && !checkinInput.value) checkinInput.value = toISODate(today);
-    if (checkoutInput && !checkoutInput.value) checkoutInput.value = toISODate(plusWeek);
     if (nameInput) nameInput.value = filtersController.getNameQuery?.() || "";
 
     let nameDebounceTimer = null;
@@ -4592,10 +4621,8 @@
       const distance = distanceSelect?.value || "";
       const beach = beachSelect?.value || "";
       const price = priceSelect?.value || "";
-      const guests = Number(guestsInput?.value || 0);
-
-      const room =
-        Number.isFinite(guests) && guests >= 5 ? ["five-plus"] : [];
+      const guestsValue = String(guestsInput?.value || "").trim();
+      const room = guestsValue === "five-plus" ? ["five-plus"] : [];
 
       filtersController.applyPatch({
         name,
@@ -4613,9 +4640,34 @@
         distance,
         beach,
         price,
-        guests: Number.isFinite(guests) ? guests : null,
+        guests: guestsValue || null,
       });
     });
+  }
+
+  function initHomeTopbarSticky() {
+    const shell = document.querySelector(".site-concept.site-concept--home");
+    const topbar = shell?.querySelector(":scope > .site-concept__topbar");
+    const masthead = shell?.querySelector(":scope > .site-concept__masthead");
+    if (!topbar || !masthead) return;
+
+    topbar.classList.add("is-over-masthead");
+
+    if (!("IntersectionObserver" in window)) {
+      topbar.classList.remove("is-over-masthead");
+      topbar.classList.add("is-sticky-scrolled");
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const overBanner = Boolean(entry?.isIntersecting);
+        topbar.classList.toggle("is-over-masthead", overBanner);
+        topbar.classList.toggle("is-sticky-scrolled", !overBanner);
+      },
+      { rootMargin: "-12px 0px 0px 0px", threshold: [0, 0.05, 0.2] }
+    );
+    observer.observe(masthead);
   }
 
   function initHeroVideoQuality() {
@@ -5243,12 +5295,14 @@
   }
 
   initInPageAnchorFix();
+  initHomeTopbarSticky();
   initHeroVideoQuality();
   initLocalVideoPosters();
   initLocalVideoNaturalPlayback();
   initCatalogMapPlaques();
   initObjectPageMapPlaque();
   absolutizeHotelSiteConceptMedia();
+  markObjectReviewPanelsPending();
   void initRandomGuestReviews();
 
   initLazyScreenshotReviews();

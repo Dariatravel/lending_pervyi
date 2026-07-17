@@ -743,6 +743,40 @@ def normalize_catalog_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return normalized
 
 
+CATALOG_INITIAL_LIMIT = 20
+
+
+def mark_catalog_cards_initial_hidden(cards_html: str, limit: int = CATALOG_INITIAL_LIMIT) -> str:
+    """Pre-hide cards beyond the first-screen limit so the grid does not FOUC before JS."""
+    parts = re.split(r'(?=<a class="catalog-card")', cards_html)
+    prefix = parts[0]
+    cards = [part for part in parts[1:] if part.startswith('<a class="catalog-card"')]
+    marked: list[str] = []
+    for index, card in enumerate(cards):
+        if index >= limit and " hidden" not in card[:80]:
+            card = card.replace('<a class="catalog-card"', '<a class="catalog-card" hidden', 1)
+        marked.append(card)
+    return prefix + "".join(marked)
+
+
+def sync_catalog_visible_count_markup(total_cards: int) -> None:
+    """Keep SSR counter honest before deferred scripts run."""
+    text = INDEX_PATH.read_text(encoding="utf-8")
+    initial = min(total_cards, CATALOG_INITIAL_LIMIT)
+    updated, count = re.subn(
+        r'(<p class="filter-result">)[\s\S]*?(</p>)',
+        (
+            rf'\1Показано объектов: <strong id="visible-count">{initial}</strong>'
+            rf' из <strong id="catalog-match-total">{total_cards}</strong>\2'
+        ),
+        text,
+        count=1,
+    )
+    if count != 1:
+        raise RuntimeError("Не удалось обновить счётчик каталога в index.html")
+    INDEX_PATH.write_text(updated, encoding="utf-8")
+
+
 def rebuild_catalog(rows: list[dict[str, Any]]) -> None:
     rows = normalize_catalog_rows(rows)
     rows = [row for row in rows if row.get("is_active", True)]
@@ -756,14 +790,16 @@ def rebuild_catalog(rows: list[dict[str, Any]]) -> None:
     KVARTIRA_DIR.mkdir(parents=True, exist_ok=True)
 
     hotel_post_meta = load_hotel_card_meta()
-    catalog_cards_html = "".join(render_hotel_card(row, hotel_post_meta) for row in hotel_rows) + "".join(
+    catalog_cards = [render_hotel_card(row, hotel_post_meta) for row in hotel_rows] + [
         render_kvartira_card(row) for row in kvartira_rows
-    )
+    ]
+    catalog_cards_html = mark_catalog_cards_initial_hidden("".join(catalog_cards))
     replace_catalog_block(
         INDEX_PATH,
         '<div class="catalog-grid" id="catalog-grid">',
         catalog_cards_html,
     )
+    sync_catalog_visible_count_markup(len(catalog_cards))
     KVARTIRA_PATH.write_text(render_kvartira_catalog_page(kvartira_rows), encoding="utf-8")
 
     for row in hotel_rows:
