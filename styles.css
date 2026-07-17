@@ -1631,7 +1631,7 @@ section.site-concept__contacts.section {
 }
 
 /* Компактный выбор мессенджера в блоке контактов на главной. */
-.site-concept__contacts .contact-channel-panel {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-panel {
   width: min(100%, 860px);
   padding: clamp(16px, 2vw, 22px);
   border: 1px solid rgba(100, 121, 107, 0.16);
@@ -1639,11 +1639,11 @@ section.site-concept__contacts.section {
   background: rgba(249, 251, 249, 0.78);
 }
 
-.site-concept__contacts .contact-channel-panel__heading {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-panel__heading {
   margin-bottom: 16px;
 }
 
-.site-concept__contacts .contact-channel-panel .contact-channel-panel__title {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-panel .contact-channel-panel__title {
   max-width: none;
   margin: 0 0 4px;
   font-family: "Manrope", "Segoe UI", sans-serif;
@@ -1653,20 +1653,31 @@ section.site-concept__contacts.section {
   letter-spacing: -0.01em;
 }
 
-.site-concept__contacts .contact-channel-panel__hint {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-panel__hint {
   margin: 0;
   color: var(--muted);
   font-size: 13px;
   line-height: 1.45;
 }
 
-.site-concept__contacts .contact-channel-grid {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
 }
 
-.site-concept__contacts .contact-channel-card {
+.contact-channel-panel--stack {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.contact-channel-panel--stack .contact-channel-grid {
+  grid-template-columns: 1fr;
+}
+
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card {
   display: grid;
   grid-template-columns: 42px minmax(0, 1fr) auto;
   gap: 11px;
@@ -1683,18 +1694,18 @@ section.site-concept__contacts.section {
   transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-.site-concept__contacts .contact-channel-card:hover {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card:hover {
   transform: translateY(-2px);
   border-color: rgba(100, 121, 107, 0.3);
   box-shadow: 0 12px 24px rgba(35, 52, 43, 0.09);
 }
 
-.site-concept__contacts .contact-channel-card:focus-visible {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card:focus-visible {
   outline: 3px solid rgba(111, 145, 128, 0.38);
   outline-offset: 2px;
 }
 
-.site-concept__contacts .contact-channel-card__icon {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__icon {
   display: block;
   width: 42px;
   height: 42px;
@@ -1704,67 +1715,67 @@ section.site-concept__contacts.section {
   background-size: cover;
 }
 
-.site-concept__contacts .contact-channel-card__icon--vk {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__icon--vk {
   background-image: url("https://storage.yandexcloud.net/abhazbereg-media/media/branding/icon-vk-circle.png");
 }
 
-.site-concept__contacts .contact-channel-card__icon--max {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__icon--max {
   background-image: url("https://storage.yandexcloud.net/abhazbereg-media/media/branding/icon-max-circle.png");
 }
 
-.site-concept__contacts .contact-channel-card__icon--tg {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__icon--tg {
   background-image: url("https://storage.yandexcloud.net/abhazbereg-media/media/branding/icon-tg-circle.png");
 }
 
-.site-concept__contacts .contact-channel-card__icon--whatsapp {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__icon--whatsapp {
   display: grid;
   place-items: center;
   color: #fff;
   background: #25d366;
 }
 
-.site-concept__contacts .contact-channel-card__icon--whatsapp svg {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__icon--whatsapp svg {
   width: 25px;
   height: 25px;
   fill: currentColor;
 }
 
-.site-concept__contacts .contact-channel-card__copy,
-.site-concept__contacts .contact-channel-card__copy strong,
-.site-concept__contacts .contact-channel-card__copy small {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__copy,
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__copy strong,
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__copy small {
   display: block;
   min-width: 0;
 }
 
-.site-concept__contacts .contact-channel-card__copy strong {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__copy strong {
   margin-bottom: 3px;
   font-size: 17px;
   line-height: 1.25;
 }
 
-.site-concept__contacts .contact-channel-card__copy small {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__copy small {
   color: var(--muted);
   font-size: 13.5px;
   line-height: 1.35;
 }
 
-.site-concept__contacts .contact-channel-card__arrow {
+:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__arrow {
   color: var(--sage-deep);
   font-size: 18px;
   line-height: 1;
 }
 
 @media (max-width: 680px) {
-  .site-concept__contacts .contact-channel-grid {
+  :is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-grid {
     grid-template-columns: 1fr;
   }
 
-  .site-concept__contacts .contact-channel-panel {
+  :is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-panel {
     padding: 14px;
     border-radius: 18px;
   }
 
-  .site-concept__contacts .contact-channel-card {
+  :is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card {
     min-height: 68px;
     border-radius: 16px;
   }
@@ -3587,6 +3598,15 @@ a.podborki-card--link:hover {
 }
 
 .hotel-site-concept .save-button,
+.hotel-site-concept .button--ghost,
+.hotel-site-concept .button--accent {
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 700;
+  text-decoration: none;
+}
+
 .hotel-site-concept .button--ghost {
   display: inline-flex;
   align-items: center;
