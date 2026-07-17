@@ -317,27 +317,6 @@
   color: var(--muted);
 }
 
-.reviews-panel[data-reviews-state="pending"] .reviews-grid {
-  min-height: 120px;
-  border-radius: 18px;
-  background:
-    linear-gradient(110deg, rgba(240, 235, 222, 0.9), rgba(250, 247, 238, 0.88) 45%, rgba(232, 239, 226, 0.9));
-}
-
-.hotel-site-concept .contact-buttons .btn-book[href*="t.me"],
-.site-concept__contacts .contact-buttons .btn-book[href*="t.me"] {
-  background: linear-gradient(135deg, #2aabee 0%, #229ed9 100%);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: 0 12px 28px rgba(34, 158, 217, 0.28);
-  order: -1;
-}
-
-.hotel-site-concept .contact-buttons .btn-book[href*="t.me"]:hover,
-.site-concept__contacts .contact-buttons .btn-book[href*="t.me"]:hover {
-  filter: brightness(1.04);
-}
-
 .site-concept__topbar--on-banner {
   background: rgba(255, 255, 255, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.32);

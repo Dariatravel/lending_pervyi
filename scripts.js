@@ -192,7 +192,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607171113";
+  const ASSET_VERSION = "202607172102";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -1270,27 +1270,9 @@
     return Math.max(existing || 2, 1);
   }
 
-  function markObjectReviewPanelsPending() {
-    if (!isObjectPage()) return;
-    document.querySelectorAll(".reviews-panel").forEach((panel) => {
-      panel.dataset.reviewsState = "pending";
-      const grid = panel.querySelector(".reviews-grid");
-      if (grid) grid.hidden = true;
-    });
-  }
-
   function renderObjectReviewPanels(context, objectPool) {
     const panels = Array.from(document.querySelectorAll(".reviews-panel"));
-    if (!panels.length) return false;
-
-    if (!objectPool.length) {
-      panels.forEach((panel) => {
-        panel.dataset.reviewsState = "empty";
-        panel.hidden = true;
-      });
-      return false;
-    }
-
+    if (!panels.length || !objectPool.length) return false;
     let hydrated = false;
 
     panels.forEach((panel, index) => {
@@ -1303,9 +1285,6 @@
         count,
         `abhaz:reviews:panel:${context.slug || window.location.pathname}:${index}`
       );
-      grid.hidden = false;
-      panel.hidden = false;
-      panel.dataset.reviewsState = "ready";
       grid.replaceChildren(...reviews.map(createObjectReviewCard));
       hydrated = true;
     });
@@ -1771,23 +1750,15 @@
     );
     if (!scrollers.length) return;
 
-    // Только отзывы, привязанные к объекту — без подмены глобальным пулом с чужими именами.
-    if (!objectPool.length) {
-      scrollers.forEach((scroller) => {
-        scroller.hidden = true;
-        scroller.dataset.reviewsState = "empty";
-      });
-      return;
-    }
+    const pool = objectPool.length ? objectPool : getGlobalReviewPool();
+    if (!pool.length) return;
 
     scrollers.forEach((scroller, index) => {
-      scroller.hidden = false;
-      scroller.dataset.reviewsState = "ready";
       const count = getReviewSlotCount(scroller, 4);
       const reviews = pickReviews(
-        objectPool,
+        pool,
         count,
-        `abhaz:reviews:object:${context.slug || window.location.pathname}:${index}:specific`
+        `abhaz:reviews:object:${context.slug || window.location.pathname}:${index}:${objectPool.length ? "specific" : "fallback"}`
       );
       renderReviewItems(scroller, reviews);
     });
@@ -5302,7 +5273,6 @@
   initCatalogMapPlaques();
   initObjectPageMapPlaque();
   absolutizeHotelSiteConceptMedia();
-  markObjectReviewPanelsPending();
   void initRandomGuestReviews();
 
   initLazyScreenshotReviews();
