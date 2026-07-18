@@ -11236,7 +11236,7 @@
       "published_at": "2026-04-16",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/sekret-garden-apartamenty-1465-cover.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Гагра. 8 минут до пляжа, размещение до 3 человек.",
         "sections": [
