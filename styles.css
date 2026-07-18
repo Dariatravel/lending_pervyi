@@ -1440,6 +1440,14 @@ a.site-concept__destination-card:focus-visible {
   font-weight: 800;
   text-align: center;
   color: #1f2f28;
+  /* Название живёт в фиксированной области на две строки: однострочные
+     центрируются по вертикали, длинные обрезаются на второй строке. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -webkit-box-pack: center;
+  overflow: hidden;
+  min-height: calc(2.44em + 20px);
 }
 
 .site-concept .catalog-card p {
@@ -1459,13 +1467,14 @@ a.site-concept__destination-card:focus-visible {
 }
 
 .site-concept .catalog-card .catalog-card__price {
-  margin-top: auto;
-  padding: 0 16px 16px;
+  margin: auto 16px 0;
+  padding: 10px 0 14px;
   font-size: 15px;
   font-weight: 700;
   line-height: 1.3;
-  text-align: center;
+  text-align: left;
   color: var(--ink);
+  border-top: 1px solid rgba(25, 35, 30, 0.09);
 }
 
 .site-concept .catalog-card .catalog-card__price strong {
@@ -6750,6 +6759,12 @@ html:has(> body.objects-map-page) {
 .catalog-card h3 {
   margin: 0.9rem 0 0.35rem;
   font-size: 1.2rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -webkit-box-pack: center;
+  overflow: hidden;
+  min-height: 2.6em;
 }
 
 .catalog-card p {
@@ -6760,8 +6775,11 @@ html:has(> body.objects-map-page) {
 
 .catalog-card .catalog-card__price {
   margin-top: 0.5rem;
+  padding-top: 0.5rem;
   color: var(--ink);
   font-size: 0.95rem;
+  text-align: left;
+  border-top: 1px solid rgba(25, 35, 30, 0.09);
 }
 
 .catalog-card .catalog-card__price strong {
@@ -7287,6 +7305,21 @@ html:has(> body.objects-map-page) {
     font-size: clamp(0.78rem, 3.1vw, 0.9rem);
     line-height: 1.45;
     text-align: center;
+  }
+
+  /* Цена — отдельной строкой под фактами, без наложения (общий p-селектор
+     выше ловит и цену, и блок фактов — им нужны разные ряды сетки). */
+  .site-concept .catalog-card .catalog-card__price {
+    grid-column: 2;
+    grid-row: 3;
+    align-self: end;
+    margin: 0 14px 12px;
+    padding: 6px 0 0;
+    font-size: clamp(0.82rem, 3.3vw, 0.95rem);
+  }
+
+  .site-concept .catalog-card h3 {
+    min-height: 0;
   }
 
   .hotel-site-concept__intro {
