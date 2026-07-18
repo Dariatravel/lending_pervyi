@@ -192,7 +192,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607172238";
+  const ASSET_VERSION = "202607182117";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -744,7 +744,7 @@
 
   function collectObjectGalleryItems() {
     const grids = document.querySelectorAll(
-      ".hotel-site-concept .media-grid, .hotel-site-concept .comment-media-grid, .hotel-site-concept .comment-review-grid"
+      ".hotel-site-concept .media-grid, .hotel-site-concept .comment-media-grid, .hotel-site-concept .comment-review-grid, .blog-article__media-gallery"
     );
     if (!grids.length) return [];
 
@@ -805,7 +805,7 @@
   function pauseInlineGalleryVideos() {
     document
       .querySelectorAll(
-        ".hotel-site-concept .media-grid video, .hotel-site-concept .hotel-media-section video, .hotel-site-concept .hotel-card__gallery video, .hotel-site-concept .comment-media-grid video, .hotel-site-concept .comment-review-grid video"
+        ".hotel-site-concept .media-grid video, .hotel-site-concept .hotel-media-section video, .hotel-site-concept .hotel-card__gallery video, .hotel-site-concept .comment-media-grid video, .hotel-site-concept .comment-review-grid video, .blog-article__media-gallery video"
       )
       .forEach((node) => {
         try {
@@ -856,7 +856,7 @@
       const itemKey = normalizeGallerySrc(item.src);
       const gridVideo = Array.from(
         document.querySelectorAll(
-          ".hotel-site-concept .media-grid video.local-video, .hotel-site-concept .comment-media-grid video.local-video, .hotel-site-concept .comment-review-grid video.local-video"
+          ".hotel-site-concept .media-grid video.local-video, .hotel-site-concept .comment-media-grid video.local-video, .hotel-site-concept .comment-review-grid video.local-video, .blog-article__media-gallery video"
         )
       ).find((node) => {
         const src = gallerySrcFromVideo(node);
@@ -5110,7 +5110,7 @@
     }
 
     const image = event.target.closest(
-      ".media-grid img, .hotel-media-section img, .comment-media-grid img, .comment-review-grid img"
+      ".media-grid img, .hotel-media-section img, .comment-media-grid img, .comment-review-grid img, .blog-article__media-gallery img"
     );
     if (image) {
       if (image.classList.contains("local-video-preview")) {
@@ -5136,7 +5136,7 @@
     }
 
     const video = event.target.closest(
-      ".media-grid video.local-video, .hotel-media-section video.local-video, .comment-media-grid video.local-video, .comment-review-grid video.local-video"
+      ".media-grid video.local-video, .hotel-media-section video.local-video, .comment-media-grid video.local-video, .comment-review-grid video.local-video, .blog-article__media-gallery video"
     );
     if (!video) return;
     if (isVideoControlsClick(video, event)) return;

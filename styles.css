@@ -8494,6 +8494,10 @@ html:has(> body.objects-map-page) {
   object-fit: contain;
 }
 
+.blog-article__media-item img {
+  cursor: zoom-in;
+}
+
 @media (max-width: 980px) {
   .blog-article-page .site-concept__hero-card.blog-article {
     padding: 22px;
