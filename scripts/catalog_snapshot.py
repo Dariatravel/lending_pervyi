@@ -40,6 +40,8 @@ def compact_listing_for_index(row: dict[str, Any]) -> dict[str, Any]:
         "slug": row.get("slug"),
         "title": row.get("title"),
         "summary": row.get("summary"),
+        "location_text": row.get("location_text"),
+        "beach_text": row.get("beach_text"),
         "page_url": row.get("page_url"),
         "has_video": bool(row.get("has_video")),
         "cover_url": row.get("cover_url"),

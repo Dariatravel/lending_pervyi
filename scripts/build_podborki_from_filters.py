@@ -158,11 +158,14 @@ def parse_catalog_cards(path: Path, prefix: str) -> list[Card]:
             continue
         body = match.group("body")
         h3m = re.search(r"<h3>(.*?)</h3>", body, re.I | re.S)
-        pm = re.search(r"<p>(.*?)</p>", body, re.I | re.S)
+        # Блок фактов (📍/🏖/👥) переносим как есть, вместе с <br />;
+        # <p class="catalog-card__price"> сюда не попадает.
+        pm = re.search(r'<p(?:\s+class="catalog-card__facts")?>(.*?)</p>', body, re.I | re.S)
         im = re.search(r"<img\b([^>]*)>", body, re.I | re.S)
         img_attrs = parse_attrs(im.group(1)) if im else {}
         title = html.unescape(strip_tags(h3m.group(1))).strip() if h3m else ""
-        summary = html.unescape(strip_tags(pm.group(1))).strip() if pm else ""
+        # summary хранит готовый inner-HTML из нашей же карточки (уже экранирован)
+        summary = pm.group(1).strip() if pm else ""
         price_m = re.search(r'<p class="catalog-card__price">.*?</p>', body, re.I | re.S)
         price_html = price_m.group(0) if price_m else ""
         image = normalize_image(img_attrs.get("src", ""))
@@ -323,7 +326,8 @@ def render_card(card: Card, rank: int) -> str:
         f'          <a class="catalog-card podborki-catalog-card" href="{html.escape(card.href)}">'
         f'<div class="catalog-card__media-wrap">'
         f'<span class="catalog-card__badge catalog-card__badge--rank" aria-label="Место в подборке — {rank}">{rank}</span>'
-        f"{media_inner}</div><h3>{html.escape(card.title)}</h3><p>{html.escape(card.summary) or ' '}</p>{card.price_html}</a>"
+        f"{media_inner}</div><h3>{html.escape(card.title)}</h3>"
+        f'<p class="catalog-card__facts">{card.summary or " "}</p>{card.price_html}</a>'
     )
 
 

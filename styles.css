@@ -1449,6 +1449,13 @@ a.site-concept__destination-card:focus-visible {
   color: #4f5d53;
 }
 
+/* Факты из шапки поста (📍адрес, 🏖пляж, 👥вместимость) — по левому краю,
+   название карточки остаётся по центру. */
+.catalog-card p.catalog-card__facts,
+.site-concept .catalog-card p.catalog-card__facts {
+  text-align: left;
+}
+
 .site-concept .catalog-card .catalog-card__price {
   margin-top: auto;
   padding: 0 16px 16px;

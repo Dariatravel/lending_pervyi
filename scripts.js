@@ -192,7 +192,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607182117";
+  const ASSET_VERSION = "202607182316";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -2507,6 +2507,55 @@
     return `${city}. ${distance}, ${capacity}.`;
   }
 
+  /** Название для мини-карточки: без промо-хвостов («скидка…», «акция…»). */
+  function cleanCardTitle(title) {
+    const text = String(title || "");
+    const match = text.match(/скидк|акци/i);
+    if (!match) return text;
+    const cleaned = text
+      .slice(0, match.index)
+      .replace(/[\s\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\-–—:,·|]+$/u, "")
+      .trim();
+    return cleaned || text;
+  }
+
+  /** Единый блок фактов мини-карточки: 📍адрес, 🏖пляж, 👥вместимость — как в шапке поста. */
+  function formatCardFactLines(row) {
+    const source = row?.summary || row?.excerpt || row?.details?.lead || "";
+    const filters = row?.details?.filters || {};
+    const lines = [];
+    const location = String(row?.location_text || "").replace(/^[\s\u{FE0F}]+/u, "").trim();
+    if (location) {
+      lines.push(location.startsWith("📍") ? location : `📍${location}`);
+    } else {
+      const city = extractCityFromSummary(source) || CITY_LABELS[firstValue(filters.city)];
+      if (city) lines.push(`📍${city}`);
+    }
+    const beach = String(row?.beach_text || "").replace(/^[\s\u{FE0F}]+/u, "").trim();
+    if (beach) {
+      lines.push(beach.startsWith("🏖") ? beach : `🏖 ${beach}`);
+    } else {
+      const distance = extractDistanceFromSummary(source) || DISTANCE_BY_FILTER[firstValue(filters.distance)];
+      if (distance) lines.push(`🏖 ${distance}`);
+    }
+    const capacity = extractCapacityFromSummary(source);
+    if (capacity) lines.push(`👥 ${capacity}`);
+    return lines.join("\n");
+  }
+
+  function appendCardFacts(card, row) {
+    const desc = document.createElement("p");
+    const facts = formatCardFactLines(row);
+    if (facts) {
+      desc.className = "catalog-card__facts";
+      replaceWithLines(desc, facts);
+    } else {
+      desc.textContent =
+        row?.source_kind === "kvartira" ? formatKvartiraCardSummary(row) : formatHotelCardSummary(row);
+    }
+    card.appendChild(desc);
+  }
+
   /** Короткие строки 📍 / 🏖 как у карточек отелей на главной (не абзацы из excerpt). */
   function extractKvartiraPinLine(text) {
     const t = String(text || "").trim();
@@ -2636,8 +2685,8 @@
       card.appendChild(mediaWrap);
       appendCatalogMapPlaque(card, primaryCityKeyFromFilters(row.details?.filters));
 
-      card.appendChild(createTextNode("h3", row.title || ""));
-      card.appendChild(createTextNode("p", formatHotelCardSummary(row)));
+      card.appendChild(createTextNode("h3", cleanCardTitle(row.title)));
+      appendCardFacts(card, row);
       fragment.appendChild(card);
     });
 
@@ -2672,10 +2721,8 @@
       mediaWrap.appendChild(image);
       card.appendChild(mediaWrap);
       appendCatalogMapPlaque(card, primaryCityKeyFromFilters(row.details?.filters));
-      card.appendChild(createTextNode("h3", row.title || ""));
-      const desc = document.createElement("p");
-      replaceWithLines(desc, formatKvartiraCardSummary(row));
-      card.appendChild(desc);
+      card.appendChild(createTextNode("h3", cleanCardTitle(row.title)));
+      appendCardFacts(card, row);
       fragment.appendChild(card);
     });
 
@@ -2817,15 +2864,8 @@
     attachImageFallback(image, row);
     mediaWrap.appendChild(image);
     card.appendChild(mediaWrap);
-    card.appendChild(createTextNode("h3", row.title || ""));
-
-    if (sourceKind === "kvartira") {
-      const desc = document.createElement("p");
-      replaceWithLines(desc, formatKvartiraCardSummary(row));
-      card.appendChild(desc);
-    } else {
-      card.appendChild(createTextNode("p", formatHotelCardSummary(row)));
-    }
+    card.appendChild(createTextNode("h3", cleanCardTitle(row.title)));
+    appendCardFacts(card, { ...row, source_kind: row.source_kind || sourceKind });
 
     return card;
   }

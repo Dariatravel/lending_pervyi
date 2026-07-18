@@ -59,6 +59,51 @@ def render_card_price_html(slug: str) -> str:
         f'<p class="catalog-card__price">Цена от <strong>{pretty} ₽</strong>/сутки '
         f"{MIN_PRICES_MONTH_LABEL}</p>"
     )
+
+
+# Хвосты вида «🩵скидка 20% до 20 июля🩵» в мини-карточке не показываем —
+# название должно оставаться чистым (решение Дарьи 18.07.2026).
+_PROMO_TAIL_RX = re.compile(r"скидк|акци", re.IGNORECASE)
+_TAIL_TRIM_RX = re.compile(
+    "[\\s\\-–—:,·|" "\U0001f000-\U0001faff☀-➿⬀-⯿️]+$"
+)
+_CAPACITY_RX = re.compile(r"размещ\w*[^.,;!]*?до\s*\d+\s*чел\w*", re.IGNORECASE)
+
+
+def clean_card_title(title: str) -> str:
+    text = str(title or "")
+    match = _PROMO_TAIL_RX.search(text)
+    if not match:
+        return text
+    cleaned = _TAIL_TRIM_RX.sub("", text[: match.start()]).strip()
+    return cleaned or text
+
+
+def extract_capacity_text(row: dict[str, Any]) -> str:
+    details = row.get("details") or {}
+    for source in (row.get("summary"), row.get("excerpt"), details.get("lead")):
+        match = _CAPACITY_RX.search(str(source or ""))
+        if match:
+            return match.group(0).strip()
+    return ""
+
+
+def render_card_facts_html(row: dict[str, Any], fallback_summary: str) -> str:
+    """Три строки фактов из шапки телеграм-поста: 📍адрес, 🏖пляж, 👥вместимость."""
+    lines: list[str] = []
+    location_text = str(row.get("location_text") or "").strip().lstrip("️ ").strip()
+    beach_text = str(row.get("beach_text") or "").strip().lstrip("️ ").strip()
+    if location_text:
+        lines.append(location_text if location_text.startswith("📍") else f"📍{location_text}")
+    if beach_text:
+        lines.append(beach_text if beach_text.startswith("🏖") else f"🏖 {beach_text}")
+    capacity_text = extract_capacity_text(row)
+    if capacity_text:
+        lines.append(f"👥 {capacity_text}")
+    if lines:
+        inner = "<br />".join(html.escape(line) for line in lines)
+        return f'<p class="catalog-card__facts">{inner}</p>'
+    return f"<p>{html.escape(fallback_summary)}</p>"
 CITY_MAP = {
     "sukhum": ("сухум",),
     "new-afon": ("новый афон", "приморское"),
@@ -263,28 +308,18 @@ def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]])
     )
     href = page_path_from_url(row.get("page_url"), f"/hotels/{row['slug']}/")
     image = image_src_for_html(pick_cover_url(row))
-    title = html.escape(row.get("title") or "")
+    title = html.escape(clean_card_title(row.get("title") or ""))
     summary_fallback = row.get("summary") or row.get("excerpt") or ""
-    card_lines: list[str] = []
-    location_text = str(row.get("location_text") or "").strip()
-    beach_text = str(row.get("beach_text") or "").strip()
-    if location_text:
-        card_lines.append(location_text if location_text.startswith("📍") else f"📍{location_text}")
-    if beach_text:
-        card_lines.append(beach_text if beach_text.startswith("🏖") else f"🏖 {beach_text}")
-    if not card_lines:
+    facts_row = row
+    if not str(row.get("location_text") or "").strip() and not str(row.get("beach_text") or "").strip():
         source_message_id = resolve_source_message_id(row)
         if source_message_id is not None:
             meta = post_meta.get(source_message_id) or {}
-            if meta.get("location_line"):
-                card_lines.append(meta["location_line"])
-            if meta.get("beach_line"):
-                card_lines.append(meta["beach_line"])
-
-    if card_lines:
-        summary_html = "<br />".join(html.escape(line) for line in card_lines)
-    else:
-        summary_html = html.escape(summary_fallback)
+            if meta.get("location_line") or meta.get("beach_line"):
+                facts_row = dict(row)
+                facts_row["location_text"] = meta.get("location_line") or ""
+                facts_row["beach_text"] = meta.get("beach_line") or ""
+    facts_html = render_card_facts_html(facts_row, summary_fallback)
     city_key = primary_city_key(filters, row)
     map_plaque = render_map_plaque_html(city_key)
     video_attr = ' data-has-video="1"' if row.get("has_video") else ""
@@ -299,7 +334,7 @@ def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]])
         f'<div class="catalog-card__media-wrap">{image_html}'
         f"{map_plaque}</div>"
         f"<h3>{title}</h3>"
-        f"<p>{summary_html}</p>"
+        f"{facts_html}"
         f"{render_card_price_html(row.get('slug') or '')}"
         f"</a>"
     )
@@ -338,8 +373,9 @@ def render_kvartira_card(row: dict[str, Any]) -> str:
         for group in FILTER_GROUPS
     )
     href = page_path_from_url(row.get("page_url"), row.get("telegram_url") or "/kvartira/")
-    title = html.escape(row.get("title") or "")
-    summary = html.escape(row.get("summary") or row.get("excerpt") or ((row.get("details") or {}).get("excerpt") or ""))
+    title = html.escape(clean_card_title(row.get("title") or ""))
+    summary_fallback = row.get("summary") or row.get("excerpt") or ((row.get("details") or {}).get("excerpt") or "")
+    facts_html = render_card_facts_html(row, summary_fallback)
     image = image_src_for_html(pick_cover_url(row))
     badge = '<span class="catalog-card__badge">Видео</span>' if row.get("has_video") else ""
     map_plaque = render_map_plaque_html(primary_city_key(filters, row))
@@ -354,7 +390,7 @@ def render_kvartira_card(row: dict[str, Any]) -> str:
         f'<div class="catalog-card__media-wrap">{badge}{image_html}'
         f"{map_plaque}</div>"
         f"<h3>{title}</h3>"
-        f"<p>{summary}</p>"
+        f"{facts_html}"
         f"{render_card_price_html(row.get('slug') or '')}"
         f"</a>"
     )
