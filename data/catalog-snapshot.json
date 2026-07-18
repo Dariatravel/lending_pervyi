@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-18T21:05:56.615725+00:00",
+  "generated_at": "2026-07-18T21:37:03.860975+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 222,
-  "listings_hotels": 163,
+  "listings_total": 223,
+  "listings_hotels": 164,
   "listings_kvartira": 59,
   "listings": [
     {
@@ -11463,7 +11463,6 @@
       ]
     },
     {
-      "id": 982,
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
       "source_message_id": 4162,
@@ -11482,9 +11481,44 @@
       "published_at": "2026-04-16",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sekret-garden-apartamenty-4162.jpg",
-      "is_active": false,
+      "is_active": true,
       "details": {
         "lead": "Гагра. 8 минут до пляжа, размещение до 3 человек.",
+        "sections": [
+          {
+            "label": "✔️АПАРТАМЕНТЫ:",
+            "lines": [
+              "Новые светлые апартаменты в мансарде частного дома на 2 этаже с отдельным входом с улицы, без соседей за стенкой и сверху. Отличный вариант для уединенного отдыха.",
+              "Апартаменты выполнены в балансе стилей: уютного сканди и практичного лофт.",
+              "Есть двуспальная кровать кинг сайз 180х200 с ортопедическим матрасом, раскладной диван. Сан узел с тропическим душем.",
+              "Оснащение: Wi‑Fi, кондиционер, телевизор, стиральная машина, обогреватель, водонагреватель, фен.",
+              "Есть оборудованная мини-кухня со всем необходимым.",
+              "Балкон с видом на море и город.",
+              "Собственное парковочное место у дома.",
+              "Дополнительно можно организовать трансфер от границы и экскурсии."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Удачное расположение в центре города, недалеко от парка и колеса обозрения.",
+              "В шаговой доступности набережная, кафе, магазины и туристические точки.",
+              "Пляж оборудованный, лежаки и зонты напрокат, водные развлечения."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Без животных.",
+              "Размещение с детьми от 10 лет.",
+              "Депозит при заезде 5000₽, возвращается при соблюдении правил проживания.",
+              "Курение возможно только на балконе.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
         "prices": [
           {
             "kind": "price",
@@ -11519,191 +11553,142 @@
             "text": "6000₽ - с 25 декабря по 15 января"
           }
         ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/sekret-garden-apartamenty-4162/index.html",
         "filters": {
-          "distance": [
-            "up-to-10"
-          ],
-          "food": [
-            "no-food"
-          ],
-          "price": [
-            "midrange"
-          ],
-          "city": [
-            "gagra"
-          ],
-          "beach": [
-            "pebble"
-          ],
-          "room": [
-            "sea-view",
-            "balcony",
-            "tv",
-            "kitchen"
-          ],
-          "stay": [
-            "apartments"
-          ]
-        },
-        "sections": [
-          {
-            "label": "✔️АПАРТАМЕНТЫ:",
-            "lines": [
-              "Новые светлые апартаменты в мансарде частного дома на 2 этаже с отдельным входом с улицы, без соседей за стенкой и сверху. Отличный вариант для уединенного отдыха.",
-              "Апартаменты выполнены в балансе стилей: уютного сканди и практичного лофт.",
-              "Есть двуспальная кровать кинг сайз 180х200 с ортопедическим матрасом, раскладной диван. Сан узел с тропическим душем.",
-              "Оснащение: Wi‑Fi, кондиционер, телевизор, стиральная машина, обогреватель, водонагреватель, фен.",
-              "Есть оборудованная мини-кухня со всем необходимым.",
-              "Балкон с видом на море и город.",
-              "Собственное парковочное место у дома.",
-              "Дополнительно можно организовать трансфер от границы и экскурсии."
-            ]
-          },
-          {
-            "label": "✔️РЯДОМ:",
-            "lines": [
-              "Удачное расположение в центре города, недалеко от парка и колеса обозрения.",
-              "В шаговой доступности набережная, кафе, магазины и туристические точки.",
-              "Пляж оборудованный, лежаки и зонты напрокат, водные развлечения."
-            ]
-          },
-          {
-            "label": "✔️УСЛОВИЯ:",
-            "lines": [
-              "Без животных.",
-              "Размещение с детьми от 10 лет.",
-              "Курение возможно только на балконе.",
-              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
-              "(будьте внимательны ⚠️только этот контакт для брони)",
-              "Я на связи WhatsApp/MAX: +7940-900-33-40"
-            ]
-          }
-        ],
-        "page_path": "/Users/darya_botova/Documents/New project/hotels/sekret-garden-apartamenty-4162/index.html"
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
       },
+      "id": 1181,
       "media": [
         {
-          "id": 70738,
+          "id": 1181001,
           "media_role": "card",
           "sort_order": 0,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sekret-garden-apartamenty-4162.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "cards/sekret-garden-apartamenty-4162.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sekret-garden-apartamenty-4162.jpg",
           "details": {}
         },
         {
-          "id": 70739,
+          "id": 1181002,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-01.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/sekret-garden-apartamenty-4162/photo-01.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-01.jpg",
           "details": {}
         },
         {
-          "id": 70740,
+          "id": 1181003,
           "media_role": "gallery",
           "sort_order": 2,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-02.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/sekret-garden-apartamenty-4162/photo-02.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-02.jpg",
           "details": {}
         },
         {
-          "id": 70741,
+          "id": 1181004,
           "media_role": "gallery",
           "sort_order": 3,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-03.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/sekret-garden-apartamenty-4162/photo-03.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-03.jpg",
           "details": {}
         },
         {
-          "id": 70742,
+          "id": 1181005,
           "media_role": "gallery",
           "sort_order": 4,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-04.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/sekret-garden-apartamenty-4162/photo-04.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-04.jpg",
           "details": {}
         },
         {
-          "id": 70743,
+          "id": 1181006,
           "media_role": "gallery",
           "sort_order": 5,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-05.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/sekret-garden-apartamenty-4162/photo-05.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-05.jpg",
           "details": {}
         },
         {
-          "id": 70744,
+          "id": 1181007,
           "media_role": "gallery",
           "sort_order": 6,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-06.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/sekret-garden-apartamenty-4162/photo-06.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-06.jpg",
           "details": {}
         },
         {
-          "id": 70745,
+          "id": 1181008,
           "media_role": "gallery",
           "sort_order": 7,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-07.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/sekret-garden-apartamenty-4162/photo-07.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-07.jpg",
           "details": {}
         },
         {
-          "id": 70746,
+          "id": 1181009,
           "media_role": "gallery",
           "sort_order": 8,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-08.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/sekret-garden-apartamenty-4162/photo-08.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-08.jpg",
           "details": {}
         },
         {
-          "id": 70747,
+          "id": 1181010,
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-09.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/sekret-garden-apartamenty-4162/photo-09.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/sekret-garden-apartamenty-4162/photo-09.jpg",
           "details": {}
         },
         {
-          "id": 70748,
+          "id": 1181011,
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sekret-garden-apartamenty-4162/video-01-1800k.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sekret-garden-apartamenty-4162/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/sekret-garden-apartamenty-4162/video-01-1800k.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sekret-garden-apartamenty-4162/video-01-1800k.mp4",
+          "storage_path": "videos/hotels/sekret-garden-apartamenty-4162/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sekret-garden-apartamenty-4162/video-01.mp4",
           "details": {
+            "telegram_post": "abhazbooking/4171",
             "telegram_url": "https://t.me/abhazbooking/4171",
-            "telegram_post": "abhazbooking/4171"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sekret-garden-apartamenty-4162/video-01-poster.jpg"
           }
         }
       ]
