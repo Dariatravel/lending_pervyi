@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-17T21:34:27.818340+00:00",
+  "generated_at": "2026-07-18T22:35:28.619430+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -371,11 +371,11 @@
       "cityKey": "gagra"
     },
     {
-      "title": "\"СЕКРЕТ ГАРДЕН\" АПАРТАМЕНТЫ",
+      "title": "\"СЕКРЕТ ГАРДЕН\" апартаменты",
       "address": "Гагра, Кабардинская ул, 83",
       "lat": 43.2850267976542,
       "lon": 40.267194542327736,
-      "url": "/kvartira/sekret-garden-apartamenty-1465/",
+      "url": "/hotels/sekret-garden-apartamenty-4162/",
       "cityKey": "gagra"
     },
     {
@@ -1782,16 +1782,16 @@
   "stats": {
     "placemarks_total": 450,
     "placemarks_unique": 225,
-    "pages_total": 228,
+    "pages_total": 229,
     "pages_on_disk": 255,
-    "pages_excluded": 27,
-    "from_constructor": 228,
+    "pages_excluded": 26,
+    "from_constructor": 229,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 0,
     "skipped_without_coords": 0,
-    "shared_coordinate_groups": 19,
-    "deduped_redirect_points": 6,
+    "shared_coordinate_groups": 20,
+    "deduped_redirect_points": 7,
     "points_total": 222
   }
 }
