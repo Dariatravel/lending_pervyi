@@ -50,6 +50,37 @@ CSS_VERSION = (ROOT / "data" / "asset-version.txt").read_text(encoding="utf-8").
 MIN_POST_CHARS = 200  # служебные/короткие посты канала не становятся страницами
 
 
+MAX_RAW_VIDEO_UPLOAD_MB = 95  # без ffmpeg заливаем исходник только до этого размера
+
+
+def publish_vezu_video(video_path: "Path", video_name: str) -> str:
+    """Залить видео экскурсии в бакет; вернуть публичный URL или '' при отказе.
+
+    При наличии ffmpeg видео сжимается в web-вариант (960px/1200k, как в
+    основном синке каталога); без ffmpeg исходник заливается как есть,
+    но только если он не тяжелее MAX_RAW_VIDEO_UPLOAD_MB.
+    """
+    import shutil as _shutil
+
+    if not video_path.exists() or video_path.stat().st_size == 0:
+        return ""
+    upload_candidate = video_path
+    if _shutil.which("ffmpeg"):
+        web_path = video_path.with_name(video_path.stem + "-web.mp4")
+        if not web_path.exists() or web_path.stat().st_size == 0:
+            from sync_catalog_from_telegram import transcode_video
+
+            transcode_video(video_path, web_path, "1200k")
+        if web_path.exists() and web_path.stat().st_size > 0:
+            upload_candidate = web_path
+    if upload_candidate == video_path and video_path.stat().st_size > MAX_RAW_VIDEO_UPLOAD_MB * 1024 * 1024:
+        print(f"[warn] видео {video_name} слишком большое без ffmpeg — оставляем telegram-встройку", file=sys.stderr)
+        return ""
+    from yandex_storage import upload_file
+
+    return upload_file(upload_candidate, f"media/vezu/{video_name}", "video/mp4")
+
+
 def is_video_message(msg: object) -> bool:
     file_obj = getattr(msg, "file", None)
     mime_type = str(getattr(file_obj, "mime_type", "") or "")
@@ -349,7 +380,7 @@ async def sync_vezu(post_ids: list[int] | None = None) -> list[dict[str, object]
         entity = await client.get_entity(CHANNEL)
 
         posts: dict[int, dict[str, object]] = {}
-        async for msg in client.iter_messages(entity, limit=400):
+        async for msg in client.iter_messages(entity, limit=1200):
             group_key = int(getattr(msg, "grouped_id", None) or msg.id)
             row = posts.setdefault(group_key, {"text": "", "text_id": 0, "photo_msg": None, "media_msgs": [], "date": None})
             text = (msg.message or "").strip()
@@ -391,10 +422,19 @@ async def sync_vezu(post_ids: list[int] | None = None) -> list[dict[str, object]
             if photo_msg is not None:
                 if not image_path.exists():
                     await client.download_media(photo_msg, file=str(image_path))
-                if image_path.exists():
-                    upload_local_image_public_url(None, image_path, f"media/vezu/{image_name}")
-                    image_src = f"{YANDEX_MEDIA_BASE}/media/vezu/{image_name}"
-                    image_srcset = blog_image_srcset(image_src)
+            else:
+                # Фото в посте нет — обложкой становится кадр (превью) видео.
+                first_video = next((m for m in sorted(row["media_msgs"], key=lambda item: item.id)
+                                    if is_video_message(m)), None)
+                if first_video is not None and not image_path.exists():
+                    try:
+                        await client.download_media(first_video, file=str(image_path), thumb=-1)
+                    except Exception as error:  # noqa: BLE001
+                        print(f"[warn] превью видео не скачалось ({slug}): {error}", file=sys.stderr)
+            if image_path.exists():
+                upload_local_image_public_url(None, image_path, f"media/vezu/{image_name}")
+                image_src = f"{YANDEX_MEDIA_BASE}/media/vezu/{image_name}"
+                image_srcset = blog_image_srcset(image_src)
 
             cover_msg_id = int(getattr(photo_msg, "id", 0) or 0)
             for media_index, media_msg in enumerate(sorted(row["media_msgs"], key=lambda item: item.id), start=1):
@@ -417,14 +457,46 @@ async def sync_vezu(post_ids: list[int] | None = None) -> list[dict[str, object]
                             }
                         )
                 elif is_video_message(media_msg):
-                    media_items.append(
-                        {
-                            "kind": "telegram",
-                            "src": f"https://t.me/{CHANNEL}/{media_msg_id}",
-                            "telegram_post": f"{CHANNEL}/{media_msg_id}",
-                            "alt": f"{title_short} — видео {media_index}",
-                        }
-                    )
+                    # Видео публикуем на странице (решение Дарьи 17.07.2026):
+                    # скачиваем, при наличии ffmpeg сжимаем в web-вариант,
+                    # иначе заливаем как есть (с лимитом размера).
+                    video_name = f"telegram-vezu-{post_id}-{media_index:02d}.mp4"
+                    video_path = MEDIA_DIR / video_name
+                    poster_name = f"telegram-vezu-{post_id}-{media_index:02d}-poster.jpg"
+                    poster_path = MEDIA_DIR / poster_name
+                    if not video_path.exists():
+                        await client.download_media(media_msg, file=str(video_path))
+                    if not poster_path.exists():
+                        try:
+                            await client.download_media(media_msg, file=str(poster_path), thumb=-1)
+                        except Exception:  # noqa: BLE001
+                            pass
+                    published = publish_vezu_video(video_path, video_name)
+                    poster_url = ""
+                    if poster_path.exists():
+                        poster_url = upload_local_image_public_url(
+                            None, poster_path, f"media/vezu/{poster_name}"
+                        )
+                    if published:
+                        media_items.append(
+                            {
+                                "kind": "video",
+                                "src": published,
+                                "poster": poster_url,
+                                "alt": f"{title_short} — видео {media_index}",
+                            }
+                        )
+                    else:
+                        # не удалось залить (слишком большое без ffmpeg) —
+                        # оставляем встроенный telegram-пост, чтобы видео было
+                        media_items.append(
+                            {
+                                "kind": "telegram",
+                                "src": f"https://t.me/{CHANNEL}/{media_msg_id}",
+                                "telegram_post": f"{CHANNEL}/{media_msg_id}",
+                                "alt": f"{title_short} — видео {media_index}",
+                            }
+                        )
 
             lead = first_meaningful_paragraph(text, title)[:220]
             iso_date = row["date"].strftime("%Y-%m-%d") if row["date"] else "2026-01-01"

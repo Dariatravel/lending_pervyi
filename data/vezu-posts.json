@@ -1,5 +1,64 @@
 [
   {
+    "post_id": 355,
+    "slug": "vodopady-vostochnoy-abhazii-355",
+    "title": "ВОДОПАДЫ ВОСТОЧНОЙ АБХАЗИИ 🌊",
+    "excerpt": "Маршрут для тех, кто хочет за один день увидеть Сухум, старинный монастырь, шахтёрские города, заброшенную Акармару и самые мощные водопады восточной части Абхазии.",
+    "iso_date": "2026-07-18",
+    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355.jpg",
+    "image_srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-1440.webp 1440w",
+    "media_items": [
+      {
+        "kind": "image",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-01.jpg",
+        "srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-01-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-01-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-01-1440.webp 1440w",
+        "alt": "ВОДОПАДЫ ВОСТОЧНОЙ АБХАЗИИ 🌊 — фото 1"
+      },
+      {
+        "kind": "image",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-02.jpg",
+        "srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-02-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-02-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-02-1440.webp 1440w",
+        "alt": "ВОДОПАДЫ ВОСТОЧНОЙ АБХАЗИИ 🌊 — фото 2"
+      },
+      {
+        "kind": "image",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-03.jpg",
+        "srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-03-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-03-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-03-1440.webp 1440w",
+        "alt": "ВОДОПАДЫ ВОСТОЧНОЙ АБХАЗИИ 🌊 — фото 3"
+      },
+      {
+        "kind": "image",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-04.jpg",
+        "srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-04-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-04-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-04-1440.webp 1440w",
+        "alt": "ВОДОПАДЫ ВОСТОЧНОЙ АБХАЗИИ 🌊 — фото 4"
+      },
+      {
+        "kind": "image",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-05.jpg",
+        "srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-05-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-05-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-05-1440.webp 1440w",
+        "alt": "ВОДОПАДЫ ВОСТОЧНОЙ АБХАЗИИ 🌊 — фото 5"
+      },
+      {
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-06.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-06-poster.jpg",
+        "alt": "ВОДОПАДЫ ВОСТОЧНОЙ АБХАЗИИ 🌊 — видео 6"
+      },
+      {
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-07.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-07-poster.jpg",
+        "alt": "ВОДОПАДЫ ВОСТОЧНОЙ АБХАЗИИ 🌊 — видео 7"
+      },
+      {
+        "kind": "image",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-08.jpg",
+        "srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-08-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-08-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-355-08-1440.webp 1440w",
+        "alt": "ВОДОПАДЫ ВОСТОЧНОЙ АБХАЗИИ 🌊 — фото 8"
+      }
+    ]
+  },
+  {
     "post_id": 337,
     "slug": "bolshoe-puteshestvie-k-shahterskomu-proshlomu-abhazii-337",
     "title": "БОЛЬШОЕ ПУТЕШЕСТВИЕ К ШАХТЁРСКОМУ ПРОШЛОМУ АБХАЗИИ ⛏️",
@@ -51,9 +110,9 @@
         "alt": "БОЛЬШОЕ ПУТЕШЕСТВИЕ К ШАХТЁРСКОМУ ПРОШЛОМУ АБХАЗИИ ⛏️ — фото 7"
       },
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/345",
-        "telegram_post": "abhazbereg_vezu/345",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-337-09.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-337-09-poster.jpg",
         "alt": "БОЛЬШОЕ ПУТЕШЕСТВИЕ К ШАХТЁРСКОМУ ПРОШЛОМУ АБХАЗИИ ⛏️ — видео 9"
       }
     ]
@@ -104,9 +163,9 @@
         "alt": "МОКВА + ОТАПСКАЯ ПЕЩЕРА + КРЕПОСТЬ САН-ТОМАЗО + ИСТОЧНИК КЫНДЫГ 🏰 — фото 6"
       },
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/325",
-        "telegram_post": "abhazbereg_vezu/325",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-319-07.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-319-07-poster.jpg",
         "alt": "МОКВА + ОТАПСКАЯ ПЕЩЕРА + КРЕПОСТЬ САН-ТОМАЗО + ИСТОЧНИК КЫНДЫГ 🏰 — видео 7"
       },
       {
@@ -169,9 +228,9 @@
         "alt": "СУХУМ + ЧЕРНИГОВКА + ИСТОЧНИК КЫНДЫГ ♨️ — фото 7"
       },
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/308",
-        "telegram_post": "abhazbereg_vezu/308",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-301-08.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-301-08-poster.jpg",
         "alt": "СУХУМ + ЧЕРНИГОВКА + ИСТОЧНИК КЫНДЫГ ♨️ — видео 8"
       }
     ]
@@ -210,9 +269,9 @@
         "alt": "СУХУМ И ОКРЕСТНОСТИ 🌴 — фото 4"
       },
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/277",
-        "telegram_post": "abhazbereg_vezu/277",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-273-05.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-273-05-poster.jpg",
         "alt": "СУХУМ И ОКРЕСТНОСТИ 🌴 — видео 5"
       },
       {
@@ -704,15 +763,15 @@
         "alt": "ОЗЕРО РИЦА 🏔 — фото 6"
       },
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/126",
-        "telegram_post": "abhazbereg_vezu/126",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-119-08.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-119-08-poster.jpg",
         "alt": "ОЗЕРО РИЦА 🏔 — видео 8"
       },
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/127",
-        "telegram_post": "abhazbereg_vezu/127",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-119-09.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-119-09-poster.jpg",
         "alt": "ОЗЕРО РИЦА 🏔 — видео 9"
       }
     ]
@@ -733,13 +792,13 @@
     "title": "НОВЫЙ АФОН",
     "excerpt": "Новый Афон - один из самых насыщенных маршрутов в Абхазии. Здесь в один день можно увидеть пещеру, древнюю крепость, монастырь, грот, рукотворный водопад и красивую станцию Псырцха.",
     "iso_date": "2026-07-03",
-    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
-    "image_srcset": "",
+    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-80.jpg",
+    "image_srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-80-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-80-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-80-1440.webp 1440w",
     "media_items": [
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/80",
-        "telegram_post": "abhazbereg_vezu/80",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-80-01.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-80-01-poster.jpg",
         "alt": "НОВЫЙ АФОН — видео 1"
       }
     ]
@@ -796,9 +855,9 @@
         "alt": "Маршрут 3 — фото 7"
       },
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/77",
-        "telegram_post": "abhazbereg_vezu/77",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-69-09.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-69-09-poster.jpg",
         "alt": "Маршрут 3 — видео 9"
       }
     ]
@@ -849,9 +908,9 @@
         "alt": "Маршрут 2 — фото 6"
       },
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/68",
-        "telegram_post": "abhazbereg_vezu/68",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-61-08.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-61-08-poster.jpg",
         "alt": "Маршрут 2 — видео 8"
       }
     ]
@@ -902,9 +961,9 @@
         "alt": "Маршрут 1 — фото 6"
       },
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/60",
-        "telegram_post": "abhazbereg_vezu/60",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-53-08.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-53-08-poster.jpg",
         "alt": "Маршрут 1 — видео 8"
       }
     ]
@@ -965,13 +1024,13 @@
     "title": "Маршрут 5",
     "excerpt": "Маршрут 5. Вайб лета 2025 🔥‼️ Остров Шлыпра + Вечерняя Гагра (вечерняя экскурсия выезд в 15:00)",
     "iso_date": "2025-06-08",
-    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
-    "image_srcset": "",
+    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-9.jpg",
+    "image_srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-9-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-9-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-9-1440.webp 1440w",
     "media_items": [
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/9",
-        "telegram_post": "abhazbereg_vezu/9",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-9-01.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-9-01-poster.jpg",
         "alt": "Маршрут 5 — видео 1"
       }
     ]
@@ -982,13 +1041,13 @@
     "title": "Маршрут 4",
     "excerpt": "Маршрут 4. Восточная Абхазия + Горячий источник (минивен + джипинг)",
     "iso_date": "2025-06-08",
-    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
-    "image_srcset": "",
+    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-8.jpg",
+    "image_srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-8-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-8-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-8-1440.webp 1440w",
     "media_items": [
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/8",
-        "telegram_post": "abhazbereg_vezu/8",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-8-01.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-8-01-poster.jpg",
         "alt": "Маршрут 4 — видео 1"
       }
     ]
@@ -999,13 +1058,13 @@
     "title": "Маршрут 3",
     "excerpt": "Обезьяний питомник Ботанический сад Набережная Махаджиров Знаменитые фонтаны \"Гриффоны\" Кофейня \"Брехаловка\" с самым вкусным кофе на песке Здание Совета министров советской Абхазии (площадь Свободы) Смотровая площадка на",
     "iso_date": "2025-06-08",
-    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
-    "image_srcset": "",
+    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-7.jpg",
+    "image_srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-7-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-7-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-7-1440.webp 1440w",
     "media_items": [
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/7",
-        "telegram_post": "abhazbereg_vezu/7",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-7-01.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-7-01-poster.jpg",
         "alt": "Маршрут 3 — видео 1"
       }
     ]
@@ -1016,13 +1075,13 @@
     "title": "Маршрут 2",
     "excerpt": "НовоАфонские пещеры Рукотворный водопад Станция \"Псырцха\" Келья-Грот апостола Симона Кананита Новоафонский монастырь Анакопийская крепость на горе Лебединое Озеро Канатная дорога Так же есть возможность попробовать самые",
     "iso_date": "2025-06-08",
-    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
-    "image_srcset": "",
+    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-6.jpg",
+    "image_srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-6-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-6-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-6-1440.webp 1440w",
     "media_items": [
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/6",
-        "telegram_post": "abhazbereg_vezu/6",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-6-01.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-6-01-poster.jpg",
         "alt": "Маршрут 2 — видео 1"
       }
     ]
@@ -1033,13 +1092,13 @@
     "title": "Маршрут 1",
     "excerpt": "Бзыбский Храм Хвека Водопад \"Девичьи Слезы\" Стеклянный мост Голубое озеро Слияние двух рек Юпшарский каньон (каменный мешок) Водопад \"Мужские слезы\" Чабгарский карниз Озеро Рица Дача Сталина (+экскурсия) Водопад \"Молочны",
     "iso_date": "2025-06-08",
-    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
-    "image_srcset": "",
+    "image_src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-4.jpg",
+    "image_srcset": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-4-480.webp 480w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-4-960.webp 960w, https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-4-1440.webp 1440w",
     "media_items": [
       {
-        "kind": "telegram",
-        "src": "https://t.me/abhazbereg_vezu/4",
-        "telegram_post": "abhazbereg_vezu/4",
+        "kind": "video",
+        "src": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-4-01.mp4",
+        "poster": "https://storage.yandexcloud.net/abhazbereg-media/media/vezu/telegram-vezu-4-01-poster.jpg",
         "alt": "Маршрут 1 — видео 1"
       }
     ]
