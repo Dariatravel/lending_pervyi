@@ -42,6 +42,10 @@ MEDIA_DIR = ROOT / "media" / "vezu"
 SOURCES_DIR = ROOT / "scripts" / "vezu_telegram_sources"
 MANIFEST_PATH = ROOT / "data" / "vezu-posts.json"
 SKIP_PATH = ROOT / "data" / "vezu-skip.json"  # post_id служебных постов — не публикуем
+# Временно: посты старше этой даты не показываются в списке /vezu/
+# (страницы постов остаются доступны по прямым ссылкам). Чтобы вернуть —
+# поставить None. Решение Дарьи от 17.07.2026.
+INDEX_MIN_DATE: str | None = "2026-01-01"
 CSS_VERSION = (ROOT / "data" / "asset-version.txt").read_text(encoding="utf-8").strip()
 MIN_POST_CHARS = 200  # служебные/короткие посты канала не становятся страницами
 
@@ -512,8 +516,13 @@ async def main_async() -> int:
     cards = sorted(known.values(), key=lambda c: (str(c["iso_date"]), int(c.get("post_id") or 0)), reverse=True)
 
     MANIFEST_PATH.write_text(json.dumps(cards, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (VEZU_DIR / "index.html").write_text(render_index(cards), encoding="utf-8")
-    print(f"обновлён vezu/index.html ({len(cards)} экскурсий); раздел скрытый — в sitemap не добавляем")
+    index_cards = cards
+    if INDEX_MIN_DATE:
+        index_cards = [c for c in cards if str(c.get("iso_date", "")) >= INDEX_MIN_DATE]
+    (VEZU_DIR / "index.html").write_text(render_index(index_cards), encoding="utf-8")
+    hidden = len(cards) - len(index_cards)
+    print(f"обновлён vezu/index.html ({len(index_cards)} экскурсий, скрыто старых: {hidden}); "
+          "раздел скрытый — в sitemap не добавляем")
     return 0
 
 
