@@ -4555,6 +4555,22 @@ body {
   letter-spacing: -0.02em;
 }
 
+/* Контакты в карточке объекта живут в узкой колонке: содержимое не должно
+   распирать grid-колонку (1fr считает min-content, и nowrap-строки выталкивали
+   весь блок за экран). */
+.hotel-contact-section .contact-shell {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.hotel-contact-section .contact-shell > *,
+.hotel-contact-section .contact-shell__intro {
+  min-width: 0;
+}
+
+.hotel-contact-section .contact-messengers {
+  white-space: normal;
+}
+
 /* Объекты: на десктопе — блок контактов как на главной, на мобайле — прежний */
 .hotel-contact-section--desktop {
   display: none;
