@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-18T17:47:02.432370+00:00",
+  "generated_at": "2026-07-18T19:57:37.705175+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 222,
@@ -3090,12 +3090,12 @@
       "source_topic_id": null,
       "slug": "plyazhnyy-kompleks-151-na-beregu-4620",
       "title": "\"ПЛЯЖНЫЙ КОМПЛЕКС 151\" на берегу",
-      "summary": "Лдзаа. 0 минут до пляжа, размещение до 5 человек.",
+      "summary": "Лдзаа. 0 минут до пляжа (песок, мелкая галька), размещение до 5 человек.",
       "excerpt": "Всего шесть стильных двухуровневых домиков. Размещение до 5 человек",
       "city": "Лдзаа",
       "location_text": "Лдзаа, ул. Приморская, 18А",
-      "distance_text": "0 минут до пляжа",
-      "beach_text": "0 минут до пляжа",
+      "distance_text": "0 минут до пляжа (песок, мелкая галька)",
+      "beach_text": "0 минут до пляжа (песок, мелкая галька)",
       "capacity_text": "размещение до 5 человек",
       "page_url": "https://абхазберег.рф/hotels/plyazhnyy-kompleks-151-na-beregu-4620/",
       "telegram_url": "https://t.me/abhazbooking/4620",
@@ -3104,7 +3104,7 @@
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/plyazhnyy-kompleks-151-na-beregu-4620.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. 0 минут до пляжа, размещение до 5 человек.",
+        "lead": "Лдзаа. 0 минут до пляжа (песок, мелкая галька), размещение до 5 человек.",
         "sections": [
           {
             "label": "✔️ДОМИКИ:",
@@ -3357,14 +3357,14 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01-source.mp4",
+          "storage_path": "videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01.mp4",
           "details": {
             "telegram_post": "abhazbooking/4629",
             "telegram_url": "https://t.me/abhazbooking/4629",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01-poster.jpg"
           }
         }
       ]
