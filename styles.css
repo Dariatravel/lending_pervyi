@@ -478,9 +478,11 @@
 .site-concept__hero-copy {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.88fr);
+  /* Видео-колонка начинается на уровне заголовка: обе колонки прижаты
+     к верху блока (просьба Дарьи 18.07.2026). */
   grid-template-areas:
     "eyebrow eyebrow"
-    "title title"
+    "title media"
     "highlights media"
     "social social";
   align-items: start;
