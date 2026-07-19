@@ -1432,22 +1432,28 @@ a.site-concept__destination-card:focus-visible {
 }
 
 .site-concept .catalog-card h3 {
+  display: grid;
+  place-items: center;
+  height: calc(2 * 1.22em + 20px);
   margin: 0;
-  padding: 16px 16px 4px;
+  padding: 12px 16px 8px;
+  overflow: hidden;
   font-size: 17px;
   line-height: 1.22;
   font-family: "Manrope", "Segoe UI", sans-serif;
   font-weight: 800;
   text-align: center;
+  text-wrap: balance;
   color: #1f2f28;
-  /* Название живёт в фиксированной области на две строки: однострочные
-     центрируются по вертикали, длинные обрезаются на второй строке. */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  -webkit-box-pack: center;
-  overflow: hidden;
-  min-height: calc(2.44em + 20px);
+}
+
+@supports (-webkit-line-clamp: 2) {
+  .site-concept .catalog-card h3 {
+    display: -webkit-box;
+    align-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
 }
 
 .site-concept .catalog-card p {
@@ -1459,22 +1465,25 @@ a.site-concept__destination-card:focus-visible {
   color: #4f5d53;
 }
 
-/* Факты из шапки поста (📍адрес, 🏖пляж, 👥вместимость) — по левому краю,
-   название карточки остаётся по центру. */
+/* Факты из шапки поста (📍адрес, 🏖пляж, 👥вместимость) — по левому краю;
+   min-height на три строки выравнивает начало блока цены между карточками. */
 .catalog-card p.catalog-card__facts,
 .site-concept .catalog-card p.catalog-card__facts {
+  flex-grow: 1;
+  min-height: calc(3 * 1.4em + 10px);
+  padding-bottom: 12px;
   text-align: left;
 }
 
 .site-concept .catalog-card .catalog-card__price {
-  margin: auto 16px 0;
-  padding: 10px 0 14px;
-  font-size: 15px;
+  margin-top: auto;
+  padding: 12px 16px 16px;
+  border-top: 1px solid rgba(41, 74, 61, 0.1);
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.3;
   text-align: left;
   color: var(--ink);
-  border-top: 1px solid rgba(25, 35, 30, 0.09);
 }
 
 .site-concept .catalog-card .catalog-card__price strong {
@@ -7307,19 +7316,21 @@ html:has(> body.objects-map-page) {
     text-align: center;
   }
 
-  /* Цена — отдельной строкой под фактами, без наложения (общий p-селектор
-     выше ловит и цену, и блок фактов — им нужны разные ряды сетки). */
+  /* Мобильная сетка карточки: факты — второй ряд, цена — отдельный третий
+     (общий p-селектор выше ловит оба абзаца, и без этого они накладывались). */
+  .site-concept .catalog-card p.catalog-card__facts {
+    grid-row: 2;
+    min-height: 0;
+    padding-bottom: 10px;
+    text-align: left;
+  }
+
   .site-concept .catalog-card .catalog-card__price {
     grid-column: 2;
     grid-row: 3;
     align-self: end;
-    margin: 0 14px 12px;
-    padding: 6px 0 0;
-    font-size: clamp(0.82rem, 3.3vw, 0.95rem);
-  }
-
-  .site-concept .catalog-card h3 {
-    min-height: 0;
+    padding: 10px 14px 12px;
+    text-align: left;
   }
 
   .hotel-site-concept__intro {
