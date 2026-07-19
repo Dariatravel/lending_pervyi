@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T06:36:36.285473+00:00",
+  "generated_at": "2026-07-19T07:54:18.705443+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -867,11 +867,11 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"НАСТА\" апартаменты",
+      "title": "\"НАСТА\" гостевой дом",
       "address": "Лдзаа, улица Речная 36Б",
       "lat": 43.175714855989796,
       "lon": 40.38186052478156,
-      "url": "/hotels/nasta-gostevoy-dom-3249/",
+      "url": "/hotels/nasta-gostevoy-dom-3249-2/",
       "cityKey": "ldzaa"
     },
     {
@@ -1774,16 +1774,16 @@
   "stats": {
     "placemarks_total": 450,
     "placemarks_unique": 225,
-    "pages_total": 236,
-    "pages_on_disk": 255,
+    "pages_total": 237,
+    "pages_on_disk": 256,
     "pages_excluded": 19,
-    "from_constructor": 236,
+    "from_constructor": 237,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 0,
     "skipped_without_coords": 0,
-    "shared_coordinate_groups": 27,
-    "deduped_redirect_points": 15,
+    "shared_coordinate_groups": 28,
+    "deduped_redirect_points": 16,
     "points_total": 221
   }
 }
