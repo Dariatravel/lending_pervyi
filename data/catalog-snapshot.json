@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-18T21:37:03.860975+00:00",
+  "generated_at": "2026-07-19T05:41:21.228824+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 223,
-  "listings_hotels": 164,
-  "listings_kvartira": 59,
+  "listings_total": 230,
+  "listings_hotels": 172,
+  "listings_kvartira": 58,
   "listings": [
     {
       "source_kind": "kvartira",
@@ -8020,7 +8020,6 @@
       ]
     },
     {
-      "id": 1108,
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
       "source_message_id": 4357,
@@ -8039,55 +8038,9 @@
       "published_at": "2026-05-01",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/na-vremya-v-rayu-zhile-pod-klyuch-4357.jpg",
-      "is_active": false,
+      "is_active": true,
       "details": {
         "lead": "Новый Афон. 15 минут до пляжа, галечный, размещение до 8 человек.",
-        "prices": [
-          {
-            "kind": "price",
-            "text": "11500₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "12500₽ - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "15500₽ - июль, август, сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "12500₽ - октябрь, ноябрь"
-          }
-        ],
-        "filters": {
-          "distance": [
-            "over-10"
-          ],
-          "food": [
-            "no-food"
-          ],
-          "price": [
-            "premium"
-          ],
-          "city": [
-            "new-afon"
-          ],
-          "beach": [
-            "pebble"
-          ],
-          "room": [
-            "sea-view",
-            "tv",
-            "kitchen",
-            "five-plus",
-            "two-room-plus"
-          ],
-          "stay": [
-            "turnkey-house",
-            "pets"
-          ]
-        },
         "sections": [
           {
             "label": "✔️ДОМ:",
@@ -8130,131 +8083,160 @@
             ]
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/index.html"
+        "prices": [
+          {
+            "kind": "price",
+            "text": "11500₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "12500₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "15500₽ - июль, август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "12500₽ - октябрь, ноябрь"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
       },
+      "id": 1189,
       "media": [
         {
-          "id": 73265,
+          "id": 1189001,
           "media_role": "card",
           "sort_order": 0,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/na-vremya-v-rayu-zhile-pod-klyuch-4357.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "cards/na-vremya-v-rayu-zhile-pod-klyuch-4357.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/na-vremya-v-rayu-zhile-pod-klyuch-4357.jpg",
           "details": {}
         },
         {
-          "id": 73266,
+          "id": 1189002,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-01.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-01.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-01.jpg",
           "details": {}
         },
         {
-          "id": 73267,
+          "id": 1189003,
           "media_role": "gallery",
           "sort_order": 2,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-02.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-02.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-02.jpg",
           "details": {}
         },
         {
-          "id": 73268,
+          "id": 1189004,
           "media_role": "gallery",
           "sort_order": 3,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-03.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-03.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-03.jpg",
           "details": {}
         },
         {
-          "id": 73269,
+          "id": 1189005,
           "media_role": "gallery",
           "sort_order": 4,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-04.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-04.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-04.jpg",
           "details": {}
         },
         {
-          "id": 73270,
+          "id": 1189006,
           "media_role": "gallery",
           "sort_order": 5,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-05.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-05.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-05.jpg",
           "details": {}
         },
         {
-          "id": 73271,
+          "id": 1189007,
           "media_role": "gallery",
           "sort_order": 6,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-06.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-06.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-06.jpg",
           "details": {}
         },
         {
-          "id": 73272,
+          "id": 1189008,
           "media_role": "gallery",
           "sort_order": 7,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-07.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-07.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-07.jpg",
           "details": {}
         },
         {
-          "id": 73273,
+          "id": 1189009,
           "media_role": "gallery",
           "sort_order": 8,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-08.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-08.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-08.jpg",
           "details": {}
         },
         {
-          "id": 73274,
+          "id": 1189010,
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-09.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-09.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/photo-09.jpg",
           "details": {}
         },
         {
-          "id": 73275,
+          "id": 1189011,
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/video-01-1800k.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/video-01-1800k.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/video-01-1800k.mp4",
+          "storage_path": "videos/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/video-01.mp4",
           "details": {
+            "telegram_post": "abhazbooking/4366",
             "telegram_url": "https://t.me/abhazbooking/4366",
-            "telegram_post": "abhazbooking/4366"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/video-01-poster.jpg"
           }
         }
       ]
@@ -9782,7 +9764,6 @@
       ]
     },
     {
-      "id": 1099,
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
       "source_message_id": 4270,
@@ -9801,48 +9782,9 @@
       "published_at": "2026-04-28",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/studio-san-amra-studiya-na-plyazhe-4270.jpg",
-      "is_active": false,
+      "is_active": true,
       "details": {
         "lead": "Лдзаа. 0 минут до пляжа, размещение до 2 человек.",
-        "prices": [
-          {
-            "kind": "price",
-            "text": "7000₽ - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "11000₽ - с июля по сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "8000₽ - октябрь"
-          }
-        ],
-        "filters": {
-          "distance": [
-            "beachfront",
-            "up-to-5"
-          ],
-          "food": [
-            "no-food"
-          ],
-          "price": [
-            "premium"
-          ],
-          "city": [
-            "ldzaa"
-          ],
-          "beach": [
-            "pitsunda-bay-mixed"
-          ],
-          "room": [
-            "tv",
-            "kitchen"
-          ],
-          "stay": [
-            "apartments"
-          ]
-        },
         "sections": [
           {
             "label": "✔️СТУДИЯ:",
@@ -9867,120 +9809,145 @@
             ]
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/New project/hotels/studio-san-amra-studiya-na-plyazhe-4270/index.html"
+        "prices": [
+          {
+            "kind": "price",
+            "text": "7000₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "11000₽ - с июля по сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - октябрь"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/studio-san-amra-studiya-na-plyazhe-4270/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
       },
+      "id": 1188,
       "media": [
         {
-          "id": 70834,
+          "id": 1188001,
           "media_role": "card",
           "sort_order": 0,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/studio-san-amra-studiya-na-plyazhe-4270.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "cards/studio-san-amra-studiya-na-plyazhe-4270.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/studio-san-amra-studiya-na-plyazhe-4270.jpg",
           "details": {}
         },
         {
-          "id": 70835,
+          "id": 1188002,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-01.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-01.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-01.jpg",
           "details": {}
         },
         {
-          "id": 70836,
+          "id": 1188003,
           "media_role": "gallery",
           "sort_order": 2,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-02.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-02.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-02.jpg",
           "details": {}
         },
         {
-          "id": 70837,
+          "id": 1188004,
           "media_role": "gallery",
           "sort_order": 3,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-03.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-03.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-03.jpg",
           "details": {}
         },
         {
-          "id": 70838,
+          "id": 1188005,
           "media_role": "gallery",
           "sort_order": 4,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-04.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-04.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-04.jpg",
           "details": {}
         },
         {
-          "id": 70839,
+          "id": 1188006,
           "media_role": "gallery",
           "sort_order": 5,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-05.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-05.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-05.jpg",
           "details": {}
         },
         {
-          "id": 70840,
+          "id": 1188007,
           "media_role": "gallery",
           "sort_order": 6,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-06.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-06.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-06.jpg",
           "details": {}
         },
         {
-          "id": 70841,
+          "id": 1188008,
           "media_role": "gallery",
           "sort_order": 7,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-07.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-07.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-07.jpg",
           "details": {}
         },
         {
-          "id": 70842,
+          "id": 1188009,
           "media_role": "gallery",
           "sort_order": 8,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-08.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-08.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/studio-san-amra-studiya-na-plyazhe-4270/photo-08.jpg",
           "details": {}
         },
         {
-          "id": 70843,
+          "id": 1188010,
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/studio-san-amra-studiya-na-plyazhe-4270/video-01-1800k.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/studio-san-amra-studiya-na-plyazhe-4270/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/studio-san-amra-studiya-na-plyazhe-4270/video-01-1800k.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/studio-san-amra-studiya-na-plyazhe-4270/video-01-1800k.mp4",
+          "storage_path": "videos/hotels/studio-san-amra-studiya-na-plyazhe-4270/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/studio-san-amra-studiya-na-plyazhe-4270/video-01.mp4",
           "details": {
+            "telegram_post": "abhazbooking/4278",
             "telegram_url": "https://t.me/abhazbooking/4278",
-            "telegram_post": "abhazbooking/4278"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/studio-san-amra-studiya-na-plyazhe-4270/video-01-poster.jpg"
           }
         }
       ]
@@ -10449,7 +10416,6 @@
       ]
     },
     {
-      "id": 1090,
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
       "source_message_id": 4230,
@@ -10468,43 +10434,9 @@
       "published_at": "2026-04-24",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/tihaya-obitel-dom-pod-klyuch-4230.jpg",
-      "is_active": false,
+      "is_active": true,
       "details": {
         "lead": "Сухум. 15 минут до пляжа, размещение до 6 человек.",
-        "prices": [
-          {
-            "kind": "price",
-            "text": "7000₽ - круглый год"
-          }
-        ],
-        "filters": {
-          "distance": [
-            "over-10"
-          ],
-          "food": [
-            "no-food"
-          ],
-          "price": [
-            "midrange"
-          ],
-          "city": [
-            "sukhum"
-          ],
-          "beach": [
-            "pebble"
-          ],
-          "room": [
-            "terrace",
-            "tv",
-            "kitchen",
-            "five-plus",
-            "two-room-plus"
-          ],
-          "stay": [
-            "apartments",
-            "pets"
-          ]
-        },
         "sections": [
           {
             "label": "✔️ДОМ:",
@@ -10543,120 +10475,137 @@
             ]
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/New project/hotels/tihaya-obitel-dom-pod-klyuch-4230/index.html"
+        "prices": [
+          {
+            "kind": "price",
+            "text": "7000₽ - круглый год"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/tihaya-obitel-dom-pod-klyuch-4230/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
       },
+      "id": 1187,
       "media": [
         {
-          "id": 70803,
+          "id": 1187001,
           "media_role": "card",
           "sort_order": 0,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/tihaya-obitel-dom-pod-klyuch-4230.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "cards/tihaya-obitel-dom-pod-klyuch-4230.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/tihaya-obitel-dom-pod-klyuch-4230.jpg",
           "details": {}
         },
         {
-          "id": 70804,
+          "id": 1187002,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-01.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-01.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-01.jpg",
           "details": {}
         },
         {
-          "id": 70805,
+          "id": 1187003,
           "media_role": "gallery",
           "sort_order": 2,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-02.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-02.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-02.jpg",
           "details": {}
         },
         {
-          "id": 70806,
+          "id": 1187004,
           "media_role": "gallery",
           "sort_order": 3,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-03.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-03.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-03.jpg",
           "details": {}
         },
         {
-          "id": 70807,
+          "id": 1187005,
           "media_role": "gallery",
           "sort_order": 4,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-04.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-04.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-04.jpg",
           "details": {}
         },
         {
-          "id": 70808,
+          "id": 1187006,
           "media_role": "gallery",
           "sort_order": 5,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-05.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-05.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-05.jpg",
           "details": {}
         },
         {
-          "id": 70809,
+          "id": 1187007,
           "media_role": "gallery",
           "sort_order": 6,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-06.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-06.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-06.jpg",
           "details": {}
         },
         {
-          "id": 70810,
+          "id": 1187008,
           "media_role": "gallery",
           "sort_order": 7,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-07.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-07.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-07.jpg",
           "details": {}
         },
         {
-          "id": 70811,
+          "id": 1187009,
           "media_role": "gallery",
           "sort_order": 8,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-08.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-08.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/tihaya-obitel-dom-pod-klyuch-4230/photo-08.jpg",
           "details": {}
         },
         {
-          "id": 70812,
+          "id": 1187010,
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/tihaya-obitel-dom-pod-klyuch-4230/video-01-1800k.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/tihaya-obitel-dom-pod-klyuch-4230/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/tihaya-obitel-dom-pod-klyuch-4230/video-01-1800k.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/tihaya-obitel-dom-pod-klyuch-4230/video-01-1800k.mp4",
+          "storage_path": "videos/hotels/tihaya-obitel-dom-pod-klyuch-4230/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/tihaya-obitel-dom-pod-klyuch-4230/video-01.mp4",
           "details": {
+            "telegram_post": "abhazbooking/4238",
             "telegram_url": "https://t.me/abhazbooking/4238",
-            "telegram_post": "abhazbooking/4238"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/tihaya-obitel-dom-pod-klyuch-4230/video-01-poster.jpg"
           }
         }
       ]
@@ -18162,7 +18111,6 @@
       ]
     },
     {
-      "id": 781,
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
       "source_message_id": 3789,
@@ -18181,71 +18129,9 @@
       "published_at": "2026-03-21",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mandarinovyy-dvorik-dom-pod-klyuch-3789.jpg",
-      "is_active": false,
+      "is_active": true,
       "details": {
         "lead": "Новый Афон. пляж в 15 минутах пешком, галечный, размещение до 9 человек.",
-        "prices": [
-          {
-            "kind": "price",
-            "text": "8500₽ - март"
-          },
-          {
-            "kind": "price",
-            "text": "9500₽ - апрель"
-          },
-          {
-            "kind": "price",
-            "text": "12500₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "13500₽ - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "16500₽ - июль, август, сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "11500₽ - октябрь, ноябрь"
-          },
-          {
-            "kind": "price",
-            "text": "15500₽ - декабрь, Новый год"
-          },
-          {
-            "kind": "price",
-            "text": "Размещение с животными возможно по согласованию."
-          }
-        ],
-        "filters": {
-          "distance": [
-            "over-10"
-          ],
-          "food": [
-            "no-food"
-          ],
-          "price": [
-            "premium"
-          ],
-          "city": [
-            "new-afon"
-          ],
-          "beach": [
-            "pebble"
-          ],
-          "room": [
-            "terrace",
-            "tv",
-            "kitchen",
-            "five-plus",
-            "two-room-plus"
-          ],
-          "stay": [
-            "turnkey-house",
-            "pets"
-          ]
-        },
         "sections": [
           {
             "label": "✔️ДОМ:",
@@ -18280,131 +18166,176 @@
             ]
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/index.html"
+        "prices": [
+          {
+            "kind": "price",
+            "text": "8500₽ - март"
+          },
+          {
+            "kind": "price",
+            "text": "9500₽ - апрель"
+          },
+          {
+            "kind": "price",
+            "text": "12500₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "13500₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "16500₽ - июль, август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "11500₽ - октябрь, ноябрь"
+          },
+          {
+            "kind": "price",
+            "text": "15500₽ - декабрь, Новый год"
+          },
+          {
+            "kind": "price",
+            "text": "Размещение с животными возможно по согласованию."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
       },
+      "id": 1186,
       "media": [
         {
-          "id": 72886,
+          "id": 1186001,
           "media_role": "card",
           "sort_order": 0,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mandarinovyy-dvorik-dom-pod-klyuch-3789.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "cards/mandarinovyy-dvorik-dom-pod-klyuch-3789.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mandarinovyy-dvorik-dom-pod-klyuch-3789.jpg",
           "details": {}
         },
         {
-          "id": 72887,
+          "id": 1186002,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-01.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-01.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-01.jpg",
           "details": {}
         },
         {
-          "id": 72888,
+          "id": 1186003,
           "media_role": "gallery",
           "sort_order": 2,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-02.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-02.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-02.jpg",
           "details": {}
         },
         {
-          "id": 72889,
+          "id": 1186004,
           "media_role": "gallery",
           "sort_order": 3,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-03.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-03.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-03.jpg",
           "details": {}
         },
         {
-          "id": 72890,
+          "id": 1186005,
           "media_role": "gallery",
           "sort_order": 4,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-04.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-04.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-04.jpg",
           "details": {}
         },
         {
-          "id": 72891,
+          "id": 1186006,
           "media_role": "gallery",
           "sort_order": 5,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-05.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-05.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-05.jpg",
           "details": {}
         },
         {
-          "id": 72892,
+          "id": 1186007,
           "media_role": "gallery",
           "sort_order": 6,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-06.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-06.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-06.jpg",
           "details": {}
         },
         {
-          "id": 72893,
+          "id": 1186008,
           "media_role": "gallery",
           "sort_order": 7,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-07.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-07.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-07.jpg",
           "details": {}
         },
         {
-          "id": 72894,
+          "id": 1186009,
           "media_role": "gallery",
           "sort_order": 8,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-08.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-08.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-08.jpg",
           "details": {}
         },
         {
-          "id": 72895,
+          "id": 1186010,
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-09.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-09.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/photo-09.jpg",
           "details": {}
         },
         {
-          "id": 72896,
+          "id": 1186011,
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/video-01-1800k.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/video-01-1800k.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/video-01-1800k.mp4",
+          "storage_path": "videos/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/video-01.mp4",
           "details": {
+            "telegram_post": "abhazbooking/3798",
             "telegram_url": "https://t.me/abhazbooking/3798",
-            "telegram_post": "abhazbooking/3798"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/video-01-poster.jpg"
           }
         }
       ]
@@ -26721,7 +26652,6 @@
       ]
     },
     {
-      "id": 1071,
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
       "source_message_id": 3459,
@@ -26740,48 +26670,9 @@
       "published_at": "2026-02-13",
       "has_video": false,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/dyshi-glubzhe-domiki-v-gorah-3459.jpg",
-      "is_active": false,
+      "is_active": true,
       "details": {
         "lead": "13 км Рицинского ущелья. до пляжа 30 минут на авто, размещение до 6 человек.",
-        "prices": [
-          {
-            "kind": "price",
-            "text": "15 000 ₽/сутки - A-frame дом (до 6 человек)"
-          },
-          {
-            "kind": "price",
-            "text": "7 000 ₽/сутки - классический дом (до 3 человек)"
-          },
-          {
-            "kind": "price",
-            "text": "Размещение от 3 суток."
-          }
-        ],
-        "filters": {
-          "distance": [
-            "over-10"
-          ],
-          "food": [
-            "no-food"
-          ],
-          "price": [
-            "midrange"
-          ],
-          "city": [
-            "gudauta"
-          ],
-          "beach": [
-            "pebble"
-          ],
-          "room": [
-            "tv",
-            "kitchen",
-            "five-plus"
-          ],
-          "stay": [
-            "cottages"
-          ]
-        },
         "sections": [
           {
             "label": "✔️ТЕРРИТОРИЯ:",
@@ -26812,126 +26703,150 @@
             ]
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/dyshi-glubzhe-domiki-v-gorah-3459/index.html"
+        "prices": [
+          {
+            "kind": "price",
+            "text": "15 000 ₽/сутки - A-frame дом (до 6 человек)"
+          },
+          {
+            "kind": "price",
+            "text": "7 000 ₽/сутки - классический дом (до 3 человек)"
+          },
+          {
+            "kind": "price",
+            "text": "Размещение от 3 суток."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/dyshi-glubzhe-domiki-v-gorah-3459/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
       },
+      "id": 1184,
       "media": [
         {
-          "id": 72606,
+          "id": 1184001,
           "media_role": "card",
           "sort_order": 0,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/dyshi-glubzhe-domiki-v-gorah-3459.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "cards/dyshi-glubzhe-domiki-v-gorah-3459.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/dyshi-glubzhe-domiki-v-gorah-3459.jpg",
           "details": {}
         },
         {
-          "id": 72607,
+          "id": 1184002,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-01.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-01.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-01.jpg",
           "details": {}
         },
         {
-          "id": 72608,
+          "id": 1184003,
           "media_role": "gallery",
           "sort_order": 2,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-02.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-02.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-02.jpg",
           "details": {}
         },
         {
-          "id": 72609,
+          "id": 1184004,
           "media_role": "gallery",
           "sort_order": 3,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-03.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-03.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-03.jpg",
           "details": {}
         },
         {
-          "id": 72610,
+          "id": 1184005,
           "media_role": "gallery",
           "sort_order": 4,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-04.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-04.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-04.jpg",
           "details": {}
         },
         {
-          "id": 72611,
+          "id": 1184006,
           "media_role": "gallery",
           "sort_order": 5,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-05.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-05.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-05.jpg",
           "details": {}
         },
         {
-          "id": 72612,
+          "id": 1184007,
           "media_role": "gallery",
           "sort_order": 6,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-06.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-06.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-06.jpg",
           "details": {}
         },
         {
-          "id": 72613,
+          "id": 1184008,
           "media_role": "gallery",
           "sort_order": 7,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-07.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-07.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-07.jpg",
           "details": {}
         },
         {
-          "id": 72614,
+          "id": 1184009,
           "media_role": "gallery",
           "sort_order": 8,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-08.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-08.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-08.jpg",
           "details": {}
         },
         {
-          "id": 72615,
+          "id": 1184010,
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-09.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-09.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-09.jpg",
           "details": {}
         },
         {
-          "id": 72616,
+          "id": 1184011,
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-10.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-10.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/dyshi-glubzhe-domiki-v-gorah-3459/photo-10.jpg",
           "details": {}
@@ -30173,7 +30088,6 @@
       ]
     },
     {
-      "id": 1062,
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
       "source_message_id": 3363,
@@ -30192,9 +30106,28 @@
       "published_at": "2026-02-04",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mechta-apartamenty-s-kuhney-3363.jpg",
-      "is_active": false,
+      "is_active": true,
       "details": {
         "lead": "Лдзаа. 1 минута до пляжа, размещение 4-5 человек.",
+        "sections": [
+          {
+            "label": "✔️АПАРТАМЕНТЫ:",
+            "lines": [
+              "Двухкомнатные апартаменты в минуте от моря. Два этажа, 4 апарта.",
+              "Планировка евродвушка: кухня-гостиная и спальня.",
+              "На кухне все необходимое для готовки: плитка, вытяжка, чайник, холодильник, обеденная зона, тв, кондиционер.",
+              "Спальная комната с двухместной кроватью, кондиционер."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Выход в зеленый дворик, есть мангальная зона, стиральная машина без доплат.",
+              "В шаговой доступности кафе, столовая, магазины, остановка.",
+              "Ровная и приятная дорога к морю. Начало соснового пляжа, любые водные развлечения, шезлонги и беседки в аренду, парк с аллеями и тренажерами."
+            ]
+          }
+        ],
         "prices": [
           {
             "kind": "price",
@@ -30245,164 +30178,131 @@
             "text": "Брони от 7 суток."
           }
         ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/mechta-apartamenty-s-kuhney-3363/index.html",
         "filters": {
-          "distance": [
-            "beachfront",
-            "up-to-5"
-          ],
-          "food": [
-            "no-food"
-          ],
-          "price": [
-            "premium"
-          ],
-          "city": [
-            "ldzaa"
-          ],
-          "beach": [
-            "pine-pebble-ldzaa-pitsunda"
-          ],
-          "room": [
-            "balcony",
-            "kitchen",
-            "five-plus",
-            "beachfront-room"
-          ],
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
           "stay": []
-        },
-        "sections": [
-          {
-            "label": "✔️АПАРТАМЕНТЫ:",
-            "lines": [
-              "Двухкомнатные апартаменты в минуте от моря. Два этажа, 4 апарта.",
-              "Планировка евродвушка: кухня-гостиная и спальня.",
-              "На кухне все необходимое для готовки: плитка, вытяжка, чайник, холодильник, обеденная зона, тв, кондиционер.",
-              "Спальная комната с двухместной кроватью, кондиционер."
-            ]
-          },
-          {
-            "label": "✔️ТЕРРИТОРИЯ:",
-            "lines": [
-              "Выход в зеленый дворик, есть мангальная зона, стиральная машина без доплат.",
-              "В шаговой доступности кафе, столовая, магазины, остановка.",
-              "Ровная и приятная дорога к морю. Начало соснового пляжа, любые водные развлечения, шезлонги и беседки в аренду, парк с аллеями и тренажерами."
-            ]
-          }
-        ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/mechta-apartamenty-s-kuhney-3363/index.html"
+        }
       },
+      "id": 1183,
       "media": [
         {
-          "id": 72512,
+          "id": 1183001,
           "media_role": "card",
           "sort_order": 0,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mechta-apartamenty-s-kuhney-3363.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "cards/mechta-apartamenty-s-kuhney-3363.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mechta-apartamenty-s-kuhney-3363.jpg",
           "details": {}
         },
         {
-          "id": 72513,
+          "id": 1183002,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-01.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mechta-apartamenty-s-kuhney-3363/photo-01.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-01.jpg",
           "details": {}
         },
         {
-          "id": 72514,
+          "id": 1183003,
           "media_role": "gallery",
           "sort_order": 2,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-02.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mechta-apartamenty-s-kuhney-3363/photo-02.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-02.jpg",
           "details": {}
         },
         {
-          "id": 72515,
+          "id": 1183004,
           "media_role": "gallery",
           "sort_order": 3,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-03.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mechta-apartamenty-s-kuhney-3363/photo-03.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-03.jpg",
           "details": {}
         },
         {
-          "id": 72516,
+          "id": 1183005,
           "media_role": "gallery",
           "sort_order": 4,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-04.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mechta-apartamenty-s-kuhney-3363/photo-04.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-04.jpg",
           "details": {}
         },
         {
-          "id": 72517,
+          "id": 1183006,
           "media_role": "gallery",
           "sort_order": 5,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-05.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mechta-apartamenty-s-kuhney-3363/photo-05.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-05.jpg",
           "details": {}
         },
         {
-          "id": 72518,
+          "id": 1183007,
           "media_role": "gallery",
           "sort_order": 6,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-06.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mechta-apartamenty-s-kuhney-3363/photo-06.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-06.jpg",
           "details": {}
         },
         {
-          "id": 72519,
+          "id": 1183008,
           "media_role": "gallery",
           "sort_order": 7,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-07.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mechta-apartamenty-s-kuhney-3363/photo-07.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-07.jpg",
           "details": {}
         },
         {
-          "id": 72520,
+          "id": 1183009,
           "media_role": "gallery",
           "sort_order": 8,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-08.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/mechta-apartamenty-s-kuhney-3363/photo-08.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/mechta-apartamenty-s-kuhney-3363/photo-08.jpg",
           "details": {}
         },
         {
-          "id": 72521,
+          "id": 1183010,
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mechta-apartamenty-s-kuhney-3363/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mechta-apartamenty-s-kuhney-3363/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/mechta-apartamenty-s-kuhney-3363/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mechta-apartamenty-s-kuhney-3363/video-01-source.mp4",
+          "storage_path": "videos/hotels/mechta-apartamenty-s-kuhney-3363/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mechta-apartamenty-s-kuhney-3363/video-01.mp4",
           "details": {
+            "telegram_post": "abhazbooking/3371",
             "telegram_url": "https://t.me/abhazbooking/3371",
-            "telegram_post": "abhazbooking/3371"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mechta-apartamenty-s-kuhney-3363/video-01-poster.jpg"
           }
         }
       ]
@@ -39877,100 +39777,65 @@
     {
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
-      "source_message_id": 3249,
+      "source_message_id": 3258,
       "source_topic_id": null,
       "slug": "nasta-gostevoy-dom-3249",
-      "title": "\"НАСТА\" гостевой дом",
-      "summary": "Лдзаа. 3 минуты пешком до пляжа, размещение до 4 человек.",
-      "excerpt": "Большая территория, зеленый двор, вид на гору, есть выход к речке. Удобная мангальная зона, закрытые беседки. Небольшой каркасный бассейн",
+      "title": "\"НАСТА\" апартаменты",
+      "summary": "Лдзаа. ️ 3 минуты пешком до пляжа, размещение до 4 человек.",
+      "excerpt": "Большая зеленая территория гостевого комплекса, газончик, зеленый двор, есть выход к речке. Мангальная зона. Беседки для уединения. Небольшой каркасный бассейн",
       "city": "Лдзаа",
       "location_text": "Лдзаа, улица Речная 36Б",
-      "distance_text": "3 минуты пешком до пляжа",
-      "beach_text": "3 минуты пешком до пляжа",
+      "distance_text": "️ 3 минуты пешком до пляжа",
+      "beach_text": "️ 3 минуты пешком до пляжа",
       "capacity_text": "размещение до 4 человек",
       "page_url": "https://абхазберег.рф/hotels/nasta-gostevoy-dom-3249/",
-      "telegram_url": "https://t.me/abhazbooking/3249",
+      "telegram_url": "https://t.me/abhazbooking/3258",
       "published_at": "2026-01-31",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/nasta-gostevoy-dom-3249.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. 3 минуты пешком до пляжа, размещение до 4 человек.",
+        "lead": "Лдзаа. ️ 3 минуты пешком до пляжа, размещение до 4 человек.",
         "sections": [
           {
             "label": "✔️ТЕРРИТОРИЯ:",
             "lines": [
-              "Большая территория, зеленый двор, вид на гору, есть выход к речке. Удобная мангальная зона, закрытые беседки. Небольшой каркасный бассейн.",
-              "Для гостей в любое время доступна общая кухня, есть стиральная машинка (с доплатой), парковка."
+              "Большая зеленая территория гостевого комплекса, газончик, зеленый двор, есть выход к речке. Мангальная зона. Беседки для уединения. Небольшой каркасный бассейн.",
+              "Есть услуга стирки (с доплатой), парковка. Можно приезжать с небольшими собачками."
             ]
           },
           {
-            "label": "✔️НОМЕРА:",
+            "label": "✔️АПАРТАМЕНТЫ:",
             "lines": [
-              "10 номеров эконом и 2 комфорт. Выход из номеров 1 этажа во двор, со второго этажа - на общий балкон-анфиладу.",
-              "Номера эконом:",
-              "отделка под вагонку, двуспальная кровать, прикроватные тумбочки, рейлы для одежды и вещей, кондиционер, телевизор.",
-              "Размещение до 4 человек: двуспальная кровать и раскладывающаяся мягкая тахта, возможно доп. место. В санузлах душ.",
-              "Номера комфорт (расположены на 2 этаже):",
-              "двуспальная кровать, диван раскладной двухместный, прикроватные тумбочки, платяной шкаф, кондиционер, телевизор и собственный холодильник. В санузлах душевая кабина."
+              "Две студии площадью 30 кв.м. на 1 этаже каменного корпуса. Размещение возможно до 5 человек: двуспальная кровать, двухъярусная.",
+              "Небольшой удобный кухонный уголок: варочная панель на 2 конфорки, раковина, микроволновка, чайник, холодильник, обеденная зона.",
+              "Есть кондиционер, тв и wi-fi."
             ]
           },
           {
             "label": "✔️РЯДОМ:",
             "lines": [
-              "До рыбзаводского пляжа 200 м, пешком 3-4 минуты. Пляж галечный, пирс, водные развлечения.",
-              "Столовая в 1 минуте ходьбы (от 300₽/завтрак). В пешей доступности 2-3 мин несколько кафе, магазины, рыночек, экскурсионная точка, чебуреки, шашлыки и прочее."
+              "До рыбзаводского пляжа пешком по прямой 3-4 минуты. Пляж галечный, знаменитый любимый отдыхающими пирс, водные развлечения. Если пройти по пляжу минут 5-7 в сторону мыса - то начинается уже сосновый пляж.",
+              "В пешей доступности разнообразные кафе, магазины, рыночек, экскурсионная точка, чебуреки, шашлыки и прочее."
             ]
           }
         ],
         "prices": [
           {
-            "kind": "heading",
-            "text": "Номера эконом"
+            "kind": "price",
+            "text": "6000₽/сутки - июнь"
           },
           {
             "kind": "price",
-            "text": "2000₽ до 4 июля👍"
+            "text": "8000₽/сутки - июль/август"
           },
           {
             "kind": "price",
-            "text": "2500₽/сутки - июнь"
+            "text": "6000₽/сутки - сентябрь до 15го"
           },
           {
             "kind": "price",
-            "text": "4000₽/сутки - июль, август, сентябрь до 15.09"
-          },
-          {
-            "kind": "price",
-            "text": "3500₽/сутки - сентябрь с 15го, октябрь"
-          },
-          {
-            "kind": "heading",
-            "text": "Номера комфорт"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽/сутки - июнь до 15.06"
-          },
-          {
-            "kind": "price",
-            "text": "4500₽/сутки - июнь с 15"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽/сутки - июль, август"
-          },
-          {
-            "kind": "price",
-            "text": "4500₽/сутки - сентябрь до 15.09"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽/сутки - сентябрь с 15го, октябрь"
-          },
-          {
-            "kind": "price",
-            "text": "Допускаются небольшие собачки."
+            "text": "5000₽/сутки - сентябрь с 15го, октябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/nasta-gostevoy-dom-3249/index.html",
@@ -40104,14 +39969,14 @@
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/nasta-gostevoy-dom-3249/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/nasta-gostevoy-dom-3249/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/nasta-gostevoy-dom-3249/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/nasta-gostevoy-dom-3249/video-01-source.mp4",
+          "storage_path": "videos/hotels/nasta-gostevoy-dom-3249/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/nasta-gostevoy-dom-3249/video-01.mp4",
           "details": {
-            "telegram_post": "abhazbooking/3257",
-            "telegram_url": "https://t.me/abhazbooking/3257",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/nasta-gostevoy-dom-3249/video-01-source-poster.jpg"
+            "telegram_post": "abhazbooking/3266",
+            "telegram_url": "https://t.me/abhazbooking/3266",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/nasta-gostevoy-dom-3249/video-01-poster.jpg"
           }
         }
       ]
@@ -42681,7 +42546,6 @@
       ]
     },
     {
-      "id": 1043,
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
       "source_message_id": 3124,
@@ -42700,63 +42564,9 @@
       "published_at": "2026-01-26",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/karalina-apartamenty-3124.jpg",
-      "is_active": false,
+      "is_active": true,
       "details": {
         "lead": "Пицунда. ️ 25 минут до центрального пляжа, размещение до 4 человек.",
-        "prices": [
-          {
-            "kind": "price",
-            "text": "2000/сутки - май"
-          },
-          {
-            "kind": "price",
-            "text": "2500/сутки - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "3500/сутки - июль"
-          },
-          {
-            "kind": "price",
-            "text": "4500/сутки - август"
-          },
-          {
-            "kind": "price",
-            "text": "2500/сутки - сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "1500/сутки - с октября по апрель"
-          },
-          {
-            "kind": "price",
-            "text": "Есть услуги прачки: 200₽/стирка."
-          }
-        ],
-        "filters": {
-          "distance": [
-            "over-10"
-          ],
-          "food": [
-            "no-food"
-          ],
-          "price": [
-            "economy"
-          ],
-          "city": [
-            "pitsunda"
-          ],
-          "beach": [
-            "pine-pebble-ldzaa-pitsunda"
-          ],
-          "room": [
-            "tv",
-            "kitchen"
-          ],
-          "stay": [
-            "pets"
-          ]
-        },
         "sections": [
           {
             "label": "✔️АПАРТАМЕНТЫ:",
@@ -42793,131 +42603,172 @@
             ]
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/karalina-apartamenty-3124/index.html"
+        "prices": [
+          {
+            "kind": "price",
+            "text": "2000/сутки - май"
+          },
+          {
+            "kind": "price",
+            "text": "2500/сутки - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "3500/сутки - июль"
+          },
+          {
+            "kind": "price",
+            "text": "4500/сутки - август"
+          },
+          {
+            "kind": "price",
+            "text": "2500/сутки - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "1500/сутки - с октября по апрель"
+          },
+          {
+            "kind": "price",
+            "text": "Есть услуги прачки: 200₽/стирка."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/karalina-apartamenty-3124/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
       },
+      "id": 1182,
       "media": [
         {
-          "id": 72303,
+          "id": 1182001,
           "media_role": "card",
           "sort_order": 0,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/karalina-apartamenty-3124.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "cards/karalina-apartamenty-3124.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/karalina-apartamenty-3124.jpg",
           "details": {}
         },
         {
-          "id": 72304,
+          "id": 1182002,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-01.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/karalina-apartamenty-3124/photo-01.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-01.jpg",
           "details": {}
         },
         {
-          "id": 72305,
+          "id": 1182003,
           "media_role": "gallery",
           "sort_order": 2,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-02.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/karalina-apartamenty-3124/photo-02.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-02.jpg",
           "details": {}
         },
         {
-          "id": 72306,
+          "id": 1182004,
           "media_role": "gallery",
           "sort_order": 3,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-03.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/karalina-apartamenty-3124/photo-03.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-03.jpg",
           "details": {}
         },
         {
-          "id": 72307,
+          "id": 1182005,
           "media_role": "gallery",
           "sort_order": 4,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-04.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/karalina-apartamenty-3124/photo-04.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-04.jpg",
           "details": {}
         },
         {
-          "id": 72308,
+          "id": 1182006,
           "media_role": "gallery",
           "sort_order": 5,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-05.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/karalina-apartamenty-3124/photo-05.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-05.jpg",
           "details": {}
         },
         {
-          "id": 72309,
+          "id": 1182007,
           "media_role": "gallery",
           "sort_order": 6,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-06.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/karalina-apartamenty-3124/photo-06.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-06.jpg",
           "details": {}
         },
         {
-          "id": 72310,
+          "id": 1182008,
           "media_role": "gallery",
           "sort_order": 7,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-07.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/karalina-apartamenty-3124/photo-07.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-07.jpg",
           "details": {}
         },
         {
-          "id": 72311,
+          "id": 1182009,
           "media_role": "gallery",
           "sort_order": 8,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-08.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/karalina-apartamenty-3124/photo-08.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-08.jpg",
           "details": {}
         },
         {
-          "id": 72312,
+          "id": 1182010,
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-09.jpg",
-          "storage_bucket": "site-media",
+          "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/karalina-apartamenty-3124/photo-09.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/karalina-apartamenty-3124/photo-09.jpg",
           "details": {}
         },
         {
-          "id": 72313,
+          "id": 1182011,
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/karalina-apartamenty-3124/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/karalina-apartamenty-3124/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/karalina-apartamenty-3124/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/karalina-apartamenty-3124/video-01-source.mp4",
+          "storage_path": "videos/hotels/karalina-apartamenty-3124/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/karalina-apartamenty-3124/video-01.mp4",
           "details": {
+            "telegram_post": "abhazbooking/3133",
             "telegram_url": "https://t.me/abhazbooking/3133",
-            "telegram_post": "abhazbooking/3133"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/karalina-apartamenty-3124/video-01-poster.jpg"
           }
         }
       ]
@@ -56697,7 +56548,7 @@
       "published_at": "2026-03-05",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/peschanyy-bereg-apartamenty-3700.jpg",
-      "is_active": false,
+      "is_active": true,
       "details": {
         "lead": "Сухум. 3 минуты пешком до пляжа, песок, размещение до 5 человек.",
         "sections": [
@@ -56760,35 +56611,19 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/peschanyy-bereg-apartamenty-3700/index.html",
         "filters": {
-          "distance": [
-            "up-to-5"
-          ],
-          "food": [
-            "no-food"
-          ],
-          "price": [
-            "midrange"
-          ],
-          "city": [
-            "sukhum"
-          ],
-          "beach": [
-            "sand-sukhum"
-          ],
-          "room": [
-            "tv",
-            "kitchen",
-            "five-plus"
-          ],
-          "stay": [
-            "apartments"
-          ]
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
         }
       },
-      "id": 1157,
+      "id": 1185,
       "media": [
         {
-          "id": 1157001,
+          "id": 1185001,
           "media_role": "card",
           "sort_order": 0,
           "mime_type": "image/jpeg",
@@ -56799,7 +56634,7 @@
           "details": {}
         },
         {
-          "id": 1157002,
+          "id": 1185002,
           "media_role": "gallery",
           "sort_order": 1,
           "mime_type": "image/jpeg",
@@ -56810,7 +56645,7 @@
           "details": {}
         },
         {
-          "id": 1157003,
+          "id": 1185003,
           "media_role": "gallery",
           "sort_order": 2,
           "mime_type": "image/jpeg",
@@ -56821,7 +56656,7 @@
           "details": {}
         },
         {
-          "id": 1157004,
+          "id": 1185004,
           "media_role": "gallery",
           "sort_order": 3,
           "mime_type": "image/jpeg",
@@ -56832,7 +56667,7 @@
           "details": {}
         },
         {
-          "id": 1157005,
+          "id": 1185005,
           "media_role": "gallery",
           "sort_order": 4,
           "mime_type": "image/jpeg",
@@ -56843,7 +56678,7 @@
           "details": {}
         },
         {
-          "id": 1157006,
+          "id": 1185006,
           "media_role": "gallery",
           "sort_order": 5,
           "mime_type": "image/jpeg",
@@ -56854,7 +56689,7 @@
           "details": {}
         },
         {
-          "id": 1157007,
+          "id": 1185007,
           "media_role": "gallery",
           "sort_order": 6,
           "mime_type": "image/jpeg",
@@ -56865,7 +56700,7 @@
           "details": {}
         },
         {
-          "id": 1157008,
+          "id": 1185008,
           "media_role": "gallery",
           "sort_order": 7,
           "mime_type": "image/jpeg",
@@ -56876,7 +56711,7 @@
           "details": {}
         },
         {
-          "id": 1157009,
+          "id": 1185009,
           "media_role": "gallery",
           "sort_order": 8,
           "mime_type": "image/jpeg",
@@ -56887,21 +56722,22 @@
           "details": {}
         },
         {
-          "id": 1157010,
+          "id": 1185010,
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/peschanyy-bereg-apartamenty-3700/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/peschanyy-bereg-apartamenty-3700/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/peschanyy-bereg-apartamenty-3700/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/peschanyy-bereg-apartamenty-3700/video-01-source.mp4",
+          "storage_path": "videos/hotels/peschanyy-bereg-apartamenty-3700/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/peschanyy-bereg-apartamenty-3700/video-01.mp4",
           "details": {
             "telegram_post": "abhazbooking/3705",
-            "telegram_url": "https://t.me/abhazbooking/3705"
+            "telegram_url": "https://t.me/abhazbooking/3705",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/peschanyy-bereg-apartamenty-3700/video-01-poster.jpg"
           }
         },
         {
-          "id": 1157011,
+          "id": 1185011,
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "image/jpeg",
