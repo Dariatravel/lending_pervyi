@@ -416,7 +416,7 @@ async def sync_vezu(post_ids: list[int] | None = None) -> list[dict[str, object]
             image_name = f"telegram-vezu-{post_id}.jpg"
             image_path = MEDIA_DIR / image_name
             photo_msg = row["photo_msg"]
-            image_src = f"{YANDEX_MEDIA_BASE}/media/branding/og-logo.png"
+            image_src = f"{YANDEX_MEDIA_BASE}/media/branding/og-banner.png"
             image_srcset = ""
             media_items: list[dict[str, str]] = []
             if photo_msg is not None:

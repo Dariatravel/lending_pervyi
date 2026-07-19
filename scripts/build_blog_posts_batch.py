@@ -117,7 +117,7 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
   <meta property="og:title" content="{og_title}" />
   <meta property="og:description" content="{og_desc}" />
   <meta property="og:url" content="https://абхазберег.рф/blog/{slug}/" />
-  <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/og-logo.png" />
+  <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/og-banner.png" />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link rel="icon" type="image/png" href="{yandex_media_base}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={asset_version}" />

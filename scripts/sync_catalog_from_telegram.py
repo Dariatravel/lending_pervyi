@@ -1067,7 +1067,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <meta property="og:title" content="{html.escape(title)} — обзор и цены" />
     <meta property="og:description" content="{html.escape(summary)}" />
     <meta property="og:url" content="https://абхазберег.рф{page_href}" />
-    <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/og-logo.png" />
+    <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/og-banner.png" />
     <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
 {preload_block}    <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
