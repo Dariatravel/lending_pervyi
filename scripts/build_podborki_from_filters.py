@@ -41,7 +41,7 @@ MANUAL_SELECTION_SLUGS: dict[str, list[str]] = {
     "gory-oteli-v-gorah": [
         "bungalo-glemping-3623",
         "grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928",
-        "dyshi-glubzhe-domiki-v-gorah-1335",
+        "dyshi-glubzhe-domiki-v-gorah-3459",
         "radonovyy-istochnik-otel-v-gorah-3064",
     ],
 }
