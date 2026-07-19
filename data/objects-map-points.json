@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-18T22:35:28.619430+00:00",
+  "generated_at": "2026-07-19T06:36:36.285473+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -427,11 +427,11 @@
       "cityKey": "gudauta"
     },
     {
-      "title": "\"ДЫШИ ГЛУБЖЕ\" ДОМИКИ В ГОРАХ",
+      "title": "\"ДЫШИ ГЛУБЖЕ\" домики в горах",
       "address": "13 км Рицинского ущелья, Рицинское шоссе",
       "lat": 43.33490775019717,
       "lon": 40.41151147221202,
-      "url": "/kvartira/dyshi-glubzhe-domiki-v-gorah-1335/",
+      "url": "/hotels/dyshi-glubzhe-domiki-v-gorah-3459/",
       "cityKey": "gudauta"
     },
     {
@@ -803,11 +803,11 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"МЕЧТА\" АПАРТАМЕНТЫ С КУХНЕЙ",
+      "title": "\"МЕЧТА\" апартаменты с кухней",
       "address": "Лдзаа, координаты 43.173756,40.379626",
       "lat": 43.173756,
       "lon": 40.379626,
-      "url": "/kvartira/mechta-apartamenty-ldzaa-1176/",
+      "url": "/hotels/mechta-apartamenty-s-kuhney-3363/",
       "cityKey": "ldzaa"
     },
     {
@@ -867,15 +867,7 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"НАСТА\" АПАРТАМЕНТЫ",
-      "address": "Абхазия, село Лдзаа, Речная улица, 36Б",
-      "lat": 43.175897,
-      "lon": 40.382199,
-      "url": "/kvartira/nasta-apartamenty-studiya-ldzaa-1264/",
-      "cityKey": "ldzaa"
-    },
-    {
-      "title": "\"НАСТА\" гостевой дом",
+      "title": "\"НАСТА\" апартаменты",
       "address": "Лдзаа, улица Речная 36Б",
       "lat": 43.175714855989796,
       "lon": 40.38186052478156,
@@ -964,9 +956,9 @@
     },
     {
       "title": "\"САН АМРА\" люкс номера с видом на море",
-      "address": "Лдзаа, ул. Рыбзаводская, 80 А",
-      "lat": 43.17409310756723,
-      "lon": 40.385750090193426,
+      "address": "Лдзаа, улица Рыбзаводская 80 А",
+      "lat": 43.174072,
+      "lon": 40.385677,
       "url": "/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/",
       "cityKey": "ldzaa"
     },
@@ -1027,11 +1019,11 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"СТУДИО САН АМРА\" СТУДИЯ НА ПЛЯЖЕ",
+      "title": "\"СТУДИО САН АМРА\" студия на пляже",
       "address": "Лдзаа, ул. Рыбзаводская, 80 А",
-      "lat": 43.174072,
-      "lon": 40.385677,
-      "url": "/kvartira/studio-san-amra-studiya-na-plyazhe-1511/",
+      "lat": 43.17409310756723,
+      "lon": 40.385750090193426,
+      "url": "/hotels/studio-san-amra-studiya-na-plyazhe-4270/",
       "cityKey": "ldzaa"
     },
     {
@@ -1107,11 +1099,11 @@
       "cityKey": "new-afon"
     },
     {
-      "title": "\"МАНДАРИНОВЫЙ ДВОРИК\" ДОМ ПОД КЛЮЧ",
+      "title": "\"МАНДАРИНОВЫЙ ДВОРИК\" дом под ключ",
       "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия, 66",
       "lat": 43.08592885753694,
       "lon": 40.8422572214162,
-      "url": "/kvartira/mandarinovyy-dvorik-dom-pod-klyuch-novyy-afon-1440/",
+      "url": "/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/",
       "cityKey": "new-afon"
     },
     {
@@ -1123,11 +1115,11 @@
       "cityKey": "new-afon"
     },
     {
-      "title": "\"НА ВРЕМЯ В РАЮ\" ЖИЛЬЕ ПОД КЛЮЧ",
+      "title": "\"НА ВРЕМЯ В РАЮ\" жилье под ключ",
       "address": "Новый Афон, с. Псырцха, ул. Братьев Джинджолия, 66",
       "lat": 43.08582727860062,
       "lon": 40.84252876322878,
-      "url": "/kvartira/na-vremya-v-rayu-zhile-pod-klyuch-1522/",
+      "url": "/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/",
       "cityKey": "new-afon"
     },
     {
@@ -1243,11 +1235,11 @@
       "cityKey": "pitsunda"
     },
     {
-      "title": "\"КАРАЛИНА\" АПАРТАМЕНТЫ",
+      "title": "\"КАРАЛИНА\" апартаменты",
       "address": "Пицунда, ул. Самшитовая, 35",
       "lat": 43.17013203413723,
       "lon": 40.3438270919205,
-      "url": "/kvartira/karalina-apartamenty-studiya-pitsunda-1274/",
+      "url": "/hotels/karalina-apartamenty-3124/",
       "cityKey": "pitsunda"
     },
     {
@@ -1651,11 +1643,11 @@
       "cityKey": "sukhum"
     },
     {
-      "title": "\"ПЕСЧАНЫЙ БЕРЕГ\" АПАРТАМЕНТЫ",
+      "title": "\"ПЕСЧАНЫЙ БЕРЕГ\" апартаменты",
       "address": "Сухум, Кодорское шоссе, 11",
       "lat": 42.98695534716467,
       "lon": 41.05759607605673,
-      "url": "/kvartira/peschanyy-bereg-novye-apartamenty-suhum-mokko-1407/",
+      "url": "/hotels/peschanyy-bereg-apartamenty-3700/",
       "cityKey": "sukhum"
     },
     {
@@ -1691,11 +1683,11 @@
       "cityKey": "sukhum"
     },
     {
-      "title": "\"ТИХАЯ ОБИТЕЛЬ\" ДОМ ПОД КЛЮЧ",
+      "title": "\"ТИХАЯ ОБИТЕЛЬ\" дом под ключ",
       "address": "Сухум, ул. Пхазария 7",
       "lat": 42.973217591529,
       "lon": 41.08001199999958,
-      "url": "/kvartira/tihaya-obitel-dom-pod-klyuch-1477/",
+      "url": "/hotels/tihaya-obitel-dom-pod-klyuch-4230/",
       "cityKey": "sukhum"
     },
     {
@@ -1782,16 +1774,16 @@
   "stats": {
     "placemarks_total": 450,
     "placemarks_unique": 225,
-    "pages_total": 229,
+    "pages_total": 236,
     "pages_on_disk": 255,
-    "pages_excluded": 26,
-    "from_constructor": 229,
+    "pages_excluded": 19,
+    "from_constructor": 236,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 0,
     "skipped_without_coords": 0,
-    "shared_coordinate_groups": 20,
-    "deduped_redirect_points": 7,
-    "points_total": 222
+    "shared_coordinate_groups": 27,
+    "deduped_redirect_points": 15,
+    "points_total": 221
   }
 }

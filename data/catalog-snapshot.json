@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-19T05:41:21.228824+00:00",
+  "generated_at": "2026-07-19T06:39:29.652796+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 230,
-  "listings_hotels": 172,
-  "listings_kvartira": 58,
+  "listings_total": 222,
+  "listings_hotels": 173,
+  "listings_kvartira": 49,
   "listings": [
     {
       "source_kind": "kvartira",
@@ -62428,6 +62428,234 @@
             "telegram_post": "abhazbooking/5047",
             "telegram_url": "https://t.me/abhazbooking/5047",
             "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 3249,
+      "source_topic_id": null,
+      "slug": "nasta-gostevoy-dom-3249-2",
+      "title": "\"НАСТА\" гостевой дом",
+      "summary": "Лдзаа. 3 минуты пешком до пляжа, размещение до 4 человек.",
+      "excerpt": "Большая территория, зеленый двор, вид на гору, есть выход к речке. Удобная мангальная зона, закрытые беседки. Небольшой каркасный бассейн",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, улица Речная 36Б",
+      "distance_text": "3 минуты пешком до пляжа",
+      "beach_text": "3 минуты пешком до пляжа",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/nasta-gostevoy-dom-3249-2/",
+      "telegram_url": "https://t.me/abhazbooking/3249",
+      "published_at": "2026-01-31",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/nasta-gostevoy-dom-3249-2.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 3 минуты пешком до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Большая территория, зеленый двор, вид на гору, есть выход к речке. Удобная мангальная зона, закрытые беседки. Небольшой каркасный бассейн.",
+              "Для гостей в любое время доступна общая кухня, есть стиральная машинка (с доплатой), парковка."
+            ]
+          },
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "10 номеров эконом и 2 комфорт. Выход из номеров 1 этажа во двор, со второго этажа - на общий балкон-анфиладу.",
+              "Номера эконом:",
+              "отделка под вагонку, двуспальная кровать, прикроватные тумбочки, рейлы для одежды и вещей, кондиционер, телевизор.",
+              "Размещение до 4 человек: двуспальная кровать и раскладывающаяся мягкая тахта, возможно доп. место. В санузлах душ.",
+              "Номера комфорт (расположены на 2 этаже):",
+              "двуспальная кровать, диван раскладной двухместный, прикроватные тумбочки, платяной шкаф, кондиционер, телевизор и собственный холодильник. В санузлах душевая кабина."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До рыбзаводского пляжа 200 м, пешком 3-4 минуты. Пляж галечный, пирс, водные развлечения.",
+              "Столовая в 1 минуте ходьбы (от 300₽/завтрак). В пешей доступности 2-3 мин несколько кафе, магазины, рыночек, экскурсионная точка, чебуреки, шашлыки и прочее."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "heading",
+            "text": "Номера эконом"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽ до 4 июля👍"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽/сутки - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽/сутки - июль, август, сентябрь до 15.09"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽/сутки - сентябрь с 15го, октябрь"
+          },
+          {
+            "kind": "heading",
+            "text": "Номера комфорт"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽/сутки - июнь до 15.06"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽/сутки - июнь с 15"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽/сутки - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽/сутки - сентябрь до 15.09"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽/сутки - сентябрь с 15го, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Допускаются небольшие собачки."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/nasta-gostevoy-dom-3249-2/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1190,
+      "media": [
+        {
+          "id": 1190001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/nasta-gostevoy-dom-3249-2.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/nasta-gostevoy-dom-3249-2.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/nasta-gostevoy-dom-3249-2.jpg",
+          "details": {}
+        },
+        {
+          "id": 1190002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/nasta-gostevoy-dom-3249-2/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1190003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/nasta-gostevoy-dom-3249-2/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1190004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/nasta-gostevoy-dom-3249-2/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1190005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/nasta-gostevoy-dom-3249-2/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1190006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/nasta-gostevoy-dom-3249-2/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1190007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/nasta-gostevoy-dom-3249-2/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1190008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/nasta-gostevoy-dom-3249-2/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1190009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/nasta-gostevoy-dom-3249-2/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/nasta-gostevoy-dom-3249-2/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1190010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/nasta-gostevoy-dom-3249-2/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/nasta-gostevoy-dom-3249-2/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/nasta-gostevoy-dom-3249-2/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/3257",
+            "telegram_url": "https://t.me/abhazbooking/3257",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/nasta-gostevoy-dom-3249-2/video-01-poster.jpg"
           }
         }
       ]
