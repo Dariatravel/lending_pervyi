@@ -84,8 +84,8 @@ def check_object_meta(errors: list[str]) -> None:
         rel = path.relative_to(ROOT).as_posix()
         if "favicon-48.png" not in text:
             errors.append(f"{rel}: favicon должен быть favicon-48.png")
-        if 'property="og:image"' in text and "site-cover.jpg" not in text:
-            errors.append(f"{rel}: og:image должен указывать на site-cover.jpg")
+        if 'property="og:image"' in text and "og-logo.png" not in text:
+            errors.append(f"{rel}: og:image должен указывать на og-logo.png")
 
 
 def check_sitemap(errors: list[str]) -> None:
