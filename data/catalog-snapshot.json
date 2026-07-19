@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-19T06:39:29.652796+00:00",
+  "generated_at": "2026-07-19T11:47:59.745207+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 222,
-  "listings_hotels": 173,
+  "listings_total": 221,
+  "listings_hotels": 172,
   "listings_kvartira": 49,
   "listings": [
     {
@@ -28744,8 +28744,6 @@
           {
             "label": "✔️УСЛОВИЯ:",
             "lines": [
-              "При проживании 7 ночей и более – экскурсия в подарок",
-              "(заповедник Мюссера, дача Горбачёва, прогулка по заповеднику, пляж Бзып, Мыссер, 3 часа)",
               "Размещение с собачками возможно только в деревянном корпусе, депозит 5тр.",
               "По бронированию и наличию номеров пишем в сообщения @abhazbooking_online",
               "(будьте внимательны ⚠️только этот контакт для брони)",
@@ -28760,7 +28758,7 @@
           },
           {
             "kind": "note",
-            "text": "(цены на двухместное размещение)"
+            "text": "(цены за двухместное размещение)"
           },
           {
             "kind": "price",
@@ -28768,19 +28766,11 @@
           },
           {
             "kind": "price",
-            "text": "1 200 ₽ в сутки – с 1 по 15 июня"
+            "text": "5 000 ₽ в сутки – с 1 июля по 20 сентября"
           },
           {
             "kind": "price",
-            "text": "4600 ₽ в сутки – с 15 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "5 700 ₽ в сутки – с 1 июля по 20 сентября"
-          },
-          {
-            "kind": "price",
-            "text": "3000 ₽ в сутки – с 21 сентября по 31 октября"
+            "text": "3 000 ₽ в сутки – с 21 сентября по 31 октября"
           },
           {
             "kind": "price",
@@ -28788,19 +28778,11 @@
           },
           {
             "kind": "price",
-            "text": "1 300 ₽ в сутки – с 1 по 15 июня"
+            "text": "6 000 ₽ в сутки – с 1 июля по 20 сентября"
           },
           {
             "kind": "price",
-            "text": "5 200 ₽ в сутки – с 15 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "6 800 ₽ в сутки – с 1 июля по 20 сентября"
-          },
-          {
-            "kind": "price",
-            "text": "4 000 ₽ в сутки – с 21 сентября по 31 октября"
+            "text": "4 100 ₽ в сутки – с 21 сентября по 31 октября"
           },
           {
             "kind": "price",
@@ -28808,15 +28790,7 @@
           },
           {
             "kind": "price",
-            "text": "1 400 ₽ в сутки – с 1 по 15 июня"
-          },
-          {
-            "kind": "price",
-            "text": "5 800 ₽ в сутки – с 15 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "7 900 ₽ в сутки – с 1 июля по 20 сентября"
+            "text": "7 000 ₽ в сутки – с 1 июля по 20 сентября"
           },
           {
             "kind": "price",
@@ -28844,19 +28818,11 @@
           },
           {
             "kind": "price",
-            "text": "1 000 ₽ в сутки – с 1 по 15 июня"
+            "text": "3 500 ₽ в сутки – с 1 июля по 20 сентября"
           },
           {
             "kind": "price",
-            "text": "2 700 ₽ в сутки – с 15 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "4 000 ₽ в сутки – с 1 июля по 20 сентября"
-          },
-          {
-            "kind": "price",
-            "text": "2 500 ₽ в сутки – с 21 сентября по 31 октября"
+            "text": "2 800 ₽ в сутки – с 21 сентября по 31 октября"
           },
           {
             "kind": "price",
@@ -28864,19 +28830,11 @@
           },
           {
             "kind": "price",
-            "text": "1 200 ₽ в сутки – с 1 по 15 июня"
+            "text": "4 500 ₽ в сутки – с 1 июля по 20 сентября"
           },
           {
             "kind": "price",
-            "text": "3 800 ₽ в сутки – с 15 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "5 100 ₽ в сутки – с 1 июля по 20 сентября"
-          },
-          {
-            "kind": "price",
-            "text": "3 500 ₽ в сутки – с 21 сентября по 31 октября"
+            "text": "3 700 ₽ в сутки – с 21 сентября по 31 октября"
           },
           {
             "kind": "price",
@@ -28884,19 +28842,11 @@
           },
           {
             "kind": "price",
-            "text": "1 500 ₽ в сутки – с 1 по 15 июня"
+            "text": "5 500 ₽ в сутки – с 1 июля по 20 сентября"
           },
           {
             "kind": "price",
-            "text": "4 100 ₽ в сутки – с 15 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "6 300 ₽ в сутки – с 1 июля по 20 сентября"
-          },
-          {
-            "kind": "price",
-            "text": "4 100 ₽ в сутки – с 21 сентября по 31 октября"
+            "text": "4 400 ₽ в сутки – с 21 сентября по 31 октября"
           },
           {
             "kind": "price",
@@ -28904,7 +28854,7 @@
           },
           {
             "kind": "price",
-            "text": "Дети до 12 лет с 1 по 15 июня бесплатно."
+            "text": "Дети с 2 до 12 лет (3й в номере) 700₽."
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/morskaya-laguna-gostinitsa-s-zavtrakami-3418/index.html",
@@ -29052,14 +29002,14 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/morskaya-laguna-gostinitsa-s-zavtrakami-3418/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/morskaya-laguna-gostinitsa-s-zavtrakami-3418/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/morskaya-laguna-gostinitsa-s-zavtrakami-3418/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/morskaya-laguna-gostinitsa-s-zavtrakami-3418/video-01-source.mp4",
+          "storage_path": "videos/hotels/morskaya-laguna-gostinitsa-s-zavtrakami-3418/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/morskaya-laguna-gostinitsa-s-zavtrakami-3418/video-01.mp4",
           "details": {
             "telegram_post": "abhazbooking/3427",
             "telegram_url": "https://t.me/abhazbooking/3427",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/morskaya-laguna-gostinitsa-s-zavtrakami-3418/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/morskaya-laguna-gostinitsa-s-zavtrakami-3418/video-01-poster.jpg"
           }
         }
       ]
@@ -38428,23 +38378,19 @@
           },
           {
             "kind": "price",
-            "text": "4000₽/сутки - май"
+            "text": "6000₽ - с 1 по 14 июля"
           },
           {
             "kind": "price",
-            "text": "4500₽/сутки - июнь"
+            "text": "6500₽ - с 15 июля по 31 августа"
           },
           {
             "kind": "price",
-            "text": "6000₽/сутки - с 1 по 14 июля"
+            "text": "6000₽ - сентябрь с 1 по 15"
           },
           {
             "kind": "price",
-            "text": "6500₽/сутки - с 15 июля по 31 августа"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽/сутки - сентябрь"
+            "text": "5000₽ - сентябрь с 16"
           },
           {
             "kind": "note",
