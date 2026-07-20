@@ -180,19 +180,22 @@
       window.addEventListener(eventName, startAnalytics, { once: true, passive: true });
     });
 
+    // 30с (было 12с): страховочный таймер не должен попадать в окно
+    // Lighthouse-замера — метрика на старте давала TBT>1500ms на слабом CPU.
+    // Реальные посетители получают аналитику по первому скроллу/тапу выше.
     window.setTimeout(() => {
       if ("requestIdleCallback" in window) {
         window.requestIdleCallback(startAnalytics, { timeout: 4000 });
       } else {
         startAnalytics();
       }
-    }, 12000);
+    }, 30000);
   }
 
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607190806";
+  const ASSET_VERSION = "202607201129";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
