@@ -199,7 +199,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607202136";
+  const ASSET_VERSION = "202607201850";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -5336,6 +5336,331 @@
   void initSimilarBlogPosts();
   initMobileReviewsPlacement();
   initDeferredFullCatalog(filtersController);
+  initFavorites();
+
+  /**
+   * «Избранное» ♥ — личная подборка гостя в его браузере (localStorage).
+   * Сердечки на карточках и страницах объектов добавляются скриптом на лету,
+   * поэтому пересборки страниц генераторами их не затрагивают.
+   * Отправка менеджеру: Telegram/WhatsApp — текст подставляется сам,
+   * ВКонтакте не поддерживает предзаполнение — копируем текст и открываем чат.
+   */
+  function initFavorites() {
+    const LS_KEY = "abhazbereg:favorites:v1";
+    const TG_CHAT = "https://t.me/abhazbooking_online";
+    const WA_PHONE = "79409003340";
+    const VK_CHAT = "https://vk.me/abhazbereg";
+    const SITE_BASE = "https://абхазберег.рф";
+
+    function readFavs() {
+      try {
+        const raw = JSON.parse(localStorage.getItem(LS_KEY) || "[]");
+        return Array.isArray(raw) ? raw.filter((s) => typeof s === "string" && s) : [];
+      } catch {
+        return [];
+      }
+    }
+    function writeFavs(slugs) {
+      try {
+        localStorage.setItem(LS_KEY, JSON.stringify(slugs.slice(0, 80)));
+      } catch {
+        /* приватный режим — избранное живёт до закрытия вкладки */
+      }
+      refreshFab();
+    }
+    const hasFav = (slug) => readFavs().includes(slug);
+    function toggleFav(slug) {
+      const list = readFavs();
+      const i = list.indexOf(slug);
+      if (i >= 0) list.splice(i, 1);
+      else list.push(slug);
+      writeFavs(list);
+      return i < 0;
+    }
+
+    function favSlugFromPath(path) {
+      const m = /\/(hotels|kvartira)\/([^/?#]+)/.exec(path || "");
+      return m ? m[2] : "";
+    }
+
+    let favIndexPromise = null;
+    function loadFavCatalogIndex() {
+      if (!favIndexPromise) {
+        favIndexPromise = fetch(CATALOG_INDEX_URL)
+          .then((r) => (r.ok ? r.json() : {}))
+          .then((d) => (Array.isArray(d?.listings) ? d.listings : []))
+          .catch(() => []);
+      }
+      return favIndexPromise;
+    }
+
+    let toastEl = null;
+    let toastTimer = 0;
+    function showFavToast(text) {
+      if (!toastEl) {
+        toastEl = document.createElement("div");
+        toastEl.className = "fav-toast";
+        document.body.appendChild(toastEl);
+      }
+      toastEl.textContent = text;
+      toastEl.classList.add("is-visible");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove("is-visible"), 2600);
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch {
+        const area = document.createElement("textarea");
+        area.value = text;
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        let ok = false;
+        try {
+          ok = document.execCommand("copy");
+        } catch {
+          ok = false;
+        }
+        area.remove();
+        return ok;
+      }
+    }
+
+    /* --- сердечки на карточках каталога --- */
+    function repaintHearts() {
+      document.querySelectorAll(".fav-heart").forEach((btn) => {
+        const active = hasFav(btn.dataset.favSlug || "");
+        btn.classList.toggle("is-active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+        btn.textContent = active ? "♥" : "♡";
+      });
+      const pageBtn = document.querySelector(".fav-page-btn");
+      if (pageBtn) {
+        const active = hasFav(pageBtn.dataset.favSlug || "");
+        pageBtn.classList.toggle("is-active", active);
+        pageBtn.textContent = active ? "♥ В избранном" : "♡ В избранное";
+      }
+    }
+    function wireCardHearts(root) {
+      (root || document).querySelectorAll("a.catalog-card").forEach((card) => {
+        if (card.querySelector(".fav-heart")) return;
+        const slug = favSlugFromPath(card.getAttribute("href"));
+        if (!slug) return;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "fav-heart";
+        btn.dataset.favSlug = slug;
+        btn.title = "В избранное";
+        btn.setAttribute("aria-label", "В избранное");
+        btn.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          const added = toggleFav(slug);
+          repaintHearts();
+          showFavToast(added ? "Добавлено в избранное ♥" : "Убрано из избранного");
+        });
+        (card.querySelector(".catalog-card__media-wrap") || card).appendChild(btn);
+      });
+      repaintHearts();
+    }
+
+    /* карточки дозагружаются чанками — следим за сеткой */
+    function observeGrids() {
+      document.querySelectorAll(".catalog-grid").forEach((grid) => {
+        new MutationObserver(() => {
+          wireCardHearts(grid);
+          markPodborkaHits(grid);
+        }).observe(grid, { childList: true });
+      });
+    }
+
+    /* --- кнопка на странице объекта --- */
+    function wireObjectPage() {
+      const slug = favSlugFromPath(location.pathname);
+      if (!slug || document.querySelector(".fav-page-btn")) return;
+      const h1 = document.querySelector("h1");
+      if (!h1) return;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "fav-page-btn";
+      btn.dataset.favSlug = slug;
+      btn.addEventListener("click", () => {
+        const added = toggleFav(slug);
+        repaintHearts();
+        showFavToast(added ? "Добавлено в избранное ♥" : "Убрано из избранного");
+      });
+      h1.insertAdjacentElement("afterend", btn);
+      repaintHearts();
+    }
+
+    /* --- плавающая кнопка со счётчиком --- */
+    let fabEl = null;
+    function refreshFab() {
+      if (!fabEl) return;
+      const count = readFavs().length;
+      fabEl.querySelector(".fav-fab__count").textContent = String(count);
+      fabEl.classList.toggle("is-empty", count === 0);
+    }
+    function mountFab() {
+      fabEl = document.createElement("button");
+      fabEl.type = "button";
+      fabEl.className = "fav-fab";
+      fabEl.setAttribute("aria-label", "Избранное — ваша личная подборка");
+      fabEl.innerHTML =
+        '<span class="fav-fab__icon" aria-hidden="true">♥</span>' +
+        '<span class="fav-fab__count">0</span>' +
+        '<span class="fav-fab__label">Избранное</span>';
+      fabEl.addEventListener("click", openFavPanel);
+      document.body.appendChild(fabEl);
+      refreshFab();
+    }
+
+    /* --- текст сообщения менеджеру --- */
+    function buildFavMessage(items, slugs) {
+      const lines = ["Здравствуйте! Выбрал(а) на сайте АБХАЗБЕРЕГ варианты:", ""];
+      items.forEach((it, i) => {
+        lines.push(`${i + 1}. ${it.title} — ${it.page_url || `${SITE_BASE}/`}`);
+      });
+      lines.push("");
+      lines.push("Подскажите, пожалуйста, наличие мест и цены.");
+      lines.push("Даты: ____ — ____. Гостей: ____.");
+      lines.push("");
+      lines.push(`Вся подборка одной ссылкой: ${SITE_BASE}/?podborka=${slugs.join(",")}`);
+      return lines.join("\n");
+    }
+
+    /* --- панель избранного --- */
+    let overlayEl = null;
+    function closeFavPanel() {
+      overlayEl?.remove();
+      overlayEl = null;
+    }
+    async function openFavPanel() {
+      closeFavPanel();
+      const slugs = readFavs();
+      overlayEl = document.createElement("div");
+      overlayEl.className = "fav-overlay";
+      overlayEl.addEventListener("click", (event) => {
+        if (event.target === overlayEl) closeFavPanel();
+      });
+      const panel = document.createElement("div");
+      panel.className = "fav-panel";
+      panel.setAttribute("role", "dialog");
+      panel.setAttribute("aria-label", "Ваше избранное");
+      overlayEl.appendChild(panel);
+      document.body.appendChild(overlayEl);
+
+      if (!slugs.length) {
+        panel.innerHTML =
+          '<button type="button" class="fav-panel__close" aria-label="Закрыть">✕</button>' +
+          '<h3 class="fav-panel__title">Ваше избранное пока пусто</h3>' +
+          '<p class="fav-panel__hint">Нажимайте ♡ на понравившихся вариантах — они соберутся здесь, в вашей личной подборке.</p>';
+        panel.querySelector(".fav-panel__close").addEventListener("click", closeFavPanel);
+        return;
+      }
+
+      panel.innerHTML =
+        '<button type="button" class="fav-panel__close" aria-label="Закрыть">✕</button>' +
+        '<h3 class="fav-panel__title">Ваше избранное</h3>' +
+        '<p class="fav-panel__hint">Подборка сохраняется в вашем браузере — можно вернуться к ней позже.</p>' +
+        '<div class="fav-panel__list"><p class="fav-panel__hint">Загружаю…</p></div>' +
+        '<div class="fav-panel__send">' +
+        "<h4>Отправьте подборку менеджеру — подскажем даты и наличие мест</h4>" +
+        '<p class="fav-panel__hint">Нажмите кнопку — сообщение с вашими вариантами уже готово, останется только отправить.</p>' +
+        '<div class="fav-panel__buttons">' +
+        '<a class="fav-send fav-send--tg" target="_blank" rel="noopener noreferrer">Telegram</a>' +
+        '<a class="fav-send fav-send--wa" target="_blank" rel="noopener noreferrer">WhatsApp</a>' +
+        '<button type="button" class="fav-send fav-send--vk">ВКонтакте</button>' +
+        '<button type="button" class="fav-send fav-send--copy">📋 Скопировать текст</button>' +
+        "</div></div>";
+      panel.querySelector(".fav-panel__close").addEventListener("click", closeFavPanel);
+
+      const rows = await loadFavCatalogIndex();
+      const bySlug = new Map(rows.map((r) => [String(r.slug || ""), r]));
+      const items = slugs.map((slug) => bySlug.get(slug) || null).filter(Boolean);
+      const listEl = panel.querySelector(".fav-panel__list");
+      if (!items.length) {
+        listEl.innerHTML =
+          '<p class="fav-panel__hint">Не удалось загрузить список — проверьте интернет и откройте избранное снова.</p>';
+        return;
+      }
+      listEl.innerHTML = "";
+      const esc = (v) => String(v || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+      items.forEach((it) => {
+        const row = document.createElement("div");
+        row.className = "fav-item";
+        row.innerHTML =
+          (it.cover_url
+            ? `<img class="fav-item__photo" src="${esc(it.cover_url)}" alt="" loading="lazy" />`
+            : '<span class="fav-item__photo"></span>') +
+          `<a class="fav-item__title" href="${esc(it.page_url || "#")}">${esc(it.title || it.slug)}</a>` +
+          '<button type="button" class="fav-item__remove" aria-label="Убрать из избранного">✕</button>';
+        row.querySelector(".fav-item__remove").addEventListener("click", () => {
+          toggleFav(String(it.slug));
+          repaintHearts();
+          openFavPanel();
+        });
+        listEl.appendChild(row);
+      });
+
+      const message = buildFavMessage(items, slugs);
+      panel.querySelector(".fav-send--tg").href = `${TG_CHAT}?text=${encodeURIComponent(message)}`;
+      panel.querySelector(".fav-send--wa").href = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(message)}`;
+      panel.querySelector(".fav-send--vk").addEventListener("click", async () => {
+        const ok = await copyText(message);
+        showFavToast(
+          ok
+            ? "Текст скопирован — вставьте его в сообщение ВКонтакте"
+            : "Не удалось скопировать — используйте кнопку «Скопировать текст»"
+        );
+        window.open(VK_CHAT, "_blank", "noopener");
+      });
+      panel.querySelector(".fav-send--copy").addEventListener("click", async () => {
+        const ok = await copyText(message);
+        showFavToast(ok ? "Текст подборки скопирован" : "Не удалось скопировать автоматически");
+      });
+    }
+
+    /* --- просмотр присланной подборки: /?podborka=slug1,slug2 --- */
+    let podborkaSlugs = null;
+    function markPodborkaHits(root) {
+      if (!podborkaSlugs) return;
+      (root || document).querySelectorAll("a.catalog-card").forEach((card) => {
+        card.classList.toggle("podborka-hit", podborkaSlugs.has(favSlugFromPath(card.getAttribute("href"))));
+      });
+    }
+    function initPodborkaMode() {
+      const raw = new URLSearchParams(location.search).get("podborka") || "";
+      const slugs = raw.split(",").map((s) => s.trim()).filter(Boolean);
+      const grid = document.getElementById("catalog-grid");
+      if (!slugs.length || !grid) return;
+      podborkaSlugs = new Set(slugs);
+      document.body.classList.add("podborka-mode");
+      const bar = document.createElement("div");
+      bar.className = "podborka-bar";
+      bar.innerHTML =
+        `<span>Показана присланная подборка: объектов — ${slugs.length}.</span> ` +
+        '<button type="button" class="podborka-bar__reset">Показать весь каталог</button>';
+      grid.parentElement.insertBefore(bar, grid);
+      bar.querySelector(".podborka-bar__reset").addEventListener("click", () => {
+        podborkaSlugs = null;
+        document.body.classList.remove("podborka-mode");
+        bar.remove();
+      });
+      markPodborkaHits(document);
+      setTimeout(() => bar.scrollIntoView({ behavior: "smooth", block: "center" }), 350);
+    }
+
+    mountFab();
+    wireCardHearts(document);
+    wireObjectPage();
+    observeGrids();
+    initPodborkaMode();
+  }
 
   /** Главная в HTML несёт только первые карточки каталога (Lighthouse: полный
    * DOM на 222 карточки давал TBT>1s на слабых CPU). Остальные дорендериваются
