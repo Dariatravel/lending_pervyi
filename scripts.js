@@ -4,6 +4,10 @@
   const METRIKA_ID = 108214677;
   const GA4_ID = "G-MZ2NTRDDJ5";
   const SITE_CANONICAL_ORIGIN = "https://абхазберег.рф";
+  // Красивый латинский домен для переписок: abhazbereg.com — редиректор на
+  // GitHub Pages, ведёт на абхазберег.рф с сохранением пути (20.07.2026).
+  // Canonical/SEO остаются на кириллическом домене.
+  const SHARE_ORIGIN = "https://abhazbereg.com";
   const PUNY_SITE_HOST = "xn--80aacbklan7f0b.xn--p1ai";
   const PUNY_SITE_ORIGINS = [
     `https://${PUNY_SITE_HOST}`,
@@ -12,13 +16,13 @@
 
   function buildPublicShareUrl(pathname = window.location.pathname, search = window.location.search) {
     const path = pathname || "/";
-    return `${SITE_CANONICAL_ORIGIN}${path}${search || ""}`;
+    return `${SHARE_ORIGIN}${path}${search || ""}`;
   }
 
   function normalizePublicUrlText(raw) {
     let text = String(raw || "");
     PUNY_SITE_ORIGINS.forEach((origin) => {
-      text = text.split(origin).join(SITE_CANONICAL_ORIGIN);
+      text = text.split(origin).join(SHARE_ORIGIN);
     });
     return text;
   }
@@ -195,7 +199,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607201235";
+  const ASSET_VERSION = "202607201806";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */

@@ -176,6 +176,29 @@ def check_size_budgets(base_url: str, timeout: int) -> tuple[list[dict[str, obje
     return results, errors
 
 
+def check_share_domain_redirector(timeout: int) -> tuple[dict[str, object], list[str]]:
+    """abhazbereg.com — редиректор для переписок (GitHub Pages): должен отвечать
+    по HTTPS и содержать переход на основной сайт."""
+    url = "https://abhazbereg.com/"
+    try:
+        req = Request(url, headers={"User-Agent": "abhazbereg-smoke"})
+        with urlopen(req, timeout=timeout) as response:
+            body = response.read(4096).decode("utf-8", "replace")
+            status = response.status
+    except Exception as exc:  # noqa: BLE001
+        return {"url": url, "status": "error", "error": str(exc)}, [
+            f"редиректор abhazbereg.com недоступен: {exc}"
+        ]
+    has_redirect = "абхазберег.рф" in body
+    result = {"url": url, "status": status, "redirect_markup": has_redirect}
+    problems: list[str] = []
+    if status != 200:
+        problems.append(f"редиректор abhazbereg.com: HTTP {status}")
+    if not has_redirect:
+        problems.append("редиректор abhazbereg.com: нет перехода на абхазберег.рф")
+    return result, problems
+
+
 def check_legacy_review_bank_removed(timeout: int) -> tuple[dict[str, object], list[str]]:
     url = f"{YANDEX_MEDIA}reviews/review_text_bank.json"
     ok, status, size = head_ok(url, timeout)
@@ -241,6 +264,10 @@ def main() -> int:
     legacy_result, legacy_errors = check_legacy_review_bank_removed(args.timeout)
     checks.append({"kind": "legacy_review_bank_removed", "result": legacy_result, "errors": legacy_errors})
     errors.extend(legacy_errors)
+
+    share_result, share_errors = check_share_domain_redirector(args.timeout)
+    checks.append({"kind": "share_domain_redirector", "result": share_result, "errors": share_errors})
+    errors.extend(share_errors)
 
     blog_url = urljoin(args.base_url.rstrip("/") + "/", "blog/")
     blog_errors: list[str] = []
