@@ -517,9 +517,9 @@ def render_kvartira_catalog_page(_rows: list[dict[str, Any]]) -> str:
 def replace_catalog_block(file_path: Path, marker: str, html_block: str) -> None:
     text = file_path.read_text(encoding="utf-8")
     pattern = (
-        r'<div class="catalog-grid" id="catalog-grid">'
+        r'<div class="catalog-grid" id="catalog-grid"[^>]*>'
         r'[\s\S]*?'
-        r'</div>\s*(?:<div class="catalog-grid" id="catalog-grid">[\s\S]*?</div>\s*)?'
+        r'</div>\s*(?:<div class="catalog-grid" id="catalog-grid"[^>]*>[\s\S]*?</div>\s*)?'
         r'(?=<div class="catalog-expand-wrap">|<button class="btn-filter catalog-expand-button")'
     )
     replacement = f'<div class="catalog-grid" id="catalog-grid">{html_block}</div>\n'
@@ -801,6 +801,10 @@ def normalize_catalog_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 CATALOG_INITIAL_LIMIT = 20
+# В статический HTML главной попадают только первые карточки — остальные
+# дорендерит scripts.js из catalog-index.json после загрузки (Lighthouse:
+# полный каталог в HTML давал TBT>1s на слабых CPU из-за парсинга/стилей).
+CATALOG_STATIC_LIMIT = 24
 
 
 def mark_catalog_cards_initial_hidden(cards_html: str, limit: int = CATALOG_INITIAL_LIMIT) -> str:
@@ -814,6 +818,19 @@ def mark_catalog_cards_initial_hidden(cards_html: str, limit: int = CATALOG_INIT
             card = card.replace('<a class="catalog-card"', '<a class="catalog-card" hidden', 1)
         marked.append(card)
     return prefix + "".join(marked)
+
+
+def sync_catalog_grid_total_attr(total_cards: int) -> None:
+    """data-catalog-total на гриде — сигнал клиенту дорендерить остальные карточки."""
+    text = INDEX_PATH.read_text(encoding="utf-8")
+    updated, count = re.subn(
+        r'<div class="catalog-grid" id="catalog-grid"(?: data-catalog-total="\d+")?>',
+        f'<div class="catalog-grid" id="catalog-grid" data-catalog-total="{total_cards}">',
+        text,
+        count=1,
+    )
+    if count:
+        INDEX_PATH.write_text(updated, encoding="utf-8")
 
 
 def sync_catalog_visible_count_markup(total_cards: int) -> None:
@@ -850,13 +867,17 @@ def rebuild_catalog(rows: list[dict[str, Any]]) -> None:
     catalog_cards = [render_hotel_card(row, hotel_post_meta) for row in hotel_rows] + [
         render_kvartira_card(row) for row in kvartira_rows
     ]
-    catalog_cards_html = mark_catalog_cards_initial_hidden("".join(catalog_cards))
+    total_cards = len(catalog_cards)
+    catalog_cards_html = mark_catalog_cards_initial_hidden(
+        "".join(catalog_cards[:CATALOG_STATIC_LIMIT])
+    )
     replace_catalog_block(
         INDEX_PATH,
         '<div class="catalog-grid" id="catalog-grid">',
         catalog_cards_html,
     )
-    sync_catalog_visible_count_markup(len(catalog_cards))
+    sync_catalog_grid_total_attr(total_cards)
+    sync_catalog_visible_count_markup(total_cards)
     KVARTIRA_PATH.write_text(render_kvartira_catalog_page(kvartira_rows), encoding="utf-8")
 
     for row in hotel_rows:

@@ -195,7 +195,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607201129";
+  const ASSET_VERSION = "202607201235";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -5331,4 +5331,134 @@
   void initSimilarListings();
   void initSimilarBlogPosts();
   initMobileReviewsPlacement();
+  initDeferredFullCatalog(filtersController);
+
+  /** Главная в HTML несёт только первые карточки каталога (Lighthouse: полный
+   * DOM на 222 карточки давал TBT>1s на слабых CPU). Остальные дорендериваются
+   * из catalog-index.json чанками после загрузки страницы. */
+  function initDeferredFullCatalog(controller) {
+    const grid = document.getElementById("catalog-grid");
+    if (!grid) return;
+    const total = Number(grid.dataset.catalogTotal || 0);
+    if (!total || grid.querySelectorAll(".catalog-card").length >= total) return;
+
+    let started = false;
+    const start = () => {
+      if (started) return;
+      started = true;
+      void appendMissingCatalogCards(grid, controller);
+    };
+    const schedule = () => {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(start, { timeout: 3500 });
+      } else {
+        window.setTimeout(start, 1500);
+      }
+    };
+    if (document.readyState === "complete") {
+      schedule();
+    } else {
+      window.addEventListener("load", schedule, { once: true });
+      window.setTimeout(start, 6000);
+    }
+  }
+
+  async function appendMissingCatalogCards(grid, controller) {
+    let rows = [];
+    let pricePayload = null;
+    try {
+      [rows, pricePayload] = await Promise.all([
+        loadCatalogIndex(),
+        fetch(`/data/min-prices-today.json?v=${ASSET_VERSION}`, { credentials: "same-origin" })
+          .then((response) => (response.ok ? response.json() : null))
+          .catch(() => null),
+      ]);
+    } catch (error) {
+      console.warn("Полный каталог не догрузился", error);
+      return;
+    }
+
+    const priceMap = pricePayload?.prices || {};
+    const monthLabel = String(pricePayload?.month_label || "");
+    const presentSlugs = new Set(
+      Array.from(grid.querySelectorAll(".catalog-card")).map((card) => {
+        const parts = String(card.getAttribute("href") || "").split("/").filter(Boolean);
+        return parts[parts.length - 1] || "";
+      })
+    );
+    // Порядок статики: сперва отели, затем квартиры (kvartira/general-1409 — служебный).
+    const ordered = rows
+      .filter((row) => row?.is_active !== false && row?.slug && row.slug !== "general-1409")
+      .sort((a, b) => {
+        const ak = a.source_kind === "kvartira" ? 1 : 0;
+        const bk = b.source_kind === "kvartira" ? 1 : 0;
+        return ak - bk;
+      })
+      .filter((row) => !presentSlugs.has(String(row.slug)));
+
+    const CHUNK = 12;
+    for (let offset = 0; offset < ordered.length; offset += CHUNK) {
+      const fragment = document.createDocumentFragment();
+      ordered.slice(offset, offset + CHUNK).forEach((row) => {
+        fragment.appendChild(buildIndexCatalogCard(row, priceMap, monthLabel));
+      });
+      grid.appendChild(fragment);
+      if (offset + CHUNK < ordered.length) {
+        await new Promise((resolve) => window.setTimeout(resolve, 120));
+      }
+    }
+    initCatalogMapPlaques(grid);
+    // Пере-индексация фильтров и повторное применение текущего выбора.
+    try {
+      controller?.refresh?.();
+    } catch (error) {
+      console.warn("refresh каталога после дорендера не удался", error);
+    }
+  }
+
+  function buildIndexCatalogCard(row, priceMap, monthLabel) {
+    const isKvartira = row.source_kind === "kvartira";
+    const card = document.createElement("a");
+    card.className = "catalog-card";
+    card.hidden = true;
+    card.dataset.listingKind = isKvartira ? "kvartira" : "hotel";
+    card.href = pathnameFromUrl(
+      row.page_url,
+      isKvartira ? `/kvartira/${row.slug}/` : `/hotels/${row.slug}/`
+    );
+    if (row.has_video) card.dataset.hasVideo = "1";
+    applyFilterData(card, row.details?.filters);
+
+    const mediaWrap = document.createElement("div");
+    mediaWrap.className = "catalog-card__media-wrap";
+    if (row.has_video) {
+      const badge = document.createElement("span");
+      badge.className = "catalog-card__badge";
+      badge.textContent = "Видео";
+      mediaWrap.appendChild(badge);
+    }
+    const image = document.createElement("img");
+    image.loading = "lazy";
+    image.decoding = "async";
+    image.alt = cleanCardTitle(row.title) || "";
+    image.src = pickCoverUrl(row);
+    attachImageFallback(image, row);
+    mediaWrap.appendChild(image);
+    card.appendChild(mediaWrap);
+    appendCatalogMapPlaque(card, primaryCityKeyFromFilters(row.details?.filters));
+
+    card.appendChild(createTextNode("h3", cleanCardTitle(row.title)));
+    appendCardFacts(card, row);
+
+    const priceValue = Number(priceMap[row.slug] || 0);
+    if (priceValue > 0 && monthLabel) {
+      const price = document.createElement("p");
+      price.className = "catalog-card__price";
+      const strong = document.createElement("strong");
+      strong.textContent = `${priceValue.toLocaleString("ru-RU")} ₽`;
+      price.append("Цена от ", strong, `/сутки ${monthLabel}`);
+      card.appendChild(price);
+    }
+    return card;
+  }
 })();
