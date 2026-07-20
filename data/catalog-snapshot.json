@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T11:47:59.745207+00:00",
+  "generated_at": "2026-07-20T08:36:19.606749+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 221,
@@ -13244,7 +13244,7 @@
             "lines": [
               "На прилегающей территории расположена большая общая кухня для самостоятельного приготовления. Столы и стульчики.",
               "Зона мангала, качели. Лаунж-зона с креслами и барной стойкой. Зона для курения. Постирочная. Есть автостоянка.",
-              "Каркасный бассейн (размер 5 на 3)."
+              "Новый бассейн (размер 5 на 3)."
             ]
           },
           {
@@ -13417,14 +13417,14 @@
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/esma-domiki-s-basseynom-v-tsentre-4032/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/esma-domiki-s-basseynom-v-tsentre-4032/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/esma-domiki-s-basseynom-v-tsentre-4032/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/esma-domiki-s-basseynom-v-tsentre-4032/video-01-source.mp4",
+          "storage_path": "videos/hotels/esma-domiki-s-basseynom-v-tsentre-4032/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/esma-domiki-s-basseynom-v-tsentre-4032/video-01.mp4",
           "details": {
             "telegram_post": "abhazbooking/4040",
             "telegram_url": "https://t.me/abhazbooking/4040",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/esma-domiki-s-basseynom-v-tsentre-4032/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/esma-domiki-s-basseynom-v-tsentre-4032/video-01-poster.jpg"
           }
         }
       ]
