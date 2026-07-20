@@ -21,8 +21,10 @@ FORBIDDEN_HTML = ("image-lite", "catalog-snapshot.json", "review_text_bank", "su
 YANDEX_MEDIA = "https://storage.yandexcloud.net/abhazbereg-media/media/"
 SIZE_BUDGETS = {
     "index_html_gzip": 45 * 1024,
-    "styles_min_css": 150 * 1024,
-    "scripts_min_js": 110 * 1024,
+    # Подняты 20.07.2026 под функцию «Избранное» (+5 КБ css, +5 КБ js);
+    # бюджет по-прежнему ловит бесконтрольный рост.
+    "styles_min_css": 158 * 1024,
+    "scripts_min_js": 118 * 1024,
 }
 
 
