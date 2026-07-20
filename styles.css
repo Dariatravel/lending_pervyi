@@ -8857,6 +8857,9 @@ html:has(> body.objects-map-page) {
   flex-wrap: wrap;
   gap: 0.55rem;
 }
+.fav-panel__buttons + .fav-panel__buttons {
+  margin-top: 0.55rem;
+}
 .fav-send {
   display: inline-flex;
   align-items: center;

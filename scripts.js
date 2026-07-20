@@ -199,7 +199,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607201850";
+  const ASSET_VERSION = "202607201928";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -5572,10 +5572,12 @@
         "<h4>Отправьте подборку менеджеру — подскажем даты и наличие мест</h4>" +
         '<p class="fav-panel__hint">Нажмите кнопку — сообщение с вашими вариантами уже готово, останется только отправить.</p>' +
         '<div class="fav-panel__buttons">' +
+        '<button type="button" class="fav-send fav-send--copy">📋 Скопировать текст</button>' +
+        "</div>" +
+        '<div class="fav-panel__buttons">' +
         '<a class="fav-send fav-send--tg" target="_blank" rel="noopener noreferrer">Telegram</a>' +
         '<a class="fav-send fav-send--wa" target="_blank" rel="noopener noreferrer">WhatsApp</a>' +
         '<button type="button" class="fav-send fav-send--vk">ВКонтакте</button>' +
-        '<button type="button" class="fav-send fav-send--copy">📋 Скопировать текст</button>' +
         "</div></div>";
       panel.querySelector(".fav-panel__close").addEventListener("click", closeFavPanel);
 
