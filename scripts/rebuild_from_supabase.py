@@ -851,9 +851,23 @@ def sync_catalog_visible_count_markup(total_cards: int) -> None:
     INDEX_PATH.write_text(updated, encoding="utf-8")
 
 
+def load_featured_order() -> list[str]:
+    """Слаги, которые Дарья хочет видеть первыми на главной (data/featured-order.json)."""
+    path = ROOT / "data" / "featured-order.json"
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return [str(slug).strip() for slug in data if str(slug).strip()]
+    except Exception:  # noqa: BLE001 — нет файла = прежний порядок
+        return []
+
+
 def rebuild_catalog(rows: list[dict[str, Any]]) -> None:
     rows = normalize_catalog_rows(rows)
     rows = [row for row in rows if row.get("is_active", True)]
+    featured_rank = {slug: index for index, slug in enumerate(load_featured_order())}
+    if featured_rank:
+        # sort стабильный: приоритетные — в заданном порядке, остальные — как были.
+        rows.sort(key=lambda row: featured_rank.get(str(row.get("slug")), len(featured_rank)))
     hotel_rows = [row for row in rows if row.get("source_kind") == "hotel"]
     kvartira_excluded = {"general-1409"}
     kvartira_rows = [
