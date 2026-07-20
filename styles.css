@@ -7263,6 +7263,9 @@ html:has(> body.objects-map-page) {
     align-items: stretch;
     min-height: 132px;
     border-radius: 20px;
+    /* Мобильная карточка ~236px, десктопная заглушка 420px — расхождение
+       дёргало страницу при прокрутке каталога. */
+    contain-intrinsic-size: auto 236px;
   }
 
   .site-concept .catalog-card .catalog-card__media-wrap,
@@ -7892,6 +7895,14 @@ html:has(> body.objects-map-page) {
 .hotel-site-concept .card {
   content-visibility: auto;
   contain-intrinsic-size: auto 420px;
+}
+
+/* Секция каталога (#stays) рендерится сразу: её реальная высота ~9000px против
+   заглушки 420px давала скачок скролла на границе «форма подбора → фильтры».
+   Ленивость обеспечивают сами карточки внутри. */
+#stays.site-concept__section-block {
+  content-visibility: visible;
+  contain-intrinsic-size: none;
 }
 
 .catalog-card img[data-deferred-src]:not([src]) {
