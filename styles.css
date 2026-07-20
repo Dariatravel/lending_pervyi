@@ -8884,9 +8884,11 @@ html:has(> body.objects-map-page) {
   background: #0077ff;
 }
 .fav-send--copy {
-  background: #fff;
-  color: #2f3a2f;
-  border: 1px solid rgba(120, 145, 123, 0.35);
+  /* фирменный акцент сайта (как у кнопки «Забронировать») — заметно, но не кричит */
+  background: linear-gradient(180deg, #cfe084 0%, var(--accent) 100%);
+  color: #223028;
+  border: 1px solid rgba(125, 148, 52, 0.35);
+  box-shadow: 0 6px 16px rgba(125, 148, 52, 0.22);
 }
 
 .fav-toast {
