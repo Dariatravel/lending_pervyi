@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-20T11:33:15.552722+00:00",
+  "generated_at": "2026-07-20T13:37:21.101081+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 221,
@@ -31572,12 +31572,12 @@
       "source_topic_id": 824,
       "slug": "siti-gagra-kvartira-2k-gagra-1242",
       "title": "\"СИТИ ГАГРА\" квартира 2к",
-      "summary": "Гагра. ️ 7 минут до пляжа, до 5 человек.",
+      "summary": "Гагра. 7 минут до пляжа, до 5 человек.",
       "excerpt": "Двухкомнатная квартира в Новой Гагре, центр, 4 этаж",
       "city": "Гагра",
       "location_text": "Гагра, ул. Абазгаа 59/2, 4 этаж",
-      "distance_text": "️ 7 минут до пляжа",
-      "beach_text": "️ 7 минут до пляжа",
+      "distance_text": "7 минут до пляжа",
+      "beach_text": "7 минут до пляжа",
       "capacity_text": "до 5 человек",
       "page_url": "https://абхазберег.рф/kvartira/siti-gagra-kvartira-2k-gagra-1242/",
       "telegram_url": "https://t.me/abhkvartira/1233",
@@ -31586,7 +31586,7 @@
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/siti-gagra-kvartira-2k-gagra-1242-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Гагра. ️ 7 минут до пляжа, до 5 человек.",
+        "lead": "Гагра. 7 минут до пляжа, до 5 человек.",
         "sections": [
           {
             "label": "✔️КВАРТИРА:",
@@ -31606,13 +31606,19 @@
               "В этом же доме знаменитая хинкальная \"Mon cafe\", до рынка 5 мин.",
               "Рядом разные кафе, столовая, магазины продуктов, пекарня. Набережная, колесо обозрения, парк славы, аквапарк, дельфинарий в пешей доступности."
             ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "При заезде вносится 5000₽ - возвращаемый депозит.",
+              "ВЕСЬ КАТАЛОГ КВАРТИР СМОТРЕТЬ ТУТ ⬅️",
+              "По бронированию и наличию номеров пишем в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
           }
         ],
         "prices": [
-          {
-            "kind": "price",
-            "text": "5000₽/сутки - июнь"
-          },
           {
             "kind": "price",
             "text": "6000₽/сутки - июль, август"
@@ -31747,7 +31753,7 @@
         {
           "id": 125009,
           "media_role": "gallery",
-          "sort_order": 8,
+          "sort_order": 9,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-08.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -31758,23 +31764,12 @@
         {
           "id": 125010,
           "media_role": "gallery",
-          "sort_order": 9,
+          "sort_order": 10,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-09.jpg",
           "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-09.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-09.jpg",
-          "details": {}
-        },
-        {
-          "id": 125011,
-          "media_role": "gallery",
-          "sort_order": 10,
-          "mime_type": "image/jpeg",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-10.jpg",
-          "storage_bucket": "abhazbereg-media",
-          "storage_path": "kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-10.jpg",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-10.jpg",
           "details": {}
         }
       ]
