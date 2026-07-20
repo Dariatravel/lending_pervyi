@@ -1755,16 +1755,7 @@ section.site-concept__contacts.section {
 }
 
 :is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__icon--whatsapp {
-  display: grid;
-  place-items: center;
-  color: #fff;
-  background: #25d366;
-}
-
-:is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__icon--whatsapp svg {
-  width: 25px;
-  height: 25px;
-  fill: currentColor;
+  background-image: url("https://storage.yandexcloud.net/abhazbereg-media/media/branding/icon-wa-circle.png");
 }
 
 :is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__copy,
