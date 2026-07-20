@@ -1908,7 +1908,7 @@ def build_homepage() -> None:
 
     rebuilt = replace_main(text, new_main)
     if "scripts.js" not in rebuilt:
-        rebuilt = rebuilt.replace("</body>", '  <script src="scripts.min.js?v=202607202247" defer></script>\n</body>')
+        rebuilt = rebuilt.replace("</body>", '  <script src="scripts.min.js?v=202607202249" defer></script>\n</body>')
     INDEX_FILE.write_text(clean_html_block(rebuilt) + "\n", encoding="utf-8")
 
 
