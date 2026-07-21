@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-21T08:04:42.004080+00:00",
+  "generated_at": "2026-07-21T10:54:18.852489+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 222,
-  "listings_hotels": 173,
+  "listings_total": 223,
+  "listings_hotels": 174,
   "listings_kvartira": 49,
   "listings": [
     {
@@ -865,31 +865,7 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция в июне🔥"
-          },
-          {
-            "kind": "price",
             "text": "Трёхместный номер"
-          },
-          {
-            "kind": "price",
-            "text": "3500₽ - до 15го июня"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - с 15го июня"
-          },
-          {
-            "kind": "price",
-            "text": "Трёхместный номер"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "4500₽ - июнь"
           },
           {
             "kind": "price",
@@ -905,19 +881,15 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - сентябрь"
+            "text": "6000₽ - сентябрь до 20"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - сентябрь с 21"
           },
           {
             "kind": "price",
             "text": "Четырёхместный номер"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ - июнь"
           },
           {
             "kind": "price",
@@ -933,7 +905,11 @@
           },
           {
             "kind": "price",
-            "text": "5500₽ - сентябрь"
+            "text": "7000₽ - сентябрь до 20"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - сентябрь с 21"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/lk-otel-s-basseynom-4123/index.html",
@@ -1078,14 +1054,14 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lk-otel-s-basseynom-4123/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lk-otel-s-basseynom-4123/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/lk-otel-s-basseynom-4123/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lk-otel-s-basseynom-4123/video-01-source.mp4",
+          "storage_path": "videos/hotels/lk-otel-s-basseynom-4123/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lk-otel-s-basseynom-4123/video-01.mp4",
           "details": {
             "telegram_post": "abhazbooking/4720",
             "telegram_url": "https://t.me/abhazbooking/4720",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lk-otel-s-basseynom-4123/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lk-otel-s-basseynom-4123/video-01-poster.jpg"
           }
         }
       ]
@@ -6746,7 +6722,7 @@
             "label": "✔️ДОМИКИ:",
             "lines": [
               "20 современных комфортных домиков класса люкс, площадь каждого 42 м².",
-              "В домиках двуспальная кровать, раскладывающийся диван 140×200 или два раскладывающихся кресла, гардеробная, прикроватные тумбы, стол, стулья. Сан узел с душевой кабиной. Доп место для 5 человека - раскладная кровать.",
+              "В домиках двуспальная кровать, раскладывающийся диван 140×200, гардеробная, прикроватные тумбы, стол, стулья. Сан узел с душевой кабиной. Доп место для 5 человека - раскладная кровать.",
               "Оснащение: кондиционер, телевизор, Wi‑Fi, мини-холодильник, фен.",
               "Веранда у каждого домика с креслами-качелями, вид на бассейн."
             ]
@@ -6961,14 +6937,14 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/video-01-source.mp4",
+          "storage_path": "videos/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/video-01.mp4",
           "details": {
             "telegram_post": "abhazbooking/4438",
             "telegram_url": "https://t.me/abhazbooking/4438",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/video-01-poster.jpg"
           }
         }
       ]
@@ -25559,7 +25535,7 @@
             "label": "✔️ТЕРРИТОРИЯ:",
             "lines": [
               "Новые деревянные коттеджи из сосны площадью 27 кв.м в Хыпсте. (Координаты 43.114904, 40.560325)",
-              "В 3 минутах ходьбы - море с чистейшими дикими пляжами и прозрачной водой.",
+              "В 5 минутах ходьбы - море с чистейшими дикими пляжами и прозрачной водой.",
               "Большой участок вдали от городской суеты. Простор для глаз, тишина для ушей.",
               "На территории: новая летняя кухня-веранда с посудой и холодильниками и стиральной машиной.",
               "Есть мангальная зона, генератор на случай аварийного отключения электричества. Ведется видеонаблюдение. Бесплатный Wi-Fi по всей территории."
@@ -62898,6 +62874,264 @@
             "telegram_url": "https://t.me/abhazbooking/5058",
             "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/anait-gostevoy-dom-5049/video-01-poster.jpg"
           }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5059,
+      "source_topic_id": null,
+      "slug": "aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059",
+      "title": "\"АЛЕКСАНДРА\" отель с питанием и бассейном у моря",
+      "summary": "Цандрипш. 0 минут до пляжа, размещение до 3 человек.",
+      "excerpt": "Новый отель, построен в 2026 году, 58 номеров",
+      "city": "Цандрипш",
+      "location_text": "Цандрипш, ул. Октябрьская, 43.384528, 40.024090",
+      "distance_text": "0 минут до пляжа",
+      "beach_text": "0 минут до пляжа",
+      "capacity_text": "размещение до 3 человек",
+      "page_url": "https://абхазберег.рф/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/",
+      "telegram_url": "https://t.me/abhazbooking/5059",
+      "published_at": "2026-07-21",
+      "has_video": false,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Цандрипш. 0 минут до пляжа, размещение до 3 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Новый отель, построен в 2026 году, 58 номеров.",
+              "В этом сезоне работают 3 этажа, лифт не работает.",
+              "Номера категории Делюкс с видом на море, с частичным видом на море или на горы, площадью 20 м². Размещение до 3 человек.",
+              "Двуспальная кровать, кресло-кровать - доп место для 3 человека, прикроватные тумбочки, шкаф. Сан узел с тропическим душем.",
+              "Предоставляются халаты, тапочки, полотенца, туалетные принадлежности.",
+              "Оснащение: кондиционер, Wi-Fi, сейф, телевизор, мини-холодильник, чайник, фен.",
+              "У каждого номера есть балкон с мебелью."
+            ]
+          },
+          {
+            "label": "✔️ВСЁ ВКЛЮЧЕНО:",
+            "lines": [
+              "В стоимость входит проживание, 3х разовое питание по системе «шведский стол», промежуточное питание и алкоголь местного производства с 10:00 до 20:00.",
+              "В барной зоне у бассейна: местное вино, пиво, безалкогольные напитки, мороженое в стаканчике, пончики и другие легкие закуски.",
+              "В стоимость включен групповой трансфер от Адлера."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Открытый подогреваемый бассейн с пресной водой и отдельной детской зоной.",
+              "Ресторан, бар у бассейна.",
+              "Парковка.",
+              "Собственный оборудованный пляж буквально в 10 метрах. Пляж песчано-галечный, есть шезлонги, зонты и пляжные полотенца."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Отель находится в 2 км от российской границы.",
+              "В шаговой доступности магазины, кафе, столовые, остановка общественного транспорта."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "heading",
+            "text": "Номер делюкс с видом на море"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "15990₽ - август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "10990₽ - октябрь"
+          },
+          {
+            "kind": "heading",
+            "text": "Номер делюкс с видом на горы"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "13990₽ - август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "8990₽ - октябрь"
+          },
+          {
+            "kind": "heading",
+            "text": "Номер делюкс с частичным видом на море"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "14990₽ - август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "9990₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место с питанием - 3000₽"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 12 лет размещаются на дополнительном месте бесплатно."
+          },
+          {
+            "kind": "price",
+            "text": "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1192,
+      "media": [
+        {
+          "id": 1192001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059.jpg",
+          "details": {}
+        },
+        {
+          "id": 1192002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1192003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1192004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1192005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1192006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1192007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1192008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1192009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1192010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1192011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-10.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-10.jpg",
+          "details": {}
         }
       ]
     }
