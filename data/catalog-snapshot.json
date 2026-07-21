@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-21T14:44:47.787717+00:00",
+  "generated_at": "2026-07-21T21:53:15.565993+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 223,
@@ -14667,7 +14667,11 @@
           },
           {
             "kind": "price",
-            "text": "4000₽\\4500₽ - июль, август, сентябрь по 15 число"
+            "text": "4000₽\\4500₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "3600₽\\4000₽ - август, сентябрь по 15 число"
           },
           {
             "kind": "price",
@@ -14822,14 +14826,14 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/video-01-source.mp4",
+          "storage_path": "videos/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/video-01.mp4",
           "details": {
             "telegram_post": "abhazbooking/3962",
             "telegram_url": "https://t.me/abhazbooking/3962",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/video-01-poster.jpg"
           }
         }
       ]
@@ -35301,12 +35305,12 @@
       "source_topic_id": 379,
       "slug": "rimma-dve-1k-kvartriry-suhum-1118",
       "title": "\"РИММА\" две квартиры с кухней",
-      "summary": "Сухум. ️ 5 минут до песчаного пляжа, размещение по 3 человека.",
+      "summary": "Сухум. 5 минут до песчаного пляжа, размещение по 3 человека.",
       "excerpt": "В тихом зеленом дворе две квартиры на 1 этаже. Каждая со своей кухней",
       "city": "Сухум",
       "location_text": "Сухум, ул. Услара 4Б (Армянское ущелье)",
-      "distance_text": "️ 5 минут до песчаного пляжа",
-      "beach_text": "️ 5 минут до песчаного пляжа",
+      "distance_text": "5 минут до песчаного пляжа",
+      "beach_text": "5 минут до песчаного пляжа",
       "capacity_text": "размещение по 3 человека",
       "page_url": "https://абхазберег.рф/kvartira/rimma-dve-1k-kvartriry-suhum-1118/",
       "telegram_url": "https://t.me/abhkvartira/1113",
@@ -35315,7 +35319,7 @@
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/rimma-dve-1k-kvartriry-suhum-1118-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Сухум. ️ 5 минут до песчаного пляжа, размещение по 3 человека.",
+        "lead": "Сухум. 5 минут до песчаного пляжа, размещение по 3 человека.",
         "sections": [
           {
             "label": "✔️КВАРТИРА",
@@ -35344,7 +35348,11 @@
         "prices": [
           {
             "kind": "price",
-            "text": "3000₽/сутки - июнь"
+            "text": "Акция🔥"
+          },
+          {
+            "kind": "price",
+            "text": "С 24 июля по 6 августа свободна 1 комната - 3000₽"
           },
           {
             "kind": "price",
@@ -35458,14 +35466,14 @@
           "media_role": "gallery",
           "sort_order": 6,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/rimma-dve-1k-kvartriry-suhum-1118/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/rimma-dve-1k-kvartriry-suhum-1118/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/kvartira/rimma-dve-1k-kvartriry-suhum-1118/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/rimma-dve-1k-kvartriry-suhum-1118/video-01-source.mp4",
+          "storage_path": "videos/kvartira/rimma-dve-1k-kvartriry-suhum-1118/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/rimma-dve-1k-kvartriry-suhum-1118/video-01.mp4",
           "details": {
             "telegram_post": "abhkvartira/1118",
             "telegram_url": "https://t.me/abhkvartira/1118",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/rimma-dve-1k-kvartriry-suhum-1118/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/rimma-dve-1k-kvartriry-suhum-1118/video-01-poster.jpg"
           }
         }
       ]
