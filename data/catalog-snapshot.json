@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-21T21:53:15.565993+00:00",
+  "generated_at": "2026-07-22T10:53:43.034093+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 223,
+  "listings_total": 224,
   "listings_hotels": 174,
-  "listings_kvartira": 49,
+  "listings_kvartira": 50,
   "listings": [
     {
       "source_kind": "kvartira",
@@ -60615,7 +60615,7 @@
               "Двуспальная или две односпальные кровати, раскладной диван. Сан узел с душем.",
               "Двухкомнатный номер без балкона",
               "Просторный двухкомнатный номер площадью 30 м².",
-              "В спальне двуспальная или две односпальные кровати. В гостиной два раскладных кресла или раскладной диван. На первом этаже в некоторых номерах линолиум. Сан узел с душем.",
+              "В спальне двуспальная или две односпальные кровати. В гостиной два раскладных кресла или раскладной диван. На первом этаже в некоторых номерах линолеум. Сан узел с душем.",
               "Двухкомнатный номер с балконом",
               "Просторный двухкомнатный номер площадью 30 м².",
               "В спальне двуспальная или две односпальные кровати. В гостиной два раскладных кресла или раскладной диван. Сан узел с душем.",
@@ -60925,14 +60925,14 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/regina-otel-vtoroy-korpus-4987/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/regina-otel-vtoroy-korpus-4987/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/regina-otel-vtoroy-korpus-4987/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/regina-otel-vtoroy-korpus-4987/video-01-source.mp4",
+          "storage_path": "videos/hotels/regina-otel-vtoroy-korpus-4987/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/regina-otel-vtoroy-korpus-4987/video-01.mp4",
           "details": {
             "telegram_post": "abhazbooking/4996",
             "telegram_url": "https://t.me/abhazbooking/4996",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/regina-otel-vtoroy-korpus-4987/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/regina-otel-vtoroy-korpus-4987/video-01-poster.jpg"
           }
         }
       ]
@@ -63140,6 +63140,208 @@
           "storage_path": "hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-10.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/photo-10.jpg",
           "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "kvartira",
+      "source_channel": "abhkvartira",
+      "source_message_id": 1646,
+      "source_topic_id": 1645,
+      "slug": "akvarel-tri-2k-kvartiry-1646",
+      "title": "\"АКВАРЕЛЬ\" три 2к квартиры",
+      "summary": "Лдзаа. 2 минуты до пляжа, размещение до 6 человек.",
+      "excerpt": "Двухкомнатная квартира со свежим ремонтом на 1 этаже с отдельным входом",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, ул. Рыбзаводская, 77, 1 этаж",
+      "distance_text": "2 минуты до пляжа",
+      "beach_text": "2 минуты до пляжа",
+      "capacity_text": "размещение до 6 человек",
+      "page_url": "https://абхазберег.рф/kvartira/akvarel-tri-2k-kvartiry-1646/",
+      "telegram_url": "https://t.me/abhkvartira/1646",
+      "published_at": "2026-07-22",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/akvarel-tri-2k-kvartiry-1646-cover.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 2 минуты до пляжа, размещение до 6 человек.",
+        "sections": [
+          {
+            "label": "✔️КВАРТИРА:",
+            "lines": [
+              "Двухкомнатная квартира со свежим ремонтом на 1 этаже с отдельным входом.",
+              "В спальне двуспальная кровать, раскладной диван, прикроватные тумбы, телевизор, кондиционер, шкаф, стулья.",
+              "Просторная кухня-гостиная, с обеденной зоной и большим угловым диваном. Телевизор, стиральная машина, чайник, варочная поверхность, микроволновка, холодильник, раковина, шкафы для хранения и необходимая посуда.",
+              "Санузел с душем.",
+              "Есть Wi-Fi.",
+              "Таких 3 похожих квартиры на 1 этаже, каждая с отдельным входом. Наполнение такое же, метраж может не сильно отличаться."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Парковка во дворе.",
+              "В этом доме продуктовый и хозяйственный магазин. Еще несколько магазинов в 3 минутах, а также кафе, рестораны, столовая, киоски, различные торговые точки, остановка общественного транспорта.",
+              "Рядом детская площадка.",
+              "До пляжа 2 минуты пешком, песчаный с мелкой галькой, море чистое. На пляже есть шезлонги и бунгало в аренду. Водные развлечения."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "15000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/akvarel-tri-2k-kvartiry-1646/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1193,
+      "media": [
+        {
+          "id": 1193001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/akvarel-tri-2k-kvartiry-1646-cover.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira-cards/akvarel-tri-2k-kvartiry-1646-cover.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/akvarel-tri-2k-kvartiry-1646-cover.jpg",
+          "details": {}
+        },
+        {
+          "id": 1193002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/akvarel-tri-2k-kvartiry-1646/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1193003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/akvarel-tri-2k-kvartiry-1646/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1193004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/akvarel-tri-2k-kvartiry-1646/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1193005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/akvarel-tri-2k-kvartiry-1646/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1193006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/akvarel-tri-2k-kvartiry-1646/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1193007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/akvarel-tri-2k-kvartiry-1646/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1193008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/akvarel-tri-2k-kvartiry-1646/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1193009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/akvarel-tri-2k-kvartiry-1646/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1193010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/akvarel-tri-2k-kvartiry-1646/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/akvarel-tri-2k-kvartiry-1646/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1193011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/akvarel-tri-2k-kvartiry-1646/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/kvartira/akvarel-tri-2k-kvartiry-1646/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/akvarel-tri-2k-kvartiry-1646/video-01.mp4",
+          "details": {
+            "telegram_post": "abhkvartira/1655",
+            "telegram_url": "https://t.me/abhkvartira/1655",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/akvarel-tri-2k-kvartiry-1646/video-01-poster.jpg"
+          }
         }
       ]
     }
