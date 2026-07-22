@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-22T10:53:43.034093+00:00",
+  "generated_at": "2026-07-22T12:24:32.663135+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 224,
@@ -26184,12 +26184,12 @@
       "source_topic_id": 120,
       "slug": "mira-dom-suhum-1345",
       "title": "\"МИРА\" дом под ключ",
-      "summary": "Сухум. ️ пляж в 12 минутах пешком, размещение до 10 человек.",
+      "summary": "Сухум. пляж в 12 минутах пешком, размещение до 10 человек.",
       "excerpt": "Для большой компании или семьи. Гостиная комната, кухня и три спальни",
       "city": "Сухум",
       "location_text": "Сухум, проспект Мира/ Аиааира 283",
-      "distance_text": "️ пляж в 12 минутах пешком",
-      "beach_text": "️ пляж в 12 минутах пешком",
+      "distance_text": "пляж в 12 минутах пешком",
+      "beach_text": "пляж в 12 минутах пешком",
       "capacity_text": "размещение до 10 человек",
       "page_url": "https://абхазберег.рф/kvartira/mira-dom-suhum-1345/",
       "telegram_url": "https://t.me/abhkvartira/1336",
@@ -26198,7 +26198,7 @@
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/mira-dom-suhum-1345-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Сухум. ️ пляж в 12 минутах пешком, размещение до 10 человек.",
+        "lead": "Сухум. пляж в 12 минутах пешком, размещение до 10 человек.",
         "sections": [
           {
             "label": "✔️ДОМ:",
@@ -26226,11 +26226,11 @@
         "prices": [
           {
             "kind": "price",
-            "text": "15 000₽/сутки - июль, август"
+            "text": "15000₽ - июль, август"
           },
           {
             "kind": "price",
-            "text": "10 000₽/сутки - с сентября по июнь"
+            "text": "10000₽ - с сентября по июнь"
           },
           {
             "kind": "price",
@@ -26383,14 +26383,14 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mira-dom-suhum-1345/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mira-dom-suhum-1345/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/kvartira/mira-dom-suhum-1345/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mira-dom-suhum-1345/video-01-source.mp4",
+          "storage_path": "videos/kvartira/mira-dom-suhum-1345/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mira-dom-suhum-1345/video-01.mp4",
           "details": {
             "telegram_post": "abhkvartira/1345",
             "telegram_url": "https://t.me/abhkvartira/1345",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mira-dom-suhum-1345/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mira-dom-suhum-1345/video-01-poster.jpg"
           }
         }
       ]
