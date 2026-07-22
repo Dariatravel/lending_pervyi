@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-22T12:24:32.663135+00:00",
+  "generated_at": "2026-07-22T14:49:32.512463+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 224,
+  "listings_total": 225,
   "listings_hotels": 174,
-  "listings_kvartira": 50,
+  "listings_kvartira": 51,
   "listings": [
     {
       "source_kind": "kvartira",
@@ -26184,12 +26184,12 @@
       "source_topic_id": 120,
       "slug": "mira-dom-suhum-1345",
       "title": "\"МИРА\" дом под ключ",
-      "summary": "Сухум. пляж в 12 минутах пешком, размещение до 10 человек.",
+      "summary": "Сухум. 9 минут до пляжа, размещение до 10 человек.",
       "excerpt": "Для большой компании или семьи. Гостиная комната, кухня и три спальни",
       "city": "Сухум",
       "location_text": "Сухум, проспект Мира/ Аиааира 283",
-      "distance_text": "пляж в 12 минутах пешком",
-      "beach_text": "пляж в 12 минутах пешком",
+      "distance_text": "9 минут до пляжа",
+      "beach_text": "9 минут до пляжа",
       "capacity_text": "размещение до 10 человек",
       "page_url": "https://абхазберег.рф/kvartira/mira-dom-suhum-1345/",
       "telegram_url": "https://t.me/abhkvartira/1336",
@@ -26198,7 +26198,7 @@
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/mira-dom-suhum-1345-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Сухум. пляж в 12 минутах пешком, размещение до 10 человек.",
+        "lead": "Сухум. 9 минут до пляжа, размещение до 10 человек.",
         "sections": [
           {
             "label": "✔️ДОМ:",
@@ -26218,7 +26218,8 @@
           {
             "label": "✔️РЯДОМ:",
             "lines": [
-              "В 10 минутах от дома знаменитый пляж ДельМар. Набережная начинается в 800 метрах.",
+              "Ближайший пляж и набережная в 9 минутах пешком.",
+              "Знаменитый пляж ДельМар в 12 минутах пешком в другой стороне.",
               "В 5-7 минутах Сухумский пивзавод, где можно взять разливное Сухумское пиво 🍺"
             ]
           }
@@ -63341,6 +63342,213 @@
             "telegram_post": "abhkvartira/1655",
             "telegram_url": "https://t.me/abhkvartira/1655",
             "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/akvarel-tri-2k-kvartiry-1646/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "kvartira",
+      "source_channel": "abhkvartira",
+      "source_message_id": 1669,
+      "source_topic_id": 1668,
+      "slug": "zarechnyy-etazh-v-dome-pod-klyuch-1669",
+      "title": "\"ЗАРЕЧНЫЙ\" этаж в доме под ключ",
+      "summary": "Сухум. 9 минут до моря пешком, размещение до 14 человек.",
+      "excerpt": "Целый второй этаж в доме под ключ с отдельным входом. Хороший вариант для большой семьи или компании. Размещение до 14 человек",
+      "city": "Сухум",
+      "location_text": "Сухум, 3-й переулок Заречной улицы, 5, 43.000022, 40.992695",
+      "distance_text": "9 минут до моря пешком",
+      "beach_text": "9 минут до моря пешком",
+      "capacity_text": "размещение до 14 человек",
+      "page_url": "https://абхазберег.рф/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/",
+      "telegram_url": "https://t.me/abhkvartira/1669",
+      "published_at": "2026-07-22",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/zarechnyy-etazh-v-dome-pod-klyuch-1669-cover.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Сухум. 9 минут до моря пешком, размещение до 14 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМ:",
+            "lines": [
+              "Целый второй этаж в доме под ключ с отдельным входом. Хороший вариант для большой семьи или компании. Размещение до 14 человек.",
+              "Шесть спален с двуспальными кроватями, прикроватными тумбами и кондиционерами.",
+              "Есть кухня-гостиная с большим диваном и со всем необходимым для самостоятельного приготовления.",
+              "В доме: Wi-Fi, телевизор, кондиционер, фен, утюг, стиральная машина.",
+              "Два сан узла с тропическим душем."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Во дворе дома просторная площадка для отдыха.",
+              "Есть столы и стулья под навесом, мангальная зона.",
+              "Каркасный бассейн."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До моря 9 минут пешком, пляж галечный.",
+              "В шаговой доступности магазины, остановка общественного транспорта.",
+              "Рынок в 15 минутах ходьбы.",
+              "Примерно в 15 минутах от дома, находится Сухумский пивзавод, где можно взять разливное сухумское пиво."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с любыми животными возможно без доп платы.",
+              "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "15000₽ - любой месяц"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1194,
+      "media": [
+        {
+          "id": 1194001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/zarechnyy-etazh-v-dome-pod-klyuch-1669-cover.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira-cards/zarechnyy-etazh-v-dome-pod-klyuch-1669-cover.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/zarechnyy-etazh-v-dome-pod-klyuch-1669-cover.jpg",
+          "details": {}
+        },
+        {
+          "id": 1194002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1194003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1194004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1194005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1194006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1194007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1194008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1194009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1194010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1194011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/video-01.mp4",
+          "details": {
+            "telegram_post": "abhkvartira/1678",
+            "telegram_url": "https://t.me/abhkvartira/1678",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/video-01-poster.jpg"
           }
         }
       ]
