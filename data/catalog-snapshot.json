@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-23T10:58:50.833795+00:00",
+  "generated_at": "2026-07-23T13:26:57.912776+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 225,
@@ -584,10 +584,6 @@
           },
           {
             "kind": "price",
-            "text": "2000₽ - июнь"
-          },
-          {
-            "kind": "price",
             "text": "6000₽ - июль, август"
           },
           {
@@ -596,7 +592,7 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - с 16 по 30 сентября"
+            "text": "4500₽ - с 16 по 30 сентября"
           },
           {
             "kind": "price",
@@ -605,10 +601,6 @@
           {
             "kind": "price",
             "text": "Четырехместный номер с балконом"
-          },
-          {
-            "kind": "price",
-            "text": "3500₽ - июнь"
           },
           {
             "kind": "price",
@@ -629,10 +621,6 @@
           {
             "kind": "price",
             "text": "Четырехместный номер без балкона"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - июнь"
           },
           {
             "kind": "price",
@@ -792,14 +780,14 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/limon-otel-4721/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/limon-otel-4721/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/limon-otel-4721/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/limon-otel-4721/video-01-source.mp4",
+          "storage_path": "videos/hotels/limon-otel-4721/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/limon-otel-4721/video-01.mp4",
           "details": {
             "telegram_post": "abhazbooking/4730",
             "telegram_url": "https://t.me/abhazbooking/4730",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/limon-otel-4721/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/limon-otel-4721/video-01-poster.jpg"
           }
         }
       ]
@@ -1588,19 +1576,15 @@
           },
           {
             "kind": "price",
-            "text": "4000₽/сутки - июнь (3500₽ на двоих)"
+            "text": "6500₽/сутки - июль, август"
           },
           {
             "kind": "price",
-            "text": "6500₽/сутки - июль, август (6000₽ на двоих)"
+            "text": "6000₽/сутки - сентябрь по 15е"
           },
           {
             "kind": "price",
-            "text": "5500₽/сутки - сентябрь до 15го (5000₽ на двоих)"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽/сутки - сентябрь с 15го (3500₽ на двоих)"
+            "text": "5000₽/сутки - сентябрь с 16го"
           },
           {
             "kind": "price",
@@ -1612,23 +1596,15 @@
           },
           {
             "kind": "price",
-            "text": "4500₽/сутки - июнь до 15го"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽/сутки - июнь с 15го"
-          },
-          {
-            "kind": "price",
             "text": "7500₽/сутки - июль, август"
           },
           {
             "kind": "price",
-            "text": "6000₽/сутки - сентябрь до 15го"
+            "text": "6000₽/сутки - сентябрь по 15е"
           },
           {
             "kind": "price",
-            "text": "5000₽/сутки - сентябрь с 15го"
+            "text": "5000₽/сутки - сентябрь с 16го"
           },
           {
             "kind": "price",
@@ -1640,19 +1616,15 @@
           },
           {
             "kind": "price",
-            "text": "5500₽/сутки - июнь"
-          },
-          {
-            "kind": "price",
             "text": "8500₽/сутки - июль, август"
           },
           {
             "kind": "price",
-            "text": "7000₽/сутки - сентябрь до 15го"
+            "text": "7000₽/сутки - сентябрь по 15е"
           },
           {
             "kind": "price",
-            "text": "6000₽/сутки - сентябрь с 15го"
+            "text": "6000₽/сутки - сентябрь с 16го"
           },
           {
             "kind": "price",
@@ -1664,23 +1636,15 @@
           },
           {
             "kind": "price",
-            "text": "5500₽/сутки - июнь до 15го"
-          },
-          {
-            "kind": "price",
-            "text": "6000₽/сутки - июнь с 15го"
-          },
-          {
-            "kind": "price",
             "text": "10000₽/сутки - июль, август"
           },
           {
             "kind": "price",
-            "text": "8000₽/сутки - сентябрь до 15го"
+            "text": "8000₽/сутки - сентябрь по 15е"
           },
           {
             "kind": "price",
-            "text": "6000₽/сутки - сентябрь с 15го"
+            "text": "6000₽/сутки - сентябрь с 16го"
           },
           {
             "kind": "price",
@@ -1823,14 +1787,14 @@
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/video-01-source.mp4",
+          "storage_path": "videos/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/video-01.mp4",
           "details": {
             "telegram_post": "abhazbooking/4660",
             "telegram_url": "https://t.me/abhazbooking/4660",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/video-01-poster.jpg"
           }
         }
       ]
@@ -1885,7 +1849,11 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - июнь"
+            "text": "Акция🔥"
+          },
+          {
+            "kind": "price",
+            "text": "квартира свободна с 26 июля по 3 августа - 4000₽"
           },
           {
             "kind": "price",
@@ -2044,14 +2012,14 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sosnovaya-kvartira-1k-1610/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sosnovaya-kvartira-1k-1610/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/kvartira/sosnovaya-kvartira-1k-1610/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sosnovaya-kvartira-1k-1610/video-01-source.mp4",
+          "storage_path": "videos/kvartira/sosnovaya-kvartira-1k-1610/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sosnovaya-kvartira-1k-1610/video-01.mp4",
           "details": {
             "telegram_post": "abhkvartira/1619",
             "telegram_url": "https://t.me/abhkvartira/1619",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sosnovaya-kvartira-1k-1610/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/sosnovaya-kvartira-1k-1610/video-01-poster.jpg"
           }
         }
       ]
