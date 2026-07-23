@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-23T13:26:57.912776+00:00",
+  "generated_at": "2026-07-23T17:24:51.505643+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 225,
-  "listings_hotels": 174,
+  "listings_total": 227,
+  "listings_hotels": 176,
   "listings_kvartira": 51,
   "listings": [
     {
@@ -63518,6 +63518,469 @@
             "telegram_url": "https://t.me/abhkvartira/1678",
             "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/video-01-poster.jpg"
           }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5069,
+      "source_topic_id": null,
+      "slug": "amor-domiki-s-basseynom-5069",
+      "title": "\"АМОР\" домики с бассейном",
+      "summary": "Гагра. 4 минуты до пляжа, размещение до 4 человек.",
+      "excerpt": "Домики расположены под живописной горой в Старой Гагре, рядом много зелени, до моря 5 минут пешком (нет резких спусков и подъемов)",
+      "city": "Гагра",
+      "location_text": "Гагра, ул. Ардзинба 79",
+      "distance_text": "4 минуты до пляжа",
+      "beach_text": "4 минуты до пляжа",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/amor-domiki-s-basseynom-5069/",
+      "telegram_url": "https://t.me/abhazbooking/5069",
+      "published_at": "2026-07-23",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/amor-domiki-s-basseynom-5069.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 4 минуты до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Домики расположены под живописной горой в Старой Гагре, рядом много зелени, до моря 5 минут пешком (нет резких спусков и подъемов).",
+              "В каждом домике двуспальная кровать и односпальная/ либо двухместный диван (1,3м ширина). Возможно размещение до 4 человек.",
+              "Оснащение: телевизор, кондиционер, wifi, мини-холодильник. Есть шкаф платяной, прикроватные тумбочки.",
+              "Своя веранда у каждого домика с садовой мебелью."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Красивая и закрытая от проходящих территория двора: дорожки, газончик, кусты, освещение.",
+              "Бассейн с шезлонгами.",
+              "Оборудованная общая кухня: плитка электрическая, микроволновка, посуда, стиральная машинка, большой холодильник.",
+              "Крытая веранда, где можно собираться на ужин или просто отдыхать.",
+              "Своя парковка для гостей."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Поблизости находятся столовые и кафе на любой вкус (ближайшая в 1 минуте), продуктовые магазины, аптеки, остановка.",
+              "До моря 4 минуты, водные развлечения на пляже.",
+              "Все главные достопримечательности Гагры \"под рукой\"."
+            ]
+          },
+          {
+            "label": "✔️ УСЛОВИЯ:",
+            "lines": [
+              "Можно с маленькими, послушными, молчаливыми собачками.",
+              "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "7000₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "6700₽ - август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - октябрь"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/amor-domiki-s-basseynom-5069/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1195,
+      "media": [
+        {
+          "id": 1195001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/amor-domiki-s-basseynom-5069.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/amor-domiki-s-basseynom-5069.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/amor-domiki-s-basseynom-5069.jpg",
+          "details": {}
+        },
+        {
+          "id": 1195002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/amor-domiki-s-basseynom-5069/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1195003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/amor-domiki-s-basseynom-5069/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1195004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/amor-domiki-s-basseynom-5069/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1195005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/amor-domiki-s-basseynom-5069/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1195006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/amor-domiki-s-basseynom-5069/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1195007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/amor-domiki-s-basseynom-5069/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1195008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/amor-domiki-s-basseynom-5069/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1195009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/amor-domiki-s-basseynom-5069/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1195010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/amor-domiki-s-basseynom-5069/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/amor-domiki-s-basseynom-5069/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1195011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/amor-domiki-s-basseynom-5069/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/amor-domiki-s-basseynom-5069/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/amor-domiki-s-basseynom-5069/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5078",
+            "telegram_url": "https://t.me/abhazbooking/5078",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/amor-domiki-s-basseynom-5069/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5079,
+      "source_topic_id": null,
+      "slug": "blago-daryu-otel-5079",
+      "title": "\"БЛАГО-ДАРЮ\" отель",
+      "summary": "Гагра. 2 минуты до пляжа, размещение до 4 человек.",
+      "excerpt": "Небольшой пятиэтажный отель без лифта с разными категориями размещения",
+      "city": "Гагра",
+      "location_text": "Гагра, пр. Ардзинба, 75",
+      "distance_text": "2 минуты до пляжа",
+      "beach_text": "2 минуты до пляжа",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/blago-daryu-otel-5079/",
+      "telegram_url": "https://t.me/abhazbooking/5079",
+      "published_at": "2026-07-23",
+      "has_video": false,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/blago-daryu-otel-5079.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 2 минуты до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Небольшой пятиэтажный отель без лифта с разными категориями размещения.",
+              "Двухместный номер комфорт без балкона.",
+              "Двуспальная кровать. Сан узел с душевой кабиной.",
+              "Трехместный номер без балкона.",
+              "Три односпальные кровати. Вид на горы и соседние здания. Сан узел с душем.",
+              "В одном таком номере четыре односпальные кровати.",
+              "Трехместный номер с балконом.",
+              "Три односпальные кровати. Сан узел с душем.",
+              "Балкон с видом на море и улицу, со столиком и стульями.",
+              "Двухкомнатный номер",
+              "Двуспальная кровать, раскладывающийся диван. Размещение до 4 человек.",
+              "Сан узел раздельный с душевой кабиной.",
+              "Два балкона, вид на море и улицу, со столиком и стульями.",
+              "Оснащение во всех номерах: кондиционер, Wi-Fi, телевизор, мини-холодильник, чайник, фен."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Есть парковка.",
+              "На этаже есть микроволновка.",
+              "Магнал есть.",
+              "Кухни для самостоятельного приготовления нет."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Пляж и набережная находятся через дорогу, 2 минуты пешком, множество кафе, шезлонги, бары, водный прокат, сапы.",
+              "Рядом кафе, столовые, магазины.",
+              "В пешей доступности историческая часть старой Гагры: Колоннада, ресторан Гагрипш, Приморский парк, крепость Абаата и замок принца Ольденбургского.",
+              "До аквапарка и парка новой Гагры 10 минут на авто.",
+              "Рядом с территорией проходит железная дорога, поезда/электрички не частые, без ночных."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Двухместный номер комфорт без балкона"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Трехместный без балкона"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - июль, август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "В один номер можно 4 человека, доп плата - 1000₽"
+          },
+          {
+            "kind": "price",
+            "text": "Трехместный номер с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Двухкомнатный номер"
+          },
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/blago-daryu-otel-5079/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1196,
+      "media": [
+        {
+          "id": 1196001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/blago-daryu-otel-5079.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/blago-daryu-otel-5079.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/blago-daryu-otel-5079.jpg",
+          "details": {}
+        },
+        {
+          "id": 1196002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/blago-daryu-otel-5079/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1196003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/blago-daryu-otel-5079/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1196004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/blago-daryu-otel-5079/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1196005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/blago-daryu-otel-5079/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1196006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/blago-daryu-otel-5079/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1196007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/blago-daryu-otel-5079/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1196008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/blago-daryu-otel-5079/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1196009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/blago-daryu-otel-5079/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1196010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/blago-daryu-otel-5079/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1196011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/blago-daryu-otel-5079/photo-10.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-10.jpg",
+          "details": {}
         }
       ]
     }
