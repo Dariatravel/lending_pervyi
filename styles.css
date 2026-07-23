@@ -1494,6 +1494,8 @@ a.site-concept__destination-card:focus-visible {
   font-size: 1.08em;
   font-weight: 800;
   color: var(--sage-deep);
+  /* Символ рубля крупнее строки — небольшой отступ, чтобы не липнул к «/сутки». */
+  padding-right: 0.22em;
 }
 
 .site-concept .catalog-shell__header,
@@ -6789,6 +6791,7 @@ html:has(> body.objects-map-page) {
 .catalog-card .catalog-card__price strong {
   font-weight: 800;
   color: var(--sage-deep);
+  padding-right: 0.22em;
 }
 
 .card,
