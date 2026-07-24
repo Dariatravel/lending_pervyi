@@ -72,6 +72,7 @@ jobs:
           OPT_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
           YC_KEY: ${{ secrets.YANDEX_S3_ACCESS_KEY_ID }}
           YC_SECRET: ${{ secrets.YANDEX_S3_SECRET_ACCESS_KEY }}
+          GOOGLE_SA: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
         run: |
           if [ -n "$OPT_API_ID" ]; then echo "TELEGRAM_API_ID=$OPT_API_ID" >> "$GITHUB_ENV"; fi
           if [ -n "$OPT_API_HASH" ]; then echo "TELEGRAM_API_HASH=$OPT_API_HASH" >> "$GITHUB_ENV"; fi
@@ -83,6 +84,15 @@ jobs:
           else
             echo "SYNC_ENABLED=false" >> "$GITHUB_ENV"
             echo "Ключи Yandex Storage не заданы — только наблюдение."
+          fi
+          # Google service account для фильтров из таблицы «СОЦСЕТИ».
+          # Файл в .gitignore — git add -A его не закоммитит. Без секрета
+          # шаг фильтров в пайплайне мягко пропускается (warn), синк продолжается.
+          if [ -n "$GOOGLE_SA" ]; then
+            printf '%s' "$GOOGLE_SA" > google-service-account.json
+            echo "Google service account записан — фильтры применяются из таблицы."
+          else
+            echo "GOOGLE_SERVICE_ACCOUNT_JSON не задан — фильтры из таблицы пропускаются."
           fi
 
       - name: Восстановить watch-state
@@ -138,7 +148,10 @@ jobs:
           # точечные цели собрать не удалось.
           TARGET_ARGS=$(EXTRA_HOTEL_IDS="${{ inputs.force_hotel_ids }}" EXTRA_KV_TOPICS="${{ inputs.force_kv_topics }}" python tools/watch_targets_args.py)
           echo "Аргументы синка: ${TARGET_ARGS:---mode full}"
-          python scripts/run_auto_sync_pipeline.py ${TARGET_ARGS:---mode full} --snapshot-only --skip-filters --skip-review-banks --skip-page-health
+          # --skip-filters убран: при наличии Google-ключа (секрет
+          # GOOGLE_SERVICE_ACCOUNT_JSON) пайплайн применяет фильтры из таблицы
+          # «СОЦСЕТИ» ко всем объектам; без ключа шаг мягко пропускается.
+          python scripts/run_auto_sync_pipeline.py ${TARGET_ARGS:---mode full} --snapshot-only --skip-review-banks --skip-page-health
           echo "done=true" >> "$GITHUB_OUTPUT"
 
       - name: Перенести медиа с подписями из комментариев
