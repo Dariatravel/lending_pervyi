@@ -199,7 +199,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607241337";
+  const ASSET_VERSION = "202607242302";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -5678,27 +5678,50 @@
     if (!total || grid.querySelectorAll(".catalog-card").length >= total) return;
 
     let started = false;
-    const start = () => {
+    // immediate=true — догрузить весь каталог сразу, без пауз между чанками
+    // (нужно, когда активен фильтр: иначе он отберёт только из 24 статичных).
+    const start = (immediate) => {
       if (started) return;
       started = true;
-      void appendMissingCatalogCards(grid, controller);
+      void appendMissingCatalogCards(grid, controller, immediate);
     };
+
+    const snapshotHasSelection = () => {
+      const snap = controller?.getCommittedSnapshot?.();
+      if (!snap) return false;
+      if (snap.catalogCategory) return true;
+      if (String(snap.nameQuery || "").trim()) return true;
+      return Object.values(snap.groups || {}).some((list) => Array.isArray(list) && list.length > 0);
+    };
+
+    // Любое изменение фильтра до завершения дорендера — форсируем полноту,
+    // чтобы результат считался по всему каталогу, а не по первым 24 карточкам.
+    controller?.subscribe?.(() => {
+      if (!started && snapshotHasSelection()) start(true);
+    });
+
+    // Фильтр уже активен на входе (пришёл из URL) — грузим весь каталог сразу.
+    if (snapshotHasSelection()) {
+      start(true);
+      return;
+    }
+
     const schedule = () => {
       if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(start, { timeout: 3500 });
+        window.requestIdleCallback(() => start(false), { timeout: 3500 });
       } else {
-        window.setTimeout(start, 1500);
+        window.setTimeout(() => start(false), 1500);
       }
     };
     if (document.readyState === "complete") {
       schedule();
     } else {
       window.addEventListener("load", schedule, { once: true });
-      window.setTimeout(start, 6000);
+      window.setTimeout(() => start(false), 6000);
     }
   }
 
-  async function appendMissingCatalogCards(grid, controller) {
+  async function appendMissingCatalogCards(grid, controller, immediate = false) {
     let rows = [];
     let pricePayload = null;
     try {
@@ -5715,8 +5738,12 @@
 
     const priceMap = pricePayload?.prices || {};
     const monthLabel = String(pricePayload?.month_label || "");
+    // Учитываем карточки и в каталоге, и в selection-view: при активном фильтре
+    // совпавшие карточки уезжают в подборку, и без этого дедуп их дублировал.
     const presentSlugs = new Set(
-      Array.from(grid.querySelectorAll(".catalog-card")).map((card) => {
+      Array.from(
+        document.querySelectorAll("#catalog-grid .catalog-card, #selection-podborka-view .catalog-card")
+      ).map((card) => {
         const parts = String(card.getAttribute("href") || "").split("/").filter(Boolean);
         return parts[parts.length - 1] || "";
       })
@@ -5731,17 +5758,14 @@
       })
       .filter((row) => !presentSlugs.has(String(row.slug)));
 
-    const CHUNK = 12;
-    for (let offset = 0; offset < ordered.length; offset += CHUNK) {
-      const fragment = document.createDocumentFragment();
-      ordered.slice(offset, offset + CHUNK).forEach((row) => {
-        fragment.appendChild(buildIndexCatalogCard(row, priceMap, monthLabel));
-      });
-      grid.appendChild(fragment);
-      if (offset + CHUNK < ordered.length) {
-        await new Promise((resolve) => window.setTimeout(resolve, 120));
-      }
-    }
+    // Добавляем весь остаток одним проходом: карточки за экраном не рисуются
+    // (content-visibility: auto), поэтому вставка ~200 узлов дёшева, а фильтр
+    // всегда видит полный каталог — без «частичных» результатов из-за чанков.
+    const fragment = document.createDocumentFragment();
+    ordered.forEach((row) => {
+      fragment.appendChild(buildIndexCatalogCard(row, priceMap, monthLabel));
+    });
+    grid.appendChild(fragment);
     initCatalogMapPlaques(grid);
     // Пере-индексация фильтров и повторное применение текущего выбора.
     try {
