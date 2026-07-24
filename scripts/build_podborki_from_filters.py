@@ -193,14 +193,52 @@ def href_slug(href: str) -> str:
 
 
 def load_cards() -> list[Card]:
+    """Карточки подборок строим из catalog-snapshot.json (все активные
+    объекты). Раньше читали index.html, но после облегчения главной там
+    только первые 24 карточки — подборки деградировали. Вёрстку берём из
+    rebuild_from_supabase, чтобы совпадала с каталогом (title/факты/цена)."""
+    import rebuild_from_supabase as rb
+
     hidden = load_hidden_slugs()
-    cards = parse_catalog_cards(INDEX_PATH, "/hotels/")
-    cards.extend(parse_catalog_cards(INDEX_PATH, "/kvartira/"))
+    featured = {slug: index for index, slug in enumerate(rb.load_featured_order())}
+    snap = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+    rows = [row for row in (snap.get("listings") or []) if row.get("is_active", True)]
+    # тот же порядок, что и в каталоге: featured первыми, остальные как были
+    if featured:
+        rows.sort(key=lambda row: featured.get(str(row.get("slug")), len(featured)))
+
+    kvartira_excluded = {"general-1409"}
+    facts_wrapper = re.compile(r"^<p[^>]*>|</p>\s*$")
     deduped: dict[str, Card] = {}
-    for card in cards:
-        if href_slug(card.href) in hidden:
+    for row in rows:
+        kind = str(row.get("source_kind") or "")
+        if kind not in ("hotel", "kvartira"):
             continue
-        deduped[card.href] = card
+        slug = str(row.get("slug") or "")
+        if not slug or slug in hidden or slug in kvartira_excluded:
+            continue
+        base = "hotels" if kind == "hotel" else "kvartira"
+        href = f"/{base}/{slug}/"
+        title = rb.clean_card_title(row.get("title") or "").strip()
+        fallback = row.get("summary") or row.get("excerpt") or ((row.get("details") or {}).get("excerpt") or "")
+        facts_html = rb.render_card_facts_html(row, fallback).strip()
+        summary = facts_wrapper.sub("", facts_html).strip()
+        image = normalize_image(rb.image_src_for_html(rb.pick_cover_url(row)))
+        price_html = rb.render_card_price_html(slug)
+        filters_raw = (row.get("details") or {}).get("filters") or {}
+        filters = {
+            group: set(filters_raw.get(group) or [])
+            for group in ("distance", "food", "price", "city", "beach", "room", "stay")
+        }
+        deduped[href] = Card(
+            href=href,
+            title=title,
+            summary=summary,
+            image=image,
+            alt=title,
+            price_html=price_html,
+            filters=filters,
+        )
     return list(deduped.values())
 
 
