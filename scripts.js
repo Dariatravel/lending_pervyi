@@ -199,7 +199,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202607231114";
+  const ASSET_VERSION = "202607241337";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -2019,8 +2019,12 @@
   function pickLocalVideoFallbackPoster(video) {
     const grid = video.closest(".media-grid, .hotel-card__gallery, .hotel-media-section");
     const img = grid?.querySelector("img[src]:not(.local-video-preview)");
-    if (!img) return "";
-    return gallerySrcFromImage(img);
+    if (img) return gallerySrcFromImage(img);
+    // Допблоки: рядом с видео нет фото, но пайплайн всегда кладёт
+    // <name>-poster.jpg рядом с <name>.mp4 — берём его по соглашению об именах.
+    const src = gallerySrcFromVideo(video);
+    if (/\.mp4(\?|$)/i.test(src)) return src.replace(/\.mp4(\?|$)/i, "-poster.jpg$1");
+    return "";
   }
 
   function applyLocalVideoPoster(video, posterUrl, kind) {

@@ -1648,9 +1648,20 @@ a.site-concept__destination-card:focus-visible {
 
 .site-concept__contacts .contact-shell {
   display: grid;
-  grid-template-columns: 1fr;
+  /* minmax(0,1fr), а не 1fr: 1fr считает min-content, и nowrap-строки
+     телефона/мессенджеров раздували колонку за экран на мобиле. */
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(12px, 2vw, 18px);
   align-items: start;
+}
+
+.site-concept__contacts .contact-shell > *,
+.site-concept__contacts .contact-shell__intro {
+  min-width: 0;
+}
+
+.site-concept__contacts .contact-messengers {
+  white-space: normal;
 }
 
 .site-concept__contacts .contact-buttons {
@@ -4175,6 +4186,35 @@ a.podborki-card--link:hover {
 .hotel-site-concept .comment-media-grid img {
   aspect-ratio: 4 / 3;
   height: clamp(190px, 22vw, 320px);
+}
+
+/* Видео в допблоках («Дополнительные материалы») раньше не имело правил
+   размера и рендерилось крошечным (~120px) без постера — выглядело как
+   «нет видео». Приводим к тем же размерам, что фото. */
+.hotel-site-concept .comment-media-grid video.local-video {
+  display: block;
+  width: 100%;
+  /* aspect-ratio задаёт высоту от ширины; фикс. height конфликтует с width:100%
+     и ужимает ролик — поэтому только соотношение сторон. */
+  aspect-ratio: 4 / 3;
+  height: auto;
+  border-radius: 18px;
+  object-fit: cover;
+  background: #101010;
+  cursor: pointer;
+}
+
+.hotel-site-concept .comment-media-grid video.local-video.is-playing {
+  aspect-ratio: auto;
+  height: auto;
+  max-height: 78vh;
+  object-fit: contain;
+}
+
+/* Единственный ролик в допблоке заполняет ширину (до 480px), а не 1/3 сетки. */
+.hotel-site-concept .comment-media-grid:has(video.local-video):not(:has(img)) {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 480px;
 }
 
 .hotel-site-concept .comment-review-grid {
