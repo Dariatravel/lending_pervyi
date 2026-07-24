@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-24T20:06:04.188945+00:00",
+  "generated_at": "2026-07-24T20:49:12.671993+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -8048,13 +8048,32 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "over-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "new-afon"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "tv",
+            "kitchen",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "turnkey-house",
+            "pets"
+          ]
         }
       },
       "id": 1189,
@@ -9770,13 +9789,29 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/studio-san-amra-studiya-na-plyazhe-4270/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "beachfront",
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [
+            "pitsunda-bay-mixed"
+          ],
+          "room": [
+            "tv",
+            "kitchen"
+          ],
+          "stay": [
+            "apartments"
+          ]
         }
       },
       "id": 1188,
@@ -10428,13 +10463,32 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/tihaya-obitel-dom-pod-klyuch-4230/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "over-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "sukhum"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "terrace",
+            "tv",
+            "kitchen",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "apartments",
+            "pets"
+          ]
         }
       },
       "id": 1187,
@@ -11449,13 +11503,30 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/sekret-garden-apartamenty-4162/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "balcony",
+            "tv",
+            "kitchen"
+          ],
+          "stay": [
+            "apartments"
+          ]
         }
       },
       "id": 1181,
@@ -18151,13 +18222,32 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "over-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "new-afon"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "terrace",
+            "tv",
+            "kitchen",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "turnkey-house",
+            "pets"
+          ]
         }
       },
       "id": 1186,
@@ -26210,7 +26300,7 @@
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/mira-dom-suhum-1345/index.html",
         "filters": {
           "distance": [
-            "over-10"
+            "up-to-10"
           ],
           "food": [
             "no-food"
@@ -26653,13 +26743,29 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/dyshi-glubzhe-domiki-v-gorah-3459/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "over-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "gudauta"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "tv",
+            "kitchen",
+            "five-plus"
+          ],
+          "stay": [
+            "cottages"
+          ]
         }
       },
       "id": 1184,
@@ -30064,12 +30170,28 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/mechta-apartamenty-s-kuhney-3363/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
+          "distance": [
+            "beachfront",
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [
+            "pine-pebble-ldzaa-pitsunda"
+          ],
+          "room": [
+            "balcony",
+            "kitchen",
+            "five-plus",
+            "beachfront-room"
+          ],
           "stay": []
         }
       },
@@ -39726,7 +39848,7 @@
             "no-food"
           ],
           "price": [
-            "economy"
+            "midrange"
           ],
           "city": [
             "ldzaa"
@@ -39735,7 +39857,10 @@
             "pitsunda-bay-mixed"
           ],
           "room": [
-            "pool"
+            "pool",
+            "tv",
+            "kitchen",
+            "five-plus"
           ],
           "stay": [
             "pets"
@@ -42514,13 +42639,28 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/karalina-apartamenty-3124/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "over-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "economy"
+          ],
+          "city": [
+            "pitsunda"
+          ],
+          "beach": [
+            "pine-pebble-ldzaa-pitsunda"
+          ],
+          "room": [
+            "tv",
+            "kitchen"
+          ],
+          "stay": [
+            "pets"
+          ]
         }
       },
       "id": 1182,
@@ -56478,13 +56618,29 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/peschanyy-bereg-apartamenty-3700/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "sukhum"
+          ],
+          "beach": [
+            "sand-sukhum"
+          ],
+          "room": [
+            "tv",
+            "kitchen",
+            "five-plus"
+          ],
+          "stay": [
+            "apartments"
+          ]
         }
       },
       "id": 1185,
@@ -62161,13 +62317,30 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "breakfast",
+            "cafe"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "pitsunda"
+          ],
+          "beach": [
+            "pine-pebble-ldzaa-pitsunda"
+          ],
+          "room": [
+            "terrace",
+            "tv",
+            "five-plus"
+          ],
+          "stay": [
+            "pets"
+          ]
         }
       },
       "id": 1180,
@@ -62400,13 +62573,27 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/nasta-gostevoy-dom-3249-2/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "economy"
+          ],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [
+            "pitsunda-bay-mixed"
+          ],
+          "room": [
+            "pool"
+          ],
+          "stay": [
+            "pets"
+          ]
         }
       },
       "id": 1190,
@@ -62705,13 +62892,31 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/anait-gostevoy-dom-5049/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [
+            "pitsunda-bay-mixed"
+          ],
+          "room": [
+            "pool",
+            "balcony",
+            "tv",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "pets"
+          ]
         }
       },
       "id": 1191,
@@ -62967,12 +63172,29 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
+          "distance": [
+            "beachfront",
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "tsandripsh"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "pool",
+            "balcony",
+            "tv",
+            "beachfront-room"
+          ],
           "stay": []
         }
       },
@@ -63165,13 +63387,30 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/akvarel-tri-2k-kvartiry-1646/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [
+            "pitsunda-bay-mixed"
+          ],
+          "room": [
+            "tv",
+            "kitchen",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "apartments"
+          ]
         }
       },
       "id": 1193,
@@ -63587,13 +63826,28 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/amor-domiki-s-basseynom-5069/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "pool",
+            "terrace"
+          ],
+          "stay": [
+            "pets"
+          ]
         }
       },
       "id": 1195,
@@ -63855,12 +64109,26 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/blago-daryu-otel-5079/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "balcony",
+            "tv"
+          ],
           "stay": []
         }
       },
@@ -64133,13 +64401,31 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/ptichka-eko-domiki-s-basseynom-5089/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "pitsunda"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "pool",
+            "terrace",
+            "tv",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "cottages"
+          ]
         }
       },
       "id": 1197,
