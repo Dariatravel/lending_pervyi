@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-23T17:24:51.505643+00:00",
+  "generated_at": "2026-07-24T10:44:59.678110+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 227,
-  "listings_hotels": 176,
+  "listings_total": 228,
+  "listings_hotels": 177,
   "listings_kvartira": 51,
   "listings": [
     {
@@ -63981,6 +63981,288 @@
           "storage_path": "hotels/blago-daryu-otel-5079/photo-10.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/blago-daryu-otel-5079/photo-10.jpg",
           "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5089,
+      "source_topic_id": null,
+      "slug": "ptichka-eko-domiki-s-basseynom-5089",
+      "title": "\"ПТИЧКА\" эко-домики с бассейном",
+      "summary": "Пицунда. 5 минут до пляжа, галечный, размещение до 5 человек.",
+      "excerpt": "Всего десять двухкомнатных домиков. Размещение до 5 человек",
+      "city": "Пицунда",
+      "location_text": "Пицунда, Птицефабрика, 1-й переулок Фабричной улицы, 7",
+      "distance_text": "5 минут до пляжа, галечный",
+      "beach_text": "5 минут до пляжа, галечный",
+      "capacity_text": "размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/ptichka-eko-domiki-s-basseynom-5089/",
+      "telegram_url": "https://t.me/abhazbooking/5089",
+      "published_at": "2026-07-24",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/ptichka-eko-domiki-s-basseynom-5089.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Пицунда. 5 минут до пляжа, галечный, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Всего десять двухкомнатных домиков. Размещение до 5 человек.",
+              "В домиках: двуспальная кровать и раскладной диванчик на одного человека, две односпальные кровати, шкаф, прикроватные тумбочки. Сан узел с душевой кабиной.",
+              "Оснащение: Wi-Fi, кондиционер, телевизор, мини-холодильник, чайник, фен.",
+              "Веранда со столиком и стульями."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Бассейн с подогревом с шезлонгами и зонтиками.",
+              "Общая кухня для самостоятельного приготовления со всем необходимым: холодильник, плита, микроволновая печь, кухонная посуда.",
+              "Мангальная зона.",
+              "Парковка."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Спокойный тихий район с красивыми видами на горы.",
+              "До галечного пляжа Аббата около 5 минут пешком.",
+              "До древнего озера Инкит около 3 км, в окрестностях есть конные прогулки, рыбалка.",
+              "До центра Пицунды около 5 км.",
+              "В шаговой доступности расположены магазины, столовая, кафе Апацха, остановка общественного транспорта и аптека."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Июль, август до 24го"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - 2 человека"
+          },
+          {
+            "kind": "price",
+            "text": "9500₽ - 3 человека"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - 4 человека"
+          },
+          {
+            "kind": "price",
+            "text": "10500₽ - 5 человек"
+          },
+          {
+            "kind": "price",
+            "text": "Август с 25го по 10 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - 2 человека"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - 3 человека"
+          },
+          {
+            "kind": "price",
+            "text": "8500₽ - 4 человека"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - 5 человек"
+          },
+          {
+            "kind": "price",
+            "text": "С 11 по 20 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - 2 человека"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - 3 человека"
+          },
+          {
+            "kind": "price",
+            "text": "6500₽ - 4 человека"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - 5 человек"
+          },
+          {
+            "kind": "price",
+            "text": "С 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - 2 человека"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - 3 человека"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - 4 человека"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - 5 человек"
+          },
+          {
+            "kind": "price",
+            "text": "Цены динамические, могут меняться, уточните личным сообщением."
+          },
+          {
+            "kind": "price",
+            "text": "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/ptichka-eko-domiki-s-basseynom-5089/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1197,
+      "media": [
+        {
+          "id": 1197001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/ptichka-eko-domiki-s-basseynom-5089.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/ptichka-eko-domiki-s-basseynom-5089.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/ptichka-eko-domiki-s-basseynom-5089.jpg",
+          "details": {}
+        },
+        {
+          "id": 1197002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ptichka-eko-domiki-s-basseynom-5089/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1197003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ptichka-eko-domiki-s-basseynom-5089/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1197004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ptichka-eko-domiki-s-basseynom-5089/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1197005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ptichka-eko-domiki-s-basseynom-5089/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1197006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ptichka-eko-domiki-s-basseynom-5089/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1197007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ptichka-eko-domiki-s-basseynom-5089/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1197008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ptichka-eko-domiki-s-basseynom-5089/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1197009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ptichka-eko-domiki-s-basseynom-5089/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1197010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ptichka-eko-domiki-s-basseynom-5089/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ptichka-eko-domiki-s-basseynom-5089/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1197011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/ptichka-eko-domiki-s-basseynom-5089/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/ptichka-eko-domiki-s-basseynom-5089/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/ptichka-eko-domiki-s-basseynom-5089/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5098",
+            "telegram_url": "https://t.me/abhazbooking/5098",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/ptichka-eko-domiki-s-basseynom-5089/video-01-poster.jpg"
+          }
         }
       ]
     }
