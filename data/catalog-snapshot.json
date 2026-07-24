@@ -3180,6 +3180,7 @@
             "beachfront-room"
           ],
           "stay": [
+            "cottages",
             "pets"
           ]
         }
