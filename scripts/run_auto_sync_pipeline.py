@@ -196,6 +196,11 @@ def _build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Писать в catalog-snapshot.json без Supabase (SKIP_SUPABASE_SYNC=1).",
     )
+    parser.add_argument(
+        "--skip-podborki",
+        action="store_true",
+        help="Не пересобирать страницы /podborki/ (обычно они собираются после каталога).",
+    )
     return parser
 
 
@@ -548,6 +553,25 @@ def main() -> int:
                 encoding="utf-8",
             )
             return validate_step.return_code
+
+        # Подборки /podborki/ собираются из полного каталога (catalog-snapshot.json),
+        # поэтому обновляются вместе с ним. Шаг вторичен: его ошибка не должна
+        # блокировать деплой каталога — логируем и продолжаем.
+        if not args.skip_podborki:
+            podborki_step = _run_step(
+                name="build_podborki_from_filters",
+                cmd=[python, str(ROOT / "scripts" / "build_podborki_from_filters.py")],
+                env=base_env,
+                log_path=run_dir / "06b-podborki.log",
+                dry_run=args.dry_run,
+            )
+            steps.append(podborki_step)
+            print(f"[auto-sync] {podborki_step.name}: {podborki_step.status}")
+            if podborki_step.return_code != 0 and not args.dry_run:
+                print(
+                    f"[auto-sync] ВНИМАНИЕ: {podborki_step.name} упал "
+                    "(подборки вторичны) — деплой каталога продолжаем."
+                )
 
     supplemental_slugs = ",".join(
         part.strip()
