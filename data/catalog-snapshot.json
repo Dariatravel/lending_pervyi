@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-24T10:44:59.678110+00:00",
+  "generated_at": "2026-07-24T14:35:34.697398+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -43655,7 +43655,7 @@
     {
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
-      "source_message_id": 3074,
+      "source_message_id": 5099,
       "source_topic_id": null,
       "slug": "mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074",
       "title": "\"МУЛБЕРРИ\" отель на пляже с бассейном и кафе",
@@ -43667,8 +43667,8 @@
       "beach_text": "0 минут до пляжа (песчаный)",
       "capacity_text": "размещение до 5 человек",
       "page_url": "https://абхазберег.рф/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/",
-      "telegram_url": "https://t.me/abhazbooking/3074",
-      "published_at": "2026-01-24",
+      "telegram_url": "https://t.me/abhazbooking/5099",
+      "published_at": "2026-07-24",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074.jpg",
       "is_active": true,
@@ -43705,15 +43705,11 @@
         "prices": [
           {
             "kind": "note",
-            "text": "(стоимость указана за номер: люкс до 5 человек, комфорт до 4 человек)"
+            "text": "(стоимость указана за номер: люкс до 5 человек, комфорт до 4 человек без доп мест)"
           },
           {
             "kind": "price",
-            "text": "ЛЮКС с выходом на море"
-          },
-          {
-            "kind": "price",
-            "text": "10000₽ - май"
+            "text": "ЛЮКС с выходом на море (1 этаж)"
           },
           {
             "kind": "price",
@@ -43725,7 +43721,7 @@
           },
           {
             "kind": "price",
-            "text": "10000₽ - октябрь / апрель"
+            "text": "10000₽ - с октября по май (кроме праздничных дней)"
           },
           {
             "kind": "price",
@@ -43733,7 +43729,23 @@
           },
           {
             "kind": "price",
-            "text": "8000₽ - май"
+            "text": "10000₽ - июнь (до 15 числа)"
+          },
+          {
+            "kind": "price",
+            "text": "15000₽ - с 15 июня / июль / август / сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - с октября по май (кроме праздничных дней)"
+          },
+          {
+            "kind": "price",
+            "text": "КОМФОРТ с выходом на море (1 этаж)"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - май"
           },
           {
             "kind": "price",
@@ -43741,31 +43753,11 @@
           },
           {
             "kind": "price",
-            "text": "13000₽ - с 15 июня по 15 июля"
-          },
-          {
-            "kind": "price",
-            "text": "15000₽ - с 15 июля / август / сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "8000₽ - октябрь / апрель"
-          },
-          {
-            "kind": "price",
-            "text": "КОМФОРТ с выходом на море"
-          },
-          {
-            "kind": "price",
-            "text": "8000₽ - май, июнь (до 15 числа)"
-          },
-          {
-            "kind": "price",
             "text": "12000₽ - с 15 июня / июль / август / сентябрь"
           },
           {
             "kind": "price",
-            "text": "8000₽ - октябрь / апрель"
+            "text": "8000₽ - с октября по апрель"
           },
           {
             "kind": "price",
@@ -43773,7 +43765,35 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - май"
+            "text": "7000₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - с 15 июня / июль / август / сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - с октября по апрель"
+          },
+          {
+            "kind": "price",
+            "text": "КОМФОРТ с выходом к бассейну и видом на окрестности (1 этаж)"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - с 15 июня / июль / август / сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - с октября по апрель"
+          },
+          {
+            "kind": "price",
+            "text": "КОМФОРТ с видом на окрестности и бассейн (2, 3, 4 этаж)"
           },
           {
             "kind": "price",
@@ -43785,47 +43805,15 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - октябрь / апрель"
-          },
-          {
-            "kind": "price",
-            "text": "КОМФОРТ с выходом к бассейну и видом на окрестности (1 этаж)"
-          },
-          {
-            "kind": "price",
-            "text": "7000₽ - май, июнь (до 15 числа)"
-          },
-          {
-            "kind": "price",
-            "text": "10000₽ - с 15 июня / июль / август / сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "7000₽ - октябрь / апрель"
-          },
-          {
-            "kind": "price",
-            "text": "КОМФОРТ с видом на окрестности и бассейн (2, 3, 4 этаж)"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ - май, июнь (до 15 числа)"
-          },
-          {
-            "kind": "price",
-            "text": "8000₽ - с 15 июня по 15 июля"
-          },
-          {
-            "kind": "price",
-            "text": "10000₽ - с 15 июля / август / сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ - октябрь / апрель"
+            "text": "5000₽ - с октября по май (кроме праздничных дней)"
           },
           {
             "kind": "price",
             "text": "Возвратный депозит в отеле 5000₽"
+          },
+          {
+            "kind": "price",
+            "text": "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет."
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/index.html",
@@ -43976,14 +43964,14 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/video-01-source.mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/video-01-source.mp4",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/video-01-source.mp4",
+          "storage_path": "videos/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/video-01.mp4",
           "details": {
-            "telegram_post": "abhazbooking/3083",
-            "telegram_url": "https://t.me/abhazbooking/3083",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/video-01-source-poster.jpg"
+            "telegram_post": "abhazbooking/5108",
+            "telegram_url": "https://t.me/abhazbooking/5108",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/video-01-poster.jpg"
           }
         }
       ]
@@ -63813,11 +63801,19 @@
           },
           {
             "kind": "price",
+            "text": "3500₽ - октябрь"
+          },
+          {
+            "kind": "price",
             "text": "Трехместный без балкона"
           },
           {
             "kind": "price",
             "text": "5000₽ - июль, август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - октябрь"
           },
           {
             "kind": "price",
@@ -63833,6 +63829,10 @@
           },
           {
             "kind": "price",
+            "text": "4000₽ - октябрь"
+          },
+          {
+            "kind": "price",
             "text": "Двухкомнатный номер"
           },
           {
@@ -63842,6 +63842,10 @@
           {
             "kind": "price",
             "text": "7000₽ - август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - октябрь"
           },
           {
             "kind": "price",
