@@ -94,8 +94,18 @@ _OWNER_REPLY = re.compile(
     re.I,
 )
 
+_YMONTH = (
+    r'(?:январ|феврал|март|апрел|ма[йя]|июн|июл|август|сентябр|октябр|ноябр|декабр)\w*'
+)
 _PREFIX_PATTERNS = [
     re.compile(r'^\s*[+»«"\']+\s*', re.I),
+    re.compile(r'^\s*\*{2,}\s*\d?\s*'),                   # звёзды-рейтинг «*****», «****1»
+    re.compile(r'^\s*\*\s+(?=\d)', re.I),                 # одиночная «*» перед датой
+    # имя автора (1–3 слова) перед датой-словом: «Иван Драгов 17 июня»
+    re.compile(rf'^\s*[А-ЯЁ][а-яё]+(?:\s+[А-ЯЁ][а-яё]+){{1,2}}\s+\*?\s*\d{{1,2}}\s+{_YMONTH}(?:\s+20\d{{2}})?\s*', re.I),
+    # дата-слово с годом: «17 июня 2024»
+    re.compile(rf'^\s*\d{{1,2}}\s+{_YMONTH}\s+20\d{{2}}\s*', re.I),
+    re.compile(r'^\s*20\d{2}\s+(?=[А-ЯЁ])'),              # осиротевший год «2024 Шикарное»
     re.compile(r'^\s*\d{1,2}\s*(?:превосходно|отлично|хорошо|супер)\s*', re.I),
     re.compile(r'^\s*\d{1,2}\s+[а-яё]+\s*', re.I),
     re.compile(r'^\s*\d{1,2}[./-]\d{1,2}[./-]\d{2,4}\s*', re.I),
@@ -158,9 +168,31 @@ _AD_HEADER_PREFIXES = [
 ]
 
 
+# Яндекс.Карты: бейдж эксперта и элементы интерфейса на скринах отзывов.
+_YANDEX_BADGE = re.compile(r'\bзнаток\s+города\s*(?:\d+\s*уровн\w*)?\s*', re.I)
+# Только ОДНОЗНАЧНЫЕ элементы интерфейса Яндекс.Карт (в живых отзывах не встречаются).
+# «Расположение», «Особенности», «N отзывов» НЕ трогаем — бывают в тексте отзыва.
+_YANDEX_UI_TOKENS = re.compile(
+    r'\b(?:At\s+the\s+sea|Обзор\s+Фото(?:\s+\d+)*|По\s+умолчани\w*)\b',
+    re.I,
+)
+# Скрин целиком — интерфейс Яндекс.Карт (не отзыв): 2+ однозначных маркеров.
+_YANDEX_UI_MARKERS = re.compile(
+    r'обзор\s+фото|по\s+умолчани|at\s+the\s+sea|aquafon',
+    re.I,
+)
+
+
+def _is_yandex_ui_dump(text: str) -> bool:
+    return len(_YANDEX_UI_MARKERS.findall(text)) >= 2
+
+
 def _strip_aggregator_chrome(text: str) -> str:
     for pattern in _AD_HEADER_PREFIXES:
         text = pattern.sub('', text)
+    # Бейдж «Знаток города [N уровня]» и элементы интерфейса Яндекс.Карт.
+    text = _YANDEX_BADGE.sub(' ', text)
+    text = _YANDEX_UI_TOKENS.sub(' ', text)
     text = _AGG_REVIEW_PREFIX.sub('', text)
     text = _AGG_DATE_REPLY_TAIL.sub('', text)
     text = _AGG_REPLY_TAIL.sub('', text)
@@ -216,6 +248,10 @@ def _dedupe_repeated_lead(text: str) -> str:
 def clean_ocr_review_text(value: str, *, ensure_sentence_end: bool = True) -> str:
     text = re.sub(r'\s+', ' ', str(value or '')).strip()
     if not text:
+        return ''
+
+    # Скрин целиком — интерфейс Яндекс.Карт (не отзыв): выбрасываем.
+    if _is_yandex_ui_dump(text):
         return ''
 
     text = _strip_aggregator_chrome(text)
