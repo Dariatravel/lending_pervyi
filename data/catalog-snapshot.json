@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-26T14:21:31.359136+00:00",
+  "generated_at": "2026-07-26T16:04:38.636559+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -45682,7 +45682,7 @@
       "published_at": "2026-01-23",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/amor-domiki-v-tsentre-gagry-2986.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Гагра. 4 минуты до пляжа, размещение до 4 человек.",
         "sections": [
