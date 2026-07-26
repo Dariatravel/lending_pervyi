@@ -47623,7 +47623,7 @@
       "published_at": "2026-01-18",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mimi-domiki-s-vidom-na-gory-2869.jpg",
-      "is_active": false,
+      "is_active": true,
       "details": {
         "lead": "Цандрипш. 5 минут до пляжа, галечный, вместимость до 4 человек.",
         "sections": [
@@ -47688,7 +47688,7 @@
             "text": "2500₽/сутки - октябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/abhazbereg-bot/lending_pervyi/hotels/mimi-domiki-s-vidom-na-gory-2869/index.html",
+        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/mimi-domiki-s-vidom-na-gory-2869/index.html",
         "filters": {
           "distance": [
             "up-to-5"
