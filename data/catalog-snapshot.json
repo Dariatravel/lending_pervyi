@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T07:50:17.008437+00:00",
+  "generated_at": "2026-07-26T11:59:03.013788+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -6759,6 +6759,10 @@
           {
             "kind": "note",
             "text": "Доп. место - 1000₽"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 15 лет на дополнительном месте (раскладушка) бесплатно."
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/index.html",
@@ -61406,6 +61410,10 @@
           {
             "kind": "price",
             "text": "5000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 15 лет на дополнительном месте (раскладушка) бесплатно."
           },
           {
             "kind": "note",
