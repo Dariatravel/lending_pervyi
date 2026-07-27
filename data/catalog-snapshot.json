@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-27T09:08:24.676108+00:00",
+  "generated_at": "2026-07-27T12:56:09.731301+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 228,
-  "listings_hotels": 177,
+  "listings_total": 229,
+  "listings_hotels": 178,
   "listings_kvartira": 51,
   "listings": [
     {
@@ -26063,22 +26063,6 @@
           },
           {
             "kind": "price",
-            "text": "Акция на проживание в период с 3 по 12 июля 5500₽🔥"
-          },
-          {
-            "kind": "price",
-            "text": "3500₽/сутки - май"
-          },
-          {
-            "kind": "price",
-            "text": "4800₽/сутки - июнь до 15го"
-          },
-          {
-            "kind": "price",
-            "text": "6000₽/сутки - июнь с 15го"
-          },
-          {
-            "kind": "price",
             "text": "7000₽/сутки - июль, август"
           },
           {
@@ -47899,7 +47883,7 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Июль/ август/ сентябрь до 15.09"
+            "text": "Июль/ август/ сентябрь до 25.09"
           },
           {
             "kind": "price",
@@ -47935,7 +47919,7 @@
           },
           {
             "kind": "price",
-            "text": "Сентябрь с 15.09"
+            "text": "Сентябрь с 25.09"
           },
           {
             "kind": "price",
@@ -48141,7 +48125,7 @@
           "details": {
             "telegram_post": "abhazbooking/2898",
             "telegram_url": "https://t.me/abhazbooking/2898",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/video-01-poster.jpg"
           }
         }
       ]
@@ -64570,6 +64554,232 @@
             "telegram_url": "https://t.me/abhazbooking/5098",
             "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/ptichka-eko-domiki-s-basseynom-5089/video-01-poster.jpg"
           }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5109,
+      "source_topic_id": null,
+      "slug": "yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109",
+      "title": "\"ЮЖНОЕ СЧАСТЬЕ\" домики с бассейном и завтраками",
+      "summary": "Цандрипш. 4 минуты до пляжа, галечный, размещение до 4 человек.",
+      "excerpt": "Всего десять уютных домиков площадью 26 м²",
+      "city": "Цандрипш",
+      "location_text": "Цандрипш, ул. Кингисепа, 2А",
+      "distance_text": "4 минуты до пляжа, галечный",
+      "beach_text": "4 минуты до пляжа, галечный",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/",
+      "telegram_url": "https://t.me/abhazbooking/5109",
+      "published_at": "2026-07-27",
+      "has_video": false,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Цандрипш. 4 минуты до пляжа, галечный, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Всего десять уютных домиков площадью 26 м².",
+              "Двуспальная кровать, диван-кровать, шкаф, прикроватные тумбочки. Размещение до 4 человек (2 взрослых и 2 детей).",
+              "Сан узел с душевой кабиной.",
+              "Оснащение: кондиционер, телевизор, мини-холодильник, Wi‑Fi, фен.",
+              "У каждого домика есть веранда со столиком и стульями."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Бассейн с подогревом и детской зоной с шезлонгами и зонтиками.",
+              "Свое кафе сразу за территорией.",
+              "Летняя кухня со всем необходимым для самостоятельного приготовления.",
+              "Мангальная зона и зона отдыха с качелями."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "В шаговой доступности магазины, кафе.",
+              "До пляжа 4 минуты пешком.",
+              "Из достопримечательностей в посёлке природный объект Белые скалы, Цандрипшская базилика."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - август, сентябрь до 15 числа"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - сентябрь с 16го"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место с завтраком - 500₽"
+          },
+          {
+            "kind": "price",
+            "text": "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/index.html",
+        "filters": {
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "tsandripsh"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "pool",
+            "terrace",
+            "tv",
+            "two-room-plus"
+          ],
+          "stay": [
+            "cottages"
+          ]
+        }
+      },
+      "id": 1198,
+      "media": [
+        {
+          "id": 1198001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109.jpg",
+          "details": {}
+        },
+        {
+          "id": 1198002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1198003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1198004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1198005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1198006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1198007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1198008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1198009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1198010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1198011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-10.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-10.jpg",
+          "details": {}
         }
       ]
     }
