@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-26T16:04:38.636559+00:00",
+  "generated_at": "2026-07-27T09:08:24.676108+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -54471,7 +54471,7 @@
       "source_message_id": 2583,
       "source_topic_id": null,
       "slug": "lazurit-novyy-otel-s-zavtrakami-2583",
-      "title": "\"ЛАЗУРИТ\" новый отель с завтраками 🩵скидка 20% до 20 июля🩵",
+      "title": "\"ЛАЗУРИТ\" новый отель с завтраками 🩵скидка 10% на последние денёчки июля и весь август🩵",
       "summary": "Лдзаа. 3 минуты, пляж песчано-галечный, размещение до 5 человек.",
       "excerpt": "Идеальное место для тех, кто ищет комфорт и качество. Расположен в живописной прибрежной зоне на первой линии",
       "city": "Лдзаа",
@@ -54538,7 +54538,7 @@
           },
           {
             "kind": "price",
-            "text": "7000 ₽/сутки - с 21 июля, август"
+            "text": "6300 ₽/сутки - с 21 июля, август"
           },
           {
             "kind": "price",
@@ -54562,7 +54562,7 @@
           },
           {
             "kind": "price",
-            "text": "9000 ₽/сутки - с 21 июля, август"
+            "text": "8100 ₽/сутки - с 21 июля, август"
           },
           {
             "kind": "price",
@@ -54586,7 +54586,7 @@
           },
           {
             "kind": "price",
-            "text": "12000 ₽/сутки - с 21 июля, август"
+            "text": "10800 ₽/сутки - с 21 июля, август"
           },
           {
             "kind": "price",
@@ -54610,7 +54610,7 @@
           },
           {
             "kind": "price",
-            "text": "14000 ₽/сутки - с 21 июля, август"
+            "text": "12600 ₽/сутки - с 21 июля, август"
           },
           {
             "kind": "price",
@@ -54760,7 +54760,7 @@
           "details": {
             "telegram_post": "abhazbooking/2591",
             "telegram_url": "https://t.me/abhazbooking/2591",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lazurit-novyy-otel-s-zavtrakami-2583/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lazurit-novyy-otel-s-zavtrakami-2583/video-01-poster.jpg"
           }
         }
       ]
@@ -59578,6 +59578,14 @@
           }
         ],
         "prices": [
+          {
+            "kind": "price",
+            "text": "Акция в сентябре 7+1🔥"
+          },
+          {
+            "kind": "price",
+            "text": "При бронировании номера от 7 дней 1 ночь в подарок🎁"
+          },
           {
             "kind": "price",
             "text": "8000₽ - июль"
