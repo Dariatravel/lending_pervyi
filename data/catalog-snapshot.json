@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28T18:08:34.942776+00:00",
+  "generated_at": "2026-07-28T20:13:45.759708+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 229,
@@ -7294,6 +7294,10 @@
           },
           {
             "kind": "price",
+            "text": "5000₽ - октябрь"
+          },
+          {
+            "kind": "price",
             "text": "Взрослый на дополнительном месте"
           },
           {
@@ -7315,6 +7319,10 @@
           {
             "kind": "price",
             "text": "5890₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - октябрь"
           },
           {
             "kind": "price",
@@ -7342,6 +7350,10 @@
           },
           {
             "kind": "price",
+            "text": "3500₽ - октябрь"
+          },
+          {
+            "kind": "price",
             "text": "Одноместное размещение"
           },
           {
@@ -7363,6 +7375,10 @@
           {
             "kind": "price",
             "text": "9040₽ - с 21 по 30 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "6880₽ - октябрь"
           },
           {
             "kind": "price",
@@ -7523,7 +7539,7 @@
           "details": {
             "telegram_post": "abhazbooking/4877",
             "telegram_url": "https://t.me/abhazbooking/4877",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/video-01-poster.jpg"
           }
         }
       ]
