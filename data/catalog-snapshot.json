@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-29T11:13:47.461772+00:00",
+  "generated_at": "2026-07-29T15:47:36.606472+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 229,
@@ -12172,25 +12172,25 @@
     {
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
-      "source_message_id": 4113,
+      "source_message_id": 5124,
       "source_topic_id": null,
       "slug": "zhemchuzhina-gostevoy-dom-4113",
       "title": "\"ЖЕМЧУЖИНА\" гостевой дом",
-      "summary": "Лдзаа. 1 минута до пляжа, песок/мелкая галька, размещение до 7 человек.",
+      "summary": "Лдзаа. 1 минута до пляжа, размещение до 7 человек.",
       "excerpt": "Двухэтажный гостевой дом, всего 12 номеров:",
       "city": "Лдзаа",
       "location_text": "Лдзаа, ул. Рыбзаводская, 73",
-      "distance_text": "1 минута до пляжа, песок/мелкая галька",
-      "beach_text": "1 минута до пляжа, песок/мелкая галька",
+      "distance_text": "1 минута до пляжа",
+      "beach_text": "1 минута до пляжа",
       "capacity_text": "размещение до 7 человек",
       "page_url": "https://абхазберег.рф/hotels/zhemchuzhina-gostevoy-dom-4113/",
-      "telegram_url": "https://t.me/abhazbooking/4113",
-      "published_at": "2026-04-13",
+      "telegram_url": "https://t.me/abhazbooking/5124",
+      "published_at": "2026-07-29",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/zhemchuzhina-gostevoy-dom-4113.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. 1 минута до пляжа, песок/мелкая галька, размещение до 7 человек.",
+        "lead": "Лдзаа. 1 минута до пляжа, размещение до 7 человек.",
         "sections": [
           {
             "label": "✔️НОМЕРА:",
@@ -12216,14 +12216,15 @@
           {
             "label": "✔️РЯДОМ:",
             "lines": [
-              "Рядом остановка, продуктовый магазин, аптека, кафе, столовая, бар, экскурсионные точки, сувенирные, большая детская площадка.",
-              "До моря 1 минута пешком через дорогу, пляж песок с мелкой галькой. Есть в аренду шезлонги, водные развлечения, сап борды."
+              "Рядом остановка, продуктовый магазин, аптека, кафе, столовая, гастробар 151, экскурсионные точки, сувенирные, большая детская площадка.",
+              "До моря 1 минута пешком через дорогу, пляж мелкая галька с песком. Есть в аренду шезлонги, водные развлечения, сап борды."
             ]
           },
           {
             "label": "✔️УСЛОВИЯ:",
             "lines": [
               "Размещение с животными возможно без доплат",
+              "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет.",
               "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
               "(будьте внимательны ⚠️только этот контакт для брони)",
               "Я на связи WhatsApp/MAX: +7940-900-33-40"
@@ -12237,22 +12238,6 @@
           },
           {
             "kind": "price",
-            "text": "2000₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "2500₽ - с 1 по 10 июня"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - с 11 по 17 июня"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - с 18 по 30 июня"
-          },
-          {
-            "kind": "price",
             "text": "7000₽ - июль, август, сентябрь"
           },
           {
@@ -12262,22 +12247,6 @@
           {
             "kind": "price",
             "text": "Двухкомнатный номер"
-          },
-          {
-            "kind": "price",
-            "text": "2500₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - с 1 по 10 июня"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - с 11 по 17 июня"
-          },
-          {
-            "kind": "price",
-            "text": "6000₽ - с 18 по 30 июня"
           },
           {
             "kind": "price",
@@ -12438,9 +12407,9 @@
           "storage_path": "videos/hotels/zhemchuzhina-gostevoy-dom-4113/video-01.mp4",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/zhemchuzhina-gostevoy-dom-4113/video-01.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4122",
-            "telegram_url": "https://t.me/abhazbooking/4122",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/zhemchuzhina-gostevoy-dom-4113/video-01-source-poster.jpg"
+            "telegram_post": "abhazbooking/5133",
+            "telegram_url": "https://t.me/abhazbooking/5133",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/zhemchuzhina-gostevoy-dom-4113/video-01-poster.jpg"
           }
         }
       ]
@@ -43784,12 +43753,12 @@
       "source_topic_id": null,
       "slug": "mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074",
       "title": "\"МУЛБЕРРИ\" отель на пляже с бассейном и кафе 🛎 РАННЕЕ БРОНИРОВАНИЕ 2027 🛎",
-      "summary": "Лдзаа. 0 минут до пляжа (песчаный), размещение до 5 человек.",
+      "summary": "Лдзаа. 0 минут до пляжа, размещение до 5 человек.",
       "excerpt": "Первая береговая линия, выход сразу на пляж. Широкая береговая полоса, мелкая галька с песчаными полосами",
       "city": "Лдзаа",
       "location_text": "Лдзаа, ул. Рыбзаводская 86",
-      "distance_text": "0 минут до пляжа (песчаный)",
-      "beach_text": "0 минут до пляжа (песчаный)",
+      "distance_text": "0 минут до пляжа",
+      "beach_text": "0 минут до пляжа",
       "capacity_text": "размещение до 5 человек",
       "page_url": "https://абхазберег.рф/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/",
       "telegram_url": "https://t.me/abhazbooking/5099",
@@ -43798,7 +43767,7 @@
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. 0 минут до пляжа (песчаный), размещение до 5 человек.",
+        "lead": "Лдзаа. 0 минут до пляжа, размещение до 5 человек.",
         "sections": [
           {
             "label": "✔️ ТЕРРИТОРИЯ:",
