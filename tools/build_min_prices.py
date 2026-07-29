@@ -113,33 +113,36 @@ def extract_price(text: str) -> int | None:
 
 
 def promo_deadline(text: str) -> date | None:
-    """Крайний срок ограниченной цены: «до 4 июля», «до 15.09», «Акция до 15 июля».
+    """Крайний срок ограниченной цены: «до 4 июля», «до 15.09», «Акция до 15 июля»,
+    «с 13 по 24 июля» (конец окна — 24 июля).
 
-    Возвращает дату (текущий год) или None, если строка не ограничена сроком.
-    Строки вида «июль, август, сентябрь до 15.09» тоже дают дату — но она в
-    БУДУЩЕМ, поэтому в main() такие цены остаются (истекают только прошедшие).
+    Берём САМУЮ ПОЗДНЮЮ дату из всех «до/по <дата>» в строке — цена «истекла»,
+    только когда прошло последнее окно. Пример: «с 1 по 10 июля или с 22 июля по
+    5 августа» → дедлайн 5 августа (второе окно ещё действует 29 июля).
+    Строки «июль… до 15.09» тоже дают дату, но в БУДУЩЕМ — они остаются.
     """
     low = text.lower()
-    m = re.search(r"\bдо\s+(\d{1,2})\s*[.\-/]\s*(\d{1,2})", low)  # до 15.09
-    if m:
-        day, mon = int(m.group(1)), int(m.group(2))
-    else:
-        m = re.search(r"\bдо\s+(\d{1,2})\s+([а-яё]+)", low)  # до 4 июля
-        if not m:
-            return None
-        day, name, mon = int(m.group(1)), m.group(2), None
+    year = datetime.now(MSK).year
+    found: list[date] = []
+    for day_s, mon_s in re.findall(r"\b(?:до|по)\s+(\d{1,2})\s*[.\-/]\s*(\d{1,2})", low):
+        day, mon = int(day_s), int(mon_s)  # «до 15.09» → 15 сентября
+        if 1 <= mon <= 12 and 1 <= day <= 31:
+            try:
+                found.append(date(year, mon, day))
+            except ValueError:
+                pass
+    for day_s, name in re.findall(r"\b(?:до|по)\s+(\d{1,2})\s+([а-яё]+)", low):
+        day, mon = int(day_s), None
         for num, pat in MONTH_PATTERNS.items():
             if re.search(pat, name):
                 mon = num
                 break
-        if mon is None:
-            return None
-    if not (1 <= mon <= 12 and 1 <= day <= 31):
-        return None
-    try:
-        return date(datetime.now(MSK).year, mon, day)
-    except ValueError:
-        return None
+        if mon and 1 <= day <= 31:
+            try:
+                found.append(date(year, mon, day))
+            except ValueError:
+                pass
+    return max(found) if found else None
 
 
 def monthly_min_prices(price_rows: list, today: date | None = None) -> dict[int, int]:
