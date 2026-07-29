@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 import re
 import sys
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -80,12 +80,17 @@ def months_in(text: str) -> set[int]:
                 months.add(cur)
                 cur = cur % 12 + 1
             months.add(end)
-    # открытый «с <месяц>» без «по» (заголовок сезона) — до конца года
-    if re.search(r"\bс\s+\d{0,2}\s*[а-яё]*$", low.strip()) or (
-        re.match(r"^\s*с\s", low) and " по " not in low and len(hits) == 1
-    ):
-        start = hits[0][1]
-        months.update(range(start, 13))
+    # открытый «с <месяц>» без «по» (заголовок сезона) — до конца года.
+    # Продлеваем ТОЛЬКО когда после «с» идёт НАЗВАНИЕ месяца («с июня», «с 15 июня»,
+    # либо строка целиком заканчивается «… с <месяцем>»). НЕ трогаем:
+    #   • «июнь с 15го» — «15го» это день месяца, а не открытый сезон;
+    #   • «декабрь с 30.12 - май», «с 25 мая, июнь» — это диапазоны, не сезон «до конца года».
+    # Иначе низкая цена «затекает» в июль/август и занижает «Цену от …».
+    starts_with_s = bool(re.match(r"^\s*с\s", low)) and " по " not in low and len(hits) == 1
+    tail_open = re.search(r"\bс\s+(?:\d{1,2}\s+)?([а-яё]+)\s*$", low.strip())
+    tail_is_month = bool(tail_open) and any(re.search(pat, tail_open.group(1)) for pat in MONTH_PATTERNS.values())
+    if starts_with_s or tail_is_month:
+        months.update(range(hits[0][1], 13))
     return months
 
 
@@ -107,7 +112,37 @@ def extract_price(text: str) -> int | None:
     return value
 
 
-def monthly_min_prices(price_rows: list) -> dict[int, int]:
+def promo_deadline(text: str) -> date | None:
+    """Крайний срок ограниченной цены: «до 4 июля», «до 15.09», «Акция до 15 июля».
+
+    Возвращает дату (текущий год) или None, если строка не ограничена сроком.
+    Строки вида «июль, август, сентябрь до 15.09» тоже дают дату — но она в
+    БУДУЩЕМ, поэтому в main() такие цены остаются (истекают только прошедшие).
+    """
+    low = text.lower()
+    m = re.search(r"\bдо\s+(\d{1,2})\s*[.\-/]\s*(\d{1,2})", low)  # до 15.09
+    if m:
+        day, mon = int(m.group(1)), int(m.group(2))
+    else:
+        m = re.search(r"\bдо\s+(\d{1,2})\s+([а-яё]+)", low)  # до 4 июля
+        if not m:
+            return None
+        day, name, mon = int(m.group(1)), m.group(2), None
+        for num, pat in MONTH_PATTERNS.items():
+            if re.search(pat, name):
+                mon = num
+                break
+        if mon is None:
+            return None
+    if not (1 <= mon <= 12 and 1 <= day <= 31):
+        return None
+    try:
+        return date(datetime.now(MSK).year, mon, day)
+    except ValueError:
+        return None
+
+
+def monthly_min_prices(price_rows: list, today: date | None = None) -> dict[int, int]:
     """Stateful-проход: строка-заголовок с месяцами задаёт контекст для цен ниже.
 
     Заголовок со стоп-словами («Дополнительное место:», «За ребёнка:»…)
@@ -131,6 +166,12 @@ def monthly_min_prices(price_rows: list) -> dict[int, int]:
             continue
         if blocked_context:
             continue
+        # Ограниченная сроком цена («2000₽ до 4 июля», «Акция до 15 июля»),
+        # срок которой уже прошёл — не действует, в «Цену от …» не берём.
+        if today is not None:
+            deadline = promo_deadline(text)
+            if deadline is not None and deadline < today:
+                continue
         target = line_months or context_months
         for month in target:
             if month not in result or price < result[month]:
@@ -152,6 +193,7 @@ def monthly_min_prices(price_rows: list) -> dict[int, int]:
 def main() -> int:
     now = datetime.now(MSK)
     month = now.month
+    today = now.date()
     snap = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
     rows = [r for r in snap.get("listings") or [] if r.get("slug") and r.get("is_active", True)]
 
@@ -160,7 +202,7 @@ def main() -> int:
     suspicious: list[str] = []
     for row in rows:
         raw = (row.get("details") or {}).get("prices") or []
-        monthly = monthly_min_prices(raw)
+        monthly = monthly_min_prices(raw, today)
         value = monthly.get(month)
         if value is None:
             texts = [str(p.get("text") if isinstance(p, dict) else p or "")[:70] for p in raw][:6]
