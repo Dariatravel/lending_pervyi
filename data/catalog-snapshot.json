@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-29T15:47:36.606472+00:00",
+  "generated_at": "2026-07-29T15:49:47.336912+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 229,
-  "listings_hotels": 178,
+  "listings_total": 228,
+  "listings_hotels": 177,
   "listings_kvartira": 51,
   "listings": [
     {
@@ -42041,7 +42041,7 @@
       "published_at": "2026-01-27",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/grey-haus-domiki.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Алахадзы. пляж галечный в 10 минутах, вместимость до 4 человек.",
         "sections": [
