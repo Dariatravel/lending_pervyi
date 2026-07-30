@@ -54962,7 +54962,7 @@
       "published_at": "2025-12-08",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/bonzhur-mini-otel-2542.jpg",
-      "is_active": false,
+      "is_active": true,
       "details": {
         "lead": "Пицунда. до пляжа 2 минуты пешком, размещение до 4 человек.",
         "sections": [
