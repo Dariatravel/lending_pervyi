@@ -10,6 +10,10 @@ on:
       urls:
         description: "Ссылки для проверки (по одной в строке)"
         required: true
+      mode:
+        description: "raw = печатать весь видимый текст страницы (помесячные прайсы)"
+        required: false
+        default: ""
 
 jobs:
   probe:
@@ -24,4 +28,5 @@ jobs:
       - name: Снять цены со страниц
         env:
           PROBE_URLS: ${{ inputs.urls }}
+          PROBE_MODE: ${{ inputs.mode }}
         run: python tools/fetch_price_pages.py

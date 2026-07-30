@@ -79,6 +79,12 @@ def probe(url: str) -> None:
     if resp.status_code != 200:
         return
     resp.encoding = resp.apparent_encoding or resp.encoding
+    if os.environ.get("PROBE_MODE", "").strip().lower() == "raw":
+        # Полный видимый текст: помесячные прайсы часто свёрстаны блоками,
+        # и подписи месяцев теряются при фильтрации по ключевым словам.
+        for line in visible_text(resp.text)[:400]:
+            print(f"  {line[:200]}")
+        return
     tables = dump_price_tables(resp.text)
     if tables:
         return
