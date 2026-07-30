@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30T10:17:50.625120+00:00",
+  "generated_at": "2026-07-30T12:27:26.022679+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -5967,7 +5967,7 @@
           },
           {
             "kind": "price",
-            "text": "5500₽ - сентябрь"
+            "text": "5000₽ - сентябрь"
           },
           {
             "kind": "note",
@@ -31666,6 +31666,10 @@
         "prices": [
           {
             "kind": "price",
+            "text": "🔥Свобода с 6 по 12 августа- 5000₽🔥"
+          },
+          {
+            "kind": "price",
             "text": "6000₽/сутки - июль, август"
           },
           {
@@ -31798,7 +31802,7 @@
         {
           "id": 125009,
           "media_role": "gallery",
-          "sort_order": 9,
+          "sort_order": 8,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-08.jpg",
           "storage_bucket": "abhazbereg-media",
@@ -31809,12 +31813,23 @@
         {
           "id": 125010,
           "media_role": "gallery",
-          "sort_order": 10,
+          "sort_order": 9,
           "mime_type": "image/jpeg",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-09.jpg",
           "storage_bucket": "abhazbereg-media",
           "storage_path": "kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-09.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 125011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-10.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/siti-gagra-kvartira-2k-gagra-1242/photo-10.jpg",
           "details": {}
         }
       ]
@@ -63110,7 +63125,7 @@
           },
           {
             "kind": "price",
-            "text": "10990₽ - октябрь"
+            "text": "12990₽ - октябрь"
           },
           {
             "kind": "heading",
@@ -63126,7 +63141,7 @@
           },
           {
             "kind": "price",
-            "text": "8990₽ - октябрь"
+            "text": "10990₽ - октябрь"
           },
           {
             "kind": "heading",
@@ -63142,7 +63157,7 @@
           },
           {
             "kind": "price",
-            "text": "9990₽ - октябрь"
+            "text": "11990₽ - октябрь"
           },
           {
             "kind": "price",
@@ -63593,7 +63608,7 @@
         "prices": [
           {
             "kind": "price",
-            "text": "15000₽ - любой месяц"
+            "text": "12000₽ - любой месяц"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/index.html",
