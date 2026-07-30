@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30T15:03:06.923408+00:00",
+  "generated_at": "2026-07-30T17:18:15.079411+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -19733,31 +19733,23 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция до 15 июня 2000 ₽ за 2 человека 🔥🔥"
-          },
-          {
-            "kind": "price",
             "text": "Трехместное"
           },
           {
             "kind": "price",
-            "text": "1500 ₽/сутки - май"
+            "text": "4500₽ - июль"
           },
           {
             "kind": "price",
-            "text": "3000 ₽/сутки - июнь"
+            "text": "5500₽ - август"
           },
           {
             "kind": "price",
-            "text": "4500 ₽/сутки - июль"
+            "text": "3000₽ - сентябрь"
           },
           {
             "kind": "price",
-            "text": "5500 ₽/сутки - август"
-          },
-          {
-            "kind": "price",
-            "text": "3000 ₽/сутки - сентябрь"
+            "text": "1500₽ - октябрь"
           },
           {
             "kind": "price",
@@ -19765,23 +19757,19 @@
           },
           {
             "kind": "price",
-            "text": "2000 ₽/сутки - май"
+            "text": "5000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "3000 ₽/сутки - июнь"
+            "text": "6000₽ - август"
           },
           {
             "kind": "price",
-            "text": "5000 ₽/сутки - июль"
+            "text": "3000₽ - сентябрь"
           },
           {
             "kind": "price",
-            "text": "6000 ₽/сутки - август"
-          },
-          {
-            "kind": "price",
-            "text": "3000 ₽/сутки - сентябрь"
+            "text": "1500₽ - октябрь"
           },
           {
             "kind": "price",
@@ -26262,6 +26250,10 @@
           }
         ],
         "prices": [
+          {
+            "kind": "price",
+            "text": "Дом свободен с 11 по 16 августа и с 26 по 31 августа - 10000₽🔥"
+          },
           {
             "kind": "price",
             "text": "15000₽ - июль, август"
@@ -41879,18 +41871,6 @@
           },
           {
             "kind": "price",
-            "text": "1500₽/сутки - апрель, май"
-          },
-          {
-            "kind": "price",
-            "text": "2500₽/сутки - июнь до 15го"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽/сутки - июнь с 15го"
-          },
-          {
-            "kind": "price",
             "text": "5000₽/сутки - июль"
           },
           {
@@ -41903,7 +41883,7 @@
           },
           {
             "kind": "price",
-            "text": "2500₽/сутки - октябрь"
+            "text": "2000₽/сутки - октябрь"
           },
           {
             "kind": "price",
@@ -42061,7 +42041,7 @@
           "details": {
             "telegram_post": "abhazbooking/3152",
             "telegram_url": "https://t.me/abhazbooking/3152",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/miraslava-mini-otel-3143/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/miraslava-mini-otel-3143/video-01-poster.jpg"
           }
         }
       ]
