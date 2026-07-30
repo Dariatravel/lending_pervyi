@@ -42,6 +42,32 @@ def visible_text(html: str) -> list[str]:
     return [ln for ln in lines if ln]
 
 
+def dump_price_tables(html: str) -> int:
+    """Ценовые таблицы страницы целиком: «ячейка | ячейка | …» построчно.
+    Возвращает число напечатанных таблиц."""
+    try:
+        from bs4 import BeautifulSoup
+
+        soup = BeautifulSoup(html, "html.parser")
+    except Exception:  # noqa: BLE001
+        return 0
+    shown = 0
+    for table in soup.find_all("table"):
+        text = table.get_text(" ")
+        if not PRICE_RX.search(text):
+            continue
+        shown += 1
+        print(f"  [ТАБЛИЦА {shown}]")
+        for tr in table.find_all("tr")[:50]:
+            cells = [re.sub(r"\s+", " ", c.get_text(" ")).strip() for c in tr.find_all(["td", "th"])]
+            cells = [c for c in cells if c]
+            if cells:
+                print("   | " + " | ".join(c[:60] for c in cells)[:300])
+        if shown >= 4:
+            break
+    return shown
+
+
 def probe(url: str) -> None:
     print(f"\n{'=' * 80}\nURL: {url}")
     try:
@@ -53,6 +79,9 @@ def probe(url: str) -> None:
     if resp.status_code != 200:
         return
     resp.encoding = resp.apparent_encoding or resp.encoding
+    tables = dump_price_tables(resp.text)
+    if tables:
+        return
     lines = visible_text(resp.text)
     shown = 0
     for i, line in enumerate(lines):
