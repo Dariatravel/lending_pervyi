@@ -68,6 +68,46 @@ def dump_price_tables(html: str) -> int:
     return shown
 
 
+PERIOD_RX = re.compile(r"^\d{2}\.\d{2}\.?\s*[-–—]\s*\d{2}\.\d{2}\.?$")
+PRICE_ONLY_RX = re.compile(r"^(?:от\s*)?([\d\s ]{3,9})\s*(?:₽|руб)", re.IGNORECASE)
+CATEGORY_HINT_RX = re.compile(r"^[\"«].{2,60}[\"»]$|^(номер|стандарт|люкс|полулюкс|комфорт|апарт|студи|коттедж|домик|вилла|бунгало)", re.I)
+
+
+def dump_month_prices(html: str) -> bool:
+    """Помесячный прайс: «категория | период | цена».
+
+    Каталоги (Едем-в-Гости и родственные движки) верстают прайс тройками
+    «период → гостей → цена» подряд; название категории — ближайший
+    заголовок выше. Возвращает True, если что-то нашли.
+    """
+    lines = visible_text(html)
+    rows: list[tuple[str, str, str, str]] = []
+    category = ""
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if CATEGORY_HINT_RX.match(line) and len(line) < 70 and not PRICE_ONLY_RX.match(line):
+            category = line.strip('"«»')
+        if PERIOD_RX.match(line):
+            guests, price = "", ""
+            for j in range(i + 1, min(i + 4, len(lines))):
+                nxt = lines[j]
+                if PRICE_ONLY_RX.match(nxt):
+                    price = nxt
+                    break
+                if not guests and len(nxt) < 40:
+                    guests = nxt
+            if price:
+                rows.append((category or "—", line, guests, price))
+        i += 1
+    if not rows:
+        return False
+    print("  [ПОМЕСЯЧНЫЙ ПРАЙС]")
+    for cat, period, guests, price in rows[:80]:
+        print(f"   | {cat[:38]:38} | {period:16} | {guests[:14]:14} | {price}")
+    return True
+
+
 def probe(url: str) -> None:
     print(f"\n{'=' * 80}\nURL: {url}")
     try:
@@ -85,8 +125,9 @@ def probe(url: str) -> None:
         for line in visible_text(resp.text)[:400]:
             print(f"  {line[:200]}")
         return
-    tables = dump_price_tables(resp.text)
-    if tables:
+    if dump_month_prices(resp.text):
+        return
+    if dump_price_tables(resp.text):
         return
     lines = visible_text(resp.text)
     shown = 0
