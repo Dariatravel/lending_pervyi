@@ -1,0 +1,27 @@
+name: Price probe
+
+# Ручная сверка цен отелей на внешних площадках (антидемпинг):
+# получает список URL, печатает найденные на страницах цены в лог.
+# Ничего не публикует и не коммитит.
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "Ссылки для проверки (по одной в строке)"
+        required: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install --quiet requests beautifulsoup4
+      - name: Снять цены со страниц
+        env:
+          PROBE_URLS: ${{ inputs.urls }}
+        run: python tools/fetch_price_pages.py
