@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-29T17:55:48.849289+00:00",
+  "generated_at": "2026-07-30T07:27:55.573784+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 227,
-  "listings_hotels": 177,
+  "listings_total": 228,
+  "listings_hotels": 178,
   "listings_kvartira": 50,
   "listings": [
     {
@@ -54984,7 +54984,7 @@
           {
             "label": "✔️РЯДОМ:",
             "lines": [
-              "До моря всего 270 метров - прямая тропинка практически прямо от комплекса. Сосновый берег, просторный, со сменяющимися пейзажами и красивыми видами на горизонте.",
+              "До моря всего 270 метров. Сосновый берег, просторный, со сменяющимися пейзажами и красивыми видами на горизонте.",
               "В семи минутах несколько кафе, есть ресторан на пляже (с музыкой в летнее время). Магазины и аптеки в 10 минутах прогулочным шагом.",
               "Также в пешей доступности красивое древнее озеро Инкит."
             ]
@@ -55032,7 +55032,7 @@
             "text": "8000₽/сутки - август/сентябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/bonzhur-mini-otel-2542/index.html",
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/bonzhur-mini-otel-2542/index.html",
         "filters": {
           "distance": [
             "up-to-5"
@@ -55181,7 +55181,8 @@
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bonzhur-mini-otel-2542/video-01.mp4",
           "details": {
             "telegram_post": "abhazbooking/2551",
-            "telegram_url": "https://t.me/abhazbooking/2551"
+            "telegram_url": "https://t.me/abhazbooking/2551",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bonzhur-mini-otel-2542/video-01-poster.jpg"
           }
         }
       ]
