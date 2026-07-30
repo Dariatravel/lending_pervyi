@@ -73,6 +73,26 @@ PRICE_ONLY_RX = re.compile(r"^(?:от\s*)?([\d\s ]{3,9})\s*(?:₽|руб)", re.I
 CATEGORY_HINT_RX = re.compile(r"^[\"«].{2,60}[\"»]$|^(номер|стандарт|люкс|полулюкс|комфорт|апарт|студи|коттедж|домик|вилла|бунгало)", re.I)
 
 
+MONTHS = ("январ", "феврал", "март", "апрел", "мае", "май", "июн", "июл", "август", "сентябр", "октябр", "ноябр", "декабр")
+MONTH_LINE_RX = re.compile(r"^(?:с\s+)?\d{0,2}\s*(" + "|".join(MONTHS) + r")\w*(?:\s*(?:по|-|–)\s*\d{0,2}\s*\w+)?(?:\s*20\d\d)?$", re.I)
+
+
+def month_word_rows(lines: list[str]) -> list[tuple[str, str, str, str]]:
+    """Прайсы, где период подписан словом («Июль», «Август 2026») рядом с ценой."""
+    rows: list[tuple[str, str, str, str]] = []
+    category = ""
+    for i, line in enumerate(lines):
+        if CATEGORY_HINT_RX.match(line) and len(line) < 70 and not PRICE_ONLY_RX.match(line):
+            category = line.strip('"«»')
+        if not MONTH_LINE_RX.match(line):
+            continue
+        for j in (i + 1, i - 1, i + 2):
+            if 0 <= j < len(lines) and PRICE_ONLY_RX.match(lines[j]):
+                rows.append((category or "—", line, "", lines[j]))
+                break
+    return rows
+
+
 def dump_month_prices(html: str) -> bool:
     """Помесячный прайс: «категория | период | цена».
 
@@ -100,6 +120,8 @@ def dump_month_prices(html: str) -> bool:
             if price:
                 rows.append((category or "—", line, guests, price))
         i += 1
+    if not rows:
+        rows = month_word_rows(lines)
     if not rows:
         return False
     print("  [ПОМЕСЯЧНЫЙ ПРАЙС]")
