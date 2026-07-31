@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31T11:23:23.714724+00:00",
+  "generated_at": "2026-07-31T13:27:24.226213+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -34873,7 +34873,7 @@
       "page_url": "https://абхазберег.рф/kvartira/perl-dom-pod-klyuch-gudauta-1092/",
       "telegram_url": "https://t.me/abhkvartira/1083",
       "published_at": "2026-02-03",
-      "has_video": false,
+      "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/perl-dom-pod-klyuch-gudauta-1092-cover.jpg",
       "is_active": true,
       "details": {
@@ -35059,12 +35059,16 @@
           "id": 138011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "image/jpeg",
-          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/perl-dom-pod-klyuch-gudauta-1092/photo-10.jpg",
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/perl-dom-pod-klyuch-gudauta-1092/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "kvartira/perl-dom-pod-klyuch-gudauta-1092/photo-10.jpg",
-          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/perl-dom-pod-klyuch-gudauta-1092/photo-10.jpg",
-          "details": {}
+          "storage_path": "videos/kvartira/perl-dom-pod-klyuch-gudauta-1092/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/perl-dom-pod-klyuch-gudauta-1092/video-01.mp4",
+          "details": {
+            "telegram_post": "abhkvartira/1092",
+            "telegram_url": "https://t.me/abhkvartira/1092",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/perl-dom-pod-klyuch-gudauta-1092/video-01-poster.jpg"
+          }
         }
       ]
     },
