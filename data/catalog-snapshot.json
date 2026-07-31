@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31T08:28:46.042872+00:00",
+  "generated_at": "2026-07-31T11:23:23.714724+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -2859,7 +2859,7 @@
           },
           {
             "kind": "price",
-            "text": "2000₽- октябрь"
+            "text": "2000₽- октябрь (вилла работает только до 10 октября)"
           },
           {
             "kind": "price",
@@ -3022,7 +3022,7 @@
           "details": {
             "telegram_post": "abhazbooking/4599",
             "telegram_url": "https://t.me/abhazbooking/4599",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lavanda-villa-s-basseynom-4590/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/lavanda-villa-s-basseynom-4590/video-01-poster.jpg"
           }
         }
       ]
@@ -15715,74 +15715,6 @@
           },
           {
             "kind": "price",
-            "text": "Акция 🔥"
-          },
-          {
-            "kind": "price",
-            "text": "Скидка 30% при бронировании трехместного номера на период с 1 по 30 июня 2026."
-          },
-          {
-            "kind": "price",
-            "text": "Апрель (без питания)"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ — двухместный"
-          },
-          {
-            "kind": "price",
-            "text": "4500₽ — трехместный"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ — четырехместный"
-          },
-          {
-            "kind": "price",
-            "text": "6000₽ — домик пятиместный двухкомнатный"
-          },
-          {
-            "kind": "price",
-            "text": "Май (без питания)"
-          },
-          {
-            "kind": "price",
-            "text": "4800₽ — двухместный"
-          },
-          {
-            "kind": "price",
-            "text": "5400₽ — трехместный"
-          },
-          {
-            "kind": "price",
-            "text": "6000₽ — четырехместный"
-          },
-          {
-            "kind": "price",
-            "text": "7000₽ — домик пятиместный двухкомнатный"
-          },
-          {
-            "kind": "price",
-            "text": "Июнь"
-          },
-          {
-            "kind": "price",
-            "text": "8400₽ — двухместный"
-          },
-          {
-            "kind": "price",
-            "text": "9600₽ — трехместный"
-          },
-          {
-            "kind": "price",
-            "text": "10800₽ — четырехместный"
-          },
-          {
-            "kind": "price",
-            "text": "12000₽ — домик пятиместный двухкомнатный"
-          },
-          {
-            "kind": "price",
             "text": "Июль, август, сентябрь до 15"
           },
           {
@@ -15823,7 +15755,7 @@
           },
           {
             "kind": "price",
-            "text": "Октябрь, ноябрь"
+            "text": "Октябрь, ноябрь (без питания)"
           },
           {
             "kind": "price",
@@ -23970,23 +23902,35 @@
         "prices": [
           {
             "kind": "price",
-            "text": "3000 ₽/сутки – май"
+            "text": "Акция на свободные окошки в августе 4000₽ и сентябре 3000₽🔥"
           },
           {
             "kind": "price",
-            "text": "4000 ₽/сутки – июнь"
+            "text": "Квартира свободна:"
           },
           {
             "kind": "price",
-            "text": "5000 ₽/сутки – июль, август"
+            "text": "с 7 по 12 августа"
           },
           {
             "kind": "price",
-            "text": "4000 ₽/сутки – сентябрь"
+            "text": "с 27 по 1 сентября"
           },
           {
             "kind": "price",
-            "text": "3500 ₽/сутки – октябрь"
+            "text": "с 7 по 15 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ – июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ – сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ – октябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/letnyaya-kvartira-3k-suhum-1377/index.html",
@@ -30076,30 +30020,6 @@
           }
         ],
         "prices": [
-          {
-            "kind": "price",
-            "text": "Акция в мае - 2000₽/сутки🔥"
-          },
-          {
-            "kind": "price",
-            "text": "2500₽/сутки - май"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽/сутки - июнь до 15"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽/сутки - июнь с 15го"
-          },
-          {
-            "kind": "price",
-            "text": "10000₽/сутки - июль до 15го"
-          },
-          {
-            "kind": "price",
-            "text": "11000₽/сутки - июль с 15го"
-          },
           {
             "kind": "price",
             "text": "12000₽/сутки - август"
@@ -47389,18 +47309,6 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция🔥"
-          },
-          {
-            "kind": "price",
-            "text": "При бронировании номера от 8 дней в период с 1 по 15 июля двухместный номер - 4500₽"
-          },
-          {
-            "kind": "price",
-            "text": "трехместный номер - 5500₽"
-          },
-          {
-            "kind": "price",
             "text": "с 1 июня по 1 октября"
           },
           {
@@ -47414,6 +47322,38 @@
           {
             "kind": "price",
             "text": "6000₽ - трехместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "с 1 по 10 октября"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - одноместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - двухместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - трехместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "с 10 октября"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽ - одноместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - двухместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - трехместный номер"
           },
           {
             "kind": "note",
@@ -47561,7 +47501,7 @@
           "details": {
             "telegram_post": "abhazbooking/2907",
             "telegram_url": "https://t.me/abhazbooking/2907",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/antaa-gostinitsa-u-sosnovogo-plyazha-2899/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/antaa-gostinitsa-u-sosnovogo-plyazha-2899/video-01-poster.jpg"
           }
         },
         {
