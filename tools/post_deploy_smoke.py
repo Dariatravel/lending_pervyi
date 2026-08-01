@@ -132,6 +132,36 @@ def recent_catalog_items(limit: int) -> list[dict[str, object]]:
     return selected
 
 
+def pick_active_path(kind: str) -> str | None:
+    """Путь актуальной активной страницы объекта (hotel/kvartira) из catalog-index.json.
+
+    В индексе только активные объекты (снятые с публикации и редиректы туда не
+    попадают), поэтому проверка автоматически берёт живую страницу и не ломается
+    после переноса/ретайра конкретного объекта. Берём самый свежий по id.
+    """
+    catalog_path = ROOT / "data" / "catalog-index.json"
+    try:
+        payload = json.loads(catalog_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    items = [item for item in (payload.get("listings") or []) if str(item.get("source_kind")) == kind]
+    items.sort(key=lambda item: slug_sort_key(str(item.get("slug") or "")), reverse=True)
+    for item in items:
+        path = urlsplit(str(item.get("page_url") or "")).path
+        if path:
+            return path if path.endswith("/") else path + "/"
+    return None
+
+
+def is_redirect_stub(html: str) -> bool:
+    """Страница-редирект (снятый с публикации объект): <meta http-equiv="refresh">.
+
+    Такие страницы намеренно минимальны (без favicon/ассетов) и не должны считаться
+    сломанными — контентные проверки к ним не применяем.
+    """
+    return bool(re.search(r'http-equiv=["\']refresh["\']', html, flags=re.I))
+
+
 def webp_variants(url: str) -> list[str]:
     clean = url.split("?", 1)[0]
     if clean.endswith("-cover.jpg"):
@@ -214,14 +244,21 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", default=DEFAULT_BASE)
     parser.add_argument("--timeout", type=int, default=20)
-    parser.add_argument("--hotel-path", default="/hotels/parus-vidovoy-otel-s-basseynom-i-stolovoy-2602/")
-    parser.add_argument("--kvartira-path", default="/kvartira/amor-apartamenty-studiya-gagra-1322/")
+    # По умолчанию адреса не заданы жёстко — берём актуальные активные страницы
+    # из catalog-index.json (переживает перенос/ретайр объектов). CLI-аргументы
+    # остаются как ручное переопределение.
+    parser.add_argument("--hotel-path", default=None)
+    parser.add_argument("--kvartira-path", default=None)
     parser.add_argument("--recent-count", type=int, default=3)
     args = parser.parse_args()
 
+    hotel_path = args.hotel_path or pick_active_path("hotel") or "/hotels/"
+    kvartira_path = args.kvartira_path or pick_active_path("kvartira") or "/kvartira/"
+
     checks: list[dict[str, object]] = []
     errors: list[str] = []
-    paths = ["/", args.hotel_path, args.kvartira_path]
+    paths = ["/", hotel_path, kvartira_path]
+    print(f"Проверяемые страницы: {paths}", file=sys.stderr)
 
     for path in paths:
         url = urljoin(args.base_url.rstrip("/") + "/", path.lstrip("/"))
@@ -234,6 +271,12 @@ def main() -> int:
         page_errors = []
         if status != 200:
             page_errors.append(f"HTML status={status}")
+        # Страница-редирект (снятый объект) намеренно без favicon/ассетов — проверяем
+        # только доступность, контентные проверки к ней не применяем.
+        if is_redirect_stub(html):
+            checks.append({"url": url, "status": status, "redirect": True, "errors": page_errors})
+            errors.extend(f"{url}: {error}" for error in page_errors)
+            continue
         if "favicon-48.png" not in html:
             page_errors.append("нет favicon-48.png")
         for forbidden in FORBIDDEN_HTML:
