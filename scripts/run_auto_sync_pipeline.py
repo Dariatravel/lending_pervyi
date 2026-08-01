@@ -617,6 +617,28 @@ def main() -> int:
         write_failed_summary(supplemental_step)
         return supplemental_step.return_code
 
+    # SEO-финишеры: пересборка страниц каждый раз возвращает шаблонные
+    # описания и стирает вставленные блоки, поэтому после генераторов
+    # прогоняем правки заново. Шаги вторичны — их падение не блокирует деплой.
+    seo_steps = (
+        ("07a", "apply_unique_page_descriptions", ROOT / "tools" / "apply_unique_page_descriptions.py"),
+        ("07b", "apply_noindex_to_hidden_pages", ROOT / "tools" / "apply_noindex_to_hidden_pages.py"),
+        ("07c", "apply_blog_schema_extras", ROOT / "scripts" / "apply_blog_schema_extras.py"),
+        ("07d", "inject_blog_related_links", ROOT / "scripts" / "inject_blog_related_links.py"),
+    )
+    for idx, name, script in seo_steps:
+        seo_step = _run_step(
+            name=name,
+            cmd=[python, str(script)] + (["--check"] if args.dry_run else []),
+            env=base_env,
+            log_path=run_dir / f"{idx}-{name}.log",
+            dry_run=args.dry_run,
+        )
+        steps.append(seo_step)
+        print(f"[auto-sync] {seo_step.name}: {seo_step.status}")
+        if seo_step.return_code != 0 and not args.dry_run:
+            print(f"[auto-sync] ВНИМАНИЕ: {seo_step.name} упал (SEO-правка вторична) — продолжаем.")
+
     for idx, runner in (("08", append_review_bank_step), ("09", append_page_health_step)):
         rc = runner(idx)
         if rc != 0 and not args.dry_run:
