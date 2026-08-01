@@ -1,0 +1,41 @@
+name: Browser price probe
+
+# Съём цен со страниц отелей настоящим браузером: раскрывает кнопки «Показать
+# цены» и собирает помесячный прайс там, где обычный запрос видит пустоту.
+# Ничего не публикует: результат — лог + артефакт (JSON и скриншоты).
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "Ссылки для проверки (по одной в строке)"
+        required: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить Playwright
+        run: |
+          pip install --quiet playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Снять цены браузером
+        env:
+          PROBE_URLS: ${{ inputs.urls }}
+        run: python tools/browser_price_probe.py
+
+      - name: Выгрузить результаты
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-probe
+          path: output/browser-probe/
+          if-no-files-found: ignore
