@@ -298,6 +298,13 @@ def main() -> None:
                 'datePublished': iso_date,
                 'dateModified': iso_date,
                 'author': {'@type': 'Person', 'name': 'Дарья'},
+                # Издатель обязателен для Article: без него Яндекс не берёт
+                # статью в быстрые ответы.
+                'publisher': {
+                    '@type': 'Organization',
+                    'name': 'АБХАЗБЕРЕГ',
+                    'url': 'https://абхазберег.рф/',
+                },
                 'image': [blog_image_url],
                 'mainEntityOfPage': f'https://абхазберег.рф/blog/{slug}/',
             },

@@ -679,7 +679,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   </section>
 
 </main>
-  <script src="../../scripts.min.js?v=202608011158" defer></script>
+  <script src="../../scripts.min.js?v=202608011157" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -698,6 +698,13 @@ def render_article_page(art: BuiltArticle, body_html: str) -> str:
             "datePublished": art.iso_date,
             "dateModified": art.iso_date,
             "author": {"@type": "Person", "name": "Дарья"},
+            # Яндекс требует издателя, иначе статья не попадает в быстрые
+            # ответы Алисы и хуже показывается в поиске.
+            "publisher": {
+                "@type": "Organization",
+                "name": "АБХАЗБЕРЕГ",
+                "url": "https://абхазберег.рф/",
+            },
             "image": [f"{YANDEX_MEDIA_BASE}/media/blog/{art.image_name}"],
             "mainEntityOfPage": f"https://абхазберег.рф/blog/{art.slug}/",
         },
@@ -917,7 +924,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   </section>
 
 </main>
-  <script src="../scripts.min.js?v=202608011158" defer></script>
+  <script src="../scripts.min.js?v=202608011157" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

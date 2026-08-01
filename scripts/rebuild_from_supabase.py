@@ -750,6 +750,81 @@ def discover_static_sitemap_urls() -> list[str]:
     return urls
 
 
+def _local_path_for_url(url: str) -> Path | None:
+    """Локальный index.html для URL сайта (или None, если файла нет)."""
+    parsed = urlparse(url)
+    rel = unquote(parsed.path or "/").strip("/")
+    candidate = (ROOT / rel / "index.html") if rel else (ROOT / "index.html")
+    return candidate if candidate.is_file() else None
+
+
+_GIT_DATES_CACHE: dict[str, str] | None = None
+
+
+def _git_lastmod_map() -> dict[str, str]:
+    """Дата последнего коммита по каждому файлу репозитория.
+
+    Нужна потому, что после свежего клона (а именно так работает GitHub
+    Actions) mtime у всех файлов одинаковый — время чекаута, и lastmod из
+    него был бы такой же фикцией, как единая дата «сегодня».
+    """
+    global _GIT_DATES_CACHE
+    if _GIT_DATES_CACHE is not None:
+        return _GIT_DATES_CACHE
+    dates: dict[str, str] = {}
+    try:
+        import subprocess
+
+        out = subprocess.run(
+            ["git", "log", "-n", "4000", "--name-only", "--date=short", "--pretty=format:%cd"],
+            cwd=str(ROOT), capture_output=True, text=True, timeout=180,
+        )
+        current = ""
+        for line in out.stdout.splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            if re.fullmatch(r"\d{4}-\d{2}-\d{2}", line):
+                current = line
+                continue
+            if current and line not in dates:  # первый встреченный = самый свежий коммит
+                dates[line] = current
+    except Exception:  # noqa: BLE001 — git может быть недоступен, тогда падаем на mtime
+        dates = {}
+    _GIT_DATES_CACHE = dates
+    return dates
+
+
+_BLOG_MODIFIED_RX = re.compile(r'"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})')
+
+
+def _lastmod_for_url(url: str, fallback: str) -> str:
+    """Осмысленная дата изменения страницы для sitemap.
+
+    Порядок: dateModified из JSON-LD (статьи блога) → дата последнего коммита
+    по файлу → mtime файла → сегодня.
+    """
+    path = _local_path_for_url(url)
+    if path is None:
+        return fallback
+    try:
+        text = path.read_text(encoding="utf-8", errors="ignore")
+    except OSError:
+        text = ""
+    if text and "/blog/" in url:
+        found = sorted(_BLOG_MODIFIED_RX.findall(text))
+        if found:
+            return found[-1]
+    rel = path.relative_to(ROOT).as_posix()
+    from_git = _git_lastmod_map().get(rel)
+    if from_git:
+        return from_git
+    try:
+        return datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).date().isoformat()
+    except OSError:
+        return fallback
+
+
 def _normalize_sitemap_location(raw: str) -> str:
     u = (raw or "").strip()
     if not u:
@@ -784,7 +859,7 @@ def rebuild_sitemap(rows: list[dict[str, Any]]) -> None:
         loc_el = ET.SubElement(node, "loc")
         loc_el.text = u
         lastmod_el = ET.SubElement(node, "lastmod")
-        lastmod_el.text = today
+        lastmod_el.text = _lastmod_for_url(u, today)
     tree = ET.ElementTree(urlset)
     try:
         ET.indent(tree.getroot(), space="  ")

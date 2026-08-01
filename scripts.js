@@ -58,6 +58,34 @@
     }
   }
 
+  /**
+   * Страницы каталога с фильтрами в адресе (?city=…, ?price=…) — это те же
+   * объекты в другом порядке. Яндекс считает их дублями и снимает с показа
+   * исходную страницу, поэтому фильтрованные адреса закрываем от индексации,
+   * оставляя роботу право ходить по ссылкам (follow) и склеивать всё на
+   * canonical — чистый адрес без параметров.
+   */
+  const CATALOG_FILTER_PARAMS = ["catalog", "distance", "food", "price", "city", "beach", "room", "stay", "name"];
+
+  function applyCatalogRobotsPolicy() {
+    const path = window.location.pathname || "/";
+    if (!/^\/(?:kvartira\/)?$/.test(path)) return;
+    const tag = document.querySelector('meta[name="robots"]');
+    if (!tag) return;
+    const base = String(tag.getAttribute("content") || "");
+    // Страница закрыта от индексации в самом HTML — не переоткрываем её.
+    if (!tag.dataset.baseRobots && /noindex/i.test(base) && !window.location.search) return;
+    if (!tag.dataset.baseRobots) tag.dataset.baseRobots = base;
+    const params = new URLSearchParams(window.location.search || "");
+    const filtered = CATALOG_FILTER_PARAMS.some((key) => (params.get(key) || "").trim());
+    tag.setAttribute("content", filtered ? "noindex, follow" : tag.dataset.baseRobots);
+  }
+
+  function initCatalogFilterIndexingPolicy() {
+    applyCatalogRobotsPolicy();
+    window.addEventListener("popstate", applyCatalogRobotsPolicy);
+  }
+
   function initPublicUrlCopyNormalization() {
     document.addEventListener("copy", (event) => {
       const selection = window.getSelection?.()?.toString?.() || "";
@@ -97,6 +125,7 @@
   }
 
   initCanonicalUrlDisplay();
+  initCatalogFilterIndexingPolicy();
   initPublicUrlCopyNormalization();
 
   function setupMetrikaQueue() {
@@ -199,7 +228,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202608011158";
+  const ASSET_VERSION = "202608011157";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -3376,6 +3405,7 @@
       const next = `${window.location.pathname}${nextSearch}${window.location.hash || ""}`;
       const current = `${window.location.pathname}${window.location.search}${window.location.hash || ""}`;
       if (next !== current) window.history.replaceState(null, "", next);
+      applyCatalogRobotsPolicy();
     }
 
     function absorbLocationIntoCommitted() {
