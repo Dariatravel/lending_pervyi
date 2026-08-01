@@ -1,0 +1,54 @@
+name: Scan tour links in comments
+
+# Разовая проверка: есть ли в комментариях каналов ссылки на 3D-туры.
+# Читает Telegram на раннере GitHub (с RU-хостингов MTProto заблокирован),
+# ничего не коммитит — результат печатается в лог шага «Скан».
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: scan-tour-links
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      TG_STRING_SESSION: ${{ secrets.TG_STRING_SESSION }}
+    steps:
+      - name: Проверить наличие сессии
+        id: gate
+        run: |
+          if [ -z "$TG_STRING_SESSION" ]; then
+            echo "TG_STRING_SESSION не задан — пропускаю."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.enabled == 'true'
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.enabled == 'true'
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        if: steps.gate.outputs.enabled == 'true'
+        run: pip install --quiet -r requirements-site-update-bot.txt
+
+      - name: Экспортировать необязательные секреты
+        if: steps.gate.outputs.enabled == 'true'
+        env:
+          OPT_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          OPT_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+        run: |
+          if [ -n "$OPT_API_ID" ]; then echo "TELEGRAM_API_ID=$OPT_API_ID" >> "$GITHUB_ENV"; fi
+          if [ -n "$OPT_API_HASH" ]; then echo "TELEGRAM_API_HASH=$OPT_API_HASH" >> "$GITHUB_ENV"; fi
+
+      - name: Скан
+        if: steps.gate.outputs.enabled == 'true'
+        run: python3 scripts/scan_comments_for_tours.py
