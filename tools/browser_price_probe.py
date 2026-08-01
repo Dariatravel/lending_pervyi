@@ -43,6 +43,8 @@ TRUSTED = (
     "hochu-na-yuga.ru", "kudanamore.ru", "sutochno.ru", "sutochno.com", "tvil.ru",
     "101hotels.com", "tutu.ru", "edem-v-gosti.ru", "travelandia.ru", "otdyh-abhazia.ru",
     "poehali-na-more.ru", "broni.travel", "bron.site", "alean.ru", "oyug.ru", "tropki.ru",
+    # Крупные известные площадки и абхазский профильный портал.
+    "otello.ru", "travel.ru", "hotels.ru", "myapsny.ru",
 )
 # Пакетные туры (перелёт+отель): цену за сутки из них брать нельзя.
 PACKAGE = ("level.travel", "bgoperator.ru", "delfin-tour.ru", "intourist.ru", "tez-tour", "sunmar", "tavrica.com", "putevkaru.ru")
