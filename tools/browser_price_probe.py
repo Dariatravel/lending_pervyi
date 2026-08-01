@@ -245,9 +245,18 @@ OTHER_CARD_RX = re.compile(r"^\s*Абхазия\s*/\s*\S|\d+\s*ноч\w*\s*[•�
 # подпись выбранных дат — это наш прайс, фильтр чужих карточек не применяем.
 OWN_PRICE_RX = re.compile(
     r"забронировать|выбранн\w+\s+дат|по\s+вашим\s+датам|итого|за\s+весь\s+период|"
-    r"стоимость\s+проживания|цена\s+за\s+сутки|за\s+сутки",
+    r"стоимость\s+проживания",
     re.I,
 )
+
+
+def marker_distance(lines: list[str], index: int, pattern: re.Pattern, radius: int = 2) -> int:
+    """На сколько строк от цены отстоит ближайший маркер (99 — маркера нет)."""
+    for distance in range(radius + 1):
+        for j in (index - distance, index + distance):
+            if 0 <= j < len(lines) and pattern.search(lines[j]):
+                return distance
+    return 99
 
 
 def harvest_dated(page, nights: int) -> list[dict]:
@@ -274,14 +283,15 @@ def harvest_dated(page, nights: int) -> list[dict]:
             if 0 <= j < len(lines) and 2 < len(lines[j]) <= 60 and not price_of(lines[j]):
                 context = lines[j]
                 break
-        # Карточка другого объекта в подборке «похожие» — её цена не наша.
-        # Но если рядом стоит кнопка/подпись самого объекта, цену оставляем.
-        neighbourhood_lines = lines[max(0, i - 2): i + 3]
-        own = any(OWN_PRICE_RX.search(l) for l in neighbourhood_lines)
-        foreign = OTHER_CARD_RX.search(context) or any(
-            OTHER_CARD_RX.search(l) for l in neighbourhood_lines
-        )
-        if foreign and not own:
+        # Блоки на странице идут вплотную: цена отеля, сразу под ней карточка
+        # соседнего объекта. Поэтому решаем по самой строке и её подписи, а не
+        # по окну соседей: «Забронировать»/«по выбранным датам» — цена отеля,
+        # «Абхазия / город» и «N ночей •» — чужая карточка.
+        own_at = marker_distance(lines, i, OWN_PRICE_RX)
+        foreign_at = marker_distance(lines, i, OTHER_CARD_RX)
+        # Ничья (маркеры одинаково близко) трактуется в пользу отсева: лучше
+        # потерять цену, чем записать отелю чужой демпинг.
+        if foreign_at <= own_at and foreign_at < 99:
             continue
         rows.append({"source": "dated", "period": context or "по выбранным датам", "price": value,
                      "raw": f"{context} | {line}"[:200]})
