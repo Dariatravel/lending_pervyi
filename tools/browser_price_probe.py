@@ -35,6 +35,42 @@ EXPAND_TEXTS = (
 )
 
 
+def with_dates(url: str, checkin: str, checkout: str, guests: int) -> str:
+    """Добавить даты и число гостей в ссылку по правилам конкретной площадки.
+
+    Суточно, Яндекс, Островок и другие показывают цену только для выбранных
+    дат. Кликать по календарю ненадёжно (у всех своя вёрстка), зато все они
+    принимают даты параметрами ссылки — этим и пользуемся.
+    checkin/checkout: YYYY-MM-DD.
+    """
+    from urllib.parse import urlencode, urlparse
+
+    host = urlparse(url).netloc.lower()
+    dmy_in = "-".join(reversed(checkin.split("-")))   # 25-08-2026
+    dmy_out = "-".join(reversed(checkout.split("-")))
+    dot_in = dmy_in.replace("-", ".")                  # 25.08.2026
+    dot_out = dmy_out.replace("-", ".")
+    sep = "&" if "?" in url else "?"
+
+    if "travel.yandex" in host:
+        params = {"checkinDate": checkin, "checkoutDate": checkout, "adults": guests, "childrenAges": ""}
+    elif "sutochno" in host:
+        params = {"occupied": f"{dot_in};{dot_out}", "guests": guests, "guests_adults": guests}
+    elif "ostrovok" in host:
+        params = {"dates": f"{dot_in}-{dot_out}", "guests": f"{guests}"}
+    elif "tvil.ru" in host:
+        params = {"date_from": dot_in, "date_to": dot_out, "guests": guests}
+    elif "101hotels" in host:
+        params = {"checkIn": checkin, "checkOut": checkout, "adults": guests}
+    elif "tutu.ru" in host:
+        params = {"checkIn": checkin, "checkOut": checkout, "adults": guests}
+    elif "broni.travel" in host or "bron.site" in host:
+        params = {"arrival": checkin, "departure": checkout, "adults": guests}
+    else:
+        return url
+    return url + sep + urlencode(params)
+
+
 def clean(text: str) -> str:
     return re.sub(r"\s+", " ", (text or "").replace(" ", " ")).strip()
 
@@ -155,20 +191,32 @@ def harvest_rows(page) -> list[dict]:
     return unique
 
 
-def probe(page, url: str, index: int) -> dict:
+def probe(page, url: str, index: int, checkin: str = "", checkout: str = "", guests: int = 2) -> dict:
+    target = with_dates(url, checkin, checkout, guests) if checkin and checkout else url
     print(f"\n{'=' * 80}\nURL: {url}", flush=True)
-    result = {"url": url, "status": "", "clicks": 0, "rows": []}
+    if target != url:
+        print(f"     (с датами {checkin} → {checkout}, гостей {guests})", flush=True)
+    result = {"url": url, "requested": target, "status": "", "clicks": 0, "rows": []}
     try:
-        response = page.goto(url, wait_until="domcontentloaded", timeout=45000)
+        response = page.goto(target, wait_until="domcontentloaded", timeout=45000)
         result["status"] = str(response.status if response else "нет ответа")
     except Exception as error:  # noqa: BLE001
         print(f"STATUS: ОШИБКА ОТКРЫТИЯ — {error}", flush=True)
         result["status"] = f"error: {error}"
         return result
     page.wait_for_timeout(2500)
+    # Цены на площадках с календарём подгружаются после ответа сервера —
+    # ждём появления любой суммы в рублях (до 15 секунд).
+    try:
+        page.wait_for_function(
+            "() => /\\d[\\d\\s\\u00a0]{2,}\\s*(₽|руб)/.test(document.body.innerText)",
+            timeout=15000,
+        )
+    except Exception:  # noqa: BLE001 — цен может не быть вовсе
+        pass
     try:
         page.mouse.wheel(0, 4000)
-        page.wait_for_timeout(1200)
+        page.wait_for_timeout(1500)
     except Exception:  # noqa: BLE001
         pass
     result["clicks"] = expand_everything(page)
@@ -190,6 +238,9 @@ def main() -> int:
     if not urls:
         print("PROBE_URLS пуст — нечего проверять.", file=sys.stderr)
         return 1
+    checkin = os.environ.get("PROBE_CHECKIN", "").strip()
+    checkout = os.environ.get("PROBE_CHECKOUT", "").strip()
+    guests = int(os.environ.get("PROBE_GUESTS", "2") or 2)
 
     from playwright.sync_api import sync_playwright
 
@@ -207,7 +258,7 @@ def main() -> int:
         )
         page = context.new_page()
         for i, url in enumerate(urls[:40], 1):
-            results.append(probe(page, url, i))
+            results.append(probe(page, url, i, checkin, checkout, guests))
         browser.close()
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)

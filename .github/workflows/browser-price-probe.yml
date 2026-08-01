@@ -10,6 +10,18 @@ on:
       urls:
         description: "Ссылки для проверки (по одной в строке)"
         required: true
+      checkin:
+        description: "Дата заезда ГГГГ-ММ-ДД (для площадок с календарём)"
+        required: false
+        default: "2026-08-25"
+      checkout:
+        description: "Дата выезда ГГГГ-ММ-ДД"
+        required: false
+        default: "2026-08-30"
+      guests:
+        description: "Гостей"
+        required: false
+        default: "2"
 
 jobs:
   probe:
@@ -30,6 +42,9 @@ jobs:
       - name: Снять цены браузером
         env:
           PROBE_URLS: ${{ inputs.urls }}
+          PROBE_CHECKIN: ${{ inputs.checkin }}
+          PROBE_CHECKOUT: ${{ inputs.checkout }}
+          PROBE_GUESTS: ${{ inputs.guests }}
         run: python tools/browser_price_probe.py
 
       - name: Выгрузить результаты
