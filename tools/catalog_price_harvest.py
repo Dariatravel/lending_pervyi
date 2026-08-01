@@ -97,20 +97,30 @@ def harvest(page, url: str, ours: list[tuple[str, str, str]]) -> list[dict]:
     except Exception:  # noqa: BLE001
         pass
 
+    # Цена почти никогда не лежит внутри самой ссылки — она рядом, в карточке.
+    # Поэтому от каждой ссылки поднимаемся вверх по дереву, пока не найдём
+    # блок, где есть и название, и сумма. Один вызов в браузер вместо сотен.
     try:
-        cards = page.locator("a[href]").all()
+        cards = page.evaluate(
+            """() => [...document.querySelectorAll('a[href]')].map(a => {
+                let node = a, txt = a.innerText || '';
+                for (let i = 0; i < 4 && node; i++) {
+                    const t = node.innerText || '';
+                    if (/\\d[\\d\\s\\u00a0]{2,}\\s*(₽|руб)/i.test(t)) { txt = t; break; }
+                    node = node.parentElement;
+                }
+                return { href: a.href || '', text: (txt || '').slice(0, 400) };
+            })"""
+        )
     except Exception:  # noqa: BLE001
         return []
 
     seen: set[str] = set()
     found: list[dict] = []
-    for card in cards[:600]:
-        try:
-            href = card.get_attribute("href") or ""
-            text = clean(card.inner_text())
-        except Exception:  # noqa: BLE001
-            continue
-        if not href or len(text) < 8 or len(text) > 300:
+    for card in cards[:1200]:
+        href = card.get("href") or ""
+        text = clean(card.get("text") or "")
+        if not href or len(text) < 8 or len(text) > 400:
             continue
         price = PRICE_RX.search(text)
         if not price:
