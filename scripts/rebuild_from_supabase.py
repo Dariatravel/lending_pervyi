@@ -607,10 +607,13 @@ def update_hotel_page(row: dict[str, Any]) -> None:
     lead_html = "<br />".join(html.escape(part.strip()) for part in lead.split("\n") if part.strip())
     text = path.read_text(encoding="utf-8")
     text = replace_once(text, r"<title>.*?</title>", f"<title>{html.escape(title)} — обзор, фото, видео и цены</title>")
-    text = replace_once(text, r'<meta name="description" content=".*?" ?/?>', f'<meta name="description" content="{html.escape(summary, quote=True)}" />')
+    # Название в описании — защита от дублей description у соседних объектов
+    # с одинаковым городом, пляжем и вместимостью.
+    meta_description = f"{title}. {summary}".strip() if title else summary
+    text = replace_once(text, r'<meta name="description" content=".*?" ?/?>', f'<meta name="description" content="{html.escape(meta_description, quote=True)}" />')
     text = replace_once(text, r'<link rel="canonical" href=".*?" ?/?>', f'<link rel="canonical" href="{html.escape(page_url, quote=True)}" />')
     text = replace_once(text, r'<meta property="og:title" content=".*?" ?/?>', f'<meta property="og:title" content="{html.escape(title, quote=True)} — обзор и цены" />')
-    text = replace_once(text, r'<meta property="og:description" content=".*?" ?/?>', f'<meta property="og:description" content="{html.escape(summary, quote=True)}" />')
+    text = replace_once(text, r'<meta property="og:description" content=".*?" ?/?>', f'<meta property="og:description" content="{html.escape(meta_description, quote=True)}" />')
     text = replace_once(text, r'<meta property="og:url" content=".*?" ?/?>', f'<meta property="og:url" content="{html.escape(page_url, quote=True)}" />')
     if cover:
         text = replace_once(text, r'<meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/og-banner.png" ?/?>', f'<meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/og-banner.png" />')

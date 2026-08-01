@@ -163,7 +163,8 @@ def main() -> int:
         url = page_url(path)
         metas = meta_map(html)
         robots = metas.get("robots", "")
-        if "noindex" in robots.lower():
+        is_redirect = "refresh" in html[:2000].lower() and "url=" in html[:2000].lower()
+        if "noindex" in robots.lower() or is_redirect:
             # Страница-редирект короткой ссылки: проверяем только, что цель жива.
             target = HREF_RX.search(CANONICAL_RX.search(html).group(0)) if CANONICAL_RX.search(html) else None
             if target and not local_path_for_url(target.group(1)).is_file():

@@ -1013,6 +1013,11 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     save_label = 'К каталогу'
     page_title_suffix = 'обзор, фото, видео и цены'
     summary = summary_text(parsed.get('location', ''), parsed.get('beach', ''), parsed.get('capacity', ''))
+    # У соседних объектов совпадают город, расстояние до пляжа и вместимость,
+    # поэтому одинаковый summary давал одинаковые description на разных
+    # страницах — Яндекс считает это дублями. Название делает описание уникальным.
+    meta_description = f'{title}. {summary}'.strip()
+
     def absolute_site_url(raw: str) -> str:
         value = (raw or '').strip()
         if not value:
@@ -1061,12 +1066,12 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{html.escape(title)} — {page_title_suffix}</title>
-    <meta name="description" content="{html.escape(summary)}" />
+    <meta name="description" content="{html.escape(meta_description)}" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://абхазберег.рф{page_href}" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="{html.escape(title)} — обзор и цены" />
-    <meta property="og:description" content="{html.escape(summary)}" />
+    <meta property="og:description" content="{html.escape(meta_description)}" />
     <meta property="og:url" content="https://абхазберег.рф{page_href}" />
     <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/og-banner.png" />
     <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />

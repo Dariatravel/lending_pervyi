@@ -24,6 +24,7 @@ ASSET_VERSION_PATH = ROOT / "data" / "asset-version.txt"
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 CANONICAL_ORIGIN = "https://абхазберег.рф"
 CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media"
+OG_FALLBACK_IMAGE = f"{CDN_MEDIA_BASE}/branding/og-banner.png"
 
 CITY_LABELS = {
     "ldzaa": "ЛДЗАА",
@@ -397,6 +398,9 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
             parts.append(render_card(card, rank))
         parts.append("        </div>")
     body_html = "\n".join(parts)
+    # Картинка для превью в поиске и мессенджерах: фото первого объекта
+    # подборки, а если карточек нет — брендовый баннер.
+    og_image = next((card.image for card in cards if card.image), "") or OG_FALLBACK_IMAGE
     return f"""<!DOCTYPE html>
 <html lang="ru" id="top">
 <head>
@@ -406,6 +410,11 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
   <meta name="description" content="{html.escape(description)}" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/{selection.slug}/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{html.escape(h1)}" />
+  <meta property="og:description" content="{html.escape(description)}" />
+  <meta property="og:url" content="{CANONICAL_ORIGIN}/podborki/{selection.slug}/" />
+  <meta property="og:image" content="{html.escape(og_image)}" />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={version}" />
@@ -525,6 +534,11 @@ def render_index(items: list[tuple[str, str, str, str]], version: str) -> str:
   <title>Подборки жилья в Абхазии — АБХАЗБЕРЕГ</title>
   <meta name="description" content="Тематические подборки отелей, домов и квартир в Абхазии: море, бюджет, удобства, локации." />
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Подборки жилья в Абхазии" />
+  <meta property="og:description" content="Тематические подборки отелей, домов и квартир в Абхазии: море, бюджет, удобства, локации." />
+  <meta property="og:url" content="{CANONICAL_ORIGIN}/podborki/" />
+  <meta property="og:image" content="{OG_FALLBACK_IMAGE}" />
   <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
   <link rel="icon" type="image/png" href="{CDN_MEDIA_BASE}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../styles.min.css?v={version}" />
