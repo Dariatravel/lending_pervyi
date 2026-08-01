@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31T15:56:28.661708+00:00",
+  "generated_at": "2026-08-01T08:00:32.516130+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -22238,15 +22238,11 @@
           },
           {
             "kind": "price",
-            "text": "При бронировании домика от 5 дней в период с 1 по 10 июля или с 22 июля по 5 августа стоимость 4000₽"
+            "text": "При бронировании 1 домика на период с 1 до 10 августа стоимость - 5600₽, 2х домиков - 5100₽"
           },
           {
             "kind": "price",
-            "text": "5000₽/сутки - апрель, май"
-          },
-          {
-            "kind": "price",
-            "text": "6000₽/сутки - июнь, июль, август"
+            "text": "6000₽/сутки - август"
           },
           {
             "kind": "price",
@@ -22456,7 +22452,7 @@
           "details": {
             "telegram_post": "abhazbooking/3632",
             "telegram_url": "https://t.me/abhazbooking/3632",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bungalo-glemping-3623/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bungalo-glemping-3623/video-01-poster.jpg"
           }
         }
       ]
@@ -30027,19 +30023,11 @@
           },
           {
             "kind": "price",
-            "text": "10000₽/сутки - сентябрь до 15го"
+            "text": "5500₽/сутки - сентябрь"
           },
           {
             "kind": "price",
-            "text": "9000₽/сутки - сентябрь с 15го"
-          },
-          {
-            "kind": "price",
-            "text": "6000₽/сутки - октябрь с 1 по 15"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽/сутки - октябрь с 15 по 30"
+            "text": "4000₽/сутки - октябрь"
           },
           {
             "kind": "price",
