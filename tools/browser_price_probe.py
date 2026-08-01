@@ -234,6 +234,11 @@ def harvest_rows(page) -> list[dict]:
     return unique
 
 
+# Признаки карточки ЧУЖОГО объекта в подборке «похожие»: строка-адрес вида
+# «Абхазия / Гудаута» и подписи «N ночей • от … за ночь».
+OTHER_CARD_RX = re.compile(r"^Абхазия\s*/|^\w[\w\s-]{2,20}\s*/\s*\w|\d+\s*ноч\w*\s*•", re.I)
+
+
 def harvest_dated(page, nights: int) -> list[dict]:
     """Сбор цен, когда даты уже выбраны.
 
@@ -258,6 +263,10 @@ def harvest_dated(page, nights: int) -> list[dict]:
             if 0 <= j < len(lines) and 2 < len(lines[j]) <= 60 and not price_of(lines[j]):
                 context = lines[j]
                 break
+        # Карточка другого объекта в подборке «похожие» — её цена не наша.
+        neighbourhood = " ".join(lines[max(0, i - 2): i + 3])
+        if OTHER_CARD_RX.search(context) or OTHER_CARD_RX.search(neighbourhood):
+            continue
         rows.append({"source": "dated", "period": context or "по выбранным датам", "price": value,
                      "raw": f"{context} | {line}"[:200]})
     seen: set[tuple] = set()
