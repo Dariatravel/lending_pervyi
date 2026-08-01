@@ -35,6 +35,49 @@ EXPAND_TEXTS = (
 )
 
 
+# Площадки, которым доверяем (крупные + профильные по Абхазии). Всё остальное
+# помечается как «сайт вне списка» и в сверку не идёт: мелкие агрегаторы часто
+# показывают устаревшие цены и путают объекты.
+TRUSTED = (
+    "ozon.travel", "travel.ozon.ru", "ostrovok.ru", "travel.yandex.ru", "yandex.ru",
+    "hochu-na-yuga.ru", "kudanamore.ru", "sutochno.ru", "sutochno.com", "tvil.ru",
+    "101hotels.com", "tutu.ru", "edem-v-gosti.ru", "travelandia.ru", "otdyh-abhazia.ru",
+    "poehali-na-more.ru", "broni.travel", "bron.site", "alean.ru", "oyug.ru", "tropki.ru",
+)
+# Пакетные туры (перелёт+отель): цену за сутки из них брать нельзя.
+PACKAGE = ("level.travel", "bgoperator.ru", "delfin-tour.ru", "intourist.ru", "tez-tour", "sunmar", "tavrica.com", "putevkaru.ru")
+# Туроператоры, у которых бывает тариф «только проживание» — смотреть вручную.
+OPERATOR_NO_FLIGHT = ("alean.ru",)
+
+NIGHTS_RX = re.compile(r"за\s+(\d{1,2})\s*ноч|(\d{1,2})\s*ноч[еи]", re.I)
+
+
+def site_kind(url: str, hotel_domain_ok: bool = True) -> str:
+    """«доверенный» | «пакетный» | «оператор» | «вне списка»."""
+    from urllib.parse import urlparse
+
+    host = urlparse(url).netloc.lower().replace("www.", "")
+    if any(p in host for p in PACKAGE):
+        return "пакетный"
+    if any(o in host for o in OPERATOR_NO_FLIGHT):
+        return "оператор"
+    if any(t in host for t in TRUSTED):
+        return "доверенный"
+    return "вне списка"
+
+
+def per_night(price: int, text: str, nights: int) -> tuple[int, str]:
+    """Привести цену к «за сутки»: итог за N ночей делим на N."""
+    match = NIGHTS_RX.search(text or "")
+    n = int(match.group(1) or match.group(2)) if match else 0
+    if n > 1:
+        return round(price / n), f"итог за {n} ноч. ({price:,} ₽)".replace(",", " ")
+    # Крупная сумма при заданном сроке — почти наверняка итог за весь период.
+    if nights > 1 and price > 25000:
+        return round(price / nights), f"итог за {nights} ноч. ({price:,} ₽)".replace(",", " ")
+    return price, ""
+
+
 def with_dates(url: str, checkin: str, checkout: str, guests: int) -> str:
     """Добавить даты и число гостей в ссылку по правилам конкретной площадки.
 
@@ -192,11 +235,27 @@ def harvest_rows(page) -> list[dict]:
 
 
 def probe(page, url: str, index: int, checkin: str = "", checkout: str = "", guests: int = 2) -> dict:
+    kind = site_kind(url)
+    nights = 0
+    if checkin and checkout:
+        from datetime import date
+
+        y1, m1, d1 = (int(x) for x in checkin.split("-"))
+        y2, m2, d2 = (int(x) for x in checkout.split("-"))
+        nights = max((date(y2, m2, d2) - date(y1, m1, d1)).days, 0)
     target = with_dates(url, checkin, checkout, guests) if checkin and checkout else url
-    print(f"\n{'=' * 80}\nURL: {url}", flush=True)
+    print(f"\n{'=' * 80}\nURL: {url}\nПЛОЩАДКА: {kind}", flush=True)
+    if kind == "вне списка":
+        print("ПРОПУСК: сайт не в списке доверенных площадок.", flush=True)
+        return {"url": url, "kind": kind, "status": "skipped", "clicks": 0, "rows": []}
+    if kind == "пакетный":
+        print("ПРОПУСК: пакетные туры (перелёт+отель) — цена за сутки несопоставима.", flush=True)
+        return {"url": url, "kind": kind, "status": "skipped-package", "clicks": 0, "rows": []}
+    if kind == "оператор":
+        print("ВНИМАНИЕ: туроператор — проверить наличие тарифа «только проживание» (без перелёта).", flush=True)
     if target != url:
-        print(f"     (с датами {checkin} → {checkout}, гостей {guests})", flush=True)
-    result = {"url": url, "requested": target, "status": "", "clicks": 0, "rows": []}
+        print(f"     (с датами {checkin} → {checkout}, ночей {nights}, гостей {guests})", flush=True)
+    result = {"url": url, "kind": kind, "requested": target, "nights": nights, "status": "", "clicks": 0, "rows": []}
     try:
         response = page.goto(target, wait_until="domcontentloaded", timeout=45000)
         result["status"] = str(response.status if response else "нет ответа")
@@ -221,10 +280,14 @@ def probe(page, url: str, index: int, checkin: str = "", checkout: str = "", gue
         pass
     result["clicks"] = expand_everything(page)
     rows = harvest_rows(page)
+    for row in rows:
+        row["price_night"], row["note"] = per_night(row["price"], row["raw"], nights)
     result["rows"] = rows
     print(f"STATUS: {result['status']} | кликов по «показать»: {result['clicks']} | строк прайса: {len(rows)}", flush=True)
     for row in rows[:60]:
-        print(f"   | {row['period'][:44]:44} | {row['price']:>8,} ₽ | {row['raw'][:90]}".replace(",", " "), flush=True)
+        tail = f" [{row['note']}]" if row.get("note") else ""
+        line = f"   | {row['period'][:40]:40} | {row['price_night']:>8,} ₽/сутки{tail} | {row['raw'][:70]}"
+        print(line.replace(",", " "), flush=True)
     try:
         OUT_DIR.mkdir(parents=True, exist_ok=True)
         page.screenshot(path=str(OUT_DIR / f"{index:02d}.png"), full_page=False)
