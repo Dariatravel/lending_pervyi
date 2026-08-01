@@ -199,7 +199,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202608011042";
+  const ASSET_VERSION = "202608011158";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -5316,18 +5316,22 @@
     window.addEventListener("load", () => correctScroll(window.location.hash), { once: true });
   }
 
+  // Выполнить некритичную инициализацию в простое главного потока — чтобы не
+  // раздувать стартовую длинную задачу (Lighthouse TBT). Фолбэк — setTimeout.
+  const whenIdle = (fn) => {
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(fn, { timeout: 2500 });
+    } else {
+      window.setTimeout(fn, 200);
+    }
+  };
+
+  // Критично для первого экрана и взаимодействия — синхронно.
   initInPageAnchorFix();
   initHomeTopbarSticky();
-  initHeroVideoQuality();
-  initLocalVideoPosters();
-  initLocalVideoNaturalPlayback();
   initCatalogMapPlaques();
   initObjectPageMapPlaque();
   absolutizeHotelSiteConceptMedia();
-  void initRandomGuestReviews();
-
-  initLazyScreenshotReviews();
-  initStableAnchorScroll();
 
   const filtersController = initFilters();
   initSearchBar(filtersController);
@@ -5336,11 +5340,22 @@
   hydrateKvartiraCatalog(filtersController);
   hydrateHotelPage();
   initListingPageShareLink();
-  void initSimilarListings();
-  void initSimilarBlogPosts();
   initMobileReviewsPlacement();
   initDeferredFullCatalog(filtersController);
   initFavorites();
+
+  // Некритичное (видео, случайные отзывы, похожие объекты/посты, второстепенный
+  // скролл) — после первого кадра, в простое: не блокирует интерфейс.
+  whenIdle(() => {
+    initHeroVideoQuality();
+    initLocalVideoPosters();
+    initLocalVideoNaturalPlayback();
+    void initRandomGuestReviews();
+    initLazyScreenshotReviews();
+    initStableAnchorScroll();
+    void initSimilarListings();
+    void initSimilarBlogPosts();
+  });
 
   /**
    * «Избранное» ♥ — личная подборка гостя в его браузере (localStorage).
