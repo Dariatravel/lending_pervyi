@@ -214,6 +214,8 @@ def harvest_rows(page) -> list[dict]:
         lines = []
     lines = lines[: foreign_cut(lines)]
     for i, line in enumerate(lines):
+        if DESTINATION_RX.search(line):  # подвал «Популярные направления»
+            continue
         has_period = PERIOD_DATE_RX.search(line) or (PERIOD_WORD_RX.search(line) and len(line) < 60)
         if not has_period:
             continue
@@ -231,10 +233,12 @@ def harvest_rows(page) -> list[dict]:
         if value:
             rows.append({"source": "text", "period": line[:80], "price": value, "raw": (line + " | " + window)[:220]})
 
-    # дедуп
+    # дедуп + отсев подвала «Популярные направления»
     seen: set[tuple] = set()
     unique: list[dict] = []
     for row in rows:
+        if DESTINATION_RX.search(row["period"]):
+            continue
         key = (row["period"][:40], row["price"])
         if key in seen:
             continue
@@ -249,6 +253,16 @@ def harvest_rows(page) -> list[dict]:
 #   «Абхазия / Гудаута»          — строка-адрес карточки соседнего объекта
 #   «7 ночей • от 5400 руб.»     — подпись карточки в подборке (маркер-буллет)
 OTHER_CARD_RX = re.compile(r"^\s*Абхазия\s*/\s*\S|\d+\s*ноч\w*\s*[•·]", re.I)
+
+# Блок «Популярные направления» в подвале площадок: «Санкт-Петербург — от 1 100 ₽
+# / сутки». Это цены других городов и стран, к нашему отелю отношения не имеют.
+DESTINATION_RX = re.compile(
+    r"^\s*(?:Санкт-Петербург|Москва|Сочи|Геленджик|Анапа|Казань|Нижний\s+Новгород|Краснодар"
+    r"|Екатеринбург|Калининград|Ростов-на-Дону|Владивосток|Кисловодск|Самара|Ярославль"
+    r"|Новосибирск|Зеленоградск|Волгоград|Суздаль|Воронеж|Азербайджан|Турция|Испания"
+    r"|Франция|Италия|Египет|ОАЭ|Грузия|Армения|Белоруссия|Беларусь|Крым|Абхазия)\s*$",
+    re.I,
+)
 
 # Строки самого объекта: если рядом с ценой стоит его собственная кнопка или
 # подпись выбранных дат — это наш прайс, фильтр чужих карточек не применяем.
@@ -407,9 +421,24 @@ def main() -> int:
                 "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
             ),
         )
-        page = context.new_page()
+        # Некоторые площадки уводят браузер на партнёрскую ссылку Яндекс.Путешествий,
+        # там встречает капча, и следующая страница падает с «навигация прервана».
+        # Блокируем такие переходы — они всё равно бесполезны для сверки.
+        context.route(
+            re.compile(r"travel\.yandex\.ru/(showcaptcha|\?affiliate)"),
+            lambda route: route.abort(),
+        )
         for i, url in enumerate(urls[:40], 1):
-            results.append(probe(page, url, i, checkin, checkout, guests))
+            # Каждую страницу открываем в своей вкладке: иначе редирект одной
+            # площадки обрывает загрузку следующей и ломает всю пачку.
+            page = context.new_page()
+            try:
+                results.append(probe(page, url, i, checkin, checkout, guests))
+            finally:
+                try:
+                    page.close()
+                except Exception:  # noqa: BLE001
+                    pass
         browser.close()
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
