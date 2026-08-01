@@ -1,0 +1,40 @@
+name: Catalog price harvest
+
+# Съём цен пачкой: открывает страницы-каталоги площадок («Гостиницы Пицунды»)
+# и вытаскивает цены сразу по десяткам наших объектов. Ничего не публикует.
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "Ссылки на страницы-каталоги (по одной в строке)"
+        required: true
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить Playwright
+        run: |
+          pip install --quiet playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Снять цены с каталогов
+        env:
+          PROBE_URLS: ${{ inputs.urls }}
+        run: python tools/catalog_price_harvest.py
+
+      - name: Выгрузить результаты
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-harvest
+          path: output/catalog-harvest/
+          if-no-files-found: ignore
