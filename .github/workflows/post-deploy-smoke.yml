@@ -15,3 +15,16 @@ jobs:
           python-version: "3.11"
       - name: Check production pages
         run: python tools/post_deploy_smoke.py
+
+      # Отдельно следим за страницами, которые Вебмастер показывает в топе:
+      # код ответа, скорость, title, canonical, запрет индексации.
+      - name: Check key pages from Yandex Webmaster
+        run: python tools/webmaster_recommended_pages_check.py --strict
+
+      - name: Upload health report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: webmaster-pages-health
+          path: output/webmaster_pages_health.txt
+          if-no-files-found: ignore

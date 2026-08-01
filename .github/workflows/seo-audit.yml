@@ -1,0 +1,34 @@
+name: SEO audit (Yandex Webmaster)
+
+# Технический SEO-аудит репозитория: дубли title/description, canonical,
+# og:image, JSON-LD статей и расхождения с sitemap. Ничего не публикует —
+# только отчёт в логе и артефакте.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 6 * * 1"
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # нужна история: из неё берутся даты изменения страниц
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Аудит SEO
+        run: python tools/audit_yandex_webmaster_seo.py --strict
+
+      - name: Выгрузить отчёт
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yandex-webmaster-seo-audit
+          path: output/yandex_webmaster_seo_audit.txt
+          if-no-files-found: ignore

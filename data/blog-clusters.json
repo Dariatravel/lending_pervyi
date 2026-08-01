@@ -1,0 +1,68 @@
+{
+  "_comment": "Тематические кластеры статей блога для внутренней перелинковки. Используется scripts/inject_blog_related_links.py: в каждую статью вставляется блок «Читайте по теме» со ссылками на соседей по кластеру. cta — ссылка на каталог, добавляется только для кластеров, где подбор жилья уместен по смыслу.",
+  "clusters": {
+    "granitsa-psou": {
+      "title": "Граница Псоу",
+      "slugs": [
+        "kak-projti-granicu-psou",
+        "duty-free-na-granitse-psou",
+        "marshrutki-ot-granitsy-psou",
+        "pamyatka-turistu-abkhazia"
+      ],
+      "cta": {
+        "text": "Подобрать жильё рядом с границей — Гагра и Цандрипш",
+        "href": "/?city=gagra"
+      }
+    },
+    "transport": {
+      "title": "Дорога и транспорт",
+      "slugs": [
+        "edinyj-bilet-v-abhaziyu",
+        "marshrutki-ot-granitsy-psou",
+        "parom-sochi-suhum-kometa",
+        "poezda-i-samolet-do-suhuma",
+        "prava-i-shtrafy-avto-abhaziya"
+      ]
+    },
+    "dokumenty": {
+      "title": "Документы и правила",
+      "slugs": [
+        "pravila-poezdki-s-detmi-abkhaziya-2026",
+        "inostrannye-pravila-vezda-abkhazia",
+        "proverka-dolgov-pered-poezdkoj",
+        "poezdka-v-abhaziyu-s-zhivotnym",
+        "poezd-po-svidetelstvu-rozhdeniya"
+      ]
+    },
+    "byt": {
+      "title": "Быт на месте",
+      "slugs": [
+        "dengi-i-oplata-v-abhazii",
+        "mobilnaya-svyaz-i-internet-abkhaziya",
+        "vremya-v-abhazii-moskovskoe",
+        "shtraf-za-kupalnik-v-abhazii",
+        "veyp-i-elektronnye-sigarety-abhaziya",
+        "rotavirus-mify-otdyh-more",
+        "zagar-i-spf-na-more-abhaziya"
+      ]
+    },
+    "geografiya": {
+      "title": "Куда поехать",
+      "slugs": [
+        "chto-takoe-citrusovyy-abhaziya",
+        "ldzaa-shtil-pitsunda-volny",
+        "peschanye-plyazhi-abhazii",
+        "kak-vybrat-kurort-abkhaziya-pervyy-raz",
+        "goryachie-istochniki-abhazii",
+        "paraplany-gagra-mamzyshha",
+        "chego-boyatsya-v-abhazii",
+        "minusy-otdyha-abkhazia",
+        "neft-tuapse-i-more-abhaziya"
+      ],
+      "cta": {
+        "text": "Посмотреть жильё у моря по курортам Абхазии",
+        "href": "/#catalog"
+      }
+    }
+  }
+}

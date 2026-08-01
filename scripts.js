@@ -228,7 +228,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202608011157";
+  const ASSET_VERSION = "202608011209";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -5231,6 +5231,12 @@
 
     const href = (link.getAttribute("href") || "").toLowerCase();
     if (!href) return;
+
+    // Кнопка «Подобрать жильё» в статьях блога: считаем переходы блог → каталог.
+    const goal = link.getAttribute("data-goal");
+    if (goal) {
+      trackAnalytics(goal, { href, from: window.location.pathname });
+    }
 
     if (href.includes("wa.me") || href.includes("whatsapp")) {
       trackAnalytics("click_whatsapp", { href });
