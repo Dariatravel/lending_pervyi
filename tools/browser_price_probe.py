@@ -234,6 +234,42 @@ def harvest_rows(page) -> list[dict]:
     return unique
 
 
+def harvest_dated(page, nights: int) -> list[dict]:
+    """Сбор цен, когда даты уже выбраны.
+
+    В этом режиме площадка пишет цену без месяца («12 500 ₽ за 5 ночей»,
+    «2 500 ₽ за ночь»), поэтому берём все суммы с их подписями.
+    """
+    try:
+        lines = [clean(l) for l in page.locator("body").inner_text().splitlines()]
+        lines = [l for l in lines if l]
+    except Exception:  # noqa: BLE001
+        return []
+    lines = lines[: foreign_cut(lines)]
+    rows: list[dict] = []
+    for i, line in enumerate(lines):
+        if len(line) > 90:
+            continue
+        value = price_of(line)
+        if not value:
+            continue
+        context = ""
+        for j in (i - 1, i + 1):
+            if 0 <= j < len(lines) and 2 < len(lines[j]) <= 60 and not price_of(lines[j]):
+                context = lines[j]
+                break
+        rows.append({"source": "dated", "period": context or "по выбранным датам", "price": value,
+                     "raw": f"{context} | {line}"[:200]})
+    seen: set[tuple] = set()
+    unique: list[dict] = []
+    for row in rows:
+        key = (row["period"][:30], row["price"])
+        if key not in seen:
+            seen.add(key)
+            unique.append(row)
+    return unique[:25]
+
+
 def probe(page, url: str, index: int, checkin: str = "", checkout: str = "", guests: int = 2) -> dict:
     kind = site_kind(url)
     nights = 0
@@ -278,8 +314,14 @@ def probe(page, url: str, index: int, checkin: str = "", checkout: str = "", gue
         page.wait_for_timeout(1500)
     except Exception:  # noqa: BLE001
         pass
+    try:
+        print(f"ЗАГОЛОВОК: {clean(page.title())[:90]}", flush=True)
+    except Exception:  # noqa: BLE001
+        pass
     result["clicks"] = expand_everything(page)
     rows = harvest_rows(page)
+    if not rows and nights:
+        rows = harvest_dated(page, nights)
     for row in rows:
         row["price_night"], row["note"] = per_night(row["price"], row["raw"], nights)
     result["rows"] = rows
