@@ -68,8 +68,28 @@ def expand_everything(page) -> int:
     return clicks
 
 
+# Заголовки чужих блоков: их цены относятся к ДРУГИМ объектам и в сверку не идут.
+FOREIGN_RX = re.compile(
+    r"похож|рекомендуем|смотрите\s+так|также\s+смотрят|другие\s+(вариант|объект|отел|предложен)"
+    r"|поблизости|рядом\s+с\s+этим|вам\s+может|популярн\w+\s+(отел|вариант)|ещё\s+вариант",
+    re.I,
+)
+
+
+def foreign_cut(lines: list[str]) -> int:
+    """Индекс, с которого начинается блок «похожие объекты» (или len(lines))."""
+    for i, line in enumerate(lines):
+        if len(line) < 80 and FOREIGN_RX.search(line):
+            return i
+    return len(lines)
+
+
 def harvest_rows(page) -> list[dict]:
-    """Строки прайса: из таблиц и из плоских блоков «период → цена»."""
+    """Строки прайса: из таблиц и из плоских блоков «период → цена».
+
+    Всё, что ниже заголовка «Похожие объекты» и подобных, отбрасывается —
+    иначе в сверку попадут цены соседних отелей.
+    """
     rows: list[dict] = []
 
     # 1) настоящие таблицы
@@ -99,6 +119,7 @@ def harvest_rows(page) -> list[dict]:
         lines = [l for l in lines if l]
     except Exception:  # noqa: BLE001
         lines = []
+    lines = lines[: foreign_cut(lines)]
     for i, line in enumerate(lines):
         has_period = PERIOD_DATE_RX.search(line) or (PERIOD_WORD_RX.search(line) and len(line) < 60)
         if not has_period:
