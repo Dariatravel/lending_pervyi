@@ -77,9 +77,14 @@ FOREIGN_RX = re.compile(
 
 
 def foreign_cut(lines: list[str]) -> int:
-    """Индекс, с которого начинается блок «похожие объекты» (или len(lines))."""
-    for i, line in enumerate(lines):
-        if len(line) < 80 and FOREIGN_RX.search(line):
+    """Индекс начала блока «похожие объекты».
+
+    Ищем только во второй половине страницы: вверху такие слова встречаются
+    в меню и баннерах, и обрезка по ним съедала настоящий прайс.
+    """
+    start = len(lines) // 2
+    for i in range(start, len(lines)):
+        if len(lines[i]) < 80 and FOREIGN_RX.search(lines[i]):
             return i
     return len(lines)
 
@@ -128,7 +133,9 @@ def harvest_rows(page) -> list[dict]:
         window = ""
         if value is None:
             for j in (i + 1, i + 2, i - 1):
-                if 0 <= j < len(lines):
+                # Длинная соседняя строка — это текст отзыва («Отдых был 10.07…
+                # ужин 300 ₽»), а не прайс: такие цены в сверку не берём.
+                if 0 <= j < len(lines) and len(lines[j]) <= 70:
                     value = price_of(lines[j])
                     if value:
                         window = lines[j]
