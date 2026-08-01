@@ -74,8 +74,12 @@ def match_our(name: str, ours: list[tuple[str, str, str]], context: str = "") ->
         # карточки. Просто «встречается в тексте» не годится: слово «Пицунда»
         # есть в адресе каждой второй карточки, а у нас есть отель «Пицунда».
         quoted = any(f"{q}{core}{q2}" in low for q, q2 in (("«", "»"), ('"', '"'), ("“", "”")))
-        heads = low.startswith(core) or low.startswith(f"отель {core}") or low.startswith(f"гостевой дом {core}")
-        if not quoted and not (heads and core not in CITIES):
+        # Название-город («Пицунда», «Гагра») засчитываем только в кавычках:
+        # иначе под него попадёт адрес любой карточки этого курорта.
+        if core in CITIES:
+            if not quoted:
+                continue
+        elif not quoted and not re.search(rf"(?<![а-яё]){re.escape(core)}(?![а-яё])", low):
             continue
         if city:
             other = [c for c in CITIES if c in ctx and c != city]
