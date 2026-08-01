@@ -8995,3 +8995,86 @@ body.podborka-mode #catalog-grid .catalog-card.podborka-hit {
 .catalog-card:has(.fav-heart) .catalog-card__badge {
   right: 3.5rem;
 }
+
+/* Виртуальный 3D-тур: превью с обложкой + кнопка, iframe грузится по клику */
+.virtual-tour {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--accent-soft, #e9f1c6);
+  box-shadow: var(--shadow-sm);
+}
+.virtual-tour__preview {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.virtual-tour__preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(34, 48, 40, 0.15), rgba(34, 48, 40, 0.48));
+}
+.virtual-tour__play {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+.virtual-tour__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--accent-strong, #94ad35);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+  transition: transform 0.18s ease;
+}
+.virtual-tour__cta {
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  background: rgba(34, 48, 40, 0.55);
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+}
+.virtual-tour__play:hover .virtual-tour__badge,
+.virtual-tour__play:focus-visible .virtual-tour__badge {
+  transform: scale(1.08);
+}
+.virtual-tour__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+@media (max-width: 640px) {
+  .virtual-tour {
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+  }
+  .virtual-tour__badge {
+    width: 62px;
+    height: 62px;
+    font-size: 1rem;
+  }
+}

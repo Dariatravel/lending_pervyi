@@ -5821,3 +5821,25 @@
     return card;
   }
 })();
+
+/* Виртуальный 3D-тур: iframe грузится только по клику (без автозвука, не тормозит страницу) */
+(function () {
+  document.addEventListener("click", function (event) {
+    const btn = event.target.closest(".virtual-tour__play");
+    if (!btn) return;
+    const wrap = btn.closest(".virtual-tour");
+    if (!wrap || wrap.dataset.loaded) return;
+    const url = wrap.getAttribute("data-tour-url");
+    if (!url) return;
+    wrap.dataset.loaded = "1";
+    const frame = document.createElement("iframe");
+    frame.src = url;
+    frame.className = "virtual-tour__frame";
+    frame.title = wrap.getAttribute("data-tour-title") || "Виртуальный 3D-тур";
+    frame.loading = "lazy";
+    frame.setAttribute("allow", "fullscreen; gyroscope; accelerometer; xr-spatial-tracking");
+    frame.setAttribute("allowfullscreen", "");
+    wrap.innerHTML = "";
+    wrap.appendChild(frame);
+  });
+})();

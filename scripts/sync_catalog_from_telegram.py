@@ -56,6 +56,7 @@ from responsive_images import responsive_img_html, responsive_preload_link  # no
 from yandex_storage import upload_file as upload_to_yandex  # noqa: E402
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 from supplemental_store import apply_to_page_html as supplemental_apply_to_page  # noqa: E402
+from virtual_tour_store import apply_tour_to_page  # noqa: E402
 
 ROOT_INDEX = ROOT / 'index.html'
 HOTELS_DIR = ROOT / 'hotels'
@@ -1756,6 +1757,8 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient | None
     # Пересборка не должна терять блок «Дополнительные обзоры» из комментариев —
     # возвращаем сохранённую секцию из data/supplemental-blocks.json.
     html_page = supplemental_apply_to_page(html_page, slug)
+    tour_cover = next((it.get('source_url') for it in local_media_items if it.get('kind') == 'photo' and it.get('source_url')), '')
+    html_page = apply_tour_to_page(html_page, slug, tour_cover)
     page_path.write_text(html_page, encoding='utf-8')
 
     payload = listing_payload(
