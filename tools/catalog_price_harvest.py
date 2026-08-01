@@ -68,7 +68,14 @@ def match_our(name: str, ours: list[tuple[str, str, str]], context: str = "") ->
     low = clean(name).lower()
     ctx = (low + " " + context).lower()
     for core, title, city in ours:
-        if not core or core not in low:
+        if not core:
+            continue
+        # Название объекта на площадке пишут в кавычках или ставят в начало
+        # карточки. Просто «встречается в тексте» не годится: слово «Пицунда»
+        # есть в адресе каждой второй карточки, а у нас есть отель «Пицунда».
+        quoted = any(f"{q}{core}{q2}" in low for q, q2 in (("«", "»"), ('"', '"'), ("“", "”")))
+        heads = low.startswith(core) or low.startswith(f"отель {core}") or low.startswith(f"гостевой дом {core}")
+        if not quoted and not (heads and core not in CITIES):
             continue
         if city:
             other = [c for c in CITIES if c in ctx and c != city]
