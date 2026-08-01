@@ -234,9 +234,20 @@ def harvest_rows(page) -> list[dict]:
     return unique
 
 
-# Признаки карточки ЧУЖОГО объекта в подборке «похожие»: строка-адрес вида
-# «Абхазия / Гудаута» и подписи «N ночей • от … за ночь».
-OTHER_CARD_RX = re.compile(r"^Абхазия\s*/|^\w[\w\s-]{2,20}\s*/\s*\w|\d+\s*ноч\w*\s*•", re.I)
+# Признаки карточки ЧУЖОГО объекта в подборке «похожие». Держим список узким:
+# каждый лишний шаблон срезает и цены самого отеля (проверено на broni.travel,
+# где широкое правило «Слово / Слово» обнулило весь прайс).
+#   «Абхазия / Гудаута»          — строка-адрес карточки соседнего объекта
+#   «7 ночей • от 5400 руб.»     — подпись карточки в подборке (маркер-буллет)
+OTHER_CARD_RX = re.compile(r"^\s*Абхазия\s*/\s*\S|\d+\s*ноч\w*\s*[•·]", re.I)
+
+# Строки самого объекта: если рядом с ценой стоит его собственная кнопка или
+# подпись выбранных дат — это наш прайс, фильтр чужих карточек не применяем.
+OWN_PRICE_RX = re.compile(
+    r"забронировать|выбранн\w+\s+дат|по\s+вашим\s+датам|итого|за\s+весь\s+период|"
+    r"стоимость\s+проживания|цена\s+за\s+сутки|за\s+сутки",
+    re.I,
+)
 
 
 def harvest_dated(page, nights: int) -> list[dict]:
@@ -264,8 +275,13 @@ def harvest_dated(page, nights: int) -> list[dict]:
                 context = lines[j]
                 break
         # Карточка другого объекта в подборке «похожие» — её цена не наша.
-        neighbourhood = " ".join(lines[max(0, i - 2): i + 3])
-        if OTHER_CARD_RX.search(context) or OTHER_CARD_RX.search(neighbourhood):
+        # Но если рядом стоит кнопка/подпись самого объекта, цену оставляем.
+        neighbourhood_lines = lines[max(0, i - 2): i + 3]
+        own = any(OWN_PRICE_RX.search(l) for l in neighbourhood_lines)
+        foreign = OTHER_CARD_RX.search(context) or any(
+            OTHER_CARD_RX.search(l) for l in neighbourhood_lines
+        )
+        if foreign and not own:
             continue
         rows.append({"source": "dated", "period": context or "по выбранным датам", "price": value,
                      "raw": f"{context} | {line}"[:200]})
