@@ -120,7 +120,14 @@ def clean(text: str) -> str:
     return re.sub(r"\s+", " ", (text or "").replace(" ", " ")).strip()
 
 
+# Промо-условия («Скидка 2000 ₽», «На бронь от 40 000 ₽ по промокоду») —
+# это не цена номера, а маркетинг площадки: в сверку такие суммы не идут.
+PROMO_RX = re.compile(r"промокод|скидк|кэшб|кешб|бонус|сертификат|подар|акци", re.I)
+
+
 def price_of(text: str) -> int | None:
+    if PROMO_RX.search(text or ""):
+        return None
     m = PRICE_RX.search(text or "")
     if not m:
         return None
@@ -285,6 +292,8 @@ def harvest_dated(page, nights: int) -> list[dict]:
             if 0 <= j < len(lines) and 2 < len(lines[j]) <= 60 and not price_of(lines[j]):
                 context = lines[j]
                 break
+        if PROMO_RX.search(context):  # «по промокоду …» — условие акции, не цена
+            continue
         # Блоки на странице идут вплотную: цена отеля, сразу под ней карточка
         # соседнего объекта. Поэтому решаем по самой строке и её подписи, а не
         # по окну соседей: «Забронировать»/«по выбранным датам» — цена отеля,
