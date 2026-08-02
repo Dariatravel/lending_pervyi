@@ -386,7 +386,8 @@ def probe(page, url: str, index: int, checkin: str = "", checkout: str = "", gue
     except Exception:  # noqa: BLE001
         pass
     try:
-        print(f"ЗАГОЛОВОК: {clean(page.title())[:90]}", flush=True)
+        result["title"] = clean(page.title())[:90]
+        print(f"ЗАГОЛОВОК: {result['title']}", flush=True)
     except Exception:  # noqa: BLE001
         pass
     result["clicks"] = expand_everything(page)
@@ -456,6 +457,17 @@ def main() -> int:
     (OUT_DIR / "results.json").write_text(json.dumps(results, ensure_ascii=False, indent=1), encoding="utf-8")
     ok = sum(1 for r in results if r["rows"])
     print(f"\nИТОГО: страниц {len(results)}, с найденным прайсом — {ok}", flush=True)
+
+    # Короткая сводка: заголовок страницы и снятые суммы одной строкой на объект.
+    # Полный лог прогона длинный, а для сверки нужны ровно эти цифры.
+    summary = []
+    for item in results:
+        prices = ", ".join(
+            f"{row['price']}₽ ({row['period'][:40]})" for row in item["rows"][:12]
+        ) or "прайса нет"
+        summary.append(f"{item.get('title', '')[:70]} :: {prices}\n    {item['url']}")
+    (OUT_DIR / "summary.txt").write_text("\n".join(summary), encoding="utf-8")
+    print("\n=== СВОДКА ===\n" + "\n".join(summary), flush=True)
     return 0
 
 

@@ -54,3 +54,9 @@ jobs:
           name: browser-probe
           path: output/browser-probe/
           if-no-files-found: ignore
+
+      # Повтор сводки последним шагом: в хвосте лога сразу видны снятые цены,
+      # не приходится перематывать вывод установки браузера и выгрузки артефакта.
+      - name: Сводка по ценам
+        if: always()
+        run: cat output/browser-probe/summary.txt || true
