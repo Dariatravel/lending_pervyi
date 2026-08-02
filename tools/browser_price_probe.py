@@ -240,17 +240,12 @@ def harvest_rows(page) -> list[dict]:
     # вместо периода — название чужой гостиницы («Альфа Измайлово», «Лотте»).
     # Настоящий прайс объекта почти всегда подписан периодом или категорией,
     # и таких строк единицы, поэтому большую пачку «безымянных» строк отсеиваем.
-    def labelled(row: dict) -> bool:
-        text = row["period"]
-        return bool(PERIOD_DATE_RX.search(text) or PERIOD_WORD_RX.search(text)
-                    or re.search(r"номер|комнат|сутк|дом|местн|апартам|коттедж", text, re.I))
-
-    drop_unlabelled = sum(1 for row in rows if not labelled(row)) >= 6
+    drop_unlabelled = sum(1 for row in rows if not price_label_looks_own(row["period"])) >= 6
 
     for row in rows:
         if DESTINATION_RX.search(row["period"]) or FOOTER_PRICE_RX.search(row["raw"]):
             continue
-        if drop_unlabelled and not labelled(row):
+        if drop_unlabelled and not price_label_looks_own(row["period"]):
             continue
         key = (row["period"][:40], row["price"])
         if key in seen:
@@ -304,6 +299,17 @@ def marker_distance(lines: list[str], index: int, pattern: re.Pattern, radius: i
     return 99
 
 
+def price_label_looks_own(text: str) -> bool:
+    """Похожа ли подпись цены на прайс самого объекта.
+
+    Прайс подписывают периодом («в августе», «25–30.08») или категорией
+    («двухместный номер», «коттедж»). Карусели подвала подписывают суммы
+    названиями чужих гостиниц — у таких строк подписи нет ни того, ни другого.
+    """
+    return bool(PERIOD_DATE_RX.search(text) or PERIOD_WORD_RX.search(text)
+                or re.search(r"номер|комнат|сутк|дом|местн|апартам|коттедж|выбранн", text, re.I))
+
+
 def harvest_dated(page, nights: int) -> list[dict]:
     """Сбор цен, когда даты уже выбраны.
 
@@ -344,6 +350,12 @@ def harvest_dated(page, nights: int) -> list[dict]:
             continue
         rows.append({"source": "dated", "period": context or "по выбранным датам", "price": value,
                      "raw": f"{context} | {line}"[:200]})
+    # Та же карусель «популярные отели», что и в harvest_rows: пачка цен,
+    # подписанных названиями чужих гостиниц. Режим дат срабатывает как раз
+    # тогда, когда своего прайса на странице нет, поэтому фильтр здесь нужен.
+    if sum(1 for row in rows if not price_label_looks_own(row["period"])) >= 6:
+        rows = [row for row in rows if price_label_looks_own(row["period"])]
+
     seen: set[tuple] = set()
     unique: list[dict] = []
     for row in rows:
