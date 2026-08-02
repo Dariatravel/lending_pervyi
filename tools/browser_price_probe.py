@@ -236,8 +236,21 @@ def harvest_rows(page) -> list[dict]:
     # дедуп + отсев подвала «Популярные направления»
     seen: set[tuple] = set()
     unique: list[dict] = []
+    # Карусели «популярные отели» в подвале приходят таблицей: у каждой строки
+    # вместо периода — название чужой гостиницы («Альфа Измайлово», «Лотте»).
+    # Настоящий прайс объекта почти всегда подписан периодом или категорией,
+    # и таких строк единицы, поэтому большую пачку «безымянных» строк отсеиваем.
+    def labelled(row: dict) -> bool:
+        text = row["period"]
+        return bool(PERIOD_DATE_RX.search(text) or PERIOD_WORD_RX.search(text)
+                    or re.search(r"номер|комнат|сутк|дом|местн|апартам|коттедж", text, re.I))
+
+    drop_unlabelled = sum(1 for row in rows if not labelled(row)) >= 6
+
     for row in rows:
         if DESTINATION_RX.search(row["period"]) or FOOTER_PRICE_RX.search(row["raw"]):
+            continue
+        if drop_unlabelled and not labelled(row):
             continue
         key = (row["period"][:40], row["price"])
         if key in seen:
