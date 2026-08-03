@@ -72,8 +72,27 @@ def main() -> int:
     url = os.environ.get("SITE_URL", DEFAULT_URL)
     print(f"Проверяем: {url}\n", flush=True)
 
+    # Без явного списка сервис берёт узлы случайно, и российских попадает
+    # два-три из двадцати пяти — по такой выборке ничего не скажешь. Поэтому
+    # сначала спрашиваем полный список точек и перечисляем все российские.
+    ru_nodes: list[str] = []
     try:
-        started = api_get(f"/check-http?host={urllib.parse.quote(url, safe='')}&max_nodes=25")
+        hosts = api_get("/nodes/hosts").get("nodes") or {}
+        for name, info in hosts.items():
+            location = info.get("location") if isinstance(info, dict) else None
+            code = (location[0] if isinstance(location, (list, tuple)) and location else "") or ""
+            if str(code).lower() == "ru":
+                ru_nodes.append(name)
+    except Exception as error:  # noqa: BLE001
+        print(f"Список узлов получить не удалось ({error}), берём выборку по умолчанию.", flush=True)
+
+    query = f"/check-http?host={urllib.parse.quote(url, safe='')}&max_nodes=30"
+    if ru_nodes:
+        print(f"Российских точек проверки: {len(ru_nodes)}", flush=True)
+        query += "".join(f"&node={urllib.parse.quote(name)}" for name in ru_nodes[:20])
+
+    try:
+        started = api_get(query)
     except Exception as error:  # noqa: BLE001
         print(f"Не удалось запустить проверку: {error}", file=sys.stderr)
         return 1
