@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T08:59:38.387968+00:00",
+  "generated_at": "2026-08-03T12:51:33.804743+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -21355,19 +21355,27 @@
         "prices": [
           {
             "kind": "price",
-            "text": "2500₽/сутки - июнь, июль"
+            "text": "Акция🔥"
           },
           {
             "kind": "price",
-            "text": "4000₽/сутки - август"
+            "text": "При бронировании номера на период с 9 по 15 августа - 1800₽"
           },
           {
             "kind": "price",
-            "text": "3800₽/сутки - сентябрь"
+            "text": "4000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "3800₽ - сентябрь"
           },
           {
             "kind": "price",
             "text": "800₽/сутки - доп место"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - сентябрь, при бронировании 3х номеров вместе"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/mziya-gostevye-nomera-3659/index.html",
