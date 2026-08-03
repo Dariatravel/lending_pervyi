@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Нет связи с сайтом — АБХАЗБЕРЕГ</title>
+<style>
+  :root { color-scheme: light; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f4f7f8;
+    color: #12343b;
+  }
+  .card {
+    max-width: 460px;
+    width: 100%;
+    background: #fff;
+    border-radius: 18px;
+    padding: 32px 28px;
+    box-shadow: 0 12px 32px rgba(18, 52, 59, .12);
+    text-align: center;
+  }
+  h1 { font-size: 22px; margin: 0 0 12px; line-height: 1.3; }
+  p { font-size: 16px; line-height: 1.55; margin: 0 0 16px; color: #40575c; }
+  .actions { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; }
+  a.button {
+    display: block;
+    padding: 14px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .primary { background: #1f7a8c; color: #fff; }
+  .secondary { background: #e8eff1; color: #12343b; }
+  .hint { font-size: 14px; color: #6b8085; margin-top: 20px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Страница не загрузилась</h1>
+    <p>
+      Похоже, у вашего интернет-соединения сейчас нет доступа к сайту.
+      Попробуйте обновить страницу или зайти с мобильного интернета.
+    </p>
+    <p>
+      Если не открывается — напишите нам в Telegram, мы подберём жильё
+      и забронируем без сайта.
+    </p>
+    <div class="actions">
+      <a class="button primary" href="https://t.me/abhazbooking_online">Написать в Telegram</a>
+      <a class="button secondary" href="/">Попробовать снова</a>
+    </div>
+    <p class="hint">АБХАЗБЕРЕГ — бронирование жилья в Абхазии напрямую</p>
+  </div>
+
+<script>
+// Диагностика недоступности сайта.
+//
+// Смысл: если гость видит эту страницу, наш хостинг (GitHub Pages) до него не
+// достучался. Отправить отчёт на свой же сайт в такой момент нельзя — он и есть
+// недоступный. Поэтому шлём в Яндекс.Метрику: её серверы стоят в России и
+// открываются даже тогда, когда зарубежный хостинг закрыт.
+//
+// Метрика сама подставит регион, браузер, ОС и тип устройства. Мы добавляем
+// то, что знает только браузер гостя: есть ли у него сеть вообще, какой тип
+// соединения и удалось ли достучаться до нашего домена и до российского сайта.
+(function () {
+  var COUNTER = 108214677;
+  // Проверяем корень без расширения: service worker перехватывает только HTML,
+  // JSON и файлы с расширением, поэтому такой запрос уходит прямо в сеть,
+  // а не подменяется кэшем — иначе «сайт доступен» было бы ложным.
+  var SITE = "https://xn--80aacbklan7f0b.xn--p1ai/";
+  var RU_HOST = "https://mc.yandex.ru/favicon.ico";
+
+  (function (m, e, t, r, i, k, a) {
+    m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+    m[i].l = 1 * new Date();
+    k = e.createElement(t); a = e.getElementsByTagName(t)[0];
+    k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
+  })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  ym(COUNTER, "init", { webvisor: false, clickmap: false, trackLinks: true, accurateTrackBounce: false });
+
+  // Достучаться до адреса без CORS: ответ прочитать нельзя, но сам факт
+  // успешной загрузки говорит, что канал до этого хоста жив.
+  function reachable(url, timeoutMs) {
+    return new Promise(function (resolve) {
+      var done = false;
+      var timer = setTimeout(function () { if (!done) { done = true; resolve(false); } }, timeoutMs);
+      var sep = url.indexOf("?") === -1 ? "?" : "&";
+      fetch(url + sep + "ping=" + Date.now(), { mode: "no-cors", cache: "no-store" })
+        .then(function () { if (!done) { done = true; clearTimeout(timer); resolve(true); } })
+        .catch(function () { if (!done) { done = true; clearTimeout(timer); resolve(false); } });
+    });
+  }
+
+  var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {};
+
+  Promise.all([reachable(RU_HOST, 6000), reachable(SITE, 8000)]).then(function (results) {
+    var ruOk = results[0];
+    var siteOk = results[1];
+    // Главный вывод одной строкой — по нему в Метрике удобно строить отчёт.
+    var reason = !navigator.onLine ? "нет сети у гостя"
+      : (!ruOk && !siteOk) ? "интернет не работает целиком"
+      : (ruOk && !siteOk) ? "интернет есть, наш сайт недоступен"
+      : "сайт ответил (сбой был кратким)";
+
+    var details = {
+      reason: reason,
+      online: navigator.onLine ? "да" : "нет",
+      ru_host_reachable: ruOk ? "да" : "нет",
+      site_reachable: siteOk ? "да" : "нет",
+      connection_type: connection.effectiveType || "неизвестно",
+      saveData: connection.saveData ? "включена экономия трафика" : "нет",
+      language: navigator.language || "",
+      referrer: document.referrer || "прямой заход",
+      screen: window.screen ? window.screen.width + "x" + window.screen.height : ""
+    };
+
+    try {
+      // Отдельный адрес в отчётах Метрики, чтобы офлайн-заходы не смешивались
+      // с обычными просмотрами страниц.
+      ym(COUNTER, "hit", "/offline-diagnostic", {
+        title: "Офлайн-страница: " + reason,
+        params: { offline: details }
+      });
+      ym(COUNTER, "reachGoal", "offline_page_shown", { offline: details });
+    } catch (error) {
+      /* аналитика не должна мешать гостю читать страницу */
+    }
+  });
+})();
+</script>
+</body>
+</html>

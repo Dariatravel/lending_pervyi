@@ -236,8 +236,16 @@ def harvest_rows(page) -> list[dict]:
     # дедуп + отсев подвала «Популярные направления»
     seen: set[tuple] = set()
     unique: list[dict] = []
+    # Карусели «популярные отели» в подвале приходят таблицей: у каждой строки
+    # вместо периода — название чужой гостиницы («Альфа Измайлово», «Лотте»).
+    # Настоящий прайс объекта почти всегда подписан периодом или категорией,
+    # и таких строк единицы, поэтому большую пачку «безымянных» строк отсеиваем.
+    drop_unlabelled = sum(1 for row in rows if not price_label_looks_own(row["period"])) >= 6
+
     for row in rows:
-        if DESTINATION_RX.search(row["period"]):
+        if DESTINATION_RX.search(row["period"]) or FOOTER_PRICE_RX.search(row["raw"]):
+            continue
+        if drop_unlabelled and not price_label_looks_own(row["period"]):
             continue
         key = (row["period"][:40], row["price"])
         if key in seen:
@@ -260,9 +268,18 @@ DESTINATION_RX = re.compile(
     r"^\s*(?:Санкт-Петербург|Москва|Сочи|Геленджик|Анапа|Казань|Нижний\s+Новгород|Краснодар"
     r"|Екатеринбург|Калининград|Ростов-на-Дону|Владивосток|Кисловодск|Самара|Ярославль"
     r"|Новосибирск|Зеленоградск|Волгоград|Суздаль|Воронеж|Азербайджан|Турция|Испания"
-    r"|Франция|Италия|Египет|ОАЭ|Грузия|Армения|Белоруссия|Беларусь|Крым|Абхазия)\s*$",
+    r"|Франция|Италия|Египет|ОАЭ|Грузия|Армения|Белоруссия|Беларусь|Крым|Абхазия"
+    r"|Китай|Таиланд|Объединённые\s+Арабские\s+Эмираты|Минск|Барселона|Париж|Рим|Дубай"
+    r"|Ереван|Кемер|Ницца|Тбилиси|Милан|Аланья|Мадрид|Шанхай|Батуми|Алматы|Паттайя|Пекин"
+    r"|Ташкент|Гагра|Сухум|Пицунда|Новый\s+Афон|Гудаута|Цандрипш)\s*$",
     re.I,
 )
+
+# Тот же подвал, но со стороны цены: карусели «популярных направлений» и
+# «популярных отелей» подписывают суммы строго как «от 1 474 ₽ / сутки».
+# Прайсы самих объектов в этих же площадках пишутся иначе («6 000 ₽»,
+# «от 6000 руб», «2 500 руб.»), поэтому шаблон отсеивает только подвал.
+FOOTER_PRICE_RX = re.compile(r"от\s[\d\s  ]+₽\s*/\s*сутки", re.I)
 
 # Строки самого объекта: если рядом с ценой стоит его собственная кнопка или
 # подпись выбранных дат — это наш прайс, фильтр чужих карточек не применяем.
@@ -280,6 +297,17 @@ def marker_distance(lines: list[str], index: int, pattern: re.Pattern, radius: i
             if 0 <= j < len(lines) and pattern.search(lines[j]):
                 return distance
     return 99
+
+
+def price_label_looks_own(text: str) -> bool:
+    """Похожа ли подпись цены на прайс самого объекта.
+
+    Прайс подписывают периодом («в августе», «25–30.08») или категорией
+    («двухместный номер», «коттедж»). Карусели подвала подписывают суммы
+    названиями чужих гостиниц — у таких строк подписи нет ни того, ни другого.
+    """
+    return bool(PERIOD_DATE_RX.search(text) or PERIOD_WORD_RX.search(text)
+                or re.search(r"номер|комнат|сутк|дом|местн|апартам|коттедж|выбранн", text, re.I))
 
 
 def harvest_dated(page, nights: int) -> list[dict]:
@@ -322,6 +350,12 @@ def harvest_dated(page, nights: int) -> list[dict]:
             continue
         rows.append({"source": "dated", "period": context or "по выбранным датам", "price": value,
                      "raw": f"{context} | {line}"[:200]})
+    # Та же карусель «популярные отели», что и в harvest_rows: пачка цен,
+    # подписанных названиями чужих гостиниц. Режим дат срабатывает как раз
+    # тогда, когда своего прайса на странице нет, поэтому фильтр здесь нужен.
+    if sum(1 for row in rows if not price_label_looks_own(row["period"])) >= 6:
+        rows = [row for row in rows if price_label_looks_own(row["period"])]
+
     seen: set[tuple] = set()
     unique: list[dict] = []
     for row in rows:
@@ -377,7 +411,8 @@ def probe(page, url: str, index: int, checkin: str = "", checkout: str = "", gue
     except Exception:  # noqa: BLE001
         pass
     try:
-        print(f"ЗАГОЛОВОК: {clean(page.title())[:90]}", flush=True)
+        result["title"] = clean(page.title())[:90]
+        print(f"ЗАГОЛОВОК: {result['title']}", flush=True)
     except Exception:  # noqa: BLE001
         pass
     result["clicks"] = expand_everything(page)
@@ -447,6 +482,17 @@ def main() -> int:
     (OUT_DIR / "results.json").write_text(json.dumps(results, ensure_ascii=False, indent=1), encoding="utf-8")
     ok = sum(1 for r in results if r["rows"])
     print(f"\nИТОГО: страниц {len(results)}, с найденным прайсом — {ok}", flush=True)
+
+    # Короткая сводка: заголовок страницы и снятые суммы одной строкой на объект.
+    # Полный лог прогона длинный, а для сверки нужны ровно эти цифры.
+    summary = []
+    for item in results:
+        prices = ", ".join(
+            f"{row['price']}₽ ({row['period'][:40]})" for row in item["rows"][:12]
+        ) or "прайса нет"
+        summary.append(f"{item.get('title', '')[:70]} :: {prices}\n    {item['url']}")
+    (OUT_DIR / "summary.txt").write_text("\n".join(summary), encoding="utf-8")
+    print("\n=== СВОДКА ===\n" + "\n".join(summary), flush=True)
     return 0
 
 
