@@ -32,11 +32,24 @@ def api_get(path: str) -> dict:
         return json.loads(response.read().decode("utf-8"))
 
 
-def describe(node: str, info: dict) -> str:
-    """Человеческая подпись узла: «Россия, Москва»."""
-    country = info.get("2") or ""
-    city = info.get("3") or ""
-    return f"{country}, {city}".strip(", ") or node
+def node_parts(info) -> tuple[str, str, str]:
+    """Код страны, страна и город узла.
+
+    check-host.net описывает узел списком вида
+    ["ru", "Russia", "Moscow", "1.2.3.4", ...] — берём первые три поля.
+    """
+    if isinstance(info, (list, tuple)):
+        values = list(info) + ["", "", ""]
+        return str(values[0] or ""), str(values[1] or ""), str(values[2] or "")
+    if isinstance(info, dict):
+        return "", str(info.get("country") or ""), str(info.get("city") or "")
+    return "", "", ""
+
+
+def describe(node: str, info) -> str:
+    """Человеческая подпись узла: «Russia, Moscow»."""
+    _code, country, city = node_parts(info)
+    return ", ".join(part for part in (country, city) if part) or node
 
 
 def verdict(result) -> str:
@@ -88,7 +101,8 @@ def main() -> int:
     for node, info in sorted(nodes.items(), key=lambda kv: describe(kv[0], kv[1])):
         name = describe(node, info)
         line = verdict(results.get(node))
-        russian = str(info.get("2") or "").lower().startswith(("ru", "рос"))
+        code, country, _city = node_parts(info)
+        russian = code.lower() == "ru" or country.lower().startswith(("russia", "рос"))
         bucket = (ru_ok if "ОТКРЫЛСЯ за" in line else ru_fail) if russian else \
                  (other_ok if "ОТКРЫЛСЯ за" in line else other_fail)
         bucket.append(f"   {name:34} {line}")
