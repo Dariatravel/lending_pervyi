@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-02T14:22:31.311599+00:00",
+  "generated_at": "2026-08-03T08:59:38.387968+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -3401,19 +3401,11 @@
           },
           {
             "kind": "price",
-            "text": "5900₽ - с 15 мая по 20 июня"
+            "text": "12500₽ - с 21 июля по 30 сентября"
           },
           {
             "kind": "price",
-            "text": "8500₽ - с 21 июня по 20 июля"
-          },
-          {
-            "kind": "price",
-            "text": "9500₽ - с 21 июля по 15 сентября"
-          },
-          {
-            "kind": "price",
-            "text": "5900₽ - с 16 сентября по 30 октября"
+            "text": "6900₽ - октябрь"
           },
           {
             "kind": "price",
@@ -3425,19 +3417,11 @@
           },
           {
             "kind": "price",
-            "text": "6900₽ - с 15 мая по 20 июня"
+            "text": "12700₽ - с 21 июля по 20 сентября"
           },
           {
             "kind": "price",
-            "text": "9500₽ - с 21 июня по 20 июля"
-          },
-          {
-            "kind": "price",
-            "text": "9900₽ - с 21 июля по 15 сентября"
-          },
-          {
-            "kind": "price",
-            "text": "6900₽ - с 16 сентября по 30 октября"
+            "text": "6900₽ - с 21 сентября по 30 октября"
           },
           {
             "kind": "price",
@@ -3453,23 +3437,19 @@
           },
           {
             "kind": "price",
-            "text": "4900₽ - с 15 мая по 20 июня"
+            "text": "6900₽ - с 21 июля по 20 сентября"
           },
           {
             "kind": "price",
-            "text": "5700₽ - с 21 июня по 20 июля"
-          },
-          {
-            "kind": "price",
-            "text": "5900₽ - с 21 июля по 15 сентября"
-          },
-          {
-            "kind": "price",
-            "text": "4900₽ - с 16 сентября по 30 октября"
+            "text": "5900₽ - с 21 сентября по 30 октября"
           },
           {
             "kind": "price",
             "text": "Доп плата за 3 человека - 1000₽ с завтраками"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 4х лет без оплаты."
           },
           {
             "kind": "price",
@@ -3633,7 +3613,7 @@
           "details": {
             "telegram_post": "abhazbooking/4580",
             "telegram_url": "https://t.me/abhazbooking/4580",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/dzhannat-otel-na-beregu-s-zavtrakami-4571/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/dzhannat-otel-na-beregu-s-zavtrakami-4571/video-01-poster.jpg"
           }
         }
       ]
