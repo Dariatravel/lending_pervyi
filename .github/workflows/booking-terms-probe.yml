@@ -1,0 +1,46 @@
+name: Booking terms probe
+
+# Съём условий бронирования и отмены со страниц объектов на площадках:
+# предоплата, сроки отмены, штрафы, расчётный час. Ничего не публикует —
+# результат остаётся в логе и артефакте.
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "Ссылки на страницы объектов (по одной в строке)"
+        required: true
+
+jobs:
+  terms:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить Playwright
+        run: |
+          pip install --quiet playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Снять условия бронирования
+        env:
+          PROBE_URLS: ${{ inputs.urls }}
+        run: python tools/booking_terms_probe.py
+
+      - name: Выгрузить результаты
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: booking-terms
+          path: output/booking-terms/
+          if-no-files-found: ignore
+
+      # Сводка последним шагом: в хвосте лога сразу видны найденные правила.
+      - name: Сводка по условиям
+        if: always()
+        run: cat output/booking-terms/summary.txt || true
