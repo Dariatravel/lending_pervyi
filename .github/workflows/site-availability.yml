@@ -1,0 +1,32 @@
+name: Site availability check
+
+# Проверяет, из каких городов сайт открывается, а из каких нет (check-host.net).
+# Нужно, чтобы отличить проблему с зарубежным хостингом от жалоб отдельных
+# гостей. Ничего не публикует — результат в логе.
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Адрес для проверки"
+        required: false
+        default: "https://xn--80aacbklan7f0b.xn--p1ai/"
+  schedule:
+    # Раз в сутки в 06:10 по Москве — чтобы видеть, как меняется картина.
+    - cron: "10 3 * * *"
+
+jobs:
+  availability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Проверить доступность из разных городов
+        env:
+          SITE_URL: ${{ inputs.url || 'https://xn--80aacbklan7f0b.xn--p1ai/' }}
+        run: python tools/check_site_availability.py
