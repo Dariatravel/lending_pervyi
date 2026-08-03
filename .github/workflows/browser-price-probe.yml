@@ -22,6 +22,10 @@ on:
         description: "Гостей"
         required: false
         default: "2"
+      mode:
+        description: "Что снимать: prices (цены) или terms (условия брони и отмены)"
+        required: false
+        default: "prices"
 
 jobs:
   probe:
@@ -40,6 +44,7 @@ jobs:
           python -m playwright install --with-deps chromium
 
       - name: Снять цены браузером
+        if: inputs.mode != 'terms'
         env:
           PROBE_URLS: ${{ inputs.urls }}
           PROBE_CHECKIN: ${{ inputs.checkin }}
@@ -47,16 +52,27 @@ jobs:
           PROBE_GUESTS: ${{ inputs.guests }}
         run: python tools/browser_price_probe.py
 
+      # Тот же прогон, но собираем правила брони и отмены вместо сумм.
+      - name: Снять условия бронирования
+        if: inputs.mode == 'terms'
+        env:
+          PROBE_URLS: ${{ inputs.urls }}
+        run: python tools/booking_terms_probe.py
+
       - name: Выгрузить результаты
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: browser-probe
-          path: output/browser-probe/
+          path: |
+            output/browser-probe/
+            output/booking-terms/
           if-no-files-found: ignore
 
       # Повтор сводки последним шагом: в хвосте лога сразу видны снятые цены,
       # не приходится перематывать вывод установки браузера и выгрузки артефакта.
       - name: Сводка по ценам
         if: always()
-        run: cat output/browser-probe/summary.txt || true
+        run: |
+          cat output/browser-probe/summary.txt 2>/dev/null || true
+          cat output/booking-terms/summary.txt 2>/dev/null || true
