@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T12:51:33.804743+00:00",
+  "generated_at": "2026-08-03T18:31:46.327091+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 228,
@@ -8188,20 +8188,20 @@
     {
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
-      "source_message_id": 4348,
+      "source_message_id": 5144,
       "source_topic_id": null,
       "slug": "apra-gostevoy-dom-na-plyazhe-4348",
       "title": "\"АПРА\" гостевой дом на пляже",
       "summary": "Лдзаа. 0 минут до пляжа, размещение до 4 человек.",
-      "excerpt": "19 номеров с отдельным входом и общим балконом, расположенных на 3 этажах",
+      "excerpt": "24 номера с отдельным входом и общим балконом, расположенных на 4 этажах",
       "city": "Лдзаа",
       "location_text": "Лдзаа, ул. Рыбзаводская, 81",
       "distance_text": "0 минут до пляжа",
       "beach_text": "0 минут до пляжа",
       "capacity_text": "размещение до 4 человек",
       "page_url": "https://абхазберег.рф/hotels/apra-gostevoy-dom-na-plyazhe-4348/",
-      "telegram_url": "https://t.me/abhazbooking/4348",
-      "published_at": "2026-04-30",
+      "telegram_url": "https://t.me/abhazbooking/5144",
+      "published_at": "2026-08-03",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/apra-gostevoy-dom-na-plyazhe-4348.jpg",
       "is_active": true,
@@ -8211,14 +8211,14 @@
           {
             "label": "✔️НОМЕРА:",
             "lines": [
-              "19 номеров с отдельным входом и общим балконом, расположенных на 3 этажах.",
-              "В номерах: двуспальная кровать или две односпальные кровати, шкаф, прикроватные полочки, стол. Сан узел с душем. Доп место - раскладной диванчик на одного человека.",
+              "24 номера с отдельным входом и общим балконом, расположенных на 4 этажах.",
+              "В номерах 1-3 этажи: двуспальная кровать или две односпальные кровати, шкаф, прикроватные полочки, стол. Сан узел с душем. Доп место - раскладной диванчик на одного человека.",
               "Оснащение: Wi-Fi, кондиционер, мини-холодильник, телевизор, чайник, фен.",
               "Большинство номеров с прямым или боковым видом на море, есть номера с видом на соседнее здание.",
               "Новые номера на 4 этаже:",
               "Однокомнатный номер с прямым видом на море и панорамными окнами. Двуспальная кровать. Размещение до 2 человек.",
-              "Два однокомнатных номера. Двуспальная кровать.Размещение до 2 человек.",
-              "Двухкомнатный номер с двумя двуспальными кроватями. Размещение до 4 человек.",
+              "Два однокомнатных номера с боковым видом на море. Двуспальная кровать. Размещение до 2 человек.",
+              "Два двухкомнатных номера с двумя двуспальными кроватями. Размещение до 4 человек.",
               "В каждом номере сан узел с тропическим душем."
             ]
           },
@@ -8241,6 +8241,7 @@
             "label": "✔️УСЛОВИЯ:",
             "lines": [
               "Размещение с маленькими собачками возможно по согласованию.",
+              "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет.",
               "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
               "(будьте внимательны ⚠️только этот контакт для брони)",
               "Я на связи WhatsApp/MAX: +7940-900-33-40"
@@ -8254,47 +8255,7 @@
           },
           {
             "kind": "price",
-            "text": "Номер с видом на здание"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - с 1 по 15 июня"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ - с 16 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "7000₽ - июль, август, сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ - с 1 по 15 октября"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - с 16 по 31 октября"
-          },
-          {
-            "kind": "price",
             "text": "Номер с видом на море"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - с 1 по 15 июня"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ - с 16 по 30 июня"
           },
           {
             "kind": "price",
@@ -8310,11 +8271,27 @@
           },
           {
             "kind": "price",
+            "text": "Номер с видом на здание"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - июль, август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - с 1 по 15 октября"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - с 16 по 31 октября"
+          },
+          {
+            "kind": "price",
             "text": "Доп место - 1000₽"
           },
           {
             "kind": "price",
-            "text": "Номер с прямым видом на море и панорамными окнами"
+            "text": "Номер на 4 этаже с прямым видом на море"
           },
           {
             "kind": "note",
@@ -8326,7 +8303,7 @@
           },
           {
             "kind": "price",
-            "text": "Номер однокомнатный"
+            "text": "Номер на 4 этаже с боковым видом на море"
           },
           {
             "kind": "note",
@@ -8338,7 +8315,7 @@
           },
           {
             "kind": "price",
-            "text": "Двухкомнатный номер"
+            "text": "Двухкомнатный номер на 4 этаже"
           },
           {
             "kind": "note",
@@ -8483,14 +8460,25 @@
           "id": 1107010,
           "media_role": "gallery",
           "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/apra-gostevoy-dom-na-plyazhe-4348/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/apra-gostevoy-dom-na-plyazhe-4348/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/apra-gostevoy-dom-na-plyazhe-4348/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1107011,
+          "media_role": "gallery",
+          "sort_order": 10,
           "mime_type": "video/mp4",
           "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/apra-gostevoy-dom-na-plyazhe-4348/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
           "storage_path": "videos/hotels/apra-gostevoy-dom-na-plyazhe-4348/video-01.mp4",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/apra-gostevoy-dom-na-plyazhe-4348/video-01.mp4",
           "details": {
-            "telegram_post": "abhazbooking/4356",
-            "telegram_url": "https://t.me/abhazbooking/4356",
+            "telegram_post": "abhazbooking/5153",
+            "telegram_url": "https://t.me/abhazbooking/5153",
             "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/apra-gostevoy-dom-na-plyazhe-4348/video-01-poster.jpg"
           }
         }
