@@ -1,30 +1,36 @@
-const APP_SHELL_CACHE = "abhazbereg-app-shell-v202608011209";
-const RUNTIME_CACHE = "abhazbereg-runtime-v202608011209";
+const APP_SHELL_CACHE = "abhazbereg-app-shell-v202608031115";
+const RUNTIME_CACHE = "abhazbereg-runtime-v202608031115";
 const YANDEX_MEDIA_ORIGIN = "https://storage.yandexcloud.net";
 const YANDEX_MEDIA_PATH_PREFIX = "/abhazbereg-media/media/";
 const MAX_RUNTIME_MEDIA_ENTRIES = 80;
 
 const APP_SHELL_URLS = [
   "/",
-  "/styles.min.css?v=202608011209",
-  "/scripts.min.js?v=202608011209",
-  "/pwa.js?v=202608011209",
+  "/styles.min.css?v=202608031115",
+  "/scripts.min.js?v=202608031115",
+  "/pwa.js?v=202608031115",
   "/vendor/fonts/manrope-cyrillic.woff2",
   "/vendor/fonts/manrope-latin.woff2",
   "/vendor/fonts/prata-cyrillic.woff2",
   "/vendor/fonts/prata-latin.woff2",
-  "/vendor/leaflet/leaflet.css?v=202608011209",
-  "/vendor/leaflet/leaflet.js?v=202608011209",
-  "/vendor/leaflet-markercluster/MarkerCluster.css?v=202608011209",
-  "/vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202608011209",
-  "/vendor/leaflet-markercluster/leaflet.markercluster.js?v=202608011209",
+  "/vendor/leaflet/leaflet.css?v=202608031115",
+  "/vendor/leaflet/leaflet.js?v=202608031115",
+  "/vendor/leaflet-markercluster/MarkerCluster.css?v=202608031115",
+  "/vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202608031115",
+  "/vendor/leaflet-markercluster/leaflet.markercluster.js?v=202608031115",
   "/app.webmanifest",
   "/404.html",
   "/app-icons/icon-192.png",
   "/app-icons/icon-512.png",
   "/app-icons/icon.svg",
   "/karta/",
+  "/offline.html",
 ];
+
+// Что показать, когда до сайта не достучаться и в кэше этой страницы нет:
+// голая ошибка браузера выглядит как «сайт не работает», а здесь гость
+// видит объяснение и ссылку на Telegram, где его забронируют без сайта.
+const OFFLINE_URL = "/offline.html";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -100,6 +106,10 @@ async function networkFirst(request) {
   } catch (error) {
     const cached = await cache.match(request);
     if (cached) return cached;
+    if (isHtmlRequest(request)) {
+      const offline = await caches.match(OFFLINE_URL);
+      if (offline) return offline;
+    }
     throw error;
   }
 }
