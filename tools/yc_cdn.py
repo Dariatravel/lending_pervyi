@@ -32,7 +32,7 @@ BUCKET = os.getenv("SITE_BUCKET", "abhazbereg-site")
 ORIGIN_HOST = f"{BUCKET}.website.yandexcloud.net"
 DOMAIN = "xn--80aacbklan7f0b.xn--p1ai"
 WWW_DOMAIN = f"www.{DOMAIN}"
-CERTIFICATE_ID = os.getenv("YC_CERTIFICATE_ID", "fpq57jgofcg721oapneo")
+CERTIFICATE_NAME = "abhazbereg-site"
 GROUP_NAME = "abhazbereg-site-origin"
 
 
@@ -183,9 +183,27 @@ def probe() -> int:
     print(f"Источником будет: {ORIGIN_HOST}")
 
     print("\n=== Сертификат ===")
-    print(f"Будет привязан: {CERTIFICATE_ID} ({DOMAIN}, {WWW_DOMAIN})")
     check_certificate_access(token)
     return 0
+
+
+def resolve_certificate(token: str, folder: str) -> str | None:
+    """Найти сертификат по имени, а не по записанному ID.
+
+    ID из отчёта оказался нерабочим — по нему облако отвечает 404, хотя
+    сертификат с нужным именем в папке есть. Имя мы задаём сами, поэтому оно
+    надёжнее переписанного руками идентификатора.
+    """
+    certificates = api(f"{CM_URL}/certificates?folderId={folder}", token).get("certificates") or []
+    for certificate in certificates:
+        if certificate.get("name") == CERTIFICATE_NAME:
+            return certificate["id"]
+    if certificates:
+        print(f"  сертификата с именем «{CERTIFICATE_NAME}» нет. Что есть в папке:")
+        for certificate in certificates:
+            print(f"    • {certificate.get('name')} — {certificate.get('id')} "
+                  f"({certificate.get('status')})")
+    return None
 
 
 def check_certificate_access(token: str) -> bool:
@@ -196,15 +214,18 @@ def check_certificate_access(token: str) -> bool:
     ролью certificate-manager.certificates.downloader, и различить их важно,
     иначе будешь искать несуществующую пропажу.
     """
-    try:
-        certificate = api(f"{CM_URL}/certificates/{CERTIFICATE_ID}", token)
-        print(f"  виден: {certificate.get('name')} / {certificate.get('status')}")
-    except ApiError as error:
-        print(f"  НЕ ВИДЕН в этой папке ({error.code}) — проверьте YC_FOLDER_ID.")
+    folder = folder_id(token)
+    certificate_id = resolve_certificate(token, folder)
+    if not certificate_id:
+        print("  сертификат в этой папке не найден — проверьте YC_FOLDER_ID.")
         return False
 
+    certificate = api(f"{CM_URL}/certificates/{certificate_id}", token)
+    print(f"  найден по имени: {certificate_id} / {certificate.get('status')}")
+    print(f"  домены: {', '.join(certificate.get('domains') or [])}")
+
     try:
-        api(f"{CM_DATA_URL}/certificates/{CERTIFICATE_ID}:getContent", token)
+        api(f"{CM_DATA_URL}/certificates/{certificate_id}:getContent", token)
         print("  содержимое доступно — CDN сможет его забрать.")
         return True
     except ApiError as error:
@@ -258,13 +279,19 @@ def create() -> int:
         time.sleep(3)
         group = find_group(token, folder) or {"id": group_id}
 
+    certificate_id = resolve_certificate(token, folder)
+    if not certificate_id:
+        print("Сертификат в папке не найден — без него ресурс создавать нельзя.")
+        return 1
+    print(f"Сертификат: {certificate_id}")
+
     created = api(f"{CDN_URL}/resources", token, {
         "folderId": folder,
         "cname": DOMAIN,
         "origin": {"originGroupId": str(group["id"])},
         "originProtocol": "HTTP",
         "secondaryHostnames": {"values": [WWW_DOMAIN]},
-        "sslCertificate": {"type": "CM", "data": {"cm": {"id": CERTIFICATE_ID}}},
+        "sslCertificate": {"type": "CM", "data": {"cm": {"id": certificate_id}}},
         "active": True,
         "options": {
             # Сжатие текста: HTML, CSS и JS поедут к гостю меньшим весом.
