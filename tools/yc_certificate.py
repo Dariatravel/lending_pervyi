@@ -120,9 +120,11 @@ def show(token: str, certificate: dict) -> int:
     print("\nЧтобы облако убедилось, что домен ваш, добавьте у регистратора "
           "(Рег.ру → Домены → абхазберег.рф → DNS-серверы и управление зоной):\n")
     for challenge in dns_challenges:
-        name = challenge.get("dnsName", "")
-        value = challenge.get("dnsValue", "")
-        print(f"  Тип:      {challenge.get('dnsType', 'CNAME')}")
+        dns = challenge.get("dnsChallenge") or {}
+        name = dns.get("name") or challenge.get("dnsName", "")
+        value = dns.get("value") or challenge.get("dnsValue", "")
+        record_type = dns.get("type") or challenge.get("dnsType", "CNAME")
+        print(f"  Тип:      {record_type}")
         print(f"  Имя:      {name}")
         print(f"  Значение: {value}\n")
     print("После добавления записи подождите 15–30 минут и запустите status ещё раз.")
@@ -146,7 +148,7 @@ def request_certificate() -> int:
             "name": CERT_NAME,
             "description": "Сайт абхазберег.рф в Object Storage",
             "domains": [DOMAIN_UNICODE, DOMAIN_PUNYCODE, f"www.{DOMAIN_UNICODE}"],
-            "challengeType": "DNS_CNAME",
+            "challengeType": "DNS",
         },
     )
     print(f"Сертификат заказан: {created.get('id', '—')}")
