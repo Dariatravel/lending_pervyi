@@ -39,6 +39,13 @@ SUBDOMAINS = (
 SUB_TYPES = ("A", "AAAA", "CNAME", "TXT", "MX")
 
 
+# В ответе DNS тип записи приходит числом. Без сверки по нему в выдачу
+# попадает вся цепочка разрешения: спросив MX, получаешь заодно CNAME и адреса,
+# и снимок показывает почтовую запись там, где её нет.
+TYPE_CODES = {"A": 1, "NS": 2, "SOA": 6, "MX": 15, "TXT": 16, "AAAA": 28,
+              "CNAME": 5, "CAA": 257}
+
+
 def resolve(name: str, record_type: str) -> list[str]:
     query = urllib.parse.urlencode({"name": name, "type": record_type})
     request = urllib.request.Request(f"{DOH}?{query}", headers={"Accept": "application/dns-json"})
@@ -47,8 +54,12 @@ def resolve(name: str, record_type: str) -> list[str]:
             data = json.loads(response.read().decode())
     except Exception as error:  # noqa: BLE001
         return [f"(ошибка запроса: {error})"]
+    wanted = TYPE_CODES.get(record_type)
     answers = data.get("Answer") or []
-    return [a.get("data", "") for a in answers if a.get("data")]
+    return [
+        a.get("data", "") for a in answers
+        if a.get("data") and (wanted is None or a.get("type") == wanted)
+    ]
 
 
 def main() -> int:
