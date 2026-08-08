@@ -25,6 +25,8 @@ import urllib.request
 IAM_URL = "https://iam.api.cloud.yandex.net/iam/v1/tokens"
 RM_URL = "https://resource-manager.api.cloud.yandex.net/resource-manager/v1"
 CDN_URL = "https://cdn.api.cloud.yandex.net/cdn/v1"
+CM_URL = "https://certificate-manager.api.cloud.yandex.net/certificate-manager/v1"
+CM_DATA_URL = "https://data.certificate-manager.api.cloud.yandex.net/certificate-manager/v1"
 
 BUCKET = os.getenv("SITE_BUCKET", "abhazbereg-site")
 ORIGIN_HOST = f"{BUCKET}.website.yandexcloud.net"
@@ -182,7 +184,37 @@ def probe() -> int:
 
     print("\n=== Сертификат ===")
     print(f"Будет привязан: {CERTIFICATE_ID} ({DOMAIN}, {WWW_DOMAIN})")
+    check_certificate_access(token)
     return 0
+
+
+def check_certificate_access(token: str) -> bool:
+    """Виден ли сертификат и можно ли выдать его содержимое.
+
+    CDN отвечает «certificate not found» в двух разных случаях: сертификата
+    правда нет — или он есть, но аккаунту нельзя его скачать. Второе лечится
+    ролью certificate-manager.certificates.downloader, и различить их важно,
+    иначе будешь искать несуществующую пропажу.
+    """
+    try:
+        certificate = api(f"{CM_URL}/certificates/{CERTIFICATE_ID}", token)
+        print(f"  виден: {certificate.get('name')} / {certificate.get('status')}")
+    except ApiError as error:
+        print(f"  НЕ ВИДЕН в этой папке ({error.code}) — проверьте YC_FOLDER_ID.")
+        return False
+
+    try:
+        api(f"{CM_DATA_URL}/certificates/{CERTIFICATE_ID}:getContent", token)
+        print("  содержимое доступно — CDN сможет его забрать.")
+        return True
+    except ApiError as error:
+        if error.code in (401, 403):
+            print("  СОДЕРЖИМОЕ НЕДОСТУПНО: нет роли")
+            print("  certificate-manager.certificates.downloader.")
+            print("  Именно поэтому CDN и говорит «certificate not found».")
+            return False
+        print(f"  содержимое проверить не удалось ({error.code}).")
+        return False
 
 
 def ensure_provider(token: str, folder: str) -> None:
@@ -240,6 +272,16 @@ def create() -> int:
             "redirectHttpToHttps": {"enabled": True, "value": True},
         },
     })
+    # Облако отвечает «операцией», и провал лежит внутри неё, а не в коде HTTP.
+    # Без этой проверки скрипт радостно писал «создан» на неудачной попытке.
+    failure = created.get("error")
+    if failure:
+        print(f"\nСоздать не удалось: {failure.get('message')} (код {failure.get('code')})")
+        if "certificate" in str(failure.get("message", "")).lower():
+            print("\nСертификат существует и выпущен — значит дело в доступе к нему:")
+            check_certificate_access(token)
+        return 1
+
     print(f"Ресурс CDN создан: {json.dumps(created, ensure_ascii=False)[:300]}")
     print("\nДомен НЕ переключался — DNS меняется отдельно и по согласованию.")
     time.sleep(5)
