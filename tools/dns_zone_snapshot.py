@@ -34,7 +34,12 @@ SUBDOMAINS = (
     "www", "mail", "smtp", "imap", "pop", "webmail", "autodiscover", "autoconfig",
     "_dmarc", "_domainkey", "mail._domainkey", "yandex._domainkey",
     "_acme-challenge", "_acme-challenge.www",
-    "m", "api", "cdn", "static", "blog", "shop", "lk", "test", "dev",
+    # media пропустили в первом прогоне — а у проекта медиа-бакет и живая
+    # запись media с собственным сертификатом. Проверяем и _acme-challenge
+    # каждого «содержательного» имени: у поддоменов бывают свои сертификаты.
+    "media", "_acme-challenge.media", "img", "video", "files",
+    "m", "api", "cdn", "_acme-challenge.cdn", "static", "blog", "shop",
+    "lk", "test", "dev",
 )
 SUB_TYPES = ("A", "AAAA", "CNAME", "TXT", "MX")
 
