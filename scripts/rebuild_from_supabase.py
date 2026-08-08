@@ -64,7 +64,10 @@ def render_card_price_html(slug: str) -> str:
 
 # Хвосты вида «🩵скидка 20% до 20 июля🩵» в мини-карточке не показываем —
 # название должно оставаться чистым (решение Дарьи 18.07.2026).
-_PROMO_TAIL_RX = re.compile(r"скидк|акци", re.IGNORECASE)
+_PROMO_TAIL_RX = re.compile(
+    r"скидк|акци|раннее\s+бронирован|спецпредлож|распродаж|успей|только\s+до\b",
+    re.IGNORECASE,
+)
 _TAIL_TRIM_RX = re.compile(
     "[\\s\\-–—:,·|" "\U0001f000-\U0001faff☀-➿⬀-⯿️]+$"
 )

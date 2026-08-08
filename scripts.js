@@ -228,7 +228,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202608080904";
+  const ASSET_VERSION = "202608081416";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -2550,7 +2550,7 @@
   /** Название для мини-карточки: без промо-хвостов («скидка…», «акция…»). */
   function cleanCardTitle(title) {
     const text = String(title || "");
-    const match = text.match(/скидк|акци/i);
+    const match = text.match(/скидк|акци|раннее\s+бронирован|спецпредлож|распродаж|успей|только\s+до\b/i);
     if (!match) return text;
     const cleaned = text
       .slice(0, match.index)
