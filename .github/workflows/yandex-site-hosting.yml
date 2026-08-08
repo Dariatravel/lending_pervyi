@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-probe / cdn-create / cdn-status"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status"
         required: true
         default: "probe"
       bucket:
@@ -132,6 +132,13 @@ jobs:
       - name: Установить PyJWT (CDN)
         if: startsWith(inputs.action, 'cdn-')
         run: pip install --quiet pyjwt cryptography
+
+      - name: cdn-grant — попробовать выдать роль cdn.editor
+        if: inputs.action == 'cdn-grant'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+        run: python3 tools/yc_cdn.py grant
 
       - name: cdn-probe — хватает ли прав и что уже создано
         if: inputs.action == 'cdn-probe'

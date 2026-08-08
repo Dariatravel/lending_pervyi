@@ -99,6 +99,58 @@ def find_group(token: str, folder: str) -> dict | None:
     return None
 
 
+def service_account_id() -> str:
+    return json.loads(os.environ["YC_SA_KEY_JSON"])["service_account_id"]
+
+
+def grant_role() -> int:
+    """Попробовать выдать самому себе роль cdn.editor.
+
+    Обычно ключ сервисного аккаунта такого не может: раздача ролей — работа
+    администратора облака, иначе любой утёкший ключ повышал бы себе права.
+    Но проверить дешевле, чем гадать, — и если получится, владелице не
+    придётся ничего нажимать.
+    """
+    token = iam_token()
+    folder = folder_id(token)
+    account = service_account_id()
+    print(f"Сервисный аккаунт: {account}\nПапка: {folder}")
+
+    try:
+        bindings = api(f"{RM_URL}/folders/{folder}:listAccessBindings", token).get("accessBindings") or []
+        mine = [b["roleId"] for b in bindings if (b.get("subject") or {}).get("id") == account]
+        print(f"Текущие роли этого аккаунта: {', '.join(mine) or '—'}")
+        if "cdn.editor" in mine or "admin" in mine:
+            print("Роль cdn.editor уже есть.")
+            return 0
+    except ApiError as error:
+        if error.code in (401, 403):
+            print("Даже прочитать список ролей нельзя — прав на управление доступом нет.")
+            return 2
+        raise
+
+    try:
+        api(f"{RM_URL}/folders/{folder}:updateAccessBindings", token, {
+            "accessBindingDeltas": [{
+                "action": "ADD",
+                "accessBinding": {
+                    "roleId": "cdn.editor",
+                    "subject": {"id": account, "type": "serviceAccount"},
+                },
+            }],
+        })
+    except ApiError as error:
+        if error.code in (401, 403):
+            print("\nОблако отказало: выдать роль своим же ключом нельзя.")
+            print("Это защита, а не сбой — иначе утёкший ключ повышал бы себе права.")
+            return 2
+        raise
+
+    print("Роль cdn.editor выдана.")
+    time.sleep(5)
+    return 0
+
+
 def probe() -> int:
     """Ничего не создаём — только выясняем, что доступно."""
     token = iam_token()
@@ -218,7 +270,7 @@ def status() -> int:
 
 def main() -> int:
     command = sys.argv[1] if len(sys.argv) > 1 else "probe"
-    actions = {"probe": probe, "create": create, "status": status}
+    actions = {"probe": probe, "create": create, "status": status, "grant": grant_role}
     if command not in actions:
         print(__doc__)
         return 1
