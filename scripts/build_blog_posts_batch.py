@@ -236,7 +236,6 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
           <strong class="contact-phone">+7 940 900-33-40</strong><br />
           <span class="contact-messengers">(max, whatsapp, telegram - только сообщения, обычный звонок не пройдёт)</span>
         </p>
-        <p class="note">ВАЖНО: прежде чем написать в максе, добавьте номер в контакты телефона (иначе макс не даст ответить на входящее сообщение)</p>
       </div>
       <div class="contact-channel-panel">
 <div class="contact-channel-grid">
@@ -247,7 +246,7 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
 </a>
 <a class="contact-channel-card" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" target="_blank">
 <span aria-hidden="true" class="contact-channel-card__icon contact-channel-card__icon--max"></span>
-<span class="contact-channel-card__copy"><strong>MAX</strong><small>Добавьте номер в книгу контактов, прежде чем написать</small></span>
+<span class="contact-channel-card__copy"><strong>MAX</strong><small>Только сообщения</small></span>
 <span aria-hidden="true" class="contact-channel-card__arrow">→</span>
 </a>
 <a class="contact-channel-card" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">
