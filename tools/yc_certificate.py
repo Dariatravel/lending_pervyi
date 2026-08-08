@@ -108,7 +108,11 @@ def show(token: str, certificate: dict) -> int:
     print(f"Домены: {', '.join(full.get('domains') or [])}")
 
     if status == "ISSUED":
-        print("\nСертификат выпущен. Можно переключать домен на бакет.")
+        print("\nСертификат выпущен.")
+        print("Но одного его для переключения домена НЕ хватает: Object Storage")
+        print("отдаёт собственный домен только по HTTP. Чтобы абхазберег.рф работал")
+        print("по HTTPS, нужен ресурс Cloud CDN с этим сертификатом — он и будет")
+        print("той точкой, на которую укажет домен. Только после этого меняем DNS.")
         return 0
 
     challenges = full.get("challenges") or []
