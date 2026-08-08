@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T08:23:00.887381+00:00",
+  "generated_at": "2026-08-08T08:53:32.424424+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 230,
@@ -34247,7 +34247,7 @@
               "Квартира с балконом, расположена на 3 этаже кирпичного дома.",
               "Окна в зеленый двор, рядом нет шумных улиц.",
               "В комнате мягкий открывающийся диван и дополнительно возможна раскладная кровать.",
-              "Красивая изящная мебель, стол, удобные кресла, кондиционер.",
+              "Красивая изящная мебель, стол, удобные кресла.",
               "Есть постельное бельё/ полотенца, фен, утюг, кабельное ТВ, вайфай.",
               "На кухне всё необходимое: духовка, варочная панель, холодильник, чайник, посуда.",
               "Санузел с душевой и стиральной машинкой."
@@ -34409,7 +34409,7 @@
           "details": {
             "telegram_post": "abhkvartira/1062",
             "telegram_url": "https://t.me/abhkvartira/1062",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mon-amur-kvartira-1k-gagra-1062/video-01-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mon-amur-kvartira-1k-gagra-1062/video-01-source-poster.jpg"
           }
         }
       ]
@@ -64737,7 +64737,23 @@
           },
           {
             "kind": "price",
-            "text": "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет."
+            "text": "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет."
+          },
+          {
+            "kind": "price",
+            "text": "Я НА СВЯЗИ 📲"
+          },
+          {
+            "kind": "price",
+            "text": "в MAX: max.ru/id741113115256_bot"
+          },
+          {
+            "kind": "price",
+            "text": "ВК-чат: vk.cc/cQQnBn"
+          },
+          {
+            "kind": "note",
+            "text": "(только сообщение, звонок не пройдёт)"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/terra-rivera-eko-kompleks-5166/index.html",
@@ -64962,7 +64978,23 @@
           },
           {
             "kind": "price",
-            "text": "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет."
+            "text": "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет."
+          },
+          {
+            "kind": "price",
+            "text": "Я НА СВЯЗИ 📲"
+          },
+          {
+            "kind": "price",
+            "text": "в MAX: max.ru/id741113115256_bot"
+          },
+          {
+            "kind": "price",
+            "text": "ВК-чат: vk.cc/cQQnBn"
+          },
+          {
+            "kind": "note",
+            "text": "(только сообщение, звонок не пройдёт)"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/trio-nomer-na-plyazhe-5176/index.html",
