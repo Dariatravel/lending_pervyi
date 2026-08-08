@@ -625,7 +625,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
       <p class="site-concept__guide-pitch">Напишите, что вам нужно — я предложу подходящие варианты; если не подойдёт, продолжите искать сами.</p>
       <div class="site-concept__guide-cta">
         <div class="site-concept__guide-messenger-grid" role="group" aria-label="Написать в мессенджер">
-          <a class="btn-book site-concept__guide-messenger-btn" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В МАКС</a>
+          <a class="btn-book site-concept__guide-messenger-btn" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В МАКС</a>
           <a class="btn-book site-concept__guide-messenger-btn" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК-ЧАТ</a>
           <a class="btn-book site-concept__guide-messenger-btn" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ТЕЛЕГРАМ</a>
           <a class="btn-book site-concept__guide-messenger-btn" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВАТСАП</a>
@@ -655,7 +655,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 <span class="contact-channel-card__copy"><strong>ВКонтакте</strong><small>Самый быстрый ответ</small></span>
 <span aria-hidden="true" class="contact-channel-card__arrow">→</span>
 </a>
-<a class="contact-channel-card" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">
+<a class="contact-channel-card" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" target="_blank">
 <span aria-hidden="true" class="contact-channel-card__icon contact-channel-card__icon--max"></span>
 <span class="contact-channel-card__copy"><strong>MAX</strong><small>Добавьте номер в книгу контактов, прежде чем написать</small></span>
 <span aria-hidden="true" class="contact-channel-card__arrow">→</span>
@@ -870,7 +870,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
       <p class="site-concept__guide-pitch">Напишите, что вам нужно — я предложу подходящие варианты; если не подойдёт, продолжите искать сами.</p>
       <div class="site-concept__guide-cta">
         <div class="site-concept__guide-messenger-grid" role="group" aria-label="Написать в мессенджер">
-          <a class="btn-book site-concept__guide-messenger-btn" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В МАКС</a>
+          <a class="btn-book site-concept__guide-messenger-btn" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В МАКС</a>
           <a class="btn-book site-concept__guide-messenger-btn" href="https://vk.cc/cQQnBn" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВК-ЧАТ</a>
           <a class="btn-book site-concept__guide-messenger-btn" href="https://t.me/abhazbooking_online" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ТЕЛЕГРАМ</a>
           <a class="btn-book site-concept__guide-messenger-btn" href="https://wa.me/79409003340" rel="noopener noreferrer" target="_blank">НАПИСАТЬ В ВАТСАП</a>
@@ -900,7 +900,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
 <span class="contact-channel-card__copy"><strong>ВКонтакте</strong><small>Самый быстрый ответ</small></span>
 <span aria-hidden="true" class="contact-channel-card__arrow">→</span>
 </a>
-<a class="contact-channel-card" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">
+<a class="contact-channel-card" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" target="_blank">
 <span aria-hidden="true" class="contact-channel-card__icon contact-channel-card__icon--max"></span>
 <span class="contact-channel-card__copy"><strong>MAX</strong><small>Добавьте номер в книгу контактов, прежде чем написать</small></span>
 <span aria-hidden="true" class="contact-channel-card__arrow">→</span>

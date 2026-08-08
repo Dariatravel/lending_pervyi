@@ -229,7 +229,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 <span class="contact-channel-card__copy"><strong>ВКонтакте</strong><small>Самый быстрый ответ</small></span>
 <span aria-hidden="true" class="contact-channel-card__arrow">→</span>
 </a>
-<a class="contact-channel-card" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">
+<a class="contact-channel-card" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" target="_blank">
 <span aria-hidden="true" class="contact-channel-card__icon contact-channel-card__icon--max"></span>
 <span class="contact-channel-card__copy"><strong>MAX</strong><small>Добавьте номер в книгу контактов, прежде чем написать</small></span>
 <span aria-hidden="true" class="contact-channel-card__arrow">→</span>
@@ -317,7 +317,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
 <span class="contact-channel-card__copy"><strong>ВКонтакте</strong><small>Самый быстрый ответ</small></span>
 <span aria-hidden="true" class="contact-channel-card__arrow">→</span>
 </a>
-<a class="contact-channel-card" href="https://max.ru/abhazbereg" rel="noopener noreferrer" target="_blank">
+<a class="contact-channel-card" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" target="_blank">
 <span aria-hidden="true" class="contact-channel-card__icon contact-channel-card__icon--max"></span>
 <span class="contact-channel-card__copy"><strong>MAX</strong><small>Добавьте номер в книгу контактов, прежде чем написать</small></span>
 <span aria-hidden="true" class="contact-channel-card__arrow">→</span>

@@ -575,7 +575,7 @@ def update_home_schema() -> bool:
                 "https://t.me/abhazbooking",
                 "https://t.me/abhkvartira",
                 "https://vk.cc/cQQnBn",
-                "https://max.ru/abhazbereg",
+                "https://max.ru/id741113115256_bot",
             ],
             "contactPoint": {
                 "@type": "ContactPoint",

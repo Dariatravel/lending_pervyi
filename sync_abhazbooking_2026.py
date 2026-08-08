@@ -843,7 +843,7 @@ def render_page(slug: str, message_id: int, date_text: str, parsed: dict, photo_
         <p>Задать вопросы либо проверить наличие номеров можно: <strong>+7 940 900-33-40</strong> (WhatsApp, Telegram, MAX).</p>
         <p class="note">(только сообщение, звонок не пройдёт)</p>
         <div class="contact-buttons">
-          <a class="btn-book" href="https://max.ru/abhazbereg" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В MAX</a>
+          <a class="btn-book" href="https://max.ru/id741113115256_bot" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В MAX</a>
           <a class="btn-book" href="http://vk.cc/cQQnBn" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В ВК</a>
           <a class="btn-book" href="https://t.me/abhazbooking_online" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В TELEGRAM</a>
           <a class="btn-book" href="https://wa.me/79409003340" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В WHATSAPP</a>

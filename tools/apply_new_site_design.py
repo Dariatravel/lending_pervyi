@@ -32,7 +32,7 @@ HOME_SOCIAL_STATS_STRIP = """  <section class="section site-concept__social-stri
         <strong>42&#8239;000</strong>
         <span class="site-concept__social-stat-label">участников</span>
       </a>
-      <a aria-label="MAX: 5 500 участников" class="site-concept__social-stat" href="https://max.ru/abhazbereg" rel="noopener noreferrer" role="listitem" target="_blank">
+      <a aria-label="MAX: 5 500 участников" class="site-concept__social-stat" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" role="listitem" target="_blank">
         <span aria-hidden="true" class="site-concept__social-stat-icon site-concept__social-stat-icon--max">
           <svg aria-hidden="true" fill="none" height="26" viewBox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"><path d="M7 10c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v3c0 1.1-.9 2-2 2h-2.5l-2.2 2.2c-.4.4-1 .1-1-.5V15H9c-1.1 0-2-.9-2-2v-3Z" fill="#fff"/></svg>
         </span>
@@ -1756,7 +1756,7 @@ def build_homepage() -> None:
           <strong>42&#8239;000</strong>
           <span class="site-concept__social-stat-label">участников</span>
         </a>
-        <a aria-label="MAX: 5 500 участников" class="site-concept__social-stat" href="https://max.ru/abhazbereg" rel="noopener noreferrer" role="listitem" target="_blank">
+        <a aria-label="MAX: 5 500 участников" class="site-concept__social-stat" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" role="listitem" target="_blank">
           <span aria-hidden="true" class="site-concept__social-stat-icon site-concept__social-stat-icon--max">
             <svg aria-hidden="true" fill="none" height="26" viewBox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"><path d="M7 10c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v3c0 1.1-.9 2-2 2h-2.5l-2.2 2.2c-.4.4-1 .1-1-.5V15H9c-1.1 0-2-.9-2-2v-3Z" fill="#fff"/></svg>
           </span>
