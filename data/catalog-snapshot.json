@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-05T15:59:14.150285+00:00",
+  "generated_at": "2026-08-08T08:23:00.887381+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 228,
-  "listings_hotels": 178,
+  "listings_total": 230,
+  "listings_hotels": 180,
   "listings_kvartira": 50,
   "listings": [
     {
@@ -15684,7 +15684,7 @@
           },
           {
             "kind": "price",
-            "text": "Июль, август, сентябрь до 15"
+            "text": "Июль, август"
           },
           {
             "kind": "price",
@@ -15704,23 +15704,23 @@
           },
           {
             "kind": "price",
-            "text": "Сентябрь с 15 числа"
+            "text": "Сентябрь"
           },
           {
             "kind": "price",
-            "text": "8400₽ — двухместный"
+            "text": "7000₽ — двухместный"
           },
           {
             "kind": "price",
-            "text": "9600₽ — трехместный"
+            "text": "8000₽ — трехместный"
           },
           {
             "kind": "price",
-            "text": "10800₽ — четырехместный"
+            "text": "9000₽ — четырехместный"
           },
           {
             "kind": "price",
-            "text": "12000₽ — домик пятиместный двухкомнатный"
+            "text": "10000₽ — домик пятиместный двухкомнатный"
           },
           {
             "kind": "price",
@@ -34247,7 +34247,7 @@
               "Квартира с балконом, расположена на 3 этаже кирпичного дома.",
               "Окна в зеленый двор, рядом нет шумных улиц.",
               "В комнате мягкий открывающийся диван и дополнительно возможна раскладная кровать.",
-              "Красивая изящная мебель, стол, удобные кресла.",
+              "Красивая изящная мебель, стол, удобные кресла, кондиционер.",
               "Есть постельное бельё/ полотенца, фен, утюг, кабельное ТВ, вайфай.",
               "На кухне всё необходимое: духовка, варочная панель, холодильник, чайник, посуда.",
               "Санузел с душевой и стиральной машинкой."
@@ -34409,7 +34409,7 @@
           "details": {
             "telegram_post": "abhkvartira/1062",
             "telegram_url": "https://t.me/abhkvartira/1062",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mon-amur-kvartira-1k-gagra-1062/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mon-amur-kvartira-1k-gagra-1062/video-01-poster.jpg"
           }
         }
       ]
@@ -38301,14 +38301,6 @@
           {
             "kind": "note",
             "text": "(указаны за двухместное размещение)"
-          },
-          {
-            "kind": "price",
-            "text": "Акция🔥"
-          },
-          {
-            "kind": "price",
-            "text": "С 7 по 20 августа - 5500₽ 2х местное размещение."
           },
           {
             "kind": "price",
@@ -42983,23 +42975,11 @@
         "prices": [
           {
             "kind": "price",
-            "text": "4000₽/сутки - май"
+            "text": "5000₽ - август, сентябрь до 15го"
           },
           {
             "kind": "price",
-            "text": "5000₽/сутки - июнь, июль"
-          },
-          {
-            "kind": "price",
-            "text": "6000₽/сутки - август"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽/сутки - сентябрь до 15го"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽/сутки - сентябрь с 15го"
+            "text": "4000₽ - сентябрь с 15го"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/grin-haus-domiki-3104/index.html",
@@ -44594,11 +44574,7 @@
           },
           {
             "kind": "price",
-            "text": "6000₽ - сентябрь до 15го"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - сентябрь с 15го"
+            "text": "6000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -44626,11 +44602,7 @@
           },
           {
             "kind": "price",
-            "text": "6000₽ - сентябрь до 15го"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ - сентябрь с 15го"
+            "text": "6000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -44812,7 +44784,7 @@
           "details": {
             "telegram_post": "abhazbooking/3053",
             "telegram_url": "https://t.me/abhazbooking/3053",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bugenvilleya-otel-s-basseynom-3044/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bugenvilleya-otel-s-basseynom-3044/video-01-poster.jpg"
           }
         }
       ]
@@ -46522,19 +46494,19 @@
         "prices": [
           {
             "kind": "price",
-            "text": "с 15 января по 1 мая"
+            "text": "август"
           },
           {
             "kind": "price",
-            "text": "5555₽/сутки - домик у реки"
+            "text": "7555₽/сутки - домик у реки"
           },
           {
             "kind": "price",
-            "text": "4555₽/сутки - двухместный номер"
+            "text": "7555₽/сутки - двухместный номер"
           },
           {
             "kind": "price",
-            "text": "6555₽/сутки - двухместный номер с балконом"
+            "text": "8555₽/сутки - двухместный номер с балконом"
           },
           {
             "kind": "note",
@@ -46542,7 +46514,7 @@
           },
           {
             "kind": "price",
-            "text": "18555₽/сутки - Аframe-дом до 6 чел"
+            "text": "20555₽/сутки - Аframe-дом до 6 чел"
           },
           {
             "kind": "price",
@@ -46554,19 +46526,19 @@
           },
           {
             "kind": "price",
-            "text": "с 1 мая"
+            "text": "сентябрь"
           },
           {
             "kind": "price",
-            "text": "7555₽/сутки - домик у реки"
+            "text": "6555₽/сутки - домик у реки"
           },
           {
             "kind": "price",
-            "text": "8555₽/сутки - двухместный номер"
+            "text": "6555₽/сутки - двухместный номер"
           },
           {
             "kind": "price",
-            "text": "10555₽/сутки - двухместный номер с балконом"
+            "text": "7555₽/сутки - двухместный номер с балконом"
           },
           {
             "kind": "note",
@@ -46574,7 +46546,39 @@
           },
           {
             "kind": "price",
-            "text": "25555₽/сутки - Аframe-дом до 6 чел"
+            "text": "20555₽/сутки - Аframe-дом до 6 чел"
+          },
+          {
+            "kind": "price",
+            "text": "15555₽/сутки - дом с двумя спальнями до 5 чел"
+          },
+          {
+            "kind": "note",
+            "text": "(доп место 3000₽/сутки)"
+          },
+          {
+            "kind": "price",
+            "text": "октябрь, ноябрь, декабрь до 25"
+          },
+          {
+            "kind": "price",
+            "text": "5555₽/сутки - домик у реки"
+          },
+          {
+            "kind": "price",
+            "text": "5555₽/сутки - двухместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "6555₽/сутки - двухместный номер с балконом"
+          },
+          {
+            "kind": "note",
+            "text": "(доп место 2000₽/сутки)"
+          },
+          {
+            "kind": "price",
+            "text": "20555₽/сутки - Аframe-дом до 6 чел"
           },
           {
             "kind": "price",
@@ -51408,7 +51412,7 @@
           },
           {
             "kind": "price",
-            "text": "Весь сентябрь при проживании от 7 дней +1 день в подарок🎁"
+            "text": "Весь сентябрь при проживании от 10 дней +1 день в подарок🎁"
           },
           {
             "kind": "price",
@@ -51635,7 +51639,7 @@
           "details": {
             "telegram_post": "abhazbooking/4955",
             "telegram_url": "https://t.me/abhazbooking/4955",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/video-01-poster.jpg"
           }
         }
       ]
@@ -56239,23 +56243,15 @@
           },
           {
             "kind": "price",
-            "text": "12000₽/сутки - июнь"
+            "text": "16000₽ - июль, август, сентябрь по 14 число"
           },
           {
             "kind": "price",
-            "text": "16000₽/сутки - июль, август, сентябрь по 14 число"
+            "text": "12000₽ - сентябрь с 15 числа, октябрь"
           },
           {
             "kind": "price",
-            "text": "2000₽/сутки - доп место"
-          },
-          {
-            "kind": "price",
-            "text": "12000₽/сутки - сентябрь с 15 числа"
-          },
-          {
-            "kind": "price",
-            "text": "1500₽/сутки - доп. место"
+            "text": "2000₽/сутки - доп. место"
           },
           {
             "kind": "price",
@@ -56416,7 +56412,7 @@
           "details": {
             "telegram_post": "abhazbooking/4791",
             "telegram_url": "https://t.me/abhazbooking/4791",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/video-01-poster.jpg"
           }
         }
       ]
@@ -62194,7 +62190,7 @@
           },
           {
             "kind": "price",
-            "text": "8000₽ - сентябрь"
+            "text": "9000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -64670,6 +64666,452 @@
           "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-10.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-10.jpg",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5166,
+      "source_topic_id": null,
+      "slug": "terra-rivera-eko-kompleks-5166",
+      "title": "\"ТЕРРА РИВЬЕРА\" эко-комплекс",
+      "summary": "с. Дранда. 0 минут до пляжа, размещение до 4 человек.",
+      "excerpt": "Десять современных домиков площадью 28 м²",
+      "city": "с. Дранда",
+      "location_text": "с. Дранда, ул. Морская, 42.886073, 41.096884",
+      "distance_text": "0 минут до пляжа",
+      "beach_text": "0 минут до пляжа",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/terra-rivera-eko-kompleks-5166/",
+      "telegram_url": "https://t.me/abhazbooking/5166",
+      "published_at": "2026-08-07",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/terra-rivera-eko-kompleks-5166.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "с. Дранда. 0 минут до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Десять современных домиков площадью 28 м².",
+              "В домике: две совмещенные односпальные кровати, раскладывающийся диван, шкаф, прикроватные тумбочки. Санузел с душем с минерализированной водой из скважины.",
+              "Оснащение: кондиционер, Wi‑Fi, телевизор, мини-холодильник, чайник, фен.",
+              "У каждого домика есть веранда для отдыха со столиком и стульями."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Полностью оборудованная кухня для самостоятельного приготовления.",
+              "Мангальная зона.",
+              "Особенность комплекса - минерализованная вода из скважины. После дня у моря душ становится особенно приятным ритуалом: вода помогает расслабиться и оставить ощущение свежести.",
+              "Пляж галечный сразу за территорией. Есть шезлонги и зонтики за доп плату.",
+              "Парковка на территории.",
+              "Спокойное тихое место, где природа лечит, комфорт окружает заботой, и вы возвращаете себе себя."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Рядом есть кафе с вкусной едой.",
+              "До аэропорта Сухума 12 минут на машине.",
+              "Бесплатный трансфер из аэропорта Сухума."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/terra-rivera-eko-kompleks-5166/index.html",
+        "filters": {
+          "distance": [
+            "beachfront",
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "sukhum"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "terrace",
+            "tv",
+            "beachfront-room"
+          ],
+          "stay": [
+            "cottages"
+          ]
+        }
+      },
+      "id": 1199,
+      "media": [
+        {
+          "id": 1199001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/terra-rivera-eko-kompleks-5166.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/terra-rivera-eko-kompleks-5166.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/terra-rivera-eko-kompleks-5166.jpg",
+          "details": {}
+        },
+        {
+          "id": 1199002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/terra-rivera-eko-kompleks-5166/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1199003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/terra-rivera-eko-kompleks-5166/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1199004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/terra-rivera-eko-kompleks-5166/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1199005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/terra-rivera-eko-kompleks-5166/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1199006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/terra-rivera-eko-kompleks-5166/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1199007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/terra-rivera-eko-kompleks-5166/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1199008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/terra-rivera-eko-kompleks-5166/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1199009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/terra-rivera-eko-kompleks-5166/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1199010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/terra-rivera-eko-kompleks-5166/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/terra-rivera-eko-kompleks-5166/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1199011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/terra-rivera-eko-kompleks-5166/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/terra-rivera-eko-kompleks-5166/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/terra-rivera-eko-kompleks-5166/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5175",
+            "telegram_url": "https://t.me/abhazbooking/5175",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/terra-rivera-eko-kompleks-5166/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5176,
+      "source_topic_id": null,
+      "slug": "trio-nomer-na-plyazhe-5176",
+      "title": "\"ТРИО\" номер на пляже",
+      "summary": "Лдзаа. 0 минут до пляжа, размещение до 3 человек.",
+      "excerpt": "Номер у самого моря, отличный вариант для отдыха без долгих прогулок до пляжа",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, ул. Рыбзаводская, 88",
+      "distance_text": "0 минут до пляжа",
+      "beach_text": "0 минут до пляжа",
+      "capacity_text": "размещение до 3 человек",
+      "page_url": "https://абхазберег.рф/hotels/trio-nomer-na-plyazhe-5176/",
+      "telegram_url": "https://t.me/abhazbooking/5176",
+      "published_at": "2026-08-07",
+      "has_video": false,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/trio-nomer-na-plyazhe-5176.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 0 минут до пляжа, размещение до 3 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕР:",
+            "lines": [
+              "Номер у самого моря, отличный вариант для отдыха без долгих прогулок до пляжа.",
+              "В номере: двуспальная кровать, раскладной диванчик на одного человека, шкаф, прикроватная тумбочка. Санузел с тропическим душем.",
+              "Оснащение: кондиционер, телевизор, Wi‑Fi, фен.",
+              "Своя просторная веранда со столом и стульями."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "На территории общая кухня со всем необходимым для самостоятельного приготовления.",
+              "Мангальная зона и зона отдыха.",
+              "Огороженная территория."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Оборудованный пляж прямо за забором с мелкой галькой/песком. Есть водные развлечения.",
+              "Рядом есть большая детская площадка. Остановка конечная маршруток. Несколько магазинов: продуктовые и хозяйственные. Вино, фрукты, сувениры. Аптека.",
+              "Есть экскурсионные точки магазины. Столовая, кафе, Гастробар 151."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "( за трехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - сентябрь, октябрь, ноябрь, декабрь"
+          },
+          {
+            "kind": "price",
+            "text": "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/trio-nomer-na-plyazhe-5176/index.html",
+        "filters": {
+          "distance": [
+            "beachfront",
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [
+            "pitsunda-bay-mixed"
+          ],
+          "room": [
+            "terrace",
+            "tv",
+            "beachfront-room"
+          ],
+          "stay": []
+        }
+      },
+      "id": 1200,
+      "media": [
+        {
+          "id": 1200001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/trio-nomer-na-plyazhe-5176.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/trio-nomer-na-plyazhe-5176.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/trio-nomer-na-plyazhe-5176.jpg",
+          "details": {}
+        },
+        {
+          "id": 1200002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/trio-nomer-na-plyazhe-5176/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1200003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/trio-nomer-na-plyazhe-5176/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1200004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/trio-nomer-na-plyazhe-5176/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1200005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/trio-nomer-na-plyazhe-5176/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1200006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/trio-nomer-na-plyazhe-5176/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1200007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/trio-nomer-na-plyazhe-5176/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1200008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/trio-nomer-na-plyazhe-5176/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1200009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/trio-nomer-na-plyazhe-5176/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1200010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/trio-nomer-na-plyazhe-5176/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1200011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/trio-nomer-na-plyazhe-5176/photo-10.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-10.jpg",
           "details": {}
         }
       ]
