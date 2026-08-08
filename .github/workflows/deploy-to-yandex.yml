@@ -10,10 +10,13 @@ name: Deploy to Yandex
 on:
   push:
     branches: [main]
+    # tools/ намеренно НЕ игнорируем: правила заливки лежат в
+    # tools/deploy_site_to_yandex.py, и когда меняются они, бакет тоже должен
+    # перезалиться. Иначе правка «добавить в заливку файлы подтверждения прав»
+    # остаётся на бумаге — так и случилось 8 августа.
     paths-ignore:
       - "docs/**"
       - "deploy/**"
-      - "tools/**"
       - "scripts/**"
       - "**/*.md"
   workflow_dispatch:
