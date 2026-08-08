@@ -8,8 +8,9 @@
     python3 tools/yc_certificate.py request    # заказать сертификат
     python3 tools/yc_certificate.py status     # что с ним сейчас и чего он ждёт
 
-Домен кириллический, поэтому сертификат выпускаем сразу на оба написания:
-абхазберег.рф и его техническую запись xn--80aacbklan7f0b.xn--p1ai.
+Домен кириллический, поэтому в API передаём его техническую Punycode-запись.
+Yandex Cloud считает абхазберег.рф и xn--80aacbklan7f0b.xn--p1ai одним доменом
+и отклоняет запрос, если указать оба написания как отдельные домены.
 
 Подтверждение владения идёт через DNS: облако называет запись, которую нужно
 добавить у регистратора. Пока записи нет, сертификат висит в ожидании — это
@@ -28,7 +29,6 @@ IAM_URL = "https://iam.api.cloud.yandex.net/iam/v1/tokens"
 RM_URL = "https://resource-manager.api.cloud.yandex.net/resource-manager/v1"
 CM_URL = "https://certificate-manager.api.cloud.yandex.net/certificate-manager/v1"
 
-DOMAIN_UNICODE = "абхазберег.рф"
 DOMAIN_PUNYCODE = "xn--80aacbklan7f0b.xn--p1ai"
 CERT_NAME = "abhazbereg-site"
 
@@ -147,7 +147,7 @@ def request_certificate() -> int:
             "folderId": folder,
             "name": CERT_NAME,
             "description": "Сайт абхазберег.рф в Object Storage",
-            "domains": [DOMAIN_UNICODE, DOMAIN_PUNYCODE, f"www.{DOMAIN_UNICODE}"],
+            "domains": [DOMAIN_PUNYCODE, f"www.{DOMAIN_PUNYCODE}"],
             "challengeType": "DNS",
         },
     )
