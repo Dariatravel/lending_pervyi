@@ -274,3 +274,34 @@ jobs:
             --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
             --data-urlencode "text=${MSG}" >/dev/null
           echo "Уведомление отправлено."
+
+      # Если проверка каналов упала (разлогинилась Telegram-сессия, Telegram не
+      # ответил), шаг выше не срабатывает: он ждёт changed=true, а до него дело
+      # не доходит. Тогда сайт молча перестаёт обновляться — так и случилось
+      # 5–8 августа 2026, три дня без синка и без единого сигнала.
+      # Бот шлёт через свой токен, а не через сессию, поэтому работает и тогда,
+      # когда сессия умерла. Раз в 6 часов, чтобы не заваливать чат каждый час.
+      - name: Сообщить о сбое проверки
+        if: failure() && steps.gate.outputs.enabled == 'true'
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
+            echo "TG_BOT_TOKEN/TG_REPORT_CHAT_ID не заданы — уведомление о сбое пропущено."
+            exit 0
+          fi
+          HOUR=$(date -u +%H)
+          if [ $((10#$HOUR % 6)) -ne 0 ]; then
+            echo "Час $HOUR UTC — не время для повторного сигнала, молчу."
+            exit 0
+          fi
+          MSG=$(printf '%s\n\n%s\n\n%s' \
+            "⛔️ Автосинк не работает: проверка каналов Telegram падает." \
+            "Новые посты из каналов НЕ попадают на сайт. Чаще всего причина — Telegram-сессия разлогинилась, тогда нужно перевыпустить TG_STRING_SESSION (tools/make_tg_string_session.py на Mac)." \
+            "Журнал: ${RUN_URL}")
+          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
+            --data-urlencode "text=${MSG}" >/dev/null
+          echo "Уведомление о сбое отправлено."
