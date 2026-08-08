@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status"
         required: true
         default: "probe"
       bucket:
@@ -106,3 +106,23 @@ jobs:
       - name: verify — проверить сайт по адресу бакета
         if: inputs.action == 'verify'
         run: python3 tools/deploy_site_to_yandex.py --bucket "$BUCKET" --verify-only
+
+      # Сертификаты — отдельная служба облака, ключи от хранилища к ней не подходят.
+      # Нужен авторизованный ключ сервисного аккаунта в секрете YC_SA_KEY_JSON.
+      - name: Установить PyJWT
+        if: startsWith(inputs.action, 'cert-')
+        run: pip install --quiet pyjwt cryptography
+
+      - name: cert-request — заказать сертификат на домен
+        if: inputs.action == 'cert-request'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+        run: python3 tools/yc_certificate.py request
+
+      - name: cert-status — что с сертификатом и чего он ждёт
+        if: inputs.action == 'cert-status'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+        run: python3 tools/yc_certificate.py status
