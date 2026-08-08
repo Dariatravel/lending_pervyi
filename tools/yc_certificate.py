@@ -117,6 +117,14 @@ def show(token: str, certificate: dict) -> int:
         print("\nОблако ещё не выдало проверочную запись — повторите через минуту.")
         return 1
 
+    cname_challenges = [
+        challenge for challenge in dns_challenges
+        if (challenge.get("dnsChallenge") or {}).get("type") == "CNAME"
+        or challenge.get("dnsType") == "CNAME"
+    ]
+    if cname_challenges:
+        dns_challenges = cname_challenges
+
     print("\nЧтобы облако убедилось, что домен ваш, добавьте у регистратора "
           "(Рег.ру → Домены → абхазберег.рф → DNS-серверы и управление зоной):\n")
     for challenge in dns_challenges:
@@ -128,7 +136,7 @@ def show(token: str, certificate: dict) -> int:
         print(f"  Имя:      {name}")
         print(f"  Значение: {value}\n")
     print("После добавления записи подождите 15–30 минут и запустите status ещё раз.")
-    return 1
+    return 0
 
 
 def request_certificate() -> int:
