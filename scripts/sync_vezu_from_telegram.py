@@ -116,7 +116,9 @@ def render_media_gallery(media_items: list[dict[str, str]]) -> str:
             poster_attr = f' poster="{html.escape(poster, quote=True)}"' if poster else ""
             cards.append(
                 "            <figure class=\"blog-article__media-item blog-article__media-item--video\">"
-                f"<video controls preload=\"metadata\" playsinline{poster_attr}>"
+                # Видео в статье идут ниже текста — грузим их только по клику,
+                # чтобы не отнимать сеть у самой страницы.
+                f"<video controls preload=\"none\" playsinline{poster_attr}>"
                 f"<source src=\"{src}\" type=\"video/mp4\" />"
                 "</video></figure>"
             )

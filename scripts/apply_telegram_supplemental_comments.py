@@ -418,7 +418,10 @@ def render_media_html(block: SupplementalBlock, target: Target, card_heading: st
             alt = html.escape(f"{object_label} — {card_heading}")
             lines.append(f'                  <img src="{html.escape(url)}" alt="{alt}" loading="lazy" />')
         else:
-            lines.append("                  <video class=\"local-video\" controls preload=\"metadata\" playsinline>")
+            # Блок обзоров всегда ниже первого экрана: metadata заставляла бы
+            # браузер тянуть заголовки всех видео сразу, а на слабой мобильной
+            # сети эти запросы конкурируют с загрузкой самой страницы.
+            lines.append("                  <video class=\"local-video\" controls preload=\"none\" playsinline>")
             lines.append(f'                    <source src="{html.escape(url)}" type="video/mp4" />')
             lines.append("                  </video>")
     lines.append("                </div>")
