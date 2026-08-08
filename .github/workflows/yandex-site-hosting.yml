@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot"
         required: true
         default: "probe"
       bucket:
@@ -155,6 +155,11 @@ jobs:
           YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
           SITE_BUCKET: ${{ inputs.bucket }}
         run: python3 tools/yc_cdn.py create
+
+      # Только чтение: список записей зоны до переноса и для сверки после.
+      - name: dns-snapshot — что сейчас в зоне домена
+        if: inputs.action == 'dns-snapshot'
+        run: python3 tools/dns_zone_snapshot.py
 
       - name: cdn-status — состояние ресурса
         if: inputs.action == 'cdn-status'
