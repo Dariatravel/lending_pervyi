@@ -323,16 +323,25 @@ def status() -> int:
         print(f"Ресурса для {DOMAIN} нет — сначала create.")
         return 1
 
+    secondary = resource.get("secondaryHostnames") or []
+    # Create принимает обёртку {"values": [...]}, а актуальный List/Get API
+    # возвращает уже готовый список строк. Поддерживаем оба формата.
+    if isinstance(secondary, dict):
+        secondary = secondary.get("values") or []
+    elif not isinstance(secondary, list):
+        secondary = [secondary]
+
     print(f"\nРесурс CDN: {resource.get('id')}")
     print(f"Домен: {resource.get('cname')}")
-    print(f"Дополнительные: {(resource.get('secondaryHostnames') or {}).get('values') or '—'}")
+    print(f"Дополнительные: {secondary or '—'}")
     print(f"Активен: {resource.get('active')}")
     certificate = (resource.get('sslCertificate') or {}).get('type')
     print(f"Сертификат: {certificate}")
 
     # Адрес, на который потом будет указывать домен.
+    provider_cname = resource.get("providerCname")
     print(f"\nКогда дойдёт до переключения, домен направляется на:")
-    print(f"  {resource.get('cname')}.cdn.yandex.net (CNAME)")
+    print(f"  {provider_cname or 'адрес CDN пока не выдан'} (CNAME)")
     print("Сейчас этого делать НЕ нужно.")
     return 0
 
