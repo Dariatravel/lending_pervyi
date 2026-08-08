@@ -51,6 +51,12 @@ INCLUDE_FILES = (
     "app.webmanifest", "sitemap.xml", "robots.txt",
 )
 
+# Файлы подтверждения прав в Яндекс.Вебмастере и Google Search Console.
+# В DNS-зоне подтверждающих TXT-записей нет — права держатся только на этих
+# файлах. Не залить их значит потерять сайт в обеих панелях сразу после
+# переключения домена, вместе со статистикой запросов и переобходом страниц.
+VERIFICATION_PATTERNS = ("yandex_*.html", "google*.html", "wmail-*.html")
+
 # Внутри разрешённых папок тоже есть лишнее.
 SKIP_DIR_NAMES = {".git", "__pycache__", "node_modules", "media", "output"}
 # Несжатые исходники: страницы ссылаются на .min-версии, эти двое только
@@ -121,6 +127,10 @@ def collect() -> list[Path]:
         candidate = ROOT / name
         if candidate.is_file():
             files.append(candidate)
+    for pattern in VERIFICATION_PATTERNS:
+        for candidate in ROOT.glob(pattern):
+            if candidate.is_file():
+                files.append(candidate)
     for folder in INCLUDE_DIRS:
         base = ROOT / folder
         if not base.is_dir():
