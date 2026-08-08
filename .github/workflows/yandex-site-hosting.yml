@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-probe / cdn-create / cdn-status"
         required: true
         default: "probe"
       bucket:
@@ -126,3 +126,33 @@ jobs:
           YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
           YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
         run: python3 tools/yc_certificate.py status
+
+      # CDN — единственное место, куда прикрепляется наш сертификат: бакет
+      # отдаёт свой домен только по HTTP. Домен на CDN не переключается.
+      - name: Установить PyJWT (CDN)
+        if: startsWith(inputs.action, 'cdn-')
+        run: pip install --quiet pyjwt cryptography
+
+      - name: cdn-probe — хватает ли прав и что уже создано
+        if: inputs.action == 'cdn-probe'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          SITE_BUCKET: ${{ inputs.bucket }}
+        run: python3 tools/yc_cdn.py probe
+
+      - name: cdn-create — создать ресурс CDN с сертификатом
+        if: inputs.action == 'cdn-create'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          SITE_BUCKET: ${{ inputs.bucket }}
+        run: python3 tools/yc_cdn.py create
+
+      - name: cdn-status — состояние ресурса
+        if: inputs.action == 'cdn-status'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          SITE_BUCKET: ${{ inputs.bucket }}
+        run: python3 tools/yc_cdn.py status
