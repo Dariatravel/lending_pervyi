@@ -252,6 +252,26 @@ def ensure_provider(token: str, folder: str) -> None:
             raise
 
 
+def configure_resource(token: str, resource: dict) -> int:
+    """Настроить Host для статического бакета, не меняя DNS или домены."""
+    updated = api(f"{CDN_URL}/resources/{resource['id']}", token, {
+        "options": {
+            "hostOptions": {
+                "host": {"enabled": True, "value": ORIGIN_HOST},
+            },
+        },
+    }, method="PATCH")
+    failure = updated.get("error")
+    if failure:
+        print(f"Настроить Host не удалось: {failure.get('message')} "
+              f"(код {failure.get('code')})")
+        return 1
+    print(f"Host для запросов к источнику: {ORIGIN_HOST}")
+    print("Настройка ресурса отправлена в CDN.")
+    time.sleep(5)
+    return status()
+
+
 def create() -> int:
     token = iam_token()
     folder = folder_id(token)
@@ -259,7 +279,7 @@ def create() -> int:
     existing = find_resource(token, folder)
     if existing:
         print(f"Ресурс для {DOMAIN} уже есть: {existing.get('id')}")
-        return status()
+        return configure_resource(token, existing)
 
     ensure_provider(token, folder)
 
@@ -297,6 +317,10 @@ def create() -> int:
             # Сжатие текста: HTML, CSS и JS поедут к гостю меньшим весом.
             "browserCacheSettings": {"enabled": True, "value": "0"},
             "redirectHttpToHttps": {"enabled": True, "value": True},
+            # Статический бакет выбирается по Host; без этого CDN получает 404.
+            "hostOptions": {
+                "host": {"enabled": True, "value": ORIGIN_HOST},
+            },
         },
     })
     # Облако отвечает «операцией», и провал лежит внутри неё, а не в коде HTTP.
