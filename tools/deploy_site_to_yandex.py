@@ -213,6 +213,17 @@ def verify(bucket: str) -> int:
             if status != 200:
                 print(f"        ответ: {body[:200].decode(errors='replace')}")
 
+    # Файлы подтверждения прав. Их отсутствие не видно на глаз — сайт работает,
+    # а из Вебмастера и Google он тихо выпадает.
+    for pattern in VERIFICATION_PATTERNS:
+        for candidate in ROOT.glob(pattern):
+            status, body, _ = fetch(f"{base}/{candidate.name}")
+            ok = status == 200 and len(body) > 0
+            print(f"  {'OK  ' if ok else 'ПЛОХО'} /{candidate.name:31} код {status} "
+                  f"— подтверждение прав")
+            if not ok:
+                failures += 1
+
     # Страница объекта: именно они открываются у гостей чаще всего, и именно
     # на них ломается адресация вида /hotels/<slug>/ без index.html.
     import json
