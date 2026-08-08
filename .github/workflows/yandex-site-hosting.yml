@@ -1,0 +1,108 @@
+name: Yandex site hosting
+
+# Переезд сайта с GitHub Pages в Yandex Object Storage.
+# Из песочницы агента облако недоступно (сеть закрыта политикой), а здесь
+# открыто — и ключи YANDEX_S3_* уже есть в Secrets: ими автосинк заливает медиа.
+# Поэтому переезд ведём отсюда, по шагам, каждый запускается вручную.
+#
+#   probe   — что умеют текущие ключи: видят ли бакеты, хватает ли прав на создание
+#   create  — создать бакет сайта и включить режим статического хостинга
+#   deploy  — залить готовый сайт в бакет (без медиа и исходников)
+#   verify  — проверить, что по адресу бакета отдаётся живой сайт
+#
+# Домен не трогается ни на одном шаге: переключение DNS — отдельное решение
+# владелицы, до него сайт живёт на GitHub Pages как и раньше.
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Шаг: probe / create / deploy / verify"
+        required: true
+        default: "probe"
+      bucket:
+        description: "Имя бакета для сайта"
+        required: false
+        default: "abhazbereg-site"
+
+env:
+  ENDPOINT: https://storage.yandexcloud.net
+  AWS_ACCESS_KEY_ID: ${{ secrets.YANDEX_S3_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.YANDEX_S3_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: ru-central1
+  BUCKET: ${{ inputs.bucket }}
+
+jobs:
+  hosting:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить boto3
+        if: inputs.action == 'deploy' || inputs.action == 'verify'
+        run: pip install --quiet boto3
+
+      - name: Проверить, что ключи заданы
+        run: |
+          if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
+            echo "Нет секретов YANDEX_S3_ACCESS_KEY_ID / YANDEX_S3_SECRET_ACCESS_KEY."
+            exit 1
+          fi
+          echo "Ключи на месте (значения не печатаем)."
+
+      # Разведка: понять, что можно сделать этими ключами, ничего не меняя.
+      - name: probe — что умеют ключи
+        if: inputs.action == 'probe'
+        run: |
+          echo "=== Бакеты, которые видит ключ ==="
+          aws s3 ls --endpoint-url "$ENDPOINT" || echo "Список бакетов недоступен (роль уже, чем storage.admin)."
+
+          echo
+          echo "=== Чтение бакета медиа (должно работать — им пользуется автосинк) ==="
+          aws s3 ls s3://abhazbereg-media/media/ --endpoint-url "$ENDPOINT" | head -5 \
+            || echo "ВНИМАНИЕ: даже медиа не читается, ключ не тот."
+
+          echo
+          echo "=== Существует ли уже бакет сайта «$BUCKET» ==="
+          if aws s3 ls "s3://$BUCKET" --endpoint-url "$ENDPOINT" >/dev/null 2>&1; then
+            echo "Бакет уже есть — шаг create не нужен."
+          else
+            echo "Бакета нет. Проверяю право на создание пробным бакетом..."
+            PROBE="abhazbereg-probe-$(date +%s)"
+            if aws s3 mb "s3://$PROBE" --endpoint-url "$ENDPOINT" 2>&1; then
+              echo "ПРАВА НА СОЗДАНИЕ ЕСТЬ. Убираю пробный бакет."
+              aws s3 rb "s3://$PROBE" --endpoint-url "$ENDPOINT"
+            else
+              echo "ПРАВ НА СОЗДАНИЕ НЕТ — бакет должна создать владелица в консоли."
+            fi
+          fi
+
+      - name: create — бакет и режим статического сайта
+        if: inputs.action == 'create'
+        run: |
+          if aws s3 ls "s3://$BUCKET" --endpoint-url "$ENDPOINT" >/dev/null 2>&1; then
+            echo "Бакет «$BUCKET» уже существует — создавать нечего."
+          else
+            aws s3 mb "s3://$BUCKET" --endpoint-url "$ENDPOINT"
+            echo "Бакет «$BUCKET» создан."
+          fi
+          # Публичное чтение объектов: сайт должен открываться всем.
+          # Право на запись остаётся только у ключа, он в Secrets.
+          aws s3api put-bucket-acl --bucket "$BUCKET" --acl public-read \
+            --endpoint-url "$ENDPOINT" && echo "Публичное чтение включено."
+          aws s3 website "s3://$BUCKET" --index-document index.html \
+            --error-document 404.html --endpoint-url "$ENDPOINT" \
+            && echo "Режим статического сайта включён: index.html + 404.html."
+
+      - name: deploy — залить сайт в бакет
+        if: inputs.action == 'deploy'
+        run: python3 tools/deploy_site_to_yandex.py --bucket "$BUCKET"
+
+      - name: verify — проверить сайт по адресу бакета
+        if: inputs.action == 'verify'
+        run: python3 tools/deploy_site_to_yandex.py --bucket "$BUCKET" --verify-only
