@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check"
         required: true
         default: "probe"
       bucket:
@@ -160,6 +160,34 @@ jobs:
       - name: dns-snapshot — что сейчас в зоне домена
         if: inputs.action == 'dns-snapshot'
         run: python3 tools/dns_zone_snapshot.py
+
+      # Проверка живого домена после переключения DNS: то, чего не покрывают
+      # smoke (он не смотрит файлы верификации) и availability (только корень).
+      - name: domain-check — домен после переключения
+        if: inputs.action == 'domain-check'
+        run: |
+          BASE="https://xn--80aacbklan7f0b.xn--p1ai"
+          FAIL=0
+          check() {
+            CODE=$(curl -sS -o /tmp/body -w "%{http_code}" --max-time 30 "$1" 2>/dev/null || echo 000)
+            SIZE=$(wc -c < /tmp/body 2>/dev/null || echo 0)
+            if [ "$CODE" = "200" ] && [ "$SIZE" -gt 100 ]; then
+              echo "OK    $1 (код $CODE, $SIZE байт)"
+            else
+              echo "ПЛОХО $1 (код $CODE, $SIZE байт)"; FAIL=1
+            fi
+          }
+          check "$BASE/"
+          check "$BASE/yandex_983ef30d774036c7.html"
+          check "$BASE/googlec85b3e07af80e239.html"
+          check "$BASE/styles.min.css"
+          check "$BASE/karta/"
+          check "$BASE/data/catalog-index.json"
+          check "https://www.xn--80aacbklan7f0b.xn--p1ai/"
+          echo
+          echo "=== кто отдаёт сайт (заголовок Server) ==="
+          curl -sSI --max-time 30 "$BASE/" | grep -iE "^(server|via):" || true
+          exit $FAIL
 
       - name: cdn-status — состояние ресурса
         if: inputs.action == 'cdn-status'
