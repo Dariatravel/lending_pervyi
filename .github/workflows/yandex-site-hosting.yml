@@ -168,10 +168,12 @@ jobs:
         run: |
           BASE="https://xn--80aacbklan7f0b.xn--p1ai"
           FAIL=0
+          # Порог размера маленький: файл подтверждения Google — это одна
+          # строка, 54 байта, и это его нормальный вид.
           check() {
             CODE=$(curl -sS -o /tmp/body -w "%{http_code}" --max-time 30 "$1" 2>/dev/null || echo 000)
             SIZE=$(wc -c < /tmp/body 2>/dev/null || echo 0)
-            if [ "$CODE" = "200" ] && [ "$SIZE" -gt 100 ]; then
+            if [ "$CODE" = "200" ] && [ "$SIZE" -gt 20 ]; then
               echo "OK    $1 (код $CODE, $SIZE байт)"
             else
               echo "ПЛОХО $1 (код $CODE, $SIZE байт)"; FAIL=1
