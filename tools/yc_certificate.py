@@ -29,8 +29,10 @@ IAM_URL = "https://iam.api.cloud.yandex.net/iam/v1/tokens"
 RM_URL = "https://resource-manager.api.cloud.yandex.net/resource-manager/v1"
 CM_URL = "https://certificate-manager.api.cloud.yandex.net/certificate-manager/v1"
 
-DOMAIN_PUNYCODE = "xn--80aacbklan7f0b.xn--p1ai"
-CERT_NAME = "abhazbereg-site"
+# По умолчанию — основной домен; через переменные окружения тем же скриптом
+# выпускается сертификат для редиректора abhazbereg.com (10.08.2026).
+DOMAIN_PUNYCODE = os.getenv("CERT_DOMAIN", "xn--80aacbklan7f0b.xn--p1ai")
+CERT_NAME = os.getenv("CERT_NAME", "abhazbereg-site")
 
 
 def api(url: str, token: str | None = None, payload: dict | None = None,

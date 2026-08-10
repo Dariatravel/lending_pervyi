@@ -28,12 +28,14 @@ CDN_URL = "https://cdn.api.cloud.yandex.net/cdn/v1"
 CM_URL = "https://certificate-manager.api.cloud.yandex.net/certificate-manager/v1"
 CM_DATA_URL = "https://data.certificate-manager.api.cloud.yandex.net/certificate-manager/v1"
 
+# По умолчанию — основной домен. Через переменные окружения тот же скрипт
+# обслуживает второй ресурс — редиректор abhazbereg.com (10.08.2026).
 BUCKET = os.getenv("SITE_BUCKET", "abhazbereg-site")
-ORIGIN_HOST = f"{BUCKET}.website.yandexcloud.net"
-DOMAIN = "xn--80aacbklan7f0b.xn--p1ai"
+ORIGIN_HOST = os.getenv("CDN_ORIGIN_HOST", f"{BUCKET}.website.yandexcloud.net")
+DOMAIN = os.getenv("CDN_DOMAIN", "xn--80aacbklan7f0b.xn--p1ai")
 WWW_DOMAIN = f"www.{DOMAIN}"
-CERTIFICATE_NAME = "abhazbereg-site"
-GROUP_NAME = "abhazbereg-site-origin"
+CERTIFICATE_NAME = os.getenv("CDN_CERT_NAME", "abhazbereg-site")
+GROUP_NAME = os.getenv("CDN_GROUP_NAME", "abhazbereg-site-origin")
 
 
 class ApiError(Exception):

@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com"
         required: true
         default: "probe"
       bucket:
@@ -160,6 +160,86 @@ jobs:
       - name: dns-snapshot — что сейчас в зоне домена
         if: inputs.action == 'dns-snapshot'
         run: python3 tools/dns_zone_snapshot.py
+
+      # ===== Редиректор abhazbereg.com: «будочка» переезжает в Россию =====
+      # Старая будочка на GitHub Pages переадресует только главную, а глубокие
+      # ссылки /hotels/... отдают голый 404 (найдено Codex 10.08.2026). Новая —
+      # пустой бакет, чья website-настройка отвечает 301 на абхазберег.рф с
+      # сохранением пути. DNS домена не трогается ни одним из шагов.
+      - name: redirect-create — бакет-будочка с 301 на основной домен
+        if: inputs.action == 'redirect-create'
+        run: |
+          RB="abhazbereg-com-redirect"
+          echo "=== Сначала: жив ли резерв GitHub Pages (проверка отчёта Codex) ==="
+          # dariatravel.github.io отдаёт 404 закономерно: репозиторий настроен
+          # на кастомный домен. Резерв проверяется запросом с именем сайта
+          # напрямую к адресам GitHub.
+          CODE=$(curl -sS -o /dev/null -w "%{http_code}" --max-time 20 \
+            --resolve "xn--80aacbklan7f0b.xn--p1ai:443:185.199.108.153" \
+            "https://xn--80aacbklan7f0b.xn--p1ai/" || echo 000)
+          echo "GitHub Pages по прямому адресу с нашим именем: HTTP $CODE"
+
+          echo
+          echo "=== Бакет-будочка ==="
+          if aws s3 ls "s3://$RB" --endpoint-url "$ENDPOINT" >/dev/null 2>&1; then
+            echo "Бакет $RB уже есть."
+          else
+            aws s3 mb "s3://$RB" --endpoint-url "$ENDPOINT" && echo "Бакет $RB создан."
+          fi
+          aws s3api put-bucket-acl --bucket "$RB" --acl public-read --endpoint-url "$ENDPOINT"
+          aws s3api put-bucket-website --bucket "$RB" --endpoint-url "$ENDPOINT" \
+            --website-configuration '{"RedirectAllRequestsTo":{"HostName":"xn--80aacbklan7f0b.xn--p1ai","Protocol":"https"}}'
+          echo "Website-настройка: все запросы → 301 на основной домен."
+
+          echo
+          echo "=== Проверка 301 с сохранением пути ==="
+          sleep 5
+          for P in "/" "/hotels/lazurit-novyy-otel-s-zavtrakami-2583/" "/kvartira/akira-2k-kvartira-1623/?x=1"; do
+            R=$(curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}" --max-time 20 \
+              "http://$RB.website.yandexcloud.net$P" || echo "ошибка")
+            echo "  $P"
+            echo "     $R"
+          done
+
+      - name: cert-request-com — сертификат для abhazbereg.com
+        if: inputs.action == 'cert-request-com'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CERT_NAME: abhazbereg-com
+          CERT_DOMAIN: abhazbereg.com
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_certificate.py request
+
+      - name: cert-status-com — что с сертификатом abhazbereg.com
+        if: inputs.action == 'cert-status-com'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CERT_NAME: abhazbereg-com
+          CERT_DOMAIN: abhazbereg.com
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_certificate.py status
+
+      - name: cdn-create-com — CDN-ресурс редиректора
+        if: inputs.action == 'cdn-create-com'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CDN_DOMAIN: abhazbereg.com
+          CDN_CERT_NAME: abhazbereg-com
+          CDN_GROUP_NAME: abhazbereg-com-origin
+          CDN_ORIGIN_HOST: abhazbereg-com-redirect.website.yandexcloud.net
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_cdn.py create
+
+      - name: cdn-status-com — состояние CDN редиректора
+        if: inputs.action == 'cdn-status-com'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CDN_DOMAIN: abhazbereg.com
+          CDN_CERT_NAME: abhazbereg-com
+          CDN_GROUP_NAME: abhazbereg-com-origin
+          CDN_ORIGIN_HOST: abhazbereg-com-redirect.website.yandexcloud.net
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_cdn.py status
 
       # Проверка живого домена после переключения DNS: то, чего не покрывают
       # smoke (он не смотрит файлы верификации) и availability (только корень).
