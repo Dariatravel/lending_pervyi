@@ -186,20 +186,33 @@ jobs:
           else
             aws s3 mb "s3://$RB" --endpoint-url "$ENDPOINT" && echo "Бакет $RB создан."
           fi
-          aws s3api put-bucket-acl --bucket "$RB" --acl public-read --endpoint-url "$ENDPOINT"
+          # ACL может быть недоступен этому ключу — не страшно: будочка не
+          # отдаёт файлы, она только отвечает «переезжайте». Судим не по
+          # флажку, а по фактическому 301 ниже.
+          aws s3api put-bucket-acl --bucket "$RB" --acl public-read \
+            --endpoint-url "$ENDPOINT" 2>/dev/null \
+            && echo "Публичное чтение включено." \
+            || echo "ACL выставить нельзя (AccessDenied) — проверяем, нужен ли он вообще."
           aws s3api put-bucket-website --bucket "$RB" --endpoint-url "$ENDPOINT" \
             --website-configuration '{"RedirectAllRequestsTo":{"HostName":"xn--80aacbklan7f0b.xn--p1ai","Protocol":"https"}}'
           echo "Website-настройка: все запросы → 301 на основной домен."
 
           echo
-          echo "=== Проверка 301 с сохранением пути ==="
-          sleep 5
+          echo "=== Проверка 301 с сохранением пути (это и есть критерий успеха) ==="
+          sleep 10
+          FAIL=0
           for P in "/" "/hotels/lazurit-novyy-otel-s-zavtrakami-2583/" "/kvartira/akira-2k-kvartira-1623/?x=1"; do
             R=$(curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}" --max-time 20 \
               "http://$RB.website.yandexcloud.net$P" || echo "ошибка")
             echo "  $P"
             echo "     $R"
+            case "$R" in 301*xn--80aacbklan7f0b*|302*xn--80aacbklan7f0b*) ;; *) FAIL=1;; esac
           done
+          if [ "$FAIL" = "1" ]; then
+            echo "Переадресация не работает — смотри выше."
+            exit 1
+          fi
+          echo "Будочка отвечает правильно."
 
       - name: cert-request-com — сертификат для abhazbereg.com
         if: inputs.action == 'cert-request-com'
