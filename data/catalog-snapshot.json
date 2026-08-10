@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T10:53:34.998363+00:00",
+  "generated_at": "2026-08-10T12:37:41.428933+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 230,
@@ -13744,11 +13744,11 @@
           },
           {
             "kind": "price",
-            "text": "6000₽ - август"
+            "text": "5000₽ - август"
           },
           {
             "kind": "price",
-            "text": "5500₽ - сентябрь"
+            "text": "5000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -13760,7 +13760,7 @@
           },
           {
             "kind": "price",
-            "text": "6500₽ - август"
+            "text": "5500₽ - август"
           },
           {
             "kind": "price",
@@ -13907,7 +13907,7 @@
           "details": {
             "telegram_post": "abhazbooking/4060",
             "telegram_url": "https://t.me/abhazbooking/4060",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/oazis-villa-4052/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/oazis-villa-4052/video-01-poster.jpg"
           }
         }
       ]
