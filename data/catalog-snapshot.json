@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T12:37:41.428933+00:00",
+  "generated_at": "2026-08-10T14:10:22.502414+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 230,
@@ -37431,6 +37431,10 @@
           {
             "kind": "price",
             "text": "5000₽/сутки - август"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽/сутки - сентябрь"
           },
           {
             "kind": "price",
