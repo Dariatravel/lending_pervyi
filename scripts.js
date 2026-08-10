@@ -4,10 +4,14 @@
   const METRIKA_ID = 108214677;
   const GA4_ID = "G-MZ2NTRDDJ5";
   const SITE_CANONICAL_ORIGIN = "https://абхазберег.рф";
-  // Красивый латинский домен для переписок: abhazbereg.com — редиректор на
-  // GitHub Pages, ведёт на абхазберег.рф с сохранением пути (20.07.2026).
-  // Canonical/SEO остаются на кириллическом домене.
-  const SHARE_ORIGIN = "https://abhazbereg.com";
+  // Ссылки для переписок ведут сразу на основной домен, кириллицей.
+  // До 10.08.2026 здесь стоял abhazbereg.com — редиректор на GitHub Pages;
+  // после переезда сайта в Яндекс это была единственная дорожка через
+  // заграницу: гость из проблемной сети (доказано на МТС 08.08.2026) не
+  // доходил до редиректора и не узнавал настоящий адрес. Кириллицу в
+  // ссылке Telegram и WhatsApp показывают по-русски; punycode здесь
+  // нельзя — он уродует адрес до xn--80aacbklan7f0b.xn--p1ai.
+  const SHARE_ORIGIN = "https://абхазберег.рф";
   const PUNY_SITE_HOST = "xn--80aacbklan7f0b.xn--p1ai";
   const PUNY_SITE_ORIGINS = [
     `https://${PUNY_SITE_HOST}`,
@@ -228,7 +232,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202608081422";
+  const ASSET_VERSION = "202608100630";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
