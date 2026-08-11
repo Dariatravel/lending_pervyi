@@ -3798,6 +3798,23 @@ a.podborki-card--link:hover {
   box-shadow: 0 8px 18px rgba(17, 28, 22, 0.04);
 }
 
+/* Стрелка «назад» у кнопки «К каталогу»: на десктопе так понятнее, что это
+   возврат к списку объектов (просьба Дарьи 11.08.2026). */
+.hotel-site-concept .save-button {
+  gap: 8px;
+}
+
+.save-button__arrow {
+  font-size: 1.15em;
+  line-height: 1;
+  transition: transform 0.18s ease;
+}
+
+.hotel-site-concept .save-button:hover .save-button__arrow,
+.hotel-site-concept .save-button:focus-visible .save-button__arrow {
+  transform: translateX(-3px);
+}
+
 .hotel-card__header-main {
   min-width: 0;
 }

@@ -1094,7 +1094,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
 {preload_block}    <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202608111755" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202608111814" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1117,7 +1117,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
               <span class="hotel-card__rating-label">Локация объекта</span>
               <strong class="hotel-card__rating-summary">{html.escape(city_badge)}</strong>
             </div>
-            <a class="save-button" href="{html.escape(save_href)}">{html.escape(save_label)}</a>
+            <a class="save-button" href="{html.escape(save_href)}"><span aria-hidden="true" class="save-button__arrow">←</span>{html.escape(save_label)}</a>
           </div>
 
           <div class="hotel-card__header">
@@ -1181,7 +1181,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202608111755" defer></script>
+    <script src="../../scripts.min.js?v=202608111814" defer></script>
   </body>
 </html>'''
 
