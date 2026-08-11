@@ -269,16 +269,26 @@ jobs:
           print(f"Рабочие видео: с кэшем было {ok}, починено {fixed}")
           print(f"Исходников переведено в холод: {cooled}")
 
-          # Фото: выборочная проверка. Если у выборки заголовки на месте,
-          # массовый проход не нужен — их заливал тот же upload_file.
-          photos = [k for k, _ in keys if k.endswith((".webp", ".jpg"))]
-          missing = 0
-          for key in photos[::max(1, len(photos)//25)][:25]:
-              if not s3.head_object(Bucket=BUCKET, Key=key).get("CacheControl"):
-                  missing += 1
-                  print(f"  без кэша: {key}")
-          print(f"Фото-выборка: {missing} из 25 без кэш-заголовка"
-                + (" — нужен отдельный проход!" if missing else " — всё в порядке."))
+          # Фото: полный проход в потоки — выборка 11.08 показала, что без
+          # заголовка примерно каждое третье (старые заливки).
+          from concurrent.futures import ThreadPoolExecutor
+
+          photos = [k for k, _ in keys if k.endswith((".webp", ".jpg", ".png"))]
+          print(f"Фото: {len(photos)}")
+
+          def fix_photo(key):
+              try:
+                  if s3.head_object(Bucket=BUCKET, Key=key).get("CacheControl"):
+                      return 0
+                  recopy(key)
+                  return 1
+              except Exception as error:
+                  print(f"  ошибка {key}: {error}")
+                  return 0
+
+          with ThreadPoolExecutor(max_workers=12) as pool:
+              photo_fixed = sum(pool.map(fix_photo, photos))
+          print(f"Фото починено: {photo_fixed} из {len(photos)}")
           PYEOF
 
       # ===== Редиректор abhazbereg.com: «будочка» переезжает в Россию =====
