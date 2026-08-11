@@ -772,6 +772,25 @@ def render_sections_html(sections: list[dict[str, Any]], parsed: dict[str, Any] 
     return ''.join(parts)
 
 
+# Служебные фразы менеджера, которые иногда попадают в блок цен поста. Их место —
+# в блоке «✔️ВАЖНО:» и в контактах, а не в списке цен. Формулируем узко, чтобы НЕ
+# задеть реальные условия брони («Бронирование от 7 дней», «скидка 5% при брони»).
+_PRICE_SERVICE_RX = re.compile(
+    r"точь\s*-?\s*в\s*-?\s*точь"
+    r"|комисси\w*\s+за\s+(?:мои|наши)\s+услуг"
+    r"|я\s+на\s+связи"
+    r"|обращайтесь\s+в\s+чат"
+    r"|если\s+нашли\s+дешевле"
+    r"|пишем\s+в\s+сообщения"
+    r"|только\s+этот\s+контакт",
+    re.IGNORECASE,
+)
+
+
+def _is_price_service_line(text: str) -> bool:
+    return bool(_PRICE_SERVICE_RX.search(text or ""))
+
+
 def _normalize_prices_payload(prices: Any) -> list[dict[str, str]]:
     """Приводит цены из поста/БД к единому списку {kind, text} (строки в БД — legacy)."""
     out: list[dict[str, str]] = []
@@ -779,7 +798,7 @@ def _normalize_prices_payload(prices: Any) -> list[dict[str, str]]:
     for item in raw_list:
         if isinstance(item, str):
             t = item.strip()
-            if not t or should_drop_line(t):
+            if not t or should_drop_line(t) or _is_price_service_line(t):
                 continue
             kind = 'note' if t.startswith(('(', '（')) else 'price'
             out.append({'kind': kind, 'text': item})
@@ -788,7 +807,7 @@ def _normalize_prices_payload(prices: Any) -> list[dict[str, str]]:
             kind = str(item.get('kind') or 'price')
             text_raw = item.get('text') if item.get('text') is not None else item.get('label')
             text = str(text_raw or '').strip()
-            if not text or should_drop_line(text):
+            if not text or should_drop_line(text) or _is_price_service_line(text):
                 continue
             if kind == 'heading':
                 out.append({'kind': 'heading', 'text': text})
@@ -1075,7 +1094,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
 {preload_block}    <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202608111746" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202608111755" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1162,7 +1181,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202608111746" defer></script>
+    <script src="../../scripts.min.js?v=202608111755" defer></script>
   </body>
 </html>'''
 
