@@ -298,6 +298,8 @@ jobs:
           check "$BASE/googlec85b3e07af80e239.html"
           check "$BASE/styles.min.css"
           check "$BASE/karta/"
+          check "$BASE/vezu/"
+          check "$BASE/gagra/"
           check "$BASE/data/catalog-index.json"
           check "https://www.xn--80aacbklan7f0b.xn--p1ai/"
           echo
