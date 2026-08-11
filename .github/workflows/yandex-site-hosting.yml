@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify / dns-create-com / dns-status-com"
         required: true
         default: "probe"
       bucket:
@@ -263,6 +263,20 @@ jobs:
           done
           [ "$FAIL" = "0" ] && echo "Будочка через CDN отвечает правильно, сертификат принят." \
             || { echo "Есть провалы — смотри выше."; exit 1; }
+
+      - name: dns-create-com — зона abhazbereg.com в Cloud DNS
+        if: inputs.action == 'dns-create-com'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_dns.py create
+
+      - name: dns-status-com — записи зоны и серверы имён для Рег.ру
+        if: inputs.action == 'dns-status-com'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_dns.py status
 
       - name: cdn-status-com — состояние CDN редиректора
         if: inputs.action == 'cdn-status-com'
