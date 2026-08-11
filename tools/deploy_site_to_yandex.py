@@ -28,12 +28,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ENDPOINT = os.getenv("ENDPOINT", "https://storage.yandexcloud.net")
 
-# Что именно отдаётся гостю. Всё остальное — исходники и обслуживание, им в
-# бакете делать нечего.
-INCLUDE_DIRS = (
-    "hotels", "kvartira", "podborki", "blog", "karta", "answers", "about",
-    "data", "vendor", "app-icons",
-)
+# Каталоги, которым в публичном бакете делать нечего. Всё остальное считается
+# частью сайта и заливается. Раньше был обратный подход — ручной список
+# «что включать», — и он молча потерял одиннадцать разделов (vezu, гайды,
+# лендинги городов, go-переходы): на GitHub Pages они были, в бакете нет,
+# после переключения домена гости получали 404. Новый раздел, созданный
+# генератором, теперь попадает в заливку сам.
+SKIP_TOP_DIRS = {
+    ".git", ".github", "media", "output", "scripts", "tools", "docs",
+    "deploy", "node_modules", "__pycache__",
+}
 
 # Из data/ гостю нужны только эти пять. Остальное — рабочие файлы генераторов:
 # catalog-snapshot.json весит 3 МБ, кэш геокодинга и списки для синка клиенту
@@ -118,7 +122,7 @@ def wanted(path: Path) -> bool:
         return path.name in INCLUDE_FILES
     if top == "data":
         return path.name in PUBLIC_DATA_FILES
-    return top in INCLUDE_DIRS
+    return top not in SKIP_TOP_DIRS
 
 
 def collect() -> list[Path]:
@@ -131,9 +135,8 @@ def collect() -> list[Path]:
         for candidate in ROOT.glob(pattern):
             if candidate.is_file():
                 files.append(candidate)
-    for folder in INCLUDE_DIRS:
-        base = ROOT / folder
-        if not base.is_dir():
+    for base in sorted(ROOT.iterdir()):
+        if not base.is_dir() or base.name in SKIP_TOP_DIRS or base.name.startswith("."):
             continue
         for path in base.rglob("*"):
             if path.is_file() and wanted(path):
@@ -198,6 +201,9 @@ def verify(bucket: str) -> int:
         ("/scripts.min.js", b"", "javascript"),
         ("/offline.html", b"</html>", "text/html"),
         ("/data/catalog-index.json", b"listings", "application/json"),
+        # Раздел, который однажды выпал из ручного списка заливки целиком.
+        ("/vezu/", b"</html>", "text/html"),
+        ("/gagra/", b"</html>", "text/html"),
     ]
     failures = 0
     print(f"Проверяю {base}\n", flush=True)
