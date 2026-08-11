@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-11T10:35:46.815613+00:00",
+  "generated_at": "2026-08-11T11:34:14.803076+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 230,
-  "listings_hotels": 180,
+  "listings_total": 231,
+  "listings_hotels": 181,
   "listings_kvartira": 50,
   "listings": [
     {
@@ -65153,6 +65153,268 @@
           "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/trio-nomer-na-plyazhe-5176/photo-10.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/trio-nomer-na-plyazhe-5176/photo-10.jpg",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5186,
+      "source_topic_id": null,
+      "slug": "ashta-du-gostevoy-dom-5186",
+      "title": "\"АШТА ДУ\" гостевой дом",
+      "summary": "Гагра. 12 минут до пляжа, галечный, размещение до 5 человек.",
+      "excerpt": "Десять номеров площадью 25 м², расположены на 1, 2 и 3 этажах. Размещение до 3 человек",
+      "city": "Гагра",
+      "location_text": "Гагра, ул. Жоэкварская, 12",
+      "distance_text": "12 минут до пляжа, галечный",
+      "beach_text": "12 минут до пляжа, галечный",
+      "capacity_text": "размещение до 5 человек.",
+      "page_url": "https://абхазберег.рф/hotels/ashta-du-gostevoy-dom-5186/",
+      "telegram_url": "https://t.me/abhazbooking/5186",
+      "published_at": "2026-08-11",
+      "has_video": false,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/ashta-du-gostevoy-dom-5186.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 12 минут до пляжа, галечный, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Десять номеров площадью 25 м², расположены на 1, 2 и 3 этажах. Размещение до 3 человек.",
+              "В номере: двуспальная кровать, прикроватные тумбочки, столик, книги не во всех номерах.",
+              "Доп место - раскладная кровать с усиленным мягким матрасом. Сан узел с душем.",
+              "Оснащение: кондиционер, Wi-Fi, телевизор, мини-холодильник, фен.",
+              "Студия с кухней площадью 45 м² на 1 этаже.",
+              "Размещение до 5 человек.",
+              "В студии: двуспальная кровать, диван, шкаф, прикроватные тумбочки, стулья, стол.",
+              "Кухня оборудована всем необходимым: варочная поверхность, холодильник, чайник, набор посуды.",
+              "Сан узел с душем.",
+              "Оснащение: кондиционер, Wi-Fi, телевизор, фен."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Огороженная территория.",
+              "Общая оборудованная кухня на крыше со всем необходимым.",
+              "Зона отдыха на крыше с гамаком и лежаками, красивым видом на горы и горную речку."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Рядом протекает горная речка.",
+              "Живописный район Старой Гагры, Жоэкварское ущелье. Рядом Комсомольский и Приморский парки, дворец принца Ольденбургского.",
+              "В шаговой доступности магазины, кафе, ресторан Аббата, остановка общественного транспорта.",
+              "До набережной и галечного пляжа 12 минут пешком."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "heading",
+            "text": "Номер"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "3300₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Студия с кухней"
+          },
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место - 300₽"
+          },
+          {
+            "kind": "price",
+            "text": "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет."
+          },
+          {
+            "kind": "price",
+            "text": "Я НА СВЯЗИ 📲"
+          },
+          {
+            "kind": "price",
+            "text": "в MAX: max.ru/id741113115256_bot"
+          },
+          {
+            "kind": "price",
+            "text": "ВК-чат: vk.cc/cQQnBn"
+          },
+          {
+            "kind": "note",
+            "text": "(только сообщение, звонок не пройдёт)"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/ashta-du-gostevoy-dom-5186/index.html",
+        "filters": {
+          "distance": [],
+          "food": [
+            "no-food"
+          ],
+          "price": [],
+          "city": [],
+          "beach": [
+            "pebble"
+          ],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1201,
+      "media": [
+        {
+          "id": 1201001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/ashta-du-gostevoy-dom-5186.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/ashta-du-gostevoy-dom-5186.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/ashta-du-gostevoy-dom-5186.jpg",
+          "details": {}
+        },
+        {
+          "id": 1201002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ashta-du-gostevoy-dom-5186/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1201003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ashta-du-gostevoy-dom-5186/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1201004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ashta-du-gostevoy-dom-5186/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1201005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ashta-du-gostevoy-dom-5186/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1201006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ashta-du-gostevoy-dom-5186/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1201007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ashta-du-gostevoy-dom-5186/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1201008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ashta-du-gostevoy-dom-5186/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1201009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ashta-du-gostevoy-dom-5186/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1201010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ashta-du-gostevoy-dom-5186/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1201011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ashta-du-gostevoy-dom-5186/photo-10.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-10.jpg",
           "details": {}
         }
       ]
