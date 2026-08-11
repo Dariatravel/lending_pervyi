@@ -115,10 +115,18 @@ def card_title(caption: str, object_title: str) -> str:
     for candidate in sorted({item for item in candidates if len(item) > 2}, key=len, reverse=True):
         text = re.sub(re.escape(candidate), "", text, flags=re.I)
     text = re.sub(r'["«»]', "", text).strip(" .,-—")
-    if len(text) <= 80:
-        return text or normalize_text(caption)
-    parts = re.split(r"[.:;]\s+", text, maxsplit=1)
-    return parts[0][:80]
+    # Подпись — первая смысловая строка. Раньше длинный текст резался по 80
+    # символам и обрывался на полуслове («…квартира 2к 📍Сухум, ул»), поэтому
+    # сначала берём первую строку и первое предложение, и только потом длину.
+    first_line = next((line.strip() for line in text.splitlines() if line.strip()), text)
+    if len(first_line) <= 80:
+        return first_line or normalize_text(caption)
+    parts = re.split(r"[.:;]\s+", first_line, maxsplit=1)
+    head = parts[0]
+    if len(head) <= 80:
+        return head
+    # Обрезаем по границе слова, чтобы не рвать слово посередине.
+    return head[:80].rsplit(" ", 1)[0].rstrip(" .,-—")
 
 
 def card_label(caption: str) -> str:
