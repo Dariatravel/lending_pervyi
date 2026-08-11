@@ -244,25 +244,32 @@ jobs:
         run: pip install --quiet pyjwt cryptography && python3 tools/yc_cdn.py create
 
       # Проверка будочки через CDN до всякого DNS: подменяем адрес, как это
-      # сделает DNS после переключения, и смотрим 301 и чистоту сертификата.
-      - name: redirect-verify — будочка через CDN, как увидит гость
+      # сделает DNS после переключения. Балансировщик CDN раздаёт РАЗНЫЕ
+      # адреса — Codex 11.08 поймал узел, который вёл себя иначе, чем другой.
+      # Поэтому собираем адреса несколькими запросами и проверяем КАЖДЫЙ:
+      # один плохой узел из десяти — это каждый десятый гость с ошибкой.
+      - name: redirect-verify — будочка через ВСЕ узлы CDN
         if: inputs.action == 'redirect-verify'
         run: |
           CN="062ff875d101b985.topology.gslb.yccdn.ru"
-          IP=$(dig +short "$CN" | grep -E "^[0-9.]+$" | tail -1)
-          echo "Адрес CDN: $IP (через $CN)"
+          IPS=$( (for i in 1 2 3 4 5 6; do dig +short "$CN" @8.8.8.8; dig +short "$CN" @77.88.8.8; sleep 1; done) \
+            | grep -E "^[0-9.]+$" | sort -u)
+          echo "Адреса, которые раздаёт балансировщик:"; echo "$IPS" | sed 's/^/  /'
           FAIL=0
-          for H in abhazbereg.com www.abhazbereg.com; do
+          for IP in $IPS; do
+            echo
+            echo "=== Узел $IP ==="
             for P in "/" "/hotels/lazurit-novyy-otel-s-zavtrakami-2583/"; do
-              OUT=$(curl -sSI --max-time 25 --resolve "$H:443:$IP" "https://$H$P" 2>&1 \
-                | grep -iE "^(HTTP|location)" | tr '\n' ' ')
-              echo "  https://$H$P"
+              OUT=$(curl -sSI --max-time 25 --resolve "abhazbereg.com:443:$IP" \
+                "https://abhazbereg.com$P" 2>&1 | grep -iE "^(HTTP|location|server)" | tr '\n' ' ')
+              echo "  $P"
               echo "     $OUT"
-              case "$OUT" in *301*xn--80aacbklan7f0b*) ;; *) FAIL=1;; esac
+              case "$OUT" in *301*xn--80aacbklan7f0b*) ;; *) echo "     ^^ ПЛОХОЙ УЗЕЛ"; FAIL=1;; esac
             done
           done
-          [ "$FAIL" = "0" ] && echo "Будочка через CDN отвечает правильно, сертификат принят." \
-            || { echo "Есть провалы — смотри выше."; exit 1; }
+          echo
+          [ "$FAIL" = "0" ] && echo "ИТОГ: все узлы отвечают правильным 301." \
+            || { echo "ИТОГ: есть узлы со старой маршрутизацией — переключать нельзя."; exit 1; }
 
       - name: dns-create-com — зона abhazbereg.com в Cloud DNS
         if: inputs.action == 'dns-create-com'
