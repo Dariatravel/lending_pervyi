@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T11:34:14.803076+00:00",
+  "generated_at": "2026-08-11T14:10:33.415376+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 231,
@@ -65215,8 +65215,24 @@
         ],
         "prices": [
           {
-            "kind": "heading",
-            "text": "Номер"
+            "kind": "price",
+            "text": "Номер на 1 этаже"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "2300₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Номер на 2 и 3 этаже"
           },
           {
             "kind": "note",
@@ -65281,17 +65297,29 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/ashta-du-gostevoy-dom-5186/index.html",
         "filters": {
-          "distance": [],
+          "distance": [
+            "over-10"
+          ],
           "food": [
             "no-food"
           ],
-          "price": [],
-          "city": [],
+          "price": [
+            "economy"
+          ],
+          "city": [
+            "gagra"
+          ],
           "beach": [
             "pebble"
           ],
-          "room": [],
-          "stay": []
+          "room": [
+            "tv",
+            "kitchen",
+            "five-plus"
+          ],
+          "stay": [
+            "pets"
+          ]
         }
       },
       "id": 1201,
