@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-11T14:10:33.415376+00:00",
+  "generated_at": "2026-08-11T14:36:20.965517+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 231,
-  "listings_hotels": 181,
+  "listings_total": 232,
+  "listings_hotels": 182,
   "listings_kvartira": 50,
   "listings": [
     {
@@ -39466,7 +39466,7 @@
       "published_at": "2026-01-31",
       "has_video": true,
       "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/nasta-apartamenty-3258.jpg",
-      "is_active": false,
+      "is_active": true,
       "details": {
         "lead": "Лдзаа. ️ 3 минуты пешком до пляжа, размещение до 4 человек.",
         "prices": [
