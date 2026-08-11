@@ -159,7 +159,11 @@ jobs:
       # Только чтение: список записей зоны до переноса и для сверки после.
       - name: dns-snapshot — что сейчас в зоне домена
         if: inputs.action == 'dns-snapshot'
-        run: python3 tools/dns_zone_snapshot.py
+        run: |
+          python3 tools/dns_zone_snapshot.py
+          echo
+          echo "############ Вторая зона: редиректор ############"
+          ZONE=abhazbereg.com python3 tools/dns_zone_snapshot.py
 
       # ===== Редиректор abhazbereg.com: «будочка» переезжает в Россию =====
       # Старая будочка на GitHub Pages переадресует только главную, а глубокие
