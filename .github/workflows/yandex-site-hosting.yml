@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify"
         required: true
         default: "probe"
       bucket:
@@ -242,6 +242,27 @@ jobs:
           CDN_GROUP_NAME: abhazbereg-com-origin
           CDN_ORIGIN_HOST: abhazbereg-com-redirect.website.yandexcloud.net
         run: pip install --quiet pyjwt cryptography && python3 tools/yc_cdn.py create
+
+      # Проверка будочки через CDN до всякого DNS: подменяем адрес, как это
+      # сделает DNS после переключения, и смотрим 301 и чистоту сертификата.
+      - name: redirect-verify — будочка через CDN, как увидит гость
+        if: inputs.action == 'redirect-verify'
+        run: |
+          CN="062ff875d101b985.topology.gslb.yccdn.ru"
+          IP=$(dig +short "$CN" | grep -E "^[0-9.]+$" | tail -1)
+          echo "Адрес CDN: $IP (через $CN)"
+          FAIL=0
+          for H in abhazbereg.com www.abhazbereg.com; do
+            for P in "/" "/hotels/lazurit-novyy-otel-s-zavtrakami-2583/"; do
+              OUT=$(curl -sSI --max-time 25 --resolve "$H:443:$IP" "https://$H$P" 2>&1 \
+                | grep -iE "^(HTTP|location)" | tr '\n' ' ')
+              echo "  https://$H$P"
+              echo "     $OUT"
+              case "$OUT" in *301*xn--80aacbklan7f0b*) ;; *) FAIL=1;; esac
+            done
+          done
+          [ "$FAIL" = "0" ] && echo "Будочка через CDN отвечает правильно, сертификат принят." \
+            || { echo "Есть провалы — смотри выше."; exit 1; }
 
       - name: cdn-status-com — состояние CDN редиректора
         if: inputs.action == 'cdn-status-com'
