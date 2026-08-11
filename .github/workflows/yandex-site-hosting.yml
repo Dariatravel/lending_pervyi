@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify / dns-create-com / dns-status-com / media-audit"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify / dns-create-com / dns-status-com / media-audit / media-optimize"
         required: true
         default: "probe"
       bucket:
@@ -206,6 +206,79 @@ jobs:
           print("\nТоп-15 самых тяжёлых объектов вообще:")
           for size, key in sorted(rows, reverse=True)[:15]:
               print(f"  {size/1e6:8.1f} МБ  {key}")
+          PYEOF
+
+      # Экономия трафика: у старых видео мог отсутствовать кэш-заголовок
+      # (повторный просмотр гостя тогда качается заново за наши деньги),
+      # а исходники -source.mp4 гости не читают вовсе — им место в холодном
+      # хранилище. Страницы не трогаются, адреса файлов не меняются.
+      - name: media-optimize — кэш видео и исходники в холод
+        if: inputs.action == 'media-optimize'
+        run: |
+          pip install --quiet boto3
+          python3 - <<'PYEOF'
+          import boto3, mimetypes, os
+
+          s3 = boto3.client("s3", endpoint_url=os.environ["ENDPOINT"])
+          BUCKET = "abhazbereg-media"
+
+          keys = []
+          token = None
+          while True:
+              kwargs = {"Bucket": BUCKET, "Prefix": "media/"}
+              if token:
+                  kwargs["ContinuationToken"] = token
+              page = s3.list_objects_v2(**kwargs)
+              keys += [(o["Key"], o.get("StorageClass", "STANDARD"))
+                       for o in page.get("Contents", [])]
+              token = page.get("NextContinuationToken")
+              if not token:
+                  break
+          print(f"Объектов: {len(keys)}")
+
+          GOOD = "public, max-age=604800"
+
+          def recopy(key, storage_class=None):
+              extra = {
+                  "CopySource": {"Bucket": BUCKET, "Key": key},
+                  "Bucket": BUCKET, "Key": key,
+                  "MetadataDirective": "REPLACE",
+                  "ContentType": mimetypes.guess_type(key)[0] or "video/mp4",
+                  "CacheControl": GOOD,
+                  "ACL": "public-read",
+              }
+              if storage_class:
+                  extra["StorageClass"] = storage_class
+              s3.copy_object(**extra)
+
+          fixed = cooled = ok = 0
+          videos = [(k, sc) for k, sc in keys if k.endswith(".mp4")]
+          print(f"Видео: {len(videos)}")
+          for key, storage_class in videos:
+              if key.endswith("-source.mp4"):
+                  if storage_class != "COLD":
+                      recopy(key, "COLD")
+                      cooled += 1
+                  continue
+              head = s3.head_object(Bucket=BUCKET, Key=key)
+              if head.get("CacheControl"):
+                  ok += 1
+              else:
+                  recopy(key)
+                  fixed += 1
+          print(f"Рабочие видео: с кэшем было {ok}, починено {fixed}")
+          print(f"Исходников переведено в холод: {cooled}")
+
+          # Фото: выборочная проверка. Если у выборки заголовки на месте,
+          # массовый проход не нужен — их заливал тот же upload_file.
+          photos = [k for k, _ in keys if k.endswith((".webp", ".jpg"))]
+          missing = 0
+          for key in photos[::max(1, len(photos)//25)][:25]:
+              if not s3.head_object(Bucket=BUCKET, Key=key).get("CacheControl"):
+                  missing += 1
+                  print(f"  без кэша: {key}")
+          print(f"Фото-выборка: {missing} из 25 без кэш-заголовка"
+                + (" — нужен отдельный проход!" if missing else " — всё в порядке."))
           PYEOF
 
       # ===== Редиректор abhazbereg.com: «будочка» переезжает в Россию =====
