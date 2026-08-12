@@ -19,6 +19,15 @@ on:
       - "deploy/**"
       - "scripts/**"
       - "**/*.md"
+  # Пуши автосинка сделаны из-под стандартного GITHUB_TOKEN, а такие пуши
+  # GitHub нарочно не считает событием push для других воркфлоу (защита от
+  # зацикливания). Без этого триггера ежечасные обновления каталога и карты
+  # оставались бы только на GitHub Pages и не доезжали до бакета — так
+  # 11 августа новый объект сутки отдавал 404 с основного домена.
+  workflow_run:
+    workflows: ["Watch Telegram"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 # Если пуши идут подряд, промежуточные заливки не нужны: важно только то,
@@ -29,6 +38,9 @@ concurrency:
 
 jobs:
   deploy:
+    # После Watch Telegram заливаем только удачные прогоны: упавший синк
+    # мог оставить в main вчерашнее состояние, его перезаливать незачем.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -37,7 +49,12 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.YANDEX_S3_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: ru-central1
     steps:
+      # Всегда берём свежую вершину main: заливать важно то, что в main
+      # сейчас, а не тот коммит, на котором родилось событие (для
+      # workflow_run это был бы коммит ДО пуша автосинка).
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: actions/setup-python@v5
         with:
