@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T07:54:18.705443+00:00",
+  "generated_at": "2026-08-12T07:30:00.528011+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -8,6 +8,14 @@
       "lat": 42.857166,
       "lon": 41.75794,
       "url": "/hotels/radonovyy-istochnik-otel-v-gorah-3064/",
+      "cityKey": ""
+    },
+    {
+      "title": "\"ТЕРРА РИВЬЕРА\" эко-комплекс",
+      "address": "с. Дранда, ул. Морская, 42.886073, 41.096884",
+      "lat": 42.88617556484028,
+      "lon": 41.096704291995614,
+      "url": "/hotels/terra-rivera-eko-kompleks-5166/",
       "cityKey": ""
     },
     {
@@ -195,6 +203,14 @@
       "cityKey": "gagra"
     },
     {
+      "title": "\"АШТА ДУ\" гостевой дом",
+      "address": "Гагра, ул. Жоэкварская, 12",
+      "lat": 43.331660468768995,
+      "lon": 40.22470190195481,
+      "url": "/hotels/ashta-du-gostevoy-dom-5186/",
+      "cityKey": "gagra"
+    },
+    {
       "title": "\"БАГРИПШ\" домики на берегу. ВСЁ ВКЛЮЧЕНО!",
       "address": "Гагрский район, Холодная речка 43.359191, 40.123341",
       "lat": 43.35920580873396,
@@ -232,6 +248,14 @@
       "lat": 43.27585211702306,
       "lon": 40.27121918650742,
       "url": "/kvartira/biryuza-etazh-pod-klyuch-gagra-1367/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "\"БЛАГО-ДАРЮ\" отель",
+      "address": "Гагра, пр. Ардзинба, 75",
+      "lat": 43.316642418799624,
+      "lon": 40.24571017790979,
+      "url": "/hotels/blago-daryu-otel-5079/",
       "cityKey": "gagra"
     },
     {
@@ -499,6 +523,22 @@
       "cityKey": "ldzaa"
     },
     {
+      "title": "\"АКВАРЕЛЬ\" ТРИ 2К КВАРТИРЫ",
+      "address": "Лдзаа, ул. Рыбзаводская, 77, 1 этаж",
+      "lat": 43.17508758996304,
+      "lon": 40.39011114905574,
+      "url": "/kvartira/akvarel-tri-2k-kvartiry-1646/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"АНАИТ\" гостевой дом",
+      "address": "Лдзаа, ул. Речная, 20",
+      "lat": 43.1795493698807,
+      "lon": 40.385446813491654,
+      "url": "/hotels/anait-gostevoy-dom-5049/",
+      "cityKey": "ldzaa"
+    },
+    {
       "title": "\"АНИСА\" КВАРТИРА 1К",
       "address": "Лдзаа, ул. Рыбзаводская, 77",
       "lat": 43.174986,
@@ -731,7 +771,7 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"ЛАЗУРИТ\" новый отель с завтраками 🩵скидка 20% до 20 июля🩵",
+      "title": "\"ЛАЗУРИТ\" новый отель с завтраками 🩵скидка 10% на последние денёчки июля и весь август🩵",
       "address": "Лдзаа, ул. Рыбзаводская 47",
       "lat": 43.17475939795848,
       "lon": 40.3816059692409,
@@ -835,7 +875,7 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"МУЛБЕРРИ\" отель на пляже с бассейном и кафе",
+      "title": "\"МУЛБЕРРИ\" отель на пляже с бассейном и кафе 🛎 РАННЕЕ БРОНИРОВАНИЕ 2027 🛎",
       "address": "Лдзаа, Рыбзаводская улица, 86",
       "lat": 43.17433797343704,
       "lon": 40.3888312615828,
@@ -848,6 +888,14 @@
       "lat": 43.17444737071617,
       "lon": 40.390634754630284,
       "url": "/kvartira/na-plyazhe-apartamenty-3k-ldzaa-1073/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"НАСТА\" апартаменты",
+      "address": "Лдзаа, улица Речная 36Б",
+      "lat": 43.175714855989796,
+      "lon": 40.38186052478156,
+      "url": "/hotels/nasta-apartamenty-3258/",
       "cityKey": "ldzaa"
     },
     {
@@ -1028,10 +1076,18 @@
     },
     {
       "title": "\"ТИХАЯ БУХТА\" АПАРТАМЕНТЫ СТАНДАРТ НА 5 СПАЛЬНЫХ МЕСТ С ВИДОМ НА ГОРУ",
-      "address": "Лдзаа, ул. Рыбзаводская 88",
-      "lat": 43.174606380322274,
-      "lon": 40.390243152114046,
+      "address": "Лдзаа, ул. Рыбзаводская, 88",
+      "lat": 43.17437179393069,
+      "lon": 40.3904416355808,
       "url": "/kvartira/tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "\"ТРИО\" номер на пляже",
+      "address": "Лдзаа, ул. Рыбзаводская, 88",
+      "lat": 43.17437179393069,
+      "lon": 40.3904416355808,
+      "url": "/hotels/trio-nomer-na-plyazhe-5176/",
       "cityKey": "ldzaa"
     },
     {
@@ -1195,6 +1251,14 @@
       "cityKey": "pitsunda"
     },
     {
+      "title": "\"БОНЖУР\" мини-отель",
+      "address": "Пицунда, ул. Гицба",
+      "lat": 43.16243775008196,
+      "lon": 40.32340698475784,
+      "url": "/hotels/bonzhur-mini-otel-2542/",
+      "cityKey": "pitsunda"
+    },
+    {
       "title": "\"ВИКТОРИЯ\" КВАРТИРА 2К",
       "address": "Пицунда, Агрба 19/1, 5 этаж",
       "lat": 43.161822,
@@ -1320,6 +1384,14 @@
       "lat": 43.16065390796233,
       "lon": 40.34082269050644,
       "url": "/hotels/pitsunda-otel-5028/",
+      "cityKey": "pitsunda"
+    },
+    {
+      "title": "\"ПТИЧКА\" эко-домики с бассейном",
+      "address": "Пицунда, Птицефабрика, 1-й переулок Фабричной улицы, 7",
+      "lat": 43.1851645804974,
+      "lon": 40.28674249206469,
+      "url": "/hotels/ptichka-eko-domiki-s-basseynom-5089/",
       "cityKey": "pitsunda"
     },
     {
@@ -1496,6 +1568,14 @@
       "lat": 42.947138,
       "lon": 41.081557,
       "url": "/hotels/domiki-u-mariny-otdyh-u-morya-3922/",
+      "cityKey": "sukhum"
+    },
+    {
+      "title": "\"ЗАРЕЧНЫЙ\" ЭТАЖ В ДОМЕ ПОД КЛЮЧ",
+      "address": "Сухум, 3-й переулок Заречной улицы, 5, 43.000022, 40.992695",
+      "lat": 43.00000034436161,
+      "lon": 40.992692317790926,
+      "url": "/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/",
       "cityKey": "sukhum"
     },
     {
@@ -1707,6 +1787,14 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"АЛЕКСАНДРА\" отель с питанием и бассейном у моря",
+      "address": "Цандрипш, ул. Октябрьская, 43.384528, 40.024090",
+      "lat": 43.3847863963358,
+      "lon": 40.023802863815646,
+      "url": "/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/",
+      "cityKey": "tsandripsh"
+    },
+    {
       "title": "\"АЛМА\" домики на берегу",
       "address": "Цандрипш, ул. Приморская, 46",
       "lat": 43.38619417572236,
@@ -1747,27 +1835,43 @@
       "cityKey": "tsandripsh"
     },
     {
+      "title": "\"МИМИ\" домики с видом на горы",
+      "address": "Цандрипш, ул. 6 Октября, д. 11А",
+      "lat": 43.387446,
+      "lon": 40.038999,
+      "url": "/hotels/mimi-domiki-s-vidom-na-gory-2869/",
+      "cityKey": "tsandripsh"
+    },
+    {
       "title": "\"ЭКОХОУМ\" коттедж-отель",
       "address": "Цандрипш, Амзара, ул. Горького 3",
       "lat": 43.381001915671234,
       "lon": 40.06077089043541,
       "url": "/hotels/ekohoum-kottedzh-otel-3974/",
       "cityKey": "tsandripsh"
+    },
+    {
+      "title": "\"ЮЖНОЕ СЧАСТЬЕ\" домики с бассейном и завтраками",
+      "address": "Цандрипш, ул. Кингисепа, 2А",
+      "lat": 43.387601385496325,
+      "lon": 40.0219512310913,
+      "url": "/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/",
+      "cityKey": "tsandripsh"
     }
   ],
   "stats": {
-    "placemarks_total": 450,
-    "placemarks_unique": 225,
-    "pages_total": 237,
-    "pages_on_disk": 256,
-    "pages_excluded": 19,
-    "from_constructor": 237,
+    "placemarks_total": 466,
+    "placemarks_unique": 233,
+    "pages_total": 475,
+    "pages_on_disk": 527,
+    "pages_excluded": 52,
+    "from_constructor": 249,
     "from_page_coords": 0,
     "from_manual": 0,
-    "skipped_without_constructor": 0,
-    "skipped_without_coords": 0,
-    "shared_coordinate_groups": 28,
-    "deduped_redirect_points": 16,
-    "points_total": 221
+    "skipped_without_constructor": 226,
+    "skipped_without_coords": 226,
+    "shared_coordinate_groups": 29,
+    "deduped_redirect_points": 17,
+    "points_total": 232
   }
 }
