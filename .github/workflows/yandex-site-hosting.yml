@@ -453,6 +453,15 @@ jobs:
           check "$BASE/gagra/"
           check "$BASE/data/catalog-index.json"
           check "https://www.xn--80aacbklan7f0b.xn--p1ai/"
+          # Карта: гости видят объекты, только если точек сотни (11.08 их
+          # стало 24, и карта выглядела пустой).
+          POINTS=$(curl -sS --max-time 30 "$BASE/data/objects-map-points.json" \
+            | python3 -c "import json,sys;print(len(json.load(sys.stdin).get('points') or []))" 2>/dev/null || echo 0)
+          if [ "$POINTS" -ge 150 ]; then
+            echo "OK    точек на карте: $POINTS (нужно ≥150)"
+          else
+            echo "ПЛОХО точек на карте: $POINTS (нужно ≥150)"; FAIL=1
+          fi
           echo
           echo "=== кто отдаёт сайт (заголовок Server) ==="
           curl -sSI --max-time 30 "$BASE/" | grep -iE "^(server|via):" || true
