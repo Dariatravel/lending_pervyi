@@ -230,9 +230,22 @@ def verify(bucket: str) -> int:
             if not ok:
                 failures += 1
 
+    # Карта: точек должно быть сотни. 24 точки вместо 219 — так выглядела
+    # поломка 11.08, когда фильтр генератора отсёк почти все объекты.
+    import json
+    status, body, _ = fetch(base + "/data/objects-map-points.json")
+    try:
+        points = len(json.loads(body).get("points") or [])
+    except (json.JSONDecodeError, AttributeError):
+        points = 0
+    ok = status == 200 and points >= 150
+    print(f"  {'OK  ' if ok else 'ПЛОХО'} {'/data/objects-map-points.json':32} код {status}, "
+          f"точек на карте: {points} (нужно ≥150)")
+    if not ok:
+        failures += 1
+
     # Страница объекта: именно они открываются у гостей чаще всего, и именно
     # на них ломается адресация вида /hotels/<slug>/ без index.html.
-    import json
     index = json.loads((ROOT / "data" / "catalog-index.json").read_text(encoding="utf-8"))
     listing = index["listings"][0]
     slug_path = "/" + ("kvartira" if listing["source_kind"] == "kvartira" else "hotels") \

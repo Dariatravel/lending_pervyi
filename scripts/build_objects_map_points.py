@@ -28,6 +28,7 @@ MANUAL_COORDS_PATH = ROOT / "data" / "objects-map-manual-coords.json"
 CATALOG_SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 TELEGRAM_POSTS_PATH = ROOT / "output" / "abhazbooking_2026_posts.json"
 CATALOG_HTML_PATHS = (ROOT / "index.html", ROOT / "kvartira" / "index.html")
+CATALOG_INDEX_PATH = ROOT / "data" / "catalog-index.json"
 MAPS_CONFIG_PATH = ROOT / "config" / "maps-config.js"
 CONSTRUCTOR_ID = "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33"
 WIDGET_URL = (
@@ -567,6 +568,19 @@ def page_records() -> list[dict]:
 
 def catalog_page_urls() -> set[str]:
     urls: set[str] = set()
+    # Полный список видимых объектов живёт в catalog-index.json: сетка каталога
+    # рисуется скриптом из него, а в HTML главной остаётся лишь пара десятков
+    # стартовых карточек — фильтровать карту по HTML нельзя (11.08 это срезало
+    # карту с 219 точек до 24).
+    if CATALOG_INDEX_PATH.is_file():
+        try:
+            listings = json.loads(CATALOG_INDEX_PATH.read_text(encoding="utf-8")).get("listings") or []
+        except (json.JSONDecodeError, OSError):
+            listings = []
+        for listing in listings:
+            path = urlparse(str(listing.get("page_url") or "")).path
+            if re.fullmatch(r"/(?:hotels|kvartira)/[^/]+/", path or ""):
+                urls.add(path)
     for html_path in CATALOG_HTML_PATHS:
         if not html_path.is_file():
             continue
