@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T07:04:53.374607+00:00",
+  "generated_at": "2026-08-12T09:00:28.716916+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 232,
@@ -47542,27 +47542,7 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция🔥"
-          },
-          {
-            "kind": "price",
-            "text": "До 12 июля домик 3500₽"
-          },
-          {
-            "kind": "price",
-            "text": "2500₽/сутки - май"
-          },
-          {
-            "kind": "price",
-            "text": "2500₽/сутки - с 1 по 16 июня"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽/сутки - с 16 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "4500₽/сутки - июль, август"
+            "text": "4500₽/сутки - август"
           },
           {
             "kind": "price",
@@ -47573,7 +47553,7 @@
             "text": "2500₽/сутки - октябрь"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/mimi-domiki-s-vidom-na-gory-2869/index.html",
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/mimi-domiki-s-vidom-na-gory-2869/index.html",
         "filters": {
           "distance": [
             "up-to-5"
@@ -47722,7 +47702,8 @@
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mimi-domiki-s-vidom-na-gory-2869/video-01.mp4",
           "details": {
             "telegram_post": "abhazbooking/2878",
-            "telegram_url": "https://t.me/abhazbooking/2878"
+            "telegram_url": "https://t.me/abhazbooking/2878",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mimi-domiki-s-vidom-na-gory-2869/video-01-poster.jpg"
           }
         }
       ]
