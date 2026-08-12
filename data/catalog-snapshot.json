@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-12T09:00:28.716916+00:00",
+  "generated_at": "2026-08-12T15:41:50.970875+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 232,
-  "listings_hotels": 182,
+  "listings_total": 233,
+  "listings_hotels": 183,
   "listings_kvartira": 50,
   "listings": [
     {
@@ -65404,6 +65404,262 @@
           "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/ashta-du-gostevoy-dom-5186/photo-10.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/ashta-du-gostevoy-dom-5186/photo-10.jpg",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5197,
+      "source_topic_id": null,
+      "slug": "biosfera-domiki-u-kyndygskogo-istochnika-5197",
+      "title": "\"БИОСФЕРА\" домики у Кындыгского источника",
+      "summary": "Кындыг. 10 минут до эвкалиптового пляжа, размещение до 5 человек.",
+      "excerpt": "Всего три двухъярусных домика площадью 50 м². Размещение до 5 человек",
+      "city": "Кындыг",
+      "location_text": "Кындыг, ул. Мераба Пачулия, 42.797525, 41.263494",
+      "distance_text": "10 минут до эвкалиптового пляжа",
+      "beach_text": "10 минут до эвкалиптового пляжа",
+      "capacity_text": "размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/",
+      "telegram_url": "https://t.me/abhazbooking/5197",
+      "published_at": "2026-08-12",
+      "has_video": false,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/biosfera-domiki-u-kyndygskogo-istochnika-5197.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Кындыг. 10 минут до эвкалиптового пляжа, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Всего три двухъярусных домика площадью 50 м². Размещение до 5 человек.",
+              "В домике: просторная кухня-гостиная с раскладным диваном 120*200.",
+              "На первом этаже отдельная спальня с двуспальной кроватью вс ортопедическим матрасом 160",
+              "*200.",
+              "Кухня оборудованная всем необходимым: холодильник, варочная поверхность, микроволновка, чайник, посуда, обеденная зона.",
+              "На втором ярусе двуспальная кровать с ортопедическим матрасом 160*200.",
+              "Санузел с душевой кабиной.",
+              "Оснащение: кондиционер, телевизор, Wi‑Fi, холодильник, фен.",
+              "У каждого домика есть своя просторная веранда 12 кв м. для отдыха со столиком и стульями."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Закрытая охраняемая территория с видеонаблюдением.",
+              "Мангальная зона.",
+              "Зона прачки.",
+              "Можно организовать экскурсии за доп плату."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До знаменитого Кындыгского горячего источника 5 минут пешком.",
+              "До моря 10 минут пешком, пляж эвкалиптовый, галечный.",
+              "Рядом есть кафе, возможна доставка блюд в домик.",
+              "До магазина около 15 минут пешком."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Возможно размещение с собаками любых пород.",
+              "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я НА СВЯЗИ 📲",
+              "в MAX: max.ru/id741113115256_bot",
+              "ВК-чат: vk.cc/cQQnBn",
+              "WhatsApp +7940-900-33-40",
+              "(только сообщение, звонок не пройдёт)"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за пятиместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "Август, сентябрь, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "8500₽ - при бронировании от 2 суток"
+          },
+          {
+            "kind": "price",
+            "text": "7800₽ - при бронировании от 3 до 6 суток"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - при бронировании от 7 до 9 суток"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - при бронировании от 10 суток"
+          },
+          {
+            "kind": "price",
+            "text": "Уборка в домиках проводится при заселении, стоимость дополнительной уборки со сменой белья - 1600₽."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/index.html",
+        "filters": {
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "sukhum"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "terrace",
+            "tv",
+            "kitchen",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "cottages",
+            "pets"
+          ]
+        }
+      },
+      "id": 1202,
+      "media": [
+        {
+          "id": 1202001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/biosfera-domiki-u-kyndygskogo-istochnika-5197.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/biosfera-domiki-u-kyndygskogo-istochnika-5197.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/biosfera-domiki-u-kyndygskogo-istochnika-5197.jpg",
+          "details": {}
+        },
+        {
+          "id": 1202002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1202003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1202004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1202005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1202006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1202007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1202008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1202009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1202010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1202011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-10.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-10.jpg",
           "details": {}
         }
       ]
