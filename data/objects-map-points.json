@@ -1,7 +1,15 @@
 {
-  "generated_at": "2026-08-12T07:30:00.528011+00:00",
+  "generated_at": "2026-08-12T16:38:36.183394+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
+    {
+      "title": "\"БИОСФЕРА\" домики у Кындыгского источника",
+      "address": "Кындыг, ул. Мераба Пачулия, 42.797525, 41.263494",
+      "lat": 42.79754674851691,
+      "lon": 41.26351849453625,
+      "url": "/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/",
+      "cityKey": ""
+    },
     {
       "title": "\"РАДОНОВЫЙ ИСТОЧНИК\" отель в горах",
       "address": "Уникальный отель на термальных источниках.",
@@ -1860,18 +1868,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 466,
-    "placemarks_unique": 233,
-    "pages_total": 475,
-    "pages_on_disk": 527,
+    "placemarks_total": 468,
+    "placemarks_unique": 234,
+    "pages_total": 476,
+    "pages_on_disk": 528,
     "pages_excluded": 52,
-    "from_constructor": 249,
+    "from_constructor": 250,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 226,
     "skipped_without_coords": 226,
     "shared_coordinate_groups": 29,
     "deduped_redirect_points": 17,
-    "points_total": 232
+    "points_total": 233
   }
 }
