@@ -62,6 +62,13 @@ jobs:
         if: inputs.publish != 'true'
         run: python3 scripts/dump_blog_post_texts.py
 
+      # Для уже опубликованных постов — взгляд телефона на живой домен:
+      # страница, viewport, каждое фото и его WebP-копии. Посты без
+      # метаданных шаг честно пропускает, поэтому он безопасен и в preview.
+      - name: Проверить статьи на живом домене
+        if: inputs.publish != 'true'
+        run: python3 tools/check_blog_pages_prod.py
+
       - name: Собрать статьи
         if: inputs.publish == 'true'
         run: python3 scripts/sync_blog_from_abhazbereg.py
