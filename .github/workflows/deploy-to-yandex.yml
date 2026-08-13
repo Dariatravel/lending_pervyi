@@ -25,7 +25,7 @@ on:
   # оставались бы только на GitHub Pages и не доезжали до бакета — так
   # 11 августа новый объект сутки отдавал 404 с основного домена.
   workflow_run:
-    workflows: ["Watch Telegram"]
+    workflows: ["Watch Telegram", "Blog Sync"]
     types: [completed]
     branches: [main]
   workflow_dispatch:

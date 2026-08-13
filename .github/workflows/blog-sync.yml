@@ -1,0 +1,96 @@
+name: Blog Sync
+
+# Публикация статей блога из канала @abhazbereg.
+#
+# Работает в два захода:
+#   1) publish=false — только показать тексты постов в журнале запуска.
+#      По ним заполняются slug/заголовок/лид в POST_META
+#      (scripts/sync_blog_from_abhazbereg.py).
+#   2) publish=true — собрать страницы, залить обложки с WebP-вариантами
+#      в бакет медиа, обновить индекс блога/манифест/sitemap и запушить.
+#
+# Telegram (MTProto) с RU-хостингов фильтруется, поэтому раннеры GitHub.
+
+on:
+  workflow_dispatch:
+    inputs:
+      post_ids:
+        description: "ID постов @abhazbereg через запятую, напр. 2460,2461"
+        required: true
+      publish:
+        description: "true — собрать и опубликовать; false — только показать тексты"
+        required: true
+        default: "false"
+
+concurrency:
+  group: blog-sync
+  cancel-in-progress: false
+
+jobs:
+  blog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    env:
+      TG_STRING_SESSION: ${{ secrets.TG_STRING_SESSION }}
+      YANDEX_S3_ACCESS_KEY_ID: ${{ secrets.YANDEX_S3_ACCESS_KEY_ID }}
+      YANDEX_S3_SECRET_ACCESS_KEY: ${{ secrets.YANDEX_S3_SECRET_ACCESS_KEY }}
+      TARGET_BLOG_POST_IDS: ${{ inputs.post_ids }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Проверить секреты
+        run: |
+          if [ -z "$TG_STRING_SESSION" ]; then
+            echo "::error::Нет TG_STRING_SESSION — блог читать нечем."; exit 1
+          fi
+          if [ "${{ inputs.publish }}" = "true" ] && [ -z "$YANDEX_S3_ACCESS_KEY_ID" ]; then
+            echo "::error::Нет ключей YANDEX_S3_* — обложки заливать нечем."; exit 1
+          fi
+
+      - name: Установить зависимости
+        run: pip install --quiet -r requirements-site-update-bot.txt
+
+      - name: Показать тексты постов
+        if: inputs.publish != 'true'
+        run: python3 scripts/dump_blog_post_texts.py
+
+      - name: Собрать статьи
+        if: inputs.publish == 'true'
+        run: python3 scripts/sync_blog_from_abhazbereg.py
+
+      - name: Залить обложки с WebP-вариантами
+        if: inputs.publish == 'true'
+        run: python3 scripts/upload_blog_media.py
+
+      - name: Аудиты
+        if: inputs.publish == 'true'
+        run: |
+          python3 tools/audit_supabase_prod_deps.py
+          python3 tools/validate_catalog_snapshot.py
+          python3 tools/verify_object_media.py
+
+      - name: Опубликовать
+        if: inputs.publish == 'true'
+        run: |
+          git config user.name "abhazbereg-autosync"
+          git config user.email "darya.tiande@gmail.com"
+          git add blog data/blog-posts.json sitemap.xml scripts/blog_telegram_sources
+          if git diff --cached --quiet; then
+            echo "Изменений нет — публиковать нечего."; exit 0
+          fi
+          git commit -m "Блог: статьи из Telegram (№${TARGET_BLOG_POST_IDS})"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep 10
+          done
+          echo "::error::Не удалось запушить статьи блога после 3 попыток."
+          exit 1
