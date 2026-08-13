@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T15:41:03.744884+00:00",
+  "generated_at": "2026-08-13T16:37:12.350132+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1659,6 +1659,14 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"МОККО ГРЕЙ\" АПАРТАМЕНТЫ 1К",
+      "address": "Сухум, Кодорское шоссе, 11",
+      "lat": 42.98689627328442,
+      "lon": 41.058304179236906,
+      "url": "/kvartira/mokko-grey-apartamenty-1k-1681/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"МОККО\" АПАРТАМЕНТЫ",
       "address": "Сухум, Кодорское шоссе 665/ 5",
       "lat": 42.98637040143757,
@@ -1870,16 +1878,16 @@
   "stats": {
     "placemarks_total": 470,
     "placemarks_unique": 235,
-    "pages_total": 476,
-    "pages_on_disk": 528,
+    "pages_total": 477,
+    "pages_on_disk": 529,
     "pages_excluded": 52,
-    "from_constructor": 250,
+    "from_constructor": 251,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 226,
     "skipped_without_coords": 226,
     "shared_coordinate_groups": 29,
     "deduped_redirect_points": 17,
-    "points_total": 233
+    "points_total": 234
   }
 }
