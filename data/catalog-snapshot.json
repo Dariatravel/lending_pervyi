@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-13T14:15:36.574166+00:00",
+  "generated_at": "2026-08-13T15:45:04.782354+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 233,
+  "listings_total": 234,
   "listings_hotels": 183,
-  "listings_kvartira": 50,
+  "listings_kvartira": 51,
   "listings": [
     {
       "source_kind": "kvartira",
@@ -65613,6 +65613,229 @@
           "storage_path": "hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-10.jpg",
           "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/photo-10.jpg",
           "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "kvartira",
+      "source_channel": "abhkvartira",
+      "source_message_id": 1681,
+      "source_topic_id": 1680,
+      "slug": "mokko-grey-apartamenty-1k-1681",
+      "title": "\"МОККО ГРЕЙ\" апартаменты 1к",
+      "summary": "Сухум. 4 минуты до пляжа Мокко, размещение до 2 человек.",
+      "excerpt": "Новые апартаменты расположены на первом этаже двухэтажного дома. Возможно размещение с ребенком, если спит с родителями на диване",
+      "city": "Сухум",
+      "location_text": "Сухум, Кодорское шоссе, 11",
+      "distance_text": "4 минуты до пляжа Мокко",
+      "beach_text": "4 минуты до пляжа Мокко",
+      "capacity_text": "размещение до 2 человек",
+      "page_url": "https://абхазберег.рф/kvartira/mokko-grey-apartamenty-1k-1681/",
+      "telegram_url": "https://t.me/abhkvartira/1681",
+      "published_at": "2026-08-13",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/mokko-grey-apartamenty-1k-1681-cover.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Сухум. 4 минуты до пляжа Мокко, размещение до 2 человек.",
+        "sections": [
+          {
+            "label": "✔️АПАРТАМЕНТЫ:",
+            "lines": [
+              "Новые апартаменты расположены на первом этаже двухэтажного дома. Возможно размещение с ребенком, если спит с родителями на диване.",
+              "Раскладывающийся диван, шкаф, обеденная зона.",
+              "Кухня со всем необходимым: варочная поверхность, духовой шкаф, микроволновка, чайник, набор посуды.",
+              "Сан узел с душем.",
+              "Оснащение: кондиционер, телевизор, Wi‑Fi."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Рядом есть детская площадка, большой парк, магазины, столовые, остановка. Все в пешей доступности.",
+              "Поблизости Дендропарк. До центра Сухума 8 минут на авто (или 40 минут пешком)",
+              "В 4 минутах самый любимый пляж гостей Мокко. Песчано-галечный берег в обрамлении красивых деревьев и гор. Зонтики, шезлонги бунгало, сап-борды и другие водные развлечения. Кафе и бары."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "5000₽ - август, сентябрь, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет."
+          },
+          {
+            "kind": "price",
+            "text": "Я НА СВЯЗИ 📲"
+          },
+          {
+            "kind": "price",
+            "text": "в MAX: max.ru/id741113115256_bot"
+          },
+          {
+            "kind": "price",
+            "text": "ВК-чат: vk.cc/cQQnBn"
+          },
+          {
+            "kind": "note",
+            "text": "(только сообщение, звонок не пройдёт)"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/mokko-grey-apartamenty-1k-1681/index.html",
+        "filters": {
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "economy"
+          ],
+          "city": [
+            "sukhum"
+          ],
+          "beach": [
+            "sand-sukhum"
+          ],
+          "room": [
+            "tv",
+            "kitchen"
+          ],
+          "stay": [
+            "apartments"
+          ]
+        }
+      },
+      "id": 1203,
+      "media": [
+        {
+          "id": 1203001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/mokko-grey-apartamenty-1k-1681-cover.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira-cards/mokko-grey-apartamenty-1k-1681-cover.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/mokko-grey-apartamenty-1k-1681-cover.jpg",
+          "details": {}
+        },
+        {
+          "id": 1203002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/mokko-grey-apartamenty-1k-1681/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1203003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/mokko-grey-apartamenty-1k-1681/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1203004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/mokko-grey-apartamenty-1k-1681/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1203005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/mokko-grey-apartamenty-1k-1681/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1203006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/mokko-grey-apartamenty-1k-1681/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1203007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/mokko-grey-apartamenty-1k-1681/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1203008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/mokko-grey-apartamenty-1k-1681/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1203009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/mokko-grey-apartamenty-1k-1681/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1203010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/mokko-grey-apartamenty-1k-1681/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/mokko-grey-apartamenty-1k-1681/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1203011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mokko-grey-apartamenty-1k-1681/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/kvartira/mokko-grey-apartamenty-1k-1681/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mokko-grey-apartamenty-1k-1681/video-01.mp4",
+          "details": {
+            "telegram_post": "abhkvartira/1690",
+            "telegram_url": "https://t.me/abhkvartira/1690",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mokko-grey-apartamenty-1k-1681/video-01-poster.jpg"
+          }
         }
       ]
     }

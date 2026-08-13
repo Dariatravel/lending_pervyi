@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T16:38:36.183394+00:00",
+  "generated_at": "2026-08-13T15:41:03.744884+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1717,8 +1717,8 @@
     {
       "title": "\"ПЕСЧАНЫЙ БЕРЕГ\" апартаменты",
       "address": "Сухум, Кодорское шоссе, 11",
-      "lat": 42.98695534716467,
-      "lon": 41.05759607605673,
+      "lat": 42.98688249408752,
+      "lon": 41.05765508465279,
       "url": "/hotels/peschanyy-bereg-apartamenty-3700/",
       "cityKey": "sukhum"
     },
@@ -1868,8 +1868,8 @@
     }
   ],
   "stats": {
-    "placemarks_total": 468,
-    "placemarks_unique": 234,
+    "placemarks_total": 470,
+    "placemarks_unique": 235,
     "pages_total": 476,
     "pages_on_disk": 528,
     "pages_excluded": 52,
