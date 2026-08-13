@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T09:07:08.341874+00:00",
+  "generated_at": "2026-08-13T14:15:36.574166+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 233,
@@ -5967,7 +5967,7 @@
           },
           {
             "kind": "price",
-            "text": "3000₽ - сентябрь"
+            "text": "2500₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -5999,7 +5999,7 @@
           },
           {
             "kind": "price",
-            "text": "3000₽ - сентябрь"
+            "text": "2500₽ - сентябрь"
           },
           {
             "kind": "heading",
@@ -6015,7 +6015,7 @@
           },
           {
             "kind": "price",
-            "text": "3500₽ - сентябрь"
+            "text": "3800₽ - сентябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459/index.html",
