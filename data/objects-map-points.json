@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T16:37:12.350132+00:00",
+  "generated_at": "2026-08-14T11:31:13.107701+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1283,6 +1283,14 @@
       "cityKey": "pitsunda"
     },
     {
+      "title": "\"ИНКИТ РЕЗОРТ\" афреймы",
+      "address": "Пицунда, Пицундское шоссе, 3, 43.176793, 40.315967",
+      "lat": 43.176793,
+      "lon": 40.315967,
+      "url": "/hotels/inkit-rezort-afreymy-5209/",
+      "cityKey": "pitsunda"
+    },
+    {
       "title": "\"КАМИЛЛА\" КВАРТИРА 2К",
       "address": "Пицунда, ул. Агрба, 7/1а",
       "lat": 43.158935,
@@ -1368,14 +1376,6 @@
       "lat": 43.181645209767694,
       "lon": 40.292335678942585,
       "url": "/hotels/nikol-gostevoy-dom-3678/",
-      "cityKey": "pitsunda"
-    },
-    {
-      "title": "\"НОРА\" гостевой дом эконом",
-      "address": "Пицунда, ул. Гочуа, 9",
-      "lat": 43.1842947885131,
-      "lon": 40.29133716577558,
-      "url": "/hotels/nora-gostevoy-dom-3851/",
       "cityKey": "pitsunda"
     },
     {
@@ -1878,14 +1878,14 @@
   "stats": {
     "placemarks_total": 470,
     "placemarks_unique": 235,
-    "pages_total": 477,
-    "pages_on_disk": 529,
+    "pages_total": 478,
+    "pages_on_disk": 530,
     "pages_excluded": 52,
     "from_constructor": 251,
     "from_page_coords": 0,
     "from_manual": 0,
-    "skipped_without_constructor": 226,
-    "skipped_without_coords": 226,
+    "skipped_without_constructor": 227,
+    "skipped_without_coords": 227,
     "shared_coordinate_groups": 29,
     "deduped_redirect_points": 17,
     "points_total": 234
