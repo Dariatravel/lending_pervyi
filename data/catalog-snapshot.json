@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-13T15:45:04.782354+00:00",
+  "generated_at": "2026-08-14T10:47:13.705873+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 234,
-  "listings_hotels": 183,
+  "listings_total": 235,
+  "listings_hotels": 184,
   "listings_kvartira": 51,
   "listings": [
     {
@@ -55742,11 +55742,11 @@
           },
           {
             "kind": "price",
-            "text": "5500 ₽/сутки - август"
+            "text": "4700 ₽/сутки - август"
           },
           {
             "kind": "price",
-            "text": "4500 ₽/сутки - сентябрь"
+            "text": "4000 ₽/сутки - сентябрь"
           },
           {
             "kind": "price",
@@ -65835,6 +65835,226 @@
             "telegram_post": "abhkvartira/1690",
             "telegram_url": "https://t.me/abhkvartira/1690",
             "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/mokko-grey-apartamenty-1k-1681/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5209,
+      "source_topic_id": null,
+      "slug": "inkit-rezort-afreymy-5209",
+      "title": "\"ИНКИТ РЕЗОРТ\" афреймы",
+      "summary": "Пицунда. 9 минут до пляжа, размещение до 5 человек.",
+      "excerpt": "Тринадцать новых современных двухэтажных афреймов",
+      "city": "Пицунда",
+      "location_text": "Пицунда, Пицундское шоссе, 3, 43.176793, 40.315967",
+      "distance_text": "9 минут до пляжа",
+      "beach_text": "9 минут до пляжа",
+      "capacity_text": "размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/inkit-rezort-afreymy-5209/",
+      "telegram_url": "https://t.me/abhazbooking/5209",
+      "published_at": "2026-08-14",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/inkit-rezort-afreymy-5209.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Пицунда. 9 минут до пляжа, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️АФРЕЙМЫ:",
+            "lines": [
+              "Тринадцать новых современных двухэтажных афреймов.",
+              "На первом этаже раскладной двухместный диван, шкаф, столик.",
+              "На втором этаже двуспальная кровать и раскладной диванчик на одного.Санузел с душем.",
+              "Оснащение: кондиционер, Wi-Fi, телевизор, мини-холодильник, чайник, фен.",
+              "Веранда у каждого домика со столиком и стульями.",
+              "Шторы в домиках временно отсутствуют.",
+              "Есть шторы только в одном домике."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Закрытая просторная территория с видеонаблюдением.",
+              "Есть мангал.",
+              "Парковка на территории.",
+              "Кухни для самостоятельного приготовления нет в этом сезоне."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "С территории открывается красивый вид на горы.",
+              "До пляжа 9 минут пешком. Пляж галечный, есть прокат шезлонгов, пристань, водные прогулки и развлечения.",
+              "Рядом реликтовое озеро Инкит.",
+              "Конные прогулки в шаговой доступности.",
+              "Магазин, кафе, аптека, остановка общественного транспорта в шаговой доступности."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с маленькими послушными собачками возможно по согласованию.",
+              "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я НА СВЯЗИ 📲",
+              "в MAX: max.ru/id741113115256_bot",
+              "ВК-чат: vk.cc/cQQnBn",
+              "WhatsApp +7940-900-33-40",
+              "(только сообщение, звонок не пройдёт)"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за домик)"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - август, сентябрь, октябрь"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/inkit-rezort-afreymy-5209/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1204,
+      "media": [
+        {
+          "id": 1204001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/inkit-rezort-afreymy-5209.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/inkit-rezort-afreymy-5209.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/inkit-rezort-afreymy-5209.jpg",
+          "details": {}
+        },
+        {
+          "id": 1204002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/inkit-rezort-afreymy-5209/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1204003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/inkit-rezort-afreymy-5209/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1204004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/inkit-rezort-afreymy-5209/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1204005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/inkit-rezort-afreymy-5209/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1204006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/inkit-rezort-afreymy-5209/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1204007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/inkit-rezort-afreymy-5209/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1204008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/inkit-rezort-afreymy-5209/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1204009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/inkit-rezort-afreymy-5209/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1204010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/inkit-rezort-afreymy-5209/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/inkit-rezort-afreymy-5209/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1204011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/inkit-rezort-afreymy-5209/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/inkit-rezort-afreymy-5209/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/inkit-rezort-afreymy-5209/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5218",
+            "telegram_url": "https://t.me/abhazbooking/5218",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/inkit-rezort-afreymy-5209/video-01-poster.jpg"
           }
         }
       ]
