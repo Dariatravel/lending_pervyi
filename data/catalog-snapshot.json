@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-14T10:47:13.705873+00:00",
+  "generated_at": "2026-08-15T12:01:41.246507+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 235,
@@ -5928,6 +5928,10 @@
           {
             "kind": "price",
             "text": "При бронировании от 3х номеров скидка 10% (цены указаны без скидки)"
+          },
+          {
+            "kind": "price",
+            "text": "🔥С 27 августа по 8 сентября свободен номер Люкс - 4000₽🔥"
           },
           {
             "kind": "heading",
@@ -65921,13 +65925,30 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/inkit-rezort-afreymy-5209/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
-          "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "pitsunda"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "terrace",
+            "tv",
+            "five-plus"
+          ],
+          "stay": [
+            "cottages",
+            "pets"
+          ]
         }
       },
       "id": 1204,
