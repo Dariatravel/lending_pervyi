@@ -103,6 +103,13 @@ def main() -> int:
     problems = 0
     for path in load_paths():
         row = check(path)
+        # Первый запрос к редкой странице может попасть на холодный узел CDN
+        # и ответить за 4–9 секунд — это не поломка сайта. Меряем второй раз
+        # и верим прогретому замеру; красним только если медленно оба раза.
+        if row["status"] == 200 and row["ms"] > 3000:
+            first_ms = row["ms"]
+            row = check(path)
+            row["cold_first_ms"] = first_ms
         issues = []
         if row["status"] != 200:
             issues.append(f"код {row['status'] or 'нет ответа'}{' — ' + row['error'] if row['error'] else ''}")
@@ -118,7 +125,8 @@ def main() -> int:
         mark = "OK  " if not issues else "ПРОБЛЕМА"
         if issues:
             problems += 1
-        lines.append(f"[{mark}] {row['path']} — {row['status']}, {row['ms']} мс"
+        cold_note = f" (первый запрос {row['cold_first_ms']} мс — холодный кэш CDN)" if row.get("cold_first_ms") else ""
+        lines.append(f"[{mark}] {row['path']} — {row['status']}, {row['ms']} мс{cold_note}"
                      + (f" | {'; '.join(issues)}" if issues else ""))
         if row["title"]:
             lines.append(f"         title: {row['title'][:90]}")

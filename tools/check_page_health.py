@@ -82,6 +82,11 @@ def check_object_meta(errors: list[str]) -> None:
     for path in object_pages():
         text = read_text(path)
         rel = path.relative_to(ROOT).as_posix()
+        # Redirect-страницы («страница переехала») гость видит долю секунды:
+        # favicon и og-теги там не нужны, а 261 ложное замечание хоронит
+        # настоящие проблемы.
+        if 'http-equiv="refresh"' in text:
+            continue
         if "favicon-48.png" not in text:
             errors.append(f"{rel}: favicon должен быть favicon-48.png")
         if 'property="og:image"' in text and "og-banner.png" not in text:

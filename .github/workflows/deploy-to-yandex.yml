@@ -78,6 +78,14 @@ jobs:
         if: steps.gate.outputs.enabled == 'true'
         run: python3 tools/deploy_site_to_yandex.py --bucket abhazbereg-site
 
+      # Первый запрос к редкой странице через холодный узел CDN — 4–9 секунд.
+      # Обходим весь sitemap сами, чтобы эти секунды не достались гостям
+      # (и чтобы смоук не краснел на ровном месте). Сбой прогрева не критичен.
+      - name: Прогреть CDN-кэш
+        if: steps.gate.outputs.enabled == 'true'
+        continue-on-error: true
+        run: python3 tools/warm_cdn_cache.py
+
       # Молчим, когда всё хорошо: успешная заливка идёт много раз в сутки.
       # Сообщаем только о поломке — иначе о ней узнаем в тот день, когда
       # домен уже будет переключён на бакет.
