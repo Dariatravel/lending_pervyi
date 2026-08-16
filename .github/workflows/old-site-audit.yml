@@ -1,0 +1,37 @@
+name: Old Site Audit
+
+# Разведка старого сайта на Тильде (abhazbereg.ru) перед переездом домена:
+# robots, sitemap, заголовки страниц. Из песочницы агента внешние сайты
+# закрыты прокси, поэтому смотрим с раннера GitHub.
+
+on:
+  workflow_dispatch:
+    inputs:
+      origin:
+        description: "Адрес старого сайта"
+        required: true
+        default: "https://abhazbereg.ru"
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Разведка
+        env:
+          OLD_SITE: ${{ inputs.origin }}
+        run: python3 tools/audit_old_tilda_site.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: old-site-audit
+          path: output/old-site-audit.json
+          if-no-files-found: ignore
