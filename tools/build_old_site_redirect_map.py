@@ -69,24 +69,34 @@ def main() -> int:
         brand = quoted_brand(old_title)
         best, best_score = None, 0.0
         for cand in candidates:
-            score = 0.0
             if brand and cand["brand"]:
+                # Сравниваем ТОЛЬКО имя в кавычках: полные названия совпадают
+                # по словам «квартира 2-к» и женят тёзок («СЕМЕЙНАЯ» → «СОЛНЕЧНАЯ»).
                 score = SequenceMatcher(None, brand, cand["brand"]).ratio()
-            # полное название добавляет уверенности и разводит тёзок
-            score = max(score, SequenceMatcher(None, norm(old_title), cand["norm"]).ratio())
+                tokens_old, tokens_new = set(brand.split()), set(cand["brand"].split())
+                # «ЛЮБОВЬ» и «ВИЛЛА ЛЮБОВЬ» — один объект: имя вложено в имя
+                if tokens_old and tokens_new and (tokens_old <= tokens_new or tokens_new <= tokens_old):
+                    score = max(score, 0.9)
+            else:
+                score = SequenceMatcher(None, norm(old_title), cand["norm"]).ratio()
             if score > best_score:
                 best, best_score = cand, score
         if best and best_score >= 0.75:
-            redirects[old_path] = best["path"]
+            redirects[old_path] = {"to": best["path"], "old_title": old_title,
+                                   "new_title": best["title"], "score": round(best_score, 2)}
             matched.append((old_path, old_title, best["title"], round(best_score, 2)))
         else:
-            redirects[old_path] = "/"
-            unmatched.append((old_path, old_title,
-                              f"похоже на {best['title']} ({round(best_score, 2)})" if best else "—"))
+            hint = f"похоже на {best['title']} ({round(best_score, 2)})" if best else "—"
+            redirects[old_path] = {"to": "/", "old_title": old_title, "new_title": "",
+                                   "score": round(best_score, 2), "note": hint}
+            unmatched.append((old_path, old_title, hint))
 
+    payload = {}
+    for old_path, value in redirects.items():
+        payload[old_path] = value if isinstance(value, dict) else {"to": value, "old_title": "", "new_title": ""}
     OUT_PATH.write_text(json.dumps({"origin": "https://abhazbereg.ru",
                                     "target": "https://абхазберег.рф",
-                                    "redirects": dict(sorted(redirects.items()))},
+                                    "redirects": dict(sorted(payload.items()))},
                                    ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     lines = [f"Сопоставлено уверенно: {len(matched)}; на главную (нет пары): {len(unmatched)}", ""]
