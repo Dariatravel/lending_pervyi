@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-15T12:01:41.246507+00:00",
+  "generated_at": "2026-08-16T08:07:08.104713+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 235,
@@ -11960,18 +11960,6 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция в июне🔥"
-          },
-          {
-            "kind": "price",
-            "text": "номер без питания на двоих - 3000₽"
-          },
-          {
-            "kind": "price",
-            "text": "номер семейный двухкомнатный без питания на 4 человека - 6000₽"
-          },
-          {
-            "kind": "price",
             "text": "номер без питания на двоих"
           },
           {
@@ -12162,7 +12150,7 @@
           "details": {
             "telegram_post": "abhazbooking/4141",
             "telegram_url": "https://t.me/abhazbooking/4141",
-            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/video-01-source-poster.jpg"
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/video-01-poster.jpg"
           }
         }
       ]
