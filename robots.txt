@@ -16,6 +16,7 @@ Allow: /
 
 Sitemap: https://абхазберег.рф/sitemap.xml
 # AI discovery: https://абхазберег.рф/llms.txt
+# AI discovery (mirror): https://абхазберег.рф/ai/llms.txt
 # AI catalog: https://абхазберег.рф/ai/catalog.json
 
 Host: абхазберег.рф
