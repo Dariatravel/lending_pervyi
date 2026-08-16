@@ -16,6 +16,8 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,8 +32,30 @@ jobs:
           OLD_SITE: ${{ inputs.origin }}
         run: python3 tools/audit_old_tilda_site.py
 
+      - name: Карта редиректов (старый путь → страница нового сайта)
+        run: python3 tools/build_old_site_redirect_map.py
+
+      # Карта — источник правды для будущего редиректора, храним в git.
+      - name: Сохранить карту редиректов
+        run: |
+          git config user.name "abhazbereg-autosync"
+          git config user.email "darya.tiande@gmail.com"
+          git add data/old-site-redirects.json
+          if git diff --cached --quiet; then
+            echo "Карта не изменилась."; exit 0
+          fi
+          git commit -m "Карта редиректов со старого сайта abhazbereg.ru"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep 10
+          done
+          exit 1
+
       - uses: actions/upload-artifact@v4
         with:
           name: old-site-audit
-          path: output/old-site-audit.json
+          path: |
+            output/old-site-audit.json
+            output/old-site-redirect-report.txt
           if-no-files-found: ignore
