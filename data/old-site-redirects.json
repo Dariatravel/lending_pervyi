@@ -2,244 +2,1438 @@
   "origin": "https://abhazbereg.ru",
   "target": "https://абхазберег.рф",
   "redirects": {
-    "/": "/",
-    "/catalog": "/",
-    "/catalog/tproduct/104733537912-letnyaya-kvartira-3k": "/kvartira/letnyaya-kvartira-3k-suhum-1377/",
-    "/catalog/tproduct/272700611593-biosfera-domiki-u-kindigskogo-istochnika": "/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/",
-    "/catalogcity": "/",
-    "/catalogcity/tproduct/103222503612-parus-otel-komfort-s-vidom-na-more-": "/hotels/parus-vidovoy-otel-s-basseynom-i-stolovoy-2602/",
-    "/catalogcity/tproduct/105517621662-kiaraz-rezort-gostevoi-kompleks-s-bassei": "/hotels/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459/",
-    "/catalogcity/tproduct/115168787342-sanni-houm-domiki-s-basseinom": "/hotels/sanni-houm-domiki-s-basseynom-4731/",
-    "/catalogcity/tproduct/121959501532-tihii-zakat-domiki-s-basseinom": "/hotels/tihiy-zakat-domiki-s-basseynom-3942/",
-    "/catalogcity/tproduct/132975687112-sekret-garden-apartamenti": "/hotels/sekret-garden-apartamenty-4162/",
-    "/catalogcity/tproduct/152531458902-amor-apartamenti-s-kuhnei-i-basseinom": "/hotels/amor-apartamenty-s-kuhney-i-basseynom-3487/",
-    "/catalogcity/tproduct/154604484882-adunei-gostevoi-dom": "/hotels/aduney-gostevoy-dom-3181/",
-    "/catalogcity/tproduct/174279451453-pansionat-bagripsh-glavnii-korpus": "/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/",
-    "/catalogcity/tproduct/176493153772-boho-kompleks-polnogo-schastya-u-morya-": "/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/",
-    "/catalogcity/tproduct/253220469122-siti-gagra-kvartira-2-k": "/kvartira/siti-gagra-kvartira-2k-gagra-1242/",
-    "/catalogcity/tproduct/263883793953-aleksandra-otel-s-pitaniem-i-basseinom-u": "/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/",
-    "/catalogcity/tproduct/270267745672-mimi-uyutnie-domiki-s-vidom-na-gori": "/hotels/mimi-domiki-s-vidom-na-gory-2869/",
-    "/catalogcity/tproduct/272771378762-akva-otel-s-basseinom-i-zavtrakami": "/hotels/akva-otel-s-basseynom-i-zavtrakami-3114/",
-    "/catalogcity/tproduct/284881784482-bereg-svyatoi-sofii-otel": "/hotels/bereg-svyatoy-sofii-otel-4279/",
-    "/catalogcity/tproduct/330732514162-biryuza-apartamenti": "/kvartira/biryuza-etazh-pod-klyuch-gagra-1367/",
-    "/catalogcity/tproduct/335942498733-blago-daryu-otel": "/hotels/blago-daryu-otel-5079/",
-    "/catalogcity/tproduct/356580411012-alma-domiki-u-morya-u-samoi-granitsi": "/hotels/alma-domiki-na-beregu-2996/",
-    "/catalogcity/tproduct/368239050992-karin-gostevoi-dom": "/hotels/karin-gostevoy-dom-3267/",
-    "/catalogcity/tproduct/392705423412-avrora-inn-gagra-novii-otel-v-tsentre-go": "/hotels/avrora-inn-novyy-otel-v-tsentre-goroda-2641/",
-    "/catalogcity/tproduct/395549246592-aisha-akva-otel-s-3-basseinami": "/hotels/aisha-otel-s-basseynami-2651/",
-    "/catalogcity/tproduct/436479223552-zolotaya-veranda-gostevoi-kompleks": "/hotels/zolotaya-veranda-gostevoy-kompleks-3769/",
-    "/catalogcity/tproduct/471303900262-pion-gostevoi-dom": "/hotels/pion-gostevoy-dom-4539/",
-    "/catalogcity/tproduct/474192298302-sandi-haus-kottedzhnii-kompleks-s-bassei": "/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/",
-    "/catalogcity/tproduct/483149825552-kurortnaya-kvartira-2-k": "/kvartira/kurortnaya-kvartira-2k-bagripsh-gagra-998/",
-    "/catalogcity/tproduct/487661081262-irsen-domiki-v-alahadze-vash-uyutnii-ugo": "/hotels/irsen-domiki-3642/",
-    "/catalogcity/tproduct/516326515243-barnaba-gostevoi-dom": "/hotels/barnaba-gostevoy-dom-4842/",
-    "/catalogcity/tproduct/517824324262-kira-gostevoi-kompleks": "/hotels/kira-gostevoy-kompleks-2725/",
-    "/catalogcity/tproduct/545744465882-flora-chastnii-domik": "/hotels/flora-dom-4763/",
-    "/catalogcity/tproduct/563794432332-grafit-haus-gostevoi-dom-s-basseinom": "/hotels/grafit-haus-gostevoy-dom-s-basseynom-3707/",
-    "/catalogcity/tproduct/576272987832-ekohoum-kottedzh-otel": "/hotels/ekohoum-kottedzh-otel-3974/",
-    "/catalogcity/tproduct/578650225222-rita-kompleks-u-morya-s-kafe": "/hotels/rita-domiki-i-apartamenty-s-pitaniem-3171/",
-    "/catalogcity/tproduct/616415395842-mon-amur-kvartira-1-k": "/kvartira/mon-amur-kvartira-1k-gagra-1062/",
-    "/catalogcity/tproduct/663474890793-pansionat-bagripsh-korpus-adel": "/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/",
-    "/catalogcity/tproduct/671340661532-sanraiz-gostevoi-dom-s-zavtrakami": "/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/",
-    "/catalogcity/tproduct/678931988323-pansionat-bagripsh-novii-korpus": "/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/",
-    "/catalogcity/tproduct/692717320032-rd-otel-v-gagre": "/hotels/rd-otel-v-gagre-4561/",
-    "/catalogcity/tproduct/708117542083-san-sebastian-domiki-s-basseinom": "/hotels/san-sebastian-domiki-s-basseynom-5007/",
-    "/catalogcity/tproduct/719686458872-sabina-domiki-u-morya-komfortnoe-razmesc": "/hotels/sabina-domiki-u-morya-2744/",
-    "/catalogcity/tproduct/724913931302-art-otel-s-pitaniem-i-basseinom": "/hotels/art-otel-s-pitaniem-i-basseynom-4479/",
-    "/catalogcity/tproduct/761498005622-diar-domiki-s-basseinom": "/hotels/diar-domiki-s-basseynom-4192/",
-    "/catalogcity/tproduct/778257392272-belveder-gostevoi-dom": "/hotels/belveder-gostevoy-dom-3602/",
-    "/catalogcity/tproduct/783606929792-villa-leona-otel-s-basseinom-barom-pitan": "/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/",
-    "/catalogcity/tproduct/789761360602-raiskii-bereg-mini-otel": "/hotels/rayskiy-bereg-mini-otel-3277/",
-    "/catalogcity/tproduct/807387694663-yuzhnoe-schaste-domiki-s-basseinom-i-zav": "/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/",
-    "/catalogcity/tproduct/827260555152-semeinaya-kvartira-2-k": "/kvartira/solnechnaya-kvartira-2k-pitsunda-1231/",
-    "/catalogcity/tproduct/837622680762-amor-domiki-uyutnoe-mesto-sozdannoe-s-ly": "/hotels/amor-apartamenty-s-kuhney-i-basseynom-3487/",
-    "/catalogcity/tproduct/837902265762-grin-villadzh-domiki": "/hotels/grin-villadzh-domiki-3633/",
-    "/catalogcity/tproduct/838317111373-femeli-baza-otdiha-s-basseinom-i-pitanie": "/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/",
-    "/catalogcity/tproduct/888999855132-morskaya-laguna-gostinitsa-s-zavtrakami": "/hotels/morskaya-laguna-gostinitsa-s-zavtrakami-3418/",
-    "/catalogcity/tproduct/892313924912-aleksandriya-domiki": "/hotels/aleksandriya-domiki-4743/",
-    "/catalogcity/tproduct/922594847992-bagripsh-domiki-na-beregu-s-pitaniem": "/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/",
-    "/catalogcity/tproduct/933016938882-magnoliya-kvartira-3-k": "/kvartira/magnoliya-kvartira-3k-gagra-1253/",
-    "/catalogcity/tproduct/936461896802-voshodyaschaya-zvezda-otel-s-basseinom": "/hotels/voshodyaschaya-zvezda-otel-s-basseynom-3428/",
-    "/catalogcity/tproduct/941993140162-bungalo-eto-uyutnoe-mesto-dlya-otdiha-v": "/hotels/bungalo-glemping-3623/",
-    "/catalogcity/tproduct/945179418152-rusana-eko-domiki": "/hotels/rusana-eko-domiki-3963/",
-    "/catalogcity/tproduct/947610111752-krilya-eko-otel-vash-ostrov-tishini-v-se": "/hotels/krylya-domiki-vidovye-dvuhkomnatnye-2765/",
-    "/catalogcity/tproduct/963212508302-dishi-glubzhe-domiki-v-gorah": "/hotels/dyshi-glubzhe-domiki-v-gorah-3459/",
-    "/catalogcity/tproduct/990316313142-belaya-dacha-otel-s-pitaniem": "/hotels/belaya-dacha-otel-s-pitaniem-4630/",
-    "/page62959751.html": "/pitsunda/",
-    "/page62959771.html": "/suhum/",
-    "/tproduct/100745512012-lazurnii-bereg-butik-otel-otdih-s-dushoi": "/hotels/lazurnyy-bereg-butik-otel-s-pitaniem-2592/",
-    "/tproduct/102496629872-lazurit-novii-otel-na-pervoi-linii": "/hotels/lazurit-novyy-otel-s-zavtrakami-2583/",
-    "/tproduct/110333801202-simona-gostevoi-dom": "/hotels/simona-gostevoy-dom-3592/",
-    "/tproduct/119489751422-na-vremya-v-rayu-poldoma-pod-klyuch": "/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/",
-    "/tproduct/121260219082-abaza-mini-otel-sosnovii-bereg": "/hotels/abaza-otel-3614/",
-    "/tproduct/121529924112-pegas-otdih-bez-zabot-u-samogo-morya": "/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/",
-    "/tproduct/140452373372-grant-apartamenti": "/hotels/grant-otel-nomera-2820/",
-    "/tproduct/140820021242-mansarda-kvartira-2-k": "/kvartira/afina-kvartira-2k-1488/",
-    "/tproduct/148869383922-banan-i-funduk-gostevoi-dom-uedinyonnii": "/hotels/banan-i-funduk-gostevoy-dom-2849/",
-    "/tproduct/149579007932-arina-mini-otel-v-pitsunde": "/hotels/arina-mini-otel-2792/",
-    "/tproduct/154418730782-villa-suhum-kottedzhi-s-kuhnei": "/kvartira/villa-suhum-959/",
-    "/tproduct/159535238712-greis-kvartira": "/kvartira/greys-kvartira-1564/",
-    "/tproduct/159875394502-bi-heppi-mini-otel": "/hotels/bi-heppi-apart-otel-3334/",
-    "/tproduct/160688926052-saya-domiki": "/hotels/saya-domiki-3134/",
-    "/tproduct/164903168542-feniks-dom-dlya-bolshoi-semi": "/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/",
-    "/tproduct/165213098412-akvamarin-dom-pod-klyuch": "/kvartira/akvamarin-dom-pod-klyuch-ldzaa-1313/",
-    "/tproduct/183727315732-rimma-dve-kvartiri-1-k-s-kuhnei": "/kvartira/rimma-dve-1k-kvartriry-suhum-1118/",
-    "/tproduct/184004231512-apsa-park-otel-klassa-lyuks": "/hotels/apsa-park-otel-v-zapovednike-2611/",
-    "/tproduct/186488741032-peschanii-bereg-apartamenti": "/hotels/peschanyy-bereg-apartamenty-3700/",
-    "/tproduct/201688408472-radonovii-istochnik-mesto-sili-tishini-i": "/hotels/radonovyy-istochnik-otel-v-gorah-3064/",
-    "/tproduct/203576362442-tsarskoe-selo-anhua-kottedzhi": "/hotels/tsarskoe-selo-anhua-kottedzhi-3871/",
-    "/tproduct/203577514422-edem-domiki": "/hotels/edem-domiki-4409/",
-    "/tproduct/203732252702-kamilla-kvartira-2-k": "/kvartira/kamilla-kvartira-2k-pitsunda-968/",
-    "/tproduct/207231581232-sanrei-gostevoi-dom": "/hotels/sanrey-gostevoy-dom-4469/",
-    "/tproduct/212518226822-simsim-gostevoi-dom": "/hotels/simsim-gostevoy-dom-4701/",
-    "/tproduct/219635858972-palma-gostevoi-dom": "/hotels/palma-gostevoy-dom-4071/",
-    "/tproduct/226001612382-chernomorskaya-kvartira-2-k": "/kvartira/chernomorskaya-kvartira-suhum-1201/",
-    "/tproduct/229882083732-esma-domiki-s-basseinom-v-tsentre": "/hotels/esma-domiki-s-basseynom-v-tsentre-4032/",
-    "/tproduct/236367119142-mokko-apartamenti": "/kvartira/mokko-apartamenty-suhum-1024/",
-    "/tproduct/239996721832-mika-gostevoi-dom-na-sosnovom-plyazhe": "/hotels/mika-gostevoy-dom-ekonom-3094/",
-    "/tproduct/241087905492-belaya-rechka-gostevoi-dom-s-kafe": "/hotels/belaya-rechka-gostevoy-dom-s-kafe-3517/",
-    "/tproduct/253916483012-kashtak-domiki-v-zelenom-ugolke": "/hotels/kashtak-domiki-667/",
-    "/tproduct/254316646773-ptichka-eko-domiki-s-basseinom": "/hotels/ptichka-eko-domiki-s-basseynom-5089/",
-    "/tproduct/257602902992-apra-gostevoi-dom-na-plyazhe": "/hotels/apra-gostevoy-dom-na-plyazhe-4348/",
-    "/tproduct/258354690762-akira-2k-kvartira": "/kvartira/akira-2k-kvartira-1623/",
-    "/tproduct/259827193222-sozvezdie-mini-otel": "/hotels/sozvezdie-mini-otel-3933/",
-    "/tproduct/264052877232-esma-studiya-s-intererom-kak-iz-zhurnala": "/hotels/esma-domiki-s-basseynom-v-tsentre-4032/",
-    "/tproduct/265001675562-kvarts-domiki": "/hotels/kvarts-domiki-4449/",
-    "/tproduct/270575456552-lnd-gostevoi-dom-v-sinope": "/hotels/lnd-gostevoy-dom-v-sinope-3687/",
-    "/tproduct/273406906322-eko-haus-pitiunt-kompleks-s-basseinom": "/hotels/eko-haus-pitiunt-domiki-s-basseynom-3545/",
-    "/tproduct/277550277152-v-gostyah-u-belochki-domiki-i-nomera": "/hotels/v-gostyah-u-belochki-domiki-i-nomera-2879/",
-    "/tproduct/289507400872-dzhannat-otel-na-beregu-s-zavtrakami": "/hotels/dzhannat-otel-na-beregu-s-zavtrakami-4571/",
-    "/tproduct/292525625802-tihaya-obitel-dom-pod-klyuch": "/hotels/tihaya-obitel-dom-pod-klyuch-4230/",
-    "/tproduct/294833928172-assir-otdih-v-zelyonom-serdtse-ldzaa": "/hotels/assir-gostevoy-dom-2840/",
-    "/tproduct/300054168482-oliva-domiki": "/hotels/oliva-domiki-4671/",
-    "/tproduct/300875550542-antaa-gostinitsa-u-sosnovogo-plyazha-": "/hotels/antaa-gostinitsa-u-sosnovogo-plyazha-2899/",
-    "/tproduct/309644401482-melodi-derevyannie-domiki": "/hotels/melodi-eko-otel-derevyannye-domiki-3563/",
-    "/tproduct/311469577902-sanset-kvartira-vidovaya-2-k": "/kvartira/sanset-kvartira-1k-ldzaa-1101/",
-    "/tproduct/315919561502-mandarinovii-dvorik-dom-pod-klyuch": "/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/",
-    "/tproduct/319983895672-moreon-tishina-komfort-i-minuta-do-morya": "/kvartira/moreon-kvartira-2k-pitsunda-1391/",
-    "/tproduct/324572491292-sia-lend-baza-otdiha": "/hotels/sia-lend-baza-otdyha-3800/",
-    "/tproduct/340429424052-blek-si-otel-s-basseinom-i-pitaniem": "/hotels/blek-si-otel-s-basseynom-i-pitaniem-3912/",
-    "/tproduct/342729756402-nasta-gostevoi-dom": "/hotels/nasta-apartamenty-3258/",
-    "/tproduct/362549641192-zhemchuzhina-gostevoi-dom": "/hotels/zhemchuzhina-gostevoy-dom-4113/",
-    "/tproduct/364188797642-dyuna-domiki-v-ldzaa": "/hotels/dyuna-domiki-3717/",
-    "/tproduct/365064354502-mandarin-otel-u-sosnovogo-plyazha-s-zavt": "/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/",
-    "/tproduct/367642469982-plyazhnii-kompleks-151-na-beregu": "/hotels/plyazhnyy-kompleks-151-na-beregu-4620/",
-    "/tproduct/382433345502-grass-kottedzhi-v-gorah-abhazii": "/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/",
-    "/tproduct/384252441242-mayak-gostevoi-dom": "/hotels/mayak-gostevoy-dom-3810/",
-    "/tproduct/384681059032-sinop-haus-kottedzhi": "/hotels/sinop-haus-domiki-3748/",
-    "/tproduct/387803934782-fazenda-dvuhetazhnie-kottedzhi": "/hotels/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219/",
-    "/tproduct/389591433002-argo-kvartira-1-k": "/kvartira/argo-kvartira-1k-pitsunda-940/",
-    "/tproduct/391413710422-nikopsiya-kottedzhnii-kompleks": "/hotels/nikopsiya-domiki-3015/",
-    "/tproduct/399457602702-bella-gostevoi-dom": "/hotels/palma-gostevoy-dom-4071/",
-    "/tproduct/402191131113-arash-domiki-u-sosnovogo-plyazha": "/hotels/arash-domiki-u-sosnovogo-plyazha-4857/",
-    "/tproduct/410782459912-mulberri-otel-na-samom-beregu-morya": "/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/",
-    "/tproduct/425999601692-domiki-u-marini-otdih-u-morya": "/hotels/domiki-u-mariny-otdyh-u-morya-3922/",
-    "/tproduct/428606194712-bonzhur-mini-otel": "/hotels/bonzhur-mini-otel-2542/",
-    "/tproduct/430289810312-rivera-kottedzhi-na-plyazhe": "/hotels/rivera-domiki-na-plyazhe-2966/",
-    "/tproduct/434311188862-aselina-kottedzhi-i-studiya-s-kuhnei": "/kvartira/aselina-studiya-i-kottedzhi-s-kuhney-ldzaa-989/",
-    "/tproduct/444349265022-samshit-uyutnii-otdih-v-zeleni-pitsundi": "/hotels/samshit-domiki-i-nomera-u-zapovednika-2677/",
-    "/tproduct/446445557813-akvarel-tri-2k-kvartiri": "/kvartira/akvarel-tri-2k-kvartiry-1646/",
-    "/tproduct/452065674982-liliya-uyutnii-otel-s-zavtrakami": "/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/",
-    "/tproduct/455396114932-klassika-kvartira-3-k": "/kvartira/klassika-kvartira-3k-ldzaa-1303/",
-    "/tproduct/467016907472-nasta-apartamenti": "/hotels/nasta-apartamenty-3258/",
-    "/tproduct/468078709212-lk-otel-s-basseinom": "/hotels/lk-otel-s-basseynom-4123/",
-    "/tproduct/475262594002-damira-otel": "/hotels/damira-otel-v-tsentre-goroda-2830/",
-    "/tproduct/476244925682-full-haus-domiki-s-basseinom": "/hotels/full-haus-domiki-s-basseynom-4092/",
-    "/tproduct/483626967402-tihaya-buhta-apartamenti": "/kvartira/tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142/",
-    "/tproduct/486242654263-zarechnii-etazh-v-dome-pod-klyuch": "/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/",
-    "/tproduct/486301707522-san-amra-lyuks-nomera-s-vidom-na-more-": "/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/",
-    "/tproduct/494164538043-mokko-grei-apartamenti-1k": "/kvartira/mokko-grey-apartamenty-1k-1681/",
-    "/tproduct/498179391822-solnechnaya-kvartira-2-k": "/kvartira/solnechnaya-kvartira-2k-pitsunda-1231/",
-    "/tproduct/501422411562-lyubov-villa-na-plyazhe": "/",
-    "/tproduct/502802604952-sisaid-domiki-otdih-v-garmonii-s-prirodo": "/hotels/sisayd-domiki-3409/",
-    "/tproduct/514156542232-laim-mini-otel-s-basseinom-u-zapovednika": "/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/",
-    "/tproduct/517594845332-tis-kottedzhi-u-zapovednika": "/hotels/tis-mini-otel-u-zapovednika-3381/",
-    "/tproduct/522855624422-moreon-kvartira-2-k": "/kvartira/moreon-kvartira-2k-pitsunda-1391/",
-    "/tproduct/534960222482-yuzhnoe-utro-dvuhkomnatnie-apartamenti-n": "/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/",
-    "/tproduct/538434517033-brigantina-gostevoi-dom": "/hotels/brigantina-gostevoy-dom-4997/",
-    "/tproduct/546612387172-pitiunt-kvartira-4k": "/kvartira/pitiunt-kvartira-4k-pitsunda-1428/",
-    "/tproduct/549692921632-danelyan-premialnii-semeinii-otel-": "/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/",
-    "/tproduct/560453613782-belaya-loshad-glemping-s-basseinom": "/hotels/belaya-loshad-glemping-s-basseynom-3650/",
-    "/tproduct/571219079672-fyuzhn-domiki-suhum": "/hotels/fyuzhn-tri-domika-s-launzh-zonoy-3162/",
-    "/tproduct/572686020112-atmosfernaya-kvartira-2k": "/kvartira/atmosfernaya-kvartira-2k-1454/",
-    "/tproduct/575893715612-sofiya-otel-u-sosnovogo-plyazha": "/hotels/sofiya-otel-u-sosnovogo-plyazha-3842/",
-    "/tproduct/577480514662-more-more-gostevoi-kompleks": "/hotels/more-more-gostevoy-kompleks-3583/",
-    "/tproduct/583510283622-bugenvilleya-otel-s-basseinom-i-kafe-gde": "/hotels/bugenvilleya-otel-s-basseynom-3044/",
-    "/tproduct/591162317882-melana-kvartira-3-k": "/kvartira/melana-kvartira-3k-pitsunda-1015/",
-    "/tproduct/598157736843-regina-otel-pervii-korpus": "/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/",
-    "/tproduct/604462494062-briz-domiki-na-beregu": "/hotels/briz-domiki-na-beregu-4937/",
-    "/tproduct/610948589122-leto-kvartira-2k": "/kvartira/leto-kvartira-2k-1587/",
-    "/tproduct/612183005102-nikol-gostevoi-dom": "/hotels/nikol-gostevoy-dom-3678/",
-    "/tproduct/617549723012-tis-mini-otel-u-zapovednika": "/hotels/tis-mini-otel-u-zapovednika-3381/",
-    "/tproduct/618543804093-ashta-du-gostevoi-dom": "/hotels/ashta-du-gostevoy-dom-5186/",
-    "/tproduct/620184458402-svetlii-dvorik-gostevoi-dom-ekonom": "/hotels/svetlyy-dvorik-gostevoy-dom-ekonom-4259/",
-    "/tproduct/623921307862-pshada-otel-s-pitaniem-u-sosnovogo-plyaz": "/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/",
-    "/tproduct/638296358012-kiparisovaya-kvartira-1-k": "/kvartira/kiparisovaya-kvartira-1k-gagry-976/",
-    "/tproduct/638730730312-oazis-apartamenti-s-kuhnei": "/hotels/oazis-villa-4052/",
-    "/tproduct/645536043073-inkit-rezort-afreimi": "/hotels/inkit-rezort-afreymy-5209/",
-    "/tproduct/650106628322-domiki-v-sinope-kogda-hochetsya-uyuta-i": "/",
-    "/tproduct/660038619942-grant-kottedzhi": "/hotels/grant-otel-nomera-2820/",
-    "/tproduct/671517753872-kavo-de-bukso-domiki-ostrovok-tishini-uy": "/hotels/kavo-de-bukso-domiki-3323/",
-    "/tproduct/671629747272-perl-dom-pod-klyuch": "/kvartira/perl-dom-pod-klyuch-gudauta-1092/",
-    "/tproduct/681751920882-mirano-gostevoi-dom": "/hotels/mirano-gostevoy-dom-4550/",
-    "/tproduct/681836525822-amzara-otel-s-vinodelnei-u-zapovednika": "/hotels/amzara-otel-s-vinodelney-u-zapovednika-2668/",
-    "/tproduct/689054418342-belii-dom-domiki-i-apartamenti": "/hotels/belyy-dom-domiki-i-apartamenty-4081/",
-    "/tproduct/694610838622-sirius-otel-kurort-u-sosnovogo-plyazha": "/hotels/sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390/",
-    "/tproduct/703008161023-regina-otel-vtoroi-korpus": "/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/",
-    "/tproduct/727966558162-limon-otel": "/hotels/limon-otel-4721/",
-    "/tproduct/731376524442-mira-kompleks-u-ozera": "/kvartira/mira-dom-suhum-1345/",
-    "/tproduct/735861442082-mimoza-kvartira-3-k": "/kvartira/mimoza-3k-kvartira-1499/",
-    "/tproduct/738869558002-mira-dom-pod-klyuch": "/kvartira/mira-dom-suhum-1345/",
-    "/tproduct/739259237212-amina-dom-pod-klyuch": "/kvartira/amina-dom-suhum-921/",
-    "/tproduct/743068731083-pitsunda-otel": "/hotels/pitsunda-otel-5028/",
-    "/tproduct/749646715302-fazenda-otel-s-basseinom-i-pitaniem": "/hotels/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219/",
-    "/tproduct/751605369722-parkovaya-kvartira-2-k": "/kvartira/parkovaya-kvartira-2k-suhum-1292/",
-    "/tproduct/768402664692-na-visote-kvartira-2-k": "/kvartira/na-vysote-kvartira-pitsunda-1053/",
-    "/tproduct/772474459562-manon-otel-so-skazochnim-vidom": "/hotels/manon-otel-so-skazochnym-vidom-2512/",
-    "/tproduct/773506478722-grin-haus-idealnie-usloviya-peschanii-pl": "/hotels/grin-haus-domiki-3104/",
-    "/tproduct/780392823312-soluna-domiki-i-nomera-s-zavtrakami": "/hotels/soluna-domiki-i-nomera-s-zavtrakami-4041/",
-    "/tproduct/786149569692-ladariya-kvartira-1k": "/kvartira/ladariya-kvartira-1k-1542/",
-    "/tproduct/790909385152-assir-pitsunda-gostevoi-dom-v-tsentre": "/hotels/assir-pitsunda-gostevoy-dom-v-tsentre-4173/",
-    "/tproduct/800028677512-rivera-gostinitsa-vidovaya": "/hotels/rivera-domiki-na-plyazhe-2966/",
-    "/tproduct/807451213382-heppi-lend-domiki-dvuhetazhnie": "/hotels/heppi-lend-domiki-dvuhetazhnye-3313/",
-    "/tproduct/810461311982-oazis-villa": "/hotels/oazis-villa-4052/",
-    "/tproduct/813656650293-villa-magnoliya-eko-otel-s-zavtrakami": "/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/",
-    "/tproduct/815265326442-chegem-gostevoi-dom": "/hotels/chegem-gostevoy-dom-3727/",
-    "/tproduct/840197294852-rancho-elivel-gostevoi-dom": "/hotels/rancho-elivel-mini-otel-2938/",
-    "/tproduct/849718601442-lavanda-villa-s-basseinom": "/hotels/lavanda-villa-s-basseynom-4590/",
-    "/tproduct/853422369043-anait-gostevoi-dom": "/hotels/anait-gostevoy-dom-5049/",
-    "/tproduct/860484561192-mziya-gostevie-nomera": "/hotels/mziya-gostevye-nomera-3659/",
-    "/tproduct/871331031312-madlena-domiki-dlya-teh-kto-ischet-komfo": "/hotels/madlena-domiki-3344/",
-    "/tproduct/872193078252-sosnovaya-kvartira-1k": "/kvartira/sosnovaya-kvartira-1k-1610/",
-    "/tproduct/878102588762-abirlash-otel-na-plyazhe": "/hotels/abyrlash-otel-na-plyazhe-3239/",
-    "/tproduct/882543782562-mechta-apartamenti-s-kuhnei": "/hotels/mechta-apartamenty-s-kuhney-3363/",
-    "/tproduct/884438835362-kameliya-domiki": "/hotels/kameliya-domiki-3084/",
-    "/tproduct/884673525152-nebosvod-domik-afreim-v-uedinennom-meste": "/hotels/nebosvod-domik-afreym-v-uedinennom-meste-4640/",
-    "/tproduct/884726824382-delfin-kottedzhnii-komplekc": "/hotels/delfin-domiki-3024/",
-    "/tproduct/886384239702-zhasmin-abhazskoe-teplo-i-uyut-v-kazhdom": "/hotels/zhasmin-mini-otel-3736/",
-    "/tproduct/887588406732-monro-kvartira-2-k": "/kvartira/monro-kvartira-3k-suhum-1386/",
-    "/tproduct/893486528262-na-plyazhe-kvartira-3k-vidovaya": "/kvartira/na-plyazhe-apartamenty-3k-ldzaa-1073/",
-    "/tproduct/896516136952-miraslava-mini-otel": "/hotels/miraslava-mini-otel-3143/",
-    "/tproduct/897262984132-viktoriya-kvartira-2-k": "/kvartira/viktoriya-kvartira-2k-pitsunda-951/",
-    "/tproduct/898768889942-leon-kottedzhi-v-tihom-raione-dlya-perez": "/hotels/leon-domiki-3536/",
-    "/tproduct/899223792762-starii-prichal-gostevoi-dom-u-morya": "/hotels/staryy-prichal-gostevoy-dom-u-morya-3891/",
-    "/tproduct/900462832442-studio-san-amra-studiya-na-plyazhe": "/hotels/studio-san-amra-studiya-na-plyazhe-4270/",
-    "/tproduct/902549071002-karalina-apartamenti-studiya": "/hotels/karalina-apartamenty-3124/",
-    "/tproduct/908837943272-palma-kvartira-3-k": "/hotels/palma-gostevoy-dom-4071/",
-    "/tproduct/913614440112-anisa-kvartira-1-k": "/kvartira/anisa-kvartira-1k-ldzaa-910/",
-    "/tproduct/919480785832-nonna-kvartira-2k": "/kvartira/nonna-kvartira-2k-1576/",
-    "/tproduct/923780651242-neanila-eko-domiki": "/hotels/neanila-eko-domiki-4308/",
-    "/tproduct/923787699833-trio-nomer-na-plyazhe": "/hotels/trio-nomer-na-plyazhe-5176/",
-    "/tproduct/933314430662-tsentralnii-dom-pod-klyuch": "/kvartira/tsentralnyy-dom-suhum-1220/",
-    "/tproduct/942385161572-omega-shale-kompleks": "/",
-    "/tproduct/944656587112-demi-mokko-dva-uyutnih-kottedzha-u-morya": "/hotels/demi-mokko-dva-domika-3353/",
-    "/tproduct/947548191632-limari-eko-kompleks": "/hotels/limari-domiki-3496/",
-    "/tproduct/951196698512-mokko-briz-dva-domika": "/hotels/mokko-briz-dva-domika-4152/",
-    "/tproduct/955827509303-flamingo-gostevoi-dom": "/hotels/flamingo-gostevoy-dom-5018/",
-    "/tproduct/957482238122-suhum-dom-pod-klyuch": "/kvartira/suhum-dom-1153/",
-    "/tproduct/964525443742-sizon-gostevoi-dom": "/hotels/sizon-gostevoy-dom-3449/",
-    "/tproduct/985351478142-zelenii-dvorik-baza-otdiha": "/hotels/zelenyy-dvorik-domiki-i-nomera-2909/",
-    "/tproduct/992461624922-marta-gostevie-nomera": "/hotels/marta-gostevye-nomera-3574/",
-    "/tproduct/994323046982-grant-otel": "/hotels/grant-otel-nomera-2820/"
+    "/": {
+      "to": "/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/catalog": {
+      "to": "/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/catalog/tproduct/104733537912-letnyaya-kvartira-3k": {
+      "to": "/kvartira/letnyaya-kvartira-3k-suhum-1377/",
+      "old_title": "\"ЛЕТНЯЯ\" квартира 3к",
+      "new_title": "\"ЛЕТНЯЯ\" квартира 3к",
+      "score": 1.0
+    },
+    "/catalog/tproduct/272700611593-biosfera-domiki-u-kindigskogo-istochnika": {
+      "to": "/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/",
+      "old_title": "\"БИОСФЕРА\" домики у Кындыгского источника",
+      "new_title": "\"БИОСФЕРА\" домики у Кындыгского источника",
+      "score": 1.0
+    },
+    "/catalogcity": {
+      "to": "/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/catalogcity/tproduct/103222503612-parus-otel-komfort-s-vidom-na-more-": {
+      "to": "/hotels/parus-vidovoy-otel-s-basseynom-i-stolovoy-2602/",
+      "old_title": "\"ПАРУС\" отель – комфорт с видом на море ⛵",
+      "new_title": "\"ПАРУС\" видовой отель с бассейном и столовой",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/105517621662-kiaraz-rezort-gostevoi-kompleks-s-bassei": {
+      "to": "/hotels/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459/",
+      "old_title": "\"КИАРАЗ РЕЗОРТ\" гостевой комплекс с бассейном",
+      "new_title": "\"КИАРАЗ РЕЗОРТ\" гостевой комплекс с бассейном",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/115168787342-sanni-houm-domiki-s-basseinom": {
+      "to": "/hotels/sanni-houm-domiki-s-basseynom-4731/",
+      "old_title": "\"САННИ ХОУМ\" домики с бассейном",
+      "new_title": "\"САННИ ХОУМ\" домики с бассейном",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/121959501532-tihii-zakat-domiki-s-basseinom": {
+      "to": "/hotels/tihiy-zakat-domiki-s-basseynom-3942/",
+      "old_title": "\"ТИХИЙ ЗАКАТ\" домики с бассейном",
+      "new_title": "\"ТИХИЙ ЗАКАТ\" домики с бассейном",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/132975687112-sekret-garden-apartamenti": {
+      "to": "/hotels/sekret-garden-apartamenty-4162/",
+      "old_title": "\"СЕКРЕТ ГАРДЕН\" апартаменты",
+      "new_title": "\"СЕКРЕТ ГАРДЕН\" апартаменты",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/152531458902-amor-apartamenti-s-kuhnei-i-basseinom": {
+      "to": "/hotels/amor-apartamenty-s-kuhney-i-basseynom-3487/",
+      "old_title": "\"АМОР\" апартаменты с кухней и бассейном",
+      "new_title": "\"АМОР\" апартаменты с кухней и бассейном",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/154604484882-adunei-gostevoi-dom": {
+      "to": "/hotels/aduney-gostevoy-dom-3181/",
+      "old_title": "\"АДУНЕЙ\" гостевой дом",
+      "new_title": "\"АДУНЕЙ\" гостевой дом",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/174279451453-pansionat-bagripsh-glavnii-korpus": {
+      "to": "/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/",
+      "old_title": "ПАНСИОНАТ «БАГРИПШ» (ГЛАВНЫЙ КОРПУС)",
+      "new_title": "\"БАГРИПШ\" домики на берегу. ВСЁ ВКЛЮЧЕНО!",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/176493153772-boho-kompleks-polnogo-schastya-u-morya-": {
+      "to": "/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/",
+      "old_title": "\"БОХО\" комплекс полного счастья у моря! 😍",
+      "new_title": "\"БОХО\" комплекс полного счастья у моря!",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/253220469122-siti-gagra-kvartira-2-k": {
+      "to": "/kvartira/siti-gagra-kvartira-2k-gagra-1242/",
+      "old_title": "\"СИТИ ГАГРА\" квартира 2-к",
+      "new_title": "\"СИТИ ГАГРА\" квартира 2к",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/263883793953-aleksandra-otel-s-pitaniem-i-basseinom-u": {
+      "to": "/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/",
+      "old_title": "\"АЛЕКСАНДРА\" отель с питанием и бассейном у моря",
+      "new_title": "\"АЛЕКСАНДРА\" отель с питанием и бассейном у моря",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/270267745672-mimi-uyutnie-domiki-s-vidom-na-gori": {
+      "to": "/hotels/mimi-domiki-s-vidom-na-gory-2869/",
+      "old_title": "\"МИМИ\" уютные домики с видом на горы",
+      "new_title": "\"МИМИ\" домики с видом на горы",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/272771378762-akva-otel-s-basseinom-i-zavtrakami": {
+      "to": "/hotels/akva-otel-s-basseynom-i-zavtrakami-3114/",
+      "old_title": "\"АКВА\" отель с бассейном и завтраками",
+      "new_title": "\"АКВА\" отель с бассейном и завтраками",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/284881784482-bereg-svyatoi-sofii-otel": {
+      "to": "/hotels/bereg-svyatoy-sofii-otel-4279/",
+      "old_title": "\"БЕРЕГ СВЯТОЙ СОФИИ\" отель",
+      "new_title": "\"БЕРЕГ СВЯТОЙ СОФИИ\" отель",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/330732514162-biryuza-apartamenti": {
+      "to": "/kvartira/biryuza-etazh-pod-klyuch-gagra-1367/",
+      "old_title": "\"БИРЮЗА\" апартаменты",
+      "new_title": "\"БИРЮЗА\" апартаменты",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/335942498733-blago-daryu-otel": {
+      "to": "/hotels/blago-daryu-otel-5079/",
+      "old_title": "\"БЛАГО-ДАРЮ\" отель",
+      "new_title": "\"БЛАГО-ДАРЮ\" отель",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/356580411012-alma-domiki-u-morya-u-samoi-granitsi": {
+      "to": "/hotels/alma-domiki-na-beregu-2996/",
+      "old_title": "\"АЛМА\" — домики у моря, у самой границы",
+      "new_title": "\"АЛМА\" домики на берегу",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/368239050992-karin-gostevoi-dom": {
+      "to": "/hotels/karin-gostevoy-dom-3267/",
+      "old_title": "\"КАРИН\" гостевой дом",
+      "new_title": "\"КАРИН\" гостевой дом",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/392705423412-avrora-inn-gagra-novii-otel-v-tsentre-go": {
+      "to": "/hotels/avrora-inn-novyy-otel-v-tsentre-goroda-2641/",
+      "old_title": "\"АВРОРА ИНН ГАГРА\" - новый отель в центре города",
+      "new_title": "\"АВРОРА ИНН\" - новый отель в центре города",
+      "score": 0.9
+    },
+    "/catalogcity/tproduct/395549246592-aisha-akva-otel-s-3-basseinami": {
+      "to": "/hotels/aisha-otel-s-basseynami-2651/",
+      "old_title": "\"АИША\" аква-отель с 3 бассейнами",
+      "new_title": "\"АИША\" отель с бассейнами",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/436479223552-zolotaya-veranda-gostevoi-kompleks": {
+      "to": "/hotels/zolotaya-veranda-gostevoy-kompleks-3769/",
+      "old_title": "\"ЗОЛОТАЯ ВЕРАНДА\" гостевой комплекс",
+      "new_title": "\"ЗОЛОТАЯ ВЕРАНДА\" гостевой комплекс",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/471303900262-pion-gostevoi-dom": {
+      "to": "/hotels/pion-gostevoy-dom-4539/",
+      "old_title": "\"ПИОН\" гостевой дом",
+      "new_title": "\"ПИОН\" гостевой дом",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/474192298302-sandi-haus-kottedzhnii-kompleks-s-bassei": {
+      "to": "/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/",
+      "old_title": "\"САНДИ ХАУС\" коттеджный комплекс с бассейном",
+      "new_title": "\"САНДИ ХАУС\" коттеджный комплекс с бассейном",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/483149825552-kurortnaya-kvartira-2-k": {
+      "to": "/kvartira/kurortnaya-kvartira-2k-bagripsh-gagra-998/",
+      "old_title": "\"КУРОРТНАЯ\" квартира 2-к",
+      "new_title": "\"КУРОРТНАЯ\" квартира 2к",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/487661081262-irsen-domiki-v-alahadze-vash-uyutnii-ugo": {
+      "to": "/hotels/irsen-domiki-3642/",
+      "old_title": "\"ИРСЕН\" домики в Алахадзе — ваш уютный уголок среди зелени.",
+      "new_title": "\"ИРСЕН\" домики",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/516326515243-barnaba-gostevoi-dom": {
+      "to": "/hotels/barnaba-gostevoy-dom-4842/",
+      "old_title": "\"БАРНАБА\" гостевой дом",
+      "new_title": "\"БАРНАБА\" гостевой дом",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/517824324262-kira-gostevoi-kompleks": {
+      "to": "/hotels/kira-gostevoy-kompleks-2725/",
+      "old_title": "\"КИРА\" гостевой комплекс",
+      "new_title": "\"КИРА\" гостевой комплекс",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/545744465882-flora-chastnii-domik": {
+      "to": "/hotels/flora-dom-4763/",
+      "old_title": "\"ФЛОРА\" частный домик",
+      "new_title": "\"ФЛОРА\" дом",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/563794432332-grafit-haus-gostevoi-dom-s-basseinom": {
+      "to": "/hotels/grafit-haus-gostevoy-dom-s-basseynom-3707/",
+      "old_title": "“ГРАФИТ ХАУС” гостевой дом с бассейном",
+      "new_title": "\"ГРАФИТ ХАУС\" гостевой дом с бассейном",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/576272987832-ekohoum-kottedzh-otel": {
+      "to": "/hotels/ekohoum-kottedzh-otel-3974/",
+      "old_title": "\"ЭКОХОУМ\" коттедж-отель",
+      "new_title": "\"ЭКОХОУМ\" коттедж-отель",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/578650225222-rita-kompleks-u-morya-s-kafe": {
+      "to": "/hotels/rita-domiki-i-apartamenty-s-pitaniem-3171/",
+      "old_title": "\"РИТА\" комплекс у моря с кафе",
+      "new_title": "\"РИТА\" домики и апартаменты с питанием",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/616415395842-mon-amur-kvartira-1-k": {
+      "to": "/kvartira/mon-amur-kvartira-1k-gagra-1062/",
+      "old_title": "\"МОН АМУР\" квартира 1-к",
+      "new_title": "\"МОН АМУР\" квартира",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/663474890793-pansionat-bagripsh-korpus-adel": {
+      "to": "/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/",
+      "old_title": "ПАНСИОНАТ «БАГРИПШ» (КОРПУС «АДЕЛЬ»)",
+      "new_title": "\"БАГРИПШ\" домики на берегу. ВСЁ ВКЛЮЧЕНО!",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/671340661532-sanraiz-gostevoi-dom-s-zavtrakami": {
+      "to": "/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/",
+      "old_title": "\"САНРАЙЗ\" гостевой дом с завтраками",
+      "new_title": "\"САНРАЙЗ\" гостевой дом с завтраками",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/678931988323-pansionat-bagripsh-novii-korpus": {
+      "to": "/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/",
+      "old_title": "ПАНСИОНАТ «БАГРИПШ» (НОВЫЙ КОРПУС)",
+      "new_title": "\"БАГРИПШ\" домики на берегу. ВСЁ ВКЛЮЧЕНО!",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/692717320032-rd-otel-v-gagre": {
+      "to": "/hotels/rd-otel-v-gagre-4561/",
+      "old_title": "\"РД-ОТЕЛЬ\" в Гагре",
+      "new_title": "\"РД-ОТЕЛЬ\" в Гагре",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/708117542083-san-sebastian-domiki-s-basseinom": {
+      "to": "/hotels/san-sebastian-domiki-s-basseynom-5007/",
+      "old_title": "\"САН СЕБАСТИАН\" домики с бассейном",
+      "new_title": "\"САН СЕБАСТИАН\" домики с бассейном",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/719686458872-sabina-domiki-u-morya-komfortnoe-razmesc": {
+      "to": "/hotels/sabina-domiki-u-morya-2744/",
+      "old_title": "\"САБИНА\" домики у моря — комфортное размещение в 1 минуте от пляжа",
+      "new_title": "\"САБИНА\" домики у моря",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/724913931302-art-otel-s-pitaniem-i-basseinom": {
+      "to": "/hotels/art-otel-s-pitaniem-i-basseynom-4479/",
+      "old_title": "\"АРТ ОТЕЛЬ\" с питанием и бассейном",
+      "new_title": "\"АРТ ОТЕЛЬ\" с питанием и бассейном",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/761498005622-diar-domiki-s-basseinom": {
+      "to": "/hotels/diar-domiki-s-basseynom-4192/",
+      "old_title": "\"ДИАР\" домики с бассейном",
+      "new_title": "\"ДИАР\" домики с бассейном",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/778257392272-belveder-gostevoi-dom": {
+      "to": "/hotels/belveder-gostevoy-dom-3602/",
+      "old_title": "“БЕЛЬВЕДЕР” гостевой дом",
+      "new_title": "\"БЕЛЬВЕДЕР\" гостевой дом",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/783606929792-villa-leona-otel-s-basseinom-barom-pitan": {
+      "to": "/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/",
+      "old_title": "\"ВИЛЛА ЛЕОНА\" отель с бассейном, баром, питанием и собственным пляжем",
+      "new_title": "\"ВИЛЛА ЛЕОНА\" отель с бассейном, питанием и собственным пляжем",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/789761360602-raiskii-bereg-mini-otel": {
+      "to": "/hotels/rayskiy-bereg-mini-otel-3277/",
+      "old_title": "\"РАЙСКИЙ БЕРЕГ\" мини-отель",
+      "new_title": "\"РАЙСКИЙ БЕРЕГ\" мини-отель",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/807387694663-yuzhnoe-schaste-domiki-s-basseinom-i-zav": {
+      "to": "/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/",
+      "old_title": "\"ЮЖНОЕ СЧАСТЬЕ\" домики с бассейном и завтраками",
+      "new_title": "\"ЮЖНОЕ СЧАСТЬЕ\" домики с бассейном и завтраками",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/827260555152-semeinaya-kvartira-2-k": {
+      "to": "/",
+      "old_title": "\"СЕМЕЙНАЯ\" квартира 2-к",
+      "new_title": "",
+      "score": 0.59,
+      "note": "похоже на \"СОЛНЕЧНАЯ\" квартира 2к (0.59)"
+    },
+    "/catalogcity/tproduct/837622680762-amor-domiki-uyutnoe-mesto-sozdannoe-s-ly": {
+      "to": "/hotels/amor-apartamenty-s-kuhney-i-basseynom-3487/",
+      "old_title": "\"АМОР\" домики - уютное место, созданное с любовью ❤️",
+      "new_title": "\"АМОР\" апартаменты с кухней и бассейном",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/837902265762-grin-villadzh-domiki": {
+      "to": "/hotels/grin-villadzh-domiki-3633/",
+      "old_title": "\"ГРИН ВИЛЛАДЖ\" домики",
+      "new_title": "\"ГРИН ВИЛЛАДЖ\" домики",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/838317111373-femeli-baza-otdiha-s-basseinom-i-pitanie": {
+      "to": "/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/",
+      "old_title": "\"ФЕМЕЛИ\" база отдыха с бассейном и питанием",
+      "new_title": "\"ФЕМЕЛИ\" база отдыха с бассейном и питанием",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/888999855132-morskaya-laguna-gostinitsa-s-zavtrakami": {
+      "to": "/hotels/morskaya-laguna-gostinitsa-s-zavtrakami-3418/",
+      "old_title": "\"МОРСКАЯ ЛАГУНА\" гостиница с завтраками",
+      "new_title": "\"МОРСКАЯ ЛАГУНА\" гостиница с завтраками",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/892313924912-aleksandriya-domiki": {
+      "to": "/hotels/aleksandriya-domiki-4743/",
+      "old_title": "\"АЛЕКСАНДРИЯ\" домики",
+      "new_title": "\"АЛЕКСАНДРИЯ\" домики",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/922594847992-bagripsh-domiki-na-beregu-s-pitaniem": {
+      "to": "/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/",
+      "old_title": "\"БАГРИПШ\" домики на берегу с питанием",
+      "new_title": "\"БАГРИПШ\" домики на берегу. ВСЁ ВКЛЮЧЕНО!",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/933016938882-magnoliya-kvartira-3-k": {
+      "to": "/kvartira/magnoliya-kvartira-3k-gagra-1253/",
+      "old_title": "\"МАГНОЛИЯ\" квартира 3-к",
+      "new_title": "\"МАГНОЛИЯ\" квартира 3к",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/936461896802-voshodyaschaya-zvezda-otel-s-basseinom": {
+      "to": "/hotels/voshodyaschaya-zvezda-otel-s-basseynom-3428/",
+      "old_title": "“ВОСХОДЯЩАЯ ЗВЕЗДА” отель с бассейном",
+      "new_title": "\"ВОСХОДЯЩАЯ ЗВЕЗДА\" отель с бассейном",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/941993140162-bungalo-eto-uyutnoe-mesto-dlya-otdiha-v": {
+      "to": "/hotels/bungalo-glemping-3623/",
+      "old_title": "\"БУНГАЛО\" — это уютное место для отдыха в окружении природы 🌿",
+      "new_title": "\"БУНГАЛО\" глэмпинг",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/945179418152-rusana-eko-domiki": {
+      "to": "/hotels/rusana-eko-domiki-3963/",
+      "old_title": "\"РУСАНА\" эко-домики",
+      "new_title": "\"РУСАНА\" эко-домики",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/947610111752-krilya-eko-otel-vash-ostrov-tishini-v-se": {
+      "to": "/hotels/krylya-domiki-vidovye-dvuhkomnatnye-2765/",
+      "old_title": "\"КРЫЛЬЯ\" эко-отель— ваш остров тишины в сердце Гагры 🌿",
+      "new_title": "\"КРЫЛЬЯ\" домики видовые двухкомнатные",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/963212508302-dishi-glubzhe-domiki-v-gorah": {
+      "to": "/hotels/dyshi-glubzhe-domiki-v-gorah-3459/",
+      "old_title": "“ДЫШИ ГЛУБЖЕ” домики в горах",
+      "new_title": "\"ДЫШИ ГЛУБЖЕ\" домики в горах",
+      "score": 1.0
+    },
+    "/catalogcity/tproduct/990316313142-belaya-dacha-otel-s-pitaniem": {
+      "to": "/hotels/belaya-dacha-otel-s-pitaniem-4630/",
+      "old_title": "\"БЕЛАЯ ДАЧА\" отель с питанием",
+      "new_title": "\"БЕЛАЯ ДАЧА\" отель с питанием",
+      "score": 1.0
+    },
+    "/page62959751.html": {
+      "to": "/pitsunda/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/page62959771.html": {
+      "to": "/suhum/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tproduct/100745512012-lazurnii-bereg-butik-otel-otdih-s-dushoi": {
+      "to": "/hotels/lazurnyy-bereg-butik-otel-s-pitaniem-2592/",
+      "old_title": "\"ЛАЗУРНЫЙ БЕРЕГ\" бутик-отель – отдых с душой ❤️",
+      "new_title": "\"ЛАЗУРНЫЙ БЕРЕГ\" бутик-отель с питанием",
+      "score": 1.0
+    },
+    "/tproduct/102496629872-lazurit-novii-otel-na-pervoi-linii": {
+      "to": "/hotels/lazurit-novyy-otel-s-zavtrakami-2583/",
+      "old_title": "\"ЛАЗУРИТ\" новый отель на первой линии",
+      "new_title": "\"ЛАЗУРИТ\" новый отель с завтраками 🩵скидка 10% на последние денёчки июля и весь август🩵",
+      "score": 1.0
+    },
+    "/tproduct/110333801202-simona-gostevoi-dom": {
+      "to": "/hotels/simona-gostevoy-dom-3592/",
+      "old_title": "“СИМОНА” гостевой дом",
+      "new_title": "\"СИМОНА\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/119489751422-na-vremya-v-rayu-poldoma-pod-klyuch": {
+      "to": "/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/",
+      "old_title": "\"НА ВРЕМЯ В РАЮ\" полдома под ключ",
+      "new_title": "\"НА ВРЕМЯ В РАЮ\" жилье под ключ",
+      "score": 1.0
+    },
+    "/tproduct/121260219082-abaza-mini-otel-sosnovii-bereg": {
+      "to": "/hotels/abaza-otel-3614/",
+      "old_title": "\"АБАЗА\" мини-отель, сосновый берег",
+      "new_title": "\"АБАЗА\" отель",
+      "score": 1.0
+    },
+    "/tproduct/121529924112-pegas-otdih-bez-zabot-u-samogo-morya": {
+      "to": "/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/",
+      "old_title": "\"ПЕГАС\" – отдых без забот у самого моря",
+      "new_title": "\"ПЕГАС\" отель на первой линии, вид на море",
+      "score": 1.0
+    },
+    "/tproduct/140452373372-grant-apartamenti": {
+      "to": "/hotels/grant-otel-nomera-2820/",
+      "old_title": "\"ГРАНТ\" Апартаменты",
+      "new_title": "\"ГРАНТ\" отель номера",
+      "score": 1.0
+    },
+    "/tproduct/140820021242-mansarda-kvartira-2-k": {
+      "to": "/",
+      "old_title": "\"МАНСАРДА\" квартира 2-к",
+      "new_title": "",
+      "score": 0.62,
+      "note": "похоже на \"МАНДАРИН\" отель у соснового пляжа с завтраками (0.62)"
+    },
+    "/tproduct/148869383922-banan-i-funduk-gostevoi-dom-uedinyonnii": {
+      "to": "/hotels/banan-i-funduk-gostevoy-dom-2849/",
+      "old_title": "\"БАНАН И ФУНДУК\" – гостевой дом, уединённый уголок среди зелени🌳",
+      "new_title": "\"БАНАН И ФУНДУК\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/149579007932-arina-mini-otel-v-pitsunde": {
+      "to": "/hotels/arina-mini-otel-2792/",
+      "old_title": "\"АРИНА\" мини-отель в Пицунде",
+      "new_title": "\"АРИНА\" мини-отель",
+      "score": 1.0
+    },
+    "/tproduct/154418730782-villa-suhum-kottedzhi-s-kuhnei": {
+      "to": "/kvartira/villa-suhum-959/",
+      "old_title": "\"ВИЛЛА СУХУМ\" коттеджи с кухней",
+      "new_title": "\"ВИЛЛА СУХУМ\" коттеджи с кухней",
+      "score": 1.0
+    },
+    "/tproduct/159535238712-greis-kvartira": {
+      "to": "/kvartira/greys-kvartira-1564/",
+      "old_title": "\"ГРЕЙС\" квартира",
+      "new_title": "\"ГРЕЙС\" квартира",
+      "score": 1.0
+    },
+    "/tproduct/159875394502-bi-heppi-mini-otel": {
+      "to": "/hotels/bi-heppi-apart-otel-3334/",
+      "old_title": "\"БИ ХЭППИ\" мини-отель",
+      "new_title": "\"БИ ХЭППИ\" апарт-отель",
+      "score": 1.0
+    },
+    "/tproduct/160688926052-saya-domiki": {
+      "to": "/hotels/saya-domiki-3134/",
+      "old_title": "\"САЯ\" домики",
+      "new_title": "\"САЯ\" домики",
+      "score": 1.0
+    },
+    "/tproduct/164903168542-feniks-dom-dlya-bolshoi-semi": {
+      "to": "/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/",
+      "old_title": "\"ФЕНИКС\" дом для большой семьи🏡",
+      "new_title": "\"ФЕНИКС\" дом для большой семьи",
+      "score": 1.0
+    },
+    "/tproduct/165213098412-akvamarin-dom-pod-klyuch": {
+      "to": "/kvartira/akvamarin-dom-pod-klyuch-ldzaa-1313/",
+      "old_title": "\"АКВАМАРИН\" дом под ключ",
+      "new_title": "\"АКВАМАРИН\" дом под ключ",
+      "score": 1.0
+    },
+    "/tproduct/183727315732-rimma-dve-kvartiri-1-k-s-kuhnei": {
+      "to": "/kvartira/rimma-dve-1k-kvartriry-suhum-1118/",
+      "old_title": "\"РИММА\" две квартиры 1-к с кухней",
+      "new_title": "\"РИММА\" две квартиры с кухней",
+      "score": 1.0
+    },
+    "/tproduct/184004231512-apsa-park-otel-klassa-lyuks": {
+      "to": "/hotels/apsa-park-otel-v-zapovednike-2611/",
+      "old_title": "\"АПСА ПАРК-ОТЕЛЬ\" класса люкс",
+      "new_title": "\"АПСА ПАРК-ОТЕЛЬ\" в заповеднике",
+      "score": 1.0
+    },
+    "/tproduct/186488741032-peschanii-bereg-apartamenti": {
+      "to": "/hotels/peschanyy-bereg-apartamenty-3700/",
+      "old_title": "“ПЕСЧАНЫЙ БЕРЕГ” апартаменты",
+      "new_title": "\"ПЕСЧАНЫЙ БЕРЕГ\" апартаменты",
+      "score": 1.0
+    },
+    "/tproduct/201688408472-radonovii-istochnik-mesto-sili-tishini-i": {
+      "to": "/hotels/radonovyy-istochnik-otel-v-gorah-3064/",
+      "old_title": "\"РАДОНОВЫЙ ИСТОЧНИК\" — место силы, тишины и природы",
+      "new_title": "\"РАДОНОВЫЙ ИСТОЧНИК\" отель в горах",
+      "score": 1.0
+    },
+    "/tproduct/203576362442-tsarskoe-selo-anhua-kottedzhi": {
+      "to": "/hotels/tsarskoe-selo-anhua-kottedzhi-3871/",
+      "old_title": "\"ЦАРСКОЕ СЕЛО АНХУА\" коттеджи",
+      "new_title": "\"ЦАРСКОЕ СЕЛО АНХУА\" коттеджи",
+      "score": 1.0
+    },
+    "/tproduct/203577514422-edem-domiki": {
+      "to": "/hotels/edem-domiki-4409/",
+      "old_title": "\"ЭДЕМ\" домики",
+      "new_title": "\"ЭДЕМ\" домики",
+      "score": 1.0
+    },
+    "/tproduct/203732252702-kamilla-kvartira-2-k": {
+      "to": "/kvartira/kamilla-kvartira-2k-pitsunda-968/",
+      "old_title": "\"КАМИЛЛА\" квартира 2-к",
+      "new_title": "\"КАМИЛЛА\" квартира 2к",
+      "score": 1.0
+    },
+    "/tproduct/207231581232-sanrei-gostevoi-dom": {
+      "to": "/hotels/sanrey-gostevoy-dom-4469/",
+      "old_title": "\"САНРЭЙ\" гостевой дом",
+      "new_title": "\"САНРЭЙ\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/212518226822-simsim-gostevoi-dom": {
+      "to": "/hotels/simsim-gostevoy-dom-4701/",
+      "old_title": "\"СИМСИМ\" гостевой дом",
+      "new_title": "\"СИМСИМ\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/219635858972-palma-gostevoi-dom": {
+      "to": "/hotels/palma-gostevoy-dom-4071/",
+      "old_title": "\"ПАЛЬМА\" гостевой дом",
+      "new_title": "\"ПАЛЬМА\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/226001612382-chernomorskaya-kvartira-2-k": {
+      "to": "/kvartira/chernomorskaya-kvartira-suhum-1201/",
+      "old_title": "\"ЧЕРНОМОРСКАЯ\" квартира 2-к",
+      "new_title": "\"ЧЕРНОМОРСКАЯ-2\" квартира 2к",
+      "score": 0.92
+    },
+    "/tproduct/229882083732-esma-domiki-s-basseinom-v-tsentre": {
+      "to": "/hotels/esma-domiki-s-basseynom-v-tsentre-4032/",
+      "old_title": "\"ЭСМА\" домики с бассейном в центре",
+      "new_title": "\"ЭСМА\" домики с бассейном в центре",
+      "score": 1.0
+    },
+    "/tproduct/236367119142-mokko-apartamenti": {
+      "to": "/kvartira/mokko-apartamenty-suhum-1024/",
+      "old_title": "\"МОККО\" апартаменты",
+      "new_title": "\"МОККО\" апартаменты",
+      "score": 1.0
+    },
+    "/tproduct/239996721832-mika-gostevoi-dom-na-sosnovom-plyazhe": {
+      "to": "/hotels/mika-gostevoy-dom-ekonom-3094/",
+      "old_title": "\"МИКА\" гостевой дом на сосновом пляже",
+      "new_title": "\"МИКА\" гостевой дом эконом",
+      "score": 1.0
+    },
+    "/tproduct/241087905492-belaya-rechka-gostevoi-dom-s-kafe": {
+      "to": "/hotels/belaya-rechka-gostevoy-dom-s-kafe-3517/",
+      "old_title": "\"БЕЛАЯ РЕЧКА\" гостевой дом с кафе",
+      "new_title": "\"БЕЛАЯ РЕЧКА\" гостевой дом с кафе",
+      "score": 1.0
+    },
+    "/tproduct/253916483012-kashtak-domiki-v-zelenom-ugolke": {
+      "to": "/hotels/kashtak-domiki-667/",
+      "old_title": "\"КАШТАК\" - домики в зеленом уголке",
+      "new_title": "\"КАШТАК\" домики",
+      "score": 1.0
+    },
+    "/tproduct/254316646773-ptichka-eko-domiki-s-basseinom": {
+      "to": "/hotels/ptichka-eko-domiki-s-basseynom-5089/",
+      "old_title": "\"ПТИЧКА\" эко-домики с бассейном",
+      "new_title": "\"ПТИЧКА\" эко-домики с бассейном",
+      "score": 1.0
+    },
+    "/tproduct/257602902992-apra-gostevoi-dom-na-plyazhe": {
+      "to": "/hotels/apra-gostevoy-dom-na-plyazhe-4348/",
+      "old_title": "\"АПРА\" гостевой дом на пляже",
+      "new_title": "\"АПРА\" гостевой дом на пляже",
+      "score": 1.0
+    },
+    "/tproduct/258354690762-akira-2k-kvartira": {
+      "to": "/kvartira/akira-2k-kvartira-1623/",
+      "old_title": "\"АКИРА\" 2к квартира",
+      "new_title": "\"АКИРА\" 2к квартира",
+      "score": 1.0
+    },
+    "/tproduct/259827193222-sozvezdie-mini-otel": {
+      "to": "/hotels/sozvezdie-mini-otel-3933/",
+      "old_title": "\"СОЗВЕЗДИЕ\" мини-отель",
+      "new_title": "\"СОЗВЕЗДИЕ\" мини-отель",
+      "score": 1.0
+    },
+    "/tproduct/264052877232-esma-studiya-s-intererom-kak-iz-zhurnala": {
+      "to": "/hotels/esma-domiki-s-basseynom-v-tsentre-4032/",
+      "old_title": "\"ЭСМА\" — студия с интерьером как из журнала",
+      "new_title": "\"ЭСМА\" домики с бассейном в центре",
+      "score": 1.0
+    },
+    "/tproduct/265001675562-kvarts-domiki": {
+      "to": "/hotels/kvarts-domiki-4449/",
+      "old_title": "\"КВАРЦ\" домики",
+      "new_title": "\"КВАРЦ\" домики",
+      "score": 1.0
+    },
+    "/tproduct/270575456552-lnd-gostevoi-dom-v-sinope": {
+      "to": "/hotels/lnd-gostevoy-dom-v-sinope-3687/",
+      "old_title": "\"ЛНД\" гостевой дом в Синопе",
+      "new_title": "\"ЛНД\" гостевой дом в Синопе",
+      "score": 1.0
+    },
+    "/tproduct/273406906322-eko-haus-pitiunt-kompleks-s-basseinom": {
+      "to": "/hotels/eko-haus-pitiunt-domiki-s-basseynom-3545/",
+      "old_title": "\"ЭКО ХАУС ПИТИУНТ\" — комплекс с бассейном",
+      "new_title": "\"ЭКО ХАУС ПИТИУНТ\" домики с бассейном",
+      "score": 1.0
+    },
+    "/tproduct/277550277152-v-gostyah-u-belochki-domiki-i-nomera": {
+      "to": "/hotels/v-gostyah-u-belochki-domiki-i-nomera-2879/",
+      "old_title": "\"В ГОСТЯХ У БЕЛОЧКИ\" домики и номера",
+      "new_title": "\"В ГОСТЯХ У БЕЛОЧКИ\" домики и номера",
+      "score": 1.0
+    },
+    "/tproduct/289507400872-dzhannat-otel-na-beregu-s-zavtrakami": {
+      "to": "/hotels/dzhannat-otel-na-beregu-s-zavtrakami-4571/",
+      "old_title": "\"ДЖАННАТ\" отель на берегу с завтраками",
+      "new_title": "\"ДЖАННАТ\" отель на берегу с завтраками",
+      "score": 1.0
+    },
+    "/tproduct/292525625802-tihaya-obitel-dom-pod-klyuch": {
+      "to": "/hotels/tihaya-obitel-dom-pod-klyuch-4230/",
+      "old_title": "\"ТИХАЯ ОБИТЕЛЬ\" дом под ключ",
+      "new_title": "\"ТИХАЯ ОБИТЕЛЬ\" дом под ключ",
+      "score": 1.0
+    },
+    "/tproduct/294833928172-assir-otdih-v-zelyonom-serdtse-ldzaa": {
+      "to": "/hotels/assir-gostevoy-dom-2840/",
+      "old_title": "\"АССИР\" — отдых в зелёном сердце Лдзаа",
+      "new_title": "\"АССИР\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/300054168482-oliva-domiki": {
+      "to": "/hotels/oliva-domiki-4671/",
+      "old_title": "\"ОЛИВА\" домики",
+      "new_title": "\"ОЛИВА\" домики",
+      "score": 1.0
+    },
+    "/tproduct/300875550542-antaa-gostinitsa-u-sosnovogo-plyazha-": {
+      "to": "/hotels/antaa-gostinitsa-u-sosnovogo-plyazha-2899/",
+      "old_title": "\"АНТАА\" гостиница у соснового пляжа 🏝️",
+      "new_title": "\"АНТАА\" гостиница у соснового пляжа",
+      "score": 1.0
+    },
+    "/tproduct/309644401482-melodi-derevyannie-domiki": {
+      "to": "/hotels/melodi-eko-otel-derevyannye-domiki-3563/",
+      "old_title": "\"МЕЛОДИ\" деревянные домики",
+      "new_title": "\"МЕЛОДИ\" эко-отель, деревянные домики",
+      "score": 1.0
+    },
+    "/tproduct/311469577902-sanset-kvartira-vidovaya-2-k": {
+      "to": "/kvartira/sanset-kvartira-1k-ldzaa-1101/",
+      "old_title": "\"САНСЕТ\" квартира видовая 2-к",
+      "new_title": "\"САНСЕТ\" квартира видовая",
+      "score": 1.0
+    },
+    "/tproduct/315919561502-mandarinovii-dvorik-dom-pod-klyuch": {
+      "to": "/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/",
+      "old_title": "\"МАНДАРИНОВЫЙ ДВОРИК\" дом под ключ",
+      "new_title": "\"МАНДАРИНОВЫЙ ДВОРИК\" дом под ключ",
+      "score": 1.0
+    },
+    "/tproduct/319983895672-moreon-tishina-komfort-i-minuta-do-morya": {
+      "to": "/kvartira/moreon-kvartira-2k-pitsunda-1391/",
+      "old_title": "\"МОРЕОН\" — тишина, комфорт и минута до моря",
+      "new_title": "\"МОРЕОН\" квартира",
+      "score": 1.0
+    },
+    "/tproduct/324572491292-sia-lend-baza-otdiha": {
+      "to": "/hotels/sia-lend-baza-otdyha-3800/",
+      "old_title": "\"СИА ЛЕНД\" база отдыха",
+      "new_title": "\"СИА ЛЕНД\" база отдыха",
+      "score": 1.0
+    },
+    "/tproduct/340429424052-blek-si-otel-s-basseinom-i-pitaniem": {
+      "to": "/hotels/blek-si-otel-s-basseynom-i-pitaniem-3912/",
+      "old_title": "\"БЛЭК СИ\" отель с бассейном и питанием",
+      "new_title": "\"БЛЭК СИ\" отель с бассейном и питанием",
+      "score": 1.0
+    },
+    "/tproduct/342729756402-nasta-gostevoi-dom": {
+      "to": "/hotels/nasta-apartamenty-3258/",
+      "old_title": "\"НАСТА\" гостевой дом",
+      "new_title": "\"НАСТА\" апартаменты",
+      "score": 1.0
+    },
+    "/tproduct/362549641192-zhemchuzhina-gostevoi-dom": {
+      "to": "/hotels/zhemchuzhina-gostevoy-dom-4113/",
+      "old_title": "\"ЖЕМЧУЖИНА\" гостевой дом",
+      "new_title": "\"ЖЕМЧУЖИНА\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/364188797642-dyuna-domiki-v-ldzaa": {
+      "to": "/hotels/dyuna-domiki-3717/",
+      "old_title": "\"ДЮНА\" домики в Лдзаа",
+      "new_title": "\"ДЮНА\" домики",
+      "score": 1.0
+    },
+    "/tproduct/365064354502-mandarin-otel-u-sosnovogo-plyazha-s-zavt": {
+      "to": "/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/",
+      "old_title": "\"МАНДАРИН\" отель у соснового пляжа с завтраками",
+      "new_title": "\"МАНДАРИН\" отель у соснового пляжа с завтраками",
+      "score": 1.0
+    },
+    "/tproduct/367642469982-plyazhnii-kompleks-151-na-beregu": {
+      "to": "/hotels/plyazhnyy-kompleks-151-na-beregu-4620/",
+      "old_title": "\"ПЛЯЖНЫЙ КОМПЛЕКС 151\" на берегу",
+      "new_title": "\"ПЛЯЖНЫЙ КОМПЛЕКС 151\" на берегу",
+      "score": 1.0
+    },
+    "/tproduct/382433345502-grass-kottedzhi-v-gorah-abhazii": {
+      "to": "/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/",
+      "old_title": "\"ГРАСС\" коттеджи в горах Абхазии",
+      "new_title": "\"ГРАСС ОТЕЛЬ\" коттеджи в горах Абхазии с бассейном",
+      "score": 0.9
+    },
+    "/tproduct/384252441242-mayak-gostevoi-dom": {
+      "to": "/hotels/mayak-gostevoy-dom-3810/",
+      "old_title": "\"МАЯК\" гостевой дом",
+      "new_title": "\"МАЯК\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/384681059032-sinop-haus-kottedzhi": {
+      "to": "/hotels/sinop-haus-domiki-3748/",
+      "old_title": "\"СИНОП ХАУС\" коттеджи",
+      "new_title": "\"СИНОП ХАУС\" домики",
+      "score": 1.0
+    },
+    "/tproduct/387803934782-fazenda-dvuhetazhnie-kottedzhi": {
+      "to": "/hotels/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219/",
+      "old_title": "\"ФАЗЕНДА\" двухэтажные коттеджи",
+      "new_title": "\"ФАЗЕНДА\" двухэтажные коттеджи с бассейном и питанием",
+      "score": 1.0
+    },
+    "/tproduct/389591433002-argo-kvartira-1-k": {
+      "to": "/kvartira/argo-kvartira-1k-pitsunda-940/",
+      "old_title": "\"АРГО\" квартира 1-к",
+      "new_title": "\"АРГО\" квартира 1-К",
+      "score": 1.0
+    },
+    "/tproduct/391413710422-nikopsiya-kottedzhnii-kompleks": {
+      "to": "/hotels/nikopsiya-domiki-3015/",
+      "old_title": "\"НИКОПСИЯ\" коттеджный комплекс",
+      "new_title": "\"НИКОПСИЯ\" домики",
+      "score": 1.0
+    },
+    "/tproduct/399457602702-bella-gostevoi-dom": {
+      "to": "/",
+      "old_title": "\"БЕЛЛА\" гостевой дом",
+      "new_title": "",
+      "score": 0.59,
+      "note": "похоже на \"БЕЛАЯ ЛОШАДЬ\" глэмпинг с бассейном (0.59)"
+    },
+    "/tproduct/402191131113-arash-domiki-u-sosnovogo-plyazha": {
+      "to": "/hotels/arash-domiki-u-sosnovogo-plyazha-4857/",
+      "old_title": "\"АРАШ\" домики у соснового пляжа",
+      "new_title": "\"АРАШ\" домики у соснового пляжа",
+      "score": 1.0
+    },
+    "/tproduct/410782459912-mulberri-otel-na-samom-beregu-morya": {
+      "to": "/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/",
+      "old_title": "\"МУЛБЕРРИ\" – отель на самом берегу моря",
+      "new_title": "\"МУЛБЕРРИ\" отель на пляже с бассейном и кафе 🛎 РАННЕЕ БРОНИРОВАНИЕ 2027 🛎",
+      "score": 1.0
+    },
+    "/tproduct/425999601692-domiki-u-marini-otdih-u-morya": {
+      "to": "/hotels/domiki-u-mariny-otdyh-u-morya-3922/",
+      "old_title": "\"ДОМИКИ У МАРИНЫ\" отдых у моря",
+      "new_title": "\"ДОМИКИ У МАРИНЫ\" отдых у моря",
+      "score": 1.0
+    },
+    "/tproduct/428606194712-bonzhur-mini-otel": {
+      "to": "/hotels/bonzhur-mini-otel-2542/",
+      "old_title": "\"БОНЖУР\" мини-отель",
+      "new_title": "\"БОНЖУР\" мини-отель",
+      "score": 1.0
+    },
+    "/tproduct/430289810312-rivera-kottedzhi-na-plyazhe": {
+      "to": "/hotels/rivera-domiki-na-plyazhe-2966/",
+      "old_title": "\"РИВЬЕРА\" коттеджи на пляже",
+      "new_title": "\"РИВЬЕРА\" домики на пляже",
+      "score": 1.0
+    },
+    "/tproduct/434311188862-aselina-kottedzhi-i-studiya-s-kuhnei": {
+      "to": "/kvartira/aselina-studiya-i-kottedzhi-s-kuhney-ldzaa-989/",
+      "old_title": "\"АСЕЛИНА\" коттеджи и студия с кухней",
+      "new_title": "\"АСЕЛИНА\" коттеджи и студия с кухней",
+      "score": 1.0
+    },
+    "/tproduct/444349265022-samshit-uyutnii-otdih-v-zeleni-pitsundi": {
+      "to": "/hotels/samshit-domiki-i-nomera-u-zapovednika-2677/",
+      "old_title": "\"САМШИТ\"— уютный отдых в зелени Пицунды",
+      "new_title": "\"САМШИТ\" домики и номера у заповедника",
+      "score": 1.0
+    },
+    "/tproduct/446445557813-akvarel-tri-2k-kvartiri": {
+      "to": "/kvartira/akvarel-tri-2k-kvartiry-1646/",
+      "old_title": "\"АКВАРЕЛЬ\" три 2к квартиры",
+      "new_title": "\"АКВАРЕЛЬ\" три 2к квартиры",
+      "score": 1.0
+    },
+    "/tproduct/452065674982-liliya-uyutnii-otel-s-zavtrakami": {
+      "to": "/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/",
+      "old_title": "\"ЛИЛИЯ\" уютный отель с завтраками",
+      "new_title": "\"ЛИЛИЯ\" уютный отель с завтраками",
+      "score": 1.0
+    },
+    "/tproduct/455396114932-klassika-kvartira-3-k": {
+      "to": "/kvartira/klassika-kvartira-3k-ldzaa-1303/",
+      "old_title": "\"КЛАССИКА\" квартира 3-к",
+      "new_title": "\"КЛАССИКА\" квартира 3-к",
+      "score": 1.0
+    },
+    "/tproduct/467016907472-nasta-apartamenti": {
+      "to": "/hotels/nasta-apartamenty-3258/",
+      "old_title": "\"НАСТА\" апартаменты",
+      "new_title": "\"НАСТА\" апартаменты",
+      "score": 1.0
+    },
+    "/tproduct/468078709212-lk-otel-s-basseinom": {
+      "to": "/hotels/lk-otel-s-basseynom-4123/",
+      "old_title": "\"ЛК-ОТЕЛЬ\" с бассейном",
+      "new_title": "\"ЛК-ОТЕЛЬ\" с бассейном",
+      "score": 1.0
+    },
+    "/tproduct/475262594002-damira-otel": {
+      "to": "/hotels/damira-otel-v-tsentre-goroda-2830/",
+      "old_title": "\"ДАМИРА\" отель",
+      "new_title": "\"ДАМИРА\" отель в центре города",
+      "score": 1.0
+    },
+    "/tproduct/476244925682-full-haus-domiki-s-basseinom": {
+      "to": "/hotels/full-haus-domiki-s-basseynom-4092/",
+      "old_title": "\"ФУЛЛ ХАУС\" домики с бассейном",
+      "new_title": "\"ФУЛЛ ХАУС\" домики с бассейном",
+      "score": 1.0
+    },
+    "/tproduct/483626967402-tihaya-buhta-apartamenti": {
+      "to": "/kvartira/tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142/",
+      "old_title": "\"ТИХАЯ БУХТА\" апартаменты",
+      "new_title": "\"ТИХАЯ БУХТА\" апартаменты стандарт на 5 спальных мест с видом на гору",
+      "score": 1.0
+    },
+    "/tproduct/486242654263-zarechnii-etazh-v-dome-pod-klyuch": {
+      "to": "/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/",
+      "old_title": "\"ЗАРЕЧНЫЙ\" этаж в доме под ключ",
+      "new_title": "\"ЗАРЕЧНЫЙ\" этаж в доме под ключ",
+      "score": 1.0
+    },
+    "/tproduct/486301707522-san-amra-lyuks-nomera-s-vidom-na-more-": {
+      "to": "/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/",
+      "old_title": "\"САН АМРА\" люкс номера с видом на море ♥️",
+      "new_title": "\"САН АМРА\" люкс номера с видом на море",
+      "score": 1.0
+    },
+    "/tproduct/494164538043-mokko-grei-apartamenti-1k": {
+      "to": "/kvartira/mokko-grey-apartamenty-1k-1681/",
+      "old_title": "\"МОККО ГРЕЙ\" апартаменты 1к",
+      "new_title": "\"МОККО ГРЕЙ\" апартаменты 1к",
+      "score": 1.0
+    },
+    "/tproduct/498179391822-solnechnaya-kvartira-2-k": {
+      "to": "/kvartira/solnechnaya-kvartira-2k-pitsunda-1231/",
+      "old_title": "\"СОЛНЕЧНАЯ\" квартира 2-к",
+      "new_title": "\"СОЛНЕЧНАЯ\" квартира 2к",
+      "score": 1.0
+    },
+    "/tproduct/501422411562-lyubov-villa-na-plyazhe": {
+      "to": "/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/",
+      "old_title": "\"ЛЮБОВЬ\" вилла на пляже",
+      "new_title": "\"ВИЛЛА ЛЮБОВЬ\" выход из отеля сразу на пляж",
+      "score": 0.9
+    },
+    "/tproduct/502802604952-sisaid-domiki-otdih-v-garmonii-s-prirodo": {
+      "to": "/hotels/sisayd-domiki-3409/",
+      "old_title": "\"СИСАЙД\" — домики, отдых в гармонии с природой у самого моря! 🌊",
+      "new_title": "\"СИСАЙД\" домики",
+      "score": 1.0
+    },
+    "/tproduct/514156542232-laim-mini-otel-s-basseinom-u-zapovednika": {
+      "to": "/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/",
+      "old_title": "“ЛАЙМ” мини-отель с бассейном у заповедника",
+      "new_title": "\"ЛАЙМ\" мини-отель с бассейном у заповедника",
+      "score": 1.0
+    },
+    "/tproduct/517594845332-tis-kottedzhi-u-zapovednika": {
+      "to": "/hotels/tis-mini-otel-u-zapovednika-3381/",
+      "old_title": "\"ТИС\" коттеджи у заповедника",
+      "new_title": "\"ТИС\" мини-отель у заповедника",
+      "score": 1.0
+    },
+    "/tproduct/522855624422-moreon-kvartira-2-k": {
+      "to": "/kvartira/moreon-kvartira-2k-pitsunda-1391/",
+      "old_title": "\"МОРЕОН\" квартира 2-к",
+      "new_title": "\"МОРЕОН\" квартира",
+      "score": 1.0
+    },
+    "/tproduct/534960222482-yuzhnoe-utro-dvuhkomnatnie-apartamenti-n": {
+      "to": "/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/",
+      "old_title": "\"ЮЖНОЕ УТРО\" двухкомнатные апартаменты на 6 спальных мест с видом на море 🏖️",
+      "new_title": "\"ЮЖНОЕ УТРО\" апартаменты на 6 спальных мест с видом на море 📍Лдзаа",
+      "score": 1.0
+    },
+    "/tproduct/538434517033-brigantina-gostevoi-dom": {
+      "to": "/hotels/brigantina-gostevoy-dom-4997/",
+      "old_title": "\"БРИГАНТИНА\" гостевой дом",
+      "new_title": "\"БРИГАНТИНА\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/546612387172-pitiunt-kvartira-4k": {
+      "to": "/kvartira/pitiunt-kvartira-4k-pitsunda-1428/",
+      "old_title": "\"ПИТИУНТ\" квартира 4к",
+      "new_title": "\"ПИТИУНТ\" квартира 4к",
+      "score": 1.0
+    },
+    "/tproduct/549692921632-danelyan-premialnii-semeinii-otel-": {
+      "to": "/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/",
+      "old_title": "\"ДАНЕЛЯН\" премиальный семейный отель 🌟",
+      "new_title": "\"ДАНЕЛЯН\" семейный отель со столовой",
+      "score": 1.0
+    },
+    "/tproduct/560453613782-belaya-loshad-glemping-s-basseinom": {
+      "to": "/hotels/belaya-loshad-glemping-s-basseynom-3650/",
+      "old_title": "\"БЕЛАЯ ЛОШАДЬ\" глэмпинг с бассейном",
+      "new_title": "\"БЕЛАЯ ЛОШАДЬ\" глэмпинг с бассейном",
+      "score": 1.0
+    },
+    "/tproduct/571219079672-fyuzhn-domiki-suhum": {
+      "to": "/hotels/fyuzhn-tri-domika-s-launzh-zonoy-3162/",
+      "old_title": "\"ФЬЮЖН\" домики Сухум",
+      "new_title": "\"ФЬЮЖН\" три домика с лаунж-зоной",
+      "score": 1.0
+    },
+    "/tproduct/572686020112-atmosfernaya-kvartira-2k": {
+      "to": "/kvartira/atmosfernaya-kvartira-2k-1454/",
+      "old_title": "\"АТМОСФЕРНАЯ\" квартира 2к",
+      "new_title": "\"АТМОСФЕРНАЯ\" квартира 2к",
+      "score": 1.0
+    },
+    "/tproduct/575893715612-sofiya-otel-u-sosnovogo-plyazha": {
+      "to": "/hotels/sofiya-otel-u-sosnovogo-plyazha-3842/",
+      "old_title": "“СОФИЯ” отель у соснового пляжа",
+      "new_title": "\"СОФИЯ\" отель у соснового пляжа",
+      "score": 1.0
+    },
+    "/tproduct/577480514662-more-more-gostevoi-kompleks": {
+      "to": "/hotels/more-more-gostevoy-kompleks-3583/",
+      "old_title": "“МОРЕ-МОРЕ” гостевой комплекс",
+      "new_title": "\"МОРЕ-МОРЕ\" гостевой комплекс",
+      "score": 1.0
+    },
+    "/tproduct/583510283622-bugenvilleya-otel-s-basseinom-i-kafe-gde": {
+      "to": "/hotels/bugenvilleya-otel-s-basseynom-3044/",
+      "old_title": "\"БУГЕНВИЛЛЕЯ\" – отель с бассейном и кафе, где каждый день как маленький праздник 🌿🏝️",
+      "new_title": "\"БУГЕНВИЛЛЕЯ\" отель с бассейном",
+      "score": 1.0
+    },
+    "/tproduct/591162317882-melana-kvartira-3-k": {
+      "to": "/kvartira/melana-kvartira-3k-pitsunda-1015/",
+      "old_title": "\"МЕЛАНА\" квартира 3-к",
+      "new_title": "\"МЕЛАНА\" квартира 3к Дорогие гости, кто искал жильё на большую семью, этот вариант для вас ⭐",
+      "score": 1.0
+    },
+    "/tproduct/598157736843-regina-otel-pervii-korpus": {
+      "to": "/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/",
+      "old_title": "\"РЕГИНА\" ОТЕЛЬ (ПЕРВЫЙ КОРПУС)",
+      "new_title": "\"РЕГИНА\" ОТЕЛЬ (ПЕРВЫЙ КОРПУС)",
+      "score": 1.0
+    },
+    "/tproduct/604462494062-briz-domiki-na-beregu": {
+      "to": "/hotels/briz-domiki-na-beregu-4937/",
+      "old_title": "\"БРИЗ\" домики на берегу",
+      "new_title": "\"БРИЗ\" домики на берегу",
+      "score": 1.0
+    },
+    "/tproduct/610948589122-leto-kvartira-2k": {
+      "to": "/kvartira/leto-kvartira-2k-1587/",
+      "old_title": "\"ЛЕТО\" квартира 2к",
+      "new_title": "\"ЛЕТО\" квартира 2к",
+      "score": 1.0
+    },
+    "/tproduct/612183005102-nikol-gostevoi-dom": {
+      "to": "/hotels/nikol-gostevoy-dom-3678/",
+      "old_title": "“НИКОЛЬ” гостевой дом",
+      "new_title": "\"НИКОЛЬ\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/617549723012-tis-mini-otel-u-zapovednika": {
+      "to": "/hotels/tis-mini-otel-u-zapovednika-3381/",
+      "old_title": "\"ТИС\" мини-отель у заповедника",
+      "new_title": "\"ТИС\" мини-отель у заповедника",
+      "score": 1.0
+    },
+    "/tproduct/618543804093-ashta-du-gostevoi-dom": {
+      "to": "/hotels/ashta-du-gostevoy-dom-5186/",
+      "old_title": "\"АШТА ДУ\" гостевой дом",
+      "new_title": "\"АШТА ДУ\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/620184458402-svetlii-dvorik-gostevoi-dom-ekonom": {
+      "to": "/hotels/svetlyy-dvorik-gostevoy-dom-ekonom-4259/",
+      "old_title": "\"СВЕТЛЫЙ ДВОРИК\" гостевой дом эконом",
+      "new_title": "\"СВЕТЛЫЙ ДВОРИК\" гостевой дом эконом",
+      "score": 1.0
+    },
+    "/tproduct/623921307862-pshada-otel-s-pitaniem-u-sosnovogo-plyaz": {
+      "to": "/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/",
+      "old_title": "\"ПШАДА\" отель с питанием у соснового пляжа",
+      "new_title": "\"ПШАДА\" отель с питанием у соснового пляжа",
+      "score": 1.0
+    },
+    "/tproduct/638296358012-kiparisovaya-kvartira-1-k": {
+      "to": "/kvartira/kiparisovaya-kvartira-1k-gagry-976/",
+      "old_title": "\"КИПАРИСОВАЯ\" квартира 1-к",
+      "new_title": "\"КИПАРИСОВАЯ\" квартира 1к",
+      "score": 1.0
+    },
+    "/tproduct/638730730312-oazis-apartamenti-s-kuhnei": {
+      "to": "/hotels/oazis-villa-4052/",
+      "old_title": "\"ОАЗИС\" апартаменты с кухней",
+      "new_title": "\"ОАЗИС\" вилла",
+      "score": 1.0
+    },
+    "/tproduct/645536043073-inkit-rezort-afreimi": {
+      "to": "/hotels/inkit-rezort-afreymy-5209/",
+      "old_title": "\"ИНКИТ РЕЗОРТ\" афреймы",
+      "new_title": "\"ИНКИТ РЕЗОРТ\" афреймы",
+      "score": 1.0
+    },
+    "/tproduct/650106628322-domiki-v-sinope-kogda-hochetsya-uyuta-i": {
+      "to": "/hotels/v-sinope-domiki-3438/",
+      "old_title": "\"ДОМИКИ В СИНОПЕ\"— когда хочется уюта и моря 🌿🌊",
+      "new_title": "\"В СИНОПЕ\" домики",
+      "score": 0.9
+    },
+    "/tproduct/660038619942-grant-kottedzhi": {
+      "to": "/hotels/grant-otel-nomera-2820/",
+      "old_title": "\"ГРАНТ\" коттеджи",
+      "new_title": "\"ГРАНТ\" отель номера",
+      "score": 1.0
+    },
+    "/tproduct/671517753872-kavo-de-bukso-domiki-ostrovok-tishini-uy": {
+      "to": "/hotels/kavo-de-bukso-domiki-3323/",
+      "old_title": "\"КАВО-ДЕ-БУКСО\" домики - островок тишины, уюта и неспешного отдыха.",
+      "new_title": "\"КАВО ДЕ БУКСО\" домики",
+      "score": 1.0
+    },
+    "/tproduct/671629747272-perl-dom-pod-klyuch": {
+      "to": "/kvartira/perl-dom-pod-klyuch-gudauta-1092/",
+      "old_title": "\"ПЕРЛ\" дом под ключ",
+      "new_title": "\"ПЕРЛ\" дом под ключ",
+      "score": 1.0
+    },
+    "/tproduct/681751920882-mirano-gostevoi-dom": {
+      "to": "/hotels/mirano-gostevoy-dom-4550/",
+      "old_title": "\"МИРАНО\" гостевой дом",
+      "new_title": "\"МИРАНО\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/681836525822-amzara-otel-s-vinodelnei-u-zapovednika": {
+      "to": "/hotels/amzara-otel-s-vinodelney-u-zapovednika-2668/",
+      "old_title": "\"АМЗАРА\" отель с винодельней у заповедника",
+      "new_title": "\"АМЗАРА\" отель с винодельней у заповедника",
+      "score": 1.0
+    },
+    "/tproduct/689054418342-belii-dom-domiki-i-apartamenti": {
+      "to": "/hotels/belyy-dom-domiki-i-apartamenty-4081/",
+      "old_title": "\"БЕЛЫЙ ДОМ\" домики и апартаменты",
+      "new_title": "\"БЕЛЫЙ ДОМ\" домики и апартаменты",
+      "score": 1.0
+    },
+    "/tproduct/694610838622-sirius-otel-kurort-u-sosnovogo-plyazha": {
+      "to": "/hotels/sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390/",
+      "old_title": "\"СИРИУС\" отель-курорт у соснового пляжа",
+      "new_title": "\"СИРИУС\" отель у соснового пляжа",
+      "score": 1.0
+    },
+    "/tproduct/703008161023-regina-otel-vtoroi-korpus": {
+      "to": "/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/",
+      "old_title": "\"РЕГИНА\" ОТЕЛЬ (ВТОРОЙ КОРПУС)",
+      "new_title": "\"РЕГИНА\" ОТЕЛЬ (ПЕРВЫЙ КОРПУС)",
+      "score": 1.0
+    },
+    "/tproduct/727966558162-limon-otel": {
+      "to": "/hotels/limon-otel-4721/",
+      "old_title": "\"ЛИМОН\" отель",
+      "new_title": "\"ЛИМОН\" отель",
+      "score": 1.0
+    },
+    "/tproduct/731376524442-mira-kompleks-u-ozera": {
+      "to": "/kvartira/mira-dom-suhum-1345/",
+      "old_title": "\"МИРА\" комплекс у озера",
+      "new_title": "\"МИРА\" дом под ключ",
+      "score": 1.0
+    },
+    "/tproduct/735861442082-mimoza-kvartira-3-k": {
+      "to": "/kvartira/mimoza-3k-kvartira-1499/",
+      "old_title": "\"МИМОЗА\" квартира 3-к",
+      "new_title": "\"МИМОЗА\" 3к квартира",
+      "score": 1.0
+    },
+    "/tproduct/738869558002-mira-dom-pod-klyuch": {
+      "to": "/kvartira/mira-dom-suhum-1345/",
+      "old_title": "\"МИРА\" дом под ключ",
+      "new_title": "\"МИРА\" дом под ключ",
+      "score": 1.0
+    },
+    "/tproduct/739259237212-amina-dom-pod-klyuch": {
+      "to": "/kvartira/amina-dom-suhum-921/",
+      "old_title": "\"АМИНА\" дом под ключ",
+      "new_title": "\"АМИНА\" дом 2х этажный Уютный и просторный дом для тех, кто ценит свое личное пространство.",
+      "score": 1.0
+    },
+    "/tproduct/743068731083-pitsunda-otel": {
+      "to": "/hotels/pitsunda-otel-5028/",
+      "old_title": "\"ПИЦУНДА\" отель",
+      "new_title": "\"ПИЦУНДА\" отель",
+      "score": 1.0
+    },
+    "/tproduct/749646715302-fazenda-otel-s-basseinom-i-pitaniem": {
+      "to": "/hotels/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219/",
+      "old_title": "\"ФАЗЕНДА\" отель с бассейном и питанием",
+      "new_title": "\"ФАЗЕНДА\" двухэтажные коттеджи с бассейном и питанием",
+      "score": 1.0
+    },
+    "/tproduct/751605369722-parkovaya-kvartira-2-k": {
+      "to": "/kvartira/parkovaya-kvartira-2k-suhum-1292/",
+      "old_title": "\"ПАРКОВАЯ\" квартира 2-к",
+      "new_title": "\"ПАРКОВАЯ\" квартира 2к",
+      "score": 1.0
+    },
+    "/tproduct/768402664692-na-visote-kvartira-2-k": {
+      "to": "/kvartira/na-vysote-kvartira-pitsunda-1053/",
+      "old_title": "\"НА ВЫСОТЕ\" квартира 2-к",
+      "new_title": "\"НА ВЫСОТЕ\" квартира 2к",
+      "score": 1.0
+    },
+    "/tproduct/772474459562-manon-otel-so-skazochnim-vidom": {
+      "to": "/hotels/manon-otel-so-skazochnym-vidom-2512/",
+      "old_title": "\"МАНОН\" отель со сказочным видом",
+      "new_title": "\"МАНОН\" отель со сказочным видом",
+      "score": 1.0
+    },
+    "/tproduct/773506478722-grin-haus-idealnie-usloviya-peschanii-pl": {
+      "to": "/hotels/grin-haus-domiki-3104/",
+      "old_title": "\"ГРИН ХАУС\" — идеальные условия, песчаный пляж",
+      "new_title": "\"ГРИН ХАУС\" домики",
+      "score": 1.0
+    },
+    "/tproduct/780392823312-soluna-domiki-i-nomera-s-zavtrakami": {
+      "to": "/hotels/soluna-domiki-i-nomera-s-zavtrakami-4041/",
+      "old_title": "\"СОЛУНА\" домики и номера с завтраками",
+      "new_title": "\"СОЛУНА\" домики и номера с завтраками",
+      "score": 1.0
+    },
+    "/tproduct/786149569692-ladariya-kvartira-1k": {
+      "to": "/kvartira/ladariya-kvartira-1k-1542/",
+      "old_title": "\"ЛАДАРИЯ\" квартира 1к",
+      "new_title": "\"ЛАДАРИЯ\" квартира 1к",
+      "score": 1.0
+    },
+    "/tproduct/790909385152-assir-pitsunda-gostevoi-dom-v-tsentre": {
+      "to": "/hotels/assir-pitsunda-gostevoy-dom-v-tsentre-4173/",
+      "old_title": "\"АССИР ПИЦУНДА\" гостевой дом в центре",
+      "new_title": "\"АССИР ПИЦУНДА\" гостевой дом в центре",
+      "score": 1.0
+    },
+    "/tproduct/800028677512-rivera-gostinitsa-vidovaya": {
+      "to": "/hotels/rivera-domiki-na-plyazhe-2966/",
+      "old_title": "\"РИВЬЕРА\" гостиница видовая",
+      "new_title": "\"РИВЬЕРА\" домики на пляже",
+      "score": 1.0
+    },
+    "/tproduct/807451213382-heppi-lend-domiki-dvuhetazhnie": {
+      "to": "/hotels/heppi-lend-domiki-dvuhetazhnye-3313/",
+      "old_title": "\"ХЭППИ ЛЭНД\" домики двухэтажные",
+      "new_title": "\"ХЭППИ ЛЭНД\" домики двухэтажные",
+      "score": 1.0
+    },
+    "/tproduct/810461311982-oazis-villa": {
+      "to": "/hotels/oazis-villa-4052/",
+      "old_title": "\"ОАЗИС\" вилла",
+      "new_title": "\"ОАЗИС\" вилла",
+      "score": 1.0
+    },
+    "/tproduct/813656650293-villa-magnoliya-eko-otel-s-zavtrakami": {
+      "to": "/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/",
+      "old_title": "\"ВИЛЛА МАГНОЛИЯ\" эко-отель с завтраками",
+      "new_title": "\"ВИЛЛА МАГНОЛИЯ\" эко-отель с завтраками",
+      "score": 1.0
+    },
+    "/tproduct/815265326442-chegem-gostevoi-dom": {
+      "to": "/hotels/chegem-gostevoy-dom-3727/",
+      "old_title": "“ЧЕГЕМ” гостевой дом",
+      "new_title": "\"ЧЕГЕМ\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/840197294852-rancho-elivel-gostevoi-dom": {
+      "to": "/hotels/rancho-elivel-mini-otel-2938/",
+      "old_title": "\"РАНЧО ЭЛИВЕЛ\" гостевой дом",
+      "new_title": "\"РАНЧО ЭЛИВЕЛ\" мини-отель",
+      "score": 1.0
+    },
+    "/tproduct/849718601442-lavanda-villa-s-basseinom": {
+      "to": "/hotels/lavanda-villa-s-basseynom-4590/",
+      "old_title": "\"ЛАВАНДА\" вилла с бассейном",
+      "new_title": "\"ЛАВАНДА\" вилла с бассейном",
+      "score": 1.0
+    },
+    "/tproduct/853422369043-anait-gostevoi-dom": {
+      "to": "/hotels/anait-gostevoy-dom-5049/",
+      "old_title": "\"АНАИТ\" гостевой дом",
+      "new_title": "\"АНАИТ\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/860484561192-mziya-gostevie-nomera": {
+      "to": "/hotels/mziya-gostevye-nomera-3659/",
+      "old_title": "\"МЗИЯ\" гостевые номера",
+      "new_title": "\"МЗИЯ\" гостевые номера",
+      "score": 1.0
+    },
+    "/tproduct/871331031312-madlena-domiki-dlya-teh-kto-ischet-komfo": {
+      "to": "/hotels/madlena-domiki-3344/",
+      "old_title": "\"МАДЛЕНА\" домики для тех, кто ищет комфортный и уютный отдых в паре минут от моря.",
+      "new_title": "\"МАДЛЕНА\" домики",
+      "score": 1.0
+    },
+    "/tproduct/872193078252-sosnovaya-kvartira-1k": {
+      "to": "/kvartira/sosnovaya-kvartira-1k-1610/",
+      "old_title": "\"СОСНОВАЯ\" квартира 1к",
+      "new_title": "\"СОСНОВАЯ\" квартира 1к",
+      "score": 1.0
+    },
+    "/tproduct/878102588762-abirlash-otel-na-plyazhe": {
+      "to": "/hotels/abyrlash-otel-na-plyazhe-3239/",
+      "old_title": "\"АБЫРЛАШ\" отель на пляже",
+      "new_title": "\"АБЫРЛАШ\" отель на пляже",
+      "score": 1.0
+    },
+    "/tproduct/882543782562-mechta-apartamenti-s-kuhnei": {
+      "to": "/hotels/mechta-apartamenty-s-kuhney-3363/",
+      "old_title": "\"МЕЧТА\" апартаменты с кухней",
+      "new_title": "\"МЕЧТА\" апартаменты с кухней",
+      "score": 1.0
+    },
+    "/tproduct/884438835362-kameliya-domiki": {
+      "to": "/hotels/kameliya-domiki-3084/",
+      "old_title": "\"КАМЕЛИЯ\" домики",
+      "new_title": "\"КАМЕЛИЯ\" домики",
+      "score": 1.0
+    },
+    "/tproduct/884673525152-nebosvod-domik-afreim-v-uedinennom-meste": {
+      "to": "/hotels/nebosvod-domik-afreym-v-uedinennom-meste-4640/",
+      "old_title": "\"НЕБОСВОД\" домик-афрейм в уединенном месте",
+      "new_title": "\"НЕБОСВОД\" домик-афрейм в уединенном месте",
+      "score": 1.0
+    },
+    "/tproduct/884726824382-delfin-kottedzhnii-komplekc": {
+      "to": "/hotels/delfin-domiki-3024/",
+      "old_title": "\"ДЕЛЬФИН\" коттeджный комплeкc",
+      "new_title": "\"ДЕЛЬФИН\" домики",
+      "score": 1.0
+    },
+    "/tproduct/886384239702-zhasmin-abhazskoe-teplo-i-uyut-v-kazhdom": {
+      "to": "/hotels/zhasmin-mini-otel-3736/",
+      "old_title": "\"ЖАСМИН\"– абхазское тепло и уют в каждом дне",
+      "new_title": "\"ЖАСМИН\" мини-отель",
+      "score": 1.0
+    },
+    "/tproduct/887588406732-monro-kvartira-2-k": {
+      "to": "/kvartira/monro-kvartira-3k-suhum-1386/",
+      "old_title": "\"МОНРО\" квартира 2-к",
+      "new_title": "\"МОНРО\" квартира 3-к",
+      "score": 1.0
+    },
+    "/tproduct/893486528262-na-plyazhe-kvartira-3k-vidovaya": {
+      "to": "/kvartira/na-plyazhe-apartamenty-3k-ldzaa-1073/",
+      "old_title": "\"НА ПЛЯЖЕ\" квартира 3К видовая",
+      "new_title": "\"НА ПЛЯЖЕ\" квартира 3К видовая",
+      "score": 1.0
+    },
+    "/tproduct/896516136952-miraslava-mini-otel": {
+      "to": "/hotels/miraslava-mini-otel-3143/",
+      "old_title": "\"МИРАСЛАВА\" мини-отель",
+      "new_title": "\"МИРАСЛАВА\" мини-отель",
+      "score": 1.0
+    },
+    "/tproduct/897262984132-viktoriya-kvartira-2-k": {
+      "to": "/kvartira/viktoriya-kvartira-2k-pitsunda-951/",
+      "old_title": "\"ВИКТОРИЯ\" квартира 2-к",
+      "new_title": "\"ВИКТОРИЯ\" квартира 2к",
+      "score": 1.0
+    },
+    "/tproduct/898768889942-leon-kottedzhi-v-tihom-raione-dlya-perez": {
+      "to": "/hotels/leon-domiki-3536/",
+      "old_title": "\"ЛЕОН\" коттеджи в тихом районе для перезагрузки и отдыха",
+      "new_title": "\"ЛЕОН\" домики",
+      "score": 1.0
+    },
+    "/tproduct/899223792762-starii-prichal-gostevoi-dom-u-morya": {
+      "to": "/hotels/staryy-prichal-gostevoy-dom-u-morya-3891/",
+      "old_title": "\"СТАРЫЙ ПРИЧАЛ\" гостевой дом у моря",
+      "new_title": "\"СТАРЫЙ ПРИЧАЛ\" гостевой дом у моря",
+      "score": 1.0
+    },
+    "/tproduct/900462832442-studio-san-amra-studiya-na-plyazhe": {
+      "to": "/hotels/studio-san-amra-studiya-na-plyazhe-4270/",
+      "old_title": "\"СТУДИО САН АМРА\" студия на пляже",
+      "new_title": "\"СТУДИО САН АМРА\" студия на пляже",
+      "score": 1.0
+    },
+    "/tproduct/902549071002-karalina-apartamenti-studiya": {
+      "to": "/hotels/karalina-apartamenty-3124/",
+      "old_title": "\"КАРАЛИНА\" апартаменты - студия",
+      "new_title": "\"КАРАЛИНА\" апартаменты",
+      "score": 1.0
+    },
+    "/tproduct/908837943272-palma-kvartira-3-k": {
+      "to": "/hotels/palma-gostevoy-dom-4071/",
+      "old_title": "\"ПАЛЬМА\" квартира 3-к",
+      "new_title": "\"ПАЛЬМА\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/913614440112-anisa-kvartira-1-k": {
+      "to": "/kvartira/anisa-kvartira-1k-ldzaa-910/",
+      "old_title": "\"АНИСА\" квартира 1-к",
+      "new_title": "\"АНИСА\" квартира 1к",
+      "score": 1.0
+    },
+    "/tproduct/919480785832-nonna-kvartira-2k": {
+      "to": "/kvartira/nonna-kvartira-2k-1576/",
+      "old_title": "\"НОННА\" квартира 2к",
+      "new_title": "\"НОННА\" квартира 2к",
+      "score": 1.0
+    },
+    "/tproduct/923780651242-neanila-eko-domiki": {
+      "to": "/hotels/neanila-eko-domiki-4308/",
+      "old_title": "\"НЕАНИЛА\" эко домики",
+      "new_title": "\"НЕАНИЛА\" эко домики",
+      "score": 1.0
+    },
+    "/tproduct/923787699833-trio-nomer-na-plyazhe": {
+      "to": "/hotels/trio-nomer-na-plyazhe-5176/",
+      "old_title": "\"ТРИО\" номер на пляже",
+      "new_title": "\"ТРИО\" номер на пляже",
+      "score": 1.0
+    },
+    "/tproduct/933314430662-tsentralnii-dom-pod-klyuch": {
+      "to": "/kvartira/tsentralnyy-dom-suhum-1220/",
+      "old_title": "\"ЦЕНТРАЛЬНЫЙ\" дом под ключ",
+      "new_title": "\"ЦЕНТРАЛЬНЫЙ\" дом под ключ",
+      "score": 1.0
+    },
+    "/tproduct/942385161572-omega-shale-kompleks": {
+      "to": "/",
+      "old_title": "\"ОМЕГА\" шале-комплекс",
+      "new_title": "",
+      "score": 0.6,
+      "note": "похоже на \"МЕЧТА\" апартаменты с кухней (0.6)"
+    },
+    "/tproduct/944656587112-demi-mokko-dva-uyutnih-kottedzha-u-morya": {
+      "to": "/hotels/demi-mokko-dva-domika-3353/",
+      "old_title": "\"ДЕМИ МОККО\" — два уютных коттеджа у моря",
+      "new_title": "\"ДЕМИ МОККО\" два домика",
+      "score": 1.0
+    },
+    "/tproduct/947548191632-limari-eko-kompleks": {
+      "to": "/hotels/limari-domiki-3496/",
+      "old_title": "\"ЛИМАРИ\" эко-комплекс",
+      "new_title": "\"ЛИМАРИ\" домики",
+      "score": 1.0
+    },
+    "/tproduct/951196698512-mokko-briz-dva-domika": {
+      "to": "/hotels/mokko-briz-dva-domika-4152/",
+      "old_title": "\"МОККО БРИЗ\" два домика",
+      "new_title": "\"МОККО БРИЗ\" два домика",
+      "score": 1.0
+    },
+    "/tproduct/955827509303-flamingo-gostevoi-dom": {
+      "to": "/hotels/flamingo-gostevoy-dom-5018/",
+      "old_title": "\"ФЛАМИНГО\" гостевой дом",
+      "new_title": "\"ФЛАМИНГО\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/957482238122-suhum-dom-pod-klyuch": {
+      "to": "/kvartira/suhum-dom-1153/",
+      "old_title": "\"СУХУМ\" дом под ключ",
+      "new_title": "\"СУХУМ\" дом под ключ Целый полноценный дом для тех, кто хочет тишины и отсутствия соседей.",
+      "score": 1.0
+    },
+    "/tproduct/964525443742-sizon-gostevoi-dom": {
+      "to": "/hotels/sizon-gostevoy-dom-3449/",
+      "old_title": "\"СИЗОН\" гостевой дом",
+      "new_title": "\"СИЗОН\" гостевой дом",
+      "score": 1.0
+    },
+    "/tproduct/985351478142-zelenii-dvorik-baza-otdiha": {
+      "to": "/hotels/zelenyy-dvorik-domiki-i-nomera-2909/",
+      "old_title": "\"ЗЕЛЕНЫЙ ДВОРИК\" база отдыха",
+      "new_title": "\"ЗЕЛЕНЫЙ ДВОРИК\" домики и номера",
+      "score": 1.0
+    },
+    "/tproduct/992461624922-marta-gostevie-nomera": {
+      "to": "/hotels/marta-gostevye-nomera-3574/",
+      "old_title": "“МАРТА” гостевые номера",
+      "new_title": "\"МАРТА\" гостевые номера",
+      "score": 1.0
+    },
+    "/tproduct/994323046982-grant-otel": {
+      "to": "/hotels/grant-otel-nomera-2820/",
+      "old_title": "\"ГРАНТ\" Отель",
+      "new_title": "\"ГРАНТ\" отель номера",
+      "score": 1.0
+    }
   }
 }
