@@ -31,6 +31,31 @@ STATIC_MAP = {
     "/page62959771.html": "/suhum/",      # «Сухум и Восточная Абхазия»
 }
 
+# Адреса из выгрузки Яндекс.Вебмастера «Страницы в поиске» (16.08.2026),
+# которых нет в sitemap Тильды: статьи старого блога (/tpost/) и три
+# карточки. Подобраны вручную, у каждой статьи есть точная пара в новом блоге.
+EXTRA_MAP = {
+    "/tpost/1zusms4cv1-chego-boyatsya-v-abhazii": "/blog/chego-boyatsya-v-abhazii/",
+    "/tpost/24cc5d0vg1-chto-vazhno-znat-pro-svyaz-v-abhazii": "/blog/mobilnaya-svyaz-i-internet-abkhaziya/",
+    "/tpost/29xaf86hv1-vazhnie-pravila-poezdki-v-abhaziyu-s-det": "/blog/pravila-poezdki-s-detmi-abkhaziya-2026/",
+    "/tpost/3zgj3ahdx1-pamyatka-turistu-v-abhaziyu-2026": "/blog/pamyatka-turistu-abkhazia/",
+    "/tpost/9fdztv8lv1-vezd-v-abhaziyu-dlya-kakih-stran-deistvu": "/blog/inostrannye-pravila-vezda-abkhazia/",
+    "/tpost/anz10dnpj1-v-abhaziyu-s-zhivotnimi-chto-nuzhno-znat": "/blog/poezdka-v-abhaziyu-s-zhivotnym/",
+    "/tpost/dfbup2mky1-goryachie-istochniki-v-abhazii": "/blog/goryachie-istochniki-abhazii/",
+    "/tpost/fxrrv8czr1-abhaziya-minusi-otdiha": "/blog/minusy-otdyha-abkhazia/",
+    "/tpost/granica": "/blog/kak-projti-granicu-psou/",
+    "/tpost/jckj0uma31-za-eto-vas-lishat-prav-v-abhazii": "/blog/prava-i-shtrafy-avto-abhaziya/",
+    "/tpost/kurort": "/blog/kak-vybrat-kurort-abkhaziya-pervyy-raz/",
+    "/tpost/presentation": "/blog/znakomstvo-darya-bronirovanie-abhaziya/",
+    "/tpost/smfja6upd1-edinii-bilet-v-abhaziyu-chto-eto-takoe-i": "/blog/edinyj-bilet-v-abhaziyu/",
+    "/tpost/uedtmffth1-sobralis-v-abhaziyu-proverte-dolgi-do-po": "/blog/proverka-dolgov-pered-poezdkoj/",
+    "/tproduct/264171370802-nora-gostevoi-dom-ekonom": "/hotels/nora-gostevoy-dom-3851/",
+    "/tproduct/678683261522-afina-kvartira-2-k": "/kvartira/afina-kvartira-2k-1488/",
+    # «ГРЕЙ ХАУС» эко-отель — на новом сайте объекта нет (подтвердить у Дарьи)
+    "/catalogcity/tproduct/259792702692-grei-haus-eko-otel-s-basseinom-": "/",
+}
+STATIC_MAP.update(EXTRA_MAP)
+
 
 def norm(text: str) -> str:
     text = (text or "").lower().replace("ё", "е")
