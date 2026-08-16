@@ -511,11 +511,13 @@ jobs:
           # тело ответа.
           check_node() {
             IP="$1"; P="$2"; WANT="$3"
+            # || true: ошибка TLS/сети — это «плохой узел», а не повод уронить
+            # весь скрипт (bash -e прервал проверку 16.08 на curl exit 60).
             BODY=$(curl -sS --max-time 25 --resolve "abhazbereg.ru:443:$IP" \
-              "https://abhazbereg.ru$P" 2>&1)
+              "https://abhazbereg.ru$P" 2>&1 || true)
             echo "  $P"
             case "$BODY" in *"xn--80aacbklan7f0b.xn--p1ai$WANT"*) echo "     переезд на $WANT: да";; \
-              *) echo "     ^^ ПЛОХО: нет переезда на $WANT"; FAIL=1;; esac
+              *) echo "     ^^ ПЛОХО: нет переезда на $WANT ($(echo "$BODY" | head -c 120))"; FAIL=1;; esac
           }
           for IP in $IPS; do
             echo
