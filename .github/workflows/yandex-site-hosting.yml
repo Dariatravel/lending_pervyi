@@ -168,6 +168,9 @@ jobs:
           echo
           echo "############ Вторая зона: редиректор ############"
           ZONE=abhazbereg.com python3 tools/dns_zone_snapshot.py
+          echo
+          echo "############ Третья зона: старая Тильда ############"
+          ZONE=abhazbereg.ru python3 tools/dns_zone_snapshot.py
 
       # Откуда 2.5 ТБ исходящего трафика в месяц: считаем вес медиа по типам
       # и ищем видео без сжатой -web-копии — главных кандидатов на пережатие.
