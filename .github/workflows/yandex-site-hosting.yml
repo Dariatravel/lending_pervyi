@@ -17,13 +17,17 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify / dns-create-com / dns-status-com / media-audit / media-optimize"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify / dns-create-com / dns-status-com / media-audit / media-optimize / redirect-create-ru / cert-request-ru / cert-status-ru / dns-create-ru / dns-status-ru / cdn-create-ru / cdn-status-ru / redirect-verify-ru"
         required: true
         default: "probe"
       bucket:
         description: "Имя бакета для сайта"
         required: false
         default: "abhazbereg-site"
+      acme_value:
+        description: "Для dns-create-ru: CNAME-значение проверки сертификата (…cm.yandexcloud.net.)"
+        required: false
+        default: ""
 
 env:
   ENDPOINT: https://storage.yandexcloud.net
@@ -414,6 +418,110 @@ jobs:
           YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
           YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
         run: pip install --quiet pyjwt cryptography && python3 tools/yc_dns.py status
+
+      # ===== Переезд старого сайта на Тильде: abhazbereg.ru =====
+      # Схема как у abhazbereg.com, но пути Тильды не совпадают с новым
+      # сайтом, поэтому вместо «всё на новый домен» — точечный 301 на каждый
+      # адрес из data/old-site-redirects.json (объекты бакета с
+      # x-amz-website-redirect-location).
+
+      - name: redirect-create-ru — будочка с точечными переездами
+        if: inputs.action == 'redirect-create-ru'
+        run: pip install --quiet boto3 && python3 tools/build_ru_redirector.py
+
+      - name: cert-request-ru — сертификат для abhazbereg.ru
+        if: inputs.action == 'cert-request-ru'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CERT_NAME: abhazbereg-ru
+          CERT_DOMAIN: abhazbereg.ru
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_certificate.py request
+
+      - name: cert-status-ru — что с сертификатом abhazbereg.ru
+        if: inputs.action == 'cert-status-ru'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CERT_NAME: abhazbereg-ru
+          CERT_DOMAIN: abhazbereg.ru
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_certificate.py status
+
+      - name: dns-create-ru — зона abhazbereg.ru в Cloud DNS
+        if: inputs.action == 'dns-create-ru'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          DNS_ZONE: abhazbereg.ru.
+          DNS_ZONE_NAME: abhazbereg-ru
+          DNS_ACME_VALUE: ${{ inputs.acme_value }}
+        run: |
+          if [ -z "$DNS_ACME_VALUE" ]; then
+            echo "::error::Передайте acme_value из вывода cert-request-ru."; exit 1
+          fi
+          pip install --quiet pyjwt cryptography && python3 tools/yc_dns.py create
+
+      - name: dns-status-ru — записи зоны и серверы имён для регистратора
+        if: inputs.action == 'dns-status-ru'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          DNS_ZONE: abhazbereg.ru.
+          DNS_ZONE_NAME: abhazbereg-ru
+          DNS_ACME_VALUE: ${{ inputs.acme_value }}
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_dns.py status
+
+      - name: cdn-create-ru — CDN-ресурс редиректора Тильды
+        if: inputs.action == 'cdn-create-ru'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CDN_DOMAIN: abhazbereg.ru
+          CDN_CERT_NAME: abhazbereg-ru
+          CDN_GROUP_NAME: abhazbereg-ru-origin
+          CDN_ORIGIN_HOST: abhazbereg-ru-redirect.website.yandexcloud.net
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_cdn.py create
+
+      - name: cdn-status-ru — состояние CDN редиректора Тильды
+        if: inputs.action == 'cdn-status-ru'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CDN_DOMAIN: abhazbereg.ru
+          CDN_CERT_NAME: abhazbereg-ru
+          CDN_GROUP_NAME: abhazbereg-ru-origin
+          CDN_ORIGIN_HOST: abhazbereg-ru-redirect.website.yandexcloud.net
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_cdn.py status
+
+      # Как redirect-verify, но проверяем ТОЧЕЧНЫЕ переезды: карточка → своя
+      # страница, статья → своя статья, и на каждом узле балансировщика.
+      - name: redirect-verify-ru — будочка Тильды через ВСЕ узлы CDN
+        if: inputs.action == 'redirect-verify-ru'
+        run: |
+          CN="062ff875d101b985.topology.gslb.yccdn.ru"
+          IPS=$( (for i in 1 2 3 4 5 6; do dig +short "$CN" @8.8.8.8; dig +short "$CN" @77.88.8.8; sleep 1; done) \
+            | grep -E "^[0-9.]+$" | sort -u)
+          echo "Адреса балансировщика:"; echo "$IPS" | sed 's/^/  /'
+          FAIL=0
+          check_node() {
+            IP="$1"; P="$2"; WANT="$3"
+            OUT=$(curl -sSI --max-time 25 --resolve "abhazbereg.ru:443:$IP" \
+              "https://abhazbereg.ru$P" 2>&1 | grep -iE "^(HTTP|location)" | tr '\n' ' ')
+            echo "  $P"
+            echo "     $OUT"
+            case "$OUT" in *301*"xn--80aacbklan7f0b.xn--p1ai$WANT"*) ;; *) echo "     ^^ ПЛОХО"; FAIL=1;; esac
+          }
+          for IP in $IPS; do
+            echo
+            echo "=== Узел $IP ==="
+            check_node "$IP" "/" "/"
+            check_node "$IP" "/tproduct/994323046982-grant-otel" "/hotels/grant-otel-nomera-2820/"
+            check_node "$IP" "/tpost/granica" "/blog/kak-projti-granicu-psou/"
+            check_node "$IP" "/page62959751.html" "/pitsunda/"
+          done
+          echo
+          [ "$FAIL" = "0" ] && echo "ИТОГ: все узлы отвечают точным 301." \
+            || { echo "ИТОГ: есть плохие узлы — переключать нельзя."; exit 1; }
 
       - name: cdn-status-com — состояние CDN редиректора
         if: inputs.action == 'cdn-status-com'
