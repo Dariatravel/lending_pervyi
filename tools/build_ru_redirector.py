@@ -2,14 +2,14 @@
 """Будочка-редиректор для abhazbereg.ru: каждый старый адрес → своя страница.
 
 В отличие от abhazbereg.com (там все пути один в один переносятся на новый
-домен), у Тильды адреса не совпадают с новым сайтом: /tproduct/...-grant-otel
-должен вести на /hotels/grant-otel-nomera-2664/. Поэтому вместо общего
-RedirectAllRequestsTo — по пустому объекту на каждый путь из
-data/old-site-redirects.json с заголовком x-amz-website-redirect-location:
-статический сайт бакета отвечает на такой объект честным 301.
+домен), у Тильды адреса не совпадают с новым сайтом. Яндекс-хранилище не
+умеет x-amz-website-redirect-location (отвечает NotImplemented), поэтому
+на каждый путь из data/old-site-redirects.json кладётся крошечная
+страница-переезд: мгновенный meta refresh + rel=canonical на точную
+страницу абхазберег.рф. Поисковики склеивают такие страницы с целевыми
+(так работала и переадресация самой Тильды), гость переезжает мгновенно.
 
-Неизвестные пути ловит error.html: мгновенный переезд на главную через
-meta refresh + canonical.
+Неизвестные пути ловит error.html с переездом на главную.
 
     python3 tools/build_ru_redirector.py           # создать/обновить и проверить
     python3 tools/build_ru_redirector.py --verify  # только проверить
@@ -20,6 +20,7 @@ import json
 import os
 import sys
 import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -30,18 +31,20 @@ ROOT = Path(__file__).resolve().parents[1]
 MAP_PATH = ROOT / "data" / "old-site-redirects.json"
 BUCKET = "abhazbereg-ru-redirect"
 ENDPOINT = os.getenv("ENDPOINT", "https://storage.yandexcloud.net")
-TARGET_HOST = "https://xn--80aacbklan7f0b.xn--p1ai"  # абхазберег.рф
+TARGET_HOST_PUNY = "https://xn--80aacbklan7f0b.xn--p1ai"
+TARGET_HOST_HUMAN = "https://абхазберег.рф"
 
-ERROR_HTML = """<!DOCTYPE html>
+PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0;url=https://абхазберег.рф/">
-<link rel="canonical" href="https://абхазберег.рф/">
-<title>Сайт переехал — АБХАЗБЕРЕГ</title>
+<meta http-equiv="refresh" content="0;url={puny}">
+<link rel="canonical" href="{human}">
+<script>location.replace("{puny}");</script>
+<title>Страница переехала — АБХАЗБЕРЕГ</title>
 </head>
 <body>
-<p>Сайт переехал на <a href="https://абхазберег.рф/">абхазберег.рф</a>. Сейчас откроется сам.</p>
+<p>Страница переехала: <a href="{puny}">{human}</a></p>
 </body>
 </html>
 """
@@ -58,8 +61,38 @@ def s3_client():
 
 
 def path_to_key(path: str) -> str:
-    key = path.lstrip("/")
-    return key or "index.html"
+    return path.lstrip("/") or "index.html"
+
+
+def redirect_page(target: str) -> bytes:
+    return PAGE_TEMPLATE.format(puny=f"{TARGET_HOST_PUNY}{target}",
+                                human=f"{TARGET_HOST_HUMAN}{target}").encode("utf-8")
+
+
+def make_public(s3) -> None:
+    try:
+        s3.put_bucket_acl(Bucket=BUCKET, ACL="public-read")
+        print("Публичное чтение: включено через ACL бакета.")
+        return
+    except ClientError as error:
+        print(f"ACL бакета: {error.response['Error'].get('Code')} — пробуем bucket policy.")
+    policy = {
+        "Version": "2012-10-17",
+        "Statement": [{
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": f"arn:aws:s3:::{BUCKET}/*",
+        }],
+    }
+    try:
+        s3.put_bucket_policy(Bucket=BUCKET, Policy=json.dumps(policy))
+        print("Публичное чтение: включено через bucket policy.")
+    except ClientError as error:
+        print(f"Bucket policy: {error.response['Error'].get('Code')} — "
+              "если проверка ниже покажет 403, публичный доступ включается "
+              "в консоли: бакет abhazbereg-ru-redirect → Настройки → "
+              "Публичный доступ → «Чтение объектов».")
 
 
 def build() -> int:
@@ -73,13 +106,7 @@ def build() -> int:
         s3.create_bucket(Bucket=BUCKET)
         print(f"Бакет {BUCKET} создан.")
 
-    # Будочка отдаёт объекты (пусть и пустые) — публичное чтение обязательно.
-    try:
-        s3.put_bucket_acl(Bucket=BUCKET, ACL="public-read")
-        print("Публичное чтение бакета включено.")
-    except ClientError as error:
-        print(f"ACL бакета не выставился ({error.response['Error'].get('Code')}) — "
-              "пробуем ACL на объектах.")
+    make_public(s3)
 
     s3.put_bucket_website(Bucket=BUCKET, WebsiteConfiguration={
         "IndexDocument": {"Suffix": "index.html"},
@@ -87,24 +114,35 @@ def build() -> int:
     })
     print("Website-режим включён (index.html / error.html).")
 
-    def put(key: str, body: bytes, **extra) -> None:
+    def put(key: str, body: bytes) -> None:
         try:
-            s3.put_object(Bucket=BUCKET, Key=key, Body=body, ACL="public-read", **extra)
+            s3.put_object(Bucket=BUCKET, Key=key, Body=body, ACL="public-read",
+                          ContentType="text/html; charset=utf-8",
+                          CacheControl="public, max-age=3600")
         except ClientError as error:
-            if error.response["Error"].get("Code") == "AccessDenied":
-                s3.put_object(Bucket=BUCKET, Key=key, Body=body, **extra)
+            if error.response["Error"].get("Code") in ("AccessDenied", "NotImplemented"):
+                s3.put_object(Bucket=BUCKET, Key=key, Body=body,
+                              ContentType="text/html; charset=utf-8",
+                              CacheControl="public, max-age=3600")
             else:
                 raise
 
     count = 0
     for path, value in sorted(redirects.items()):
         target = value["to"] if isinstance(value, dict) else value
-        put(path_to_key(path), b"", WebsiteRedirectLocation=f"{TARGET_HOST}{target}",
-            ContentType="text/html")
+        put(path_to_key(path), redirect_page(target))
         count += 1
-    put("error.html", ERROR_HTML.encode("utf-8"), ContentType="text/html; charset=utf-8")
-    print(f"Загружено переездов: {count} + error.html")
+    put("error.html", redirect_page("/"))
+    print(f"Загружено страниц-переездов: {count} + error.html")
     return 0
+
+
+def fetch(url: str) -> tuple[int, str]:
+    try:
+        with urllib.request.urlopen(url, timeout=30) as response:
+            return response.status, response.read().decode("utf-8", errors="ignore")
+    except urllib.error.HTTPError as error:
+        return error.code, error.read().decode("utf-8", errors="ignore")
 
 
 def verify() -> int:
@@ -113,7 +151,6 @@ def verify() -> int:
     samples = ["/", "/catalog", "/tpost/granica",
                "/tproduct/994323046982-grant-otel",
                "/page62959751.html"]
-    # плюс три случайных tproduct для честности
     tproducts = [p for p in redirects if p.startswith("/tproduct/")]
     samples += tproducts[::max(1, len(tproducts) // 3)][:3]
 
@@ -121,43 +158,21 @@ def verify() -> int:
     print(f"\nПроверяю {base}")
     for path in dict.fromkeys(samples):
         value = redirects.get(path)
-        want = (value["to"] if isinstance(value, dict) else value) if value else None
-        request = urllib.request.Request(base + path, method="HEAD")
-        try:
-            # 301 не следуем — он и есть ответ
-            opener = urllib.request.build_opener(NoRedirect)
-            with opener.open(request, timeout=30) as response:
-                status, location = response.status, response.headers.get("Location", "")
-        except urllib.error.HTTPError as error:
-            status, location = error.code, error.headers.get("Location", "")
-        except Exception as error:  # noqa: BLE001
-            print(f"  ПЛОХО {path}: {error}")
-            failures += 1
-            continue
-        ok = status == 301 and location == f"{TARGET_HOST}{want}"
-        print(f"  {'OK  ' if ok else 'ПЛОХО'} {path} → {status} {location}")
+        want = (value["to"] if isinstance(value, dict) else value) if value else "/"
+        status, body = fetch(base + path)
+        ok = status == 200 and f"{TARGET_HOST_PUNY}{want}" in body
+        print(f"  {'OK  ' if ok else 'ПЛОХО'} {path} → {status}, переезд на {want}: {'да' if ok else 'НЕТ'}")
         if not ok:
             failures += 1
 
-    # неизвестный путь должен отдавать error.html с переездом на главную
-    status, body = 0, b""
-    try:
-        with urllib.request.urlopen(base + "/takogo-puti-net-12345", timeout=30) as response:
-            status, body = response.status, response.read()
-    except urllib.error.HTTPError as error:
-        status, body = error.code, error.read()
-    ok = "абхазберег.рф".encode() in body or b"xn--80aacbklan7f0b" in body
-    print(f"  {'OK  ' if ok else 'ПЛОХО'} неизвестный путь → {status}, страница-переезд: {'да' if ok else 'нет'}")
+    status, body = fetch(base + "/takogo-puti-net-12345")
+    ok = TARGET_HOST_PUNY in body
+    print(f"  {'OK  ' if ok else 'ПЛОХО'} неизвестный путь → {status}, страница-переезд: {'да' if ok else 'НЕТ'}")
     if not ok:
         failures += 1
 
     print(f"\nИтог: провалов {failures}")
     return 1 if failures else 0
-
-
-class NoRedirect(urllib.request.HTTPRedirectHandler):
-    def redirect_request(self, *args, **kwargs):  # noqa: D102
-        return None
 
 
 def main() -> int:

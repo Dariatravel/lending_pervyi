@@ -503,13 +503,16 @@ jobs:
             | grep -E "^[0-9.]+$" | sort -u)
           echo "Адреса балансировщика:"; echo "$IPS" | sed 's/^/  /'
           FAIL=0
+          # Хранилище Яндекса не умеет объектные 301, поэтому будочка отдаёт
+          # страницы-переезды: 200 + meta refresh на точный адрес. Проверяем
+          # тело ответа.
           check_node() {
             IP="$1"; P="$2"; WANT="$3"
-            OUT=$(curl -sSI --max-time 25 --resolve "abhazbereg.ru:443:$IP" \
-              "https://abhazbereg.ru$P" 2>&1 | grep -iE "^(HTTP|location)" | tr '\n' ' ')
+            BODY=$(curl -sS --max-time 25 --resolve "abhazbereg.ru:443:$IP" \
+              "https://abhazbereg.ru$P" 2>&1)
             echo "  $P"
-            echo "     $OUT"
-            case "$OUT" in *301*"xn--80aacbklan7f0b.xn--p1ai$WANT"*) ;; *) echo "     ^^ ПЛОХО"; FAIL=1;; esac
+            case "$BODY" in *"xn--80aacbklan7f0b.xn--p1ai$WANT"*) echo "     переезд на $WANT: да";; \
+              *) echo "     ^^ ПЛОХО: нет переезда на $WANT"; FAIL=1;; esac
           }
           for IP in $IPS; do
             echo
