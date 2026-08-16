@@ -18,21 +18,21 @@ LISTING_GUEST_REVIEWS_BLOCK = """      <section class="hotel-card__guest-reviews
 
 HOME_SOCIAL_STATS_STRIP = """  <section class="section site-concept__social-strip" aria-label="Наши сообщества в соцсетях">
     <div class="site-concept__social-stats site-concept__social-stats--strip" role="list">
-      <a aria-label="Telegram: 13 900 подписчиков, открыть канал" class="site-concept__social-stat" href="https://t.me/abhazbooking" rel="noopener noreferrer" role="listitem" target="_blank">
+      <a aria-label="Telegram: 14 200 подписчиков, открыть канал" class="site-concept__social-stat" href="https://t.me/abhazbooking" rel="noopener noreferrer" role="listitem" target="_blank">
         <span aria-hidden="true" class="site-concept__social-stat-icon site-concept__social-stat-icon--tg">
           <svg aria-hidden="true" fill="none" height="28" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg"><path d="M21.5 5.2 3.4 11.9c-1.1.4-1.1 1-.2 1.3l4.6 1.4 1.8 5.5c.2.6.9.8 1.4.4l2.5-2 4.3 3.2c.8.4 1.7.2 2-.6l3-14.2c.4-1.6-.6-2.3-1.8-1.7Z" fill="#fff"/></svg>
         </span>
         <strong>13&#8239;900</strong>
         <span class="site-concept__social-stat-label">подписчиков</span>
       </a>
-      <a aria-label="ВКонтакте: 42 000 участников" class="site-concept__social-stat" href="https://vk.com/abhazbereg" rel="noopener noreferrer" role="listitem" target="_blank">
+      <a aria-label="ВКонтакте: 46 500 участников" class="site-concept__social-stat" href="https://vk.com/abhazbereg" rel="noopener noreferrer" role="listitem" target="_blank">
         <span aria-hidden="true" class="site-concept__social-stat-icon site-concept__social-stat-icon--vk">
           <svg aria-hidden="true" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M15.7 0H8.3C2.8 0 0 2.8 0 8.3v7.4C0 22.2 2.8 24 8.3 24h7.4c5.5 0 8.3-1.8 8.3-7.3V8.3C24 2.8 21.2 0 15.7 0zm4.1 17.3h-1.7c-.7 0-.9-.5-2-1.7-1-1-1.5-1.2-1.7-1.2-.4 0-.5.1-.5.6v1.6c0 .4-.1.7-1.2.7-1.9 0-4-1.1-5.5-3.2-2.2-3.1-2.8-5.2-2.8-5.6 0-.2.2-.5.6-.5h1.7c.4 0 .6.2.8.7.8 2.5 2.3 4.6 2.9 4.6.2 0 .3-.1.3-.7V9.7c-.1-1.2-.7-1.3-.7-1.7 0-.2.2-.4.4-.4h2.7c.3 0 .4.2.4.5v4c0 .3.1.5.3.5.2 0 .3-.1.6-.3 1-1.1 1.7-2.9 1.7-2.9.2-.3.3-.5.7-.5h1.7c.5 0 .6.3.5.7-.2.9-2.1 3.6-2.1 3.6-.2.3-.3.4 0 .7.2.3.7.8.9 1.3.6 1 1.1 2.1 1.2 2.8.1.4-.1.7-.5.7z" fill="#fff"/></svg>
         </span>
         <strong>42&#8239;000</strong>
         <span class="site-concept__social-stat-label">участников</span>
       </a>
-      <a aria-label="MAX: 5 500 участников" class="site-concept__social-stat" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" role="listitem" target="_blank">
+      <a aria-label="MAX: 6 900 участников" class="site-concept__social-stat" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" role="listitem" target="_blank">
         <span aria-hidden="true" class="site-concept__social-stat-icon site-concept__social-stat-icon--max">
           <svg aria-hidden="true" fill="none" height="26" viewBox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"><path d="M7 10c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v3c0 1.1-.9 2-2 2h-2.5l-2.2 2.2c-.4.4-1 .1-1-.5V15H9c-1.1 0-2-.9-2-2v-3Z" fill="#fff"/></svg>
         </span>
@@ -1742,21 +1742,21 @@ def build_homepage() -> None:
       </div>
 
       <div class="site-concept__social-stats" role="list">
-        <a aria-label="Telegram: 13 900 подписчиков, открыть канал" class="site-concept__social-stat" href="https://t.me/abhazbooking" rel="noopener noreferrer" role="listitem" target="_blank">
+        <a aria-label="Telegram: 14 200 подписчиков, открыть канал" class="site-concept__social-stat" href="https://t.me/abhazbooking" rel="noopener noreferrer" role="listitem" target="_blank">
           <span aria-hidden="true" class="site-concept__social-stat-icon site-concept__social-stat-icon--tg">
             <svg aria-hidden="true" fill="none" height="28" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg"><path d="M21.5 5.2 3.4 11.9c-1.1.4-1.1 1-.2 1.3l4.6 1.4 1.8 5.5c.2.6.9.8 1.4.4l2.5-2 4.3 3.2c.8.4 1.7.2 2-.6l3-14.2c.4-1.6-.6-2.3-1.8-1.7Z" fill="#fff"/></svg>
           </span>
           <strong>13&#8239;900</strong>
           <span class="site-concept__social-stat-label">подписчиков</span>
         </a>
-        <a aria-label="ВКонтакте: 42 000 участников" class="site-concept__social-stat" href="https://vk.com/abhazbereg" rel="noopener noreferrer" role="listitem" target="_blank">
+        <a aria-label="ВКонтакте: 46 500 участников" class="site-concept__social-stat" href="https://vk.com/abhazbereg" rel="noopener noreferrer" role="listitem" target="_blank">
           <span aria-hidden="true" class="site-concept__social-stat-icon site-concept__social-stat-icon--vk">
             <svg aria-hidden="true" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M15.7 0H8.3C2.8 0 0 2.8 0 8.3v7.4C0 22.2 2.8 24 8.3 24h7.4c5.5 0 8.3-1.8 8.3-7.3V8.3C24 2.8 21.2 0 15.7 0zm4.1 17.3h-1.7c-.7 0-.9-.5-2-1.7-1-1-1.5-1.2-1.7-1.2-.4 0-.5.1-.5.6v1.6c0 .4-.1.7-1.2.7-1.9 0-4-1.1-5.5-3.2-2.2-3.1-2.8-5.2-2.8-5.6 0-.2.2-.5.6-.5h1.7c.4 0 .6.2.8.7.8 2.5 2.3 4.6 2.9 4.6.2 0 .3-.1.3-.7V9.7c-.1-1.2-.7-1.3-.7-1.7 0-.2.2-.4.4-.4h2.7c.3 0 .4.2.4.5v4c0 .3.1.5.3.5.2 0 .3-.1.6-.3 1-1.1 1.7-2.9 1.7-2.9.2-.3.3-.5.7-.5h1.7c.5 0 .6.3.5.7-.2.9-2.1 3.6-2.1 3.6-.2.3-.3.4 0 .7.2.3.7.8.9 1.3.6 1 1.1 2.1 1.2 2.8.1.4-.1.7-.5.7z" fill="#fff"/></svg>
           </span>
           <strong>42&#8239;000</strong>
           <span class="site-concept__social-stat-label">участников</span>
         </a>
-        <a aria-label="MAX: 5 500 участников" class="site-concept__social-stat" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" role="listitem" target="_blank">
+        <a aria-label="MAX: 6 900 участников" class="site-concept__social-stat" href="https://max.ru/id741113115256_bot" rel="noopener noreferrer" role="listitem" target="_blank">
           <span aria-hidden="true" class="site-concept__social-stat-icon site-concept__social-stat-icon--max">
             <svg aria-hidden="true" fill="none" height="26" viewBox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"><path d="M7 10c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2v3c0 1.1-.9 2-2 2h-2.5l-2.2 2.2c-.4.4-1 .1-1-.5V15H9c-1.1 0-2-.9-2-2v-3Z" fill="#fff"/></svg>
           </span>
@@ -1908,7 +1908,7 @@ def build_homepage() -> None:
 
     rebuilt = replace_main(text, new_main)
     if "scripts.js" not in rebuilt:
-        rebuilt = rebuilt.replace("</body>", '  <script src="scripts.min.js?v=202608111814" defer></script>\n</body>')
+        rebuilt = rebuilt.replace("</body>", '  <script src="scripts.min.js?v=202608161116" defer></script>\n</body>')
     INDEX_FILE.write_text(clean_html_block(rebuilt) + "\n", encoding="utf-8")
 
 
