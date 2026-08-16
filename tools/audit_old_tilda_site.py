@@ -38,9 +38,15 @@ def fetch(url: str) -> tuple[int, str]:
         return 0, ""
 
 
-def sitemap_urls() -> list[str]:
+def sitemap_urls(robots: str = "") -> list[str]:
     urls: list[str] = []
     queue = [f"{ORIGIN}/sitemap.xml"]
+    # Тильда объявляет дополнительные карты (например sitemap-store.xml
+    # с карточками каталога) только в robots.txt — читаем и их.
+    for line in robots.splitlines():
+        if line.lower().startswith("sitemap:"):
+            declared = line.split(":", 1)[1].strip().replace("http://", "https://")
+            queue.append(declared)
     seen = set()
     while queue:
         sm = queue.pop(0)
@@ -81,7 +87,7 @@ def main() -> int:
     status, robots = fetch(f"{ORIGIN}/robots.txt")
     print(f"robots.txt: код {status}\n{robots.strip()[:800]}\n")
 
-    urls = sitemap_urls()
+    urls = sitemap_urls(robots)
     print(f"\nСтраниц в sitemap: {len(urls)}")
     if not urls:
         # Тильда без sitemap — возьмём хотя бы главную и ссылки с неё
