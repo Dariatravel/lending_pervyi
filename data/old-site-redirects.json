@@ -89,6 +89,11 @@
       "new_title": "\"СИТИ ГАГРА\" квартира 2к",
       "score": 1.0
     },
+    "/catalogcity/tproduct/259792702692-grei-haus-eko-otel-s-basseinom-": {
+      "to": "/",
+      "old_title": "",
+      "new_title": ""
+    },
     "/catalogcity/tproduct/263883793953-aleksandra-otel-s-pitaniem-i-basseinom-u": {
       "to": "/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/",
       "old_title": "\"АЛЕКСАНДРА\" отель с питанием и бассейном у моря",
@@ -388,6 +393,76 @@
       "old_title": "",
       "new_title": ""
     },
+    "/tpost/1zusms4cv1-chego-boyatsya-v-abhazii": {
+      "to": "/blog/chego-boyatsya-v-abhazii/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/24cc5d0vg1-chto-vazhno-znat-pro-svyaz-v-abhazii": {
+      "to": "/blog/mobilnaya-svyaz-i-internet-abkhaziya/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/29xaf86hv1-vazhnie-pravila-poezdki-v-abhaziyu-s-det": {
+      "to": "/blog/pravila-poezdki-s-detmi-abkhaziya-2026/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/3zgj3ahdx1-pamyatka-turistu-v-abhaziyu-2026": {
+      "to": "/blog/pamyatka-turistu-abkhazia/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/9fdztv8lv1-vezd-v-abhaziyu-dlya-kakih-stran-deistvu": {
+      "to": "/blog/inostrannye-pravila-vezda-abkhazia/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/anz10dnpj1-v-abhaziyu-s-zhivotnimi-chto-nuzhno-znat": {
+      "to": "/blog/poezdka-v-abhaziyu-s-zhivotnym/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/dfbup2mky1-goryachie-istochniki-v-abhazii": {
+      "to": "/blog/goryachie-istochniki-abhazii/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/fxrrv8czr1-abhaziya-minusi-otdiha": {
+      "to": "/blog/minusy-otdyha-abkhazia/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/granica": {
+      "to": "/blog/kak-projti-granicu-psou/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/jckj0uma31-za-eto-vas-lishat-prav-v-abhazii": {
+      "to": "/blog/prava-i-shtrafy-avto-abhaziya/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/kurort": {
+      "to": "/blog/kak-vybrat-kurort-abkhaziya-pervyy-raz/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/presentation": {
+      "to": "/blog/znakomstvo-darya-bronirovanie-abhaziya/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/smfja6upd1-edinii-bilet-v-abhaziyu-chto-eto-takoe-i": {
+      "to": "/blog/edinyj-bilet-v-abhaziyu/",
+      "old_title": "",
+      "new_title": ""
+    },
+    "/tpost/uedtmffth1-sobralis-v-abhaziyu-proverte-dolgi-do-po": {
+      "to": "/blog/proverka-dolgov-pered-poezdkoj/",
+      "old_title": "",
+      "new_title": ""
+    },
     "/tproduct/100745512012-lazurnii-bereg-butik-otel-otdih-s-dushoi": {
       "to": "/hotels/lazurnyy-bereg-butik-otel-s-pitaniem-2592/",
       "old_title": "\"ЛАЗУРНЫЙ БЕРЕГ\" бутик-отель – отдых с душой ❤️",
@@ -610,6 +685,11 @@
       "old_title": "\"ЭСМА\" — студия с интерьером как из журнала",
       "new_title": "\"ЭСМА\" домики с бассейном в центре",
       "score": 1.0
+    },
+    "/tproduct/264171370802-nora-gostevoi-dom-ekonom": {
+      "to": "/hotels/nora-gostevoy-dom-3851/",
+      "old_title": "",
+      "new_title": ""
     },
     "/tproduct/265001675562-kvarts-domiki": {
       "to": "/hotels/kvarts-domiki-4449/",
@@ -1073,6 +1153,11 @@
       "old_title": "\"ПЕРЛ\" дом под ключ",
       "new_title": "\"ПЕРЛ\" дом под ключ",
       "score": 1.0
+    },
+    "/tproduct/678683261522-afina-kvartira-2-k": {
+      "to": "/kvartira/afina-kvartira-2k-1488/",
+      "old_title": "",
+      "new_title": ""
     },
     "/tproduct/681751920882-mirano-gostevoi-dom": {
       "to": "/hotels/mirano-gostevoy-dom-4550/",
