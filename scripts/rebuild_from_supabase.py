@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 import requests
 
 from media_urls import media_src_for_html, yandex_photo_url  # noqa: E402
+from promo_title import strip_promo_tail  # noqa: E402
 from supplemental_store import apply_to_page_html as supplemental_apply_to_page  # noqa: E402
 from virtual_tour_store import apply_tour_to_page  # noqa: E402
 from responsive_images import responsive_img_html  # noqa: E402
@@ -64,23 +65,12 @@ def render_card_price_html(slug: str) -> str:
 
 # Хвосты вида «🩵скидка 20% до 20 июля🩵» в мини-карточке не показываем —
 # название должно оставаться чистым (решение Дарьи 18.07.2026).
-_PROMO_TAIL_RX = re.compile(
-    r"скидк|акци|раннее\s+бронирован|спецпредлож|распродаж|успей|только\s+до\b",
-    re.IGNORECASE,
-)
-_TAIL_TRIM_RX = re.compile(
-    "[\\s\\-–—:,·|" "\U0001f000-\U0001faff☀-➿⬀-⯿️]+$"
-)
 _CAPACITY_RX = re.compile(r"размещ\w*[^.,;!]*?до\s*\d+\s*чел\w*", re.IGNORECASE)
 
 
 def clean_card_title(title: str) -> str:
-    text = str(title or "")
-    match = _PROMO_TAIL_RX.search(text)
-    if not match:
-        return text
-    cleaned = _TAIL_TRIM_RX.sub("", text[: match.start()]).strip()
-    return cleaned or text
+    """Название без рекламного хвоста (общее правило — scripts/promo_title.py)."""
+    return strip_promo_tail(title)
 
 
 def extract_capacity_text(row: dict[str, Any]) -> str:
@@ -596,7 +586,8 @@ def update_hotel_page(row: dict[str, Any]) -> None:
         return
     details = row.get("details") or {}
 
-    title = row.get("title") or ""
+    # Без рекламного хвоста: заголовок уходит и в <title>/og:title/H1/JSON-LD.
+    title = strip_promo_tail(row.get("title") or "")
     summary = row.get("summary") or row.get("excerpt") or ""
     lead = details.get("lead") or summary
     cover = pick_cover_url(row)

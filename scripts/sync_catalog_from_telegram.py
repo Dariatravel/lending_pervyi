@@ -55,6 +55,7 @@ from media_urls import media_src_for_html, yandex_photo_url  # noqa: E402
 from responsive_images import responsive_img_html, responsive_preload_link  # noqa: E402
 from yandex_storage import upload_file as upload_to_yandex  # noqa: E402
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
+from promo_title import strip_promo_tail  # noqa: E402
 from supplemental_store import apply_to_page_html as supplemental_apply_to_page  # noqa: E402
 from virtual_tour_store import apply_tour_to_page  # noqa: E402
 
@@ -999,7 +1000,9 @@ def render_top_gallery(media_items: list[dict[str, Any]], title: str) -> str:
 
 def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text: str, parsed: dict[str, Any], media_items: list[dict[str, Any]], page_href: str) -> str:
     _ = date_text
-    title = normalize_title(parsed.get('title', '')).upper()
+    # Рекламный хвост из поста («РАННЕЕ БРОНИРОВАНИЕ 2027», «скидка 10%…») в
+    # названии объекта не нужен: он устаревает и попадает в <title>/og:title/H1.
+    title = strip_promo_tail(normalize_title(parsed.get('title', ''))).upper()
     lead = human_lead(parsed)
     description = build_excerpt(parsed)
     sections = parsed.get('sections', [])
@@ -1094,7 +1097,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
 {preload_block}    <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202608161116" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202608161131" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1181,7 +1184,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202608161116" defer></script>
+    <script src="../../scripts.min.js?v=202608161131" defer></script>
   </body>
 </html>'''
 
