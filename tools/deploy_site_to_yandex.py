@@ -53,6 +53,9 @@ INCLUDE_FILES = (
     "index.html", "404.html", "offline.html",
     "styles.min.css", "scripts.min.js", "pwa.js", "sw.js",
     "app.webmanifest", "sitemap.xml", "robots.txt",
+    # AI-поиск: визитка для ИИ-агентов и ключ IndexNow (обязан лежать в корне —
+    # зона полномочий ключа определяется каталогом его размещения).
+    "llms.txt", "b67d7f52dcffbe7873f8353e316784a2.txt",
 )
 
 # Файлы подтверждения прав в Яндекс.Вебмастере и Google Search Console.
