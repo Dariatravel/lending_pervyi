@@ -23,7 +23,11 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 HOST = "xn--80aacbklan7f0b.xn--p1ai"
 KEY = "b67d7f52dcffbe7873f8353e316784a2"
-KEY_LOCATION = f"https://{HOST}/ai/indexnow-{KEY}.txt"
+# Ключ обязан лежать в КОРНЕ сайта: зона полномочий ключа = каталог размещения
+# (ключ в /ai/ разрешал бы слать только /ai/*). Файл /<key>.txt есть в git,
+# но nginx-прокси домена пока отдаёт 404 на новые корневые файлы (как и
+# /llms.txt) — IndexNow оживёт, когда хостер уберёт это ограничение.
+KEY_LOCATION = f"https://{HOST}/{KEY}.txt"
 ENDPOINT = "https://yandex.com/indexnow"
 
 # Разделы, страницы которых имеет смысл переиндексировать
