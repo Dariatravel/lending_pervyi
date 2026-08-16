@@ -743,6 +743,15 @@ def discover_static_sitemap_urls() -> list[str]:
         urls.append(f"{CANON_ORIGIN}/podborki/")
         for path_item in sorted(PODBORKI_ROOT_SITE.glob("*/index.html")):
             urls.append(f"{CANON_ORIGIN}/podborki/{path_item.parent.name}/")
+    # Вопросные страницы /answers/ — основной вход для поисковых и ИИ-ответов
+    # (Алиса AI берёт источники из топа выдачи); без sitemap они индексируются хуже.
+    answers_root = ROOT / "answers"
+    if answers_root.is_dir():
+        urls.append(f"{CANON_ORIGIN}/answers/")
+        for path_item in sorted(answers_root.glob("*/index.html")):
+            urls.append(f"{CANON_ORIGIN}/answers/{path_item.parent.name}/")
+    if (ROOT / "about" / "index.html").is_file():
+        urls.append(f"{CANON_ORIGIN}/about/")
     return urls
 
 

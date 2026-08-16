@@ -218,6 +218,12 @@ jobs:
           echo "pushed=true" >> "$GITHUB_OUTPUT"
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
 
+      # IndexNow: сообщить Яндексу об изменённых страницах — индексация за
+      # минуты вместо дней. Ошибка сети не валит синк (скрипт всегда exit 0).
+      - name: Отправить изменённые страницы в IndexNow
+        if: steps.gate.outputs.enabled == 'true' && steps.publish.outputs.pushed == 'true'
+        run: python3 tools/submit_indexnow.py HEAD~1..HEAD || true
+
       # Карта могла измениться и без изменений в Telegram — тогда общий
       # publish не выполнялся и точки публикуем отдельным коммитом.
       - name: Опубликовать обновление карты
