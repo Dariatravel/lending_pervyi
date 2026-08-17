@@ -531,6 +531,20 @@ jobs:
           [ "$FAIL" = "0" ] && echo "ИТОГ: все узлы отвечают точным 301." \
             || { echo "ИТОГ: есть плохие узлы — переключать нельзя."; exit 1; }
 
+      - name: serverless-list — мёртвое серверлес-наследие (только посмотреть)
+        if: inputs.action == 'serverless-list'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_serverless_cleanup.py list
+
+      - name: serverless-delete — удалить мёртвое серверлес-наследие (НЕОБРАТИМО)
+        if: inputs.action == 'serverless-delete'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_serverless_cleanup.py delete
+
       - name: cdn-status-com — состояние CDN редиректора
         if: inputs.action == 'cdn-status-com'
         env:
