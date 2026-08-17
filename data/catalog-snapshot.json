@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-17T09:30:03.805451+00:00",
+  "generated_at": "2026-08-17T10:20:39.259948+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 235,
-  "listings_hotels": 184,
-  "listings_kvartira": 51,
+  "listings_total": 237,
+  "listings_hotels": 185,
+  "listings_kvartira": 52,
   "listings": [
     {
       "source_kind": "kvartira",
@@ -66057,6 +66057,473 @@
             "telegram_post": "abhazbooking/5218",
             "telegram_url": "https://t.me/abhazbooking/5218",
             "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/inkit-rezort-afreymy-5209/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5219,
+      "source_topic_id": null,
+      "slug": "david-gostevoy-dom-5219",
+      "title": "\"ДАВИД\" гостевой дом",
+      "summary": "Гагра. 8 минут до пляжа, размещение до 4 человек.",
+      "excerpt": "Всего шесть номеров, расположенных на 3 этаже",
+      "city": "Гагра",
+      "location_text": "Гагра, проспект Ардзинба, 218",
+      "distance_text": "8 минут до пляжа",
+      "beach_text": "8 минут до пляжа",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/david-gostevoy-dom-5219/",
+      "telegram_url": "https://t.me/abhazbooking/5219",
+      "published_at": "2026-08-17",
+      "has_video": false,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/david-gostevoy-dom-5219.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 8 минут до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Всего шесть номеров, расположенных на 3 этаже.",
+              "Двуспальная или две односпальные кровати и раскладной диван или два раскладных диванчика на одного человека, шкаф.",
+              "Сан узел с тропическим душем.",
+              "Оснащение: кондиционер, телевизор, Wi-Fi.",
+              "На этажах есть общий холодильник и чайник.",
+              "Общий балкон с видом во двор и на город, у боковых номеров индивидуальный с видом на соседнее здание."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Общая кухня для самостоятельного приготовления со всем необходимым: варочная поверхность, холодильник, чайник, набор посуды.",
+              "Есть мангал.",
+              "Зона отдыха с лавочками и скамейками."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Парк Славы, Новая Коллонада, колесо обозрения, аквапарк - всё в пешей доступности.",
+              "Различные кафе, столовые, магазины, аптека, остановка.",
+              "До галечного пляжа 8 минут пешком."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет."
+          },
+          {
+            "kind": "price",
+            "text": "Я НА СВЯЗИ 📲"
+          },
+          {
+            "kind": "price",
+            "text": "в MAX: max.ru/id741113115256_bot"
+          },
+          {
+            "kind": "price",
+            "text": "ВК-чат: vk.cc/cQQnBn"
+          },
+          {
+            "kind": "note",
+            "text": "(только сообщение, звонок не пройдёт)"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/david-gostevoy-dom-5219/index.html",
+        "filters": {
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "economy"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "balcony",
+            "tv"
+          ],
+          "stay": []
+        }
+      },
+      "id": 1205,
+      "media": [
+        {
+          "id": 1205001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/david-gostevoy-dom-5219.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/david-gostevoy-dom-5219.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/david-gostevoy-dom-5219.jpg",
+          "details": {}
+        },
+        {
+          "id": 1205002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/david-gostevoy-dom-5219/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1205003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/david-gostevoy-dom-5219/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1205004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/david-gostevoy-dom-5219/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1205005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/david-gostevoy-dom-5219/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1205006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/david-gostevoy-dom-5219/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1205007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/david-gostevoy-dom-5219/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1205008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/david-gostevoy-dom-5219/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1205009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/david-gostevoy-dom-5219/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1205010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/david-gostevoy-dom-5219/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1205011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/david-gostevoy-dom-5219/photo-10.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/hotels/david-gostevoy-dom-5219/photo-10.jpg",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "kvartira",
+      "source_channel": "abhkvartira",
+      "source_message_id": 1695,
+      "source_topic_id": 1694,
+      "slug": "prostornaya-kvartira-5k-1695",
+      "title": "\"ПРОСТОРНАЯ\" квартира 5к",
+      "summary": "Сухум. 12 минут до пляжа, размещение до 10 человек.",
+      "excerpt": "Квартира для большой семьи или компании расположена на первом этаже трёхэтажного дома",
+      "city": "Сухум",
+      "location_text": "Сухум, 2-я Эшерская улица, 21, 43.000944, 40.986641",
+      "distance_text": "12 минут до пляжа",
+      "beach_text": "12 минут до пляжа",
+      "capacity_text": "размещение до 10 человек",
+      "page_url": "https://абхазберег.рф/kvartira/prostornaya-kvartira-5k-1695/",
+      "telegram_url": "https://t.me/abhkvartira/1695",
+      "published_at": "2026-08-17",
+      "has_video": true,
+      "cover_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/prostornaya-kvartira-5k-1695-cover.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Сухум. 12 минут до пляжа, размещение до 10 человек.",
+        "sections": [
+          {
+            "label": "✔️КВАРТИРА:",
+            "lines": [
+              "Квартира для большой семьи или компании расположена на первом этаже трёхэтажного дома.",
+              "Четыре спальни с двуспальными кроватями и кухня-гостиная с раскладным диваном.",
+              "Есть Wi-Fi, кондиционеры во всех комнатах.",
+              "Теливизор в кухне-гостиной.",
+              "Есть стиральная машина, фен и утюг.",
+              "Кухня оборудована всем необходимым для самостоятельного приготовления.",
+              "Сан узел с тропическим душем и сан узел с ванной."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "У входа обустроена зона отдыха с подвесными качелями.",
+              "Во дворе у дома есть мангал."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Детская площадка расположена напротив дома.",
+              "В шаговой доступности магазины.",
+              "До набережной 12 минут пешком.",
+              "До известного пляжа «Дельмар» — около 15 минут.",
+              "В 15 минутах ходьбы находится Сухумский пивзавод, где можно приобрести свежее разливное пиво."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с животными возможно по согласованию.",
+              "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я НА СВЯЗИ 📲",
+              "в MAX: max.ru/id741113115256_bot",
+              "ВК-чат: vk.cc/cQQnBn",
+              "WhatsApp +7940-900-33-40",
+              "(только сообщение, звонок не пройдёт)"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "10 000₽ - любой месяц"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/prostornaya-kvartira-5k-1695/index.html",
+        "filters": {
+          "distance": [
+            "over-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "sukhum"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "terrace",
+            "tv",
+            "kitchen",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "apartments",
+            "pets"
+          ]
+        }
+      },
+      "id": 1206,
+      "media": [
+        {
+          "id": 1206001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/prostornaya-kvartira-5k-1695-cover.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira-cards/prostornaya-kvartira-5k-1695-cover.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/prostornaya-kvartira-5k-1695-cover.jpg",
+          "details": {}
+        },
+        {
+          "id": 1206002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/prostornaya-kvartira-5k-1695/photo-01.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1206003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/prostornaya-kvartira-5k-1695/photo-02.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1206004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/prostornaya-kvartira-5k-1695/photo-03.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1206005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/prostornaya-kvartira-5k-1695/photo-04.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1206006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/prostornaya-kvartira-5k-1695/photo-05.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1206007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/prostornaya-kvartira-5k-1695/photo-06.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1206008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/prostornaya-kvartira-5k-1695/photo-07.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1206009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/prostornaya-kvartira-5k-1695/photo-08.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1206010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/prostornaya-kvartira-5k-1695/photo-09.jpg",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/prostornaya-kvartira-5k-1695/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1206011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/prostornaya-kvartira-5k-1695/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/kvartira/prostornaya-kvartira-5k-1695/video-01.mp4",
+          "public_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/prostornaya-kvartira-5k-1695/video-01.mp4",
+          "details": {
+            "telegram_post": "abhkvartira/1704",
+            "telegram_url": "https://t.me/abhkvartira/1704",
+            "poster_url": "https://storage.yandexcloud.net/abhazbereg-media/media/videos/kvartira/prostornaya-kvartira-5k-1695/video-01-poster.jpg"
           }
         }
       ]
