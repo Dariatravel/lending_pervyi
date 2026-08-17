@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T09:07:23.679721+00:00",
+  "generated_at": "2026-08-17T11:07:51.551788+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -280,6 +280,14 @@
       "lat": 43.31791277709123,
       "lon": 40.24851913359021,
       "url": "/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "\"ДАВИД\" гостевой дом",
+      "address": "Гагра, проспект Ардзинба, 218",
+      "lat": 43.282149,
+      "lon": 40.26736,
+      "url": "/hotels/david-gostevoy-dom-5219/",
       "cityKey": "gagra"
     },
     {
@@ -1731,6 +1739,14 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"ПРОСТОРНАЯ\" КВАРТИРА 5К",
+      "address": "Сухум, 2-я Эшерская улица, 21, 43.000944, 40.986641",
+      "lat": 43.00102668552259,
+      "lon": 40.986818025794584,
+      "url": "/kvartira/prostornaya-kvartira-5k-1695/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"РИММА\" ДВЕ КВАРТИРЫ С КУХНЕЙ",
       "address": "Сухум, ул. Услара 4Б (Армянское ущелье)",
       "lat": 42.97872,
@@ -1876,18 +1892,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 472,
-    "placemarks_unique": 236,
-    "pages_total": 478,
-    "pages_on_disk": 530,
+    "placemarks_total": 474,
+    "placemarks_unique": 237,
+    "pages_total": 490,
+    "pages_on_disk": 542,
     "pages_excluded": 52,
-    "from_constructor": 251,
+    "from_constructor": 253,
     "from_page_coords": 0,
     "from_manual": 0,
-    "skipped_without_constructor": 227,
-    "skipped_without_coords": 227,
+    "skipped_without_constructor": 237,
+    "skipped_without_coords": 237,
     "shared_coordinate_groups": 29,
     "deduped_redirect_points": 17,
-    "points_total": 234
+    "points_total": 236
   }
 }
