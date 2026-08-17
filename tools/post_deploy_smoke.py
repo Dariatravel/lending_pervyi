@@ -180,7 +180,9 @@ def extract_media_checks(html: str, item: dict[str, object]) -> list[str]:
     for srcset in re.findall(r'\bsrcset=["\']([^"\']+)["\']', html):
         for value in re.findall(r"(https://storage\.yandexcloud\.net/abhazbereg-media/media/[^,\s]+-(?:480|960)\.webp)", srcset):
             urls.append(value)
-    urls.extend(re.findall(r"https://storage\.yandexcloud\.net/abhazbereg-media/media/videos/[^\"'\s]+\.mp4", html))
+    urls.extend(re.findall(
+        r"https://(?:storage\.yandexcloud\.net/abhazbereg-media|media\.xn--80aacbklan7f0b\.xn--p1ai)"
+        r"/media/videos/[^\"'\s]+\.mp4", html))
     if item.get("has_video") and not any(".mp4" in url for url in urls):
         slug = item.get("slug")
         urls.append(f"MISSING_VIDEO:{slug}")
