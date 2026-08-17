@@ -84,6 +84,9 @@ def collect(token: str, folder: str) -> dict[str, list[dict]]:
         except SystemExit as error:
             print(f"{service}: нет доступа ({error})")
             items = []
+        except Exception as error:  # noqa: BLE001 — DNS/сеть не должны ронять остальные
+            print(f"{service}: сервис недоступен ({url.split('/')[2]}: {error})")
+            items = []
         found[service] = items
     return found
 
