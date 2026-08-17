@@ -312,7 +312,9 @@ def create() -> int:
         "cname": DOMAIN,
         "origin": {"originGroupId": str(group["id"])},
         "originProtocol": "HTTP",
-        "secondaryHostnames": {"values": [WWW_DOMAIN]},
+        # Для поддоменов (media.*) www-вариант не нужен: CDN_NO_WWW=1.
+        **({} if os.getenv("CDN_NO_WWW") == "1"
+           else {"secondaryHostnames": {"values": [WWW_DOMAIN]}}),
         "sslCertificate": {"type": "CM", "data": {"cm": {"id": certificate_id}}},
         "active": True,
         "options": {

@@ -161,7 +161,9 @@ def request_certificate() -> int:
             "folderId": folder,
             "name": CERT_NAME,
             "description": "Сайт абхазберег.рф в Object Storage",
-            "domains": [DOMAIN_PUNYCODE, f"www.{DOMAIN_PUNYCODE}"],
+            # Для поддоменов (media.*) www-вариант не нужен: CERT_NO_WWW=1.
+            "domains": [DOMAIN_PUNYCODE] if os.getenv("CERT_NO_WWW") == "1"
+            else [DOMAIN_PUNYCODE, f"www.{DOMAIN_PUNYCODE}"],
             "challengeType": "DNS",
         },
     )

@@ -531,6 +531,100 @@ jobs:
           [ "$FAIL" = "0" ] && echo "ИТОГ: все узлы отвечают точным 301." \
             || { echo "ИТОГ: есть плохие узлы — переключать нельзя."; exit 1; }
 
+      # ===== Медиа через CDN: media.абхазберег.рф поверх бакета abhazbereg-media =====
+      # Зачем: 2,1 ТБ/мес фото и видео идут напрямую из Object Storage по
+      # 1,514₽/ГБ (68% счёта). Через CDN тот же трафик стоит 1,054₽/ГБ,
+      # кэш на краях режет origin-трафик, гостям быстрее. Решение Дарьи 18.08.
+
+      - name: cert-request-media — сертификат для media.абхазберег.рф
+        if: inputs.action == 'cert-request-media'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CERT_NAME: abhazbereg-media-cdn
+          CERT_DOMAIN: media.xn--80aacbklan7f0b.xn--p1ai
+          CERT_NO_WWW: "1"
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_certificate.py request
+
+      - name: cert-status-media — что с сертификатом media
+        if: inputs.action == 'cert-status-media'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CERT_NAME: abhazbereg-media-cdn
+          CERT_DOMAIN: media.xn--80aacbklan7f0b.xn--p1ai
+          CERT_NO_WWW: "1"
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_certificate.py status
+
+      - name: dns-record-media — записи media и _acme-challenge.media в зоне .рф
+        if: inputs.action == 'dns-record-media'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          DNS_ZONE: xn--80aacbklan7f0b.xn--p1ai.
+        run: |
+          if [ -z "${{ inputs.acme_value }}" ]; then
+            echo "::error::Передайте acme_value из вывода cert-request-media."; exit 1
+          fi
+          pip install --quiet pyjwt cryptography
+          RECORD_NAME=media RECORD_TYPE=CNAME \
+            RECORD_VALUE=062ff875d101b985.topology.gslb.yccdn.ru. \
+            python3 tools/yc_dns_record.py
+          RECORD_NAME=_acme-challenge.media RECORD_TYPE=CNAME \
+            RECORD_VALUE="${{ inputs.acme_value }}" \
+            python3 tools/yc_dns_record.py
+
+      - name: cdn-create-media — CDN-ресурс поверх бакета медиа
+        if: inputs.action == 'cdn-create-media'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CDN_DOMAIN: media.xn--80aacbklan7f0b.xn--p1ai
+          CDN_CERT_NAME: abhazbereg-media-cdn
+          CDN_GROUP_NAME: abhazbereg-media-origin
+          CDN_ORIGIN_HOST: abhazbereg-media.storage.yandexcloud.net
+          CDN_NO_WWW: "1"
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_cdn.py create
+
+      - name: cdn-status-media — состояние медиа-CDN
+        if: inputs.action == 'cdn-status-media'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CDN_DOMAIN: media.xn--80aacbklan7f0b.xn--p1ai
+          CDN_CERT_NAME: abhazbereg-media-cdn
+          CDN_GROUP_NAME: abhazbereg-media-origin
+          CDN_ORIGIN_HOST: abhazbereg-media.storage.yandexcloud.net
+          CDN_NO_WWW: "1"
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_cdn.py status
+
+      - name: media-cdn-verify — фото и WebP через media.абхазберег.рф на всех узлах
+        if: inputs.action == 'media-cdn-verify'
+        run: |
+          CN="062ff875d101b985.topology.gslb.yccdn.ru"
+          IPS=$( (for i in 1 2 3 4 5 6; do dig +short "$CN" @8.8.8.8; dig +short "$CN" @77.88.8.8; sleep 1; done) \
+            | grep -E "^[0-9.]+$" | sort -u)
+          echo "Адреса балансировщика:"; echo "$IPS" | sed 's/^/  /'
+          H="media.xn--80aacbklan7f0b.xn--p1ai"
+          FAIL=0
+          check_media() {
+            IP="$1"; P="$2"; WANT_TYPE="$3"
+            OUT=$(curl -sSI --max-time 30 --resolve "$H:443:$IP" "https://$H$P" 2>&1 || true)
+            CODE=$(echo "$OUT" | grep -i "^HTTP" | awk '{print $2}' | head -1)
+            TYPE=$(echo "$OUT" | grep -i "^content-type" | head -1 | tr -d '\r')
+            echo "  $P → код ${CODE:-нет}, $TYPE"
+            case "$CODE $TYPE" in *"200"*"$WANT_TYPE"*) ;; *) echo "     ^^ ПЛОХО"; FAIL=1;; esac
+          }
+          for IP in $IPS; do
+            echo
+            echo "=== Узел $IP ==="
+            check_media "$IP" "/media/branding/logo-emblem-160.png" "image/png"
+            check_media "$IP" "/media/branding/favicon-48.png" "image/png"
+          done
+          echo
+          [ "$FAIL" = "0" ] && echo "ИТОГ: медиа-CDN отвечает на всех узлах." \
+            || { echo "ИТОГ: есть плохие узлы."; exit 1; }
+
       - name: serverless-list — мёртвое серверлес-наследие (только посмотреть)
         if: inputs.action == 'serverless-list'
         env:
