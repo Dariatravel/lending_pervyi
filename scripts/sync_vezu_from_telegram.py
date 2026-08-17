@@ -165,7 +165,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   <meta property="og:description" content="{og_desc}" />
   <meta property="og:url" content="https://абхазберег.рф/vezu/{slug}/" />
   <meta property="og:image" content="{image_src}" />
-  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
+  <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
   <link rel="icon" type="image/png" href="{yandex_media_base}/media/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={css_version}" />
 </head>
@@ -271,7 +271,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
   <meta property="og:title" content="Экскурсии по Абхазии — АБХАЗБЕРЕГ" />
   <meta property="og:description" content="Экскурсии и маршруты по Абхазии: горы, каньоны, озёра и море." />
   <meta property="og:url" content="https://абхазберег.рф/vezu/" />
-  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
+  <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
   <link rel="icon" type="image/png" href="{yandex_media_base}/media/branding/favicon-48.png" />
   <link rel="stylesheet" href="../styles.min.css?v={css_version}" />
 </head>

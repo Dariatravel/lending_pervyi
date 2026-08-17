@@ -4,7 +4,11 @@ from __future__ import annotations
 
 from urllib.parse import unquote
 
-YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media"
+# С 17.08.2026 медиа раздаётся через CDN (дешевле за ГБ и быстрее гостям).
+# Прямой адрес бакета оставлен как LEGACY: он продолжает работать и встречается
+# в старом контенте — парсер обязан понимать оба.
+YANDEX_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai"
+LEGACY_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media"
 STORAGE_PUBLIC_MARKER = "/storage/v1/object/public/site-media/"
 IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp", ".gif")
 VIDEO_EXTENSIONS = (".mp4", ".webm", ".mov", ".m4v")
@@ -23,6 +27,8 @@ def _media_relative_path(url: str, *, video: bool = False) -> str | None:
         relative = raw.split(STORAGE_PUBLIC_MARKER, 1)[1].split("?", 1)[0]
     elif raw.startswith(f"{YANDEX_MEDIA_BASE}/media/"):
         relative = raw[len(f"{YANDEX_MEDIA_BASE}/media/") :].split("?", 1)[0]
+    elif raw.startswith(f"{LEGACY_MEDIA_BASE}/media/"):
+        relative = raw[len(f"{LEGACY_MEDIA_BASE}/media/") :].split("?", 1)[0]
     elif raw.startswith("/media/"):
         relative = raw[len("/media/") :].split("?", 1)[0]
     elif raw.startswith("media/"):

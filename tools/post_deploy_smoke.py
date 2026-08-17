@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "output"
 DEFAULT_BASE = "https://абхазберег.рф"
 FORBIDDEN_HTML = ("image-lite", "catalog-snapshot.json", "review_text_bank", "supabase")
-YANDEX_MEDIA = "https://storage.yandexcloud.net/abhazbereg-media/media/"
+YANDEX_MEDIA = "https://media.xn--80aacbklan7f0b.xn--p1ai/media/"
 SIZE_BUDGETS = {
     "index_html_gzip": 45 * 1024,
     # Подняты 20.07.2026 под функцию «Избранное» (+5 КБ css, +5 КБ js);
@@ -284,10 +284,10 @@ def main() -> int:
                 page_errors.append(f"запрещённая строка: {forbidden}")
         asset_urls = extract_asset_urls(url, html)
         if path == "/":
-            asset_urls.append("https://storage.yandexcloud.net/abhazbereg-media/media/reviews/global.json")
+            asset_urls.append("https://media.xn--80aacbklan7f0b.xn--p1ai/media/reviews/global.json")
         else:
             slug = path.strip("/").split("/")[-1]
-            asset_urls.append(f"https://storage.yandexcloud.net/abhazbereg-media/media/reviews/{slug}/bank.json")
+            asset_urls.append(f"https://media.xn--80aacbklan7f0b.xn--p1ai/media/reviews/{slug}/bank.json")
         asset_results = []
         for asset_url in sorted(set(asset_urls)):
             ok, asset_status, asset_size = head_ok(asset_url, args.timeout)

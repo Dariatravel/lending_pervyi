@@ -45,12 +45,12 @@ def fetch(url: str, *, head: bool = False) -> tuple[int, bytes, str]:
 
 def page_image_urls(html_text: str) -> set[str]:
     urls: set[str] = set()
-    for match in re.finditer(r'(?:src|href)="(https://storage\.yandexcloud\.net/[^"]+\.(?:jpg|jpeg|png|webp))"', html_text):
+    for match in re.finditer(r'(?:src|href)="(https://(?:storage\.yandexcloud\.net|media\.xn--80aacbklan7f0b\.xn--p1ai)/[^"]+\.(?:jpg|jpeg|png|webp))"', html_text):
         urls.add(match.group(1))
     for match in re.finditer(r'srcset="([^"]+)"', html_text):
         for part in match.group(1).split(","):
             candidate = part.strip().split(" ")[0]
-            if candidate.startswith("https://storage.yandexcloud.net/"):
+            if candidate.startswith(("https://storage.yandexcloud.net/", "https://media.xn--80aacbklan7f0b.xn--p1ai/")):
                 urls.add(candidate)
     return urls
 

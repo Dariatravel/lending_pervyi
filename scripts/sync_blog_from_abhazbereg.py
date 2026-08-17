@@ -25,7 +25,7 @@ MEDIA_DIR = ROOT / "media" / "blog"
 SOURCES_DIR = ROOT / "scripts" / "blog_telegram_sources"
 BLOG_DIR = ROOT / "blog"
 CSS_VERSION = (ROOT / "data" / "asset-version.txt").read_text(encoding="utf-8").strip()
-YANDEX_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media"
+YANDEX_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai"
 BLOG_CARD_IMAGE_SIZES = "(max-width: 760px) 100vw, 220px"
 BLOG_ARTICLE_IMAGE_SIZES = "(max-width: 760px) 100vw, 320px"
 
@@ -587,8 +587,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   <meta property="og:title" content="{og_title}" />
   <meta property="og:description" content="{og_desc}" />
   <meta property="og:url" content="https://абхазберег.рф/blog/{slug}/" />
-  <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/og-banner.png" />
-  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
+  <meta property="og:image" content="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/og-banner.png" />
+  <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
   <link rel="icon" type="image/png" href="{yandex_media_base}/media/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={css_version}" />
   <script type="application/ld+json">{json_ld}</script>
@@ -723,7 +723,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   </section>
 
 </main>
-  <script src="../../scripts.min.js?v=202608161131" defer></script>
+  <script src="../../scripts.min.js?v=202608171026" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -861,8 +861,8 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   <meta property="og:title" content="Полезно узнать об отдыхе в Абхазии" />
   <meta property="og:description" content="Статьи и памятки для тех, кто планирует поездку в Абхазию впервые." />
   <meta property="og:url" content="https://абхазберег.рф/blog/" />
-  <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/og-banner.png" />
-  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
+  <meta property="og:image" content="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/og-banner.png" />
+  <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
   <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/media/branding/favicon-48.png" />
   <link rel="stylesheet" href="../styles.min.css?v={CSS_VERSION}" />
 </head>
@@ -967,7 +967,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   </section>
 
 </main>
-  <script src="../scripts.min.js?v=202608161131" defer></script>
+  <script src="../scripts.min.js?v=202608171026" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

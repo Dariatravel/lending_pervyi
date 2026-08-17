@@ -1,23 +1,27 @@
-const APP_SHELL_CACHE = "abhazbereg-app-shell-v202608161131";
-const RUNTIME_CACHE = "abhazbereg-runtime-v202608161131";
-const YANDEX_MEDIA_ORIGIN = "https://storage.yandexcloud.net";
-const YANDEX_MEDIA_PATH_PREFIX = "/abhazbereg-media/media/";
+const APP_SHELL_CACHE = "abhazbereg-app-shell-v202608171026";
+const RUNTIME_CACHE = "abhazbereg-runtime-v202608171026";
+// Медиа с 17.08.2026 раздаётся через CDN media.абхазберег.рф; старый прямой
+// адрес бакета оставлен — он встречается в уже закэшированных страницах.
+const MEDIA_SOURCES = [
+  { origin: "https://media.xn--80aacbklan7f0b.xn--p1ai", prefix: "/media/" },
+  { origin: "https://storage.yandexcloud.net", prefix: "/abhazbereg-media/media/" },
+];
 const MAX_RUNTIME_MEDIA_ENTRIES = 80;
 
 const APP_SHELL_URLS = [
   "/",
-  "/styles.min.css?v=202608161131",
-  "/scripts.min.js?v=202608161131",
-  "/pwa.js?v=202608161131",
+  "/styles.min.css?v=202608171026",
+  "/scripts.min.js?v=202608171026",
+  "/pwa.js?v=202608171026",
   "/vendor/fonts/manrope-cyrillic.woff2",
   "/vendor/fonts/manrope-latin.woff2",
   "/vendor/fonts/prata-cyrillic.woff2",
   "/vendor/fonts/prata-latin.woff2",
-  "/vendor/leaflet/leaflet.css?v=202608161131",
-  "/vendor/leaflet/leaflet.js?v=202608161131",
-  "/vendor/leaflet-markercluster/MarkerCluster.css?v=202608161131",
-  "/vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202608161131",
-  "/vendor/leaflet-markercluster/leaflet.markercluster.js?v=202608161131",
+  "/vendor/leaflet/leaflet.css?v=202608171026",
+  "/vendor/leaflet/leaflet.js?v=202608171026",
+  "/vendor/leaflet-markercluster/MarkerCluster.css?v=202608171026",
+  "/vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202608171026",
+  "/vendor/leaflet-markercluster/leaflet.markercluster.js?v=202608171026",
   "/app.webmanifest",
   "/404.html",
   "/app-icons/icon-192.png",
@@ -101,7 +105,9 @@ function isStaticAsset(requestUrl) {
 }
 
 function isYandexMediaRequest(requestUrl) {
-  return requestUrl.origin === YANDEX_MEDIA_ORIGIN && requestUrl.pathname.startsWith(YANDEX_MEDIA_PATH_PREFIX);
+  return MEDIA_SOURCES.some(
+    (source) => requestUrl.origin === source.origin && requestUrl.pathname.startsWith(source.prefix)
+  );
 }
 
 function canCacheResponse(response) {

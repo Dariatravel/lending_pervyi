@@ -229,8 +229,8 @@
 
   initDeferredAnalytics();
 
-  const CDN_MEDIA_BASE = "https://storage.yandexcloud.net/abhazbereg-media/media";
-  const ASSET_VERSION = "202608161131";
+  const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
+  const ASSET_VERSION = "202608171026";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -2138,15 +2138,15 @@
     };
     /* Главное фото страницы объекта — то же, что в карточке на сайте (галерея photo-01…). */
     if (row.slug) {
-      push(`https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/${row.slug}/photo-01.jpg`);
-      push(`https://storage.yandexcloud.net/abhazbereg-media/media/kvartira/${row.slug}/photo-02.jpg`);
+      push(`https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/${row.slug}/photo-01.jpg`);
+      push(`https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/${row.slug}/photo-02.jpg`);
     }
     push(card?.public_url);
     push(image?.public_url);
     push(row.cover_url);
     if (row.slug) {
-      push(`https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/${row.slug}-cover.jpg`);
-      push(`https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/${row.slug}.jpg`);
+      push(`https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/${row.slug}-cover.jpg`);
+      push(`https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/${row.slug}.jpg`);
     }
     return urls;
   }
@@ -2996,7 +2996,7 @@
     const raw = String(post?.image || "").trim();
     if (!raw) return "";
     if (/^https?:\/\//i.test(raw)) return raw;
-    return `https://storage.yandexcloud.net/abhazbereg-media/media/blog/${raw.replace(/^\/+/, "")}`;
+    return `https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/${raw.replace(/^\/+/, "")}`;
   }
 
   function blogCardImageSrcset(src) {

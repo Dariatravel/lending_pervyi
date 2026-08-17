@@ -75,7 +75,7 @@ KV_CARDS_FILE = ROOT / 'kvartira_cards.json'
 ENV_FILE = ROOT / '.env.supabase.local'
 STORAGE_BUCKET = 'abhazbereg-media'
 STORAGE_PUBLIC_IMAGE_MARKER = '/storage/v1/object/public/site-media/'
-CDN_MEDIA_BASE = 'https://storage.yandexcloud.net/abhazbereg-media/media'
+CDN_MEDIA_BASE = 'https://media.xn--80aacbklan7f0b.xn--p1ai/media'
 IMAGE_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.webp', '.gif')
 CUTOFF_DATE = '2026-01-01'
 API_ID = 32916166
@@ -1093,11 +1093,11 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <meta property="og:title" content="{html.escape(title)} — обзор и цены" />
     <meta property="og:description" content="{html.escape(meta_description)}" />
     <meta property="og:url" content="https://абхазберег.рф{page_href}" />
-    <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/og-banner.png" />
-    <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-{preload_block}    <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" rel="icon" type="image/png" />
-    <link href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202608161131" />
+    <meta property="og:image" content="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/og-banner.png" />
+    <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
+{preload_block}    <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" rel="icon" type="image/png" />
+    <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202608171026" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1184,7 +1184,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202608161131" defer></script>
+    <script src="../../scripts.min.js?v=202608171026" defer></script>
   </body>
 </html>'''
 

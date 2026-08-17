@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSET_VERSION = (ROOT / 'data' / 'asset-version.txt').read_text(encoding='utf-8').strip()
-YANDEX_MEDIA_BASE = 'https://storage.yandexcloud.net/abhazbereg-media/media'
+YANDEX_MEDIA_BASE = 'https://media.xn--80aacbklan7f0b.xn--p1ai/media'
 BLOG_ARTICLE_IMAGE_SIZES = '(max-width: 760px) 100vw, 320px'
 
 
@@ -117,8 +117,8 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
   <meta property="og:title" content="{og_title}" />
   <meta property="og:description" content="{og_desc}" />
   <meta property="og:url" content="https://абхазберег.рф/blog/{slug}/" />
-  <meta property="og:image" content="https://storage.yandexcloud.net/abhazbereg-media/media/branding/og-banner.png" />
-  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
+  <meta property="og:image" content="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/og-banner.png" />
+  <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
   <link rel="icon" type="image/png" href="{yandex_media_base}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={asset_version}" />
   <script type="application/ld+json">{json_ld}</script>
