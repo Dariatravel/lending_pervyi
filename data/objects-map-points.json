@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T11:07:51.551788+00:00",
+  "generated_at": "2026-08-18T12:03:11.568895+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1611,6 +1611,14 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"ЛАТТЕ\" КВАРТИРА 1К",
+      "address": "Сухум, ул. Ладария, 20",
+      "lat": 43.00017715549584,
+      "lon": 41.04031498643788,
+      "url": "/kvartira/latte-kvartira-1k-1707/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"ЛЕТНЯЯ\" КВАРТИРА 3К",
       "address": "Сухум, Кодорское шоссе, 22",
       "lat": 42.981391,
@@ -1892,18 +1900,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 474,
-    "placemarks_unique": 237,
-    "pages_total": 490,
-    "pages_on_disk": 542,
+    "placemarks_total": 476,
+    "placemarks_unique": 238,
+    "pages_total": 491,
+    "pages_on_disk": 543,
     "pages_excluded": 52,
-    "from_constructor": 253,
+    "from_constructor": 254,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 237,
     "skipped_without_coords": 237,
     "shared_coordinate_groups": 29,
     "deduped_redirect_points": 17,
-    "points_total": 236
+    "points_total": 237
   }
 }
