@@ -654,8 +654,14 @@ jobs:
           CDN_DOMAIN: media.xn--80aacbklan7f0b.xn--p1ai
         run: |
           pip install --quiet boto3 pyjwt cryptography
-          python3 tools/scrub_cdn_review_banks.py
-          python3 tools/yc_cdn_tune_media.py
+          python3 tools/scrub_cdn_review_banks.py | tee /tmp/scrub.log
+          # Кэш CDN сбрасываем только если что-то вычищено: пустой сброс
+          # зря студит кэш фото и видео для гостей.
+          if grep -q "файлов с находками 0" /tmp/scrub.log; then
+            echo "Банки чистые — кэш CDN не трогаем."
+          else
+            python3 tools/yc_cdn_tune_media.py
+          fi
 
       - name: cdn-tune-media — донастройка медиа-CDN (кэш браузера, slice)
         if: inputs.action == 'cdn-tune-media'
