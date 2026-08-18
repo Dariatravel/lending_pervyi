@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import os
 import shutil
 import sys
@@ -66,15 +67,33 @@ def copy_existing_split_banks(source_dir: Path) -> list[Path]:
     return sorted(copied)
 
 
+# Телефоны и почта гостей не должны уезжать на CDN (18.08.2026 номер из
+# отзыва всплыл на сайте). Та же чистка живёт в scrub_cdn_review_banks.py
+# и в scripts.js (stripPersonalData) — три рубежа обороны.
+_PII_SEP = r"[\s\-\u2013\u2014.,()]"
+_PII_PATTERNS = [
+    re.compile(rf"(?:\+?\s*[78]{_PII_SEP}{{0,3}})?9\d{{2}}{_PII_SEP}{{0,3}}\d{{3}}{_PII_SEP}{{0,3}}\d{{2}}{_PII_SEP}{{0,3}}\d{{2}}(?!{_PII_SEP}{{0,3}}\d)"),
+    re.compile(rf"(?<!\d)\+?\s*[78]{_PII_SEP}{{0,2}}(?:\d{_PII_SEP}{{0,2}}){{9}}\d(?!{_PII_SEP}{{0,2}}\d)"),
+    re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+"),
+]
+
+
+def scrub_personal_data(value: str) -> str:
+    text = value
+    for pattern in _PII_PATTERNS:
+        text = pattern.sub(" ", text)
+    return re.sub(r"\s{2,}", " ", text).strip()
+
+
 def normalize_review(entry: Any) -> dict[str, Any] | None:
     if not isinstance(entry, dict):
         return None
-    text = str(entry.get("text") or "").strip()
+    text = scrub_personal_data(str(entry.get("text") or "").strip())
     if not text:
         return None
     result: dict[str, Any] = {
         "id": str(entry.get("id") or "").strip(),
-        "name": str(entry.get("name") or entry.get("head") or "Гость").strip() or "Гость",
+        "name": scrub_personal_data(str(entry.get("name") or entry.get("head") or "Гость").strip()) or "Гость",
         "gender": str(entry.get("gender") or "").strip(),
         "text": text,
     }

@@ -644,6 +644,19 @@ jobs:
           [ "$FAIL" = "0" ] && echo "ИТОГ: медиа-CDN отвечает на всех узлах." \
             || { echo "ИТОГ: есть плохие узлы."; exit 1; }
 
+      # Телефоны/почта гостей в банках отзывов на CDN: чистим прямо в бакете,
+      # затем сбрасываем кэш медиа-CDN, чтобы гости получили чистые версии.
+      - name: reviews-scrub — вычистить персональные данные из банков отзывов
+        if: inputs.action == 'reviews-scrub'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CDN_DOMAIN: media.xn--80aacbklan7f0b.xn--p1ai
+        run: |
+          pip install --quiet boto3 pyjwt cryptography
+          python3 tools/scrub_cdn_review_banks.py
+          python3 tools/yc_cdn_tune_media.py
+
       - name: cdn-tune-media — донастройка медиа-CDN (кэш браузера, slice)
         if: inputs.action == 'cdn-tune-media'
         env:

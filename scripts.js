@@ -230,7 +230,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202608182009";
+  const ASSET_VERSION = "202608182038";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -1119,8 +1119,29 @@
     return text;
   }
 
+  // Телефоны и почта гостей не должны попадать на сайт, даже если просочились
+  // в банк отзывов (18.08.2026 в отзыве всплыл номер телефона).
+  function stripPersonalData(value) {
+    let text = String(value || "");
+    // российский мобильный: (+7/8) 9xx xxx-xx-xx в любых разделителях
+    text = text.replace(
+      /(?:\+?\s*[78][\s\-–—.,()]{0,3})?9\d{2}[\s\-–—.,()]{0,3}\d{3}[\s\-–—.,()]{0,3}\d{2}[\s\-–—.,()]{0,3}\d{2}(?![\s\-–—.,()]{0,3}\d)/g,
+      " "
+    );
+    // любой номер из 11 цифр, начинающийся с 7/8 (стационарные и т.п.);
+    // границы по цифрам, чтобы не съесть перечисление цен «8 000 12 000…».
+    // Без lookbehind: он ломает разбор всего скрипта в Safari до 16.4.
+    text = text.replace(
+      /(^|[^0-9])\+?\s*[78][\s\-–—.,()]{0,2}(?:\d[\s\-–—.,()]{0,2}){9}\d(?![\s\-–—.,()]{0,2}\d)/g,
+      "$1 "
+    );
+    // электронная почта
+    text = text.replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, " ");
+    return text.replace(/\s{2,}/g, " ").trim();
+  }
+
   function cleanReviewTextForDisplay(value) {
-    let text = String(value || "").replace(/\s+/g, " ").trim();
+    let text = stripPersonalData(value).replace(/\s+/g, " ").trim();
     if (!text) return "";
 
     text = text.replace(/^\s*[+»«"']+\s*/, "");
@@ -1274,7 +1295,7 @@
 
       const text = document.createElement("p");
       text.className = "review-text";
-      text.textContent = review.text || "";
+      text.textContent = cleanReviewTextForDisplay(review.text || "");
 
       item.append(head, text);
       fragment.appendChild(item);
@@ -1296,7 +1317,7 @@
     kind.textContent = "Гость";
 
     const text = document.createElement("p");
-    text.textContent = review.text || "";
+    text.textContent = cleanReviewTextForDisplay(review.text || "");
 
     top.append(author, kind);
     card.append(top, text);
