@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-17T18:08:00.145399+00:00",
+  "generated_at": "2026-08-18T11:09:15.179571+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 237,
+  "listings_total": 238,
   "listings_hotels": 185,
-  "listings_kvartira": 52,
+  "listings_kvartira": 53,
   "listings": [
     {
       "source_kind": "kvartira",
@@ -66524,6 +66524,210 @@
             "telegram_post": "abhkvartira/1704",
             "telegram_url": "https://t.me/abhkvartira/1704",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/prostornaya-kvartira-5k-1695/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "kvartira",
+      "source_channel": "abhkvartira",
+      "source_message_id": 1707,
+      "source_topic_id": 1706,
+      "slug": "latte-kvartira-1k-1707",
+      "title": "\"ЛАТТЕ\" квартира 1к",
+      "summary": "Сухум. 5 минут пешком, размещение до 4 человек.",
+      "excerpt": "Однокомнатная квартира расположена на 5 этаже, лифт имеется",
+      "city": "Сухум",
+      "location_text": "Сухум, ул. Ладария, 20",
+      "distance_text": "5 минут пешком",
+      "beach_text": "5 минут пешком",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/kvartira/latte-kvartira-1k-1707/",
+      "telegram_url": "https://t.me/abhkvartira/1707",
+      "published_at": "2026-08-18",
+      "has_video": true,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/latte-kvartira-1k-1707-cover.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Сухум. 5 минут пешком, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️КВАРТИРА:",
+            "lines": [
+              "Однокомнатная квартира расположена на 5 этаже, лифт имеется.",
+              "С балкона открывается вид на соседнюю улицу.",
+              "В комнате двуспальная кровать и раскладывающийся диван, столик журнальный, прикроватная тумба, стеллаж, тумба под телефизор. Сан узел с душем.",
+              "Полноценная кухня для самостоятельного питания: холодильник, микроволновка, рабочая зона, варочная поверхность, кофеварка, чайник, места для хранения, посуда.",
+              "Оснащение: кондиционер, телевизор, Wi‑Fi, стиральная машина, утюг, фен."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До пляжа санатория МВО 5 минут пешком. Выход к пляжу через парковую территорию санатория.",
+              "До песчаного пляжа Мокко две остановки (3 минуты езды на маршрутке). Развитая инфраструктура района.",
+              "В шаговой доступности маленький рынок, торговые лавки, супермаркеты, кафе, аптека, остановка общественного транспорта.",
+              "До дендропарка около 20 минут пешком."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с маленькими собачками возможно только по согласованию.",
+              "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я НА СВЯЗИ 📲",
+              "в MAX: max.ru/id741113115256_bot",
+              "ВК-чат: vk.cc/cQQnBn",
+              "WhatsApp +7940-900-33-40",
+              "(только сообщение, звонок не пройдёт)"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "4000₽ - май, июнь, июль, август, сентябрь, октябрь"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/latte-kvartira-1k-1707/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1207,
+      "media": [
+        {
+          "id": 1207001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/latte-kvartira-1k-1707-cover.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira-cards/latte-kvartira-1k-1707-cover.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/latte-kvartira-1k-1707-cover.jpg",
+          "details": {}
+        },
+        {
+          "id": 1207002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/latte-kvartira-1k-1707/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1207003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/latte-kvartira-1k-1707/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1207004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/latte-kvartira-1k-1707/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1207005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/latte-kvartira-1k-1707/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1207006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/latte-kvartira-1k-1707/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1207007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/latte-kvartira-1k-1707/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1207008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/latte-kvartira-1k-1707/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1207009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/latte-kvartira-1k-1707/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1207010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/latte-kvartira-1k-1707/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/latte-kvartira-1k-1707/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1207011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/latte-kvartira-1k-1707/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/kvartira/latte-kvartira-1k-1707/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/latte-kvartira-1k-1707/video-01.mp4",
+          "details": {
+            "telegram_post": "abhkvartira/1716",
+            "telegram_url": "https://t.me/abhkvartira/1716",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/latte-kvartira-1k-1707/video-01-poster.jpg"
           }
         }
       ]
