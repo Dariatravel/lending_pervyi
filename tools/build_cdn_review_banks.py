@@ -51,18 +51,40 @@ def find_source_dir(explicit: str | None) -> Path | None:
     return None
 
 
+def scrub_payload(node: Any) -> Any:
+    """Вычистить телефоны/почту во всех текстовых полях отзыва (рекурсивно).
+
+    Путь копирования готовых нарезок раньше миновал чистку — 18.08.2026 из-за
+    этого свежезалитый bank.json вернул в CDN номер телефона гостя, уже
+    вычищенный в облаке. Теперь чистятся ОБА пути: генерация и копирование.
+    """
+    if isinstance(node, dict):
+        return {
+            key: (scrub_personal_data(value) if isinstance(value, str) and key in ("text", "name", "author", "title") else scrub_payload(value))
+            for key, value in node.items()
+        }
+    if isinstance(node, list):
+        return [scrub_payload(item) for item in node]
+    return node
+
+
 def copy_existing_split_banks(source_dir: Path) -> list[Path]:
-    copied: list[Path] = []
+    def copy_scrubbed(src: Path, target: Path) -> None:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        dump_json(target, scrub_payload(load_json(src)))
+
     if source_dir.resolve() == REVIEWS_DIR.resolve():
-        return sorted(REVIEWS_DIR.glob("*/bank.json")) + ([GLOBAL_PATH] if GLOBAL_PATH.exists() else [])
+        files = sorted(REVIEWS_DIR.glob("*/bank.json")) + ([GLOBAL_PATH] if GLOBAL_PATH.exists() else [])
+        for path in files:
+            dump_json(path, scrub_payload(load_json(path)))
+        return files
+    copied: list[Path] = []
     if (source_dir / "global.json").exists():
-        GLOBAL_PATH.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source_dir / "global.json", GLOBAL_PATH)
+        copy_scrubbed(source_dir / "global.json", GLOBAL_PATH)
         copied.append(GLOBAL_PATH)
     for bank in source_dir.glob("*/bank.json"):
         target = REVIEWS_DIR / bank.parent.name / "bank.json"
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(bank, target)
+        copy_scrubbed(bank, target)
         copied.append(target)
     return sorted(copied)
 
