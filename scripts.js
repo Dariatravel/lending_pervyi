@@ -230,7 +230,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202608171026";
+  const ASSET_VERSION = "202608182009";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -4705,19 +4705,18 @@
     const masthead = shell?.querySelector(":scope > .site-concept__masthead");
     if (!topbar || !masthead) return;
 
+    // Шапка не закрепляется при прокрутке (просьба Дарьи 18.08.2026):
+    // чипы живут на баннере и уезжают вместе с ним; после баннера шапка
+    // прячется (is-scrolled-away), чтобы возврат в поток не дёргал страницу.
     topbar.classList.add("is-over-masthead");
 
-    if (!("IntersectionObserver" in window)) {
-      topbar.classList.remove("is-over-masthead");
-      topbar.classList.add("is-sticky-scrolled");
-      return;
-    }
+    if (!("IntersectionObserver" in window)) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         const overBanner = Boolean(entry?.isIntersecting);
         topbar.classList.toggle("is-over-masthead", overBanner);
-        topbar.classList.toggle("is-sticky-scrolled", !overBanner);
+        topbar.classList.toggle("is-scrolled-away", !overBanner);
       },
       { rootMargin: "-12px 0px 0px 0px", threshold: [0, 0.05, 0.2] }
     );

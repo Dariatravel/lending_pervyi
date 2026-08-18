@@ -190,8 +190,9 @@
 }
 
 .site-concept__topbar {
-  position: sticky;
-  top: 14px;
+  /* Шапка НЕ закрепляется при прокрутке (просьба Дарьи 18.08.2026):
+     прокручивается вместе со страницей на всех экранах. */
+  position: relative;
   z-index: 20;
   display: flex;
   flex-wrap: wrap;
@@ -202,7 +203,10 @@
   border-radius: clamp(24px, 2.4vw, 32px);
 }
 
-@media (min-width: 761px) {
+/* Чипы навигации поверх баннера — только на широких экранах: на планшетах
+   и раскрытых складных телефонах (Pixel Fold ~840px) они наезжали на надписи
+   баннера, там шапка остаётся обычной карточкой над баннером. */
+@media (min-width: 1101px) {
   .site-concept.site-concept--home > .site-concept__topbar.is-over-masthead {
     position: absolute;
     /* Выше к краю баннера, чтобы кнопки не наезжали на надписи. */
@@ -252,30 +256,13 @@
     color: #0f281f;
   }
 
-  .site-concept.site-concept--home > .site-concept__topbar.is-sticky-scrolled {
-    /* fixed, а не sticky: обе фазы шапки (на баннере / прилипшая) вне потока,
-       иначе переключение добавляло ~90px высоты и дёргало страницу у формы
-       подбора (на границе возможен цикл мерцания). */
-    position: fixed;
-    top: 14px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 30;
-    width: calc(min(100vw, 1540px) - 2 * clamp(12px, 3vw, 32px));
-    max-width: none;
-    right: auto;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 14px 18px;
-    background: rgba(255, 255, 255, 0.82);
-    border: 1px solid rgba(255, 255, 255, 0.76);
-    box-shadow: 0 18px 40px rgba(18, 31, 25, 0.12);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-  }
-
-  .site-concept.site-concept--home > .site-concept__topbar.is-sticky-scrolled .site-concept__brand {
-    display: inline-flex;
+  .site-concept.site-concept--home > .site-concept__topbar.is-sticky-scrolled,
+  .site-concept.site-concept--home > .site-concept__topbar.is-scrolled-away {
+    /* Плавающей шапки при прокрутке больше нет (просьба Дарьи 18.08.2026):
+       чипы живут на баннере и уезжают вместе с ним. Прятать, а не возвращать
+       в поток — иначе смена absolute→relative добавляла ~90px высоты и
+       дёргала страницу у формы подбора. */
+    display: none;
   }
 
   .site-concept.site-concept--home > .site-concept__masthead {
@@ -7237,28 +7224,10 @@ html:has(> body.objects-map-page) {
     display: inline-flex !important;
   }
 
-  .site-concept.site-concept--home > .site-concept__topbar.is-sticky-scrolled {
-    /* fixed по той же причине, что и на десктопе: без вставки в поток. */
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 30;
-    width: calc(100vw - 2 * clamp(12px, 3vw, 32px));
-    right: auto;
-    padding: 10px 12px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 14px 32px rgba(18, 31, 25, 0.14);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-  }
-
-  .site-concept.site-concept--home > .site-concept__topbar.is-sticky-scrolled .site-concept__brand {
-    display: inline-flex;
-  }
-
-  .site-concept.site-concept--home > .site-concept__topbar.is-sticky-scrolled .site-concept__topnav {
+  .site-concept.site-concept--home > .site-concept__topbar.is-sticky-scrolled,
+  .site-concept.site-concept--home > .site-concept__topbar.is-scrolled-away {
+    /* Плавающей шапки при прокрутке нет и на телефоне (просьба Дарьи
+       18.08.2026): чипы уезжают вместе с баннером. */
     display: none;
   }
 
