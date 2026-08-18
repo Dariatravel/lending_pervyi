@@ -644,6 +644,18 @@ jobs:
           [ "$FAIL" = "0" ] && echo "ИТОГ: медиа-CDN отвечает на всех узлах." \
             || { echo "ИТОГ: есть плохие узлы."; exit 1; }
 
+      # Настоящий браузер с мобильной эмуляцией жмёт play на каждом видео
+      # прод-страниц и сообщает readyState/ошибку плеера + сетевые сбои.
+      - name: browser-media-check — видео глазами телефона
+        if: inputs.action == 'browser-media-check'
+        run: |
+          npm install --no-save playwright >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null 2>&1
+          node tools/browser_media_check.mjs \
+            "https://xn--80aacbklan7f0b.xn--p1ai/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/" \
+            "https://xn--80aacbklan7f0b.xn--p1ai/hotels/bungalo-glemping-3623/" \
+            "https://xn--80aacbklan7f0b.xn--p1ai/kvartira/akira-2k-kvartira-1623/"
+
       - name: serverless-list — мёртвое серверлес-наследие (только посмотреть)
         if: inputs.action == 'serverless-list'
         env:
