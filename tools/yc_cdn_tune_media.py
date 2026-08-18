@@ -85,7 +85,15 @@ def main() -> int:
         print(f"Не удалось обновить: {failure.get('message')}")
         return 1
     print("Опции обновлены: browserCache — по заголовкам хранилища, slice — вкл, edge — 7 суток.")
-    print("Конфигурация разъезжается по узлам несколько минут.")
+
+    # Кэш узлов хранит ответы со СТАРЫМИ заголовками (max-age=0) — чистим,
+    # чтобы новые настройки подействовали сразу, а не через неделю.
+    purge = api(f"{CDN_URL}/cache/{resource_id}:purge", token, payload={"paths": []})
+    failure = purge.get("error")
+    if failure:
+        print(f"Кэш не почистился: {failure.get('message')}")
+        return 1
+    print("Кэш узлов очищен. Конфигурация разъезжается несколько минут.")
     return 0
 
 
