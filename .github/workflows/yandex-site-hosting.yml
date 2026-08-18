@@ -644,6 +644,14 @@ jobs:
           [ "$FAIL" = "0" ] && echo "ИТОГ: медиа-CDN отвечает на всех узлах." \
             || { echo "ИТОГ: есть плохие узлы."; exit 1; }
 
+      - name: cdn-tune-media — донастройка медиа-CDN (кэш браузера, slice)
+        if: inputs.action == 'cdn-tune-media'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CDN_DOMAIN: media.xn--80aacbklan7f0b.xn--p1ai
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_cdn_tune_media.py
+
       # Настоящий браузер с мобильной эмуляцией жмёт play на каждом видео
       # прод-страниц и сообщает readyState/ошибку плеера + сетевые сбои.
       - name: browser-media-check — видео глазами телефона
