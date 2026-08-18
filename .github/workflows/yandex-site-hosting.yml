@@ -615,13 +615,32 @@ jobs:
             echo "  $P → код ${CODE:-нет}, $TYPE"
             case "$CODE $TYPE" in *"200"*"$WANT_TYPE"*) ;; *) echo "     ^^ ПЛОХО"; FAIL=1;; esac
           }
+          # Видео телефон запрашивает кусками (Range) — проверяем 206 и заголовки.
+          check_video() {
+            IP="$1"; P="$2"
+            OUT=$(curl -sS -D - -o /dev/null --max-time 60 -H "Range: bytes=0-1023" \
+              --resolve "$H:443:$IP" "https://$H$P" 2>&1 || true)
+            CODE=$(echo "$OUT" | grep -i "^HTTP" | awk '{print $2}' | head -1)
+            TYPE=$(echo "$OUT" | grep -i "^content-type" | head -1 | tr -d '\r')
+            RANGE=$(echo "$OUT" | grep -i "^content-range" | head -1 | tr -d '\r')
+            CACHE=$(echo "$OUT" | grep -i "^cache-control" | head -1 | tr -d '\r')
+            echo "  $P"
+            echo "     код ${CODE:-нет}; $TYPE; $RANGE; $CACHE"
+            case "$CODE" in 206|200) ;; *) echo "     ^^ ПЛОХО: видео не отдаётся кусками"; FAIL=1;; esac
+          }
           for IP in $IPS; do
             echo
             echo "=== Узел $IP ==="
             check_media "$IP" "/media/branding/logo-emblem-160.png" "image/png"
             check_media "$IP" "/media/branding/favicon-48.png" "image/png"
+            check_video "$IP" "/media/videos/hotels/bungalo-glemping-3623/video-01.mp4"
+            check_video "$IP" "/media/videos/hotels/mokko-briz-dva-domika-4152/video-01.mp4"
           done
           echo
+          echo "=== Для сравнения: то же видео напрямую из хранилища ==="
+          curl -sS -D - -o /dev/null --max-time 60 -H "Range: bytes=0-1023" \
+            "https://storage.yandexcloud.net/abhazbereg-media/media/videos/hotels/bungalo-glemping-3623/video-01.mp4" 2>&1 \
+            | grep -iE "^(HTTP|content-type|content-range|cache-control)" || true
           [ "$FAIL" = "0" ] && echo "ИТОГ: медиа-CDN отвечает на всех узлах." \
             || { echo "ИТОГ: есть плохие узлы."; exit 1; }
 
