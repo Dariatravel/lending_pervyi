@@ -1,8 +1,8 @@
 // Проверка видео на живом сайте настоящим браузером (мобильная эмуляция).
-// Открывает страницы, жмёт play на каждом <video> и сообщает readyState /
-// код ошибки плеера + все сбои сетевых запросов к медиа-хостам.
+// ВАЖНО: канал 'chrome' — у голого headless-chromium нет кодека H.264,
+// и play() на mp4 висит вечно, изображая поломку сайта.
 // Запуск (GitHub Actions): node tools/browser_media_check.mjs <url> [url...]
-import { chromium } from 'playwright';
+import { chromium } from 'playwright-core';
 
 const pages = process.argv.slice(2);
 if (!pages.length) {
@@ -10,7 +10,10 @@ if (!pages.length) {
   process.exit(2);
 }
 
-const browser = await chromium.launch({ args: ['--no-sandbox', '--autoplay-policy=no-user-gesture-required'] });
+const browser = await chromium.launch({
+  channel: 'chrome',
+  args: ['--no-sandbox', '--autoplay-policy=no-user-gesture-required'],
+});
 const context = await browser.newContext({
   viewport: { width: 390, height: 844 },
   userAgent: 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Mobile Safari/537.36',
@@ -34,22 +37,35 @@ for (const url of pages) {
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
     await page.waitForTimeout(2000);
-    const report = await page.evaluate(async () => {
+    // Вся логика внутри страницы обёрнута таймаутами: тест обязан договорить.
+    const checkPromise = page.evaluate(async () => {
+      const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+      const race = (p, ms) =>
+        Promise.race([
+          Promise.resolve(p).then(() => 'ok').catch((e) => 'отказ:' + e.name),
+          wait(ms).then(() => 'таймаут play()'),
+        ]);
       const out = [];
-      const videos = [...document.querySelectorAll('video')];
-      for (const [i, v] of videos.entries()) {
+      const all = [...document.querySelectorAll('video')];
+      for (const [i, v] of all.slice(0, 5).entries()) {
         const src = (v.currentSrc || v.src || (v.querySelector('source') || {}).src || '').split('/').pop();
-        try { await v.play(); } catch (e) { out.push(`video#${i} play() отказ: ${e.name}`); }
-        await new Promise((r) => setTimeout(r, 4000));
-        out.push(`video#${i} src=${src} readyState=${v.readyState} paused=${v.paused} ` +
-          `time=${v.currentTime.toFixed(1)} error=${v.error ? v.error.code + '/' + (v.error.message || '') : 'нет'}`);
-        v.pause();
+        const playResult = await race(v.play(), 8000);
+        await wait(3000);
+        out.push(
+          `video#${i} src=${src} play=${playResult} readyState=${v.readyState} ` +
+          `time=${v.currentTime.toFixed(1)} error=${v.error ? v.error.code + '/' + (v.error.message || '') : 'нет'}`
+        );
+        try { v.pause(); } catch {}
       }
-      return { count: videos.length, out };
+      return { count: all.length, out };
     });
-    console.log(`видео на странице: ${report.count}`);
+    const report = await Promise.race([
+      checkPromise,
+      new Promise((_, rej) => setTimeout(() => rej(new Error('watchdog: страница не ответила за 90с')), 90000)),
+    ]);
+    console.log(`видео на странице: ${report.count} (проверяем до 5)`);
     for (const line of report.out) console.log('  ' + line);
-    const broken = report.out.filter((l) => /error=[1-9]|readyState=0/.test(l));
+    const broken = report.out.filter((l) => /error=[1-9]|таймаут|time=0\.0/.test(l));
     if (broken.length || netErrors.length) fail = 1;
     for (const e of [...new Set(netErrors)].slice(0, 8)) console.log('  СЕТЬ: ' + e);
   } catch (e) {
