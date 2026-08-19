@@ -891,7 +891,7 @@ def render_prices_html(prices: Any) -> str:
 
     inner = '\n'.join(body)
     return (
-        f'''      <section class="section hotel-price-section hotel-site-concept__detail-section">\n'''
+        f'''      <section id="prices" class="section hotel-price-section hotel-site-concept__detail-section">\n'''
         f'''        <article class="card price-card">\n{inner}\n        </article>\n'''
         f'''      </section>'''
     )
@@ -1097,7 +1097,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
 {preload_block}    <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202608182038" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202608191332" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1147,7 +1147,8 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
 
           <div class="hotel-card__footer">
             <div class="hotel-card__actions">
-              <a class="button button--ghost" href="#contacts">Забронировать</a>
+              <a class="button button--booking" href="#contacts">Забронировать</a>
+              <a class="button button--prices-mobile" href="#prices">Смотреть цены</a>
               <a class="button button--accent" href="#contacts">Задать вопрос онлайн</a>
             </div>
           </div>
@@ -1184,7 +1185,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202608182038" defer></script>
+    <script src="../../scripts.min.js?v=202608191332" defer></script>
   </body>
 </html>'''
 
