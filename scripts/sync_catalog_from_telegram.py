@@ -731,6 +731,22 @@ IMPORTANT_LINES = (
 )
 
 
+def trim_dangling_sublist(lines: list[str]) -> list[str]:
+    """Убрать оборванный подсписок из блоков карточки.
+
+    В блок берутся первые три строки абзаца поста. Если третьей попадает
+    строка-заголовок вида «Питание:» или «Категории номеров:», её пункты в
+    лимит уже не влезают — гость видит заголовок и один случайный пункт
+    («7:30–8:00 — ранний завтрак») без начала и конца. Такой хвост убираем,
+    но только если после него остаётся хотя бы один полноценный пункт:
+    пустой блок хуже обрывка.
+    """
+    for index, line in enumerate(lines):
+        if index >= 1 and str(line).rstrip().endswith(":"):
+            return lines[:index]
+    return lines
+
+
 def render_important_section_html() -> str:
     paras = '\n'.join(f'            <p>{html.escape(line)}</p>' for line in IMPORTANT_LINES)
     return (
@@ -1027,7 +1043,10 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     why_lines = sections[0]['lines'][:3] if sections else []
     important_lines = sections[1]['lines'][:3] if len(sections) > 1 else []
     why_html = ''.join(f'<li>{html.escape(line)}</li>' for line in why_lines if not should_drop_line(line))
-    important_html = ''.join(f'<li>{html.escape(line)}</li>' for line in important_lines if not should_drop_line(line))
+    important_visible = trim_dangling_sublist(
+        [line for line in important_lines if not should_drop_line(line)]
+    )
+    important_html = ''.join(f'<li>{html.escape(line)}</li>' for line in important_visible)
     eyebrow_link = '<a href="/#catalog"><strong>Каталог Абхазберег</strong></a>'
     save_href = '/#catalog'
     save_label = 'К каталогу'
