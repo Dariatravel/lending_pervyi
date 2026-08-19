@@ -724,9 +724,10 @@
   display: none !important;
 }
 
+/* Подчёркивание у кнопок карточки убрано по просьбе Дарьи 19.08.2026:
+   это кнопки, а не ссылки в тексте. */
 .hotel-site-concept .hotel-card__actions .button {
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+  text-decoration: none;
 }
 
 .hotel-site-concept #contacts,
