@@ -3675,6 +3675,16 @@ a.podborki-card--link:hover {
   justify-content: flex-end;
 }
 
+/* На телефоне порядок кнопок обратный (просьба Дарьи 19.08.2026):
+   сначала «К каталогу», затем «Скопировать ссылку». Скрипт вставляет
+   «Скопировать ссылку» первой — меняем местами показом, не разметкой. */
+@media (max-width: 760px) {
+  .hotel-card__topline-actions {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+  }
+}
+
 .hotel-card__footer {
   display: flex;
   align-items: flex-start;
