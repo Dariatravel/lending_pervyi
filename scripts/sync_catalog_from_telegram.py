@@ -261,6 +261,50 @@ def _apply_design_mod():
     return _APPLY_DESIGN_MOD
 
 
+# Отзывы-заглушки для объектов без своего банка. Раньше брались из
+# REVIEW_BANK — три группы по четыре штуки, из которых на страницу шли первые
+# две: на 256 карточек приходилось шесть текстов, и гость видел одно и то же
+# (Дарья заметила 20.08.2026). Теперь источник — общий банк из
+# data/guest-reviews.json (52 отзыва): пара выбирается устойчиво по слагу,
+# поэтому страница не «прыгает» при каждой пересборке, а соседние объекты
+# показывают разные отзывы.
+GUEST_REVIEWS_PATH = ROOT / 'data' / 'guest-reviews.json'
+
+
+def _guest_reviews_pool() -> list[dict]:
+    try:
+        payload = json.loads(GUEST_REVIEWS_PATH.read_text(encoding='utf-8'))
+    except (OSError, json.JSONDecodeError):
+        return []
+    items = payload if isinstance(payload, list) else payload.get('reviews') or []
+    return [
+        {'head': str(item.get('head') or 'Гость'), 'text': str(item.get('text') or '')}
+        for item in items
+        if str(item.get('text') or '').strip()
+    ]
+
+
+def pick_guest_reviews_for_slug(slug: str, count: int = 2) -> list[dict]:
+    pool = _guest_reviews_pool()
+    if not pool:
+        return []
+    digest = hashlib.md5(slug.encode('utf-8')).hexdigest()
+    start = int(digest[:8], 16) % len(pool)
+    # Второй отзыв берём с нечётным шагом — чтобы пара не повторялась у соседей.
+    step = 1 + int(digest[8:12], 16) % max(1, len(pool) - 1)
+    picked, seen = [], set()
+    index = start
+    while len(picked) < min(count, len(pool)):
+        item = pool[index % len(pool)]
+        if item['text'] not in seen:
+            seen.add(item['text'])
+            picked.append(item)
+        index += step
+        if len(seen) >= len(pool):
+            break
+    return picked
+
+
 def _reviews_panel_for_slug(mod: Any, slug: str) -> str:
     object_reviews = _reviews_for_slug(slug)
     if object_reviews:
@@ -287,20 +331,18 @@ def _reviews_panel_for_slug(mod: Any, slug: str) -> str:
                 '</section>'
             )
 
-    seed = sum(ord(ch) for ch in slug)
-    wrapped = f'<section>{render_reviews(seed)}</section>'
-    cards = mod.extract_reviews(wrapped)
-    if not cards:
+    fallback = pick_guest_reviews_for_slug(slug)
+    if not fallback:
         return ''
     reviews_html = ''.join(
         f"""              <article class="review-card">
                 <div class="review-card__top">
-                  <strong>{html.escape(author)}</strong>
-                  <span>{html.escape(kind)}</span>
+                  <strong>{html.escape(review['head'].upper())}</strong>
+                  <span>Гость</span>
                 </div>
-                <p>{html.escape(body)}</p>
+                <p>{html.escape(review['text'])}</p>
               </article>"""
-        for author, kind, body in cards[:2]
+        for review in fallback
     )
     return (
         '<section class="reviews-panel">'
