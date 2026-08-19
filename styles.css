@@ -8264,7 +8264,9 @@ html:has(> body.objects-map-page) {
     outline-offset: 2px;
   }
 
-  .back-to-top {
+  /* Поднимаем кнопку над мобильным доком — но только там, где док есть:
+     на страницах объектов дока нет, и кнопка должна сидеть у нижнего края. */
+  .mobile-app-dock ~ .back-to-top {
     bottom: calc(86px + env(safe-area-inset-bottom, 0px));
   }
 
