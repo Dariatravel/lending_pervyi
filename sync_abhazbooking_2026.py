@@ -530,6 +530,13 @@ def should_drop_line(line: str) -> bool:
         return True
     if re.search(r"\+7[-\s]?\d", line):
         return True
+    # Контакты менеджера уезжали в блок «ЦЕНЫ» (Дарья заметила 20.08.2026):
+    # ссылки на мессенджеры и соцсети в тексте поста — это контакты, их место
+    # в блоке «ВАЖНО» и в контактах, а не среди цен и описаний.
+    if re.search(r"\b(?:max\.ru|vk\.cc|vk\.com|t\.me)\b", line, re.IGNORECASE):
+        return True
+    if "ЗВОНОК НЕ ПРОЙД" in upper:
+        return True
     low = line.casefold()
     if "весь каталог квартир" in low:
         return True
