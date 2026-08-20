@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T12:03:11.568895+00:00",
+  "generated_at": "2026-08-20T13:38:02.826571+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -99,6 +99,14 @@
       "cityKey": "alakhadzy"
     },
     {
+      "title": "\"РЕЛАКС ДОМ\" домики",
+      "address": "Пицунда, пос. Цитрусовый, 43.199394, 40.281117",
+      "lat": 43.199385170009144,
+      "lon": 40.28110627116372,
+      "url": "/hotels/relaks-dom-domiki-5230/",
+      "cityKey": "alakhadzy"
+    },
+    {
       "title": "\"РИТА\" домики и апартаменты с питанием",
       "address": "Алахадзы, ул. Морская 5а",
       "lat": 43.225951,
@@ -141,8 +149,8 @@
     {
       "title": "\"САННИ ХОУМ\" домики с бассейном",
       "address": "Пицунда, пос. Цитрусовый, ул. Цитрусовая, 6",
-      "lat": 43.19979781536706,
-      "lon": 40.281803531706394,
+      "lat": 43.20035117031517,
+      "lon": 40.28162382370183,
       "url": "/hotels/sanni-houm-domiki-s-basseynom-4731/",
       "cityKey": "alakhadzy"
     },
@@ -1900,18 +1908,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 476,
-    "placemarks_unique": 238,
-    "pages_total": 491,
-    "pages_on_disk": 543,
+    "placemarks_total": 478,
+    "placemarks_unique": 239,
+    "pages_total": 492,
+    "pages_on_disk": 544,
     "pages_excluded": 52,
-    "from_constructor": 254,
+    "from_constructor": 255,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 237,
     "skipped_without_coords": 237,
     "shared_coordinate_groups": 29,
     "deduped_redirect_points": 17,
-    "points_total": 237
+    "points_total": 238
   }
 }
