@@ -305,7 +305,32 @@ def pick_guest_reviews_for_slug(slug: str, count: int = 2) -> list[dict]:
     return picked
 
 
-def _reviews_panel_for_slug(mod: Any, slug: str) -> str:
+REVIEWS_PANEL_RE = re.compile(
+    r'<section class="reviews-panel">.*?</section>', re.DOTALL
+)
+
+
+def _existing_reviews_panel(page_href: str) -> str:
+    """Панель отзывов с уже опубликованной страницы.
+
+    Настоящие отзывы об объекте лежат в media/reviews/review_text_bank.json,
+    а папка media/ вне git — на раннере GitHub Actions банка просто нет. Без
+    этой подстраховки любая пересборка карточки в облаке меняла живые отзывы
+    гостей на общие из data/guest-reviews.json (21.08.2026 так пострадал
+    «Лазурный берег»). Поэтому, когда банк недоступен, оставляем на странице
+    то, что там уже было.
+    """
+    path = ROOT / page_href.strip('/') / 'index.html'
+    if not path.is_file():
+        return ''
+    try:
+        match = REVIEWS_PANEL_RE.search(path.read_text(encoding='utf-8'))
+    except OSError:
+        return ''
+    return match.group(0) if match else ''
+
+
+def _reviews_panel_for_slug(mod: Any, slug: str, page_href: str = '') -> str:
     object_reviews = _reviews_for_slug(slug)
     if object_reviews:
         reviews_html = ''
@@ -330,6 +355,11 @@ def _reviews_panel_for_slug(mod: Any, slug: str) -> str:
                 f'<div class="reviews-grid">{reviews_html}</div>'
                 '</section>'
             )
+
+    if not _load_ocr_review_bank():
+        preserved = _existing_reviews_panel(page_href)
+        if preserved:
+            return preserved
 
     fallback = pick_guest_reviews_for_slug(slug)
     if not fallback:
@@ -1079,7 +1109,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
             if mod.should_show_location_under_title(lead_text, description)
             else ''
         )
-    reviews_panel = _reviews_panel_for_slug(mod, slug)
+    reviews_panel = _reviews_panel_for_slug(mod, slug, page_href)
     top_gallery = render_top_gallery(media_items, title)
     media_html = render_media_items(media_items, title)
     why_lines = sections[0]['lines'][:3] if sections else []
