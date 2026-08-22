@@ -21,6 +21,12 @@ jobs:
       - name: Check key pages from Yandex Webmaster
         run: python tools/webmaster_recommended_pages_check.py --strict
 
+      # Фото и видео из комментариев («Дополнительные материалы») заливаются
+      # отдельно от галереи объекта, поэтому битая ссылка тут заметна только
+      # гостю. Проверяем их каждым прогоном смоука.
+      - name: Check supplemental media
+        run: python tools/check_supplemental_media_prod.py
+
       - name: Upload health report
         if: always()
         uses: actions/upload-artifact@v4
