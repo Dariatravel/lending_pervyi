@@ -83,6 +83,29 @@ def probe_bytes(url: str, timeout: int = 25) -> tuple[int, str, int, bytes]:
         return 0, f"{type(error).__name__}: {error}", 0, b""
 
 
+def sniff_format(head_bytes: bytes) -> str:
+    """Что за файл лежит по ссылке на самом деле — по первым байтам."""
+    probes = (
+        (b"%PDF", "PDF-документ"),
+        (b"\xff\xd8\xff", "JPEG"),
+        (b"\x89PNG", "PNG"),
+        (b"GIF8", "GIF"),
+        (b"\x1a\x45\xdf\xa3", "WebM"),
+        (b"<!DOCTYPE", "HTML-страница"),
+        (b"<html", "HTML-страница"),
+        (b"<?xml", "XML/SVG"),
+        (b"PK\x03\x04", "ZIP/офисный документ"),
+    )
+    for signature, name in probes:
+        if head_bytes.startswith(signature):
+            return name
+    if head_bytes[:4] == b"RIFF" and head_bytes[8:12] == b"WEBP":
+        return "WebP"
+    if b"ftyp" in head_bytes[:16]:
+        return "видео MP4/MOV"
+    return "неизвестный формат, первые байты " + head_bytes[:12].hex(" ")
+
+
 def collect_urls(slug_filter: str | None) -> list[tuple[str, str]]:
     try:
         blocks = json.loads(BLOCKS_PATH.read_text(encoding="utf-8"))
@@ -149,7 +172,7 @@ def main() -> int:
             reasons.append("пустой файл")
         signatures = MAGIC.get(ext, ())
         if head_bytes and signatures and not any(sig in head_bytes[:16] for sig in signatures):
-            reasons.append("содержимое не похоже на " + ext)
+            reasons.append(f"содержимое не похоже на {ext} (на самом деле {sniff_format(head_bytes)})")
         size = f"{length // 1024} КБ" if length else "0"
         mark = "ПРОВАЛ" if reasons else "OK"
         by_slug.setdefault(slug, []).append(f"  {mark:6} {name} ({size}, {ctype or '—'})")
