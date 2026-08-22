@@ -298,7 +298,7 @@ POST_META: dict[int, dict[str, object]] = {
     },
     2468: {
         "slug": "o-chem-zhaleyut-turisty-v-abhazii",
-        "title": "О чём жалеют туристы в Абхазии: 5 честных признаний об отдыхе",
+        "title": "О чём жалеют туристы в Абхазии: честные признания об отдыхе",
         "lead": "Аппетит на хачапури, память в телефоне, слишком короткий отпуск и маленький чемодан — что стоит учесть до поездки, чтобы не жалеть.",
         "breadcrumb": "О чём жалеют туристы",
         "eyebrow": "Перед поездкой",
@@ -307,7 +307,7 @@ POST_META: dict[int, dict[str, object]] = {
     },
     2472: {
         "slug": "abhazskoe-vino-domashnee-ili-zavodskoe",
-        "title": "Абхазское вино: домашнее или заводское — какое выбрать",
+        "title": "Абхазское вино: домашнее или заводское, какое выбрать",
         "lead": "Что на самом деле значит надпись «произведено в Абхазии», чем рискует покупатель домашнего вина и о чём спросить продавца перед покупкой.",
         "breadcrumb": "Абхазское вино",
         "eyebrow": "Покупки",
@@ -513,14 +513,17 @@ def telegram_text_to_sections_html(text: str) -> str:
     body_parts: list[str] = []
     orphan_blocks: list[list[str]] = []
     saw_section = False
-    pending_title: str | None = None
+    # (заголовок, исходная строка): пока не встретился текст под ним, строка
+    # может оказаться вовсе не заголовком, а обычной репликой в конце поста.
+    pending_title: tuple[str, str] | None = None
 
     def flush_pending_title() -> None:
         nonlocal pending_title
         if pending_title:
-            rendered = render_section(pending_title, [])
-            if rendered:
-                body_parts.append(rendered)
+            # Под «заголовком» так и не оказалось текста. Пустой <h2> на странице
+            # выглядит поломкой (пост 2468: «5. Что добавите пятым пунктом?»
+            # уехал в заголовок раздела), поэтому отдаём строку обычным абзацем.
+            body_parts.append(render_free_block([pending_title[1]]))
             pending_title = None
 
     def flush_orphans() -> None:
@@ -545,10 +548,10 @@ def telegram_text_to_sections_html(text: str) -> str:
                 pending_title = None
             else:
                 flush_pending_title()
-                pending_title = title
+                pending_title = (title, lines[0])
             saw_section = True
         elif pending_title:
-            rendered = render_section(pending_title, lines)
+            rendered = render_section(pending_title[0], lines)
             if rendered:
                 body_parts.append(rendered)
             pending_title = None
