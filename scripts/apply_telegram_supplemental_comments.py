@@ -291,9 +291,31 @@ def media_kind(message: Any) -> str:
         return "video"
     if mime.startswith("image/") or "Photo" in type(getattr(message, "media", None)).__name__:
         return "photo"
-    if getattr(message, "media", None) is not None:
-        return "photo"
+    # Раньше любое вложение считалось фотографией. Из-за этого меню гастробара,
+    # выложенное в комментариях документом Word, легло в бакет под именем
+    # photo-01.jpg: сервер отдавал его как картинку, а браузер показывал
+    # «сломанное фото» (22.08.2026, пляжный комплекс 151). Документы, архивы
+    # и прочие вложения на страницу не переносим.
     return "other"
+
+
+# Подпись формата в первых байтах файла: скачанное вложение может оказаться
+# не тем, чем притворяется расширение.
+FILE_SIGNATURES = {
+    "photo": (b"\xff\xd8\xff", b"\x89PNG\r\n\x1a\n", b"GIF8", b"RIFF"),
+    "video": (b"ftyp", b"\x1a\x45\xdf\xa3"),
+}
+
+
+def looks_like(kind: str, path: Path) -> bool:
+    signatures = FILE_SIGNATURES.get(kind)
+    if not signatures:
+        return True
+    try:
+        head = path.read_bytes()[:16]
+    except OSError:
+        return False
+    return any(signature in head for signature in signatures)
 
 
 async def expand_group(client: Any, entity: Any, message: Any) -> list[Any]:
@@ -399,6 +421,16 @@ async def download_block_media(
             dest = out_dir / filename
             if not dest.exists():
                 await client.download_media(message, file=str(dest))
+            # Второй рубеж: если внутри оказалась не картинка и не видео,
+            # на страницу такой файл не пойдёт (и в бакет тоже).
+            if not looks_like(kind, dest):
+                print(f"  пропускаю {dest.name}: внутри не {kind}", flush=True)
+                dest.unlink(missing_ok=True)
+                if kind == "photo":
+                    photo_idx -= 1
+                else:
+                    video_idx -= 1
+                continue
             rel = dest.relative_to(ROOT / "media").as_posix()
             block.media.append(MediaFile(rel_path=rel, kind=kind))
 
