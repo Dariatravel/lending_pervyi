@@ -523,7 +523,11 @@ def telegram_text_to_sections_html(text: str) -> str:
             # Под «заголовком» так и не оказалось текста. Пустой <h2> на странице
             # выглядит поломкой (пост 2468: «5. Что добавите пятым пунктом?»
             # уехал в заголовок раздела), поэтому отдаём строку обычным абзацем.
-            body_parts.append(render_free_block([pending_title[1]]))
+            # Именно абзацем, а не через render_free_block: тот увидит нумерацию
+            # и сделает список из одного пункта — это тоже не то.
+            tail = strip_bullet(pending_title[1])
+            if tail:
+                body_parts.append(f"        <p>{html.escape(tail)}</p>")
             pending_title = None
 
     def flush_orphans() -> None:
