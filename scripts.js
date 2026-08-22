@@ -16,10 +16,34 @@
     `http://${PUNY_SITE_HOST}`,
   ];
 
+  // Редиректор abhazbereg.com сохраняет путь, но ОТБРАСЫВАЕТ query («?…») —
+  // 21.08.2026 из-за этого ссылки на подборки с фильтрами открывали голый
+  // каталог. Часть после «#» браузер переносит через редирект сам, поэтому
+  // в share-ссылках фильтры кодируем фрагментом: abhazbereg.com/#price=…
   function buildPublicShareUrl(pathname = window.location.pathname, search = window.location.search) {
     const path = pathname || "/";
-    return `${SHARE_ORIGIN}${path}${search || ""}`;
+    const query = (search || "").replace(/^\?/, "");
+    return query ? `${SHARE_ORIGIN}${path}#${query}` : `${SHARE_ORIGIN}${path}`;
   }
+
+  // Обратная сторона: гость приходит на абхазберег.рф с «#price=…» — до
+  // инициализации фильтров превращаем фрагмент в обычные query-параметры,
+  // чтобы весь существующий код (location.search) работал как раньше.
+  (function normalizeShareHashIntoSearch() {
+    const hash = (window.location.hash || "").replace(/^#/, "");
+    if (!hash || hash.indexOf("=") < 0) return; // якоря вида #catalog не трогаем
+    const KNOWN = /^(price|city|distance|food|beach|room|stay|catalog|name)=/;
+    const looksLikeFilters = hash.split("&").some((pair) => KNOWN.test(pair));
+    if (!looksLikeFilters) return;
+    const search = window.location.search
+      ? `${window.location.search}&${hash}`
+      : `?${hash}`;
+    try {
+      window.history.replaceState(null, "", `${window.location.pathname}${search}`);
+    } catch (error) {
+      /* старые браузеры: оставляем hash как есть */
+    }
+  })();
 
   function normalizePublicUrlText(raw) {
     let text = String(raw || "");
@@ -230,7 +254,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202608191613";
+  const ASSET_VERSION = "202608221237";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -4561,7 +4585,11 @@
       });
 
       applyFiltersBtn?.addEventListener("click", () => {
-        if (!filtersModal?.classList.contains("is-visible")) return;
+        // Раньше стоял ранний выход `if (!filtersModal.classList.contains("is-visible")) return;`,
+        // но текущая модалка открывается с классом filters-modal--sheet БЕЗ is-visible —
+        // из-за этого «Показать N вариантов» закрывал шит, не применяя черновик фильтров
+        // (жалоба Дарьи 22.08.2026). Клик по кнопке возможен только в открытой модалке,
+        // поэтому проверка класса не нужна.
         if (isMobileFiltersLayout()) applyCommittedFromDraft();
         closeFiltersModal({ restoreCommittedDraft: false });
       });
