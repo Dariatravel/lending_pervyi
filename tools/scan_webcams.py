@@ -37,7 +37,7 @@ SOURCES = {
 # запас на пагинацию и разделы городов.
 MAX_PAGES_PER_SOURCE = 120
 TIMEOUT = 25
-UA = "Mozilla/5.0 (compatible; abhazbereg-webcam-scan/1.0; +https://абхазберег.рф)"
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36 abhazbereg-webcam-scan"
 
 STREAM_RE = re.compile(r'["\'(]([^"\'()\s]+\.(?:m3u8|mpd)[^"\'()\s]*)["\')]', re.I)
 IFRAME_RE = re.compile(r'<iframe[^>]+src=["\']([^"\']+)["\']', re.I)
