@@ -26,11 +26,10 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 from check_supplemental_media_prod import (  # noqa: E402
     IMAGE_EXT,
-    MAGIC,
     VIDEO_EXT,
+    content_problem,
     expected_kind,
     probe_bytes,
-    sniff_format,
 )
 
 MEDIA_URL_RE = re.compile(
@@ -101,6 +100,7 @@ def main() -> int:
         results = list(pool.map(probe, pairs))
 
     failures: list[str] = []
+    notes: list[str] = []
     checked_ok = 0
     for where, url, status, ctype, length, head_bytes in results:
         name = url.rsplit("/", 1)[-1]
@@ -113,19 +113,27 @@ def main() -> int:
             reasons.append(f"тип {ctype or '—'}")
         if not length:
             reasons.append("пустой файл")
-        signatures = MAGIC.get(ext, ())
-        if head_bytes and signatures and not any(sig in head_bytes[:16] for sig in signatures):
-            reasons.append(f"содержимое не похоже на {ext} (на самом деле {sniff_format(head_bytes)})")
+        warnings: list[str] = []
+        mismatch = content_problem(kind, ext, head_bytes)
+        if mismatch:
+            (reasons if mismatch[1] else warnings).append(mismatch[0])
         if reasons:
             failures.append(f"{where}: {url}\n      " + ", ".join(reasons))
-        else:
-            checked_ok += 1
-            if not args.quiet:
-                print(f"  OK  {where}/{name} ({length // 1024} КБ)")
+            continue
+        checked_ok += 1
+        if warnings:
+            notes.append(f"{where}: {url}\n      " + ", ".join(warnings))
+        elif not args.quiet:
+            print(f"  OK  {where}/{name} ({length // 1024} КБ)")
 
-    print(f"\nИтог: файлов {len(results)}, целых {checked_ok}, провалов {len(failures)}")
+    print(
+        f"\nИтог: файлов {len(results)}, целых {checked_ok}, "
+        f"провалов {len(failures)}, замечаний {len(notes)}"
+    )
     for line in failures:
         print(f"  ! {line}")
+    for line in notes:
+        print(f"  ~ {line}")
     return 1 if failures else 0
 
 

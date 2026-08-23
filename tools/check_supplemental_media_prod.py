@@ -106,6 +106,30 @@ def sniff_format(head_bytes: bytes) -> str:
     return "неизвестный формат, первые байты " + head_bytes[:12].hex(" ")
 
 
+IMAGE_FORMATS = {"JPEG", "PNG", "GIF", "WebP", "XML/SVG"}
+VIDEO_FORMATS = {"WebM", "видео MP4/MOV"}
+
+
+def content_problem(kind: str, ext: str, head_bytes: bytes) -> tuple[str, bool] | None:
+    """Расхождение расширения и содержимого: текст замечания и «это поломка?».
+
+    JPEG под именем .png браузер покажет как ни в чём не бывало — он смотрит
+    на байты, а не на расширение. А вот документ или HTML вместо картинки —
+    это сломанное фото у гостя. Разделяем: первое — предупреждение, второе —
+    провал.
+    """
+    signatures = MAGIC.get(ext, ())
+    if not head_bytes or not signatures:
+        return None
+    if any(signature in head_bytes[:16] for signature in signatures):
+        return None
+    actual = sniff_format(head_bytes)
+    family = IMAGE_FORMATS if kind == "image" else VIDEO_FORMATS
+    if actual in family:
+        return f"внутри {actual}, а имя .{ext} (браузер покажет, но лучше переименовать)", False
+    return f"содержимое не похоже на {ext} (на самом деле {actual})", True
+
+
 def collect_urls(slug_filter: str | None) -> list[tuple[str, str]]:
     try:
         blocks = json.loads(BLOCKS_PATH.read_text(encoding="utf-8"))
@@ -157,6 +181,7 @@ def main() -> int:
         results = list(pool.map(probe, pairs))
 
     failures: list[str] = []
+    notes: list[str] = []
     by_slug: dict[str, list[str]] = {}
     for slug, url, status, ctype, length, head_bytes in results:
         name = url.rsplit("/", 1)[-1]
@@ -170,14 +195,17 @@ def main() -> int:
             reasons.append(f"тип {ctype or '—'}")
         if not length:
             reasons.append("пустой файл")
-        signatures = MAGIC.get(ext, ())
-        if head_bytes and signatures and not any(sig in head_bytes[:16] for sig in signatures):
-            reasons.append(f"содержимое не похоже на {ext} (на самом деле {sniff_format(head_bytes)})")
+        warnings: list[str] = []
+        mismatch = content_problem(kind, ext, head_bytes)
+        if mismatch:
+            (reasons if mismatch[1] else warnings).append(mismatch[0])
         size = f"{length // 1024} КБ" if length else "0"
-        mark = "ПРОВАЛ" if reasons else "OK"
-        by_slug.setdefault(slug, []).append(f"  {mark:6} {name} ({size}, {ctype or '—'})")
+        mark = "ПРОВАЛ" if reasons else ("ВНИМАНИЕ" if warnings else "OK")
+        by_slug.setdefault(slug, []).append(f"  {mark:8} {name} ({size}, {ctype or '—'})")
         if reasons:
             failures.append(f"{slug}: {url} — " + ", ".join(reasons))
+        elif warnings:
+            notes.append(f"{slug}: {url} — " + ", ".join(warnings))
 
     for slug in sorted(by_slug):
         print(slug)
@@ -185,9 +213,11 @@ def main() -> int:
             print(line)
         print()
 
-    print(f"Итог: файлов {len(results)}, провалов {len(failures)}")
+    print(f"Итог: файлов {len(results)}, провалов {len(failures)}, замечаний {len(notes)}")
     for line in failures:
         print(f"  ! {line}")
+    for line in notes:
+        print(f"  ~ {line}")
     return 1 if failures else 0
 
 
