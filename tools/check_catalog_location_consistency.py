@@ -175,8 +175,12 @@ def main() -> int:
     args = build_parser().parse_args()
     rows = select_rows(args)
     if not rows:
-        print("catalog_location_consistency: нет подходящих объектов")
-        return 1
+        # Точечный синк одного объекта может не найти совпадений (например,
+        # номер поста уже не ведёт активную карточку). Проверять нечего — это
+        # не поломка: раньше такой прогон валил весь автосинк и слал Дарье
+        # ложное «⛔️ Автосинк не работает» (23.08.2026).
+        print("catalog_location_consistency: нет подходящих объектов — проверять нечего")
+        return 0
 
     errors: list[str] = []
     warnings: list[str] = []
