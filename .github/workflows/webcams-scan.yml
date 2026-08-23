@@ -1,0 +1,43 @@
+name: Webcams scan
+
+# Разведка веб-камер Абхазии по двум источникам (APSNY.CAMERA, A-MOBILE.CAMERA)
+# для страницы /veb-kamery-abhazii/. Из песочниц агента внешние сайты закрыты,
+# поэтому обход выполняется на раннере. Результат — сводка в логе + артефакт
+# webcams-scan.json, из которого отбираются камеры в data/webcams.json.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dump_html:
+        description: "true — печатать куски HTML главных страниц (отладка)"
+        required: false
+        default: "false"
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Обойти источники и проверить потоки
+        run: |
+          if [ "${{ inputs.dump_html }}" = "true" ]; then
+            python3 tools/scan_webcams.py --dump-html
+          else
+            python3 tools/scan_webcams.py
+          fi
+
+      - name: Сохранить результат
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: webcams-scan
+          path: output/webcams-scan.json
+          if-no-files-found: ignore
