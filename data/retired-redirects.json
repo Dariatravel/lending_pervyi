@@ -1,0 +1,24 @@
+{
+  "_comment": "Страницы снятых с публикации объектов и куда они перенаправляют. Двойники ведут на актуальную карточку того же объекта (проверено по названию и адресу), объекты без замены — в каталог. Применяется tools/apply_retired_redirects.py.",
+  "redirects": {
+    "hotels/atmosfernaya-kvartira-2k-3902": "/kvartira/atmosfernaya-kvartira-2k-1454/",
+    "hotels/boho-kompleks-polnogo-schastya-u-morya-3054": "/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/",
+    "hotels/kashtak-domiki-3668": "/hotels/kashtak-domiki-667/",
+    "hotels/mziya-apartamenty-1396": "/hotels/mziya-gostevye-nomera-3659/",
+    "hotels/peschanyy-bereg-apartamenty-3697": "/hotels/peschanyy-bereg-apartamenty-3700/",
+    "kvartira/bi-heppi-kottedzh-suhum-1130": "/kvartira/bi-heppi-kottedzh-1121/",
+    "kvartira/kvartira-2k-afina-suhum-717": "/kvartira/afina-kvartira-2k-1488/",
+
+    "hotels/alpika-mini-apart-otel-4202": "/#catalog",
+    "hotels/aristokrat-gostevoy-kompleks-s-basseynami-4377": "/#catalog",
+    "hotels/bzyb-domiki-i-nomera-s-basseynom-4367": "/#catalog",
+    "hotels/kedrovyy-eko-otel-s-basseynom-4419": "/#catalog",
+    "hotels/lemar-domiki-v-tsentre-4239": "/#catalog",
+    "hotels/mare-dolche-eko-kompleks-4219": "/#catalog",
+    "hotels/san-pino-domiki-derevyannye-s-basseynom-3005": "/#catalog",
+    "hotels/sanset-eko-domiki-4182": "/#catalog",
+    "hotels/u-morya-domiki-3200": "/#catalog",
+    "hotels/volshebnaya-imperiya-domiki-s-basseynom-4318": "/#catalog",
+    "kvartira/miya-dom-ldzaa-1183": "/#catalog"
+  }
+}
