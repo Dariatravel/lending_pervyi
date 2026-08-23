@@ -6845,6 +6845,27 @@ html:has(> body.objects-map-page) {
   background: color-mix(in srgb, var(--accent-strong) 18%, white);
 }
 
+/* Кнопка «Скопировать ссылку на точку» в попапе карты */
+.objects-map-popup__share {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+  padding: 0.42rem 0.72rem;
+  border: 1px solid color-mix(in srgb, var(--accent-strong) 35%, white);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--accent-strong);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.objects-map-popup__share:hover {
+  background: color-mix(in srgb, var(--accent-strong) 10%, white);
+}
+
 .objects-map-marker {
   display: inline-flex;
   align-items: center;

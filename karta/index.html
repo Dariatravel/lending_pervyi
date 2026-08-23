@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#d9eee7" />
   <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" rel="icon" type="image/png"/>
   <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" rel="apple-touch-icon"/>
-<link rel="stylesheet" href="../styles.min.css?v=202608221237" />
+<link rel="stylesheet" href="../styles.min.css?v=202608231135" />
 <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
 <link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin />
 <link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin />
@@ -25,14 +25,14 @@
   <div id="objects-map" role="region" aria-label="Интерактивная карта объектов"></div>
   <p class="objects-map-page__status" hidden id="objects-map-status"></p>
 
-  <script defer src="../pwa.js?v=202608221237"></script>
+  <script defer src="../pwa.js?v=202608231135"></script>
   <script>
     (function () {
-      var LEAFLET_CSS_URL = "../vendor/leaflet/leaflet.css?v=202608221237";
-      var LEAFLET_JS_URL = "../vendor/leaflet/leaflet.js?v=202608221237";
-      var LEAFLET_CLUSTER_CSS_URL = "../vendor/leaflet-markercluster/MarkerCluster.css?v=202608221237";
-      var LEAFLET_CLUSTER_DEFAULT_CSS_URL = "../vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202608221237";
-      var LEAFLET_CLUSTER_JS_URL = "../vendor/leaflet-markercluster/leaflet.markercluster.js?v=202608221237";
+      var LEAFLET_CSS_URL = "../vendor/leaflet/leaflet.css?v=202608231135";
+      var LEAFLET_JS_URL = "../vendor/leaflet/leaflet.js?v=202608231135";
+      var LEAFLET_CLUSTER_CSS_URL = "../vendor/leaflet-markercluster/MarkerCluster.css?v=202608231135";
+      var LEAFLET_CLUSTER_DEFAULT_CSS_URL = "../vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202608231135";
+      var LEAFLET_CLUSTER_JS_URL = "../vendor/leaflet-markercluster/leaflet.markercluster.js?v=202608231135";
       var leafletLoadPromise = null;
 
       var CITIES = {
@@ -47,6 +47,17 @@
       };
       var DEFAULT_GEO = { label: "Абхазия", lon: 40.5, lat: 43.15, z: 10 };
       var cityKey = new URLSearchParams(window.location.search).get("city") || "";
+      // Ссылка на конкретный объект: /karta/?obj=<slug> или /karta/#obj=<slug>.
+      // Вариант с #фрагментом — основной для переписок: редиректор
+      // abhazbereg.com отбрасывает ?query, а #… браузер переносит сам.
+      var objSlug = new URLSearchParams(window.location.search).get("obj") || "";
+      if (!objSlug && /^#obj=/.test(window.location.hash || "")) {
+        objSlug = decodeURIComponent(window.location.hash.slice(5));
+      }
+      function slugFromPointUrl(url) {
+        var parts = String(url || "").split("/").filter(Boolean);
+        return parts.length ? parts[parts.length - 1] : "";
+      }
       var geo = CITIES[cityKey] || DEFAULT_GEO;
       var cityNode = document.getElementById("objects-map-city");
       var statusNode = document.getElementById("objects-map-status");
@@ -90,6 +101,30 @@
         link.rel = "noopener noreferrer";
         link.textContent = "Открыть объект на сайте";
         wrap.appendChild(link);
+
+        // «Как в Яндекс.Картах»: ссылка сразу на эту точку карты.
+        var slug = slugFromPointUrl(url);
+        if (slug) {
+          var shareBtn = document.createElement("button");
+          shareBtn.type = "button";
+          shareBtn.className = "objects-map-popup__share";
+          shareBtn.textContent = "Скопировать ссылку на точку";
+          shareBtn.addEventListener("click", function () {
+            var shareUrl = "https://abhazbereg.com/karta/#obj=" + encodeURIComponent(slug);
+            var done = function () {
+              shareBtn.textContent = "Ссылка скопирована ✓";
+              window.setTimeout(function () {
+                shareBtn.textContent = "Скопировать ссылку на точку";
+              }, 2200);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(shareUrl).then(done, done);
+            } else {
+              window.prompt("Скопируйте ссылку:", shareUrl);
+            }
+          });
+          wrap.appendChild(shareBtn);
+        }
 
         return wrap;
       }
@@ -221,6 +256,7 @@
           showCoverageOnHover: false,
           maxClusterRadius: cityKey ? 40 : 56,
         });
+        var targetMarker = null;
         points.forEach(function (point) {
           if (!Number.isFinite(point.lat) || !Number.isFinite(point.lon)) return;
           var marker = window.L.marker([point.lat, point.lon], {
@@ -239,10 +275,19 @@
             }),
           });
           marker.bindPopup(createPopupContent(point), { maxWidth: 280, className: "objects-map-popup-shell" });
+          if (objSlug && slugFromPointUrl(point.url) === objSlug) {
+            targetMarker = marker;
+          }
           marker.addTo(group);
         });
         group.addTo(map);
-        if (group.getLayers().length) {
+        if (targetMarker) {
+          // Открыли по ссылке на точку: подлетаем к объекту и раскрываем карточку.
+          map.setView(targetMarker.getLatLng(), 16, { animate: false });
+          group.zoomToShowLayer(targetMarker, function () {
+            targetMarker.openPopup();
+          });
+        } else if (group.getLayers().length) {
           fitMapToPoints(map, group, Boolean(cityKey));
         } else {
           showStatus("Для выбранного города пока нет точек с привязкой к страницам сайта.");
@@ -262,7 +307,7 @@
           });
       }
 
-      fetch("../data/objects-map-points.json?v=202608221237")
+      fetch("../data/objects-map-points.json?v=202608231135")
         .then(function (response) {
           if (!response.ok) throw new Error("map-data");
           return response.json();
