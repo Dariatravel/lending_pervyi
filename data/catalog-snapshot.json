@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T13:22:20.971457+00:00",
+  "generated_at": "2026-08-23T07:29:11.346300+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 239,
@@ -15117,19 +15117,15 @@
           },
           {
             "kind": "price",
-            "text": "3000₽ - июнь с 1го по 10е"
+            "text": "5000₽ - август"
           },
           {
             "kind": "price",
-            "text": "4000₽ - июнь с 11го по 30е"
+            "text": "4000₽ - сентябрь до 10го"
           },
           {
             "kind": "price",
-            "text": "5000₽ - июль с 1го по 10е сентября"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - сентябрь с 11го"
+            "text": "3500₽ - сентябрь с 11"
           },
           {
             "kind": "price",
@@ -15141,19 +15137,15 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - июнь с 1го по 10е"
+            "text": "6000₽ - август"
           },
           {
             "kind": "price",
-            "text": "5000₽ - июнь с 11го по 30е"
+            "text": "4500₽ - сентябрь до 10го"
           },
           {
             "kind": "price",
-            "text": "6000₽ - июль с 1го по 10е сентября"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ - сентябрь с 11го"
+            "text": "4000₽ - сентябрь с 11"
           },
           {
             "kind": "price",
@@ -15290,7 +15282,7 @@
           "details": {
             "telegram_post": "abhazbooking/3940",
             "telegram_url": "https://t.me/abhazbooking/3940",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sozvezdie-mini-otel-3933/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sozvezdie-mini-otel-3933/video-01-poster.jpg"
           }
         }
       ]
