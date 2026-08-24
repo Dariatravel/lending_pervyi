@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T15:30:55.680503+00:00",
+  "generated_at": "2026-08-24T16:21:50.821763+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 239,
@@ -14425,15 +14425,15 @@
         "prices": [
           {
             "kind": "price",
+            "text": "АКЦИЯ🔥"
+          },
+          {
+            "kind": "price",
+            "text": "В сентябре домик 2000₽"
+          },
+          {
+            "kind": "price",
             "text": "домик, до 4 человек"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "3500₽ - июль"
           },
           {
             "kind": "price",
@@ -14449,11 +14449,7 @@
           },
           {
             "kind": "price",
-            "text": "4500₽ - с 1 по 14 июня"
-          },
-          {
-            "kind": "price",
-            "text": "5500₽ - с 15 июня по 15 сентября"
+            "text": "5500₽ - август, сентябрь по 15"
           },
           {
             "kind": "price",
