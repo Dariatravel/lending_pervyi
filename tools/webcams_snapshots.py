@@ -114,6 +114,26 @@ def grab_frame(stream_url: str, out_path: Path) -> bool:
     return out_path.is_file() and out_path.stat().st_size > 0
 
 
+def brightness(path: Path) -> float | None:
+    """Средняя яркость кадра (0–255) через ffmpeg signalstats."""
+    ffmpeg = shutil.which("ffmpeg")
+    if not ffmpeg:
+        return None
+    proc = subprocess.run(
+        [ffmpeg, "-hide_banner", "-i", str(path), "-vf", "signalstats,metadata=print", "-f", "null", "-"],
+        capture_output=True, timeout=60, text=True,
+    )
+    m = re.search(r"YAVG=([\d.]+)", proc.stderr + proc.stdout)
+    return float(m.group(1)) if m else None
+
+
+# Ниже этой средней яркости кадр считается ночным: на карточке он выглядит
+# чёрным прямоугольником. Такой снимок не заливаем — на сайте остаётся
+# предыдущий дневной (24.08.2026 ручной прогон в 20:20 МСК залил 21 тёмный
+# кадр; штатный крон в 15:00 МСК в эту защиту упираться не должен).
+MIN_BRIGHTNESS = 45.0
+
+
 def looks_like_jpeg(path: Path) -> bool:
     try:
         return path.read_bytes()[:3] == b"\xff\xd8\xff" and path.stat().st_size > 5_000
@@ -186,6 +206,7 @@ def main() -> int:
 
     updated: list[str] = []
     failed: list[str] = []
+    night: list[str] = []
     with tempfile.TemporaryDirectory() as tmp:
         tmp_dir = Path(tmp)
         for block in data["blocks"]:
@@ -202,6 +223,12 @@ def main() -> int:
                     out.write_bytes(fetch_bytes(preview))
                     ok = looks_like_jpeg(out)
                     if ok:
+                        level = brightness(out)
+                        if level is not None and level < MIN_BRIGHTNESS:
+                            print(f"    кадр ночной (яркость {level:.0f}) — оставляю прежний снимок")
+                            night.append(cam_id)
+                            continue
+                    if ok:
                         rescale_jpeg(out)
                 except (urllib.error.URLError, OSError, ValueError) as error:
                     print(f"    превью не скачалось: {error}")
@@ -216,13 +243,14 @@ def main() -> int:
                 updated.append(cam_id)
                 print(f"    OK → {key} ({out.stat().st_size // 1024} КБ)")
 
-    print(f"\nИтог: обновлено {len(updated)}, не получилось {len(failed)}")
+    print(f"\nИтог: обновлено {len(updated)}, ночных пропущено {len(night)}, не получилось {len(failed)}")
     for name in failed:
         print(f"  ! {name}")
     if updated:
         purge_cdn([f"/media/webcams/{cam_id}.jpg" for cam_id in updated])
-    # Полный провал — сигнал (сломался формат API или сеть); частичные пропуски штатны.
-    return 1 if not updated else 0
+    # Красный статус — только когда ничего не обновилось и дело не в ночи:
+    # сломался формат превью или сеть. Ночные пропуски — штатная защита.
+    return 1 if (not updated and not night) else 0
 
 
 if __name__ == "__main__":
