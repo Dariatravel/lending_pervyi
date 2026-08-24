@@ -34,6 +34,15 @@ jobs:
             python3 tools/scan_webcams.py
           fi
 
+      # Артефакты лежат во внешнем хранилище, недоступном из песочницы агента,
+      # поэтому результат печатается и в журнал — оттуда его читает агент.
+      - name: Показать результат в журнале
+        if: always()
+        run: |
+          echo "===JSON-START==="
+          cat output/webcams-scan.json || true
+          echo "===JSON-END==="
+
       - name: Сохранить результат
         if: always()
         uses: actions/upload-artifact@v4
