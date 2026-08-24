@@ -76,8 +76,9 @@ def probe(url: str) -> dict:
 def scan_source(name: str, base: str) -> dict:
     status, home = fetch_text(base)
     print(f"\n=== {name}: главная — код {status}, {len(home)} байт", flush=True)
-    result: dict = {"source": name, "base": base, "home_status": status, "home_html": home}
+    result: dict = {"source": name, "base": base, "home_status": status}
     if not home or home.startswith("__error__"):
+        result["home_error"] = home[:300]
         return result
 
     # JS-бандлы с того же сайта: у SPA список камер и адреса потоков внутри них.
@@ -101,15 +102,27 @@ def scan_source(name: str, base: str) -> dict:
     hosts = sorted({u.split("/")[2] for u in URL_RE.findall(corpus) if "/" in u[8:]})
     result["hosts"] = hosts
 
+    # Полные адреса на служебных хостах (кроме счётчиков, шрифтов и соцсетей):
+    # где-то среди них — список камер и потоки.
+    noise = (
+        "mc.yandex.ru", "yandex.ru", "yastatic.net", "fonts.g", "www.w3.org",
+        "vk.com", "instagram.com", "facebook.com", "digitalcaramel.com",
+        "googleapis.com", "gstatic.com",
+    )
+    urls = sorted({
+        u.rstrip("\\',;)") for u in URL_RE.findall(corpus)
+        if not any(n in u for n in noise)
+    })
+    result["urls"] = [{"url": u, "context": context_snippets(corpus, u, radius=160, limit=2)} for u in urls]
+
     api_paths = sorted(set(API_PATH_RE.findall(corpus)))
     result["api_paths"] = api_paths
     result["api_probes"] = {}
-    for path in api_paths[:15]:
-        full = urljoin(base, path)
+    for full in [urljoin(base, path) for path in api_paths[:15]] + [u for u in urls if "." in u.split("/")[-1] or u.rstrip("/").count("/") >= 3][:15]:
         result["api_probes"][full] = probe(full)
-        print(f"    api {full} → {result['api_probes'][full]['status']}")
+        print(f"    probe {full} → {result['api_probes'][full]['status']}")
 
-    print(f"    потоков в коде: {len(streams)}, api-путей: {len(api_paths)}, хостов: {len(hosts)}")
+    print(f"    потоков в коде: {len(streams)}, служебных адресов: {len(urls)}, хостов: {len(hosts)}")
     return result
 
 
