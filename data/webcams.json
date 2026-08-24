@@ -1,0 +1,134 @@
+{
+  "_comment": "Реестр веб-камер для страницы /veb-kamery-abhazii/. Отобраны туристические виды из ~190 камер двух операторов (разведка tools/scan_webcams.py, 24.08.2026). Страница собирается scripts/build_webcams_page.py; снимки-обложки обновляет ежедневный воркфлоу webcams-snapshots.yml (разрешение владельцев получено). id — имя файла обложки в бакете media/webcams/<id>.jpg.",
+  "sources": {
+    "apsny": {
+      "label": "APSNY.CAMERA",
+      "owner": "ООО «Система»",
+      "site": "https://apsny.camera/",
+      "watch_base": "https://apsny.camera/?{channel}"
+    },
+    "amobile": {
+      "label": "A-MOBILE.CAMERA",
+      "owner": "А-Мобаил",
+      "site": "https://a-mobile.camera/",
+      "watch_base": "https://a-mobile.camera/",
+      "preview_base": "https://a-mobile.camera/preview/{channel}.jpeg"
+    }
+  },
+  "blocks": [
+    {
+      "city": "Гагра",
+      "slug": "gagra",
+      "intro": "Самый популярный курорт: набережная, Колоннада и море в реальном времени.",
+      "links": [
+        {"href": "/podborki/gagra-vse-varianty/", "label": "Жильё в Гагре"},
+        {"href": "/podborki/basseyn-vse-varianty/", "label": "Отели с бассейном"},
+        {"href": "/podborki/bereg-morya-oteli-na-beregu/", "label": "Жильё на берегу моря"}
+      ],
+      "cams": [
+        {"id": "gagra-naberezhnaya", "source": "apsny", "channel": "gagra_naberezhnaya_1", "title": "Набережная и Колоннада", "about": "Сердце старой Гагры: прогулочная набережная у Колоннады, пальмы и море."},
+        {"id": "gagra-kolonnada", "source": "apsny", "channel": "gagra_kolonnada_1", "title": "Колоннада", "about": "Знаменитая гагрская Колоннада крупным планом — самое фотографируемое место города."},
+        {"id": "gagra-plyazh-sanatoriya", "source": "apsny", "channel": "gagra_pliazh_sanatoriya_gagra", "title": "Пляж санатория «Гагра»", "about": "Галечный пляж и линия прибоя: видно волну, погоду и сколько людей у моря."},
+        {"id": "gagra-smotrovaya", "source": "apsny", "channel": "gagra_smotrovaya", "title": "Смотровая на въезде в город", "about": "Панорама Гагрской бухты со смотровой площадки на въезде."}
+      ]
+    },
+    {
+      "city": "Пицунда",
+      "slug": "pitsunda",
+      "intro": "Сосны, самое чистое море Абхазии и знаменитая бухта.",
+      "links": [
+        {"href": "/podborki/pitsunda-vse-varianty/", "label": "Жильё в Пицунде"},
+        {"href": "/podborki/ldzaa-vse-varianty/", "label": "Жильё в Лдзаа"},
+        {"href": "/podborki/peschanyy-ldzaa/", "label": "Песчаный пляж Лдзаа"},
+        {"href": "/podborki/pitanie-v-otele-ili-svoe-kafe/", "label": "Объекты с питанием"}
+      ],
+      "cams": [
+        {"id": "pitsunda-ldzaa", "source": "apsny", "channel": "pitsunda_ldzaa", "title": "Пляж Лдзаа", "about": "Обзорная камера над пляжем Лдзаа: песок, море и погода прямо сейчас."},
+        {"id": "pitsunda-hram", "source": "apsny", "channel": "pitsunda_temple", "title": "Пицундский храм", "about": "Патриарший собор X века — главная достопримечательность Пицунды."},
+        {"id": "pitsunda-tsentr", "source": "amobile", "channel": "WEB37-PICUNDAPARK", "title": "Центр Пицунды", "about": "Центральная часть курорта: парк и дорога к морю."}
+      ]
+    },
+    {
+      "city": "Сухум",
+      "slug": "suhum",
+      "intro": "Столица: набережная Махаджиров, порт и Ботанический сад.",
+      "links": [
+        {"href": "/podborki/suhum-vse-varianty/", "label": "Жильё в Сухуме"},
+        {"href": "/podborki/peschanyy-plyazh-suhum/", "label": "Песчаные пляжи Сухума"},
+        {"href": "/podborki/svoya-kuhnya-v-nomere/", "label": "Варианты со своей кухней"}
+      ],
+      "cams": [
+        {"id": "suhum-naberezhnaya", "source": "apsny", "channel": "sukhum_chegem", "title": "Набережная Махаджиров", "about": "Главная прогулочная улица столицы у кафе «Чегем»."},
+        {"id": "suhum-morport", "source": "apsny", "channel": "sukhum_port_panorama", "title": "Морской порт", "about": "Панорама Сухумской бухты и причала — видно море и погоду на весь залив."},
+        {"id": "suhum-botsad", "source": "amobile", "channel": "WEB-BOTANIC-SAD", "title": "Ботанический сад", "about": "Один из старейших ботанических садов Кавказа в прямом эфире."},
+        {"id": "suhum-pitomnik", "source": "apsny", "channel": "sukhum_obezianiy_pitomnik_2", "title": "Обезьяний питомник", "about": "Знаменитый сухумский питомник обезьян — живая камера из вольеров."}
+      ]
+    },
+    {
+      "city": "Озеро Рица",
+      "slug": "ritsa",
+      "intro": "Жемчужина горной Абхазии на высоте 950 метров.",
+      "links": [
+        {"href": "/podborki/gory-oteli-v-gorah/", "label": "Отели в горах"},
+        {"href": "/vezu/", "label": "Экскурсии по Абхазии"}
+      ],
+      "cams": [
+        {"id": "ritsa-smotrovaya", "source": "apsny", "channel": "abkhazia_ozero_ritsa_panorama", "title": "Смотровая площадка Рицы", "about": "Панорама озера со смотровой: вода, горы и облака в реальном времени."},
+        {"id": "ritsa-ozero", "source": "amobile", "channel": "WEB50-Ritsa", "title": "Озеро Рица", "about": "Второй ракурс на озеро — сверяйте погоду перед поездкой в горы."}
+      ]
+    },
+    {
+      "city": "Псоу и граница",
+      "slug": "psou",
+      "intro": "Обстановка на границе: оцените очередь до выезда.",
+      "links": [
+        {"href": "/blog/kak-projti-granicu-psou/", "label": "Как пройти границу на Псоу"},
+        {"href": "/blog/marshrutki-ot-granitsy-psou/", "label": "Маршрутки от границы"},
+        {"href": "/blog/duty-free-na-granitse-psou/", "label": "Duty Free на Псоу"}
+      ],
+      "cams": [
+        {"id": "psou-vezd-iz-rossii", "source": "apsny", "channel": "psou_2", "title": "Въезд на КПП из России", "about": "Автомобильная очередь перед КПП со стороны России — главный кадр перед дорогой."},
+        {"id": "psou-vezd-iz-abhazii", "source": "apsny", "channel": "psou_1", "title": "Въезд на КПП из Абхазии", "about": "Очередь на выезд из Абхазии в сторону Сочи."},
+        {"id": "psou-perehod", "source": "apsny", "channel": "psou_peshehodnyi_perehod", "title": "Пешеходный переход", "about": "Поток пешеходов на переходе — видно загруженность в обе стороны."}
+      ]
+    },
+    {
+      "city": "Новый Афон",
+      "slug": "novyy-afon",
+      "intro": "Монастырь, пещера и лебединое озеро у приморского парка.",
+      "links": [
+        {"href": "/podborki/novyy-afon-vse-varianty/", "label": "Жильё в Новом Афоне"},
+        {"href": "/blog/kak-vybrat-kurort-abkhaziya-pervyy-raz/", "label": "Как выбрать курорт в первый раз"}
+      ],
+      "cams": [
+        {"id": "afon-panorama", "source": "apsny", "channel": "afon_panorama", "title": "Вид на город", "about": "Панорама Нового Афона: монастырь на горе, кипарисы и море."},
+        {"id": "afon-lebedi", "source": "amobile", "channel": "WEB-Afon-Lebedi", "title": "Лебединое озеро", "about": "Пруд Приморского парка с лебедями — визитная карточка Афона."}
+      ]
+    },
+    {
+      "city": "Гудаута",
+      "slug": "gudauta",
+      "intro": "Спокойный курорт между Гагрой и Новым Афоном.",
+      "links": [
+        {"href": "/podborki/gudauta-vse-varianty/", "label": "Жильё в Гудауте"},
+        {"href": "/blog/gudauta-nedootsenennyy-kurort/", "label": "Гудаута: недооценённый курорт"}
+      ],
+      "cams": [
+        {"id": "gudauta-park", "source": "apsny", "channel": "gudauta_park", "title": "Парк Гуда и Ута", "about": "Городской парк с фигурами Гуда и Ута — центр прогулочной Гудауты."},
+        {"id": "gudauta-tsentr", "source": "amobile", "channel": "WEB30-GudautaCentre", "title": "Центр города", "about": "Центральная улица Гудауты в прямом эфире."}
+      ]
+    },
+    {
+      "city": "Очамчыра",
+      "slug": "ochamchyra",
+      "intro": "Тихая Восточная Абхазия: набережная и почти безлюдные пляжи.",
+      "links": [
+        {"href": "/podborki/varianty-do-5-tr-ekonom/", "label": "Бюджетные варианты"},
+        {"href": "/#catalog", "label": "Весь каталог жилья"}
+      ],
+      "cams": [
+        {"id": "ochamchyra-naberezhnaya", "source": "amobile", "channel": "WEB-SEC-OCHAMCHIRA-NABEREZHNAYA-1", "title": "Набережная", "about": "Обновлённая набережная Очамчыры — море и прогулочная зона Восточной Абхазии."}
+      ]
+    }
+  ]
+}

@@ -44,6 +44,7 @@ PAGE_GLOBS = (
     "blog/*/index.html",
     "blog/index.html",
     "karta/index.html",
+    "veb-kamery-abhazii/index.html",
 )
 
 

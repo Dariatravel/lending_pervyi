@@ -752,6 +752,8 @@ def discover_static_sitemap_urls() -> list[str]:
             urls.append(f"{CANON_ORIGIN}/answers/{path_item.parent.name}/")
     if (ROOT / "about" / "index.html").is_file():
         urls.append(f"{CANON_ORIGIN}/about/")
+    if (ROOT / "veb-kamery-abhazii" / "index.html").is_file():
+        urls.append(f"{CANON_ORIGIN}/veb-kamery-abhazii/")
     return urls
 
 
