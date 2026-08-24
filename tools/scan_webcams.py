@@ -1,29 +1,24 @@
 #!/usr/bin/env python3
 """Разведчик веб-камер Абхазии: APSNY.CAMERA и A-MOBILE.CAMERA.
 
-Обходит страницы обоих источников, собирает камеры (название страницы,
-адрес, ссылка на видеопоток) и проверяет каждый поток — отвечает ли и
-похож ли ответ на HLS-плейлист. Результат — JSON-список кандидатов, из
-которого вручную отбираются камеры для data/webcams.json.
+Оба источника рисуют список камер скриптами, поэтому обычный обход ссылок
+ничего не находит. Здесь другой подход: скачать главную и её JS-бандлы,
+вытащить из них адреса потоков (m3u8/mpd), служебные API-адреса и упоминания
+камер, постучаться в найденные API и сложить всё в артефакт
+output/webcams-scan.json для ручного разбора.
 
-Запускать из GitHub Actions (workflow webcams-scan.yml): из песочниц
-агента внешние сайты закрыты, с раннеров — открыты.
-
-    python3 tools/scan_webcams.py                  # обход и проверка
-    python3 tools/scan_webcams.py --dump-html      # + куски HTML для отладки
+Запускать из GitHub Actions (workflow webcams-scan.yml): из песочниц агента
+внешние сайты закрыты, с раннеров — открыты.
 """
 
 from __future__ import annotations
 
-import argparse
-import html as html_mod
 import json
 import re
 import sys
-from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.parse import urljoin, urlsplit
+from urllib.parse import urljoin
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,141 +28,96 @@ SOURCES = {
     "apsny.camera": "https://apsny.camera/",
     "a-mobile.camera": "https://a-mobile.camera/",
 }
-# Сколько внутренних страниц обходить на источник — каталоги камер небольшие,
-# запас на пагинацию и разделы городов.
-MAX_PAGES_PER_SOURCE = 120
 TIMEOUT = 25
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36 abhazbereg-webcam-scan"
 
-STREAM_RE = re.compile(r'["\'(]([^"\'()\s]+\.(?:m3u8|mpd)[^"\'()\s]*)["\')]', re.I)
-IFRAME_RE = re.compile(r'<iframe[^>]+src=["\']([^"\']+)["\']', re.I)
-VIDEO_SRC_RE = re.compile(r'<(?:video|source)[^>]+src=["\']([^"\']+)["\']', re.I)
-LINK_RE = re.compile(r'<a[^>]+href=["\']([^"\'#]+)["\']', re.I)
-TITLE_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.I | re.S)
-H1_RE = re.compile(r"<h1[^>]*>(.*?)</h1>", re.I | re.S)
+SCRIPT_SRC_RE = re.compile(r'<script[^>]+src=["\']([^"\']+)["\']', re.I)
+STREAM_RE = re.compile(r'[^"\'\s()]+\.(?:m3u8|mpd)(?:\?[^"\'\s()]*)?', re.I)
+URL_RE = re.compile(r'https?://[^"\'\s\\<>{}]+')
+API_PATH_RE = re.compile(r'["\'](/(?:api|cams?|cameras?|list|data)[^"\'\s]*)["\']', re.I)
 
 
-def fetch(url: str) -> tuple[int, str]:
+def fetch_bytes(url: str, limit: int = 3_000_000) -> tuple[int, bytes]:
     request = Request(url, headers={"User-Agent": UA, "Accept-Language": "ru"})
     try:
         with urlopen(request, timeout=TIMEOUT) as response:
-            body = response.read(2_000_000)
-            return response.status, body.decode("utf-8", errors="replace")
+            return response.status, response.read(limit)
     except HTTPError as error:
-        return error.code, ""
+        return error.code, b""
     except (URLError, OSError, ValueError) as error:
-        return 0, f"__error__ {type(error).__name__}: {error}"
+        return 0, f"__error__ {type(error).__name__}: {error}".encode()
 
 
-def clean_text(value: str) -> str:
-    return " ".join(html_mod.unescape(re.sub("<[^>]+>", " ", value)).split())
+def fetch_text(url: str) -> tuple[int, str]:
+    status, body = fetch_bytes(url)
+    return status, body.decode("utf-8", errors="replace")
 
 
-def same_host(url: str, base: str) -> bool:
-    try:
-        return urlsplit(url).netloc in ("", urlsplit(base).netloc)
-    except ValueError:
-        return False
+def context_snippets(text: str, needle: str, radius: int = 120, limit: int = 3) -> list[str]:
+    """Кусочки текста вокруг найденного адреса — рядом обычно имя камеры."""
+    snippets = []
+    start = 0
+    for _ in range(limit):
+        index = text.find(needle, start)
+        if index < 0:
+            break
+        snippets.append(text[max(0, index - radius): index + len(needle) + radius].replace("\n", " "))
+        start = index + len(needle)
+    return snippets
 
 
-def probe_stream(url: str) -> str:
-    """ok / пусто / код ошибки — жив ли поток."""
-    request = Request(url, headers={"User-Agent": UA})
-    try:
-        with urlopen(request, timeout=TIMEOUT) as response:
-            head = response.read(4096).decode("utf-8", errors="replace")
-    except HTTPError as error:
-        return f"http {error.code}"
-    except (URLError, OSError, ValueError) as error:
-        return f"{type(error).__name__}"
-    if "#EXTM3U" in head:
-        return "ok"
-    if head.strip():
-        return "отвечает, но не HLS"
-    return "пустой ответ"
+def probe(url: str) -> dict:
+    """Что отвечает адрес: код, тип, начало тела."""
+    status, body = fetch_bytes(url, limit=6000)
+    head = body.decode("utf-8", errors="replace")
+    return {"status": status, "head": head[:1500]}
 
 
-def crawl_source(name: str, base: str, dump_html: bool) -> list[dict]:
-    status, home = fetch(base)
+def scan_source(name: str, base: str) -> dict:
+    status, home = fetch_text(base)
     print(f"\n=== {name}: главная — код {status}, {len(home)} байт", flush=True)
-    if dump_html and home:
-        print(home[:2500])
+    result: dict = {"source": name, "base": base, "home_status": status, "home_html": home}
     if not home or home.startswith("__error__"):
-        print(f"    не открылась: {home[:200]}")
-        return []
+        return result
 
-    queue: list[str] = [base]
-    seen: set[str] = set()
-    cameras: list[dict] = []
-    while queue and len(seen) < MAX_PAGES_PER_SOURCE:
-        url = queue.pop(0)
-        norm = url.rstrip("/")
-        if norm in seen:
+    # JS-бандлы с того же сайта: у SPA список камер и адреса потоков внутри них.
+    scripts = []
+    for src in SCRIPT_SRC_RE.findall(home):
+        full = urljoin(base, src)
+        if base.split("//")[1].split("/")[0] not in full:
             continue
-        seen.add(norm)
-        status, page = fetch(url)
-        if not page or page.startswith("__error__"):
-            continue
+        js_status, js = fetch_text(full)
+        print(f"    скрипт {full} — код {js_status}, {len(js)} байт")
+        scripts.append({"url": full, "status": js_status, "text": js})
+    result["scripts_meta"] = [{"url": s["url"], "status": s["status"], "bytes": len(s["text"])} for s in scripts]
 
-        title_m = H1_RE.search(page) or TITLE_RE.search(page)
-        title = clean_text(title_m.group(1)) if title_m else ""
+    corpus = home + "\n".join(s["text"] for s in scripts)
 
-        streams = set(STREAM_RE.findall(page))
-        embeds = set(IFRAME_RE.findall(page)) | set(VIDEO_SRC_RE.findall(page))
-        if streams or embeds:
-            cameras.append(
-                {
-                    "source": name,
-                    "page_url": url,
-                    "title": title,
-                    "streams": sorted(urljoin(url, s) for s in streams),
-                    "embeds": sorted(urljoin(url, e) for e in embeds),
-                }
-            )
+    streams = sorted(set(STREAM_RE.findall(corpus)))
+    result["streams"] = [
+        {"url": s, "context": context_snippets(corpus, s)} for s in streams
+    ]
 
-        for link in LINK_RE.findall(page):
-            link = urljoin(url, link.strip())
-            if not link.startswith("http"):
-                continue
-            if not same_host(link, base):
-                continue
-            if re.search(r"\.(?:css|js|png|jpe?g|webp|svg|ico|pdf|zip|xml)(?:\?|$)", link, re.I):
-                continue
-            if link.rstrip("/") not in seen:
-                queue.append(link)
+    hosts = sorted({u.split("/")[2] for u in URL_RE.findall(corpus) if "/" in u[8:]})
+    result["hosts"] = hosts
 
-    print(f"    обойдено страниц: {len(seen)}, страниц с видео: {len(cameras)}")
-    return cameras
+    api_paths = sorted(set(API_PATH_RE.findall(corpus)))
+    result["api_paths"] = api_paths
+    result["api_probes"] = {}
+    for path in api_paths[:15]:
+        full = urljoin(base, path)
+        result["api_probes"][full] = probe(full)
+        print(f"    api {full} → {result['api_probes'][full]['status']}")
+
+    print(f"    потоков в коде: {len(streams)}, api-путей: {len(api_paths)}, хостов: {len(hosts)}")
+    return result
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dump-html", action="store_true")
-    args = parser.parse_args()
-
-    all_cameras: list[dict] = []
-    for name, base in SOURCES.items():
-        all_cameras.extend(crawl_source(name, base, args.dump_html))
-
-    stream_urls = sorted({s for cam in all_cameras for s in cam["streams"]})
-    print(f"\nПроверяю {len(stream_urls)} потоков…")
-    with ThreadPoolExecutor(max_workers=8) as pool:
-        stream_status = dict(zip(stream_urls, pool.map(probe_stream, stream_urls)))
-
-    for cam in all_cameras:
-        cam["stream_status"] = {s: stream_status.get(s, "?") for s in cam["streams"]}
-
+    results = [scan_source(name, base) for name, base in SOURCES.items()]
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(json.dumps(all_cameras, ensure_ascii=False, indent=1), encoding="utf-8")
-
-    print(f"\n===== СВОДКА ({len(all_cameras)} страниц с видео) =====")
-    for cam in all_cameras:
-        marks = ", ".join(f"{s} [{cam['stream_status'][s]}]" for s in cam["streams"]) or "потоков нет"
-        print(f"[{cam['source']}] {cam['title'][:70]}\n    {cam['page_url']}\n    {marks}")
-        for embed in cam["embeds"][:3]:
-            print(f"    embed: {embed}")
-    live = sum(1 for cam in all_cameras if any(v == "ok" for v in cam["stream_status"].values()))
-    print(f"\nИтог: страниц с видео {len(all_cameras)}, из них с живым HLS-потоком {live}")
+    OUTPUT.write_text(json.dumps(results, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"\nАртефакт: {OUTPUT.relative_to(ROOT)}")
     return 0
 
 
