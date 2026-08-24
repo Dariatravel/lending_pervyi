@@ -80,19 +80,14 @@ def post_form(url: str, fields: dict[str, str]) -> str:
         return response.read(200_000).decode("utf-8", errors="replace")
 
 
-def apsny_stream_url(channel: str) -> str | None:
-    """Адрес живого потока камеры APSNY — как его получает их собственный сайт."""
-    try:
-        body = post_form(APSNY_STREAM_API, {"channel": channel})
-    except (urllib.error.URLError, OSError, ValueError) as error:
-        print(f"    cams.stream не ответил: {error}")
-        return None
-    for pattern in (r'https?:\\?/\\?/[^"\s]+\.m3u8[^"\s]*', r'https?://[^"\s]+\.m3u8[^"\s]*'):
-        m = re.search(pattern, body)
-        if m:
-            return m.group(0).replace("\\/", "/")
-    print(f"    в ответе cams.stream нет m3u8 (начало: {body[:160]!r})")
-    return None
+def apsny_preview_url(channel: str) -> str:
+    """Готовый снимок камеры APSNY.
+
+    Их API cams.stream в ответе называет и адрес превью — постоянный путь
+    apsny.camera/img/camera/<канал>/preview.jpg (проверено первым прогоном
+    24.08.2026), поэтому кадр не нужно вырезать из потока.
+    """
+    return f"https://apsny.camera/img/camera/{channel}/preview.jpg"
 
 
 def grab_frame(stream_url: str, out_path: Path) -> bool:
@@ -201,17 +196,15 @@ def main() -> int:
                 ok = False
                 if source == "amobile":
                     preview = sources["amobile"]["preview_base"].replace("{channel}", channel)
-                    try:
-                        out.write_bytes(fetch_bytes(preview))
-                        ok = looks_like_jpeg(out)
-                        if ok:
-                            rescale_jpeg(out)
-                    except (urllib.error.URLError, OSError, ValueError) as error:
-                        print(f"    превью не скачалось: {error}")
-                elif source == "apsny":
-                    stream = apsny_stream_url(channel)
-                    if stream:
-                        ok = grab_frame(stream, out) and looks_like_jpeg(out)
+                else:
+                    preview = apsny_preview_url(channel)
+                try:
+                    out.write_bytes(fetch_bytes(preview))
+                    ok = looks_like_jpeg(out)
+                    if ok:
+                        rescale_jpeg(out)
+                except (urllib.error.URLError, OSError, ValueError) as error:
+                    print(f"    превью не скачалось: {error}")
                 if not ok:
                     failed.append(f"{cam_id} ({source}:{channel})")
                     continue
