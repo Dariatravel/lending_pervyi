@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T17:59:56.020775+00:00",
+  "generated_at": "2026-08-25T09:27:12.934204+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 239,
@@ -49672,12 +49672,12 @@
       "source_topic_id": null,
       "slug": "grant-apartamenty-2801",
       "title": "\"ГРАНТ\" апартаменты",
-      "summary": "Лдзаа. ️ 7 минут пешком до соснового пляжа, размещение до 6 человек.",
+      "summary": "Лдзаа. 7 минут пешком до соснового пляжа, размещение до 6 человек.",
       "excerpt": "Красивый и стильный отель вблизи соснового пляжа. Тропические деревья, ухоженные газоны и цветники, фонтан, вечерняя подсветка, качели, беседки",
       "city": "Лдзаа",
       "location_text": "Лдзаа, ул. Политрука Нозадзе, д.58",
-      "distance_text": "️ 7 минут пешком до соснового пляжа",
-      "beach_text": "️ 7 минут пешком до соснового пляжа",
+      "distance_text": "7 минут пешком до соснового пляжа",
+      "beach_text": "7 минут пешком до соснового пляжа",
       "capacity_text": "размещение до 6 человек",
       "page_url": "https://абхазберег.рф/hotels/grant-apartamenty-2801/",
       "telegram_url": "https://t.me/abhazbooking/2801",
@@ -49686,7 +49686,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grant-apartamenty-2801.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. ️ 7 минут пешком до соснового пляжа, размещение до 6 человек.",
+        "lead": "Лдзаа. 7 минут пешком до соснового пляжа, размещение до 6 человек.",
         "sections": [
           {
             "label": "✔️ТЕРРИТОРИЯ",
@@ -49937,7 +49937,7 @@
           "details": {
             "telegram_post": "abhazbooking/2810",
             "telegram_url": "https://t.me/abhazbooking/2810",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/grant-apartamenty-2801/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/grant-apartamenty-2801/video-01-poster.jpg"
           }
         }
       ]
