@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T13:45:04.544836+00:00",
+  "generated_at": "2026-08-25T15:34:28.156404+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 239,
@@ -50829,26 +50829,6 @@
           }
         ],
         "prices": [
-          {
-            "kind": "price",
-            "text": "Акция🔥"
-          },
-          {
-            "kind": "price",
-            "text": "При проживании до 10 июля домик 3500₽"
-          },
-          {
-            "kind": "price",
-            "text": "1500₽/сутки - май"
-          },
-          {
-            "kind": "price",
-            "text": "2500₽/сутки - июнь"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽/сутки - июль"
-          },
           {
             "kind": "price",
             "text": "4000₽/сутки - август"
