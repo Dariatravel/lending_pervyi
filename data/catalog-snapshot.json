@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T09:27:12.934204+00:00",
+  "generated_at": "2026-08-25T13:45:04.544836+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 239,
@@ -289,22 +289,6 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция🔥"
-          },
-          {
-            "kind": "price",
-            "text": "Однокомнатный домик (за четырехместное размещение)"
-          },
-          {
-            "kind": "price",
-            "text": "до конца июня 3500₽"
-          },
-          {
-            "kind": "price",
-            "text": "с 1 по 10 июля 5500₽"
-          },
-          {
-            "kind": "price",
             "text": "Однокомнатный домик"
           },
           {
@@ -518,7 +502,7 @@
           "details": {
             "telegram_post": "abhazbooking/4740",
             "telegram_url": "https://t.me/abhazbooking/4740",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sanni-houm-domiki-s-basseynom-4731/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sanni-houm-domiki-s-basseynom-4731/video-01-poster.jpg"
           }
         }
       ]
@@ -40136,10 +40120,6 @@
           },
           {
             "kind": "price",
-            "text": "Акция 🔥 С 24 июня по 6 июля скидка 20% при проживании от 7 дней на двухэтажный восьмиместный коттедж🔥"
-          },
-          {
-            "kind": "price",
             "text": "двухэтажный коттедж шестиместный"
           },
           {
@@ -40638,10 +40618,6 @@
           {
             "kind": "note",
             "text": "(завтраки включены)"
-          },
-          {
-            "kind": "price",
-            "text": "Акция 🔥 С 24 июня по 6 июля скидка 20% при проживании от 7 дней на двухкомнатные апартаменты🔥(цена указана без скидки)"
           },
           {
             "kind": "price",
