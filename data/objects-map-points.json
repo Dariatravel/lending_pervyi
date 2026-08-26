@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T13:38:02.826571+00:00",
+  "generated_at": "2026-08-26T18:29:48.780275+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1595,6 +1595,14 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"ДУЭТ МОККО\" номера",
+      "address": "Сухум, Кодорское шоссе, 42.986521, 41.057504",
+      "lat": 42.986504264141686,
+      "lon": 41.0575777607468,
+      "url": "/hotels/duet-mokko-nomera-5242/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"ЗАРЕЧНЫЙ\" ЭТАЖ В ДОМЕ ПОД КЛЮЧ",
       "address": "Сухум, 3-й переулок Заречной улицы, 5, 43.000022, 40.992695",
       "lat": 43.00000034436161,
@@ -1908,18 +1916,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 478,
-    "placemarks_unique": 239,
-    "pages_total": 492,
-    "pages_on_disk": 544,
-    "pages_excluded": 52,
-    "from_constructor": 255,
+    "placemarks_total": 480,
+    "placemarks_unique": 240,
+    "pages_total": 494,
+    "pages_on_disk": 545,
+    "pages_excluded": 51,
+    "from_constructor": 257,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 237,
     "skipped_without_coords": 237,
-    "shared_coordinate_groups": 29,
-    "deduped_redirect_points": 17,
-    "points_total": 238
+    "shared_coordinate_groups": 30,
+    "deduped_redirect_points": 18,
+    "points_total": 239
   }
 }
