@@ -271,6 +271,13 @@ def selections() -> list[Selection]:
         Selection("svoya-kuhnya-v-nomere", "Варианты размещения с собственной кухней", has("room", "kitchen")),
         Selection("domiki-vse-varianty", "Варианты с отдельными домиками", has("stay", "cottages")),
         Selection("kvartiry-vse-varianty", "Варианты частных квартир", has("stay", "apartments")),
+        # Кнопка «Квартиры и дома под ключ» в быстрых подборках главной
+        # (просьба Дарьи 27.08.2026: квартиры терялись в общем каталоге).
+        Selection(
+            "kvartiry-i-doma-pod-klyuch",
+            "Квартиры и дома под ключ",
+            any_of(has("stay", "apartments"), has("stay", "turnkey-house")),
+        ),
         Selection(
             "gory-oteli-v-gorah",
             "Горы - отели в горах",
@@ -474,6 +481,7 @@ PODBORKI_INDEX_VISUALS: dict[str, tuple[str, str]] = {
     "svoya-kuhnya-v-nomere": ("kitchen", "кухня"),
     "domiki-vse-varianty": ("cottages", "домики"),
     "kvartiry-vse-varianty": ("apartments", "квартира"),
+    "kvartiry-i-doma-pod-klyuch": ("apartments", "квартиры и дома"),
     "gory-oteli-v-gorah": ("mountains", "горы"),
     "ldzaa-vse-varianty": ("ldzaa", "Лдзаа"),
     "sosnovyy-plyazh": ("pines", "сосны"),

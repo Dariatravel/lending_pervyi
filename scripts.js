@@ -254,7 +254,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202608262152";
+  const ASSET_VERSION = "202608262159";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */

@@ -1188,7 +1188,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
 {preload_block}    <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202608262152" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202608262159" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1276,7 +1276,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202608262152" defer></script>
+    <script src="../../scripts.min.js?v=202608262159" defer></script>
     <a aria-label="Наверх" class="back-to-top" href="#top"><span aria-hidden="true" class="back-to-top__icon">↑</span></a>
   </body>
 </html>'''
