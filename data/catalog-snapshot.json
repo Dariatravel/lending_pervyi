@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-26T16:16:26.872430+00:00",
+  "generated_at": "2026-08-26T18:51:57.773643+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 240,
-  "listings_hotels": 187,
+  "listings_total": 239,
+  "listings_hotels": 186,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -16663,7 +16663,7 @@
       "published_at": "2026-03-25",
       "has_video": false,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/nora-gostevoy-dom-3851.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Пицунда. 6 минут до пляжа, галечный, размещение до 4 человек.",
         "sections": [
