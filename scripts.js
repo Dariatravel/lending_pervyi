@@ -254,7 +254,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202608262159";
+  const ASSET_VERSION = "202608262203";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -4959,7 +4959,12 @@
     const openMap = (event) => {
       event.preventDefault();
       event.stopPropagation();
-      window.open(buildObjectsMapPageUrl(plaque.dataset.mapCity || ""), "_blank", "noopener,noreferrer");
+      // Со страницы объекта ведём на его точку (#obj=… — карта сфокусируется
+      // и раскроет карточку), из каталога — на карту города, как раньше.
+      const url = plaque.dataset.mapObj
+        ? `/karta/#obj=${encodeURIComponent(plaque.dataset.mapObj)}`
+        : buildObjectsMapPageUrl(plaque.dataset.mapCity || "");
+      window.open(url, "_blank", "noopener,noreferrer");
     };
     plaque.addEventListener("click", openMap);
     plaque.addEventListener("keydown", (event) => {
@@ -5005,6 +5010,10 @@
     const plaque = createCatalogMapPlaque(cityKey);
     plaque.classList.add("object-card__map-plaque");
     if (variant) plaque.dataset.mapVariant = variant;
+    // На странице объекта плашка ведёт на его точку карты, а не на город
+    // (репорт сотрудника 26.08.2026: «кидает просто на карту»).
+    const slugMatch = window.location.pathname.match(/^\/(?:hotels|kvartira)\/([^/]+)\//);
+    if (slugMatch) plaque.dataset.mapObj = slugMatch[1];
     if (variant === "header") {
       // Под названием объекта плашка превращается в текстовую кнопку карты.
       const cityEl = plaque.querySelector(".catalog-card__map-plaque-city");
