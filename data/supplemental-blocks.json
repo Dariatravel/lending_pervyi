@@ -2,7 +2,12 @@
  "amor-apartamenty-s-kuhney-i-basseynom-3487": {
   "kind": "hotel",
   "section_html": "          <section class=\"section hotel-room-overviews hotel-site-concept__detail-section\" id=\"supplemental-comments\">\n            <article class=\"card\">\n              <h2>Дополнительные материалы</h2>\n              <div class=\"room-overview-list\">\n              <article class=\"room-overview-card\">\n                <div class=\"room-overview-card__text\">\n                  <span class=\"room-overview-card__label\">Дополнительно</span>\n                  <h3>Вот такой формат.</h3>\n                  <p>Вот такой формат.\nРазмер 8*4м</p>\n                </div>\n<div class=\"comment-media-grid\">\n                  <img src=\"https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/amor-apartamenty-s-kuhney-i-basseynom-3487/supplemental/block-01/photo-01.jpg\" alt=\"АМОР&quot; апартаменты с кухней и бассейном — Вот такой формат.\" loading=\"lazy\" />\n                </div>\n              </article>\n              </div>\n            </article>\n          </section>",
-  "updated_at": "2026-08-24T15:31:01.764101+00:00"
+  "updated_at": "2026-08-27T22:51:39.594940+00:00"
+ },
+ "amor-domiki-s-basseynom-5069": {
+  "kind": "hotel",
+  "section_html": "          <section class=\"section hotel-room-overviews hotel-site-concept__detail-section\" id=\"supplemental-comments\">\n            <article class=\"card\">\n              <h2>Дополнительные обзоры номеров и домиков</h2>\n              <div class=\"room-overview-list\">\n              <article class=\"room-overview-card\">\n                <div class=\"room-overview-card__text\">\n                  <span class=\"room-overview-card__label\">Обзор домика</span>\n                  <h3>Домики  💙</h3>\n                  <p>Домики &quot;АМОР&quot; 💙</p>\n                </div>\n<div class=\"comment-media-grid\">\n                  <img src=\"https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/amor-domiki-s-basseynom-5069/supplemental/block-01/photo-01.jpg\" alt=\"АМОР&quot; домики с бассейном — Домики  💙\" loading=\"lazy\" />\n                </div>\n              </article>\n              </div>\n            </article>\n          </section>",
+  "updated_at": "2026-08-27T22:51:42.087550+00:00"
  },
  "anait-gostevoy-dom-5049": {
   "kind": "hotel",
