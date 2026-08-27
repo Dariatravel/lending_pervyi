@@ -254,23 +254,23 @@ def any_of(*predicates: Callable[[Card], bool]) -> Callable[[Card], bool]:
 
 def selections() -> list[Selection]:
     return [
-        Selection("doma-pod-klyuch-vse-varianty", "Варианты домов под ключ", has("stay", "turnkey-house")),
-        Selection("gagra-vse-varianty", "Варианты размещения в г. Гагра", has("city", "gagra"), False),
-        Selection("gudauta-vse-varianty", "Варианты размещения в г. Гудаута", has("city", "gudauta"), False),
-        Selection("novyy-afon-vse-varianty", "Варианты размещения в г. Новый Афон", has("city", "new-afon"), False),
-        Selection("pitsunda-vse-varianty", "Варианты размещения в г. Пицунда", has("city", "pitsunda"), False),
-        Selection("suhum-vse-varianty", "Варианты размещения в г. Сухуме", has("city", "sukhum"), False),
-        Selection("alahadzy-vse-varianty", "Варианты размещения в пос. Алахадзы", has("city", "alakhadzy"), False),
+        Selection("doma-pod-klyuch-vse-varianty", "ДОМА ПОД КЛЮЧ", has("stay", "turnkey-house")),
+        Selection("gagra-vse-varianty", "ГАГРА - варианты размещения", has("city", "gagra"), False),
+        Selection("gudauta-vse-varianty", "ГУДАУТА - варианты размещения", has("city", "gudauta"), False),
+        Selection("novyy-afon-vse-varianty", "НОВЫЙ АФОН - варианты размещения", has("city", "new-afon"), False),
+        Selection("pitsunda-vse-varianty", "ПИЦУНДА - варианты размещения", has("city", "pitsunda"), False),
+        Selection("suhum-vse-varianty", "СУХУМ - варианты размещения", has("city", "sukhum"), False),
+        Selection("alahadzy-vse-varianty", "АЛАХАДЗЫ - варианты размещения", has("city", "alakhadzy"), False),
         Selection("varianty-do-5-tr-ekonom", "Варианты размещения до 5 тыс.руб в сезон", has("price", "economy")),
         Selection("varianty-5-12-tr-srednyak", "Варианты размещения от 5 до 12 тыс.руб в сезон", has("price", "midrange")),
-        Selection("balkony", "Варианты размещения с балконом", has("room", "balcony")),
-        Selection("veranda", "Варианты размещения с верандой", has("room", "terrace")),
-        Selection("televizor-v-nomere", "Варианты размещения с телевизором", has("room", "tv")),
-        Selection("dvuhkomnatnye-i-bolee", "Варианты размещения с двумя/тремя комнатами", has("room", "two-room-plus")),
-        Selection("sobaki-varianty", "Варианты размещения с животными", has("stay", "pets")),
-        Selection("svoya-kuhnya-v-nomere", "Варианты размещения с собственной кухней", has("room", "kitchen")),
-        Selection("domiki-vse-varianty", "Варианты с отдельными домиками", has("stay", "cottages")),
-        Selection("kvartiry-vse-varianty", "Варианты частных квартир", has("stay", "apartments")),
+        Selection("balkony", "С БАЛКОНОМ - варианты размещения", has("room", "balcony")),
+        Selection("veranda", "С ВЕРАНДОЙ - варианты размещения", has("room", "terrace")),
+        Selection("televizor-v-nomere", "С ТЕЛЕВИЗОРОМ - варианты размещения", has("room", "tv")),
+        Selection("dvuhkomnatnye-i-bolee", "ДВЕ-ТРИ КОМНАТЫ - варианты размещения", has("room", "two-room-plus")),
+        Selection("sobaki-varianty", "С ЖИВОТНЫМИ - варианты размещения", has("stay", "pets")),
+        Selection("svoya-kuhnya-v-nomere", "СВОЯ КУХНЯ - варианты размещения", has("room", "kitchen")),
+        Selection("domiki-vse-varianty", "ДОМИКИ - варианты размещения", has("stay", "cottages")),
+        Selection("kvartiry-vse-varianty", "ЧАСТНЫЕ КВАРТИРЫ", has("stay", "apartments")),
         # Кнопка «Квартиры и дома под ключ» в быстрых подборках главной
         # (просьба Дарьи 27.08.2026: квартиры терялись в общем каталоге).
         Selection(
@@ -280,19 +280,19 @@ def selections() -> list[Selection]:
         ),
         Selection(
             "gory-oteli-v-gorah",
-            "Горы - отели в горах",
+            "ГОРЫ - отели в горах",
             lambda card: href_slug(card.href) in MOUNTAIN_OTHER_SLUGS,
         ),
-        Selection("ldzaa-vse-varianty", "Именно в Лдзаа есть такие варианты", has("city", "ldzaa"), False),
-        Selection("sosnovyy-plyazh", "На пляже с соснами у меня есть варианты", has("beach", "pine-pebble-ldzaa-pitsunda")),
-        Selection("vid-na-more-pryamoy-bokovoy", "Объекты, номера в которых имеют вид на море (прямой или боковой)", has("room", "sea-view")),
-        Selection("basseyn-vse-varianty", "Отели с бассейном", has("room", "pool")),
+        Selection("ldzaa-vse-varianty", "ЛДЗАА - варианты размещения", has("city", "ldzaa"), False),
+        Selection("sosnovyy-plyazh", "СОСНОВЫЙ БЕРЕГ - варианты размещения", has("beach", "pine-pebble-ldzaa-pitsunda")),
+        Selection("vid-na-more-pryamoy-bokovoy", "ВИД НА МОРЕ (прямой или боковой)", has("room", "sea-view")),
+        Selection("basseyn-vse-varianty", "С БАССЕЙНОМ - варианты размещения", has("room", "pool")),
         Selection("pitanie-v-otele-ili-svoe-kafe", "Отели с питанием / собственным кафе", has("food", "cafe", "breakfast", "half-board", "full-board")),
-        Selection("bereg-morya-oteli-na-beregu", "Отели, которые расположены прямо на пляже, у берега", any_of(has("distance", "beachfront"), has("room", "beachfront-room"))),
-        Selection("peschanyy-plyazh-suhum", "Песчаные пляжи в Сухуме (Мокко, Марнеро, Келасур)", has("beach", "sand-sukhum")),
-        Selection("peschanyy-ldzaa", "Песчаный пляж в Лдзаа", has("beach", "sand-ldzaa")),
-        Selection("varianty-dorozhe-12-tr-premium", "Премиум-варианты размещения в Абхазии", has("price", "premium")),
-        Selection("pyatero-gostey-i-bolee", "С размещением 5+ гостей варианты", has("room", "five-plus")),
+        Selection("bereg-morya-oteli-na-beregu", "ЖИТЬ НА БЕРЕГУ - отели, которые расположены на пляжной линии", any_of(has("distance", "beachfront"), has("room", "beachfront-room"))),
+        Selection("peschanyy-plyazh-suhum", "ПЕСЧАНЫЕ ПЛЯЖИ в Сухуме (Мокко, Марнеро, Келасур)", has("beach", "sand-sukhum")),
+        Selection("peschanyy-ldzaa", "ЛДЗАА - только песчаный пляж", has("beach", "sand-ldzaa")),
+        Selection("varianty-dorozhe-12-tr-premium", "ПРЕМИУМ-варианты размещения в Абхазии", has("price", "premium")),
+        Selection("pyatero-gostey-i-bolee", "ПЯТЬ И БОЛЕЕ ГОСТЕЙ - варианты размещения", has("room", "five-plus")),
     ]
 
 
@@ -529,10 +529,37 @@ def render_index_link(slug: str, title: str, cover_image: str = "", cover_alt: s
     )
 
 
+# Порядок подборок на странице /podborki/ — задан Дарьей 27.08.2026.
+# Не перечисленные здесь идут после, по алфавиту названий.
+PODBORKI_DISPLAY_ORDER = [
+    "sosnovyy-plyazh",
+    "peschanyy-ldzaa",
+    "basseyn-vse-varianty",
+    "varianty-dorozhe-12-tr-premium",
+    "bereg-morya-oteli-na-beregu",
+    "gory-oteli-v-gorah",
+    "vid-na-more-pryamoy-bokovoy",
+    "ldzaa-vse-varianty",
+    "pitanie-v-otele-ili-svoe-kafe",
+    "pitsunda-vse-varianty",
+    "peschanyy-plyazh-suhum",
+    "balkony",
+    "gagra-vse-varianty",
+    "novyy-afon-vse-varianty",
+    "svoya-kuhnya-v-nomere",
+    "suhum-vse-varianty",
+]
+
+
 def render_index(items: list[tuple[str, str, str, str]], version: str) -> str:
+    order = {slug: index for index, slug in enumerate(PODBORKI_DISPLAY_ORDER)}
+    ordered = sorted(
+        items,
+        key=lambda row: (order.get(row[0], len(order)), row[1].lower()),
+    )
     links = "\n".join(
         render_index_link(slug, title, cover_image, cover_alt)
-        for slug, title, cover_image, cover_alt in sorted(items, key=lambda row: row[1].lower())
+        for slug, title, cover_image, cover_alt in ordered
     )
     return f"""<!DOCTYPE html>
 <html lang="ru" id="top">
