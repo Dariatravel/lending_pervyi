@@ -480,7 +480,6 @@ def main() -> None:
     <section class="site-concept__section-block podborki-index-panel">
       <div class="podborki-index-head">
         <h1>Подборки жилья</h1>
-        <p class="podborki-index-head__lead">Выберите подборку под свой формат отдыха</p>
       </div>
       <ul class="podborki-index-list">
 {links}

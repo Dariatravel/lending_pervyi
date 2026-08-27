@@ -604,7 +604,6 @@ def render_index(items: list[tuple[str, str, str, str]], version: str) -> str:
     <section class="site-concept__section-block podborki-index-panel">
       <div class="podborki-index-head">
         <h1>Подборки жилья</h1>
-        <p class="podborki-index-head__lead">Выберите подборку под свой формат отдыха</p>
         <p>Собрали варианты по городам, бюджету, пляжам и удобствам, чтобы не листать весь каталог вручную.</p>
       </div>
       <ul class="podborki-index-list">
