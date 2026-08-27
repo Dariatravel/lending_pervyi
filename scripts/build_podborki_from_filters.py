@@ -497,6 +497,12 @@ PODBORKI_INDEX_VISUALS: dict[str, tuple[str, str]] = {
 
 # Ручная обложка на индексе подборок (если авто-выбор неудачен)
 PODBORKI_INDEX_COVER_OVERRIDES: dict[str, tuple[str, str]] = {
+    # Домики должны выглядеть домиками: фасады снаружи, а не кровати
+    # (просьба Дарьи 27.08.2026).
+    "domiki-vse-varianty": (
+        f"{CDN_MEDIA_BASE}/cards/sanni-houm-domiki-s-basseynom-4731.jpg",
+        '"САННИ ХОУМ" домики с бассейном',
+    ),
     "gudauta-vse-varianty": (
         f"{CDN_MEDIA_BASE}/cards/full-haus-domiki-s-basseynom-4092.jpg",
         '"ФУЛЛ ХАУС" домики с бассейном',
