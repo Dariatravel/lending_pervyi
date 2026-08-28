@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28T06:30:12.871775+00:00",
+  "generated_at": "2026-08-28T19:20:48.264324+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 239,
@@ -6701,7 +6701,7 @@
           },
           {
             "kind": "price",
-            "text": "7000₽ - сентябрь"
+            "text": "6500₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -45674,19 +45674,23 @@
         "prices": [
           {
             "kind": "price",
-            "text": "6000₽/сутки - с 25 апреля по 15 июня"
+            "text": "6000₽ - с 25 апреля по 15 июня"
           },
           {
             "kind": "price",
-            "text": "8000 ₽/сутки - с 15 по 30 июня"
+            "text": "8000 ₽ - с 15 по 30 июня"
           },
           {
             "kind": "price",
-            "text": "10000₽/сутки - июль, август, сентябрь до 25го"
+            "text": "10000₽ - июль, август"
           },
           {
             "kind": "price",
-            "text": "6000₽/сутки - сентябрь с 25го, октябрь, ноябрь"
+            "text": "9000₽ - сентябрь до 25го"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - сентябрь с 25го, октябрь, ноябрь"
           },
           {
             "kind": "price",
@@ -47676,11 +47680,11 @@
           },
           {
             "kind": "price",
-            "text": "в октябре номер с размещением 2\\3 человека без питания - 3000₽"
+            "text": "в октябре номер с размещением до 4 человек без питания - 3000₽"
           },
           {
             "kind": "price",
-            "text": "Июль/ август/ сентябрь до 25.09"
+            "text": "Июль/ август/ сентябрь до 24.09"
           },
           {
             "kind": "price",
@@ -47716,39 +47720,15 @@
           },
           {
             "kind": "price",
-            "text": "Сентябрь с 25.09"
+            "text": "Сентябрь с 24.09"
           },
           {
             "kind": "price",
-            "text": "с завтраками"
+            "text": "без питания"
           },
           {
             "kind": "price",
-            "text": "2 чел - 5000₽"
-          },
-          {
-            "kind": "price",
-            "text": "3 чел - 6500₽"
-          },
-          {
-            "kind": "price",
-            "text": "4 чел - 7500₽"
-          },
-          {
-            "kind": "price",
-            "text": "с трёхразовым питанием"
-          },
-          {
-            "kind": "price",
-            "text": "2 чел - 7500₽"
-          },
-          {
-            "kind": "price",
-            "text": "3 чел - 8900₽"
-          },
-          {
-            "kind": "price",
-            "text": "4 чел - 9900₽"
+            "text": "4 чел - 5500₽"
           },
           {
             "kind": "price",
@@ -47757,10 +47737,6 @@
           {
             "kind": "price",
             "text": "без питания"
-          },
-          {
-            "kind": "price",
-            "text": "2-3 чел - 3500₽"
           },
           {
             "kind": "price",
@@ -51536,12 +51512,12 @@
       "source_topic_id": null,
       "slug": "rivera-gostinitsa-vidovaya-2706",
       "title": "\"РИВЬЕРА\" гостиница видовая",
-      "summary": "Лдзаа. ️ 2 минуты до пляжа, размещение до 6 человек.",
+      "summary": "Лдзаа. 2 минуты до пляжа, размещение до 6 человек.",
       "excerpt": "Отель находится на возвышении, в обрамлении зеленых гор. Прекрасно видно и с улиц и с моря заманчивые балкончики с чудесным видом на море",
       "city": "Лдзаа",
       "location_text": "Лдзаа, ул. Рыбзаводская, дом 81/1",
-      "distance_text": "️ 2 минуты до пляжа",
-      "beach_text": "️ 2 минуты до пляжа",
+      "distance_text": "2 минуты до пляжа",
+      "beach_text": "2 минуты до пляжа",
       "capacity_text": "размещение до 6 человек",
       "page_url": "https://абхазберег.рф/hotels/rivera-gostinitsa-vidovaya-2706/",
       "telegram_url": "https://t.me/abhazbooking/2706",
@@ -51550,7 +51526,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rivera-gostinitsa-vidovaya-2706.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. ️ 2 минуты до пляжа, размещение до 6 человек.",
+        "lead": "Лдзаа. 2 минуты до пляжа, размещение до 6 человек.",
         "sections": [
           {
             "label": "✔️ТЕРРИТОРИЯ:",
@@ -51614,7 +51590,7 @@
           },
           {
             "kind": "price",
-            "text": "июль, август, сентябрь до 25го"
+            "text": "июль, август"
           },
           {
             "kind": "price",
@@ -51627,6 +51603,22 @@
           {
             "kind": "price",
             "text": "8000₽/сутки - семейный номер, вместимость до 6 человек"
+          },
+          {
+            "kind": "price",
+            "text": "сентябрь до 25го"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽/сутки - без вида на море 4х местный"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽/сутки - с видом на море 4х местный"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽/сутки - семейный номер, вместимость до 6 человек"
           },
           {
             "kind": "price",
@@ -51801,7 +51793,7 @@
           "details": {
             "telegram_post": "abhazbooking/2715",
             "telegram_url": "https://t.me/abhazbooking/2715",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/rivera-gostinitsa-vidovaya-2706/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/rivera-gostinitsa-vidovaya-2706/video-01-poster.jpg"
           }
         }
       ]
@@ -61061,7 +61053,7 @@
           },
           {
             "kind": "price",
-            "text": "7000₽ - сентябрь"
+            "text": "6500₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -64491,7 +64483,7 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - август, сентябрь, октябрь"
+            "text": "4000₽ - август, сентябрь, октябрь"
           },
           {
             "kind": "price",
