@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T22:51:31.439437+00:00",
+  "generated_at": "2026-08-28T06:30:12.871775+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 239,
@@ -49988,27 +49988,11 @@
         "prices": [
           {
             "kind": "price",
-            "text": "3500₽/сутки - с 01 по 15 июня"
-          },
-          {
-            "kind": "price",
-            "text": "4500₽/сутки - с 15 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "5500₽/сутки - июль"
-          },
-          {
-            "kind": "price",
             "text": "6000₽/сутки - август"
           },
           {
             "kind": "price",
-            "text": "4500₽/сутки - сентябрь с 1 по 20"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽/сутки - сентябрь с 20 по 30"
+            "text": "4000₽/сутки - сентябрь"
           },
           {
             "kind": "price",
@@ -50154,7 +50138,7 @@
           "details": {
             "telegram_post": "abhazbooking/2800",
             "telegram_url": "https://t.me/abhazbooking/2800",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/arina-mini-otel-2792/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/arina-mini-otel-2792/video-01-poster.jpg"
           }
         }
       ]
@@ -55107,19 +55091,7 @@
           },
           {
             "kind": "price",
-            "text": "2000₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "2800₽ - с 1 по 15 июня"
-          },
-          {
-            "kind": "price",
-            "text": "3500₽ - с 16 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "6000₽ - июль, август"
+            "text": "6000₽ - август"
           },
           {
             "kind": "price",
@@ -55139,19 +55111,7 @@
           },
           {
             "kind": "price",
-            "text": "2700₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - с 1 по 15 июня"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - с 16 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "6800₽ - июль, август"
+            "text": "6800₽ - август"
           },
           {
             "kind": "price",
@@ -55171,19 +55131,7 @@
           },
           {
             "kind": "price",
-            "text": "2500₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "2800₽ - с 1 по 15 июня"
-          },
-          {
-            "kind": "price",
-            "text": "3800₽ - с 16 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "6500₽ - июль, август"
+            "text": "6500₽ - август"
           },
           {
             "kind": "price",
@@ -55203,19 +55151,7 @@
           },
           {
             "kind": "price",
-            "text": "3000₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - с 1 по 15 июня"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ - с 16 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "10000₽ - июль, август"
+            "text": "10000₽ - август"
           },
           {
             "kind": "price",
@@ -55235,19 +55171,7 @@
           },
           {
             "kind": "price",
-            "text": "3000₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "3500₽ - с 1 по 15 июня"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - с 16 по 30 июня"
-          },
-          {
-            "kind": "price",
-            "text": "9000₽ - июль, август"
+            "text": "9000₽ - август"
           },
           {
             "kind": "price",
@@ -55398,7 +55322,7 @@
           "details": {
             "telegram_post": "abhazbooking/4287",
             "telegram_url": "https://t.me/abhazbooking/4287",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/bereg-svyatoy-sofii-otel-4279/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/bereg-svyatoy-sofii-otel-4279/video-01-poster.jpg"
           }
         }
       ]
