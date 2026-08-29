@@ -67,6 +67,15 @@ def probe(url: str) -> None:
         if value:
             print(f"  {field}: {value[:300]}")
     print(f"  текст: {visible_text(body)}")
+    org_links = sorted(
+        {
+            match
+            for match in re.findall(r'https?://[^"\'\s<>]+', body)
+            if "/maps/org/" in match or "2gis.ru/firm/" in match
+        }
+    )
+    for link in org_links[:20]:
+        print(f"  карточка: {link}")
 
 
 def main() -> int:
