@@ -19,9 +19,10 @@
   - `lighthouse-weekly.yml` — по понедельникам: Lighthouse прод-страниц; падает и шлёт
     Telegram-уведомление, если Performance главной < 80 или отеля < 65.
   - `backfill-variants.yml` — ручная дозаливка WebP-вариантов по бакету.
-  - `price-tabs-compare.yml` — по понедельникам: сверка вкладок «ЦЕНЫ АВТО» и
-    «АКТУАЛЬНЫЕ ЦЕНЫ» Google-таблицы «СЕЗОН 2026» (tools/compare_price_tabs.py),
-    итог в Telegram; полный отчёт — в артефактах запуска.
+  - `price-tabs-compare.yml` — каждый час: сверка вкладок «ЦЕНЫ АВТО» и
+    «АКТУАЛЬНЫЕ ЦЕНЫ» Google-таблицы «СЕЗОН 2026» (tools/compare_price_tabs.py).
+    В Telegram пишет только когда результат изменился (состояние в actions/cache);
+    полный отчёт — в артефактах запуска.
 - VPS Timeweb удалён 13.07.2026. Mac нужен только для: фильтров из Google Sheets,
   исходников банка отзывов, перевыпуска tg_session (tools/make_tg_string_session.py).
 

@@ -1,12 +1,14 @@
-name: Weekly price tabs compare
+name: Price tabs compare
 
-# Еженедельная сверка вкладок «ЦЕНЫ АВТО» (из Telegram) и «АКТУАЛЬНЫЕ ЦЕНЫ»
-# (ручная) в Google-таблице «СЕЗОН 2026». Результат уходит в Telegram.
+# Ежечасная сверка вкладок «ЦЕНЫ АВТО» (из Telegram) и «АКТУАЛЬНЫЕ ЦЕНЫ»
+# (ручная) в Google-таблице «СЕЗОН 2026» — по образцу watch-telegram.yml:
+# запускается каждый час, но пишет в Telegram только когда результат сверки
+# изменился с прошлого запуска (состояние хранится в actions/cache).
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "40 4 * * 1" # понедельник 07:40 МСК
+    - cron: "10 * * * *" # каждый час в :10 (watch-telegram ходит в :41)
 
 jobs:
   compare:
@@ -14,6 +16,7 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
+      actions: write # нужно для сохранения кэша состояния
     steps:
       - uses: actions/checkout@v4
 
@@ -23,6 +26,14 @@ jobs:
 
       - name: Install dependencies
         run: pip install --quiet google-auth google-api-python-client
+
+      - name: Restore previous state
+        uses: actions/cache/restore@v4
+        with:
+          path: output/price-tabs-compare-state.txt
+          key: price-tabs-compare-state-${{ github.run_id }}
+          restore-keys: |
+            price-tabs-compare-state-
 
       - name: Run price tabs compare
         env:
@@ -35,6 +46,30 @@ jobs:
           printf '%s' "$GOOGLE_SA" > google-service-account.json
           python3 tools/compare_price_tabs.py
 
+      - name: Detect changes
+        id: detect
+        run: |
+          REPORT="output/price_tabs_compare_report.txt"
+          STATE="output/price-tabs-compare-state.txt"
+          # отпечаток отчёта без строки с датой запуска
+          HASH=$(grep -v '^Дата запуска:' "$REPORT" | sha256sum | cut -d' ' -f1)
+          PREV=$(cat "$STATE" 2>/dev/null || echo "none")
+          echo "Отпечаток: $HASH (предыдущий: $PREV)"
+          if [ "$HASH" = "$PREV" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Результат сверки не изменился — уведомление не нужно."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+          printf '%s' "$HASH" > "$STATE"
+
+      - name: Save state
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: output/price-tabs-compare-state.txt
+          key: price-tabs-compare-state-${{ github.run_id }}
+
       - name: Upload report
         if: always()
         uses: actions/upload-artifact@v4
@@ -44,6 +79,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Notify Telegram
+        if: steps.detect.outputs.changed == 'true'
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
@@ -57,15 +93,18 @@ jobs:
           DIFFS=$(awk '/^РАСХОЖДЕНИЯ ЦЕН$/{f=1; next} f && /^ЕСТЬ НА САЙТЕ|^ОБЪЕКТ НЕ НАЙДЕН|^ОБЪЕКТ НАЙДЕН/{exit} f && !/^=+$/' "$REPORT" | head -c 2300)
           RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           if [ -n "$DIFFS" ]; then
-            MSG=$(printf '📊 Сверка цен: ручная vs авто\n\n%s\n\nРасхождения (начало списка):%s\n\n(обрезано; полный отчёт — в артефактах запуска)\n%s' "$SUMMARY" "$DIFFS" "$RUN_URL")
+            MSG=$(printf '📊 Сверка цен (ручная vs авто): результат изменился\n\n%s\n\nРасхождения (начало списка):%s\n\n(обрезано; полный отчёт — в артефактах запуска)\n%s' "$SUMMARY" "$DIFFS" "$RUN_URL")
           else
-            MSG=$(printf '📊 Сверка цен: ручная vs авто\n\n%s\n\nРасхождений цен нет ✅\n%s' "$SUMMARY" "$RUN_URL")
+            MSG=$(printf '📊 Сверка цен (ручная vs авто): результат изменился\n\n%s\n\nРасхождений цен нет ✅\n%s' "$SUMMARY" "$RUN_URL")
           fi
           printf '%s' "$MSG" | head -c 3900 > msg.txt
           curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
             --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
             --data-urlencode "text@msg.txt" >/dev/null
+          echo "Уведомление отправлено."
 
+      # Не чаще раза в 6 часов, чтобы при поломке не заваливать чат каждый час
+      # (тот же приём, что в watch-telegram.yml).
       - name: Notify Telegram on failure
         if: failure()
         env:
@@ -75,7 +114,12 @@ jobs:
           if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
             exit 0
           fi
+          HOUR=$(date -u +%H)
+          if [ "${GITHUB_EVENT_NAME}" = "schedule" ] && [ $((10#$HOUR % 6)) -ne 0 ]; then
+            echo "Час $HOUR UTC — не время для повторного сигнала, молчу."
+            exit 0
+          fi
           RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
             --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
-            --data-urlencode "text=⚠️ Еженедельная сверка цен упала. Подробности: ${RUN_URL}" >/dev/null
+            --data-urlencode "text=⚠️ Сверка цен (ручная vs авто) упала. Подробности: ${RUN_URL}" >/dev/null
