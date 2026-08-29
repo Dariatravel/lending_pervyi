@@ -1,0 +1,81 @@
+name: Weekly price tabs compare
+
+# Еженедельная сверка вкладок «ЦЕНЫ АВТО» (из Telegram) и «АКТУАЛЬНЫЕ ЦЕНЫ»
+# (ручная) в Google-таблице «СЕЗОН 2026». Результат уходит в Telegram.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "40 4 * * 1" # понедельник 07:40 МСК
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install --quiet google-auth google-api-python-client
+
+      - name: Run price tabs compare
+        env:
+          GOOGLE_SA: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          if [ -z "$GOOGLE_SA" ]; then
+            echo "GOOGLE_SERVICE_ACCOUNT_JSON не задан — сверка невозможна."
+            exit 1
+          fi
+          printf '%s' "$GOOGLE_SA" > google-service-account.json
+          python3 tools/compare_price_tabs.py
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: price-tabs-compare
+          path: output/price_tabs_compare_report.txt
+          if-no-files-found: ignore
+
+      - name: Notify Telegram
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
+        run: |
+          if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
+            echo "TG_BOT_TOKEN/TG_REPORT_CHAT_ID не заданы — уведомление пропущено."
+            exit 0
+          fi
+          REPORT="output/price_tabs_compare_report.txt"
+          SUMMARY=$(sed -n '1,12p' "$REPORT")
+          DIFFS=$(awk '/^РАСХОЖДЕНИЯ ЦЕН$/{f=1; next} f && /^ЕСТЬ НА САЙТЕ|^ОБЪЕКТ НЕ НАЙДЕН|^ОБЪЕКТ НАЙДЕН/{exit} f && !/^=+$/' "$REPORT" | head -c 2300)
+          RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          if [ -n "$DIFFS" ]; then
+            MSG=$(printf '📊 Сверка цен: ручная vs авто\n\n%s\n\nРасхождения (начало списка):%s\n\n(обрезано; полный отчёт — в артефактах запуска)\n%s' "$SUMMARY" "$DIFFS" "$RUN_URL")
+          else
+            MSG=$(printf '📊 Сверка цен: ручная vs авто\n\n%s\n\nРасхождений цен нет ✅\n%s' "$SUMMARY" "$RUN_URL")
+          fi
+          printf '%s' "$MSG" | head -c 3900 > msg.txt
+          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
+            --data-urlencode "text@msg.txt" >/dev/null
+
+      - name: Notify Telegram on failure
+        if: failure()
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
+        run: |
+          if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
+            exit 0
+          fi
+          RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
+            --data-urlencode "text=⚠️ Еженедельная сверка цен упала. Подробности: ${RUN_URL}" >/dev/null
