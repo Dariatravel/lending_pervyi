@@ -44,7 +44,7 @@ jobs:
             exit 1
           fi
           printf '%s' "$GOOGLE_SA" > google-service-account.json
-          python3 tools/compare_price_tabs.py
+          python3 tools/compare_price_tabs.py --write-sheet
 
       - name: Detect changes
         id: detect

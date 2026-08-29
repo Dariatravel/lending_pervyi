@@ -318,17 +318,43 @@ def fmt_range(a: dt.date, b: dt.date) -> str:
     return f"{a.strftime('%d.%m')}–{b.strftime('%d.%m')}"
 
 
+SVERKA_TAB = 'СВЕРКА'
+
+
+def write_sverka_tab(service, values: list) -> None:
+    """Перезаписывает вкладку «СВЕРКА» переданными строками (создаёт при отсутствии)."""
+    meta = service.spreadsheets().get(
+        spreadsheetId=SPREADSHEET_ID, fields='sheets(properties(title))').execute()
+    titles = [s['properties']['title'] for s in meta.get('sheets', [])]
+    if SVERKA_TAB not in titles:
+        service.spreadsheets().batchUpdate(
+            spreadsheetId=SPREADSHEET_ID,
+            body={'requests': [{'addSheet': {'properties': {'title': SVERKA_TAB}}}]},
+        ).execute()
+    service.spreadsheets().values().clear(
+        spreadsheetId=SPREADSHEET_ID, range=f"'{SVERKA_TAB}'!A1:Z5000").execute()
+    service.spreadsheets().values().update(
+        spreadsheetId=SPREADSHEET_ID,
+        range=f"'{SVERKA_TAB}'!A1",
+        valueInputOption='RAW',
+        body={'values': values},
+    ).execute()
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument('--from-date', default=None, help='YYYY-MM-DD, по умолчанию сегодня')
     ap.add_argument('--to-date', default=f'{SEASON_YEAR}-12-31')
+    ap.add_argument('--write-sheet', action='store_true',
+                    help='записать результат во вкладку «СВЕРКА» этой же таблицы')
     args = ap.parse_args()
     date_from = dt.date.fromisoformat(args.from_date) if args.from_date else dt.date.today()
     date_to = dt.date.fromisoformat(args.to_date)
 
+    scope = ('https://www.googleapis.com/auth/spreadsheets' if args.write_sheet
+             else 'https://www.googleapis.com/auth/spreadsheets.readonly')
     creds = service_account.Credentials.from_service_account_file(
-        str(pick_google_credentials_path()),
-        scopes=['https://www.googleapis.com/auth/spreadsheets.readonly'])
+        str(pick_google_credentials_path()), scopes=[scope])
     service = build('sheets', 'v4', credentials=creds, cache_discovery=False)
 
     auto = fetch_tab(service, AUTO_TAB)
@@ -583,6 +609,46 @@ def main() -> int:
 
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
     REPORT_PATH.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+
+    if args.write_sheet:
+        msk_now = (dt.datetime.now(dt.timezone.utc) + dt.timedelta(hours=3)).strftime('%d.%m.%Y %H:%M')
+        v: list = []
+        v.append([f'ОБНОВЛЯЕТСЯ АВТОМАТИЧЕСКИ (сверка «{MANUAL_TAB}» ↔ «{AUTO_TAB}»). '
+                  f'НЕ РЕДАКТИРОВАТЬ. Обновлено: {msk_now} МСК'])
+        v.append([f'Сравнение по дням: {date_from.isoformat()} — {date_to.isoformat()}. '
+                  f'Совпадают: {len(matched_ok)} | Расхождения: {len(mismatches)} | '
+                  f'Нет в авто: {len(missing_in_auto)} | Категория неясна: {len(no_category)}'])
+        v.append([])
+        v.append(['РАСХОЖДЕНИЯ ЦЕН'])
+        v.append(['Строка', 'Объект (ручная вкладка)', 'Объект и категория (авто)',
+                  'Даты', 'Ручная, ₽', 'Авто, ₽', 'Пометка'])
+        for row, name, auto_title, cat, detail in mismatches:
+            for rng, mp, ap_, extra in detail:
+                v.append([row, name, f'{auto_title} / {cat}', rng, mp, ap_, extra.strip()])
+        if not mismatches:
+            v.append(['', 'Расхождений нет ✅'])
+        if missing_in_auto:
+            v.append([])
+            v.append(['ЕСТЬ НА САЙТЕ, НО НЕТ В АВТО-ВКЛАДКЕ'])
+            for row, name in missing_in_auto:
+                v.append([row, name])
+        if no_object:
+            v.append([])
+            v.append(['ОБЪЕКТ НЕ НАЙДЕН НИ В АВТО-ВКЛАДКЕ, НИ В КАТАЛОГЕ САЙТА'])
+            for row, name in no_object:
+                v.append([row, name])
+        if no_category:
+            v.append([])
+            v.append(['КАТЕГОРИЯ НЕ СОПОСТАВЛЕНА (нужен взгляд человека)'])
+            for row, name, auto_title, ncats in no_category:
+                v.append([row, name, f'{auto_title} (категорий в авто: {ncats})'])
+        if early_2027:
+            v.append([])
+            v.append(['В АВТО-ВКЛАДКЕ ЦЕНЫ 2027 ГОДА — сравнение пропущено'])
+            for row, name, auto_title in early_2027:
+                v.append([row, name, auto_title])
+        write_sverka_tab(service, v)
+        print(f'Вкладка «{SVERKA_TAB}» обновлена.')
 
     print(f'Отчёт: {REPORT_PATH}')
     print(f'Совпадают: {len(matched_ok)} | Расхождения: {len(mismatches)} | '
