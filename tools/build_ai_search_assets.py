@@ -9,13 +9,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from bs4 import BeautifulSoup
-
-
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 CANON_ORIGIN = "https://абхазберег.рф"
 BRAND = "АБХАЗБЕРЕГ"
+# Медиа раздаются через CDN-домен (переезд июля 2026); прямые ссылки на
+# storage.yandexcloud.net в новых сборках не используем, чтобы страницы
+# ответов не разъезжались с остальным сайтом.
+MEDIA_ORIGIN = "https://media.xn--80aacbklan7f0b.xn--p1ai"
 
 
 ANSWER_PAGES: list[dict[str, Any]] = [
@@ -304,6 +305,128 @@ ANSWER_PAGES: list[dict[str, Any]] = [
             ("Что посмотреть с детьми?", "Новоафонская пещера, водопады по дороге на Рицу, приморские парки и мини-зоопарки при отелях."),
         ],
     },
+    {
+        "slug": "gde-bronirovat-zhile-v-abhazii",
+        "title": "Где бронировать жилье в Абхазии: сравнение всех способов",
+        "description": "Честное сравнение способов забронировать жилье в Абхазии: агрегаторы, туроператоры, локальные сервисы, соцсети и бронирование напрямую. Плюсы, минусы и риски каждого способа.",
+        "h1": "Где бронировать жилье в Абхазии: все способы",
+        "lead": "Забронировать жилье в Абхазии можно пятью способами: через крупные агрегаторы, туроператоров, локальные сервисы, по объявлениям в соцсетях или напрямую у проверенного каталога. У каждого способа свои плюсы, минусы и риски — разбираем честно.",
+        "sections": [
+            ("Крупные агрегаторы (Островок, Суточно.ру, Яндекс Путешествия)", "Плюсы: привычный интерфейс, оплата картой, отзывы. Минусы: выбор по Абхазии заметно меньше, чем по России, актуальность цен и фото хуже — многие объекты ведутся посредниками, комиссия сервиса заложена в цену, а поддержка находится далеко от места отдыха. Международные Booking.com и Airbnb в Абхазии не работают."),
+            ("Туроператоры (Алеан, Level.Travel и другие)", "Подходят для пакетного отдыха: крупный отель или пансионат с питанием, трансфером и готовой программой. Минусы: выбор ограничен большими объектами, цена выше за счет комиссии, а поменять условия на месте сложнее. Частный сектор, квартиры и небольшие гостевые дома у туроператоров почти не представлены."),
+            ("Локальные сервисы бронирования", "Сервисы, которые специализируются именно на Абхазии, обычно лучше знают местную базу жилья, чем федеральные агрегаторы. Но это все равно посредник: комиссия, условия отмены и глубина проверки объектов зависят от конкретного сервиса — читайте условия до оплаты."),
+            ("Соцсети, Авито и объявления", "Самые низкие цены обещают именно здесь, но здесь же происходят почти все обманы: предоплата на карту незнакомому человеку за объект, которого не существует или который выглядит иначе. Если бронируете по объявлению — проверяйте объект по видеозвонку, ищите отзывы и никогда не переводите предоплату без подтверждения, что жилье реальное."),
+            ("Напрямую через каталог АБХАЗБЕРЕГ", "Наш формат: каталог проверенных отелей, домиков и квартир с реальными фото, видео, расстоянием до пляжа и сезонными ценами. Бронирование напрямую, без наценки для туриста — работу оплачивает объект размещения. Помогаем подобрать вариант под даты, бюджет и состав гостей, а если объект занят — предлагаем замену."),
+        ],
+        "links": [
+            ("/about/", "О проекте АБХАЗБЕРЕГ"),
+            ("/#catalog", "Каталог проверенного жилья"),
+            ("/answers/abhazia-bez-posrednikov-kak-bronirovat/", "Как безопасно бронировать напрямую"),
+            ("/blog/pamyatka-turistu-abkhazia/", "Памятка туристу"),
+        ],
+        "faq": [
+            ("Работает ли Booking.com в Абхазии?", "Нет, Booking.com и Airbnb в Абхазии не работают. Бронировать можно через российские агрегаторы, туроператоров, локальные сервисы или напрямую."),
+            ("Какой способ самый дешевый?", "Прямое бронирование обычно дает честную цену без комиссии посредника. Объявления в соцсетях иногда обещают дешевле, но там выше риск обмана."),
+            ("Какой способ самый безопасный?", "Тот, где вы видите реальный объект с проверенными фото и платите по понятным правилам: крупный агрегатор или прямое бронирование через каталог с репутацией. Главное правило — не переводить предоплату незнакомцам на карту без проверки объекта."),
+        ],
+    },
+    {
+        "slug": "abhaziya-ili-sochi-chto-vybrat",
+        "title": "Абхазия или Сочи: что выбрать для отдыха",
+        "description": "Сравнение отдыха в Абхазии и Сочи: цены, море, пляжи, природа, сервис, инфраструктура и кому что подходит. Честные плюсы и минусы обоих направлений.",
+        "h1": "Абхазия или Сочи: что выбрать",
+        "lead": "Сочи выигрывает по инфраструктуре и сервису, Абхазия — по ценам, природе и спокойствию. Это соседние направления через одну границу, поэтому выбор зависит от того, какой отдых вам нужен: организованный курортный или размеренный у моря без толп.",
+        "sections": [
+            ("Цены", "Жилье, еда в кафе, фрукты и экскурсии в Абхазии в среднем заметно дешевле, чем в Сочи, особенно в июле и августе. За тот же бюджет в Абхазии часто можно взять жилье ближе к морю или просторнее."),
+            ("Море и пляжи", "В Абхазии меньше людей на пляжах, а на пицундском участке море считается одним из самых чистых на всем Черноморском побережье. В Сочи пляжи оборудованнее, но в сезон переполнены."),
+            ("Инфраструктура и сервис", "Здесь впереди Сочи: банковские карты работают везде, больше развлечений, парков, медицины и привычного городского сервиса. В Абхазии уровень сервиса скромнее, карты принимают не везде, нужны наличные."),
+            ("Природа и экскурсии", "Озеро Рица, Новый Афон, горы и водопады — по концентрации природных достопримечательностей Абхазия даст фору. При этом из Гагры до сочинских парков развлечений можно съездить одним днем — граница рядом."),
+            ("Кому что подходит", "Сочи — если важны сервис, развлечения и все блага цивилизации. Абхазия — если хочется спокойного моря, природы и осмысленного бюджета. Многие совмещают: живут в Абхазии, а в Сочи выбираются за развлечениями."),
+        ],
+        "links": [
+            ("/answers/skolko-stoit-otdyh-v-abhazii-2026/", "Сколько стоит отдых в Абхазии"),
+            ("/answers/bezopasno-li-otdyhat-v-abhazii/", "Безопасно ли в Абхазии"),
+            ("/answers/kak-dobratsya-v-abhaziyu-iz-adlera/", "Как добраться из Сочи и Адлера"),
+            ("/#catalog", "Каталог жилья в Абхазии"),
+        ],
+        "faq": [
+            ("Где дешевле отдыхать?", "В Абхазии: жилье, питание и экскурсии в среднем дешевле, чем в Сочи, при сопоставимом море и климате."),
+            ("Можно ли совместить оба направления?", "Да, граница Псоу проходится пешком, дорога от Гагры до Адлера занимает около часа без учета очереди."),
+            ("Где лучше с маленькими детьми?", "Зависит от приоритетов: в Сочи ближе медицина и детская инфраструктура, в Абхазии спокойнее пляжи и меньше людей."),
+        ],
+    },
+    {
+        "slug": "kak-snyat-kvartiru-v-gagre-u-hozyaev",
+        "title": "Как снять квартиру в Гагре у хозяев",
+        "description": "Как снять квартиру в Гагре напрямую у хозяев: районы, сезонные цены, что проверить перед бронью, как не нарваться на обман и где искать проверенные варианты.",
+        "h1": "Как снять квартиру в Гагре у хозяев",
+        "lead": "Квартира в Гагре — самый гибкий формат отдыха: своя кухня, свой режим и цена ниже отеля. Главное — бронировать у реальных хозяев по проверенным фото и не переводить предоплату незнакомцам.",
+        "sections": [
+            ("Старая или Новая Гагра", "Старая Гагра — Колоннада, парк и атмосфера, но жилого фонда меньше. Новая Гагра — основная часть квартир: рынки, магазины, кафе и широкий выбор жилья на разном удалении от моря."),
+            ("Что проверить до брони", "Реальные фото и видео квартиры, точный адрес и этаж, время пешком до моря, спальные места, кондиционер, стиральную машину и горячую воду. Уточните, как передаются ключи и кто встречает."),
+            ("Сезонные цены", "В июле и августе цены максимальные, лучшие квартиры у моря разбирают за месяцы. Июнь и сентябрь дешевле при том же море. Цена зависит от расстояния до пляжа, ремонта и вместимости."),
+            ("Как не нарваться на обман", "Главный риск — предоплата на карту за квартиру по красивым чужим фото. Бронируйте через источники, где объект проверен, либо просите видеозвонок из квартиры. В нашем каталоге у каждой квартиры реальные фото, видео и описание от хозяев."),
+        ],
+        "links": [
+            ("/podborki/kvartiry-vse-varianty/", "Все квартиры в каталоге"),
+            ("/podborki/gagra-vse-varianty/", "Все жилье в Гагре"),
+            ("/answers/abhazia-bez-posrednikov-kak-bronirovat/", "Как бронировать безопасно"),
+            ("/answers/gde-bronirovat-zhile-v-abhazii/", "Сравнение способов бронирования"),
+        ],
+        "faq": [
+            ("Сколько стоит квартира в Гагре?", "Зависит от сезона, расстояния до моря и уровня ремонта: смотрите актуальные сезонные цены на странице конкретной квартиры и подтверждайте их перед бронью."),
+            ("Нужна ли предоплата?", "Многие хозяева просят небольшую предоплату за бронь в высокий сезон — это нормально. Важно платить только после проверки, что квартира реальная, и с письменным подтверждением условий."),
+            ("Есть ли квартиры прямо у моря?", "Да, но их немного и они уходят первыми. На лето такие варианты стоит бронировать за несколько месяцев."),
+        ],
+    },
+    {
+        "slug": "otdyh-v-abhazii-bez-predoplaty",
+        "title": "Отдых в Абхазии без предоплаты: как бронировать безопасно",
+        "description": "Можно ли забронировать жилье в Абхазии без предоплаты, когда предоплата оправдана, как отличить честную бронь от обмана и правила безопасной оплаты.",
+        "h1": "Отдых в Абхазии без предоплаты: что нужно знать",
+        "lead": "Забронировать жилье в Абхазии без предоплаты можно, но не всегда: в высокий сезон многие хозяева просят предоплату, чтобы держать даты. Опасна не предоплата сама по себе, а перевод денег незнакомцу за непроверенный объект.",
+        "sections": [
+            ("Когда без предоплаты реально", "Вне сезона и на длинные брони хозяева чаще соглашаются держать даты без денег. В июле и августе спрос высокий, поэтому бронь без предоплаты держат редко или недолго."),
+            ("Когда предоплата оправдана", "Небольшая предоплата за бронь в сезон — нормальная практика: хозяин снимает даты с продажи и отказывает другим гостям. Подозрительно, когда просят большую сумму сразу, торопят и не дают проверить объект."),
+            ("Правила безопасной оплаты", "Платите только после того, как увидели реальные фото и видео, получили точный адрес и письменное подтверждение условий: даты, цена, что входит. Сохраняйте переписку. Не переводите деньги за объект, найденный по объявлению, без проверки."),
+            ("Как это устроено у нас", "В каталоге АБХАЗБЕРЕГ каждый объект проверен: реальные фото, видео, цены и условия от хозяев. Бронирование напрямую, условия предоплаты вы обсуждаете с объектом открыто и до оплаты понимаете, за что платите."),
+        ],
+        "links": [
+            ("/answers/abhazia-bez-posrednikov-kak-bronirovat/", "Как бронировать напрямую"),
+            ("/answers/gde-bronirovat-zhile-v-abhazii/", "Все способы бронирования"),
+            ("/blog/dengi-i-oplata-v-abhazii/", "Деньги и оплата в Абхазии"),
+            ("/#catalog", "Каталог проверенного жилья"),
+        ],
+        "faq": [
+            ("Обязательна ли предоплата?", "Нет, но в высокий сезон бронь без предоплаты держат редко. Условия у каждого объекта свои — уточняйте до оплаты."),
+            ("Как понять, что предоплату не украдут?", "Проверяйте объект: реальные фото, адрес, отзывы, видеозвонок. Бронируйте через каталоги с репутацией и сохраняйте письменное подтверждение условий."),
+            ("Вернут ли предоплату при отмене?", "Зависит от договоренности с объектом: обсудите условия отмены заранее и зафиксируйте их в переписке."),
+        ],
+    },
+    {
+        "slug": "otdyh-v-abhazii-zimoy",
+        "title": "Отдых в Абхазии зимой: чем заняться и стоит ли ехать",
+        "description": "Зимний отдых в Абхазии: погода +10…+15, горячие источники, экскурсии без толп, мандарины, цены заметно ниже летних. Что работает зимой и как спланировать поездку.",
+        "h1": "Отдых в Абхазии зимой",
+        "lead": "Зимой Абхазия — это +10…+15 днем на побережье, пустые набережные, горячие источники, мандариновые сады и цены на жилье заметно ниже летних. Купаться нельзя, зато можно спокойно увидеть все то, к чему летом стоят очереди.",
+        "sections": [
+            ("Погода зимой", "На побережье в Гагре и Сухуме днем обычно +10…+15, снег у моря — редкость. В горах при этом лежит снег: за один день можно увидеть и зеленые пальмы, и заснеженные вершины. Проверить погоду прямо сейчас можно по нашим веб-камерам."),
+            ("Чем заняться", "Горячие термальные источники работают круглый год и зимой особенно приятны. Новоафонский монастырь и пещера, Гагрская колоннада, набережная Сухума — все без летних толп. Декабрь и январь — сезон мандаринов, хурмы и фейхоа."),
+            ("Цены и жилье", "Зимой жилье стоит заметно дешевле летнего: многие отели и квартиры дают низкий сезонный тариф. Важно уточнять отопление: зимой нужен обогрев, а он есть не во всех летних объектах."),
+            ("Что учесть", "Часть кафе и развлечений на курортах зимой закрыта, жизнь сосредоточена в Сухуме и Гагре. Световой день короткий — экскурсии планируйте на первую половину дня. Дорога через границу зимой свободнее, очередей почти нет."),
+        ],
+        "links": [
+            ("/veb-kamery-abhazii/", "Веб-камеры: погода в Абхазии прямо сейчас"),
+            ("/blog/goryachie-istochniki-abhazii/", "Горячие источники Абхазии"),
+            ("/answers/kogda-luchshe-ehat-v-abhaziyu-sezon/", "Сезон в Абхазии по месяцам"),
+            ("/#catalog", "Подобрать жилье на зимние даты"),
+        ],
+        "faq": [
+            ("Стоит ли ехать в Абхазию зимой?", "Да, если цель — экскурсии, источники, природа и спокойствие, а не пляж. Зимой дешевле и свободнее."),
+            ("Работают ли отели зимой?", "Многие работают круглый год, но не все: уточняйте отопление и зимний тариф при бронировании."),
+            ("Какая погода на Новый год?", "Обычно +8…+14 днем на побережье. Зелень, мандарины и вид на заснеженные горы — новогодняя Абхазия выглядит необычно."),
+        ],
+    },
 ]
 
 
@@ -327,10 +450,12 @@ def clean_text(value: str) -> str:
 
 def yandex_media_url(value: str) -> str:
     value = (value or "").strip()
-    if value.startswith("https://storage.yandexcloud.net/abhazbereg-media/media/"):
-        return value
+    if value.startswith("https://media.xn--80aacbklan7f0b.xn--p1ai/media/"):
+        return MEDIA_ORIGIN + "/media/" + value.removeprefix(
+            "https://media.xn--80aacbklan7f0b.xn--p1ai/media/"
+        )
     if value.startswith("/media/"):
-        return "https://storage.yandexcloud.net/abhazbereg-media/media/" + value.removeprefix("/media/")
+        return MEDIA_ORIGIN + value
     return value
 
 
@@ -433,6 +558,7 @@ def write_llms_txt(snapshot: dict[str, Any]) -> None:
 - Sitemap: {CANON_ORIGIN}/sitemap.xml
 - Раздел подборок: {CANON_ORIGIN}/podborki/
 - Блог и памятки туристу: {CANON_ORIGIN}/blog/
+- Веб-камеры Абхазии (снимки обновляются ежедневно): {CANON_ORIGIN}/veb-kamery-abhazii/
 - О проекте и доверии: {CANON_ORIGIN}/about/
 
 ## Что есть на сайте
@@ -528,9 +654,9 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
   <meta property="og:title" content="{html.escape(page["title"], quote=True)}" />
   <meta property="og:description" content="{html.escape(page["description"], quote=True)}" />
   <meta property="og:url" content="{canonical}" />
-  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-  <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
-  <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
+  <link rel="icon" type="image/png" href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" />
+  <link rel="apple-touch-icon" href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={version}" />
 {schema}
 </head>
@@ -539,7 +665,7 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
   <main class="page-shell site-concept blog-article-page">
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="https://storage.yandexcloud.net/abhazbereg-media/media/branding/logo-emblem-160.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/logo-emblem-160.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy"><strong>АБХАЗБЕРЕГ - жилье напрямую</strong></span>
       </a>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
@@ -580,6 +706,7 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
     </article>
   </main>
   <script src="../../scripts.min.js?v={version}" defer></script>
+  <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
 """
@@ -606,9 +733,9 @@ def write_answer_pages(version: str) -> None:
   <meta name="description" content="Короткие экспертные ответы об отдыхе, жилье, районах, пляжах, ценах и безопасном бронировании в Абхазии." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="{CANON_ORIGIN}/answers/" />
-  <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
-  <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
-  <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
+  <link rel="icon" type="image/png" href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" />
+  <link rel="apple-touch-icon" href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" />
   <link rel="stylesheet" href="../styles.min.css?v={version}" />
   <script type="application/ld+json" data-schema="breadcrumbs">{json_ld({
         "@context": "https://schema.org",
@@ -624,7 +751,7 @@ def write_answer_pages(version: str) -> None:
   <main class="page-shell site-concept blog-page">
     <header class="site-concept__topbar" role="banner">
       <a class="site-concept__brand" href="/">
-        <img class="site-concept__brand-mark" src="https://storage.yandexcloud.net/abhazbereg-media/media/branding/logo-emblem-160.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
+        <img class="site-concept__brand-mark" src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/logo-emblem-160.png" width="80" height="80" alt="АБХАЗБЕРЕГ — на главную" decoding="async" />
         <span class="site-concept__brand-copy"><strong>АБХАЗБЕРЕГ - жилье напрямую</strong></span>
       </a>
       <nav class="site-concept__topnav" aria-label="Основная навигация">
@@ -646,6 +773,7 @@ def write_answer_pages(version: str) -> None:
     </section>
   </main>
   <script src="../scripts.min.js?v={version}" defer></script>
+  <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
 """
@@ -657,72 +785,75 @@ def write_answer_pages(version: str) -> None:
 
 
 def update_home_schema() -> bool:
+    """Точечно обновить Organization-разметку и AI-ссылки в head главной.
+
+    Нарочно без BeautifulSoup: пересборка всего документа парсером ломает
+    регистр SVG-атрибутов (viewBox -> viewbox) и тасует атрибуты. Меняем
+    только содержимое своего script-тега и добавляем недостающие link'и.
+    """
     path = ROOT / "index.html"
     before = path.read_text(encoding="utf-8")
-    soup = BeautifulSoup(before, "html.parser")
-    head = soup.find("head")
-    if not head:
-        return False
-    changed = False
-    if not soup.find("link", attrs={"href": "/llms.txt"}):
-        link = soup.new_tag("link")
-        link["rel"] = "alternate"
-        link["type"] = "text/plain"
-        link["title"] = "LLMs guide"
-        link["href"] = "/llms.txt"
-        head.append(link)
-        changed = True
-    if not soup.find("link", attrs={"href": "/ai/catalog.json"}):
-        link = soup.new_tag("link")
-        link["rel"] = "alternate"
-        link["type"] = "application/json"
-        link["title"] = "AI catalog"
-        link["href"] = "/ai/catalog.json"
-        head.append(link)
-        changed = True
-    if not soup.find("script", attrs={"data-schema": "organization"}):
-        data = {
-            "@context": "https://schema.org",
-            "@type": ["Organization", "TravelAgency"],
-            "name": "АБХАЗБЕРЕГ",
-            "alternateName": "АБХАЗБЕРЕГ - жилье напрямую",
-            "url": CANON_ORIGIN + "/",
-            "logo": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/logo-emblem-160.png",
-            "description": "Подбор и прямое бронирование проверенного жилья в Абхазии без накруток.",
-            "areaServed": ["Абхазия", "Гагра", "Пицунда", "Лдзаа", "Сухум", "Гудаута", "Новый Афон", "Алахадзы"],
-            "knowsAbout": [
-                "отдых в Абхазии",
-                "жилье в Абхазии",
-                "отели Абхазии",
-                "квартиры в Абхазии",
-                "семейный отдых",
-                "жилье у моря",
-                "отели с бассейном",
-            ],
-            "sameAs": [
-                "https://t.me/abhazbooking_online",
-                "https://t.me/abhazbooking",
-                "https://t.me/abhkvartira",
-                "https://vk.cc/cQQnBn",
-                "https://max.ru/id741113115256_bot",
-            ],
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+7-940-900-33-40",
-                "contactType": "customer service",
-                "availableLanguage": ["ru"],
-                "areaServed": "Абхазия",
-            },
-        }
-        tag = soup.new_tag("script")
-        tag["type"] = "application/ld+json"
-        tag["data-schema"] = "organization"
-        tag.string = json_ld(data)
-        head.append(tag)
-        changed = True
-    if changed:
-        path.write_text(str(soup), encoding="utf-8")
-    return changed
+    text = before
+    data = {
+        "@context": "https://schema.org",
+        "@type": ["Organization", "TravelAgency"],
+        "name": "АБХАЗБЕРЕГ",
+        "alternateName": "АБХАЗБЕРЕГ - жилье напрямую",
+        "slogan": "Проверенное жилье в Абхазии напрямую, без накруток",
+        "url": CANON_ORIGIN + "/",
+        "logo": MEDIA_ORIGIN + "/media/branding/logo-emblem-160.png",
+        "description": "Подбор и прямое бронирование проверенного жилья в Абхазии без накруток: отели, домики, гостевые дома и квартиры с реальными фото и ценами.",
+        "areaServed": ["Абхазия", "Гагра", "Пицунда", "Лдзаа", "Сухум", "Гудаута", "Новый Афон", "Алахадзы", "Очамчыра"],
+        "knowsAbout": [
+            "отдых в Абхазии",
+            "жилье в Абхазии",
+            "отели Абхазии",
+            "квартиры в Абхазии",
+            "семейный отдых",
+            "жилье у моря",
+            "отели с бассейном",
+            "как добраться в Абхазию",
+            "граница Псоу",
+            "веб-камеры Абхазии",
+            "экскурсии по Абхазии",
+        ],
+        "sameAs": [
+            "https://t.me/abhazbooking_online",
+            "https://t.me/abhazbooking",
+            "https://t.me/abhkvartira",
+            "https://vk.cc/cQQnBn",
+            "https://max.ru/id741113115256_bot",
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+7-940-900-33-40",
+            "contactType": "customer service",
+            "availableLanguage": ["ru"],
+            "areaServed": "Абхазия",
+        },
+    }
+    payload = json_ld(data)
+    block_re = re.compile(
+        r'(<script[^>]*data-schema="organization"[^>]*>).*?(</script>)', re.S
+    )
+    if block_re.search(text):
+        text = block_re.sub(lambda m: m.group(1) + payload + m.group(2), text, count=1)
+    else:
+        text = text.replace(
+            "</head>",
+            f'<script data-schema="organization" type="application/ld+json">{payload}</script></head>',
+            1,
+        )
+    for href, extra in (
+        ("/llms.txt", 'rel="alternate" title="LLMs guide" type="text/plain"'),
+        ("/ai/catalog.json", 'rel="alternate" title="AI catalog" type="application/json"'),
+    ):
+        if f'href="{href}"' not in text:
+            text = text.replace("</head>", f'<link href="{href}" {extra}/></head>', 1)
+    if text != before:
+        path.write_text(text, encoding="utf-8")
+        return True
+    return False
 
 
 def main() -> int:

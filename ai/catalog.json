@@ -1,11 +1,11 @@
 {
   "name": "АБХАЗБЕРЕГ - каталог жилья в Абхазии",
   "url": "https://абхазберег.рф/",
-  "generated_at": "2026-08-16T12:15:39.929552+00:00",
+  "generated_at": "2026-08-29T07:23:30.016051+00:00",
   "language": "ru",
   "description": "Машиночитаемый каталог проверенных отелей, домиков, апартаментов и квартир в Абхазии для AI-поиска и агентных рекомендаций.",
   "usage_note": "Используйте page url как канонический источник, цены подтверждайте перед бронированием.",
-  "total": 235,
+  "total": 239,
   "listings": [
     {
       "name": "\"АКИРА\" 2к квартира",
@@ -28,7 +28,7 @@
       ],
       "price_range": "3000-5000 RUB",
       "url": "https://абхазберег.рф/kvartira/akira-2k-kvartira-1623/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/akira-2k-kvartira-1623-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/akira-2k-kvartira-1623-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1623",
       "updated_at": "2026-06-10"
     },
@@ -46,10 +46,6 @@
         "подходит для семьи"
       ],
       "prices": [
-        "Акция🔥",
-        "Однокомнатный домик (за четырехместное размещение)",
-        "до конца июня 3500₽",
-        "с 1 по 10 июля 5500₽",
         "Однокомнатный домик",
         "(за четырехместное размещение)",
         "4000₽ - июнь",
@@ -57,11 +53,15 @@
         "7000₽ - август",
         "5000₽ - сентябрь",
         "3500₽ - октябрь",
-        "Доп. место — 500₽"
+        "Доп. место — 500₽",
+        "Двухкомнатный домик",
+        "(за шестиместное размещение)",
+        "6000₽ - июнь",
+        "8500₽ - июль"
       ],
-      "price_range": "500-7000 RUB",
+      "price_range": "500-8500 RUB",
       "url": "https://абхазберег.рф/hotels/sanni-houm-domiki-s-basseynom-4731/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sanni-houm-domiki-s-basseynom-4731.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sanni-houm-domiki-s-basseynom-4731.jpg",
       "telegram_source": "https://t.me/abhazbooking/4731",
       "updated_at": "2026-06-08"
     },
@@ -92,7 +92,7 @@
       ],
       "price_range": "3000-7000 RUB",
       "url": "https://абхазберег.рф/hotels/limon-otel-4721/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/limon-otel-4721.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/limon-otel-4721.jpg",
       "telegram_source": "https://t.me/abhazbooking/4721",
       "updated_at": "2026-06-06"
     },
@@ -125,7 +125,7 @@
       ],
       "price_range": "5000-7500 RUB",
       "url": "https://абхазберег.рф/hotels/lk-otel-s-basseynom-4123/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/lk-otel-s-basseynom-4123.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/lk-otel-s-basseynom-4123.jpg",
       "telegram_source": "https://t.me/abhazbooking/4711",
       "updated_at": "2026-06-05"
     },
@@ -154,7 +154,7 @@
       ],
       "price_range": "500-5000 RUB",
       "url": "https://абхазберег.рф/hotels/simsim-gostevoy-dom-4701/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/simsim-gostevoy-dom-4701.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/simsim-gostevoy-dom-4701.jpg",
       "telegram_source": "https://t.me/abhazbooking/4701",
       "updated_at": "2026-06-03"
     },
@@ -178,7 +178,7 @@
       ],
       "price_range": "4000-5000 RUB",
       "url": "https://абхазберег.рф/hotels/oliva-domiki-4671/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/oliva-domiki-4671.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/oliva-domiki-4671.jpg",
       "telegram_source": "https://t.me/abhazbooking/4671",
       "updated_at": "2026-06-02"
     },
@@ -210,7 +210,7 @@
       ],
       "price_range": "3000-8500 RUB",
       "url": "https://абхазберег.рф/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/danelyan-semeynyy-otel-so-stolovoy-4652.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/danelyan-semeynyy-otel-so-stolovoy-4652.jpg",
       "telegram_source": "https://t.me/abhazbooking/4652",
       "updated_at": "2026-06-02"
     },
@@ -231,14 +231,14 @@
       "prices": [
         "(за трехместное размещение)",
         "Акция🔥",
-        "квартира свободна с 26 июля по 3 августа - 4000₽",
+        "квартира свободна с 2 по 15 сентября - 4000₽",
         "5500₽ - июль, август, сентябрь",
         "5000₽ - октябрь",
         "Доп. место — 700₽"
       ],
       "price_range": "700-5500 RUB",
       "url": "https://абхазберег.рф/kvartira/sosnovaya-kvartira-1k-1610/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/sosnovaya-kvartira-1k-1610-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/sosnovaya-kvartira-1k-1610-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1610",
       "updated_at": "2026-05-30"
     },
@@ -262,7 +262,7 @@
       ],
       "price_range": "3000-3500 RUB",
       "url": "https://абхазберег.рф/hotels/nebosvod-domik-afreym-v-uedinennom-meste-4640/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/nebosvod-domik-afreym-v-uedinennom-meste-4640.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/nebosvod-domik-afreym-v-uedinennom-meste-4640.jpg",
       "telegram_source": "https://t.me/abhazbooking/4640",
       "updated_at": "2026-05-29"
     },
@@ -287,7 +287,7 @@
       ],
       "price_range": "4000-8000 RUB",
       "url": "https://абхазберег.рф/kvartira/leto-kvartira-2k-1587/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/leto-kvartira-2k-1587-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/leto-kvartira-2k-1587-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1587",
       "updated_at": "2026-05-29"
     },
@@ -320,7 +320,7 @@
       ],
       "price_range": "4000-11000 RUB",
       "url": "https://абхазберег.рф/hotels/belaya-dacha-otel-s-pitaniem-4630/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/belaya-dacha-otel-s-pitaniem-4630.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belaya-dacha-otel-s-pitaniem-4630.jpg",
       "telegram_source": "https://t.me/abhazbooking/4630",
       "updated_at": "2026-05-29"
     },
@@ -352,7 +352,7 @@
       ],
       "price_range": "1000-7900 RUB",
       "url": "https://абхазберег.рф/hotels/lavanda-villa-s-basseynom-4590/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/lavanda-villa-s-basseynom-4590.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/lavanda-villa-s-basseynom-4590.jpg",
       "telegram_source": "https://t.me/abhazbooking/4590",
       "updated_at": "2026-05-27"
     },
@@ -370,22 +370,22 @@
         "подходит для семьи"
       ],
       "prices": [
+        "Акция в сентябре 7+1🔥",
+        "При бронировании домика или двухкомнатного номера от 7 дней 1 ночь в подарок🎁",
         "Домик",
         "(за четырехместное размещение)",
-        "8000₽ - июнь",
-        "12000₽ - июль",
         "15000₽ - август, сентябрь",
+        "8000₽ - октябрь",
         "Однокомнатный номер",
         "(за двухместное размещение)",
-        "3000₽ - июнь",
-        "5000₽ - июль, август, сентябрь",
+        "5000₽ - сентябрь",
+        "4000₽ - октябрь",
         "Двухкомнатный номер",
-        "(за пятиместное размещение)",
-        "8000₽ - июнь"
+        "(за пятиместное размещение)"
       ],
-      "price_range": "3000-15000 RUB",
+      "price_range": "4000-15000 RUB",
       "url": "https://абхазберег.рф/hotels/plyazhnyy-kompleks-151-na-beregu-4620/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/plyazhnyy-kompleks-151-na-beregu-4620.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-4620.jpg",
       "telegram_source": "https://t.me/abhazbooking/4620",
       "updated_at": "2026-05-27"
     },
@@ -405,6 +405,10 @@
         "подходит для семьи"
       ],
       "prices": [
+        "Акция в сентябре 7+1 или 16+2🔥",
+        "При бронировании от 7 дней 1 ночь в подарок🎁",
+        "При бронировании от 10 дней 1 ночь в подарок и скидка 5% в кафе",
+        "При бронировании от 16 дней 2 ночи в подарок и скидка 5% в кафе",
         "Скидка 5% при бронировании от 20 ночей 🩵",
         "Однокомнатные апартаменты",
         "(за двухместное размещение)",
@@ -412,15 +416,11 @@
         "6900₽ - октябрь",
         "Двухкомнатные апартаменты",
         "(за двухместное размещение)",
-        "12700₽ - с 21 июля по 20 сентября",
-        "6900₽ - с 21 сентября по 30 октября",
-        "Доп плата свыше 2 человек - 1000₽ за каждого гостя с завтраками",
-        "Один номер в домике",
-        "(за двухместное размещение)"
+        "12700₽ - с 21 июля по 20 сентября"
       ],
-      "price_range": "1000-12700 RUB",
+      "price_range": "6900-12700 RUB",
       "url": "https://абхазберег.рф/hotels/dzhannat-otel-na-beregu-s-zavtrakami-4571/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/dzhannat-otel-na-beregu-s-zavtrakami-4571.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/dzhannat-otel-na-beregu-s-zavtrakami-4571.jpg",
       "telegram_source": "https://t.me/abhazbooking/4571",
       "updated_at": "2026-05-26"
     },
@@ -451,7 +451,7 @@
       ],
       "price_range": "3100-5900 RUB",
       "url": "https://абхазберег.рф/hotels/rd-otel-v-gagre-4561/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/rd-otel-v-gagre-4561.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rd-otel-v-gagre-4561.jpg",
       "telegram_source": "https://t.me/abhazbooking/4561",
       "updated_at": "2026-05-25"
     },
@@ -476,7 +476,7 @@
       ],
       "price_range": "2500-5000 RUB",
       "url": "https://абхазберег.рф/hotels/mirano-gostevoy-dom-4550/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mirano-gostevoy-dom-4550.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mirano-gostevoy-dom-4550.jpg",
       "telegram_source": "https://t.me/abhazbooking/4550",
       "updated_at": "2026-05-21"
     },
@@ -510,7 +510,7 @@
       ],
       "price_range": "2500-7500 RUB",
       "url": "https://абхазберег.рф/hotels/pion-gostevoy-dom-4539/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pion-gostevoy-dom-4539.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pion-gostevoy-dom-4539.jpg",
       "telegram_source": "https://t.me/abhazbooking/4539",
       "updated_at": "2026-05-20"
     },
@@ -543,7 +543,7 @@
       ],
       "price_range": "3800-10600 RUB",
       "url": "https://абхазберег.рф/hotels/art-otel-s-pitaniem-i-basseynom-4479/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/art-otel-s-pitaniem-i-basseynom-4479.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/art-otel-s-pitaniem-i-basseynom-4479.jpg",
       "telegram_source": "https://t.me/abhazbooking/4479",
       "updated_at": "2026-05-16"
     },
@@ -568,7 +568,7 @@
       ],
       "price_range": "4000-30000 RUB",
       "url": "https://абхазберег.рф/kvartira/nonna-kvartira-2k-1576/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/nonna-kvartira-2k-1576-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/nonna-kvartira-2k-1576-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1576",
       "updated_at": "2026-05-15"
     },
@@ -584,22 +584,22 @@
         "питание"
       ],
       "prices": [
+        "АКЦИЯ🔥",
+        "С 21 августа по 5 сентября свободен двухместный номер Делюкс - 3500₽",
+        "С 22 августа по 5 сентября свободен двухкомнатный номер Люкс - 4500₽",
         "Двухместный номер Делюкс, Делюкс Комфорт, Кинг сайз",
-        "1500₽ - май",
-        "2500₽ - июнь",
-        "3800₽ - июль, август, сентябрь",
+        "3800₽ - август, сентябрь",
         "1500₽ - октябрь",
         "Доп. место — 500₽",
         "Двухместный номер Полулюкс",
-        "1500₽ - май",
-        "2700₽ - июнь",
-        "3950₽ - июль, август, сентябрь",
+        "3950₽ - август, сентябрь",
         "1500₽ - октябрь",
-        "Доп. место — 500₽"
+        "Доп. место — 500₽",
+        "Двухкомнатный номер Люкс"
       ],
-      "price_range": "500-3950 RUB",
+      "price_range": "500-4500 RUB",
       "url": "https://абхазберег.рф/hotels/sanrey-gostevoy-dom-4469/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sanrey-gostevoy-dom-4469.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sanrey-gostevoy-dom-4469.jpg",
       "telegram_source": "https://t.me/abhazbooking/4469",
       "updated_at": "2026-05-14"
     },
@@ -633,7 +633,7 @@
       ],
       "price_range": "800-6000 RUB",
       "url": "https://абхазберег.рф/hotels/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459.jpg",
       "telegram_source": "https://t.me/abhazbooking/4459",
       "updated_at": "2026-05-13"
     },
@@ -658,7 +658,7 @@
       ],
       "price_range": "4000-5500 RUB",
       "url": "https://абхазберег.рф/hotels/kvarts-domiki-4449/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/kvarts-domiki-4449.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/kvarts-domiki-4449.jpg",
       "telegram_source": "https://t.me/abhazbooking/4449",
       "updated_at": "2026-05-12"
     },
@@ -680,7 +680,7 @@
       ],
       "price_range": "4000-6000 RUB",
       "url": "https://абхазберег.рф/kvartira/greys-kvartira-1564/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/greys-kvartira-1564-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/greys-kvartira-1564-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1564",
       "updated_at": "2026-05-11"
     },
@@ -702,7 +702,7 @@
         "Домик люкс",
         "7500₽ - июль",
         "8000₽ - август",
-        "7000₽ - сентябрь",
+        "6500₽ - сентябрь",
         "5000₽ - октябрь",
         "Стандартный номер",
         "5000₽ - июль, август, сентябрь, октябрь",
@@ -711,7 +711,7 @@
       ],
       "price_range": "1000-8000 RUB",
       "url": "https://абхазберег.рф/hotels/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sandi-haus-kottedzhnyy-kompleks-s-basseynom-4429.jpg",
       "telegram_source": "https://t.me/abhazbooking/4429",
       "updated_at": "2026-05-08"
     },
@@ -743,7 +743,7 @@
       ],
       "price_range": "4000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/edem-domiki-4409/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/edem-domiki-4409.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/edem-domiki-4409.jpg",
       "telegram_source": "https://t.me/abhazbooking/4409",
       "updated_at": "2026-05-06"
     },
@@ -778,7 +778,7 @@
       ],
       "price_range": "3900-6830 RUB",
       "url": "https://абхазберег.рф/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/bagripsh-domiki-na-beregu-s-pitaniem-4399.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bagripsh-domiki-na-beregu-s-pitaniem-4399.jpg",
       "telegram_source": "https://t.me/abhazbooking/4868",
       "updated_at": "2026-06-30"
     },
@@ -801,7 +801,7 @@
       ],
       "price_range": "4000-4000 RUB",
       "url": "https://абхазберег.рф/kvartira/ladariya-kvartira-1k-1542/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/ladariya-kvartira-1k-1542-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/ladariya-kvartira-1k-1542-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1542",
       "updated_at": "2026-05-05"
     },
@@ -827,7 +827,7 @@
       ],
       "price_range": "11500-15500 RUB",
       "url": "https://абхазберег.рф/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/na-vremya-v-rayu-zhile-pod-klyuch-4357.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/na-vremya-v-rayu-zhile-pod-klyuch-4357.jpg",
       "telegram_source": "https://t.me/abhazbooking/4357",
       "updated_at": "2026-05-01"
     },
@@ -860,7 +860,7 @@
       ],
       "price_range": "1000-8000 RUB",
       "url": "https://абхазберег.рф/hotels/apra-gostevoy-dom-na-plyazhe-4348/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/apra-gostevoy-dom-na-plyazhe-4348.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/apra-gostevoy-dom-na-plyazhe-4348.jpg",
       "telegram_source": "https://t.me/abhazbooking/5144",
       "updated_at": "2026-08-03"
     },
@@ -893,7 +893,7 @@
       ],
       "price_range": "4200-6900 RUB",
       "url": "https://абхазберег.рф/hotels/manon-otel-so-skazochnym-vidom-2512/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/manon-otel-so-skazochnym-vidom-2512.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/manon-otel-so-skazochnym-vidom-2512.jpg",
       "telegram_source": "https://t.me/abhazbooking/4329",
       "updated_at": "2026-04-30"
     },
@@ -918,7 +918,7 @@
       ],
       "price_range": "2500-5500 RUB",
       "url": "https://абхазберег.рф/hotels/neanila-eko-domiki-4308/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/neanila-eko-domiki-4308.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/neanila-eko-domiki-4308.jpg",
       "telegram_source": "https://t.me/abhazbooking/4308",
       "updated_at": "2026-04-29"
     },
@@ -944,7 +944,7 @@
       ],
       "price_range": "",
       "url": "https://абхазберег.рф/kvartira/afina-kvartira-2k-1488/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/afina-kvartira-2k-1488-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/afina-kvartira-2k-1488-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1488",
       "updated_at": "2026-04-28"
     },
@@ -968,7 +968,7 @@
       ],
       "price_range": "",
       "url": "https://абхазберег.рф/kvartira/mimoza-3k-kvartira-1499/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/mimoza-3k-kvartira-1499-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mimoza-3k-kvartira-1499-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1499",
       "updated_at": "2026-04-28"
     },
@@ -992,7 +992,7 @@
       ],
       "price_range": "7000-11000 RUB",
       "url": "https://абхазберег.рф/hotels/studio-san-amra-studiya-na-plyazhe-4270/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/studio-san-amra-studiya-na-plyazhe-4270.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/studio-san-amra-studiya-na-plyazhe-4270.jpg",
       "telegram_source": "https://t.me/abhazbooking/4270",
       "updated_at": "2026-04-28"
     },
@@ -1020,7 +1020,7 @@
       ],
       "price_range": "1000-4000 RUB",
       "url": "https://абхазберег.рф/hotels/svetlyy-dvorik-gostevoy-dom-ekonom-4259/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/svetlyy-dvorik-gostevoy-dom-ekonom-4259.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/svetlyy-dvorik-gostevoy-dom-ekonom-4259.jpg",
       "telegram_source": "https://t.me/abhazbooking/4259",
       "updated_at": "2026-04-27"
     },
@@ -1042,7 +1042,7 @@
       ],
       "price_range": "7000-7000 RUB",
       "url": "https://абхазберег.рф/hotels/tihaya-obitel-dom-pod-klyuch-4230/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/tihaya-obitel-dom-pod-klyuch-4230.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tihaya-obitel-dom-pod-klyuch-4230.jpg",
       "telegram_source": "https://t.me/abhazbooking/4230",
       "updated_at": "2026-04-24"
     },
@@ -1068,7 +1068,7 @@
       ],
       "price_range": "2500-5000 RUB",
       "url": "https://абхазберег.рф/hotels/diar-domiki-s-basseynom-4192/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/diar-domiki-s-basseynom-4192.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/diar-domiki-s-basseynom-4192.jpg",
       "telegram_source": "https://t.me/abhazbooking/4192",
       "updated_at": "2026-04-22"
     },
@@ -1102,7 +1102,7 @@
       ],
       "price_range": "500-5000 RUB",
       "url": "https://абхазберег.рф/hotels/assir-pitsunda-gostevoy-dom-v-tsentre-4173/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/assir-pitsunda-gostevoy-dom-v-tsentre-4173.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/assir-pitsunda-gostevoy-dom-v-tsentre-4173.jpg",
       "telegram_source": "https://t.me/abhazbooking/4173",
       "updated_at": "2026-04-20"
     },
@@ -1132,7 +1132,7 @@
       ],
       "price_range": "4000-6500 RUB",
       "url": "https://абхазберег.рф/hotels/sekret-garden-apartamenty-4162/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sekret-garden-apartamenty-4162.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sekret-garden-apartamenty-4162.jpg",
       "telegram_source": "https://t.me/abhazbooking/4162",
       "updated_at": "2026-04-16"
     },
@@ -1153,7 +1153,7 @@
       ],
       "price_range": "4500-5500 RUB",
       "url": "https://абхазберег.рф/hotels/mokko-briz-dva-domika-4152/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mokko-briz-dva-domika-4152.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mokko-briz-dva-domika-4152.jpg",
       "telegram_source": "https://t.me/abhazbooking/4152",
       "updated_at": "2026-04-15"
     },
@@ -1184,7 +1184,7 @@
       ],
       "price_range": "1500-14400 RUB",
       "url": "https://абхазберег.рф/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133.jpg",
       "telegram_source": "https://t.me/abhazbooking/4133",
       "updated_at": "2026-04-15"
     },
@@ -1212,7 +1212,7 @@
       ],
       "price_range": "2000-9000 RUB",
       "url": "https://абхазберег.рф/hotels/zhemchuzhina-gostevoy-dom-4113/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/zhemchuzhina-gostevoy-dom-4113.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/zhemchuzhina-gostevoy-dom-4113.jpg",
       "telegram_source": "https://t.me/abhazbooking/5124",
       "updated_at": "2026-07-29"
     },
@@ -1236,7 +1236,7 @@
       ],
       "price_range": "4500-5500 RUB",
       "url": "https://абхазберег.рф/hotels/full-haus-domiki-s-basseynom-4092/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/full-haus-domiki-s-basseynom-4092.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/full-haus-domiki-s-basseynom-4092.jpg",
       "telegram_source": "https://t.me/abhazbooking/4092",
       "updated_at": "2026-04-10"
     },
@@ -1268,7 +1268,7 @@
       ],
       "price_range": "3000-9000 RUB",
       "url": "https://абхазберег.рф/hotels/belyy-dom-domiki-i-apartamenty-4081/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/belyy-dom-domiki-i-apartamenty-4081.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belyy-dom-domiki-i-apartamenty-4081.jpg",
       "telegram_source": "https://t.me/abhazbooking/4081",
       "updated_at": "2026-04-09"
     },
@@ -1300,7 +1300,7 @@
       ],
       "price_range": "2500-4500 RUB",
       "url": "https://абхазберег.рф/hotels/palma-gostevoy-dom-4071/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/palma-gostevoy-dom-4071.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/palma-gostevoy-dom-4071.jpg",
       "telegram_source": "https://t.me/abhazbooking/4071",
       "updated_at": "2026-04-08"
     },
@@ -1327,7 +1327,7 @@
       ],
       "price_range": "2000-4500 RUB",
       "url": "https://абхазберег.рф/hotels/esma-domiki-s-basseynom-v-tsentre-4032/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/esma-domiki-s-basseynom-v-tsentre-4032.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/esma-domiki-s-basseynom-v-tsentre-4032.jpg",
       "telegram_source": "https://t.me/abhazbooking/4032",
       "updated_at": "2026-04-06"
     },
@@ -1356,7 +1356,7 @@
       ],
       "price_range": "700-6600 RUB",
       "url": "https://абхазберег.рф/hotels/soluna-domiki-i-nomera-s-zavtrakami-4041/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/soluna-domiki-i-nomera-s-zavtrakami-4041.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/soluna-domiki-i-nomera-s-zavtrakami-4041.jpg",
       "telegram_source": "https://t.me/abhazbooking/4041",
       "updated_at": "2026-04-06"
     },
@@ -1384,7 +1384,7 @@
       ],
       "price_range": "1000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/oazis-villa-4052/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/oazis-villa-4052.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/oazis-villa-4052.jpg",
       "telegram_source": "https://t.me/abhazbooking/4052",
       "updated_at": "2026-04-06"
     },
@@ -1413,7 +1413,7 @@
       ],
       "price_range": "7000-12000 RUB",
       "url": "https://абхазберег.рф/hotels/oazis-apartamenty-s-kuhney-4061/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/oazis-apartamenty-s-kuhney-4061.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/oazis-apartamenty-s-kuhney-4061.jpg",
       "telegram_source": "https://t.me/abhazbooking/4061",
       "updated_at": "2026-04-06"
     },
@@ -1439,7 +1439,7 @@
       ],
       "price_range": "3000-5000 RUB",
       "url": "https://абхазберег.рф/hotels/ekohoum-kottedzh-otel-3974/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/ekohoum-kottedzh-otel-3974.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/ekohoum-kottedzh-otel-3974.jpg",
       "telegram_source": "https://t.me/abhazbooking/3974",
       "updated_at": "2026-04-03"
     },
@@ -1457,19 +1457,18 @@
         "подходит для семьи"
       ],
       "prices": [
+        "АКЦИЯ🔥",
+        "В сентябре домик 2000₽",
         "домик, до 4 человек",
-        "3000₽ - июнь",
-        "3500₽ - июль",
         "4000₽ - август",
         "3000₽ - сентябрь",
         "номер на 2 этаже до 5 человек:",
-        "4500₽ - с 1 по 14 июня",
-        "5500₽ - с 15 июня по 15 сентября",
+        "5500₽ - август, сентябрь по 15",
         "4000₽ - с 16 сентября"
       ],
-      "price_range": "3000-5500 RUB",
+      "price_range": "2000-5500 RUB",
       "url": "https://абхазберег.рф/hotels/rusana-eko-domiki-3963/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/rusana-eko-domiki-3963.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rusana-eko-domiki-3963.jpg",
       "telegram_source": "https://t.me/abhazbooking/3963",
       "updated_at": "2026-04-02"
     },
@@ -1494,7 +1493,7 @@
       ],
       "price_range": "700-4500 RUB",
       "url": "https://абхазберег.рф/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sanrayz-gostevoy-dom-s-zavtrakami-3953.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sanrayz-gostevoy-dom-s-zavtrakami-3953.jpg",
       "telegram_source": "https://t.me/abhazbooking/3953",
       "updated_at": "2026-04-02"
     },
@@ -1518,7 +1517,7 @@
       ],
       "price_range": "2000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/tihiy-zakat-domiki-s-basseynom-3942/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/tihiy-zakat-domiki-s-basseynom-3942.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tihiy-zakat-domiki-s-basseynom-3942.jpg",
       "telegram_source": "https://t.me/abhazbooking/3942",
       "updated_at": "2026-04-01"
     },
@@ -1537,21 +1536,20 @@
       ],
       "prices": [
         "Двухместный",
-        "3000₽ - июнь с 1го по 10е",
-        "4000₽ - июнь с 11го по 30е",
-        "5000₽ - июль с 1го по 10е сентября",
-        "4000₽ - сентябрь с 11го",
+        "5000₽ - август",
+        "4000₽ - сентябрь до 10го",
+        "3500₽ - сентябрь с 11",
         "3000₽ - октябрь",
         "Четырёхместный",
-        "4000₽ - июнь с 1го по 10е",
-        "5000₽ - июнь с 11го по 30е",
-        "6000₽ - июль с 1го по 10е сентября",
-        "5000₽ - сентябрь с 11го",
-        "4000₽ - октябрь"
+        "6000₽ - август",
+        "4500₽ - сентябрь до 10го",
+        "4000₽ - сентябрь с 11",
+        "4000₽ - октябрь",
+        "Дети до 4 лет без предоставления места бесплатно."
       ],
       "price_range": "3000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/sozvezdie-mini-otel-3933/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sozvezdie-mini-otel-3933.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sozvezdie-mini-otel-3933.jpg",
       "telegram_source": "https://t.me/abhazbooking/3933",
       "updated_at": "2026-03-31"
     },
@@ -1585,7 +1583,7 @@
       ],
       "price_range": "2500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/domiki-u-mariny-otdyh-u-morya-3922/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/domiki-u-mariny-otdyh-u-morya-3922.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/domiki-u-mariny-otdyh-u-morya-3922.jpg",
       "telegram_source": "https://t.me/abhazbooking/3922",
       "updated_at": "2026-03-31"
     },
@@ -1618,7 +1616,7 @@
       ],
       "price_range": "7000-13200 RUB",
       "url": "https://абхазберег.рф/hotels/blek-si-otel-s-basseynom-i-pitaniem-3912/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/blek-si-otel-s-basseynom-i-pitaniem-3912.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/blek-si-otel-s-basseynom-i-pitaniem-3912.jpg",
       "telegram_source": "https://t.me/abhazbooking/3912",
       "updated_at": "2026-03-31"
     },
@@ -1639,7 +1637,8 @@
       "prices": [
         "(указаны за размещение 4 человека)",
         "5500₽ - июнь",
-        "7500₽ - июль, август, сентябрь",
+        "7500₽ - июль, август",
+        "6500₽ - сентябрь",
         "5500₽ - октябрь",
         "5 доп место - 1000₽",
         "Размещение с детьми от 10 лет.",
@@ -1647,7 +1646,7 @@
       ],
       "price_range": "1000-10000 RUB",
       "url": "https://абхазберег.рф/kvartira/atmosfernaya-kvartira-2k-1454/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/atmosfernaya-kvartira-2k-1454-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/atmosfernaya-kvartira-2k-1454-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1454",
       "updated_at": "2026-03-28"
     },
@@ -1678,7 +1677,7 @@
       ],
       "price_range": "300-5000 RUB",
       "url": "https://абхазберег.рф/hotels/staryy-prichal-gostevoy-dom-u-morya-3891/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/staryy-prichal-gostevoy-dom-u-morya-3891.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/staryy-prichal-gostevoy-dom-u-morya-3891.jpg",
       "telegram_source": "https://t.me/abhazbooking/3891",
       "updated_at": "2026-03-27"
     },
@@ -1707,36 +1706,9 @@
       ],
       "price_range": "500-10000 RUB",
       "url": "https://абхазберег.рф/hotels/tsarskoe-selo-anhua-kottedzhi-3871/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/tsarskoe-selo-anhua-kottedzhi-3871.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tsarskoe-selo-anhua-kottedzhi-3871.jpg",
       "telegram_source": "https://t.me/abhazbooking/3871",
       "updated_at": "2026-03-27"
-    },
-    {
-      "name": "\"НОРА\" гостевой дом эконом",
-      "type": "hotel",
-      "city": "Пицунда",
-      "location": "Пицунда, ул. Гочуа, 9 (Птицефабрика)",
-      "beach_distance": "6 минут до пляжа, галечный",
-      "capacity": "размещение до 4 человек",
-      "summary": "Пицунда. 6 минут до пляжа, галечный, размещение до 4 человек.",
-      "amenities": [
-        "питание",
-        "подходит для семьи"
-      ],
-      "prices": [
-        "(за 3 местное размещение)",
-        "1500₽ — май",
-        "2000₽ — июнь",
-        "3000₽ — июль, август, сентябрь",
-        "2000₽ — октябрь",
-        "1500₽ — ноябрь",
-        "Доп. место — 500₽"
-      ],
-      "price_range": "500-3000 RUB",
-      "url": "https://абхазберег.рф/hotels/nora-gostevoy-dom-3851/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/nora-gostevoy-dom-3851.jpg",
-      "telegram_source": "https://t.me/abhazbooking/3851",
-      "updated_at": "2026-03-25"
     },
     {
       "name": "\"СОФИЯ\" отель у соснового пляжа",
@@ -1760,7 +1732,7 @@
       ],
       "price_range": "500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/sofiya-otel-u-sosnovogo-plyazha-3842/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sofiya-otel-u-sosnovogo-plyazha-3842.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sofiya-otel-u-sosnovogo-plyazha-3842.jpg",
       "telegram_source": "https://t.me/abhazbooking/3842",
       "updated_at": "2026-03-25"
     },
@@ -1793,7 +1765,7 @@
       ],
       "price_range": "2000-5000 RUB",
       "url": "https://абхазберег.рф/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832.jpg",
       "telegram_source": "https://t.me/abhazbooking/3832",
       "updated_at": "2026-03-24"
     },
@@ -1827,7 +1799,7 @@
       ],
       "price_range": "500-4500 RUB",
       "url": "https://абхазберег.рф/hotels/mayak-gostevoy-dom-3810/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mayak-gostevoy-dom-3810.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mayak-gostevoy-dom-3810.jpg",
       "telegram_source": "https://t.me/abhazbooking/3810",
       "updated_at": "2026-03-23"
     },
@@ -1856,7 +1828,7 @@
       ],
       "price_range": "5000-7000 RUB",
       "url": "https://абхазберег.рф/hotels/sia-lend-baza-otdyha-3800/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sia-lend-baza-otdyha-3800.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sia-lend-baza-otdyha-3800.jpg",
       "telegram_source": "https://t.me/abhazbooking/3800",
       "updated_at": "2026-03-23"
     },
@@ -1885,7 +1857,7 @@
       ],
       "price_range": "8500-16500 RUB",
       "url": "https://абхазберег.рф/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mandarinovyy-dvorik-dom-pod-klyuch-3789.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mandarinovyy-dvorik-dom-pod-klyuch-3789.jpg",
       "telegram_source": "https://t.me/abhazbooking/3789",
       "updated_at": "2026-03-21"
     },
@@ -1919,7 +1891,7 @@
       ],
       "price_range": "3000-4000 RUB",
       "url": "https://абхазберег.рф/hotels/zolotaya-veranda-gostevoy-kompleks-3769/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/zolotaya-veranda-gostevoy-kompleks-3769.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/zolotaya-veranda-gostevoy-kompleks-3769.jpg",
       "telegram_source": "https://t.me/abhazbooking/3769",
       "updated_at": "2026-03-19"
     },
@@ -1945,7 +1917,7 @@
       ],
       "price_range": "5000-6500 RUB",
       "url": "https://абхазберег.рф/kvartira/pitiunt-kvartira-4k-pitsunda-1428/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/pitiunt-kvartira-4k-pitsunda-1428-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/pitiunt-kvartira-4k-pitsunda-1428-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1420",
       "updated_at": "2026-03-18"
     },
@@ -1970,7 +1942,7 @@
       ],
       "price_range": "1500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/sinop-haus-domiki-3748/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sinop-haus-domiki-3748.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sinop-haus-domiki-3748.jpg",
       "telegram_source": "https://t.me/abhazbooking/3748",
       "updated_at": "2026-03-12"
     },
@@ -2003,7 +1975,7 @@
       ],
       "price_range": "500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/zhasmin-mini-otel-3736/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/zhasmin-mini-otel-3736.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/zhasmin-mini-otel-3736.jpg",
       "telegram_source": "https://t.me/abhazbooking/3736",
       "updated_at": "2026-03-06"
     },
@@ -2035,7 +2007,7 @@
       ],
       "price_range": "500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/chegem-gostevoy-dom-3727/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/chegem-gostevoy-dom-3727.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/chegem-gostevoy-dom-3727.jpg",
       "telegram_source": "https://t.me/abhazbooking/3727",
       "updated_at": "2026-03-06"
     },
@@ -2052,15 +2024,17 @@
       ],
       "prices": [
         "(указаны за трехместное размещение)",
-        "6000 ₽ - август",
-        "4500 ₽ - сентябрь до 15го",
-        "3500 ₽ - сентябрь с 15го",
-        "2500 ₽ - октябрь",
+        "АКЦИЯ🔥",
+        "до конца августа домик 5000₽",
+        "6000₽ - август",
+        "4500₽ - сентябрь до 15го",
+        "3500₽ - сентябрь с 15го",
+        "2500₽ - октябрь",
         "Доп место - 500₽/сутки"
       ],
       "price_range": "500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/dyuna-domiki-3717/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/dyuna-domiki-3717.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/dyuna-domiki-3717.jpg",
       "telegram_source": "https://t.me/abhazbooking/3717",
       "updated_at": "2026-03-05"
     },
@@ -2086,7 +2060,7 @@
       ],
       "price_range": "4000-5000 RUB",
       "url": "https://абхазберег.рф/hotels/grafit-haus-gostevoy-dom-s-basseynom-3707/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/grafit-haus-gostevoy-dom-s-basseynom-3707.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grafit-haus-gostevoy-dom-s-basseynom-3707.jpg",
       "telegram_source": "https://t.me/abhazbooking/3707",
       "updated_at": "2026-03-05"
     },
@@ -2118,7 +2092,7 @@
       ],
       "price_range": "2000-4000 RUB",
       "url": "https://абхазберег.рф/hotels/lnd-gostevoy-dom-v-sinope-3687/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/lnd-gostevoy-dom-v-sinope-3687.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/lnd-gostevoy-dom-v-sinope-3687.jpg",
       "telegram_source": "https://t.me/abhazbooking/3687",
       "updated_at": "2026-03-04"
     },
@@ -2141,7 +2115,7 @@
       ],
       "price_range": "500-3500 RUB",
       "url": "https://абхазберег.рф/hotels/nikol-gostevoy-dom-3678/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/nikol-gostevoy-dom-3678.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/nikol-gostevoy-dom-3678.jpg",
       "telegram_source": "https://t.me/abhazbooking/3678",
       "updated_at": "2026-03-04"
     },
@@ -2165,7 +2139,7 @@
       ],
       "price_range": "800-4000 RUB",
       "url": "https://абхазберег.рф/hotels/mziya-gostevye-nomera-3659/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mziya-gostevye-nomera-3659.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mziya-gostevye-nomera-3659.jpg",
       "telegram_source": "https://t.me/abhazbooking/3659",
       "updated_at": "2026-03-02"
     },
@@ -2193,7 +2167,7 @@
       ],
       "price_range": "500-7000 RUB",
       "url": "https://абхазберег.рф/hotels/belaya-loshad-glemping-s-basseynom-3650/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/belaya-loshad-glemping-s-basseynom-3650.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belaya-loshad-glemping-s-basseynom-3650.jpg",
       "telegram_source": "https://t.me/abhazbooking/3652",
       "updated_at": "2026-03-02"
     },
@@ -2217,7 +2191,7 @@
       ],
       "price_range": "3500-5000 RUB",
       "url": "https://абхазберег.рф/hotels/irsen-domiki-3642/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/irsen-domiki-3642.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642.jpg",
       "telegram_source": "https://t.me/abhazbooking/3642",
       "updated_at": "2026-02-28"
     },
@@ -2235,20 +2209,18 @@
       ],
       "prices": [
         "Домики №1 и №8",
-        "5500₽ - июль",
-        "6000₽ - август",
-        "3500₽ - сентябрь",
+        "5000₽ - август",
+        "4000₽ - сентябрь",
         "2000₽ - октябрь",
         "Домики №2 - №7",
-        "6000₽ - июль",
-        "6500₽ - август",
-        "4000₽ - сентябрь",
+        "5500₽ - август",
+        "4500₽ - сентябрь",
         "2000₽ - октябрь",
         "Можно приехать с животными👌"
       ],
-      "price_range": "2000-6500 RUB",
+      "price_range": "2000-5500 RUB",
       "url": "https://абхазберег.рф/hotels/grin-villadzh-domiki-3633/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/grin-villadzh-domiki-3633.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grin-villadzh-domiki-3633.jpg",
       "telegram_source": "https://t.me/abhazbooking/3633",
       "updated_at": "2026-02-28"
     },
@@ -2279,7 +2251,7 @@
       ],
       "price_range": "4000-69920 RUB",
       "url": "https://абхазберег.рф/hotels/bungalo-glemping-3623/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/bungalo-glemping-3623.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bungalo-glemping-3623.jpg",
       "telegram_source": "https://t.me/abhazbooking/3623",
       "updated_at": "2026-02-27"
     },
@@ -2305,7 +2277,7 @@
       ],
       "price_range": "500-7500 RUB",
       "url": "https://абхазберег.рф/hotels/abaza-otel-3614/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/abaza-otel-3614.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/abaza-otel-3614.jpg",
       "telegram_source": "https://t.me/abhazbooking/3614",
       "updated_at": "2026-02-27"
     },
@@ -2337,7 +2309,7 @@
       ],
       "price_range": "3500-5000 RUB",
       "url": "https://абхазберег.рф/hotels/belveder-gostevoy-dom-3602/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/belveder-gostevoy-dom-3602.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belveder-gostevoy-dom-3602.jpg",
       "telegram_source": "https://t.me/abhazbooking/3602",
       "updated_at": "2026-02-25"
     },
@@ -2369,7 +2341,7 @@
       ],
       "price_range": "1500-4000 RUB",
       "url": "https://абхазберег.рф/hotels/simona-gostevoy-dom-3592/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/simona-gostevoy-dom-3592.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/simona-gostevoy-dom-3592.jpg",
       "telegram_source": "https://t.me/abhazbooking/3592",
       "updated_at": "2026-02-25"
     },
@@ -2401,7 +2373,7 @@
       ],
       "price_range": "500-4500 RUB",
       "url": "https://абхазберег.рф/hotels/more-more-gostevoy-kompleks-3583/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/more-more-gostevoy-kompleks-3583.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/more-more-gostevoy-kompleks-3583.jpg",
       "telegram_source": "https://t.me/abhazbooking/3583",
       "updated_at": "2026-02-25"
     },
@@ -2428,7 +2400,7 @@
       ],
       "price_range": "500-4000 RUB",
       "url": "https://абхазберег.рф/hotels/marta-gostevye-nomera-3574/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/marta-gostevye-nomera-3574.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/marta-gostevye-nomera-3574.jpg",
       "telegram_source": "https://t.me/abhazbooking/3574",
       "updated_at": "2026-02-25"
     },
@@ -2446,10 +2418,8 @@
         "подходит для семьи"
       ],
       "prices": [
-        "Акция на свободные окошки в августе 4000₽ и сентябре 3000₽🔥",
+        "Акция в сентябре 3000₽🔥",
         "Квартира свободна:",
-        "с 7 по 12 августа",
-        "с 27 по 1 сентября",
         "с 7 по 15 сентября",
         "5000₽ – июль, август",
         "4000₽ – сентябрь",
@@ -2457,7 +2427,7 @@
       ],
       "price_range": "3000-5000 RUB",
       "url": "https://абхазберег.рф/kvartira/letnyaya-kvartira-3k-suhum-1377/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/letnyaya-kvartira-3k-suhum-1377-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/letnyaya-kvartira-3k-suhum-1377-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1369",
       "updated_at": "2026-02-23"
     },
@@ -2483,7 +2453,7 @@
       ],
       "price_range": "6000-8000 RUB",
       "url": "https://абхазберег.рф/kvartira/monro-kvartira-3k-suhum-1386/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/monro-kvartira-3k-suhum-1386-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/monro-kvartira-3k-suhum-1386-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1378",
       "updated_at": "2026-02-23"
     },
@@ -2507,7 +2477,7 @@
       ],
       "price_range": "500-9300 RUB",
       "url": "https://абхазберег.рф/hotels/melodi-eko-otel-derevyannye-domiki-3563/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/melodi-eko-otel-derevyannye-domiki-3563.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/melodi-eko-otel-derevyannye-domiki-3563.jpg",
       "telegram_source": "https://t.me/abhazbooking/3563",
       "updated_at": "2026-02-22"
     },
@@ -2540,7 +2510,7 @@
       ],
       "price_range": "500-7500 RUB",
       "url": "https://абхазберег.рф/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/laym-mini-otel-s-basseynom-u-zapovednika-3554.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/laym-mini-otel-s-basseynom-u-zapovednika-3554.jpg",
       "telegram_source": "https://t.me/abhazbooking/4807",
       "updated_at": "2026-06-16"
     },
@@ -2572,7 +2542,7 @@
       ],
       "price_range": "500-16000 RUB",
       "url": "https://абхазберег.рф/hotels/eko-haus-pitiunt-domiki-s-basseynom-3545/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/eko-haus-pitiunt-domiki-s-basseynom-3545.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/eko-haus-pitiunt-domiki-s-basseynom-3545.jpg",
       "telegram_source": "https://t.me/abhazbooking/3545",
       "updated_at": "2026-02-21"
     },
@@ -2598,7 +2568,7 @@
       ],
       "price_range": "500-13500 RUB",
       "url": "https://абхазберег.рф/kvartira/biryuza-etazh-pod-klyuch-gagra-1367/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/biryuza-etazh-pod-klyuch-gagra-1367-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/biryuza-etazh-pod-klyuch-gagra-1367-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1359",
       "updated_at": "2026-02-20"
     },
@@ -2625,7 +2595,7 @@
       ],
       "price_range": "2500-5000 RUB",
       "url": "https://абхазберег.рф/kvartira/esma-studiya-5ti-mestnaya-gudauta-1355/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/esma-studiya-5ti-mestnaya-gudauta-1355-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/esma-studiya-5ti-mestnaya-gudauta-1355-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1348",
       "updated_at": "2026-02-19"
     },
@@ -2649,7 +2619,7 @@
       ],
       "price_range": "500-4500 RUB",
       "url": "https://абхазберег.рф/hotels/leon-domiki-3536/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/leon-domiki-3536.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/leon-domiki-3536.jpg",
       "telegram_source": "https://t.me/abhazbooking/3536",
       "updated_at": "2026-02-18"
     },
@@ -2667,14 +2637,14 @@
       ],
       "prices": [
         "Двухместное размещение",
-        "2500₽/сутки - любой месяц",
-        "Трёхместное размещение",
         "3000₽/сутки - любой месяц",
+        "Трёхместное размещение",
+        "3200₽/сутки - любой месяц",
         "Доп место 500₽/сутки"
       ],
-      "price_range": "500-3000 RUB",
+      "price_range": "500-3200 RUB",
       "url": "https://абхазберег.рф/hotels/belaya-rechka-gostevoy-dom-s-kafe-3517/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/belaya-rechka-gostevoy-dom-s-kafe-3517.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belaya-rechka-gostevoy-dom-s-kafe-3517.jpg",
       "telegram_source": "https://t.me/abhazbooking/3517",
       "updated_at": "2026-02-18"
     },
@@ -2697,7 +2667,7 @@
       ],
       "price_range": "5000-7000 RUB",
       "url": "https://абхазберег.рф/hotels/limari-domiki-3496/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/limari-domiki-3496.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/limari-domiki-3496.jpg",
       "telegram_source": "https://t.me/abhazbooking/3496",
       "updated_at": "2026-02-14"
     },
@@ -2722,7 +2692,7 @@
       ],
       "price_range": "10000-15000 RUB",
       "url": "https://абхазберег.рф/kvartira/mira-dom-suhum-1345/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/mira-dom-suhum-1345-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mira-dom-suhum-1345-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1336",
       "updated_at": "2026-02-14"
     },
@@ -2740,16 +2710,13 @@
         "своя кухня"
       ],
       "prices": [
-        "Акция🔥",
-        "с 13 по 24 июля свободны одни апартаменты - 7000₽",
-        "4500₽ - июнь",
-        "8000₽ - июль",
-        "7500₽ - август, сентябрь",
+        "7500₽ - август, сентябрь до 20го",
+        "6500₽ - сентябрь с 20го",
         "4000₽ - октябрь"
       ],
-      "price_range": "4000-8000 RUB",
+      "price_range": "4000-7500 RUB",
       "url": "https://абхазберег.рф/hotels/amor-apartamenty-s-kuhney-i-basseynom-3487/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/amor-apartamenty-s-kuhney-i-basseynom-3487.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/amor-apartamenty-s-kuhney-i-basseynom-3487.jpg",
       "telegram_source": "https://t.me/abhazbooking/3487",
       "updated_at": "2026-02-13"
     },
@@ -2774,7 +2741,7 @@
       ],
       "price_range": "7000-15000 RUB",
       "url": "https://абхазберег.рф/hotels/dyshi-glubzhe-domiki-v-gorah-3459/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/dyshi-glubzhe-domiki-v-gorah-3459.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/dyshi-glubzhe-domiki-v-gorah-3459.jpg",
       "telegram_source": "https://t.me/abhazbooking/3459",
       "updated_at": "2026-02-13"
     },
@@ -2802,7 +2769,7 @@
       ],
       "price_range": "500-5000 RUB",
       "url": "https://абхазберег.рф/hotels/sizon-gostevoy-dom-3449/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sizon-gostevoy-dom-3449.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sizon-gostevoy-dom-3449.jpg",
       "telegram_source": "https://t.me/abhazbooking/3449",
       "updated_at": "2026-02-11"
     },
@@ -2829,7 +2796,7 @@
       ],
       "price_range": "7000-12000 RUB",
       "url": "https://абхазберег.рф/kvartira/akvamarin-dom-pod-klyuch-ldzaa-1313/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/akvamarin-dom-pod-klyuch-ldzaa-1313-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/akvamarin-dom-pod-klyuch-ldzaa-1313-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1305",
       "updated_at": "2026-02-11"
     },
@@ -2857,7 +2824,7 @@
       ],
       "price_range": "1000-10000 RUB",
       "url": "https://абхазберег.рф/kvartira/klassika-kvartira-3k-ldzaa-1303/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/klassika-kvartira-3k-ldzaa-1303-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/klassika-kvartira-3k-ldzaa-1303-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1295",
       "updated_at": "2026-02-10"
     },
@@ -2884,7 +2851,7 @@
       ],
       "price_range": "4000-5500 RUB",
       "url": "https://абхазберег.рф/kvartira/parkovaya-kvartira-2k-suhum-1292/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/parkovaya-kvartira-2k-suhum-1292-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/parkovaya-kvartira-2k-suhum-1292-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1284",
       "updated_at": "2026-02-09"
     },
@@ -2900,14 +2867,14 @@
         "питание"
       ],
       "prices": [
-        "4000₽/сутки - июнь",
-        "5000₽/сутки - июль, август",
+        "АКЦИЯ В АВГУСТЕ 4000₽🔥",
+        "5000₽/сутки - август",
         "4500₽/сутки - сентябрь до 15го",
         "4000₽/сутки - сентябрь с 15го"
       ],
       "price_range": "4000-5000 RUB",
       "url": "https://абхазберег.рф/hotels/v-sinope-domiki-3438/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/v-sinope-domiki-3438.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/v-sinope-domiki-3438.jpg",
       "telegram_source": "https://t.me/abhazbooking/3438",
       "updated_at": "2026-02-08"
     },
@@ -2939,7 +2906,7 @@
       ],
       "price_range": "2500-6500 RUB",
       "url": "https://абхазберег.рф/hotels/voshodyaschaya-zvezda-otel-s-basseynom-3428/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/voshodyaschaya-zvezda-otel-s-basseynom-3428.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/voshodyaschaya-zvezda-otel-s-basseynom-3428.jpg",
       "telegram_source": "https://t.me/abhazbooking/3428",
       "updated_at": "2026-02-08"
     },
@@ -2959,19 +2926,19 @@
         "КАМЕННЫЙ КОРПУС",
         "(цены за двухместное размещение)",
         "стандарт (1 этаж, вид на двор, до 3 человек)",
-        "3 500 ₽ в сутки – с 1 июля по 20 сентября",
-        "3 000 ₽ в сутки – с 21 сентября по 31 октября",
+        "3 500 ₽ в сутки – с 1 июля по 31 августа",
+        "3 000 ₽ в сутки – с 1 сентября по 31 октября",
         "комфорт (2 этаж, балкон, вид в сторону моря, до 3 человек)",
-        "4 000 ₽ в сутки – с 1 июля по 20 сентября",
-        "3 500 ₽ в сутки – с 21 сентября по 31 октября",
+        "4 000 ₽ в сутки – с 1 июля по 31 августа",
+        "3 500 ₽ в сутки – с 1 сентября по 31 октября",
         "сьют (увеличенная площадь номера, до 4 человек)",
-        "6 000 ₽ в сутки – с 1 июля по 20 сентября",
-        "5 000 ₽ в сутки – с 21 сентября по 31 октября",
+        "6 000 ₽ в сутки – с 1 июля по 31 августа",
+        "5 000 ₽ в сутки – с 1 сентября по 31 октября",
         "Доп места:"
       ],
       "price_range": "3000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/morskaya-laguna-gostinitsa-s-zavtrakami-3418/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/morskaya-laguna-gostinitsa-s-zavtrakami-3418.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/morskaya-laguna-gostinitsa-s-zavtrakami-3418.jpg",
       "telegram_source": "https://t.me/abhazbooking/3418",
       "updated_at": "2026-02-07"
     },
@@ -2999,7 +2966,7 @@
       ],
       "price_range": "1000-5000 RUB",
       "url": "https://абхазберег.рф/hotels/sisayd-domiki-3409/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sisayd-domiki-3409.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sisayd-domiki-3409.jpg",
       "telegram_source": "https://t.me/abhazbooking/3409",
       "updated_at": "2026-02-06"
     },
@@ -3031,7 +2998,7 @@
       ],
       "price_range": "3000-12000 RUB",
       "url": "https://абхазберег.рф/hotels/sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390.jpg",
       "telegram_source": "https://t.me/abhazbooking/3390",
       "updated_at": "2026-02-06"
     },
@@ -3060,7 +3027,7 @@
       ],
       "price_range": "500-5000 RUB",
       "url": "https://абхазберег.рф/hotels/tis-mini-otel-u-zapovednika-3381/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/tis-mini-otel-u-zapovednika-3381.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tis-mini-otel-u-zapovednika-3381.jpg",
       "telegram_source": "https://t.me/abhazbooking/3381",
       "updated_at": "2026-02-06"
     },
@@ -3088,7 +3055,7 @@
       ],
       "price_range": "6000-12000 RUB",
       "url": "https://абхазберег.рф/hotels/tis-kottedzhi-u-zapovednika-3372/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/tis-kottedzhi-u-zapovednika-3372.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tis-kottedzhi-u-zapovednika-3372.jpg",
       "telegram_source": "https://t.me/abhazbooking/3372",
       "updated_at": "2026-02-05"
     },
@@ -3108,14 +3075,14 @@
         "подходит для семьи"
       ],
       "prices": [
-        "12000₽/сутки - август",
-        "5500₽/сутки - сентябрь",
-        "4000₽/сутки - октябрь",
+        "5500₽ - август, сентябрь по 20",
+        "4500₽ - сентябрь с 20",
+        "4000₽ - октябрь",
         "Брони от 7 суток."
       ],
-      "price_range": "4000-12000 RUB",
+      "price_range": "4000-5500 RUB",
       "url": "https://абхазберег.рф/hotels/mechta-apartamenty-s-kuhney-3363/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mechta-apartamenty-s-kuhney-3363.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mechta-apartamenty-s-kuhney-3363.jpg",
       "telegram_source": "https://t.me/abhazbooking/3363",
       "updated_at": "2026-02-04"
     },
@@ -3141,7 +3108,7 @@
       ],
       "price_range": "7000-10000 RUB",
       "url": "https://абхазберег.рф/kvartira/suhum-dom-1153/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/suhum-dom-1153-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/suhum-dom-1153-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1153",
       "updated_at": "2026-02-04"
     },
@@ -3167,7 +3134,7 @@
       ],
       "price_range": "3000-5000 RUB",
       "url": "https://абхазберег.рф/kvartira/chernomorskaya-kvartira-suhum-1201/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/chernomorskaya-kvartira-suhum-1201-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/chernomorskaya-kvartira-suhum-1201-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1193",
       "updated_at": "2026-02-04"
     },
@@ -3189,7 +3156,7 @@
       ],
       "price_range": "10000-10000 RUB",
       "url": "https://абхазберег.рф/kvartira/tsentralnyy-dom-suhum-1220/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/tsentralnyy-dom-suhum-1220-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/tsentralnyy-dom-suhum-1220-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1220",
       "updated_at": "2026-02-04"
     },
@@ -3222,7 +3189,7 @@
       ],
       "price_range": "500-50000 RUB",
       "url": "https://абхазберег.рф/kvartira/solnechnaya-kvartira-2k-pitsunda-1231/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/solnechnaya-kvartira-2k-pitsunda-1231-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/solnechnaya-kvartira-2k-pitsunda-1231-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1222",
       "updated_at": "2026-02-04"
     },
@@ -3247,7 +3214,7 @@
       ],
       "price_range": "5000-30000 RUB",
       "url": "https://абхазберег.рф/kvartira/siti-gagra-kvartira-2k-gagra-1242/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/siti-gagra-kvartira-2k-gagra-1242-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/siti-gagra-kvartira-2k-gagra-1242-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1233",
       "updated_at": "2026-02-04"
     },
@@ -3276,7 +3243,7 @@
       ],
       "price_range": "2500-6000 RUB",
       "url": "https://абхазберег.рф/kvartira/magnoliya-kvartira-3k-gagra-1253/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/magnoliya-kvartira-3k-gagra-1253-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/magnoliya-kvartira-3k-gagra-1253-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1244",
       "updated_at": "2026-02-04"
     },
@@ -3310,7 +3277,7 @@
       ],
       "price_range": "2000-10000 RUB",
       "url": "https://абхазберег.рф/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/feniks-dom-na-bolshuyu-semyu-ldzaa-1282-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/feniks-dom-na-bolshuyu-semyu-ldzaa-1282-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1276",
       "updated_at": "2026-02-04"
     },
@@ -3332,7 +3299,7 @@
       ],
       "price_range": "3000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/demi-mokko-dva-domika-3353/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/demi-mokko-dva-domika-3353.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/demi-mokko-dva-domika-3353.jpg",
       "telegram_source": "https://t.me/abhazbooking/3353",
       "updated_at": "2026-02-03"
     },
@@ -3359,7 +3326,7 @@
       ],
       "price_range": "2500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/madlena-domiki-3344/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/madlena-domiki-3344.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/madlena-domiki-3344.jpg",
       "telegram_source": "https://t.me/abhazbooking/3344",
       "updated_at": "2026-02-03"
     },
@@ -3377,22 +3344,22 @@
         "подходит для семьи"
       ],
       "prices": [
-        "Акция в июле и августе 7+1🔥",
-        "При бронировании номера от 7 дней 1 ночь в подарок🎁",
+        "Акция в сентябре 5+1🔥",
+        "При бронировании номера от 5 дней 1 ночь в подарок🎁",
         "1этаж — номер на 4 человек",
-        "3500₽/сутки - май",
-        "4000₽/сутки - июнь",
-        "5000₽/сутки - июль",
         "6000₽/сутки - август",
         "5000₽/сутки - сентябрь до 15го",
         "4000₽/сутки - сентябрь с 15го, октябрь",
         "2 этаж — двухместный номер",
-        "2500₽/сутки - май",
-        "3000₽/сутки - июнь"
+        "4500₽/сутки - август",
+        "4000₽/сутки - сентябрь до 15го",
+        "3000₽/сутки - сентябрь с 15го, октябрь",
+        "Доп. место - 500₽/сутки",
+        "коттедж целиком (8 человек)"
       ],
-      "price_range": "2500-6000 RUB",
+      "price_range": "500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/bi-heppi-apart-otel-3334/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/bi-heppi-apart-otel-3334.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bi-heppi-apart-otel-3334.jpg",
       "telegram_source": "https://t.me/abhazbooking/3334",
       "updated_at": "2026-02-03"
     },
@@ -3421,7 +3388,7 @@
       ],
       "price_range": "2300-7000 RUB",
       "url": "https://абхазберег.рф/hotels/kavo-de-bukso-domiki-3323/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/kavo-de-bukso-domiki-3323.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/kavo-de-bukso-domiki-3323.jpg",
       "telegram_source": "https://t.me/abhazbooking/3323",
       "updated_at": "2026-02-03"
     },
@@ -3448,7 +3415,7 @@
       ],
       "price_range": "3000-6000 RUB",
       "url": "https://абхазберег.рф/kvartira/mokko-apartamenty-suhum-1024/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/mokko-apartamenty-suhum-1024-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mokko-apartamenty-suhum-1024-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1016",
       "updated_at": "2026-02-03"
     },
@@ -3475,7 +3442,7 @@
       ],
       "price_range": "",
       "url": "https://абхазберег.рф/kvartira/na-vysote-kvartira-pitsunda-1053/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/branding/site-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/site-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1053",
       "updated_at": "2026-02-03"
     },
@@ -3499,7 +3466,7 @@
       ],
       "price_range": "3000-4000 RUB",
       "url": "https://абхазберег.рф/kvartira/mon-amur-kvartira-1k-gagra-1062/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/mon-amur-kvartira-1k-gagra-1062-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mon-amur-kvartira-1k-gagra-1062-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1055",
       "updated_at": "2026-02-03"
     },
@@ -3527,7 +3494,7 @@
       ],
       "price_range": "",
       "url": "https://абхазберег.рф/kvartira/na-plyazhe-apartamenty-3k-ldzaa-1073/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/na-plyazhe-apartamenty-3k-ldzaa-1073-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/na-plyazhe-apartamenty-3k-ldzaa-1073-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1064",
       "updated_at": "2026-02-03"
     },
@@ -3555,7 +3522,7 @@
       ],
       "price_range": "",
       "url": "https://абхазберег.рф/kvartira/palma-kvartira-3k-ldzaa-1080/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/palma-kvartira-3k-ldzaa-1080-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/palma-kvartira-3k-ldzaa-1080-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1075",
       "updated_at": "2026-02-03"
     },
@@ -3581,7 +3548,7 @@
       ],
       "price_range": "8000-40000 RUB",
       "url": "https://абхазберег.рф/kvartira/perl-dom-pod-klyuch-gudauta-1092/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/perl-dom-pod-klyuch-gudauta-1092-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/perl-dom-pod-klyuch-gudauta-1092-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1083",
       "updated_at": "2026-02-03"
     },
@@ -3605,7 +3572,7 @@
       ],
       "price_range": "4500-7000 RUB",
       "url": "https://абхазберег.рф/kvartira/sanset-kvartira-1k-ldzaa-1101/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/sanset-kvartira-1k-ldzaa-1101-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/sanset-kvartira-1k-ldzaa-1101-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1093",
       "updated_at": "2026-02-03"
     },
@@ -3630,7 +3597,7 @@
       ],
       "price_range": "3000-4000 RUB",
       "url": "https://абхазберег.рф/kvartira/rimma-dve-1k-kvartriry-suhum-1118/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/rimma-dve-1k-kvartriry-suhum-1118-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/rimma-dve-1k-kvartriry-suhum-1118-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1113",
       "updated_at": "2026-02-03"
     },
@@ -3656,7 +3623,7 @@
       ],
       "price_range": "5000-10000 RUB",
       "url": "https://абхазберег.рф/kvartira/tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1133",
       "updated_at": "2026-02-03"
     },
@@ -3683,7 +3650,7 @@
       ],
       "price_range": "8000-13000 RUB",
       "url": "https://абхазберег.рф/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1143",
       "updated_at": "2026-02-03"
     },
@@ -3709,7 +3676,7 @@
       ],
       "price_range": "5000-7000 RUB",
       "url": "https://абхазберег.рф/kvartira/moreon-kvartira-2k-pitsunda-1391/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/moreon-kvartira-2k-pitsunda-1391-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/moreon-kvartira-2k-pitsunda-1391-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1046",
       "updated_at": "2026-02-03"
     },
@@ -3738,7 +3705,7 @@
       ],
       "price_range": "1000-5500 RUB",
       "url": "https://абхазберег.рф/hotels/heppi-lend-domiki-dvuhetazhnye-3313/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/heppi-lend-domiki-dvuhetazhnye-3313.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/heppi-lend-domiki-dvuhetazhnye-3313.jpg",
       "telegram_source": "https://t.me/abhazbooking/3313",
       "updated_at": "2026-02-02"
     },
@@ -3769,7 +3736,7 @@
       ],
       "price_range": "500-500 RUB",
       "url": "https://абхазберег.рф/kvartira/argo-kvartira-1k-pitsunda-940/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/argo-kvartira-1k-pitsunda-940-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/argo-kvartira-1k-pitsunda-940-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/932",
       "updated_at": "2026-02-02"
     },
@@ -3792,7 +3759,7 @@
       ],
       "price_range": "25000-25000 RUB",
       "url": "https://абхазберег.рф/kvartira/viktoriya-kvartira-2k-pitsunda-951/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/viktoriya-kvartira-2k-pitsunda-951-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/viktoriya-kvartira-2k-pitsunda-951-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/941",
       "updated_at": "2026-02-02"
     },
@@ -3819,7 +3786,7 @@
       ],
       "price_range": "4500-8500 RUB",
       "url": "https://абхазберег.рф/kvartira/villa-suhum-959/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/villa-suhum-959-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/villa-suhum-959-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/952",
       "updated_at": "2026-02-02"
     },
@@ -3846,7 +3813,7 @@
       ],
       "price_range": "5000-8000 RUB",
       "url": "https://абхазберег.рф/kvartira/kamilla-kvartira-2k-pitsunda-968/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/kamilla-kvartira-2k-pitsunda-968-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/kamilla-kvartira-2k-pitsunda-968-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/960",
       "updated_at": "2026-02-02"
     },
@@ -3873,7 +3840,7 @@
       ],
       "price_range": "2000-5000 RUB",
       "url": "https://абхазберег.рф/kvartira/kiparisovaya-kvartira-1k-gagry-976/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/kiparisovaya-kvartira-1k-gagry-976-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/kiparisovaya-kvartira-1k-gagry-976-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/969",
       "updated_at": "2026-02-02"
     },
@@ -3903,7 +3870,7 @@
       ],
       "price_range": "3500-6000 RUB",
       "url": "https://абхазберег.рф/kvartira/aselina-studiya-i-kottedzhi-s-kuhney-ldzaa-989/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/aselina-studiya-i-kottedzhi-s-kuhney-ldzaa-989-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/aselina-studiya-i-kottedzhi-s-kuhney-ldzaa-989-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/977",
       "updated_at": "2026-02-02"
     },
@@ -3932,7 +3899,7 @@
       ],
       "price_range": "1000-6000 RUB",
       "url": "https://абхазберег.рф/kvartira/kurortnaya-kvartira-2k-bagripsh-gagra-998/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/kurortnaya-kvartira-2k-bagripsh-gagra-998-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/kurortnaya-kvartira-2k-bagripsh-gagra-998-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/990",
       "updated_at": "2026-02-02"
     },
@@ -3956,7 +3923,7 @@
       ],
       "price_range": "",
       "url": "https://абхазберег.рф/kvartira/melana-kvartira-3k-pitsunda-1015/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/melana-kvartira-3k-pitsunda-1015-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/melana-kvartira-3k-pitsunda-1015-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1007",
       "updated_at": "2026-02-02"
     },
@@ -3974,15 +3941,14 @@
       ],
       "prices": [
         "(указаны за двухместное размещение)",
-        "6000₽ - с 1 по 14 июля",
-        "6500₽ - с 15 июля по 31 августа",
+        "5500₽ - август",
         "6000₽ - сентябрь с 1 по 15",
         "5000₽ - сентябрь с 16",
         "Доп. место + 500₽/сутки"
       ],
-      "price_range": "500-6500 RUB",
+      "price_range": "500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/rayskiy-bereg-mini-otel-3277/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/rayskiy-bereg-mini-otel-3277.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rayskiy-bereg-mini-otel-3277.jpg",
       "telegram_source": "https://t.me/abhazbooking/3277",
       "updated_at": "2026-02-01"
     },
@@ -4016,7 +3982,7 @@
       ],
       "price_range": "1000-3000 RUB",
       "url": "https://абхазберег.рф/hotels/karin-gostevoy-dom-3267/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/karin-gostevoy-dom-3267.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karin-gostevoy-dom-3267.jpg",
       "telegram_source": "https://t.me/abhazbooking/3267",
       "updated_at": "2026-02-01"
     },
@@ -4041,7 +4007,7 @@
       ],
       "price_range": "2500-4500 RUB",
       "url": "https://абхазберег.рф/kvartira/anisa-kvartira-1k-ldzaa-910/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/anisa-kvartira-1k-ldzaa-910-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/anisa-kvartira-1k-ldzaa-910-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/902",
       "updated_at": "2026-02-01"
     },
@@ -4072,7 +4038,7 @@
       ],
       "price_range": "6500-50000 RUB",
       "url": "https://абхазберег.рф/kvartira/amina-dom-suhum-921/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/amina-dom-suhum-921-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/amina-dom-suhum-921-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/912",
       "updated_at": "2026-02-01"
     },
@@ -4098,7 +4064,7 @@
       ],
       "price_range": "",
       "url": "https://абхазберег.рф/kvartira/akirtava-kvartira-3k-suhum-931/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/akirtava-kvartira-3k-suhum-931-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/akirtava-kvartira-3k-suhum-931-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/923",
       "updated_at": "2026-02-01"
     },
@@ -4124,7 +4090,7 @@
       ],
       "price_range": "5000-8000 RUB",
       "url": "https://абхазберег.рф/hotels/nasta-apartamenty-3258/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/nasta-apartamenty-3258.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/nasta-apartamenty-3258.jpg",
       "telegram_source": "https://t.me/abhazbooking/3258",
       "updated_at": "2026-01-31"
     },
@@ -4160,7 +4126,7 @@
       ],
       "price_range": "2500-10000 RUB",
       "url": "https://абхазберег.рф/hotels/abyrlash-otel-na-plyazhe-3239/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/abyrlash-otel-na-plyazhe-3239.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/abyrlash-otel-na-plyazhe-3239.jpg",
       "telegram_source": "https://t.me/abhazbooking/3239",
       "updated_at": "2026-01-31"
     },
@@ -4179,7 +4145,6 @@
       ],
       "prices": [
         "(завтраки включены)",
-        "Акция 🔥 С 24 июня по 6 июля скидка 20% при проживании от 7 дней на двухэтажный восьмиместный коттедж🔥",
         "двухэтажный коттедж шестиместный",
         "7200₽/сутки - с 1 по 10 июня",
         "9000₽/сутки - июнь с 10го",
@@ -4189,11 +4154,12 @@
         "6000₽/сутки - с 23 сентября по 17 октября",
         "двухэтажный коттедж восьмиместный",
         "9000₽/сутки - с 1 по 10 июня",
-        "11700₽/сутки - июнь с 10го"
+        "11700₽/сутки - июнь с 10го",
+        "16000₽/сутки - с 1 по 10 июля"
       ],
-      "price_range": "6000-13000 RUB",
+      "price_range": "6000-16000 RUB",
       "url": "https://абхазберег.рф/hotels/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219.jpg",
       "telegram_source": "https://t.me/abhazbooking/3219",
       "updated_at": "2026-01-30"
     },
@@ -4212,7 +4178,6 @@
       ],
       "prices": [
         "(завтраки включены)",
-        "Акция 🔥 С 24 июня по 6 июля скидка 20% при проживании от 7 дней на двухкомнатные апартаменты🔥(цена указана без скидки)",
         "двухместные номера",
         "3000₽/сутки - с 1 мая по 10 июня",
         "4500₽/сутки - июнь с 10го",
@@ -4222,11 +4187,12 @@
         "2800₽/сутки - с 23 сентября по 17 октября",
         "трехместные номера",
         "3500₽/сутки - с 1 мая по 10 июня",
-        "5000₽/сутки - июнь с 10го"
+        "5000₽/сутки - июнь с 10го",
+        "6500₽/сутки - с 1 по 10 июля"
       ],
-      "price_range": "2800-6000 RUB",
+      "price_range": "2800-6500 RUB",
       "url": "https://абхазберег.рф/hotels/fazenda-otel-s-basseynom-i-pitaniem-3190/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/fazenda-otel-s-basseynom-i-pitaniem-3190.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fazenda-otel-s-basseynom-i-pitaniem-3190.jpg",
       "telegram_source": "https://t.me/abhazbooking/3190",
       "updated_at": "2026-01-30"
     },
@@ -4243,8 +4209,6 @@
         "подходит для семьи"
       ],
       "prices": [
-        "Акция на четырехместный номер🔥",
-        "При проживании с 14 по 23 июля 3000₽",
         "четырехместный номер",
         "1500₽/сутки - июнь",
         "3000₽/сутки - июль по 14е",
@@ -4254,11 +4218,13 @@
         "3500₽/сутки - сентябрь с 15го",
         "пятиместный номер",
         "2000₽/сутки - июнь",
-        "4500₽/сутки - июль"
+        "4500₽/сутки - июль",
+        "5500₽/сутки - август",
+        "4500₽/сутки - сентябрь до 15го"
       ],
-      "price_range": "1500-5000 RUB",
+      "price_range": "1500-5500 RUB",
       "url": "https://абхазберег.рф/hotels/aduney-gostevoy-dom-3181/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/aduney-gostevoy-dom-3181.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/aduney-gostevoy-dom-3181.jpg",
       "telegram_source": "https://t.me/abhazbooking/3181",
       "updated_at": "2026-01-28"
     },
@@ -4291,7 +4257,7 @@
       ],
       "price_range": "1500-7500 RUB",
       "url": "https://абхазберег.рф/hotels/rita-domiki-i-apartamenty-s-pitaniem-3171/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/rita-domiki-i-apartamenty-s-pitaniem-3171.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rita-domiki-i-apartamenty-s-pitaniem-3171.jpg",
       "telegram_source": "https://t.me/abhazbooking/3171",
       "updated_at": "2026-01-28"
     },
@@ -4319,7 +4285,7 @@
       ],
       "price_range": "800-5000 RUB",
       "url": "https://абхазберег.рф/hotels/fyuzhn-tri-domika-s-launzh-zonoy-3162/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/fyuzhn-tri-domika-s-launzh-zonoy-3162.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fyuzhn-tri-domika-s-launzh-zonoy-3162.jpg",
       "telegram_source": "https://t.me/abhazbooking/3162",
       "updated_at": "2026-01-28"
     },
@@ -4347,7 +4313,7 @@
       ],
       "price_range": "500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/miraslava-mini-otel-3143/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/miraslava-mini-otel-3143.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/miraslava-mini-otel-3143.jpg",
       "telegram_source": "https://t.me/abhazbooking/3143",
       "updated_at": "2026-01-27"
     },
@@ -4375,7 +4341,7 @@
       ],
       "price_range": "1000-5000 RUB",
       "url": "https://абхазберег.рф/hotels/saya-domiki-3134/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/saya-domiki-3134.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/saya-domiki-3134.jpg",
       "telegram_source": "https://t.me/abhazbooking/3134",
       "updated_at": "2026-01-26"
     },
@@ -4402,7 +4368,7 @@
       ],
       "price_range": "200-200 RUB",
       "url": "https://абхазберег.рф/hotels/karalina-apartamenty-3124/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/karalina-apartamenty-3124.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karalina-apartamenty-3124.jpg",
       "telegram_source": "https://t.me/abhazbooking/3124",
       "updated_at": "2026-01-26"
     },
@@ -4436,7 +4402,7 @@
       ],
       "price_range": "600-9000 RUB",
       "url": "https://абхазберег.рф/hotels/akva-otel-s-basseynom-i-zavtrakami-3114/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/akva-otel-s-basseynom-i-zavtrakami-3114.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/akva-otel-s-basseynom-i-zavtrakami-3114.jpg",
       "telegram_source": "https://t.me/abhazbooking/3114",
       "updated_at": "2026-01-26"
     },
@@ -4457,7 +4423,7 @@
       ],
       "price_range": "4000-5000 RUB",
       "url": "https://абхазберег.рф/hotels/grin-haus-domiki-3104/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/grin-haus-domiki-3104.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grin-haus-domiki-3104.jpg",
       "telegram_source": "https://t.me/abhazbooking/3104",
       "updated_at": "2026-01-26"
     },
@@ -4484,7 +4450,7 @@
       ],
       "price_range": "3000-5000 RUB",
       "url": "https://абхазберег.рф/hotels/mika-gostevoy-dom-ekonom-3094/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mika-gostevoy-dom-ekonom-3094.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mika-gostevoy-dom-ekonom-3094.jpg",
       "telegram_source": "https://t.me/abhazbooking/3094",
       "updated_at": "2026-01-26"
     },
@@ -4516,7 +4482,7 @@
       ],
       "price_range": "1000-9000 RUB",
       "url": "https://абхазберег.рф/hotels/kameliya-domiki-3084/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/kameliya-domiki-3084.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/kameliya-domiki-3084.jpg",
       "telegram_source": "https://t.me/abhazbooking/3084",
       "updated_at": "2026-01-26"
     },
@@ -4552,7 +4518,7 @@
       ],
       "price_range": "8000-17000 RUB",
       "url": "https://абхазберег.рф/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074.jpg",
       "telegram_source": "https://t.me/abhazbooking/5099",
       "updated_at": "2026-07-24"
     },
@@ -4585,7 +4551,7 @@
       ],
       "price_range": "500-7000 RUB",
       "url": "https://абхазберег.рф/hotels/radonovyy-istochnik-otel-v-gorah-3064/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/radonovyy-istochnik-otel-v-gorah-3064.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/radonovyy-istochnik-otel-v-gorah-3064.jpg",
       "telegram_source": "https://t.me/abhazbooking/3064",
       "updated_at": "2026-01-24"
     },
@@ -4618,7 +4584,7 @@
       ],
       "price_range": "2000-8000 RUB",
       "url": "https://абхазберег.рф/hotels/bugenvilleya-otel-s-basseynom-3044/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/bugenvilleya-otel-s-basseynom-3044.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bugenvilleya-otel-s-basseynom-3044.jpg",
       "telegram_source": "https://t.me/abhazbooking/3044",
       "updated_at": "2026-01-23"
     },
@@ -4645,7 +4611,7 @@
       ],
       "price_range": "800-5000 RUB",
       "url": "https://абхазберег.рф/hotels/delfin-domiki-3024/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/delfin-domiki-3024.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/delfin-domiki-3024.jpg",
       "telegram_source": "https://t.me/abhazbooking/3024",
       "updated_at": "2026-01-23"
     },
@@ -4671,7 +4637,7 @@
       ],
       "price_range": "500-4000 RUB",
       "url": "https://абхазберег.рф/hotels/nikopsiya-domiki-3015/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/nikopsiya-domiki-3015.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/nikopsiya-domiki-3015.jpg",
       "telegram_source": "https://t.me/abhazbooking/3015",
       "updated_at": "2026-01-23"
     },
@@ -4698,7 +4664,7 @@
       ],
       "price_range": "3500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/alma-domiki-na-beregu-2996/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/alma-domiki-na-beregu-2996.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996.jpg",
       "telegram_source": "https://t.me/abhazbooking/2996",
       "updated_at": "2026-01-23"
     },
@@ -4716,15 +4682,16 @@
         "вид на море"
       ],
       "prices": [
-        "6000₽/сутки - с 25 апреля по 15 июня",
-        "8000 ₽/сутки - с 15 по 30 июня",
-        "10000₽/сутки - июль, август, сентябрь до 25го",
-        "6000₽/сутки - сентябрь с 25го, октябрь, ноябрь",
+        "6000₽ - с 25 апреля по 15 июня",
+        "8000 ₽ - с 15 по 30 июня",
+        "10000₽ - июль, август",
+        "9000₽ - сентябрь до 25го",
+        "6000₽ - сентябрь с 25го, октябрь, ноябрь",
         "Возвратный депозит в отеле 5000₽"
       ],
       "price_range": "5000-10000 RUB",
       "url": "https://абхазберег.рф/hotels/rivera-domiki-na-plyazhe-2966/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/rivera-domiki-na-plyazhe-2966.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rivera-domiki-na-plyazhe-2966.jpg",
       "telegram_source": "https://t.me/abhazbooking/2966",
       "updated_at": "2026-01-22"
     },
@@ -4756,7 +4723,7 @@
       ],
       "price_range": "2000-5000 RUB",
       "url": "https://абхазберег.рф/hotels/mira-domiki-i-nomera-u-ozera-2956/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mira-domiki-i-nomera-u-ozera-2956.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mira-domiki-i-nomera-u-ozera-2956.jpg",
       "telegram_source": "https://t.me/abhazbooking/2956",
       "updated_at": "2026-01-22"
     },
@@ -4785,7 +4752,7 @@
       ],
       "price_range": "2000-4500 RUB",
       "url": "https://абхазберег.рф/hotels/rancho-elivel-mini-otel-2938/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/rancho-elivel-mini-otel-2938.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rancho-elivel-mini-otel-2938.jpg",
       "telegram_source": "https://t.me/abhazbooking/2938",
       "updated_at": "2026-01-22"
     },
@@ -4819,7 +4786,7 @@
       ],
       "price_range": "2000-20555 RUB",
       "url": "https://абхазберег.рф/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928.jpg",
       "telegram_source": "https://t.me/abhazbooking/2928",
       "updated_at": "2026-01-20"
     },
@@ -4846,7 +4813,7 @@
       ],
       "price_range": "3000-7000 RUB",
       "url": "https://абхазберег.рф/hotels/moreon-domiki-2919/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/moreon-domiki-2919.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/moreon-domiki-2919.jpg",
       "telegram_source": "https://t.me/abhazbooking/2919",
       "updated_at": "2026-01-20"
     },
@@ -4875,7 +4842,7 @@
       ],
       "price_range": "2000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/zelenyy-dvorik-domiki-i-nomera-2909/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/zelenyy-dvorik-domiki-i-nomera-2909.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/zelenyy-dvorik-domiki-i-nomera-2909.jpg",
       "telegram_source": "https://t.me/abhazbooking/2909",
       "updated_at": "2026-01-19"
     },
@@ -4907,7 +4874,7 @@
       ],
       "price_range": "2500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/antaa-gostinitsa-u-sosnovogo-plyazha-2899/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/antaa-gostinitsa-u-sosnovogo-plyazha-2899.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/antaa-gostinitsa-u-sosnovogo-plyazha-2899.jpg",
       "telegram_source": "https://t.me/abhazbooking/2899",
       "updated_at": "2026-01-19"
     },
@@ -4929,7 +4896,7 @@
       ],
       "price_range": "2500-4500 RUB",
       "url": "https://абхазберег.рф/hotels/mimi-domiki-s-vidom-na-gory-2869/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/mimi-domiki-s-vidom-na-gory-2869.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mimi-domiki-s-vidom-na-gory-2869.jpg",
       "telegram_source": "https://t.me/abhazbooking/2869",
       "updated_at": "2026-01-18"
     },
@@ -4943,7 +4910,9 @@
       "summary": "Лдзаа. 3 минуты пешком до соснового пляжа, размещение 2-4 человека.",
       "amenities": [],
       "prices": [
-        "Июль/ август/ сентябрь до 25.09",
+        "АКЦИЯ🔥",
+        "в октябре номер с размещением до 4 человек без питания - 3000₽",
+        "Июль/ август/ сентябрь до 24.09",
         "с завтраками",
         "2 чел - 8500₽",
         "3 чел - 9000₽",
@@ -4952,13 +4921,11 @@
         "2 чел - 9800₽",
         "3 чел - 11600₽",
         "4 чел - 12600₽",
-        "Сентябрь с 25.09",
-        "с завтраками",
-        "2 чел - 5000₽"
+        "Сентябрь с 24.09"
       ],
-      "price_range": "5000-95000 RUB",
+      "price_range": "3000-95000 RUB",
       "url": "https://абхазберег.рф/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889.jpg",
       "telegram_source": "https://t.me/abhazbooking/2889",
       "updated_at": "2026-01-18"
     },
@@ -4990,7 +4957,7 @@
       ],
       "price_range": "3000-10000 RUB",
       "url": "https://абхазберег.рф/hotels/v-gostyah-u-belochki-domiki-i-nomera-2879/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/v-gostyah-u-belochki-domiki-i-nomera-2879.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/v-gostyah-u-belochki-domiki-i-nomera-2879.jpg",
       "telegram_source": "https://t.me/abhazbooking/2879",
       "updated_at": "2026-01-18"
     },
@@ -5022,7 +4989,7 @@
       ],
       "price_range": "500-4000 RUB",
       "url": "https://абхазберег.рф/hotels/banan-i-funduk-gostevoy-dom-2849/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/banan-i-funduk-gostevoy-dom-2849.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/banan-i-funduk-gostevoy-dom-2849.jpg",
       "telegram_source": "https://t.me/abhazbooking/2849",
       "updated_at": "2026-01-17"
     },
@@ -5053,7 +5020,7 @@
       ],
       "price_range": "1500-5500 RUB",
       "url": "https://абхазберег.рф/hotels/assir-gostevoy-dom-2840/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/assir-gostevoy-dom-2840.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/assir-gostevoy-dom-2840.jpg",
       "telegram_source": "https://t.me/abhazbooking/2840",
       "updated_at": "2026-01-17"
     },
@@ -5085,7 +5052,7 @@
       ],
       "price_range": "700-5000 RUB",
       "url": "https://абхазберег.рф/hotels/damira-otel-v-tsentre-goroda-2830/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/damira-otel-v-tsentre-goroda-2830.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/damira-otel-v-tsentre-goroda-2830.jpg",
       "telegram_source": "https://t.me/abhazbooking/2830",
       "updated_at": "2026-01-17"
     },
@@ -5116,7 +5083,7 @@
       ],
       "price_range": "2500-6200 RUB",
       "url": "https://абхазберег.рф/hotels/grant-otel-nomera-2820/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/grant-otel-nomera-2820.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grant-otel-nomera-2820.jpg",
       "telegram_source": "https://t.me/abhazbooking/2820",
       "updated_at": "2026-01-17"
     },
@@ -5147,7 +5114,7 @@
       ],
       "price_range": "3500-8500 RUB",
       "url": "https://абхазберег.рф/hotels/grant-kompleks-domikov-s-zavtrakami-2811/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/grant-kompleks-domikov-s-zavtrakami-2811.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grant-kompleks-domikov-s-zavtrakami-2811.jpg",
       "telegram_source": "https://t.me/abhazbooking/2811",
       "updated_at": "2026-01-16"
     },
@@ -5156,9 +5123,9 @@
       "type": "hotel",
       "city": "Лдзаа",
       "location": "Лдзаа, ул. Политрука Нозадзе, д.58",
-      "beach_distance": "️ 7 минут пешком до соснового пляжа",
+      "beach_distance": "7 минут пешком до соснового пляжа",
       "capacity": "размещение до 6 человек",
-      "summary": "Лдзаа. ️ 7 минут пешком до соснового пляжа, размещение до 6 человек.",
+      "summary": "Лдзаа. 7 минут пешком до соснового пляжа, размещение до 6 человек.",
       "amenities": [
         "балкон",
         "подходит для семьи"
@@ -5179,7 +5146,7 @@
       ],
       "price_range": "1500-15500 RUB",
       "url": "https://абхазберег.рф/hotels/grant-apartamenty-2801/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/grant-apartamenty-2801.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grant-apartamenty-2801.jpg",
       "telegram_source": "https://t.me/abhazbooking/2801",
       "updated_at": "2026-01-16"
     },
@@ -5196,17 +5163,13 @@
         "балкон"
       ],
       "prices": [
-        "3500₽/сутки - с 01 по 15 июня",
-        "4500₽/сутки - с 15 по 30 июня",
-        "5500₽/сутки - июль",
         "6000₽/сутки - август",
-        "4500₽/сутки - сентябрь с 1 по 20",
-        "4000₽/сутки - сентябрь с 20 по 30",
+        "4000₽/сутки - сентябрь",
         "2000₽/сутки - октябрь"
       ],
       "price_range": "2000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/arina-mini-otel-2792/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/arina-mini-otel-2792.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/arina-mini-otel-2792.jpg",
       "telegram_source": "https://t.me/abhazbooking/2792",
       "updated_at": "2026-01-16"
     },
@@ -5235,7 +5198,7 @@
       ],
       "price_range": "4700-9300 RUB",
       "url": "https://абхазберег.рф/hotels/krylya-domiki-vidovye-dvuhkomnatnye-2765/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/krylya-domiki-vidovye-dvuhkomnatnye-2765.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/krylya-domiki-vidovye-dvuhkomnatnye-2765.jpg",
       "telegram_source": "https://t.me/abhazbooking/2765",
       "updated_at": "2026-01-15"
     },
@@ -5269,7 +5232,7 @@
       ],
       "price_range": "1500-8200 RUB",
       "url": "https://абхазберег.рф/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755.jpg",
       "telegram_source": "https://t.me/abhazbooking/2755",
       "updated_at": "2026-01-15"
     },
@@ -5286,17 +5249,12 @@
         "у моря"
       ],
       "prices": [
-        "Акция🔥",
-        "При проживании до 10 июля домик 3500₽",
-        "1500₽/сутки - май",
-        "2500₽/сутки - июнь",
-        "4000₽/сутки - июль",
         "4000₽/сутки - август",
         "3000₽/сутки - сентябрь"
       ],
-      "price_range": "1500-4000 RUB",
+      "price_range": "3000-4000 RUB",
       "url": "https://абхазберег.рф/hotels/sabina-domiki-u-morya-2744/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/sabina-domiki-u-morya-2744.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sabina-domiki-u-morya-2744.jpg",
       "telegram_source": "https://t.me/abhazbooking/2744",
       "updated_at": "2026-01-14"
     },
@@ -5326,7 +5284,7 @@
       ],
       "price_range": "500-5000 RUB",
       "url": "https://абхазберег.рф/hotels/kira-gostevoy-kompleks-2725/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/kira-gostevoy-kompleks-2725.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/kira-gostevoy-kompleks-2725.jpg",
       "telegram_source": "https://t.me/abhazbooking/2725",
       "updated_at": "2026-01-13"
     },
@@ -5362,7 +5320,7 @@
       ],
       "price_range": "4000-12000 RUB",
       "url": "https://абхазберег.рф/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716.jpg",
       "telegram_source": "https://t.me/abhazbooking/4946",
       "updated_at": "2026-07-06"
     },
@@ -5371,9 +5329,9 @@
       "type": "hotel",
       "city": "Лдзаа",
       "location": "Лдзаа, ул. Рыбзаводская, дом 81/1",
-      "beach_distance": "️ 2 минуты до пляжа",
+      "beach_distance": "2 минуты до пляжа",
       "capacity": "размещение до 6 человек",
-      "summary": "Лдзаа. ️ 2 минуты до пляжа, размещение до 6 человек.",
+      "summary": "Лдзаа. 2 минуты до пляжа, размещение до 6 человек.",
       "amenities": [
         "питание",
         "вид на море",
@@ -5389,14 +5347,14 @@
         "3500₽/сутки - без вида на море 4х местный",
         "4500₽/сутки - с видом на море 4х местный",
         "5500₽/сутки - семейный номер, вместимость до 6 человек",
-        "июль, август, сентябрь до 25го",
+        "июль, август",
         "6000₽/сутки - без вида на море 4х местный",
         "7000₽/сутки - с видом на море 4х местный",
         "8000₽/сутки - семейный номер, вместимость до 6 человек"
       ],
       "price_range": "3500-8000 RUB",
       "url": "https://абхазберег.рф/hotels/rivera-gostinitsa-vidovaya-2706/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/rivera-gostinitsa-vidovaya-2706.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rivera-gostinitsa-vidovaya-2706.jpg",
       "telegram_source": "https://t.me/abhazbooking/2706",
       "updated_at": "2026-01-13"
     },
@@ -5425,7 +5383,7 @@
       ],
       "price_range": "2500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/samshit-domiki-i-nomera-u-zapovednika-2677/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/samshit-domiki-i-nomera-u-zapovednika-2677.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/samshit-domiki-i-nomera-u-zapovednika-2677.jpg",
       "telegram_source": "https://t.me/abhazbooking/2677",
       "updated_at": "2026-01-12"
     },
@@ -5452,7 +5410,7 @@
       ],
       "price_range": "1000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/amzara-otel-s-vinodelney-u-zapovednika-2668/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/amzara-otel-s-vinodelney-u-zapovednika-2668.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/amzara-otel-s-vinodelney-u-zapovednika-2668.jpg",
       "telegram_source": "https://t.me/abhazbooking/2668",
       "updated_at": "2026-01-12"
     },
@@ -5485,7 +5443,7 @@
       ],
       "price_range": "3000-7800 RUB",
       "url": "https://абхазберег.рф/hotels/aisha-otel-s-basseynami-2651/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/aisha-otel-s-basseynami-2651.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/aisha-otel-s-basseynami-2651.jpg",
       "telegram_source": "https://t.me/abhazbooking/2651",
       "updated_at": "2026-01-12"
     },
@@ -5517,7 +5475,7 @@
       ],
       "price_range": "1000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/avrora-inn-novyy-otel-v-tsentre-goroda-2641/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/avrora-inn-novyy-otel-v-tsentre-goroda-2641.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/avrora-inn-novyy-otel-v-tsentre-goroda-2641.jpg",
       "telegram_source": "https://t.me/abhazbooking/2641",
       "updated_at": "2026-01-11"
     },
@@ -5547,7 +5505,7 @@
       ],
       "price_range": "400-14500 RUB",
       "url": "https://абхазберег.рф/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/san-amra-lyuks-nomera-s-vidom-na-more-2631.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/san-amra-lyuks-nomera-s-vidom-na-more-2631.jpg",
       "telegram_source": "https://t.me/abhazbooking/2631",
       "updated_at": "2026-01-11"
     },
@@ -5580,7 +5538,7 @@
       ],
       "price_range": "1500-13000 RUB",
       "url": "https://абхазберег.рф/hotels/apsa-park-otel-v-zapovednike-2611/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/apsa-park-otel-v-zapovednike-2611.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/apsa-park-otel-v-zapovednike-2611.jpg",
       "telegram_source": "https://t.me/abhazbooking/2611",
       "updated_at": "2026-01-11"
     },
@@ -5614,7 +5572,7 @@
       ],
       "price_range": "2500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/parus-vidovoy-otel-s-basseynom-i-stolovoy-2602/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/parus-vidovoy-otel-s-basseynom-i-stolovoy-2602.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/parus-vidovoy-otel-s-basseynom-i-stolovoy-2602.jpg",
       "telegram_source": "https://t.me/abhazbooking/2602",
       "updated_at": "2026-01-10"
     },
@@ -5647,7 +5605,7 @@
       ],
       "price_range": "6000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/lazurnyy-bereg-butik-otel-s-pitaniem-2592/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/lazurnyy-bereg-butik-otel-s-pitaniem-2592.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/lazurnyy-bereg-butik-otel-s-pitaniem-2592.jpg",
       "telegram_source": "https://t.me/abhazbooking/2592",
       "updated_at": "2026-01-10"
     },
@@ -5678,7 +5636,7 @@
       ],
       "price_range": "4500-8100 RUB",
       "url": "https://абхазберег.рф/hotels/lazurit-novyy-otel-s-zavtrakami-2583/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/lazurit-novyy-otel-s-zavtrakami-2583.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/lazurit-novyy-otel-s-zavtrakami-2583.jpg",
       "telegram_source": "https://t.me/abhazbooking/2583",
       "updated_at": "2026-01-10"
     },
@@ -5708,7 +5666,7 @@
       ],
       "price_range": "1000-7000 RUB",
       "url": "https://абхазберег.рф/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574.jpg",
       "telegram_source": "https://t.me/abhazbooking/2574",
       "updated_at": "2026-01-10"
     },
@@ -5738,7 +5696,7 @@
       ],
       "price_range": "3500-8000 RUB",
       "url": "https://абхазберег.рф/hotels/bonzhur-mini-otel-2542/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/bonzhur-mini-otel-2542.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bonzhur-mini-otel-2542.jpg",
       "telegram_source": "https://t.me/abhazbooking/2542",
       "updated_at": "2025-12-08"
     },
@@ -5758,20 +5716,20 @@
       "prices": [
         "(за двухместное размещение)",
         "стандарт (двуспальная кровать) 24кв.м",
-        "2000₽ - май",
-        "2800₽ - с 1 по 15 июня",
-        "3500₽ - с 16 по 30 июня",
-        "6000₽ - июль, август",
+        "6000₽ - август",
         "5500₽ - сентябрь",
         "4500₽ - с 1 по 15 октября",
         "2800₽ - с 16 по 31 октября",
         "стандарт улучшенный (двуспальная кровать и диван-кровать)",
-        "2700₽ - май",
-        "3000₽ - с 1 по 15 июня"
+        "6800₽ - август",
+        "6300₽ - сентябрь",
+        "5500₽ - с 1 по 15 октября",
+        "3000₽ - с 16 по 31 октября",
+        "стандарт с отдельным входом (двуспальная кровать и диван-кровать) 34кв.м"
       ],
-      "price_range": "2000-6000 RUB",
+      "price_range": "2800-6800 RUB",
       "url": "https://абхазберег.рф/hotels/bereg-svyatoy-sofii-otel-4279/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/bereg-svyatoy-sofii-otel-4279.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bereg-svyatoy-sofii-otel-4279.jpg",
       "telegram_source": "https://t.me/abhazbooking/4279",
       "updated_at": "2026-04-28"
     },
@@ -5799,7 +5757,7 @@
       ],
       "price_range": "1500-5000 RUB",
       "url": "https://абхазберег.рф/hotels/kashtak-domiki-667/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/kashtak-domiki-667.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/kashtak-domiki-667.jpg",
       "telegram_source": "https://t.me/abhazbooking/3668",
       "updated_at": "2026-03-03"
     },
@@ -5819,13 +5777,13 @@
         "3500₽ - июнь",
         "4500₽ - июль",
         "5500₽ - август",
-        "5000₽ - сентябрь",
+        "4000₽ - сентябрь",
         "3000₽ - октябрь",
         "Доп место — 500₽."
       ],
       "price_range": "500-5500 RUB",
       "url": "https://абхазберег.рф/hotels/aleksandriya-domiki-4743/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/aleksandriya-domiki-4743.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/aleksandriya-domiki-4743.jpg",
       "telegram_source": "https://t.me/abhazbooking/4743",
       "updated_at": "2026-06-12"
     },
@@ -5854,7 +5812,7 @@
       ],
       "price_range": "2000-16000 RUB",
       "url": "https://абхазберег.рф/hotels/boho-kompleks-polnogo-schastya-u-morya-4783/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/boho-kompleks-polnogo-schastya-u-morya-4783.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/boho-kompleks-polnogo-schastya-u-morya-4783.jpg",
       "telegram_source": "https://t.me/abhazbooking/4783",
       "updated_at": "2026-06-12"
     },
@@ -5881,7 +5839,7 @@
       ],
       "price_range": "1500-7500 RUB",
       "url": "https://абхазберег.рф/hotels/peschanyy-bereg-apartamenty-3700/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/peschanyy-bereg-apartamenty-3700.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/peschanyy-bereg-apartamenty-3700.jpg",
       "telegram_source": "https://t.me/abhazbooking/3700",
       "updated_at": "2026-03-05"
     },
@@ -5905,7 +5863,7 @@
       ],
       "price_range": "5000-7000 RUB",
       "url": "https://абхазберег.рф/hotels/flora-dom-4763/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/flora-dom-4763.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/flora-dom-4763.jpg",
       "telegram_source": "https://t.me/abhazbooking/4763",
       "updated_at": "2026-06-12"
     },
@@ -5929,7 +5887,7 @@
       ],
       "price_range": "7000-13500 RUB",
       "url": "https://абхазберег.рф/kvartira/bi-heppi-kottedzh-1121/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/bi-heppi-kottedzh-1121-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/bi-heppi-kottedzh-1121-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1121",
       "updated_at": "2026-02-03"
     },
@@ -5961,7 +5919,7 @@
       ],
       "price_range": "12000-17000 RUB",
       "url": "https://абхазберег.рф/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829.jpg",
       "telegram_source": "https://t.me/abhazbooking/4829",
       "updated_at": "2026-06-22"
     },
@@ -5993,7 +5951,7 @@
       ],
       "price_range": "2300-3100 RUB",
       "url": "https://абхазберег.рф/hotels/barnaba-gostevoy-dom-4842/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/barnaba-gostevoy-dom-4842.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/barnaba-gostevoy-dom-4842.jpg",
       "telegram_source": "https://t.me/abhazbooking/4842",
       "updated_at": "2026-06-25"
     },
@@ -6026,7 +5984,7 @@
       ],
       "price_range": "4000-11500 RUB",
       "url": "https://абхазберег.рф/hotels/arash-domiki-u-sosnovogo-plyazha-4857/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/arash-domiki-u-sosnovogo-plyazha-4857.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/arash-domiki-u-sosnovogo-plyazha-4857.jpg",
       "telegram_source": "https://t.me/abhazbooking/4857",
       "updated_at": "2026-06-30"
     },
@@ -6059,7 +6017,7 @@
       ],
       "price_range": "4430-6830 RUB",
       "url": "https://абхазберег.рф/hotels/pansionat-bagripsh-glavnyy-korpus-4884/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pansionat-bagripsh-glavnyy-korpus-4884.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pansionat-bagripsh-glavnyy-korpus-4884.jpg",
       "telegram_source": "https://t.me/abhazbooking/4884",
       "updated_at": "2026-07-01"
     },
@@ -6092,7 +6050,7 @@
       ],
       "price_range": "4430-6830 RUB",
       "url": "https://абхазберег.рф/hotels/pansionat-bagripsh-novyy-korpus-4914/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pansionat-bagripsh-novyy-korpus-4914.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pansionat-bagripsh-novyy-korpus-4914.jpg",
       "telegram_source": "https://t.me/abhazbooking/4914",
       "updated_at": "2026-07-02"
     },
@@ -6125,7 +6083,7 @@
       ],
       "price_range": "5510-7680 RUB",
       "url": "https://абхазберег.рф/hotels/pansionat-bagripsh-korpus-adel-4925/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pansionat-bagripsh-korpus-adel-4925.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pansionat-bagripsh-korpus-adel-4925.jpg",
       "telegram_source": "https://t.me/abhazbooking/4925",
       "updated_at": "2026-07-03"
     },
@@ -6151,7 +6109,7 @@
       ],
       "price_range": "4000-9000 RUB",
       "url": "https://абхазберег.рф/hotels/briz-domiki-na-beregu-4937/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/briz-domiki-na-beregu-4937.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/briz-domiki-na-beregu-4937.jpg",
       "telegram_source": "https://t.me/abhazbooking/4937",
       "updated_at": "2026-07-06"
     },
@@ -6183,7 +6141,7 @@
       ],
       "price_range": "3750-8850 RUB",
       "url": "https://абхазберег.рф/hotels/regina-pervyy-korpus-otel-s-zavtrakami-4957/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/regina-pervyy-korpus-otel-s-zavtrakami-4957.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/regina-pervyy-korpus-otel-s-zavtrakami-4957.jpg",
       "telegram_source": "https://t.me/abhazbooking/4957",
       "updated_at": "2026-07-08"
     },
@@ -6215,7 +6173,7 @@
       ],
       "price_range": "3250-6750 RUB",
       "url": "https://абхазберег.рф/hotels/regina-otel-vtoroy-korpus-4987/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/regina-otel-vtoroy-korpus-4987.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/regina-otel-vtoroy-korpus-4987.jpg",
       "telegram_source": "https://t.me/abhazbooking/4987",
       "updated_at": "2026-07-10"
     },
@@ -6247,7 +6205,7 @@
       ],
       "price_range": "2800-6000 RUB",
       "url": "https://абхазберег.рф/hotels/brigantina-gostevoy-dom-4997/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/brigantina-gostevoy-dom-4997.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/brigantina-gostevoy-dom-4997.jpg",
       "telegram_source": "https://t.me/abhazbooking/4997",
       "updated_at": "2026-07-13"
     },
@@ -6267,7 +6225,7 @@
         "(за четырехместное размещение)",
         "7500₽ - июль",
         "8000₽ - август",
-        "7000₽ - сентябрь",
+        "6500₽ - сентябрь",
         "5000₽ - октябрь",
         "Дети до 15 лет на дополнительном месте (раскладушка) бесплатно.",
         "Доп. место - 1000₽",
@@ -6275,7 +6233,7 @@
       ],
       "price_range": "1000-8000 RUB",
       "url": "https://абхазберег.рф/hotels/san-sebastian-domiki-s-basseynom-5007/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/san-sebastian-domiki-s-basseynom-5007.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/san-sebastian-domiki-s-basseynom-5007.jpg",
       "telegram_source": "https://t.me/abhazbooking/5007",
       "updated_at": "2026-07-14"
     },
@@ -6303,7 +6261,7 @@
       ],
       "price_range": "3000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/flamingo-gostevoy-dom-5018/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/flamingo-gostevoy-dom-5018.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/flamingo-gostevoy-dom-5018.jpg",
       "telegram_source": "https://t.me/abhazbooking/5018",
       "updated_at": "2026-07-15"
     },
@@ -6336,7 +6294,7 @@
       ],
       "price_range": "6000-10700 RUB",
       "url": "https://абхазберег.рф/hotels/pitsunda-otel-5028/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/pitsunda-otel-5028.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pitsunda-otel-5028.jpg",
       "telegram_source": "https://t.me/abhazbooking/5028",
       "updated_at": "2026-07-16"
     },
@@ -6361,7 +6319,7 @@
       ],
       "price_range": "1500-10000 RUB",
       "url": "https://абхазберег.рф/hotels/villa-magnoliya-eko-otel-s-zavtrakami-5038/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/villa-magnoliya-eko-otel-s-zavtrakami-5038.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-magnoliya-eko-otel-s-zavtrakami-5038.jpg",
       "telegram_source": "https://t.me/abhazbooking/5038",
       "updated_at": "2026-07-17"
     },
@@ -6378,22 +6336,17 @@
         "питание"
       ],
       "prices": [
-        "Номера эконом",
-        "2000₽ до 4 июля👍",
-        "2500₽/сутки - июнь",
-        "4000₽/сутки - июль, август, сентябрь до 15.09",
+        "4000₽/сутки - август, сентябрь до 15.09",
         "3500₽/сутки - сентябрь с 15го, октябрь",
         "Номера комфорт",
-        "3000₽/сутки - июнь до 15.06",
-        "4500₽/сутки - июнь с 15",
-        "5000₽/сутки - июль, август",
+        "5000₽/сутки - август",
         "4500₽/сутки - сентябрь до 15.09",
         "4000₽/сутки - сентябрь с 15го, октябрь",
         "Допускаются небольшие собачки."
       ],
-      "price_range": "2000-5000 RUB",
+      "price_range": "3500-5000 RUB",
       "url": "https://абхазберег.рф/hotels/nasta-gostevoy-dom-3249-2/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/nasta-gostevoy-dom-3249-2.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/nasta-gostevoy-dom-3249-2.jpg",
       "telegram_source": "https://t.me/abhazbooking/3249",
       "updated_at": "2026-01-31"
     },
@@ -6427,7 +6380,7 @@
       ],
       "price_range": "500-5500 RUB",
       "url": "https://абхазберег.рф/hotels/anait-gostevoy-dom-5049/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/anait-gostevoy-dom-5049.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/anait-gostevoy-dom-5049.jpg",
       "telegram_source": "https://t.me/abhazbooking/5049",
       "updated_at": "2026-07-20"
     },
@@ -6461,7 +6414,7 @@
       ],
       "price_range": "10990-15990 RUB",
       "url": "https://абхазберег.рф/hotels/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/aleksandra-otel-s-pitaniem-i-basseynom-u-morya-5059.jpg",
       "telegram_source": "https://t.me/abhazbooking/5059",
       "updated_at": "2026-07-21"
     },
@@ -6486,7 +6439,7 @@
       ],
       "price_range": "5000-15000 RUB",
       "url": "https://абхазберег.рф/kvartira/akvarel-tri-2k-kvartiry-1646/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/akvarel-tri-2k-kvartiry-1646-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/akvarel-tri-2k-kvartiry-1646-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1646",
       "updated_at": "2026-07-22"
     },
@@ -6506,7 +6459,7 @@
       ],
       "price_range": "12000-12000 RUB",
       "url": "https://абхазберег.рф/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/zarechnyy-etazh-v-dome-pod-klyuch-1669-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/zarechnyy-etazh-v-dome-pod-klyuch-1669-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1669",
       "updated_at": "2026-07-22"
     },
@@ -6524,12 +6477,13 @@
       ],
       "prices": [
         "7000₽ - июль",
-        "6700₽ - август, сентябрь",
+        "6700₽ - август, сентябрь до 20го",
+        "6000₽ - сентябрь с 20го",
         "3500₽ - октябрь"
       ],
       "price_range": "3500-7000 RUB",
       "url": "https://абхазберег.рф/hotels/amor-domiki-s-basseynom-5069/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/amor-domiki-s-basseynom-5069.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/amor-domiki-s-basseynom-5069.jpg",
       "telegram_source": "https://t.me/abhazbooking/5069",
       "updated_at": "2026-07-23"
     },
@@ -6548,8 +6502,7 @@
       ],
       "prices": [
         "Двухместный номер комфорт без балкона",
-        "5500₽ - июль, август",
-        "5000₽ - сентябрь",
+        "5500₽ - июль, август, сентябрь",
         "3500₽ - октябрь",
         "Трехместный без балкона",
         "5000₽ - июль, август, сентябрь",
@@ -6558,11 +6511,12 @@
         "Трехместный номер с балконом",
         "6000₽ - август, сентябрь",
         "4000₽ - октябрь",
-        "Двухкомнатный номер"
+        "Двухкомнатный номер",
+        "(за четырехместное размещение)"
       ],
       "price_range": "1000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/blago-daryu-otel-5079/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/blago-daryu-otel-5079.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/blago-daryu-otel-5079.jpg",
       "telegram_source": "https://t.me/abhazbooking/5079",
       "updated_at": "2026-07-23"
     },
@@ -6595,7 +6549,7 @@
       ],
       "price_range": "5500-10500 RUB",
       "url": "https://абхазберег.рф/hotels/ptichka-eko-domiki-s-basseynom-5089/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/ptichka-eko-domiki-s-basseynom-5089.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/ptichka-eko-domiki-s-basseynom-5089.jpg",
       "telegram_source": "https://t.me/abhazbooking/5089",
       "updated_at": "2026-07-24"
     },
@@ -6612,14 +6566,15 @@
       ],
       "prices": [
         "(за двухместное размещение)",
-        "6000₽ - август, сентябрь до 15 числа",
-        "5500₽ - сентябрь с 16го",
+        "6000₽ - август (с завтраками)",
+        "6000₽ -сентябрь до 15 числа (без завтраков)",
+        "5500₽ - сентябрь с 16го (без завтраков)",
         "Доп место с завтраком - 500₽",
         "Я работаю с ценами точь в точь как у объекта размещения. Комиссии за мои услуги нет."
       ],
       "price_range": "500-6000 RUB",
       "url": "https://абхазберег.рф/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109.jpg",
       "telegram_source": "https://t.me/abhazbooking/5109",
       "updated_at": "2026-07-27"
     },
@@ -6638,17 +6593,13 @@
       ],
       "prices": [
         "(за четырехместное размещение)",
-        "6000₽ - август, сентябрь",
-        "5000₽ - октябрь",
+        "4000₽ - август, сентябрь, октябрь",
         "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет.",
-        "Я НА СВЯЗИ 📲",
-        "в MAX: max.ru/id741113115256_bot",
-        "ВК-чат: vk.cc/cQQnBn",
-        "(только сообщение, звонок не пройдёт)"
+        "Я НА СВЯЗИ 📲"
       ],
-      "price_range": "5000-6000 RUB",
+      "price_range": "4000-4000 RUB",
       "url": "https://абхазберег.рф/hotels/terra-rivera-eko-kompleks-5166/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/terra-rivera-eko-kompleks-5166.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/terra-rivera-eko-kompleks-5166.jpg",
       "telegram_source": "https://t.me/abhazbooking/5166",
       "updated_at": "2026-08-07"
     },
@@ -6669,14 +6620,11 @@
         "7000₽ - август",
         "6000₽ - сентябрь, октябрь, ноябрь, декабрь",
         "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет.",
-        "Я НА СВЯЗИ 📲",
-        "в MAX: max.ru/id741113115256_bot",
-        "ВК-чат: vk.cc/cQQnBn",
-        "(только сообщение, звонок не пройдёт)"
+        "Я НА СВЯЗИ 📲"
       ],
       "price_range": "6000-7000 RUB",
       "url": "https://абхазберег.рф/hotels/trio-nomer-na-plyazhe-5176/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/trio-nomer-na-plyazhe-5176.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/trio-nomer-na-plyazhe-5176.jpg",
       "telegram_source": "https://t.me/abhazbooking/5176",
       "updated_at": "2026-08-07"
     },
@@ -6709,7 +6657,7 @@
       ],
       "price_range": "2300-5500 RUB",
       "url": "https://абхазберег.рф/hotels/ashta-du-gostevoy-dom-5186/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/ashta-du-gostevoy-dom-5186.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/ashta-du-gostevoy-dom-5186.jpg",
       "telegram_source": "https://t.me/abhazbooking/5186",
       "updated_at": "2026-08-11"
     },
@@ -6738,7 +6686,7 @@
       ],
       "price_range": "1600-8500 RUB",
       "url": "https://абхазберег.рф/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/biosfera-domiki-u-kyndygskogo-istochnika-5197.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/biosfera-domiki-u-kyndygskogo-istochnika-5197.jpg",
       "telegram_source": "https://t.me/abhazbooking/5197",
       "updated_at": "2026-08-12"
     },
@@ -6757,14 +6705,11 @@
       "prices": [
         "5000₽ - август, сентябрь, октябрь",
         "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет.",
-        "Я НА СВЯЗИ 📲",
-        "в MAX: max.ru/id741113115256_bot",
-        "ВК-чат: vk.cc/cQQnBn",
-        "(только сообщение, звонок не пройдёт)"
+        "Я НА СВЯЗИ 📲"
       ],
       "price_range": "5000-5000 RUB",
       "url": "https://абхазберег.рф/kvartira/mokko-grey-apartamenty-1k-1681/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/kvartira-cards/mokko-grey-apartamenty-1k-1681-cover.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mokko-grey-apartamenty-1k-1681-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1681",
       "updated_at": "2026-08-13"
     },
@@ -6786,9 +6731,126 @@
       ],
       "price_range": "6000-6000 RUB",
       "url": "https://абхазберег.рф/hotels/inkit-rezort-afreymy-5209/",
-      "image": "https://storage.yandexcloud.net/abhazbereg-media/media/cards/inkit-rezort-afreymy-5209.jpg",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/inkit-rezort-afreymy-5209.jpg",
       "telegram_source": "https://t.me/abhazbooking/5209",
       "updated_at": "2026-08-14"
+    },
+    {
+      "name": "\"ДАВИД\" гостевой дом",
+      "type": "hotel",
+      "city": "Гагра",
+      "location": "Гагра, проспект Ардзинба, 218",
+      "beach_distance": "8 минут до пляжа",
+      "capacity": "размещение до 4 человек",
+      "summary": "Гагра. 8 минут до пляжа, размещение до 4 человек.",
+      "amenities": [
+        "питание",
+        "балкон"
+      ],
+      "prices": [
+        "(за четырехместное размещение)",
+        "5000₽ - август",
+        "4000₽ - сентябрь",
+        "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет.",
+        "Я НА СВЯЗИ 📲"
+      ],
+      "price_range": "4000-5000 RUB",
+      "url": "https://абхазберег.рф/hotels/david-gostevoy-dom-5219/",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/david-gostevoy-dom-5219.jpg",
+      "telegram_source": "https://t.me/abhazbooking/5219",
+      "updated_at": "2026-08-17"
+    },
+    {
+      "name": "\"ПРОСТОРНАЯ\" квартира 5к",
+      "type": "apartment",
+      "city": "Сухум",
+      "location": "Сухум, 2-я Эшерская улица, 21, 43.000944, 40.986641",
+      "beach_distance": "12 минут до пляжа",
+      "capacity": "размещение до 10 человек",
+      "summary": "Сухум. 12 минут до пляжа, размещение до 10 человек.",
+      "amenities": [
+        "питание",
+        "своя кухня",
+        "подходит для семьи"
+      ],
+      "prices": [
+        "10 000₽ - любой месяц"
+      ],
+      "price_range": "10000-10000 RUB",
+      "url": "https://абхазберег.рф/kvartira/prostornaya-kvartira-5k-1695/",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/prostornaya-kvartira-5k-1695-cover.jpg",
+      "telegram_source": "https://t.me/abhkvartira/1695",
+      "updated_at": "2026-08-17"
+    },
+    {
+      "name": "\"ЛАТТЕ\" квартира 1к",
+      "type": "apartment",
+      "city": "Сухум",
+      "location": "Сухум, ул. Ладария, 20",
+      "beach_distance": "5 минут пешком",
+      "capacity": "размещение до 4 человек",
+      "summary": "Сухум. 5 минут пешком, размещение до 4 человек.",
+      "amenities": [
+        "питание",
+        "своя кухня",
+        "балкон"
+      ],
+      "prices": [
+        "4000₽ - май, июнь, июль, август, сентябрь, октябрь"
+      ],
+      "price_range": "4000-4000 RUB",
+      "url": "https://абхазберег.рф/kvartira/latte-kvartira-1k-1707/",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/latte-kvartira-1k-1707-cover.jpg",
+      "telegram_source": "https://t.me/abhkvartira/1707",
+      "updated_at": "2026-08-18"
+    },
+    {
+      "name": "\"РЕЛАКС ДОМ\" домики",
+      "type": "hotel",
+      "city": "Пицунда",
+      "location": "Пицунда, пос. Цитрусовый, 43.199394, 40.281117",
+      "beach_distance": "3 минуты до пляжа",
+      "capacity": "размещение до 4 человек",
+      "summary": "Пицунда. 3 минуты до пляжа, размещение до 4 человек.",
+      "amenities": [
+        "питание"
+      ],
+      "prices": [
+        "(за домик)",
+        "6000₽ - август",
+        "5000₽ - сентябрь до 15го",
+        "4500₽ - сентябрь с 16го",
+        "3000₽ - октябрь, ноябрь",
+        "6000₽ - новогодние праздники"
+      ],
+      "price_range": "3000-6000 RUB",
+      "url": "https://абхазберег.рф/hotels/relaks-dom-domiki-5230/",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/relaks-dom-domiki-5230.jpg",
+      "telegram_source": "https://t.me/abhazbooking/5230",
+      "updated_at": "2026-08-20"
+    },
+    {
+      "name": "\"ДУЭТ МОККО\" номера",
+      "type": "hotel",
+      "city": "Сухум",
+      "location": "Сухум, Кодорское шоссе, 42.986521, 41.057504",
+      "beach_distance": "3 минуты до пляжа Мокко",
+      "capacity": "размещение до 3 человек",
+      "summary": "Сухум. 3 минуты до пляжа Мокко, размещение до 3 человек.",
+      "amenities": [
+        "питание"
+      ],
+      "prices": [
+        "(за двухместное размещение)",
+        "5000₽ - август, сентябрь",
+        "4000₽ - октябрь - апрель",
+        "Доп место — 1000₽"
+      ],
+      "price_range": "1000-5000 RUB",
+      "url": "https://абхазберег.рф/hotels/duet-mokko-nomera-5242/",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/duet-mokko-nomera-5242.jpg",
+      "telegram_source": "https://t.me/abhazbooking/5242",
+      "updated_at": "2026-08-26"
     }
   ]
 }
