@@ -1,0 +1,24 @@
+name: Web probe
+
+# Разведка публичных страниц с раннера Actions (из песочницы агента внешние
+# сайты закрыты прокси). Результат печатается в журнал — артефакты из
+# песочницы недоступны. Только ручной запуск.
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "URL через пробел"
+        required: true
+        type: string
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Пробить страницы
+        run: python3 tools/probe_public_pages.py ${{ inputs.urls }}
