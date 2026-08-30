@@ -130,8 +130,16 @@ def brightness(path: Path) -> float | None:
 # Ниже этой средней яркости кадр считается ночным: на карточке он выглядит
 # чёрным прямоугольником. Такой снимок не заливаем — на сайте остаётся
 # предыдущий дневной (24.08.2026 ручной прогон в 20:20 МСК залил 21 тёмный
-# кадр; штатный крон в 15:00 МСК в эту защиту упираться не должен).
-MIN_BRIGHTNESS = 45.0
+# кадр). 30.08.2026 порог поднят с 45: сумеречные кадры с фонарями набирали
+# ~50 и проходили.
+MIN_BRIGHTNESS = 55.0
+
+# Дневное окно по UTC (10:00–17:00 по Москве/Сухуму). Крон GitHub уплывает
+# на часы (28–30.08.2026 прогоны уезжали на 19:44 и даже 01:25 МСК и заливали
+# ночь), поэтому решает не время запуска, а это окно: вне его снимки
+# не снимаются вовсе. В workflow крон стоит на несколько попыток в день,
+# а свежее одного раза в сутки бакет не обновляется (см. already_updated_today).
+DAY_WINDOW_UTC = range(7, 14)  # часы 07..13 включительно
 
 
 def looks_like_jpeg(path: Path) -> bool:
@@ -198,11 +206,43 @@ def purge_cdn(paths: list[str]) -> None:
         print(f"Purge не удался (не критично, обновится по TTL): {error}")
 
 
+def already_updated_today(s3, reference_key: str) -> bool:
+    """Снимки уже заливались сегодня (по UTC-дате объекта в бакете).
+
+    Разрешение владельцев камер — один кадр в сутки, поэтому повторные
+    попытки крона в тот же день должны выходить без работы.
+    """
+    from datetime import datetime, timezone
+
+    try:
+        head = s3.head_object(Bucket=BUCKET, Key=reference_key)
+    except Exception:  # noqa: BLE001 — объекта ещё нет: первый прогон
+        return False
+    modified = head.get("LastModified")
+    return bool(modified) and modified.date() == datetime.now(timezone.utc).date()
+
+
 def main() -> int:
+    from datetime import datetime, timezone
+
+    now = datetime.now(timezone.utc)
+    if now.hour not in DAY_WINDOW_UTC:
+        print(
+            f"Сейчас {now:%H:%M} UTC — вне дневного окна "
+            f"({DAY_WINDOW_UTC.start:02d}:00–{DAY_WINDOW_UTC.stop:02d}:00 UTC). "
+            "Ночные и сумеречные кадры не снимаем, выходим."
+        )
+        return 0
+
     data = json.loads(REGISTRY.read_text(encoding="utf-8"))
     sources = data["sources"]
     load_yandex_env()
     s3 = _s3_client()
+
+    reference_key = f"media/webcams/{data['blocks'][0]['cams'][0]['id']}.jpg"
+    if already_updated_today(s3, reference_key):
+        print("Снимки уже обновлялись сегодня — повторно не заливаем (разрешение: один кадр в сутки).")
+        return 0
 
     updated: list[str] = []
     failed: list[str] = []
