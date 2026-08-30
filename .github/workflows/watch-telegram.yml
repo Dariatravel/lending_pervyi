@@ -124,6 +124,19 @@ jobs:
             git checkout -- data/objects-map-points.json
           fi
 
+      # Столбец «Сайт» таблицы «БАЗА» (вкладка СОЦСЕТИ): новым объектам
+      # автоматически подставляется ссылка abhazbereg.ru/<путь страницы>.
+      # Скрытые/красные строки и строки без однозначного совпадения не трогаются.
+      - name: Автоссылки сайта в таблице БАЗА
+        if: steps.gate.outputs.enabled == 'true'
+        continue-on-error: true
+        run: |
+          if [ -f google-service-account.json ]; then
+            python tools/update_sheet_site_links.py
+          else
+            echo "Google-ключа нет — автоссылки в таблице пропущены."
+          fi
+
       - name: Определить, есть ли изменения
         id: detect
         if: steps.gate.outputs.enabled == 'true'
