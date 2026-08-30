@@ -40,7 +40,8 @@ def blog_image_srcset(src: str) -> str:
 POST_IDS = [
     2119, 2149, 2166, 2213, 2218, 2240, 2245, 2256, 2261, 2266, 2294, 2313, 2325, 2327, 2336, 2337,
     2383, 2385, 2392, 2411, 2421, 2422, 2423, 2458, 2460, 2461, 2465, 2466, 2467, 2468, 2472,
-    2481,
+    2481, 2488,
+    5252,  # @abhazbooking (см. "channel" в POST_META)
 ]
 
 # slug и SEO-поля; title/lead дополняются из текста поста при необходимости
@@ -323,6 +324,16 @@ POST_META: dict[int, dict[str, object]] = {
         "eyebrow": "Покупки",
         "tags": ("вино", "сувениры", "покупки"),
         "card_tag": "вино",
+    },
+    5252: {
+        "channel": "abhazbooking",
+        "slug": "pogoda-v-abhazii-stoit-li-verit-prognozu",
+        "title": "Погода в Абхазии: стоит ли верить прогнозу перед поездкой",
+        "lead": "Почему прогнозы для Абхазии часто ошибаются, как в один день в Гагре идёт дождь, а в Пицунде светит солнце, и что делать, если на даты отпуска обещают дожди.",
+        "breadcrumb": "Погода и прогнозы",
+        "eyebrow": "Перед поездкой",
+        "tags": ("погода", "сезон", "советы"),
+        "card_tag": "советы",
     },
     2481: {
         "slug": "delfinariy-v-abhazii-gagra",
@@ -616,6 +627,7 @@ class BuiltArticle:
     reading_min: int
     image_name: str
     aside_about: str
+    channel: str = CHANNEL
 
 
 PAGE_TEMPLATE = """<!DOCTYPE html>
@@ -670,7 +682,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
         <img class="blog-article__cover-inline" src="{image_src}" srcset="{image_srcset}" sizes="{article_image_sizes}" width="480" height="640" alt="{cover_alt_esc}" loading="eager" decoding="async" />
 {body_html}
 
-        <p class="blog-source">Источник: <a href="https://t.me/abhazbereg/{post_id}" target="_blank" rel="noopener noreferrer">пост Телеграм @abhazbereg/{post_id}</a>.</p>
+        <p class="blog-source">Источник: <a href="https://t.me/{channel}/{post_id}" target="_blank" rel="noopener noreferrer">пост Телеграм @{channel}/{post_id}</a>.</p>
           </div>
         </div>
         <aside class="blog-article__aside">
@@ -822,6 +834,7 @@ def render_article_page(art: BuiltArticle, body_html: str) -> str:
         cover_alt_esc=html.escape(art.title_short),
         body_html=body_html,
         post_id=art.post_id,
+        channel=art.channel,
         aside_esc=html.escape(art.aside_about),
         yandex_media_base=YANDEX_MEDIA_BASE,
     )
@@ -1052,18 +1065,28 @@ async def download_cover_image(client, entity, post_id: int, msg, image_path: Pa
             return
 
 
+def post_channel(post_id: int) -> str:
+    """Канал поста: обычно @abhazbereg, но статья может жить и в @abhazbooking
+    (пример — пост 5252 про погоду). Канал задаётся ключом "channel" в POST_META."""
+    return str(POST_META.get(post_id, {}).get("channel", CHANNEL))
+
+
 async def sync_posts(post_ids: list[int] | None = None) -> list[BuiltArticle]:
     MEDIA_DIR.mkdir(parents=True, exist_ok=True)
     SOURCES_DIR.mkdir(parents=True, exist_ok=True)
 
     built: list[BuiltArticle] = []
     target_ids = post_ids or POST_IDS
+    by_channel: dict[str, list[int]] = {}
+    for pid in target_ids:
+        by_channel.setdefault(post_channel(pid), []).append(pid)
     async with connected_telegram_client(SESSION, API_ID, API_HASH, receive_updates=False) as client:
-        entity = await client.get_entity(CHANNEL)
-        messages = await client.get_messages(entity, ids=target_ids)
+      for channel_name, channel_ids in by_channel.items():
+        entity = await client.get_entity(channel_name)
+        messages = await client.get_messages(entity, ids=channel_ids)
         by_id = {m.id: m for m in messages if m}
 
-        for post_id in target_ids:
+        for post_id in channel_ids:
             msg = by_id.get(post_id)
             if not msg:
                 print(f"skip missing #{post_id}", file=sys.stderr)
@@ -1074,9 +1097,15 @@ async def sync_posts(post_ids: list[int] | None = None) -> list[BuiltArticle]:
                 print(f"skip empty text #{post_id}", file=sys.stderr)
                 continue
 
-            (SOURCES_DIR / f"abhazbereg-{post_id}.txt").write_text(raw_text + "\n", encoding="utf-8")
+            (SOURCES_DIR / f"{channel_name}-{post_id}.txt").write_text(raw_text + "\n", encoding="utf-8")
 
-            image_name = f"telegram-bereg-{post_id}.jpg"
+            # Имена обложек @abhazbereg остаются прежними (telegram-bereg-…),
+            # чтобы не перезаливать уже опубликованные файлы бакета.
+            image_name = (
+                f"telegram-bereg-{post_id}.jpg"
+                if channel_name == CHANNEL
+                else f"telegram-{channel_name}-{post_id}.jpg"
+            )
             image_path = MEDIA_DIR / image_name
             await download_cover_image(client, entity, post_id, msg, image_path)
 
@@ -1107,6 +1136,7 @@ async def sync_posts(post_ids: list[int] | None = None) -> list[BuiltArticle]:
                 reading_min=reading_min,
                 image_name=image_name,
                 aside_about=lead[:180],
+                channel=channel_name,
             )
 
             out_dir = BLOG_DIR / art.slug
@@ -1140,7 +1170,10 @@ async def main_async() -> int:
     only_ids = os.getenv("TARGET_BLOG_POST_IDS", "").strip()
     post_ids = None
     if only_ids:
-        post_ids = [int(part.strip()) for part in only_ids.split(",") if part.strip()]
+        # Допускаем формат "abhazbooking:5252" (канал сам берётся из POST_META).
+        post_ids = [
+            int(part.strip().rpartition(":")[2]) for part in only_ids.split(",") if part.strip()
+        ]
     built = await sync_posts(post_ids)
     if os.getenv("SKIP_BLOG_INDEX", "").strip().lower() in {"1", "true", "yes", "on"}:
         update_sitemap([art.slug for art in built])

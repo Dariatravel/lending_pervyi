@@ -29,27 +29,42 @@ from telegram_runtime import connected_telegram_client, run_async_entrypoint  # 
 async def main_async() -> int:
     raw_ids = os.getenv("TARGET_BLOG_POST_IDS", "").strip()
     if not raw_ids:
-        print("Задайте TARGET_BLOG_POST_IDS, например 2460,2461", file=sys.stderr)
+        print(
+            "Задайте TARGET_BLOG_POST_IDS, например 2460,2461 "
+            "(пост другого канала — как abhazbooking:5252)",
+            file=sys.stderr,
+        )
         return 2
-    post_ids = [int(part.strip()) for part in raw_ids.split(",") if part.strip()]
+    targets: list[tuple[str, int]] = []
+    for part in raw_ids.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        channel, _, number = part.rpartition(":")
+        targets.append((channel or CHANNEL, int(number)))
 
+    by_channel: dict[str, list[int]] = {}
+    for channel, post_id in targets:
+        by_channel.setdefault(channel, []).append(post_id)
+
+    missing = 0
     async with connected_telegram_client(SESSION, API_ID, API_HASH, receive_updates=False) as client:
-        entity = await client.get_entity(CHANNEL)
-        messages = await client.get_messages(entity, ids=post_ids)
-        by_id = {m.id: m for m in messages if m}
-        missing = 0
-        for post_id in post_ids:
-            msg = by_id.get(post_id)
-            print(f"\n===== пост #{post_id} =====")
-            if not msg:
-                print("(пост не найден)")
-                missing += 1
-                continue
-            raw_text, date_msg = await resolve_album_message(client, entity, post_id, msg)
-            when = date_msg.date.strftime("%Y-%m-%d") if date_msg and date_msg.date else "?"
-            print(f"дата: {when}, фото: {'да' if msg.photo or msg.grouped_id else 'нет'}")
-            print("--- текст ---")
-            print(raw_text or "(без текста)")
+        for channel, post_ids in by_channel.items():
+            entity = await client.get_entity(channel)
+            messages = await client.get_messages(entity, ids=post_ids)
+            by_id = {m.id: m for m in messages if m}
+            for post_id in post_ids:
+                msg = by_id.get(post_id)
+                print(f"\n===== пост @{channel}/{post_id} =====")
+                if not msg:
+                    print("(пост не найден)")
+                    missing += 1
+                    continue
+                raw_text, date_msg = await resolve_album_message(client, entity, post_id, msg)
+                when = date_msg.date.strftime("%Y-%m-%d") if date_msg and date_msg.date else "?"
+                print(f"дата: {when}, фото: {'да' if msg.photo or msg.grouped_id else 'нет'}")
+                print("--- текст ---")
+                print(raw_text or "(без текста)")
     return 1 if missing else 0
 
 
