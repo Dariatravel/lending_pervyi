@@ -114,7 +114,7 @@
         {"href": "/blog/gudauta-nedootsenennyy-kurort/", "label": "Гудаута: недооценённый курорт"}
       ],
       "cams": [
-        {"id": "gudauta-park", "source": "apsny", "channel": "gudauta_park", "title": "Парк Гуда и Ута", "about": "Городской парк с фигурами Гуда и Ута — центр прогулочной Гудауты."},
+        {"id": "gudauta-park", "source": "apsny", "channel": "gudauta_park", "title": "Парк Гудаута", "about": "Городской парк — прогулочное сердце Гудауты."},
         {"id": "gudauta-tsentr", "source": "amobile", "channel": "WEB30-GudautaCentre", "title": "Центр города", "about": "Центральная улица Гудауты в прямом эфире."}
       ]
     },
