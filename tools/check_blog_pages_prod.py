@@ -98,7 +98,8 @@ def main() -> int:
     for part in raw_ids.split(","):
         if not part.strip():
             continue
-        post_id = int(part.strip())
+        # Допускаем формат "abhazbooking:5252" — канал здесь не важен.
+        post_id = int(part.strip().rpartition(":")[2])
         meta = POST_META.get(post_id)
         if not meta:
             print(f"#{post_id}: метаданных ещё нет — статья не опубликована, пропускаю.")
