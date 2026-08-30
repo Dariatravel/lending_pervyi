@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#d9eee7" />
   <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" rel="icon" type="image/png"/>
   <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" rel="apple-touch-icon"/>
-<link rel="stylesheet" href="../styles.min.css?v=202608271035" />
+<link rel="stylesheet" href="../styles.min.css?v=202608301738" />
 <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
 <link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin />
 <link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin />
@@ -25,14 +25,14 @@
   <div id="objects-map" role="region" aria-label="Интерактивная карта объектов"></div>
   <p class="objects-map-page__status" hidden id="objects-map-status"></p>
 
-  <script defer src="../pwa.js?v=202608271035"></script>
+  <script defer src="../pwa.js?v=202608301738"></script>
   <script>
     (function () {
-      var LEAFLET_CSS_URL = "../vendor/leaflet/leaflet.css?v=202608271035";
-      var LEAFLET_JS_URL = "../vendor/leaflet/leaflet.js?v=202608271035";
-      var LEAFLET_CLUSTER_CSS_URL = "../vendor/leaflet-markercluster/MarkerCluster.css?v=202608271035";
-      var LEAFLET_CLUSTER_DEFAULT_CSS_URL = "../vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202608271035";
-      var LEAFLET_CLUSTER_JS_URL = "../vendor/leaflet-markercluster/leaflet.markercluster.js?v=202608271035";
+      var LEAFLET_CSS_URL = "../vendor/leaflet/leaflet.css?v=202608301738";
+      var LEAFLET_JS_URL = "../vendor/leaflet/leaflet.js?v=202608301738";
+      var LEAFLET_CLUSTER_CSS_URL = "../vendor/leaflet-markercluster/MarkerCluster.css?v=202608301738";
+      var LEAFLET_CLUSTER_DEFAULT_CSS_URL = "../vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202608301738";
+      var LEAFLET_CLUSTER_JS_URL = "../vendor/leaflet-markercluster/leaflet.markercluster.js?v=202608301738";
       var leafletLoadPromise = null;
 
       var CITIES = {
@@ -314,7 +314,7 @@
           });
       }
 
-      fetch("../data/objects-map-points.json?v=202608271035")
+      fetch("../data/objects-map-points.json?v=202608301738")
         .then(function (response) {
           if (!response.ok) throw new Error("map-data");
           return response.json();

@@ -2629,6 +2629,13 @@ a.podborki-card--link:hover {
   display: none;
 }
 
+/* На странице веб-камер кнопки нужны: «Смотреть прямой эфир» в карточках и
+   переходы «Рядом с камерами» (24.08.2026 их спрятало правило выше). */
+.webcam-card .blog-card__cta,
+.webcam-block-links .blog-card__cta {
+  display: inline-flex;
+}
+
 .blog-card__cta {
   display: inline-flex;
   align-items: center;
