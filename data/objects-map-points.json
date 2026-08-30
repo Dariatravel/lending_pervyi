@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T18:29:48.780275+00:00",
+  "generated_at": "2026-08-30T13:23:08.940108+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -683,7 +683,7 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"ГРАНТ\" комплекс домиков с завтраками",
+      "title": "\"ГРАНТ\" комплекс домиков",
       "address": "Лдзаа, Нозадзе 58",
       "lat": 43.17588658896105,
       "lon": 40.37404608332799,
@@ -1918,14 +1918,14 @@
   "stats": {
     "placemarks_total": 480,
     "placemarks_unique": 240,
-    "pages_total": 494,
+    "pages_total": 492,
     "pages_on_disk": 545,
-    "pages_excluded": 51,
+    "pages_excluded": 53,
     "from_constructor": 257,
     "from_page_coords": 0,
     "from_manual": 0,
-    "skipped_without_constructor": 237,
-    "skipped_without_coords": 237,
+    "skipped_without_constructor": 235,
+    "skipped_without_coords": 235,
     "shared_coordinate_groups": 30,
     "deduped_redirect_points": 18,
     "points_total": 239
