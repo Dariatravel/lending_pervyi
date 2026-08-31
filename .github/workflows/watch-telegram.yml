@@ -261,6 +261,19 @@ jobs:
           echo "::error::Не удалось опубликовать обновление карты после 3 попыток."
           exit 1
 
+      # Страховка снимков веб-камер: собственный крон webcams-snapshots.yml
+      # GitHub задерживает на часы и порой доносит только ночью. Ежечасный
+      # автосинк запускается стабильно, поэтому пробуем и отсюда — сам скрипт
+      # работает лишь в дневное окно и не чаще раза в сутки, так что лишние
+      # часы выходят мгновенно и без заливок.
+      - name: Снимки веб-камер (страховка расписания)
+        if: steps.gate.outputs.enabled == 'true'
+        continue-on-error: true
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+        run: pip install --quiet pyjwt cryptography && python3 tools/webcams_snapshots.py
+
       - name: Сохранить watch-state
         if: steps.gate.outputs.enabled == 'true' && always()
         uses: actions/cache/save@v4
