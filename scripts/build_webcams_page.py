@@ -160,6 +160,7 @@ def build() -> str:
   <meta property="og:description" content="{esc(DESCRIPTION)}" />
   <meta property="og:url" content="{CANON}" />
   <meta property="og:image" content="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/og-banner.png" />
+  <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" />
   <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
   <link rel="icon" type="image/png" href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" />
   <link rel="stylesheet" href="../styles.min.css?v={css_version}" />

@@ -502,6 +502,7 @@ def render_collection_page(
   <meta name="description" content="{html.escape(description)}" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="{CANONICAL_ORIGIN}/podborki/{slug}/" />
+  <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" />
   <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
   <link rel="icon" type="image/png" href="{YANDEX_MEDIA_BASE}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={version}" />

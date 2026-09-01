@@ -118,6 +118,7 @@ PAGE_TEMPLATE = '''<!DOCTYPE html>
   <meta property="og:description" content="{og_desc}" />
   <meta property="og:url" content="https://абхазберег.рф/blog/{slug}/" />
   <meta property="og:image" content="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/og-banner.png" />
+  <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" />
   <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
   <link rel="icon" type="image/png" href="{yandex_media_base}/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={asset_version}" />
