@@ -3841,6 +3841,14 @@ a.podborki-card--link:hover {
     background: linear-gradient(180deg, #5cd6e5 0%, #18a9bc 100%);
     color: #fff;
   }
+
+  /* «Забронировать» + «Смотреть цены» делят строку поровну и вместе
+     занимают ту же ширину, что «Задать вопрос онлайн» ниже
+     (просьба Дарьи 01.09.2026). */
+  .hotel-site-concept .hotel-card__actions .button--booking,
+  .hotel-site-concept .hotel-card__actions .button--prices-mobile {
+    flex: 1 1 0;
+  }
 }
 
 .hotel-site-concept .save-button,
