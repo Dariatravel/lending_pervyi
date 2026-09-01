@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T10:40:39.712927+00:00",
+  "generated_at": "2026-09-01T13:20:58.397493+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 239,
@@ -13233,22 +13233,6 @@
         "prices": [
           {
             "kind": "price",
-            "text": "2000₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ -июнь"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - июль"
-          },
-          {
-            "kind": "price",
-            "text": "4500₽ - август"
-          },
-          {
-            "kind": "price",
             "text": "3000₽ - сентябрь до 15"
           },
           {
@@ -25452,15 +25436,19 @@
         "prices": [
           {
             "kind": "price",
-            "text": "3500₽/сутки - июль"
+            "text": "3500₽- июль"
           },
           {
             "kind": "price",
-            "text": "4500₽/сутки - август"
+            "text": "4500₽ - август"
           },
           {
             "kind": "price",
-            "text": "4500₽/сутки - сентябрь"
+            "text": "3500₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - октябрь"
           },
           {
             "kind": "price",
