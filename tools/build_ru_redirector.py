@@ -108,11 +108,23 @@ def build() -> int:
 
     make_public(s3)
 
+    # RoutingRules обязательны: любой путь, которого нет в будочке (страницы
+    # объектов /hotels/…, /kvartira/… из таблицы БАЗА и переписок CRM),
+    # уезжает 301 на тот же путь абхазберег.рф. Без этого правила такие
+    # ссылки отдают 404 — не убирать (сломалось 01.09.2026, чинили дважды).
     s3.put_bucket_website(Bucket=BUCKET, WebsiteConfiguration={
         "IndexDocument": {"Suffix": "index.html"},
         "ErrorDocument": {"Key": "error.html"},
+        "RoutingRules": [{
+            "Condition": {"HttpErrorCodeReturnedEquals": "404"},
+            "Redirect": {
+                "HostName": "xn--80aacbklan7f0b.xn--p1ai",
+                "Protocol": "https",
+                "HttpRedirectCode": "301",
+            },
+        }],
     })
-    print("Website-режим включён (index.html / error.html).")
+    print("Website-режим включён (index.html / error.html + 404 → абхазберег.рф с тем же путём).")
 
     def put(key: str, body: bytes) -> None:
         try:
@@ -180,9 +192,22 @@ def verify() -> int:
         if not ok:
             failures += 1
 
-    status, body = fetch(base + "/takogo-puti-net-12345")
-    ok = TARGET_HOST_PUNY in body
-    print(f"  {'OK  ' if ok else 'ПЛОХО'} неизвестный путь → {status}, страница-переезд: {'да' if ok else 'НЕТ'}")
+    # Неизвестный путь обязан уезжать 301 на тот же путь абхазберег.рф
+    # (RoutingRule 404 — держит живыми ссылки /hotels/… из БАЗЫ и CRM).
+    unknown = "/hotels/takogo-puti-net-12345"
+    request = urllib.request.Request(base + unknown, method="HEAD")
+
+    class _NoRedirect(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, *args, **kwargs):
+            return None
+
+    location = ""
+    try:
+        urllib.request.build_opener(_NoRedirect).open(request, timeout=30)
+    except urllib.error.HTTPError as error:
+        location = error.headers.get("Location", "")
+    ok = location == f"{TARGET_HOST_PUNY}{unknown}"
+    print(f"  {'OK  ' if ok else 'ПЛОХО'} неизвестный путь → 301 на {TARGET_HOST_PUNY}{unknown}: {'да' if ok else 'НЕТ (' + (location or 'нет редиректа') + ')'}")
     if not ok:
         failures += 1
 
