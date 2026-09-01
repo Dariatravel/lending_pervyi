@@ -8,7 +8,7 @@ on:
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 50
     permissions:
       contents: read
     steps:
@@ -36,42 +36,68 @@ jobs:
 
           FAILED=false
 
+          # Три прогона на страницу: одиночный замер на общих раннерах шумит
+          # (TBT скачет 50→1000 мс от загрузки соседей). Итог — медианный
+          # прогон по баллу Performance; разброс печатается рядом в скобках.
           run_lighthouse() {
             local name="$1"
             local url="$2"
             local threshold="$3"
-            local file="output/lighthouse-weekly/${name}.json"
+            local ok=0
 
-            echo "::group::Lighthouse ${name}"
-            if ! lighthouse "$url" \
-              --output=json \
-              --output-path="$file" \
-              --chrome-flags="--headless=new --no-sandbox"; then
+            echo "::group::Lighthouse ${name} (3 прогона)"
+            for attempt in 1 2 3; do
+              local file="output/lighthouse-weekly/${name}-${attempt}.json"
+              if lighthouse "$url" \
+                --output=json \
+                --output-path="$file" \
+                --chrome-flags="--headless=new --no-sandbox"; then
+                ok=$((ok+1))
+              else
+                rm -f "$file"
+                echo "прогон ${attempt} для ${name} не удался"
+              fi
+            done
+
+            if [ "$ok" -eq 0 ]; then
               echo "| ${name} | ERROR | — | — | — | — | — | ${threshold:-—} |" >> "$SUMMARY"
               FAILED=true
               echo "::endgroup::"
               return
             fi
 
-            node - "$file" "$name" "$threshold" >> "$SUMMARY" <<'NODE'
+            # Медианный прогон копируется в <name>.json — прежнее имя артефакта.
+            local median_failed
+            median_failed=$(node - "$name" "$threshold" <<'NODE'
           const fs = require("fs");
-          const [file, name, thresholdRaw] = process.argv.slice(2);
-          const report = JSON.parse(fs.readFileSync(file, "utf8"));
-          const audits = report.audits;
-          const score = Math.round((report.categories.performance.score || 0) * 100);
+          const [name, thresholdRaw] = process.argv.slice(2);
+          const dir = "output/lighthouse-weekly";
+          const runs = [];
+          for (const f of fs.readdirSync(dir)) {
+            if (!f.startsWith(`${name}-`) || !f.endsWith(".json")) continue;
+            const report = JSON.parse(fs.readFileSync(`${dir}/${f}`, "utf8"));
+            runs.push({ file: `${dir}/${f}`, report,
+              score: Math.round((report.categories.performance.score || 0) * 100) });
+          }
+          runs.sort((a, b) => a.score - b.score);
+          const median = runs[Math.floor(runs.length / 2)];
+          fs.copyFileSync(median.file, `${dir}/${name}.json`);
+          const audits = median.report.audits;
           const fcp = audits["first-contentful-paint"]?.displayValue || "—";
           const lcp = audits["largest-contentful-paint"]?.displayValue || "—";
           const tbt = audits["total-blocking-time"]?.displayValue || "—";
           const cls = audits["cumulative-layout-shift"]?.displayValue || "—";
           const weight = audits["total-byte-weight"]?.displayValue || "—";
           const threshold = thresholdRaw ? Number(thresholdRaw) : null;
-          const marker = threshold && score < threshold ? " ❌" : "";
-          console.log(`| ${name} | ${score}${marker} | ${fcp} | ${lcp} | ${tbt} | ${cls} | ${weight} | ${thresholdRaw || "—"} |`);
+          const below = Boolean(threshold && median.score < threshold);
+          const marker = below ? " ❌" : "";
+          const spread = runs.length > 1 ? ` (${runs[0].score}–${runs[runs.length - 1].score})` : "";
+          fs.appendFileSync("output/lighthouse-weekly/summary.md",
+            `| ${name} | ${median.score}${marker}${spread} | ${fcp} | ${lcp} | ${tbt} | ${cls} | ${weight} | ${thresholdRaw || "—"} |\n`);
+          console.log(below ? "true" : "false");
           NODE
-
-            local score
-            score=$(node -e "const r=require('./${file}'); console.log(Math.round((r.categories.performance.score||0)*100));")
-            if [ -n "$threshold" ] && [ "$score" -lt "$threshold" ]; then
+            )
+            if [ "$median_failed" = "true" ]; then
               FAILED=true
             fi
             echo "::endgroup::"
