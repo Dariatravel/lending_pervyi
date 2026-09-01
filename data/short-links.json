@@ -1,0 +1,8 @@
+{
+  "_comment": "Короткие адреса для рассылок и печати: abhazbereg.ru/<ключ> (работают и на абхазберег.рф). Страницы собирает tools/build_short_links.py; цель обязана существовать. Не индексируются (noindex), canonical смотрит на статью.",
+  "links": {
+    "pamyatka": "/blog/pamyatka-turistu-abkhazia/",
+    "minusy": "/blog/minusy-otdyha-abkhazia/",
+    "svyaz": "/blog/mobilnaya-svyaz-i-internet-abkhaziya/"
+  }
+}
