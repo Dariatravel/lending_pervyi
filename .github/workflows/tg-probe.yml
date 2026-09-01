@@ -1,0 +1,32 @@
+name: TG probe
+
+# Диагностика Telegram с раннера Actions (MTProto с RU-адресов фильтруется):
+# показать комментарии к посту — id, тип медиа, альбом, подпись.
+# Только ручной запуск, ничего не меняет и не публикует.
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Канал и номер поста, напр. abhazbooking:3800"
+        required: true
+        type: string
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Установить зависимости
+        run: pip install --quiet -r requirements-site-update-bot.txt
+      - name: Показать комментарии
+        env:
+          TG_STRING_SESSION: ${{ secrets.TG_STRING_SESSION }}
+          TG_TARGET: ${{ inputs.target }}
+        run: python3 tools/dump_post_comments.py
