@@ -133,7 +133,22 @@ def build() -> int:
         put(path_to_key(path), redirect_page(target))
         count += 1
     put("error.html", redirect_page("/"))
-    print(f"Загружено страниц-переездов: {count} + error.html")
+
+    # Короткие ссылки для рассылок (data/short-links*.json): работают и на
+    # abhazbereg.ru — кладём и «ключ/index.html» (путь со слэшем), и просто
+    # «ключ» (путь без слэша), чтобы срабатывали оба написания.
+    shorts = 0
+    for name in ("short-links.json", "short-links-generated.json"):
+        try:
+            links = json.loads((ROOT / "data" / name).read_text(encoding="utf-8")).get("links") or {}
+        except (OSError, json.JSONDecodeError):
+            links = {}
+        for key, href in sorted(links.items()):
+            page = redirect_page(str(href))
+            put(f"{key}/index.html", page)
+            put(key, page)
+            shorts += 1
+    print(f"Загружено страниц-переездов: {count} + error.html + коротких ссылок {shorts}")
     return 0
 
 
