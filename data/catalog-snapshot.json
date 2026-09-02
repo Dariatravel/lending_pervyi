@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T13:20:58.397493+00:00",
+  "generated_at": "2026-09-02T10:04:57.269312+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 239,
@@ -14859,11 +14859,11 @@
           },
           {
             "kind": "price",
-            "text": "6000₽ - июль, август, сентябрь"
+            "text": "6000₽ - июль, август"
           },
           {
             "kind": "price",
-            "text": "4000₽ - октябрь"
+            "text": "4000₽ - сентябрь, октябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/tihiy-zakat-domiki-s-basseynom-3942/index.html",
@@ -15071,6 +15071,30 @@
         "prices": [
           {
             "kind": "price",
+            "text": "АКЦИЯ🔥"
+          },
+          {
+            "kind": "price",
+            "text": "В сентябре 3000₽"
+          },
+          {
+            "kind": "price",
+            "text": "Свободные даты:"
+          },
+          {
+            "kind": "price",
+            "text": "5.09-13.09"
+          },
+          {
+            "kind": "price",
+            "text": "5.09-15.09"
+          },
+          {
+            "kind": "price",
+            "text": "16.09-22.09"
+          },
+          {
+            "kind": "price",
             "text": "Двухместный"
           },
           {
@@ -15233,14 +15257,13 @@
           "media_role": "gallery",
           "sort_order": 8,
           "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sozvezdie-mini-otel-3933/video-01.mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sozvezdie-mini-otel-3933/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/sozvezdie-mini-otel-3933/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sozvezdie-mini-otel-3933/video-01.mp4",
+          "storage_path": "videos/hotels/sozvezdie-mini-otel-3933/video-01-source.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sozvezdie-mini-otel-3933/video-01-source.mp4",
           "details": {
             "telegram_post": "abhazbooking/3940",
-            "telegram_url": "https://t.me/abhazbooking/3940",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sozvezdie-mini-otel-3933/video-01-poster.jpg"
+            "telegram_url": "https://t.me/abhazbooking/3940"
           }
         }
       ]
@@ -38923,27 +38946,23 @@
           },
           {
             "kind": "price",
-            "text": "6000/сутки - май"
+            "text": "6000₽ - май"
           },
           {
             "kind": "price",
-            "text": "6000/сутки - июнь"
+            "text": "6000₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "7000/сутки - июль"
+            "text": "7000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "7500/сутки - август"
+            "text": "7500₽ - август"
           },
           {
             "kind": "price",
-            "text": "7000/сутки - сентябрь до 20го"
-          },
-          {
-            "kind": "price",
-            "text": "6500₽/сутки - сентябрь с 20го"
+            "text": "6000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -63518,7 +63537,11 @@
           },
           {
             "kind": "price",
-            "text": "5500₽ - июль, август, сентябрь"
+            "text": "5500₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -63530,7 +63553,11 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - июль, август, сентябрь"
+            "text": "5000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -63546,7 +63573,11 @@
           },
           {
             "kind": "price",
-            "text": "6000₽ - август, сентябрь"
+            "text": "6000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -63562,7 +63593,11 @@
           },
           {
             "kind": "price",
-            "text": "7000₽ - август, сентябрь"
+            "text": "7000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - сентябрь"
           },
           {
             "kind": "price",
