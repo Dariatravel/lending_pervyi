@@ -1,0 +1,56 @@
+# Сторож TLS-сертификатов. Появился после аварии 05.09.2026: сертификат
+# media.абхазберег.рф завис в перевыпуске и молча истёк — фото и видео
+# всего сайта перестали открываться, узнали от гостей.
+#
+# Дважды в день проверяет сроки сертификатов всех доменов проекта и шлёт
+# тревогу в Telegram, если до истечения меньше 14 дней или HTTPS вообще
+# не устанавливается. Тревога уходит каждым прогоном, пока проблема жива:
+# за 14 дней запаса это максимум 28 сообщений — не спам, а пожарная сирена.
+
+name: Cert watch
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 5,17 * * *"
+
+jobs:
+  certs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Проверить сертификаты всех доменов
+        id: check
+        run: |
+          set +e
+          python3 tools/check_tls_certificates.py | tee /tmp/cert-report.txt
+          echo "failed=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Тревога в Telegram
+        if: steps.check.outputs.failed != '0'
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
+            echo "TG_BOT_TOKEN/TG_REPORT_CHAT_ID не заданы — тревога пропущена."
+            exit 0
+          fi
+          REPORT=$(grep "ТРЕВОГА" /tmp/cert-report.txt | head -c 2500)
+          MSG=$(printf '🚨 Сертификаты сайта: нужна реакция!\n\n%s\n\nПодробности: %s' \
+            "$REPORT" "$RUN_URL")
+          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
+            --data-urlencode "text=${MSG}" >/dev/null
+          echo "Тревога отправлена."
+
+      - name: Провалить прогон при тревоге
+        if: steps.check.outputs.failed != '0'
+        run: exit 1
