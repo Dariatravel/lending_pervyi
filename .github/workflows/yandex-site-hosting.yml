@@ -28,6 +28,10 @@ on:
         description: "Для dns-create-ru: CNAME-значение проверки сертификата (…cm.yandexcloud.net.)"
         required: false
         default: ""
+      cert_name:
+        description: "Для media-шагов: имя сертификата вместо abhazbereg-media-cdn (перевыпуск под новым именем)"
+        required: false
+        default: ""
 
 env:
   ENDPOINT: https://storage.yandexcloud.net
@@ -541,7 +545,7 @@ jobs:
         env:
           YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
           YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
-          CERT_NAME: abhazbereg-media-cdn
+          CERT_NAME: ${{ inputs.cert_name || 'abhazbereg-media-cdn' }}
           CERT_DOMAIN: media.xn--80aacbklan7f0b.xn--p1ai
           CERT_NO_WWW: "1"
         run: pip install --quiet pyjwt cryptography && python3 tools/yc_certificate.py request
@@ -551,7 +555,7 @@ jobs:
         env:
           YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
           YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
-          CERT_NAME: abhazbereg-media-cdn
+          CERT_NAME: ${{ inputs.cert_name || 'abhazbereg-media-cdn' }}
           CERT_DOMAIN: media.xn--80aacbklan7f0b.xn--p1ai
           CERT_NO_WWW: "1"
         run: pip install --quiet pyjwt cryptography && python3 tools/yc_certificate.py status
@@ -585,6 +589,21 @@ jobs:
           CDN_ORIGIN_HOST: abhazbereg-media.storage.yandexcloud.net
           CDN_NO_WWW: "1"
         run: pip install --quiet pyjwt cryptography && python3 tools/yc_cdn.py create
+
+      # Спасательный шаг: старый сертификат застрял в RENEWING без challenge —
+      # выпускается новый под другим именем (inputs.cert_name), и этот шаг
+      # перепривязывает существующий CDN-ресурс на него. DNS не трогается.
+      - name: cdn-cert-media — перепривязать медиа-CDN к сертификату cert_name
+        if: inputs.action == 'cdn-cert-media'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CDN_DOMAIN: media.xn--80aacbklan7f0b.xn--p1ai
+          CDN_CERT_NAME: ${{ inputs.cert_name || 'abhazbereg-media-cdn' }}
+          CDN_GROUP_NAME: abhazbereg-media-origin
+          CDN_ORIGIN_HOST: abhazbereg-media.storage.yandexcloud.net
+          CDN_NO_WWW: "1"
+        run: pip install --quiet pyjwt cryptography && python3 tools/yc_cdn.py cert
 
       - name: cdn-status-media — состояние медиа-CDN
         if: inputs.action == 'cdn-status-media'

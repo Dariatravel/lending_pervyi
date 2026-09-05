@@ -343,6 +343,45 @@ def create() -> int:
     return status()
 
 
+def attach_certificate() -> int:
+    """Перепривязать существующий ресурс к сертификату CDN_CERT_NAME.
+
+    Нужен, когда старый сертификат застрял в перевыпуске (RENEWING без
+    challenge) и вместо него выпущен новый под другим именем: ресурс CDN
+    остаётся тем же, меняется только прикреплённый сертификат.
+    """
+    token = iam_token()
+    folder = folder_id(token)
+    resource = find_resource(token, folder)
+    if not resource:
+        print(f"Ресурса для {DOMAIN} нет — сначала create.")
+        return 1
+
+    certificate_id = resolve_certificate(token, folder)
+    if not certificate_id:
+        print(f"Сертификат «{CERTIFICATE_NAME}» в папке не найден.")
+        return 1
+    certificate = api(f"{CM_URL}/certificates/{certificate_id}", token)
+    print(f"Сертификат «{CERTIFICATE_NAME}»: {certificate_id} / {certificate.get('status')}")
+    if certificate.get("status") not in ("ISSUED", "RENEWING"):
+        print("Сертификат не выпущен — привязывать рано.")
+        return 1
+
+    updated = api(f"{CDN_URL}/resources/{resource['id']}", token, {
+        "sslCertificate": {"type": "CM", "data": {"cm": {"id": certificate_id}}},
+    }, method="PATCH")
+    failure = updated.get("error")
+    if failure:
+        print(f"Привязать не удалось: {failure.get('message')} (код {failure.get('code')})")
+        if "certificate" in str(failure.get("message", "")).lower():
+            check_certificate_access(token)
+        return 1
+    print(f"Ресурс {resource['id']} перепривязан к сертификату «{CERTIFICATE_NAME}».")
+    print("CDN раскатывает сертификат по узлам несколько минут.")
+    time.sleep(5)
+    return status()
+
+
 def status() -> int:
     token = iam_token()
     folder = folder_id(token)
@@ -376,7 +415,8 @@ def status() -> int:
 
 def main() -> int:
     command = sys.argv[1] if len(sys.argv) > 1 else "probe"
-    actions = {"probe": probe, "create": create, "status": status, "grant": grant_role}
+    actions = {"probe": probe, "create": create, "status": status, "grant": grant_role,
+               "cert": attach_certificate}
     if command not in actions:
         print(__doc__)
         return 1
