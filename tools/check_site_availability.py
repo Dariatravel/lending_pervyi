@@ -23,13 +23,51 @@ API = "https://check-host.net"
 DEFAULT_URL = "https://xn--80aacbklan7f0b.xn--p1ai/"
 
 
-def api_get(path: str) -> dict:
-    request = urllib.request.Request(
-        f"{API}{path}",
-        headers={"Accept": "application/json", "User-Agent": "abhazbereg-availability-check"},
-    )
-    with urllib.request.urlopen(request, timeout=40) as response:
-        return json.loads(response.read().decode("utf-8"))
+def api_get(path: str, retries: int = 3) -> dict:
+    """GET к check-host.net с повторами при 429.
+
+    IP-адреса GitHub-раннеров общие на тысячи проектов, и лимит запросов
+    check-host.net часто выеден чужими прогонами — 429 здесь не «мы сломали»,
+    а «не повезло с соседями по IP». Пауза и повтор обычно спасают.
+    """
+    last_error: Exception | None = None
+    for attempt in range(retries):
+        request = urllib.request.Request(
+            f"{API}{path}",
+            headers={"Accept": "application/json", "User-Agent": "abhazbereg-availability-check"},
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=40) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as error:
+            if error.code != 429 or attempt == retries - 1:
+                raise
+            last_error = error
+            print(f"check-host.net лимитирует (429), жду 90 с и повторяю "
+                  f"({attempt + 1}/{retries - 1})…", flush=True)
+            time.sleep(90)
+    raise last_error  # недостижимо, но успокаивает линтер
+
+
+def direct_check(url: str) -> bool:
+    """Запасная проверка с самого раннера: отвечает ли сайт вообще.
+
+    Когда check-host.net не пускает, главный вопрос «жив ли сайт» всё равно
+    должен получить ответ — иначе проверка красная из-за постороннего сервиса.
+    Раннер за границей, поэтому российскую специфику так не увидеть, но
+    полную недоступность сайта — вполне.
+    """
+    try:
+        request = urllib.request.Request(
+            url, headers={"User-Agent": "abhazbereg-availability-check"})
+        with urllib.request.urlopen(request, timeout=30) as response:
+            body = response.read(200_000)
+            print(f"Прямая проверка с раннера: код {response.status}, "
+                  f"{len(body)} байт — сайт отвечает.")
+            return 200 <= response.status < 400
+    except Exception as error:  # noqa: BLE001
+        print(f"Прямая проверка с раннера: САЙТ НЕ ОТВЕЧАЕТ — {error}", file=sys.stderr)
+        return False
 
 
 def node_parts(info) -> tuple[str, str, str]:
@@ -94,11 +132,12 @@ def main() -> int:
     try:
         started = api_get(query)
     except Exception as error:  # noqa: BLE001
-        print(f"Не удалось запустить проверку: {error}", file=sys.stderr)
-        return 1
+        print(f"Не удалось запустить проверку через check-host.net: {error}", file=sys.stderr)
+        print("Переключаюсь на запасную прямую проверку.", flush=True)
+        return 0 if direct_check(url) else 1
     if not started.get("ok"):
         print(f"check-host.net отказал: {started}", file=sys.stderr)
-        return 1
+        return 0 if direct_check(url) else 1
 
     request_id = started["request_id"]
     nodes = started.get("nodes") or {}
