@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07T13:23:31.040875+00:00",
+  "generated_at": "2026-09-07T18:45:47.000955+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 239,
@@ -8559,6 +8559,10 @@
           },
           {
             "kind": "price",
+            "text": "4200 ₽ — октябрь до 15го"
+          },
+          {
+            "kind": "price",
             "text": "С завтраком:"
           },
           {
@@ -8595,6 +8599,10 @@
           },
           {
             "kind": "price",
+            "text": "4900 ₽ — октябрь до 15го"
+          },
+          {
+            "kind": "price",
             "text": "С завтраком:"
           },
           {
@@ -8624,6 +8632,10 @@
           {
             "kind": "price",
             "text": "6900 ₽ — июнь, июль, август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5900 ₽ — октябрь до 15го"
           },
           {
             "kind": "price",
@@ -8659,6 +8671,10 @@
           },
           {
             "kind": "price",
+            "text": "7900 ₽ — октябрь до 15го"
+          },
+          {
+            "kind": "price",
             "text": "С завтраком:"
           },
           {
@@ -8688,6 +8704,10 @@
           {
             "kind": "price",
             "text": "1500 ₽ — июнь, июль, август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "1000 ₽ — октябрь до 15го"
           },
           {
             "kind": "note",
@@ -8864,7 +8884,7 @@
           "details": {
             "telegram_post": "abhazbooking/4338",
             "telegram_url": "https://t.me/abhazbooking/4338",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/manon-otel-so-skazochnym-vidom-2512/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/manon-otel-so-skazochnym-vidom-2512/video-01-poster.jpg"
           }
         }
       ]
@@ -35034,7 +35054,7 @@
             "label": "✔️УСЛОВИЯ:",
             "lines": [
               "Бронь от 5 дней.",
-              "По бронированию и наличию номеров пишем в сообщения @abhazbooking_online",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
               "(будьте внимательны ⚠️только этот контакт для брони)",
               "Я на связи WhatsApp/MAX: +7940-900-33-40",
               "————————————————",
@@ -35053,7 +35073,7 @@
           },
           {
             "kind": "price",
-            "text": "4500₽ - октябрь"
+            "text": "4000₽ - октябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/sanset-kvartira-1k-ldzaa-1101/index.html",
@@ -35195,7 +35215,7 @@
           "details": {
             "telegram_post": "abhkvartira/1101",
             "telegram_url": "https://t.me/abhkvartira/1101",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/sanset-kvartira-1k-ldzaa-1101/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/sanset-kvartira-1k-ldzaa-1101/video-01-poster.jpg"
           }
         }
       ]
@@ -46900,7 +46920,11 @@
           },
           {
             "kind": "price",
-            "text": "4500₽ - сентябрь"
+            "text": "4500₽ - сентябрь до 18го"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - сентябрь с 19го"
           },
           {
             "kind": "price",
@@ -46920,7 +46944,11 @@
           },
           {
             "kind": "price",
-            "text": "5500₽ - сентябрь"
+            "text": "5500₽ - сентябрь до 18го"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - сентябрь с 19го"
           },
           {
             "kind": "price",
@@ -57082,7 +57110,7 @@
           },
           {
             "kind": "price",
-            "text": "Июнь"
+            "text": "Сентябрь до 12го"
           },
           {
             "kind": "price",
@@ -57098,35 +57126,11 @@
           },
           {
             "kind": "price",
-            "text": "Июль, август"
+            "text": "Сентябрь с 13го, октябрь"
           },
           {
             "kind": "price",
-            "text": "13000₽ - без питания"
-          },
-          {
-            "kind": "price",
-            "text": "15000₽ - с завтраками"
-          },
-          {
-            "kind": "price",
-            "text": "17000₽ - с 3-разовым питанием"
-          },
-          {
-            "kind": "price",
-            "text": "Сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "12000₽ - без питания"
-          },
-          {
-            "kind": "price",
-            "text": "14000₽ - с завтраками"
-          },
-          {
-            "kind": "price",
-            "text": "16000₽ - с 3-разовым питанием"
+            "text": "8000₽ - без питания"
           },
           {
             "kind": "price",
@@ -57134,7 +57138,7 @@
           },
           {
             "kind": "price",
-            "text": "Июнь"
+            "text": "Сентябрь до 12го"
           },
           {
             "kind": "price",
@@ -57150,35 +57154,11 @@
           },
           {
             "kind": "price",
-            "text": "Июль, август"
+            "text": "Сентябрь с 13го, октябрь"
           },
           {
             "kind": "price",
-            "text": "15000₽ - без питания"
-          },
-          {
-            "kind": "price",
-            "text": "17000₽ - с завтраками"
-          },
-          {
-            "kind": "price",
-            "text": "19000₽ - с 3-разовым питанием"
-          },
-          {
-            "kind": "price",
-            "text": "Сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "14000₽ - без питания"
-          },
-          {
-            "kind": "price",
-            "text": "16000₽ - с завтраками"
-          },
-          {
-            "kind": "price",
-            "text": "18000₽ - с 3-разовым питанием"
+            "text": "10000₽ - без питания"
           },
           {
             "kind": "price",
@@ -57186,7 +57166,7 @@
           },
           {
             "kind": "price",
-            "text": "Июнь"
+            "text": "Сентябрь до 12го"
           },
           {
             "kind": "price",
@@ -57202,35 +57182,11 @@
           },
           {
             "kind": "price",
-            "text": "Июль, август"
+            "text": "Сентябрь с 13го, октябрь"
           },
           {
             "kind": "price",
-            "text": "19000₽ - без питания"
-          },
-          {
-            "kind": "price",
-            "text": "21000₽ - с завтраками"
-          },
-          {
-            "kind": "price",
-            "text": "23000₽ - с 3-разовым питанием"
-          },
-          {
-            "kind": "price",
-            "text": "Сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "18000₽ - без питания"
-          },
-          {
-            "kind": "price",
-            "text": "20000₽ - с завтраками"
-          },
-          {
-            "kind": "price",
-            "text": "22000₽ - с 3-разовым питанием"
+            "text": "13000₽ - без питания"
           },
           {
             "kind": "price",
@@ -57238,7 +57194,7 @@
           },
           {
             "kind": "price",
-            "text": "Июнь"
+            "text": "Сентябрь до 12го"
           },
           {
             "kind": "price",
@@ -57254,35 +57210,11 @@
           },
           {
             "kind": "price",
-            "text": "Июль, август"
+            "text": "Сентябрь с 13го, октябрь"
           },
           {
             "kind": "price",
-            "text": "21000₽ - без питания"
-          },
-          {
-            "kind": "price",
-            "text": "23000₽ - с завтраками"
-          },
-          {
-            "kind": "price",
-            "text": "25000₽ - с 3-разовым питанием"
-          },
-          {
-            "kind": "price",
-            "text": "Сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "20000₽ - без питания"
-          },
-          {
-            "kind": "price",
-            "text": "22000₽ - с завтраками"
-          },
-          {
-            "kind": "price",
-            "text": "24000₽ - с 3-разовым питанием"
+            "text": "16000₽ - без питания"
           },
           {
             "kind": "price",
@@ -57442,7 +57374,7 @@
           "details": {
             "telegram_post": "abhazbooking/4838",
             "telegram_url": "https://t.me/abhazbooking/4838",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/video-01-poster.jpg"
           }
         }
       ]
@@ -60933,7 +60865,7 @@
               "Бассейн с подогревом: взрослая и детская зоны.",
               "Зона отдыха вокруг бассейна с шезлонгами и зонтиками.",
               "Летняя зона кухни с микроволновкой и чайником, без плиты.",
-              "Свое кафе сразу за территорией."
+              "Свое кафе сразу за территорией работает до середины октября."
             ]
           },
           {
