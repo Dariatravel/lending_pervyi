@@ -24,9 +24,30 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from media_urls import yandex_photo_url, yandex_video_url  # noqa: E402
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 from supplemental_store import save_section as save_supplemental_section  # noqa: E402
+from supplemental_store import remove_section as remove_supplemental_section  # noqa: E402
 
 AUDIT_PATH = ROOT / "output" / "telegram_supplemental_comments_audit.json"
 REPORT_PATH = ROOT / "output" / "telegram_supplemental_apply_report.txt"
+
+# Ручной чёрный список: медиа, которое НЕЛЬЗЯ переносить на страницу, хотя
+# подпись у него нормальная. Появился 06.09.2026: в комментариях «АМОР домики»
+# скриншот чужого отзыва был подписан «Домики "АМОР" 💙» — фильтр по слову
+# «отзыв» бессилен, когда отзыв на картинке, а не в подписи.
+# Формат: {"slug": [id сообщений в комментариях]} либо {"slug": "all"}.
+EXCLUDES_PATH = ROOT / "data" / "supplemental-excludes.json"
+
+
+def load_excludes(slug: str) -> set[int] | str:
+    try:
+        data = json.loads(EXCLUDES_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return set()
+    value = (data.get("excludes") or {}).get(slug)
+    if value == "all":
+        return "all"
+    if isinstance(value, list):
+        return {int(v) for v in value}
+    return set()
 
 DEFAULT_API_ID = 32916166
 DEFAULT_API_HASH = "eefdec49605521b061de4bdf62ef784e"
@@ -260,8 +281,13 @@ def resolve_slugs_from_watch_targets() -> set[str]:
     return slugs
 
 
-def build_blocks_from_comments(messages_by_id: dict[int, Any]) -> list[SupplementalBlock]:
+def build_blocks_from_comments(
+    messages_by_id: dict[int, Any],
+    excluded: set[int] | str = frozenset(),
+) -> list[SupplementalBlock]:
     """Собрать блоки прямо из комментариев: альбом/одиночное медиа + осмысленная подпись."""
+    if excluded == "all":
+        return []
     groups: dict[Any, list[Any]] = {}
     for message in messages_by_id.values():
         if media_kind(message) not in {"photo", "video"}:
@@ -271,6 +297,8 @@ def build_blocks_from_comments(messages_by_id: dict[int, Any]) -> list[Supplemen
     blocks: list[SupplementalBlock] = []
     for members in groups.values():
         members.sort(key=lambda row: int(row.id))
+        if any(int(m.id) in excluded for m in members):
+            continue
         caption = ""
         for member in members:
             text = normalize_text(str(getattr(member, "message", "") or ""))
@@ -540,9 +568,23 @@ async def apply_target(
 
     entity = await client.get_entity(target.channel)
     messages_by_id = await fetch_comment_messages(client, target)
+    excluded = load_excludes(target.slug)
     if not target.blocks:
-        target.blocks = build_blocks_from_comments(messages_by_id)
+        target.blocks = build_blocks_from_comments(messages_by_id, excluded)
         if not target.blocks:
+            # Раньше секция на странице оставалась навсегда: перенесённый по
+            # ошибке блок нельзя было убрать пересинком. Теперь при --force
+            # и пустом списке блоков секция снимается со страницы и манифеста.
+            if force and ("id=\"supplemental-comments\"" in page_html
+                          or "id=\"room-overviews\"" in page_html):
+                if not dry_run:
+                    soup = BeautifulSoup(page_html, "html.parser")
+                    existing = soup.select_one("#supplemental-comments, #room-overviews")
+                    if existing:
+                        existing.decompose()
+                        path.write_text(str(soup), encoding="utf-8")
+                    remove_supplemental_section(target.slug)
+                return True, "removed section (no eligible media after excludes)"
             return False, "no captioned media in comments"
     for index, block in enumerate(target.blocks, 1):
         await download_block_media(client, entity, target, block, index, messages_by_id)
