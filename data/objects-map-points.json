@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T20:28:47.101600+00:00",
+  "generated_at": "2026-09-08T15:38:38.534220+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1531,14 +1531,6 @@
       "cityKey": "sukhum"
     },
     {
-      "title": "\"АФИНА\" КВАРТИРА 2К",
-      "address": "Сухум, ул. Басария 48 (дом учителя), 3 этаж",
-      "lat": 43.004252498697895,
-      "lon": 41.01301052513043,
-      "url": "/kvartira/afina-kvartira-2k-1488/",
-      "cityKey": "sukhum"
-    },
-    {
       "title": "\"БИ ХЭППИ\" КОТТЕДЖ",
       "address": "Сухум, район Синоп, Кодорское шоссе, д. 665",
       "lat": 42.98262218360361,
@@ -1916,18 +1908,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 480,
-    "placemarks_unique": 240,
-    "pages_total": 492,
+    "placemarks_total": 482,
+    "placemarks_unique": 241,
+    "pages_total": 489,
     "pages_on_disk": 545,
-    "pages_excluded": 53,
-    "from_constructor": 257,
+    "pages_excluded": 56,
+    "from_constructor": 255,
     "from_page_coords": 0,
     "from_manual": 0,
-    "skipped_without_constructor": 235,
-    "skipped_without_coords": 235,
-    "shared_coordinate_groups": 30,
-    "deduped_redirect_points": 18,
-    "points_total": 239
+    "skipped_without_constructor": 234,
+    "skipped_without_coords": 234,
+    "shared_coordinate_groups": 29,
+    "deduped_redirect_points": 17,
+    "points_total": 238
   }
 }

@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-08T13:01:57.228707+00:00",
+  "generated_at": "2026-09-08T15:40:27.146808+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 238,
-  "listings_hotels": 186,
+  "listings_total": 239,
+  "listings_hotels": 187,
   "listings_kvartira": 52,
   "listings": [
     {
@@ -23881,7 +23881,6 @@
           {
             "label": "✔УСЛОВИЯ:",
             "lines": [
-              "Встреча и проводы на ж/д вокзале г. Сухум – бесплатно.",
               "Без животных.",
               "По бронированию и наличию номеров пишем в сообщения @abhazbooking_online",
               "(будьте внимательны ⚠️только этот контакт для брони)",
@@ -39027,7 +39026,11 @@
           },
           {
             "kind": "price",
-            "text": "6000₽ - сентябрь"
+            "text": "6000₽ - сентябрь до 17"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - сентябрь с 17"
           },
           {
             "kind": "price",
@@ -66855,6 +66858,245 @@
             "telegram_url": "https://t.me/abhazbooking/5251",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/duet-mokko-nomera-5242/video-01-poster.jpg"
           }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5270,
+      "source_topic_id": null,
+      "slug": "malbek-otel-5270",
+      "title": "\"МАЛЬБЕК\" отель",
+      "summary": "Гагра. 4 минуты до пляжа, размещение до 5 человек.",
+      "excerpt": "Небольшой отель с номерами различных категорий, расположенных на трех этажах",
+      "city": "Гагра",
+      "location_text": "Гагра, 3-й переулок улицы Генерала Дбар, 2А",
+      "distance_text": "4 минуты до пляжа",
+      "beach_text": "4 минуты до пляжа",
+      "capacity_text": "размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/malbek-otel-5270/",
+      "telegram_url": "https://t.me/abhazbooking/5270",
+      "published_at": "2026-09-08",
+      "has_video": false,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/malbek-otel-5270.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 4 минуты до пляжа, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Небольшой отель с номерами различных категорий, расположенных на трех этажах.",
+              "Шесть стандартных номеров без балкона на 1 этаже с двуспальной или двумя односпальными кроватями.",
+              "Четыре стандартных номера с балконом на 2 этаже с двуспальной или двумя односпальными кроватями.",
+              "Два семейных трёхместных номера с балконом с двуспальной и односпальной кроватями.",
+              "Один двухкомнатный четырёхместный номер люкс без балкона: в одной комнате двуспальная кровать, во второй — две раздельные кровати.",
+              "Доп место - раскладная кровать.",
+              "Сан узел в каждом номере.",
+              "Оснащение: кондиционер, телевизор, Wi-Fi, мини-холодильник, чайник, фен."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "За отелем обустроена тихая зона отдыха со скамейками, стульями, зонтиками и мангалом.",
+              "Общая кухня со всем необходимым: варочная поверхность, холодильник, чайник и необходимая посуда.",
+              "Рядом расположена парковка на 8 автомобилей.",
+              "Комната для стирки и глажки.",
+              "Есть генератор.",
+              "Можно заказать континентальный завтрак в соседнем здании за доп плату."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Живописный район старой Гагры. Здесь отроги Большого Кавказского хребта подходят к морю наиболее близко и создают уникальный микроклимат, защищая город от холодных ветров и удерживая теплый морской воздух. Субтропический климат Гагры характеризуется теплыми зимами, влажными и теплыми летними периодами.",
+              "В шаговой доступности различные рестораны, кафе, столовые, продуктовые магазины, аптека, остановка общественного транспорта, железнодорожная станция Гагрипш.",
+              "До галечного пляжа около 4 минут пешком.",
+              "Можно гулять по набережной среди эвкалиптов, кипарисов, пальм, магнолий, олеандров и других реликтовых деревьев.",
+              "Заброшенная дача Первого секретаря КП ГССР в шаговой доступности."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Сентябрь, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - стандарт без балкона (за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - стандарт с балконом (за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - трёхместный номер с балконом (за трехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - двухкомнатный четырёхместный номер люкс (за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место - 1000₽"
+          },
+          {
+            "kind": "price",
+            "text": "Я НА СВЯЗИ 📲"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/malbek-otel-5270/index.html",
+        "filters": {
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "economy"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "balcony",
+            "tv",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": []
+        }
+      },
+      "id": 1210,
+      "media": [
+        {
+          "id": 1210001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/malbek-otel-5270.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/malbek-otel-5270.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/malbek-otel-5270.jpg",
+          "details": {}
+        },
+        {
+          "id": 1210002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/malbek-otel-5270/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1210003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/malbek-otel-5270/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1210004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/malbek-otel-5270/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1210005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/malbek-otel-5270/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1210006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/malbek-otel-5270/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1210007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/malbek-otel-5270/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1210008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/malbek-otel-5270/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1210009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/malbek-otel-5270/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1210010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/malbek-otel-5270/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1210011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/malbek-otel-5270/photo-10.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-10.jpg",
+          "details": {}
         }
       ]
     }
