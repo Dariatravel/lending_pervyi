@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T15:38:38.534220+00:00",
+  "generated_at": "2026-09-08T19:04:45.912159+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -352,6 +352,14 @@
       "lat": 43.2717,
       "lon": 40.268627,
       "url": "/kvartira/magnoliya-kvartira-3k-gagra-1253/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "\"МАЛЬБЕК\" отель",
+      "address": "Гагра, 3-й переулок улицы Генерала Дбар, 2А",
+      "lat": 43.30453354784029,
+      "lon": 40.25666844907376,
+      "url": "/hotels/malbek-otel-5270/",
       "cityKey": "gagra"
     },
     {
@@ -1910,16 +1918,16 @@
   "stats": {
     "placemarks_total": 482,
     "placemarks_unique": 241,
-    "pages_total": 489,
-    "pages_on_disk": 545,
+    "pages_total": 490,
+    "pages_on_disk": 546,
     "pages_excluded": 56,
-    "from_constructor": 255,
+    "from_constructor": 256,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 234,
     "skipped_without_coords": 234,
     "shared_coordinate_groups": 29,
     "deduped_redirect_points": 17,
-    "points_total": 238
+    "points_total": 239
   }
 }
