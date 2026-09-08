@@ -17,7 +17,8 @@ on:
 jobs:
   certs:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # Худший случай: 7 доменов × 3 попытки × (25 с таймаут + 20 с пауза) ≈ 16 мин.
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
