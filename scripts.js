@@ -254,7 +254,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202609011651";
+  const ASSET_VERSION = "202609081601";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -2019,6 +2019,11 @@
     return rows[0] || null;
   }
 
+  /** Общая заставка сайта из оформления — не фотография конкретного объекта. */
+  function isBrandingCoverUrl(value) {
+    return /\/media\/branding\//.test(String(value || ""));
+  }
+
   function localCardFallback(row) {
     if (!row?.slug) return "";
     const folder = row.source_kind === "kvartira" ? "kvartira-cards" : "cards";
@@ -2188,11 +2193,18 @@
     }
     push(card?.public_url);
     push(image?.public_url);
-    push(row.cover_url);
+    /* Общая заставка сайта (branding/site-cover.jpg) — только на самый крайний
+       случай. У объекта без фотографий (в посте одно видео) собственная обложка
+       kvartira-cards/<slug>-cover.jpg обязана идти раньше: иначе в карточке
+       показывается чужой интерьер из оформления сайта. Найдено 02.09.2026 на
+       «НА ВЫСОТЕ» квартире 2к. */
+    const genericCover = isBrandingCoverUrl(row.cover_url);
+    if (!genericCover) push(row.cover_url);
     if (row.slug) {
       push(`https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/${row.slug}-cover.jpg`);
       push(`https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/${row.slug}.jpg`);
     }
+    if (genericCover) push(row.cover_url);
     return urls;
   }
 
@@ -2206,11 +2218,14 @@
     media.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
     const card = media.find((item) => item.media_role === "card" && normalizeMediaUrl(item.public_url));
     const image = media.find((item) => normalizeMediaUrl(item.public_url) && (item.mime_type || "").startsWith("image/"));
+    /* Как и у квартир: собственная карточка отеля важнее общей заставки сайта. */
+    const genericCover = isBrandingCoverUrl(row.cover_url);
     const raw =
       normalizeMediaUrl(card?.public_url) ||
       normalizeMediaUrl(image?.public_url) ||
-      normalizeMediaUrl(row.cover_url) ||
-      localCardFallback(row);
+      (genericCover ? "" : normalizeMediaUrl(row.cover_url)) ||
+      localCardFallback(row) ||
+      (genericCover ? normalizeMediaUrl(row.cover_url) : "");
     return raw || localCardFallback(row);
   }
 
