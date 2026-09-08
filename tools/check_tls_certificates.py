@@ -20,6 +20,7 @@ from __future__ import annotations
 import socket
 import ssl
 import sys
+import time
 from datetime import datetime, timezone
 
 DOMAINS = [
@@ -38,14 +39,22 @@ TIMEOUT = 25
 def check_domain(host: str) -> tuple[bool, str]:
     """(всё ли хорошо, строка отчёта)."""
     context = ssl.create_default_context()
-    try:
-        with socket.create_connection((host, 443), timeout=TIMEOUT) as raw:
-            with context.wrap_socket(raw, server_hostname=host) as tls:
-                cert = tls.getpeercert()
-    except ssl.SSLCertVerificationError as error:
-        return False, f"ТРЕВОГА  {host}: сертификат не проходит проверку — {error.verify_message or error}"
-    except (ssl.SSLError, OSError) as error:
-        return False, f"ТРЕВОГА  {host}: HTTPS-соединение не установилось — {error}"
+    cert = None
+    # Таймауты ретраим: CDN дозирует соединения с общих IP GitHub-раннеров,
+    # и 08.09.2026 один «невезучий» раннер получил timeout на всех 7 доменах
+    # разом — Дарье ушла ложная тревога. Ошибка сертификата ретраев не ждёт.
+    for attempt in range(3):
+        try:
+            with socket.create_connection((host, 443), timeout=TIMEOUT) as raw:
+                with context.wrap_socket(raw, server_hostname=host) as tls:
+                    cert = tls.getpeercert()
+            break
+        except ssl.SSLCertVerificationError as error:
+            return False, f"ТРЕВОГА  {host}: сертификат не проходит проверку — {error.verify_message or error}"
+        except (ssl.SSLError, OSError) as error:
+            if attempt == 2:
+                return False, f"СЕТЬ     {host}: HTTPS-соединение не установилось — {error}"
+            time.sleep(20)
 
     not_after = cert.get("notAfter") if cert else None
     if not not_after:
@@ -61,14 +70,22 @@ def check_domain(host: str) -> tuple[bool, str]:
 
 def main() -> int:
     print(f"Проверка TLS-сертификатов — {datetime.now(timezone.utc):%d.%m.%Y %H:%M} UTC\n")
-    failures = 0
+    alerts = network = 0
     for host in DOMAINS:
         ok, line = check_domain(host)
         print(line)
         if not ok:
-            failures += 1
-    print(f"\nИтог: доменов {len(DOMAINS)}, тревог {failures}")
-    return 1 if failures else 0
+            if line.startswith("СЕТЬ"):
+                network += 1
+            else:
+                alerts += 1
+    print(f"\nИтог: доменов {len(DOMAINS)}, тревог {alerts}, сетевых сбоев {network}")
+    if network and not alerts:
+        # Соединение не установилось даже с ретраями, но ни одной ошибки
+        # СЕРТИФИКАТА нет. Это сеть раннера/лимиты CDN, не наша поломка:
+        # даунтайм сайта ловят post-deploy-smoke и site-availability.
+        print("Сертификатных проблем нет — сетевые сбои раннера тревогой не считаем.")
+    return 1 if alerts else 0
 
 
 if __name__ == "__main__":
