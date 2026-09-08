@@ -32,6 +32,10 @@ on:
         description: "Для media-шагов: имя сертификата вместо abhazbereg-media-cdn (перевыпуск под новым именем)"
         required: false
         default: ""
+      prune_keys:
+        description: "Для short-links-prune: удалённые короткие ссылки через запятую (чистка бакета сайта)"
+        required: false
+        default: ""
 
 env:
   ENDPOINT: https://storage.yandexcloud.net
@@ -435,6 +439,15 @@ jobs:
       - name: redirect-create-ru — будочка с точечными переездами
         if: inputs.action == 'redirect-create-ru'
         run: pip install --quiet boto3 && python3 tools/build_ru_redirector.py
+
+      # Заливка только добавляет файлы: удалённая короткая ссылка остаётся
+      # в бакетах навсегда. Этот шаг чистит редиректор автоматически, а из
+      # бакета сайта удаляет ключи, перечисленные в inputs.prune_keys.
+      - name: short-links-prune — убрать осиротевшие короткие ссылки
+        if: inputs.action == 'short-links-prune'
+        env:
+          PRUNE_KEYS: ${{ inputs.prune_keys }}
+        run: pip install --quiet boto3 && python3 tools/prune_short_links.py
 
       - name: cert-request-ru — сертификат для abhazbereg.ru
         if: inputs.action == 'cert-request-ru'
