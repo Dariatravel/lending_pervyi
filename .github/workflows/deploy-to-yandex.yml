@@ -25,7 +25,10 @@ on:
   # оставались бы только на GitHub Pages и не доезжали до бакета — так
   # 11 августа новый объект сутки отдавал 404 с основного домена.
   workflow_run:
-    workflows: ["Watch Telegram", "Blog Sync"]
+    # Daily price refresh добавлен 08.09.2026: его пуш тоже идёт из-под
+    # GITHUB_TOKEN, и без этого триггера свежие «Цены от …» доезжали до
+    # бакета только со следующим ежечасным автосинком.
+    workflows: ["Watch Telegram", "Blog Sync", "Daily price refresh"]
     types: [completed]
     branches: [main]
   workflow_dispatch:
