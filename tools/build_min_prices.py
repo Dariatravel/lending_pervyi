@@ -39,11 +39,22 @@ PRICE_WITH_CURRENCY = re.compile(r"(\d[\d\s ]{2,6})\s*(?:₽|руб|р\.|/\s*с
 PRICE_LEADING = re.compile(r"^\s*(\d{3,6})\s*[-—–]")
 
 # Строки, которые не являются ценой размещения за ночь.
+# «доплат»/«доп плата» и «за завтрак/питание» добавлены 08.09.2026: у «Джанната»
+# строка «доп плата за завтрак с каждого гостя - 1000₽» наследовала контекст
+# «Акция в сентябре» и давала «Цену от 1 000 ₽». Слово «завтрак» само по себе
+# НЕ стоп: «8500₽ — сентябрь (с завтраком)» — законная цена размещения.
 STOP_WORDS = re.compile(
-    r"доп\.?\s*место|доп\.?\s*чел|дополнительн|трансфер|депозит|залог|скидк|"
-    r"кэшбек|кешбэк|экскурс|за\s+весь|за\s+месяц|предоплат",
+    r"доп\.?\s*место|доп\.?\s*чел|доп\.?\s*плат|доплат|дополнительн|"
+    r"за\s+завтрак|за\s+питание|за\s+обед|за\s+ужин|трансфер|депозит|залог|скидк|"
+    r"кэшбек|кешбэк|экскурс|за\s+весь|за\s+месяц|предоплат|\bдет(?:и|ям|ск)",
     re.I,
 )
+
+
+def has_money(text: str) -> bool:
+    """В строке есть денежное значение (даже отсеянное порогами MIN/MAX)."""
+    cleaned = text.replace(" ", " ")
+    return bool(PRICE_WITH_CURRENCY.search(cleaned) or PRICE_LEADING.search(cleaned))
 YEARS = {2024, 2025, 2026, 2027}
 MIN_PRICE, MAX_PRICE = 800, 150000
 
@@ -162,10 +173,17 @@ def monthly_min_prices(price_rows: list, today: date | None = None) -> dict[int,
         line_months = months_in(text)
         price = extract_price(text)
         if price is None:
-            # Любая строка-заголовок устанавливает или сбрасывает блокировку.
-            blocked_context = bool(STOP_WORDS.search(text))
-            if line_months and not blocked_context:
-                context_months = line_months  # «Июнь до 15 числа», «Апрель (без питания)»
+            if STOP_WORDS.search(text):
+                blocked_context = True
+            elif not has_money(text):
+                # Настоящий заголовок (без денег) снимает блокировку.
+                # Строка С ценой вне порогов («Дети — 700 ₽» под «Доп места:»)
+                # заголовком не считается и блокировку НЕ сбрасывает — иначе
+                # следующая строка доп.мест уезжала в «Цену от …» (кейс
+                # «Морской лагуны»: 1450 ₽ за взрослое доп.место).
+                blocked_context = False
+                if line_months:
+                    context_months = line_months  # «Июнь до 15 числа», «Апрель (без питания)»
             continue
         if blocked_context:
             continue
