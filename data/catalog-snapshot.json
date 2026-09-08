@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07T18:45:47.000955+00:00",
+  "generated_at": "2026-09-08T10:13:24.100604+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 239,
@@ -22429,12 +22429,12 @@
       "source_topic_id": null,
       "slug": "abaza-otel-3614",
       "title": "\"АБАЗА\" отель",
-      "summary": "Лдзаа. 12 минут до пляжа, сосновый, галечный, размещение 2–4 человека.",
+      "summary": "Лдзаа. 4 минуты до пляжа, сосновый, галечный, размещение 2–4 человека.",
       "excerpt": "Тихий небольшой отель в отдалении от шумных туристических улиц - 3 этажа, 12 номеров",
       "city": "Лдзаа",
       "location_text": "Лдзаа, ул. Аиааира, 31",
-      "distance_text": "12 минут до пляжа, сосновый, галечный",
-      "beach_text": "12 минут до пляжа, сосновый, галечный",
+      "distance_text": "4 минуты до пляжа, сосновый, галечный",
+      "beach_text": "4 минуты до пляжа, сосновый, галечный",
       "capacity_text": "размещение 2–4 человека",
       "page_url": "https://абхазберег.рф/hotels/abaza-otel-3614/",
       "telegram_url": "https://t.me/abhazbooking/3614",
@@ -22443,7 +22443,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/abaza-otel-3614.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. 12 минут до пляжа, сосновый, галечный, размещение 2–4 человека.",
+        "lead": "Лдзаа. 4 минуты до пляжа, сосновый, галечный, размещение 2–4 человека.",
         "sections": [
           {
             "label": "✔️НОМЕРА:",
@@ -22517,7 +22517,7 @@
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/abaza-otel-3614/index.html",
         "filters": {
           "distance": [
-            "over-10"
+            "up-to-5"
           ],
           "food": [
             "no-food"
@@ -53614,10 +53614,6 @@
           },
           {
             "kind": "price",
-            "text": "3500₽ - октябрь"
-          },
-          {
-            "kind": "price",
             "text": "2⃣Семья-мини, без балкона"
           },
           {
@@ -53647,10 +53643,6 @@
           {
             "kind": "price",
             "text": "5500₽ - сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - октябрь"
           },
           {
             "kind": "price",
@@ -53686,10 +53678,6 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - октябрь"
-          },
-          {
-            "kind": "price",
             "text": "4⃣Семейный четырехместный с балконом и видом на море"
           },
           {
@@ -53719,10 +53707,6 @@
           {
             "kind": "price",
             "text": "7000₽ - сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ - октябрь"
           },
           {
             "kind": "note",
