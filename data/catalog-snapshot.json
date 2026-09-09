@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-09T10:13:38.035023+00:00",
+  "generated_at": "2026-09-09T15:08:48.835085+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 239,
-  "listings_hotels": 187,
+  "listings_total": 240,
+  "listings_hotels": 188,
   "listings_kvartira": 52,
   "listings": [
     {
@@ -22941,6 +22941,7 @@
               "два на первом этаже. Размещение до 3 человек.",
               "один на втором. Размещение до 4 человек.",
               "В номерах: новая мебель, удобные матрасы, качественный текстиль, халаты, тапочки. У каждого номера зона отдыха перед входом с мебелью.",
+              "На первом этаже в номерах комфорт есть теплые полы.",
               "Кондиционер, Wi-Fi и ТВ – в каждом номере. В санузле: тропический душ, жидкое мыло, фен.",
               "Стандарт",
               "Номера с 1 по 3 этажи. Размещение до 4 человек.",
@@ -39822,12 +39823,12 @@
       "source_topic_id": null,
       "slug": "abyrlash-otel-na-plyazhe-3239",
       "title": "\"АБЫРЛАШ\" отель на пляже",
-      "summary": "Лдзаа. ️ 0 минут до пляжа, размещение до 6 человек.",
+      "summary": "Лдзаа. 0 минут до пляжа, размещение до 6 человек.",
       "excerpt": "Отель расположен прямо на пляже. В этом же здании есть кафе и магазин с продуктами и хозтоварами",
       "city": "Лдзаа",
       "location_text": "Лдзаа, ул. Рыбзаводская, 81",
-      "distance_text": "️ 0 минут до пляжа",
-      "beach_text": "️ 0 минут до пляжа",
+      "distance_text": "0 минут до пляжа",
+      "beach_text": "0 минут до пляжа",
       "capacity_text": "размещение до 6 человек",
       "page_url": "https://абхазберег.рф/hotels/abyrlash-otel-na-plyazhe-3239/",
       "telegram_url": "https://t.me/abhazbooking/3239",
@@ -39836,7 +39837,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/abyrlash-otel-na-plyazhe-3239.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. ️ 0 минут до пляжа, размещение до 6 человек.",
+        "lead": "Лдзаа. 0 минут до пляжа, размещение до 6 человек.",
         "sections": [
           {
             "label": "✔️ТЕРРИТОРИЯ:",
@@ -39872,27 +39873,31 @@
           },
           {
             "kind": "price",
-            "text": "3500₽/сутки - март, апрель"
+            "text": "3500₽ - март, апрель"
           },
           {
             "kind": "price",
-            "text": "5000₽/сутки - май"
+            "text": "5000₽ - май"
           },
           {
             "kind": "price",
-            "text": "6000₽/сутки - июнь до 15го"
+            "text": "6000₽ - июнь до 15го"
           },
           {
             "kind": "price",
-            "text": "8000₽/сутки - июнь с 15го"
+            "text": "8000₽ - июнь с 15го"
           },
           {
             "kind": "price",
-            "text": "10000₽/сутки - июль, август"
+            "text": "10000₽ - июль, август"
           },
           {
             "kind": "price",
-            "text": "9000₽/сутки - сентябрь"
+            "text": "9000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - октябрь, ноябрь"
           },
           {
             "kind": "heading",
@@ -39900,19 +39905,23 @@
           },
           {
             "kind": "price",
-            "text": "2500₽/сутки - март, апрель"
+            "text": "2500₽ - март, апрель"
           },
           {
             "kind": "price",
-            "text": "3000₽/сутки - май"
+            "text": "3000₽ - май"
           },
           {
             "kind": "price",
-            "text": "4500₽/сутки - июнь"
+            "text": "4500₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "6000₽/сутки - июль, август, сентябрь"
+            "text": "6000₽ - июль, август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - октябрь, ноябрь"
           },
           {
             "kind": "price",
@@ -40078,7 +40087,7 @@
           "details": {
             "telegram_post": "abhazbooking/3248",
             "telegram_url": "https://t.me/abhazbooking/3248",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/abyrlash-otel-na-plyazhe-3239/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/abyrlash-otel-na-plyazhe-3239/video-01-poster.jpg"
           }
         }
       ]
@@ -44461,7 +44470,7 @@
           },
           {
             "kind": "price",
-            "text": "9000₽ - сентябрь"
+            "text": "8000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -54953,7 +54962,8 @@
               "Пять этажей комплекса. Лобби-ресепшн. Парковка.",
               "Услуги прачечной. Свои шезлонги на пляже.",
               "Площадка под маркизой со столами и стульчиками.",
-              "Есть кафе рядом и точки на пешеходной улице поселка."
+              "Есть кафе рядом и точки на пешеходной улице поселка.",
+              "Можно заказать завтрак по системе шведский стол в соседнем отеле за доп плату."
             ]
           },
           {
@@ -54981,15 +54991,19 @@
           },
           {
             "kind": "price",
-            "text": "5500₽ - сентябрь"
+            "text": "5500₽ - сентябрь до 15го"
           },
           {
             "kind": "price",
-            "text": "4500₽ - с 1 по 15 октября"
+            "text": "4675₽ - сентябрь с 16го"
           },
           {
             "kind": "price",
-            "text": "2800₽ - с 16 по 31 октября"
+            "text": "3600₽ - с 1 по 15 октября"
+          },
+          {
+            "kind": "price",
+            "text": "2240₽ - с 16 по 31 октября"
           },
           {
             "kind": "price",
@@ -55001,15 +55015,19 @@
           },
           {
             "kind": "price",
-            "text": "6300₽ - сентябрь"
+            "text": "6300₽ - сентябрь до 15го"
           },
           {
             "kind": "price",
-            "text": "5500₽ - с 1 по 15 октября"
+            "text": "5355₽ - сентябрь с 16го"
           },
           {
             "kind": "price",
-            "text": "3000₽ - с 16 по 31 октября"
+            "text": "4400₽ - с 1 по 15 октября"
+          },
+          {
+            "kind": "price",
+            "text": "2400₽ - с 16 по 31 октября"
           },
           {
             "kind": "price",
@@ -55021,15 +55039,19 @@
           },
           {
             "kind": "price",
-            "text": "6000₽ - сентябрь"
+            "text": "6000₽ - сентябрь до 15го"
           },
           {
             "kind": "price",
-            "text": "5000₽ - с 1 по 15 октября"
+            "text": "5100₽ - сентябрь с 16го"
           },
           {
             "kind": "price",
-            "text": "2800₽ - с 16 по 31 октября"
+            "text": "4000₽ - с 1 по 15 октября"
+          },
+          {
+            "kind": "price",
+            "text": "2240₽ - с 16 по 31 октября"
           },
           {
             "kind": "price",
@@ -55041,15 +55063,19 @@
           },
           {
             "kind": "price",
-            "text": "9000₽ - сентябрь"
+            "text": "9000₽ - сентябрь до 15го"
           },
           {
             "kind": "price",
-            "text": "7000₽ - с 1 по 15 октября"
+            "text": "7650₽ - сентябрь с 16го"
           },
           {
             "kind": "price",
-            "text": "4000₽ - с 16 по 31 октября"
+            "text": "5600₽ - с 1 по 15 октября"
+          },
+          {
+            "kind": "price",
+            "text": "3200₽ - с 16 по 31 октября"
           },
           {
             "kind": "price",
@@ -55061,15 +55087,19 @@
           },
           {
             "kind": "price",
-            "text": "8000₽ - сентябрь"
+            "text": "8000₽ - сентябрь до 15го"
           },
           {
             "kind": "price",
-            "text": "6500₽ - с 1 по 15 октября"
+            "text": "6800₽ - сентябрь с 16го"
           },
           {
             "kind": "price",
-            "text": "3500₽ - с 16 по 31 октября"
+            "text": "5200₽ - с 1 по 15 октября"
+          },
+          {
+            "kind": "price",
+            "text": "2800₽ - с 16 по 31 октября"
           },
           {
             "kind": "price",
@@ -55082,6 +55112,22 @@
           {
             "kind": "price",
             "text": "Ребёнок до 5 лет может размещаться бесплатно в номере выбранной категории, без предоставления доп. места, есть детские кроватки."
+          },
+          {
+            "kind": "price",
+            "text": "Завтрак по системе шведский стол в соседнем здании:"
+          },
+          {
+            "kind": "price",
+            "text": "700₽ - от 12 лет"
+          },
+          {
+            "kind": "price",
+            "text": "500₽ - от 3х до 12 лет"
+          },
+          {
+            "kind": "price",
+            "text": "200₽ - до 3х лет"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/bereg-svyatoy-sofii-otel-4279/index.html",
@@ -67061,6 +67107,245 @@
           "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/malbek-otel-5270/photo-10.jpg",
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/malbek-otel-5270/photo-10.jpg",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5281,
+      "source_topic_id": null,
+      "slug": "novyy-god-v-gostevom-komplekse-fazenda-5281",
+      "title": "НОВЫЙ ГОД В ГОСТЕВОМ КОМПЛЕКСЕ «ФАЗЕНДА»",
+      "summary": "Пицунда. 7 минут до пляжа, размещение до 8 человек.",
+      "excerpt": "📅 Новогоднее предложение действует с 29.12.2026 по 15.01.2027",
+      "city": "Пицунда",
+      "location_text": "Пицунда, ул. Фабричная, 13/1",
+      "distance_text": "7 минут до пляжа",
+      "beach_text": "7 минут до пляжа",
+      "capacity_text": "Размещение до 8 человек",
+      "page_url": "https://абхазберег.рф/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/",
+      "telegram_url": "https://t.me/abhazbooking/5281",
+      "published_at": "2026-09-09",
+      "has_video": false,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-gostevom-komplekse-fazenda-5281.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Пицунда. 7 минут до пляжа, размещение до 8 человек.",
+        "sections": [
+          {
+            "label": "",
+            "lines": [
+              "📅 Новогоднее предложение действует с 29.12.2026 по 15.01.2027",
+              "Встречайте Новый год в уютном комплексе с подогреваемым бассейном, сауной и видом на горы!"
+            ]
+          },
+          {
+            "label": "✔️РАЗМЕЩЕНИЕ:",
+            "lines": [
+              "Четырёхместный номер:",
+              "Двуспальная и две односпальные кровати или две двуспальные кровати. Сан узел с душем.",
+              "Двухкомнатные апартаменты с собственной кухней и отдельной спальней. Два санузла, кухня-гостиная с раскладным диваном, двуспальная и односпальная кровати, теплые полы, стиральная машинка, кондиционеры в каждой комнате. Первый этаж, размещение до 5 человек. Сан узел с душем.",
+              "Во всех номерах есть телевизор, кондиционер, мини-холодильник, чайник, wi-fi.",
+              "Двухэтажный шестиместный коттедж:",
+              "спальня с двумя односпальными кроватями и кресло-кровать на 1 этаже, санузел, кухня-гостиная, стиральная машинка. Теплые полы на первом этаже. Спальня на втором этаже: двуспальная кровать и кресло-кровать. Балкон с видом на горы и бассейн.",
+              "Двухэтажный восьмиместный коттедж:",
+              "на первом этаже кухня-гостиная с обеденной зоной и раскладным диваном, спальня: двуспальная кровать, собственный санузел, стол письменный, тв, шкаф платяной, хоз. зона со стиральной машинкой и гладильными принадлежностями. Теплые полы везде.",
+              "На втором этаже большая комната с двумя двуспальными кроватями, с санузлом и выходом на террасу с видом на горы и бассейн. Размещение до 8 человек."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Включено: подогреваемый бассейн, сауна с лаундж-зоной, две мангальные зоны, детская площадка.",
+              "Есть парковка.",
+              "На благоустроенной территории растут пальмы, кустарники и плодовые деревья. Для отдыха предусмотрены уютная веранда и зоны со столами и стульями."
+            ]
+          },
+          {
+            "label": "✔️РАСПОЛОЖЕНИЕ:",
+            "lines": [
+              "В 7 минутах неспешным шагом широкий ухоженный пляж со всей инфраструктурой.",
+              "В радиусе 150-300 м расположены продуктовые магазины, столовые, апацхи, медовая лавка, а также остановка общественного транспорта и аптека.",
+              "В центр города можно добраться за 7-8 минут маршруткой, на авто."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "С 29 декабря по 5 января минимальный срок проживания - 6 суток.",
+              "После 5 января минимальный срок проживания - 3 суток.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я НА СВЯЗИ 📲",
+              "в MAX: max.ru/id741113115256_bot",
+              "ВК-чат: vk.cc/cQQnBn",
+              "WhatsApp +7940-900-33-40",
+              "(только сообщение, звонок не пройдёт)"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "С 29 декабря 2026 года по 15 января 2027 года:"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - четырёхместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - двухкомнатные апартаменты"
+          },
+          {
+            "kind": "price",
+            "text": "11000₽ - шестиместный коттедж"
+          },
+          {
+            "kind": "price",
+            "text": "15000₽ - восьмиместный коттедж:"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место - 1300₽"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 5 лет (без доп места) размещение бесплатно."
+          },
+          {
+            "kind": "price",
+            "text": "Возвратный депозит - 5000₽"
+          },
+          {
+            "kind": "price",
+            "text": "Дополнительно можно заказать алкогольные и безалкогольные напитки, десерты, кальян от 1100₽, экскурсии и трансфер."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1211,
+      "media": [
+        {
+          "id": 1211001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-gostevom-komplekse-fazenda-5281.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/novyy-god-v-gostevom-komplekse-fazenda-5281.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-gostevom-komplekse-fazenda-5281.jpg",
+          "details": {}
+        },
+        {
+          "id": 1211002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1211003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1211004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1211005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1211006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1211007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1211008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1211009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1211010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-09.jpg",
           "details": {}
         }
       ]
