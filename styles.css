@@ -2370,6 +2370,8 @@ a.podborki-card--link:hover {
 .podborki-index__link--sand-ldzaa { --poster-icon: "◒"; --poster-a: #807743; --poster-b: #dfbb65; --poster-c: #f1d78a; }
 .podborki-index__link--premium { --poster-icon: "★"; --poster-a: #1d332d; --poster-b: #b6904c; --poster-c: #f3d078; }
 .podborki-index__link--guests { --poster-icon: "5+"; --poster-a: #5f6c43; --poster-b: #d68f5d; --poster-c: #eecb7e; }
+/* Сезонная плитка «Новый год 2027»: хвоя + тёплый огонёк + золото. */
+.podborki-index__link--new-year { --poster-icon: "❄"; --poster-a: #17403a; --poster-b: #c4514a; --poster-c: #f2dc9a; }
 
 @media (max-width: 980px) {
   .podborki-index-list {

@@ -48,6 +48,13 @@ MANUAL_SELECTION_SLUGS: dict[str, list[str]] = {
 }
 MOUNTAIN_OTHER_SLUGS = set(MANUAL_SELECTION_SLUGS["gory-oteli-v-gorah"])
 
+# Подборка «НОВЫЙ ГОД 2027». Новогодние посты канала приходят отдельными
+# объектами с названием вида «НОВЫЙ ГОД В ГОСТЕВОМ КОМПЛЕКСЕ «ФАЗЕНДА»»,
+# поэтому подборка наполняется автоматически по названию. Объект с другим
+# названием (без слов ниже) добавляется вручную — слаг в NEW_YEAR_EXTRA_SLUGS.
+NEW_YEAR_TITLE_MARKERS = ("НОВЫЙ ГОД", "НОВОГОДН", "НГ 2027")
+NEW_YEAR_EXTRA_SLUGS: set[str] = set()
+
 
 @dataclass(frozen=True)
 class Card:
@@ -252,8 +259,20 @@ def any_of(*predicates: Callable[[Card], bool]) -> Callable[[Card], bool]:
     return lambda card: any(predicate(card) for predicate in predicates)
 
 
+def is_new_year_card(card: Card) -> bool:
+    """Новогоднее предложение: пост «НОВЫЙ ГОД В ...» становится отдельным
+    объектом каталога, поэтому подборка собирается по названию сама — новые
+    посты попадают в неё без правки кода (просьба Дарьи 09.09.2026).
+    Если пост назван иначе, слаг объекта дописывается в NEW_YEAR_EXTRA_SLUGS."""
+    if href_slug(card.href) in NEW_YEAR_EXTRA_SLUGS:
+        return True
+    title = card.title.upper().replace("Ё", "Е")
+    return any(marker in title for marker in NEW_YEAR_TITLE_MARKERS)
+
+
 def selections() -> list[Selection]:
     return [
+        Selection("novyy-god-2027", "НОВЫЙ ГОД 2027 - варианты размещения", is_new_year_card),
         Selection("doma-pod-klyuch-vse-varianty", "ДОМА ПОД КЛЮЧ", has("stay", "turnkey-house")),
         Selection("gagra-vse-varianty", "ГАГРА - варианты размещения", has("city", "gagra"), False),
         Selection("gudauta-vse-varianty", "ГУДАУТА - варианты размещения", has("city", "gudauta"), False),
@@ -465,6 +484,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
 
 
 PODBORKI_INDEX_VISUALS: dict[str, tuple[str, str]] = {
+    "novyy-god-2027": ("new-year", "Новый год"),
     "doma-pod-klyuch-vse-varianty": ("homes", "дом"),
     "gagra-vse-varianty": ("gagra", "Гагра"),
     "gudauta-vse-varianty": ("gudauta", "Гудаута"),
@@ -539,6 +559,8 @@ def render_index_link(slug: str, title: str, cover_image: str = "", cover_alt: s
 # Порядок подборок на странице /podborki/ — задан Дарьей 27.08.2026.
 # Не перечисленные здесь идут после, по алфавиту названий.
 PODBORKI_DISPLAY_ORDER = [
+    # Сезонная подборка идёт первой, пока актуальна (просьба Дарьи 09.09.2026).
+    "novyy-god-2027",
     "sosnovyy-plyazh",
     "peschanyy-ldzaa",
     "basseyn-vse-varianty",
