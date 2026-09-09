@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T19:04:45.912159+00:00",
+  "generated_at": "2026-09-09T19:05:18.143496+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1515,6 +1515,14 @@
       "cityKey": "pitsunda"
     },
     {
+      "title": "НОВЫЙ ГОД В ГОСТЕВОМ КОМПЛЕКСЕ «ФАЗЕНДА»",
+      "address": "Пицунда, ул. Фабричная, 13/1",
+      "lat": 43.182316,
+      "lon": 40.290186,
+      "url": "/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/",
+      "cityKey": "pitsunda"
+    },
+    {
       "title": "\"АКИРА\" 2К КВАРТИРА",
       "address": "Сухум, ул. Акиртава, 7, 6 этаж",
       "lat": 43.00042062454251,
@@ -1918,16 +1926,16 @@
   "stats": {
     "placemarks_total": 482,
     "placemarks_unique": 241,
-    "pages_total": 490,
-    "pages_on_disk": 546,
+    "pages_total": 491,
+    "pages_on_disk": 547,
     "pages_excluded": 56,
-    "from_constructor": 256,
+    "from_constructor": 257,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 234,
     "skipped_without_coords": 234,
     "shared_coordinate_groups": 29,
     "deduped_redirect_points": 17,
-    "points_total": 239
+    "points_total": 240
   }
 }
