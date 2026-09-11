@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T11:59:14.869922+00:00",
+  "generated_at": "2026-09-11T17:04:26.443403+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 240,
@@ -26412,11 +26412,11 @@
         "prices": [
           {
             "kind": "price",
-            "text": "7500₽ - август, сентябрь до 20го"
+            "text": "7500₽ - август, сентябрь до 10го"
           },
           {
             "kind": "price",
-            "text": "6500₽ - сентябрь с 20го"
+            "text": "6000₽ - сентябрь с 11го"
           },
           {
             "kind": "price",
@@ -29748,12 +29748,12 @@
       "source_topic_id": null,
       "slug": "tis-kottedzhi-u-zapovednika-3372",
       "title": "\"ТИС\" коттеджи у заповедника",
-      "summary": "Лдзаа. ️ сосновый пляж в минуте, размещение до 6 человек.",
+      "summary": "Лдзаа. сосновый пляж в минуте, размещение до 6 человек.",
       "excerpt": "Территория комплекса скрыта от посторонних глаз и проходящих мимо людей. Уютный и просторный зеленый двор. Мангальная зона. Скамейки и качели",
       "city": "Лдзаа",
       "location_text": "Лдзаа, ул. Политрука Нозадзе, 30а",
-      "distance_text": "️ сосновый пляж в минуте",
-      "beach_text": "️ сосновый пляж в минуте",
+      "distance_text": "сосновый пляж в минуте",
+      "beach_text": "сосновый пляж в минуте",
       "capacity_text": "размещение до 6 человек",
       "page_url": "https://абхазберег.рф/hotels/tis-kottedzhi-u-zapovednika-3372/",
       "telegram_url": "https://t.me/abhazbooking/3372",
@@ -29762,7 +29762,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tis-kottedzhi-u-zapovednika-3372.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. ️ сосновый пляж в минуте, размещение до 6 человек.",
+        "lead": "Лдзаа. сосновый пляж в минуте, размещение до 6 человек.",
         "sections": [
           {
             "label": "✔️ТЕРРИТОРИЯ:",
@@ -29817,7 +29817,7 @@
           },
           {
             "kind": "price",
-            "text": "6000₽/сутки - октябрь"
+            "text": "6000₽/сутки - октябрь, ноябрь, декабрь"
           },
           {
             "kind": "price",
@@ -29968,7 +29968,7 @@
           "details": {
             "telegram_post": "abhazbooking/3380",
             "telegram_url": "https://t.me/abhazbooking/3380",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/tis-kottedzhi-u-zapovednika-3372/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/tis-kottedzhi-u-zapovednika-3372/video-01-poster.jpg"
           }
         }
       ]
@@ -63305,11 +63305,11 @@
           },
           {
             "kind": "price",
-            "text": "6700₽ - август, сентябрь до 20го"
+            "text": "6700₽ - август, сентябрь до 10го"
           },
           {
             "kind": "price",
-            "text": "6000₽ - сентябрь с 20го"
+            "text": "5000₽ - сентябрь с 11го"
           },
           {
             "kind": "price",
