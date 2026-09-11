@@ -1,10 +1,13 @@
 {
-  "rayskiy-bereg-mini-otel-3277": {
-    "url": "https://b2brec360.ru/3d/rayberegtour/",
-    "title": "Виртуальный 3D-тур"
-  },
-  "sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390": {
-    "url": "https://b2brec360.ru/3d/sirius/",
-    "title": "Виртуальный 3D-тур"
+  "_comment": "Туры отключены 11.09.2026 по решению Дарьи: страница тура на b2brec360.ru показывает карточку организации с телефоном и сайтом отеля (гость уходит мимо нас), а в заголовке — реклама подрядчика туров. Содержимое чужой страницы во фрейме скрыть нельзя. Чтобы вернуть тур — перенести запись из _disabled на верхний уровень и пересобрать страницу объекта.",
+  "_disabled": {
+    "rayskiy-bereg-mini-otel-3277": {
+      "url": "https://b2brec360.ru/3d/rayberegtour/",
+      "title": "Виртуальный 3D-тур"
+    },
+    "sirius-otel-u-sosnovogo-plyazha-otkrytye-basseyna-s-1-iyulya-3390": {
+      "url": "https://b2brec360.ru/3d/sirius/",
+      "title": "Виртуальный 3D-тур"
+    }
   }
 }
