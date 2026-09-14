@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T14:31:14.526879+00:00",
+  "generated_at": "2026-09-14T11:12:56.190171+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 240,
@@ -1344,6 +1344,18 @@
           {
             "kind": "price",
             "text": "4000₽ - с 16 сентября, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "РАННЕЕ БРОНИРОВАНИЕ 2027:"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - июнь до 15го"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - июнь с 15, июль, август"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/oliva-domiki-4671/index.html",
@@ -1497,7 +1509,7 @@
           "details": {
             "telegram_post": "abhazbooking/4680",
             "telegram_url": "https://t.me/abhazbooking/4680",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/oliva-domiki-4671/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/oliva-domiki-4671/video-01-poster.jpg"
           }
         }
       ]
@@ -27503,23 +27515,27 @@
           },
           {
             "kind": "price",
-            "text": "7000 ₽/сутки - май"
+            "text": "7000 ₽ - май"
           },
           {
             "kind": "price",
-            "text": "8000₽/сутки - июнь"
+            "text": "8000₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "11000₽/сутки - июль"
+            "text": "11000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "12000₽/сутки - август"
+            "text": "12000₽ - август"
           },
           {
             "kind": "price",
-            "text": "9000₽/сутки - сентябрь"
+            "text": "9000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - октябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/akvamarin-dom-pod-klyuch-ldzaa-1313/index.html",
@@ -27663,7 +27679,7 @@
           "details": {
             "telegram_post": "abhkvartira/1313",
             "telegram_url": "https://t.me/abhkvartira/1313",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/akvamarin-dom-pod-klyuch-ldzaa-1313/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/akvamarin-dom-pod-klyuch-ldzaa-1313/video-01-poster.jpg"
           }
         }
       ]
@@ -36715,12 +36731,12 @@
       "source_topic_id": 696,
       "slug": "viktoriya-kvartira-2k-pitsunda-951",
       "title": "\"ВИКТОРИЯ\" квартира 2к",
-      "summary": "Пицунда. ️ 15 минут до пляжа, размещение до 4 человек.",
+      "summary": "Пицунда. 15 минут до пляжа, размещение до 4 человек.",
       "excerpt": "Квартира двухкомнатная, отдельная спальня с двуспальной кроватью, гостиная с мягким раскладывающимся диваном. Телевизор, столики. Кондиционер в спальне (хватает охлаждения на квартиру)",
       "city": "Пицунда",
       "location_text": "Пицунда, Агрба 19/1, 5 этаж",
-      "distance_text": "️ 15 минут до пляжа",
-      "beach_text": "️ 15 минут до пляжа",
+      "distance_text": "15 минут до пляжа",
+      "beach_text": "15 минут до пляжа",
       "capacity_text": "Размещение до 4 человек",
       "page_url": "https://абхазберег.рф/kvartira/viktoriya-kvartira-2k-pitsunda-951/",
       "telegram_url": "https://t.me/abhkvartira/941",
@@ -36729,7 +36745,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/viktoriya-kvartira-2k-pitsunda-951-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Пицунда. ️ 15 минут до пляжа, размещение до 4 человек.",
+        "lead": "Пицунда. 15 минут до пляжа, размещение до 4 человек.",
         "sections": [
           {
             "label": "✔️В КВАРТИРЕ:",
@@ -36760,12 +36776,16 @@
         ],
         "prices": [
           {
-            "kind": "price",
-            "text": "3500/сутки - июнь"
+            "kind": "note",
+            "text": "(Раннее бронирование 2027)"
           },
           {
             "kind": "price",
-            "text": "5000/сутки - июль, август, сентябрь"
+            "text": "4000₽/сутки - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽/сутки - июль, август, сентябрь"
           },
           {
             "kind": "price",
