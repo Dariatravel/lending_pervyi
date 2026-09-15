@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T15:24:16.976018+00:00",
+  "generated_at": "2026-09-15T19:19:33.336863+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 240,
@@ -26031,7 +26031,11 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - сентябрь с 15го"
+            "text": "3500₽ - сентябрь с 15го"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - октябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/limari-domiki-3496/index.html",
