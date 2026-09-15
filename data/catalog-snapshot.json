@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T10:36:23.107034+00:00",
+  "generated_at": "2026-09-15T15:24:16.976018+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 240,
@@ -23717,11 +23717,11 @@
         "prices": [
           {
             "kind": "price",
-            "text": "2500 ₽/сутки — март, апрель"
+            "text": "2500 ₽/сутки — март, апрель, май"
           },
           {
             "kind": "price",
-            "text": "3000 ₽/сутки — май, июнь"
+            "text": "3000 ₽/сутки — июнь"
           },
           {
             "kind": "price",
@@ -23730,10 +23730,6 @@
           {
             "kind": "price",
             "text": "3000 ₽/сутки — сентябрь"
-          },
-          {
-            "kind": "note",
-            "text": "(до 7 дней — 4000 ₽, от 7 дней — 3500 ₽)"
           },
           {
             "kind": "price",
@@ -23884,7 +23880,7 @@
           "details": {
             "telegram_post": "abhazbooking/3582",
             "telegram_url": "https://t.me/abhazbooking/3582",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/marta-gostevye-nomera-3574/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/marta-gostevye-nomera-3574/video-01-poster.jpg"
           }
         }
       ]
