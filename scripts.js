@@ -254,7 +254,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202609092034";
+  const ASSET_VERSION = "202609151510";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -726,6 +726,7 @@
       <video class="lightbox__video" controls playsinline preload="metadata" hidden></video>
     </div>
     <p class="lightbox__counter" aria-live="polite"></p>
+    <p class="lightbox__hint">Колёсико мыши — увеличить · двойной клик — приблизить</p>
   `;
   body.appendChild(lightbox);
 
@@ -739,6 +740,47 @@
   let galleryItems = [];
   let galleryIndex = 0;
   let galleryTouchStartX = 0;
+
+  /* Увеличение фото в окне просмотра: колёсико мыши, двойной клик, перетаскивание,
+     клавиши + / − / 0. Сбрасывается при листании и закрытии. */
+  const LIGHTBOX_ZOOM_MAX = 4;
+  let lightboxZoom = { scale: 1, x: 0, y: 0 };
+  let lightboxDrag = null;
+
+  function applyLightboxZoom() {
+    if (!lightboxImage) return;
+    const { scale, x, y } = lightboxZoom;
+    lightboxImage.style.transform = scale > 1 ? `translate(${x}px, ${y}px) scale(${scale})` : "";
+    lightbox.classList.toggle("lightbox--zoomed", scale > 1);
+  }
+
+  function resetLightboxZoom() {
+    lightboxZoom = { scale: 1, x: 0, y: 0 };
+    lightboxDrag = null;
+    lightbox.classList.remove("lightbox--dragging");
+    applyLightboxZoom();
+  }
+
+  function zoomLightboxAt(nextScale, clientX, clientY) {
+    if (!lightboxImage || lightboxImage.hidden) return;
+    const scale = Math.min(LIGHTBOX_ZOOM_MAX, Math.max(1, nextScale));
+    if (scale === 1) {
+      resetLightboxZoom();
+      return;
+    }
+    // Точка под курсором остаётся на месте при смене масштаба.
+    const rect = lightboxImage.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2 - lightboxZoom.x;
+    const centerY = rect.top + rect.height / 2 - lightboxZoom.y;
+    const localX = (clientX - centerX - lightboxZoom.x) / lightboxZoom.scale;
+    const localY = (clientY - centerY - lightboxZoom.y) / lightboxZoom.scale;
+    lightboxZoom = {
+      scale,
+      x: clientX - centerX - localX * scale,
+      y: clientY - centerY - localY * scale,
+    };
+    applyLightboxZoom();
+  }
 
   function normalizeGallerySrc(src) {
     const raw = String(src || "").trim();
@@ -756,6 +798,25 @@
     return image.currentSrc || image.src || "";
   }
 
+  /** Самая крупная копия фото для окна просмотра: из srcset (-1440.webp) или оригинал.
+      currentSrc — копия под маленькую плитку сетки (480–960 px): в окне она выглядела
+      «микро» и не растягивалась (жалоба сотрудника 15.09.2026). */
+  function largestSrcFromImage(image) {
+    if (!image) return "";
+    const srcset = image.getAttribute("srcset") || "";
+    let best = "";
+    let bestWidth = 0;
+    srcset.split(",").forEach((part) => {
+      const [url, descriptor] = part.trim().split(/\s+/);
+      const width = parseInt(descriptor, 10);
+      if (url && Number.isFinite(width) && width > bestWidth) {
+        best = url;
+        bestWidth = width;
+      }
+    });
+    return best || image.getAttribute("src") || gallerySrcFromImage(image);
+  }
+
   function gallerySrcFromVideo(video) {
     if (!video) return "";
     return video.querySelector("source")?.getAttribute("src") || video.getAttribute("src") || "";
@@ -770,6 +831,7 @@
       return {
         type: "image",
         src,
+        full: largestSrcFromImage(node),
         alt: node.getAttribute("alt") || "",
         key: normalizeGallerySrc(src),
       };
@@ -904,6 +966,8 @@
     if (!item || !lightboxImage) return;
 
     pauseLightboxVideo();
+    lightbox.classList.toggle("lightbox--video", item.type === "video");
+    lightboxImage.onerror = null;
     lightboxImage.hidden = true;
     lightboxImage.removeAttribute("src");
     lightboxImage.alt = "";
@@ -932,11 +996,21 @@
       lightboxVideo.load();
       if (!lightboxVideo.poster) wireLocalVideoPoster(lightboxVideo);
     } else {
-      lightboxImage.src = item.src;
+      // Крупная копия; если её нет на CDN — откатываемся на то, что было в сетке.
+      const fullSrc = item.full || item.src;
+      lightboxImage.onerror =
+        fullSrc !== item.src
+          ? () => {
+              lightboxImage.onerror = null;
+              lightboxImage.src = item.src;
+            }
+          : null;
+      lightboxImage.src = fullSrc;
       lightboxImage.alt = item.alt || "";
       lightboxImage.hidden = false;
     }
 
+    resetLightboxZoom();
     updateGalleryNavState();
   }
 
@@ -982,10 +1056,12 @@
     galleryItems = [];
     galleryIndex = 0;
     if (lightboxImage) {
+      lightboxImage.onerror = null;
       lightboxImage.src = "";
       lightboxImage.alt = "";
       lightboxImage.hidden = true;
     }
+    resetLightboxZoom();
     pauseLightboxVideo();
     if (lightboxCounter) lightboxCounter.textContent = "";
     if (prevButton) prevButton.hidden = true;
@@ -5235,7 +5311,69 @@
     if (event.key === "Escape") closeLightbox();
     if (event.key === "ArrowLeft") stepGalleryLightbox(-1);
     if (event.key === "ArrowRight") stepGalleryLightbox(1);
+    if (lightbox.hasAttribute("hidden") || !lightboxImage || lightboxImage.hidden) return;
+    const rect = lightboxImage.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    if (event.key === "+" || event.key === "=") zoomLightboxAt(lightboxZoom.scale * 1.25, centerX, centerY);
+    if (event.key === "-" || event.key === "_") zoomLightboxAt(lightboxZoom.scale / 1.25, centerX, centerY);
+    if (event.key === "0") resetLightboxZoom();
   });
+
+  // Колёсико мыши — увеличить/уменьшить фото вокруг курсора.
+  lightbox.addEventListener(
+    "wheel",
+    (event) => {
+      if (lightbox.hasAttribute("hidden") || !lightboxImage || lightboxImage.hidden) return;
+      event.preventDefault();
+      const factor = event.deltaY < 0 ? 1.2 : 1 / 1.2;
+      zoomLightboxAt(lightboxZoom.scale * factor, event.clientX, event.clientY);
+    },
+    { passive: false }
+  );
+
+  // Двойной клик — приблизить в точке клика / вернуть как было.
+  lightboxImage?.addEventListener("dblclick", (event) => {
+    event.preventDefault();
+    if (lightboxZoom.scale > 1) {
+      resetLightboxZoom();
+    } else {
+      zoomLightboxAt(2.5, event.clientX, event.clientY);
+    }
+  });
+
+  // Перетаскивание увеличенного фото мышью.
+  lightboxImage?.addEventListener("pointerdown", (event) => {
+    if (event.pointerType !== "mouse" || lightboxZoom.scale <= 1) return;
+    event.preventDefault();
+    lightboxDrag = {
+      id: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      x: lightboxZoom.x,
+      y: lightboxZoom.y,
+    };
+    lightboxImage.setPointerCapture?.(event.pointerId);
+    lightbox.classList.add("lightbox--dragging");
+  });
+
+  lightboxImage?.addEventListener("pointermove", (event) => {
+    if (!lightboxDrag || event.pointerId !== lightboxDrag.id) return;
+    lightboxZoom = {
+      ...lightboxZoom,
+      x: lightboxDrag.x + event.clientX - lightboxDrag.startX,
+      y: lightboxDrag.y + event.clientY - lightboxDrag.startY,
+    };
+    applyLightboxZoom();
+  });
+
+  const endLightboxDrag = (event) => {
+    if (!lightboxDrag || event.pointerId !== lightboxDrag.id) return;
+    lightboxDrag = null;
+    lightbox.classList.remove("lightbox--dragging");
+  };
+  lightboxImage?.addEventListener("pointerup", endLightboxDrag);
+  lightboxImage?.addEventListener("pointercancel", endLightboxDrag);
 
   document.addEventListener("click", (event) => {
     const cardGalleryHit = event.target.closest(
