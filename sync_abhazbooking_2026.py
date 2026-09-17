@@ -17,6 +17,7 @@ if str(LOCAL_ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(LOCAL_ROOT / "scripts"))
 
 from responsive_images import responsive_img_html  # noqa: E402
+from telegram_line_filters import clean_line_for_site, is_link_stub_line  # noqa: E402
 
 
 ROOT = Path("/Users/darya_botova/Documents/New project")
