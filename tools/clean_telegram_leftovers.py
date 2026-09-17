@@ -30,6 +30,8 @@ from telegram_line_filters import POINTER_EMOJI, clean_line_for_site, strip_poin
 TEXT_NODE = re.compile(r">([^<>]+)<")
 # Абзац с вложенной разметкой: <p …>текст<br/>текст</p>.
 NESTED_PARA = re.compile(r"<p([^>]*)>((?:(?!</?p\b).)*?)</p>", re.S)
+# Описание страницы в <meta …content="…"> — видно в поиске и превью ссылки.
+META_CONTENT = re.compile(r'(<meta[^>]*content=")([^"]*)("[^>]*>)')
 
 SNAPSHOT = ROOT / "data" / "catalog-snapshot.json"
 PAGE_GLOBS = (
@@ -113,6 +115,20 @@ def clean_html(text: str) -> tuple[str, int, int]:
         removed += 1
         return ""
 
+    def handle_meta(match: re.Match) -> str:
+        """Описание страницы для поиска и превью ссылки: чистим стрелки."""
+        nonlocal trimmed
+        head, raw_escaped, tail = match.group(1), match.group(2), match.group(3)
+        raw = html_mod.unescape(raw_escaped)
+        if not POINTER_EMOJI.search(raw):
+            return match.group(0)
+        cleaned = strip_pointer_emoji(raw)
+        if cleaned == raw:
+            return match.group(0)
+        trimmed += 1
+        return f"{head}{html_mod.escape(cleaned, quote=True)}{tail}"
+
+    text = META_CONTENT.sub(handle_meta, text)
     text = CAPS_PARA.sub(handle_caps, text)
     text = ELEMENT.sub(handle_element, text)
     text = NESTED_PARA.sub(handle_nested_para, text)

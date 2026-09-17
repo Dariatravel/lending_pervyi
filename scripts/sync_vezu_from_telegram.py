@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
+from telegram_line_filters import clean_line_for_site  # noqa: E402
 from sync_blog_from_abhazbereg import (  # noqa: E402
     API_HASH,
     API_ID,
@@ -500,7 +501,8 @@ async def sync_vezu(post_ids: list[int] | None = None) -> list[dict[str, object]
                             }
                         )
 
-            lead = first_meaningful_paragraph(text, title)[:220]
+            # Описание для поиска и превью ссылки: без телеграм-стрелок 👇 (17.09.2026).
+            lead = clean_line_for_site(first_meaningful_paragraph(text, title))[:220]
             iso_date = row["date"].strftime("%Y-%m-%d") if row["date"] else "2026-01-01"
             body_html = telegram_text_to_sections_html(text)
 
