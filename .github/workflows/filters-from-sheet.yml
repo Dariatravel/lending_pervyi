@@ -1,0 +1,117 @@
+name: Filters from sheet
+
+# Фильтры каталога (город, пляж, расстояние, удобства, бюджет) из
+# Google-таблицы «БАЗА - отели и квартиры», вкладка СОЦСЕТИ.
+#
+# Зачем отдельно от watch-telegram.yml: там фильтры применяются ТОЛЬКО когда
+# в Telegram-каналах что-то изменилось (шаг синка стоит под условием
+# detect.changed == 'true'). Правка одной лишь таблицы до сайта не долетала,
+# пока кто-нибудь не тронет пост, — а именно так Дарья и правит фильтры.
+# Теперь таблица применяется сама, раз в 6 часов, независимо от Telegram.
+#
+# Коммитим только содержательные изменения (метки времени игнорируем),
+# иначе каждый запуск давал бы пустой коммит и лишний деплой сайта.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Каждые 6 часов в :25 — мимо watch-telegram (:41) и price-tabs (:10).
+    - cron: "25 */6 * * *"
+
+concurrency:
+  group: watch-telegram # не толкаться с автосинком за push в main
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: pip install --quiet -r requirements-site-update-bot.txt
+
+      - name: Проверить ключ Google
+        id: gate
+        env:
+          GOOGLE_SA: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          if [ -z "$GOOGLE_SA" ]; then
+            echo "GOOGLE_SERVICE_ACCOUNT_JSON не задан — без него таблицу не прочитать."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          else
+            printf '%s' "$GOOGLE_SA" > google-service-account.json
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Применить фильтры из таблицы
+        id: filters
+        if: steps.gate.outputs.enabled == 'true'
+        run: |
+          python scripts/apply_all_filters_from_sheet.py --snapshot-only
+          # Пересобирать страницы имеет смысл, только если фильтры реально
+          # поменялись: пересборка каждый раз переписывает даты в sitemap.xml,
+          # и без этой проверки мы бы деплоили сайт каждые 6 часов впустую.
+          if git diff --quiet -I '"generated_at"' -- data/catalog-snapshot.json; then
+            echo "Фильтры в таблице не менялись — пересборка не нужна."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            git checkout -- data/catalog-snapshot.json
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Пересобрать страницы каталога
+        if: steps.filters.outputs.changed == 'true'
+        run: python scripts/rebuild_from_catalog_snapshot.py
+
+      - name: Контрольные аудиты
+        if: steps.filters.outputs.changed == 'true'
+        run: |
+          python tools/audit_supabase_prod_deps.py
+          python tools/validate_catalog_snapshot.py
+
+      - name: Убрать ключ
+        if: always()
+        run: rm -f google-service-account.json
+
+      - name: Опубликовать изменения
+        if: steps.filters.outputs.changed == 'true'
+        run: |
+          git config user.name "abhazbereg-autosync"
+          git config user.email "darya.tiande@gmail.com"
+          git add -A
+          if git diff --cached --quiet -I '"generated_at"'; then
+            echo "Фильтры не менялись — публиковать нечего."
+            git reset -q
+            exit 0
+          fi
+          git commit -m "Фильтры каталога из таблицы БАЗА (GitHub Actions)"
+          # Часовой автосинк мог запушить своё — ребейзимся с повторами,
+          # конфликты в сгенерированных файлах решаем в пользу нашего коммита.
+          PUSH_OK=false
+          for attempt in 1 2 3 4; do
+            if ! git pull --rebase origin main; then
+              CONFLICTS=$(git diff --name-only --diff-filter=U)
+              if [ -n "$CONFLICTS" ]; then
+                echo "$CONFLICTS" | xargs git checkout --theirs --
+                echo "$CONFLICTS" | xargs git add --
+              fi
+              GIT_EDITOR=true git rebase --continue || { git rebase --abort || true; sleep 10; continue; }
+            fi
+            if git push origin main; then
+              PUSH_OK=true
+              break
+            fi
+            sleep 10
+          done
+          if [ "$PUSH_OK" != "true" ]; then
+            echo "::error::Не удалось опубликовать изменения после 4 попыток (см. лог)."
+            exit 1
+          fi
