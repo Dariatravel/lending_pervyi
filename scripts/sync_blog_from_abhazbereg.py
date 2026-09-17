@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
+from telegram_line_filters import clean_line_for_site  # noqa: E402
 
 API_ID = 32916166
 API_HASH = "eefdec49605521b061de4bdf62ef784e"
@@ -539,6 +540,12 @@ def render_free_block(lines: list[str]) -> str:
 
 def telegram_text_to_sections_html(text: str) -> str:
     """Возвращает body_html с разделами."""
+    # Телеграм-хвосты («Фото тут», «Разбираемся👇», «пишите в комментариях»)
+    # на сайте бессмысленны — чистим до разбора на разделы (17.09.2026).
+    text = "\n".join(
+        clean_line_for_site(line) if line.strip() else ""
+        for line in str(text or "").replace("\r\n", "\n").split("\n")
+    )
     text = text.replace("\r\n", "\n").strip()
     text = re.sub(r"\n{3,}", "\n\n", text)
     blocks = [b.strip() for b in text.split("\n\n") if b.strip()]

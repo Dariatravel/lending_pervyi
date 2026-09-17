@@ -501,8 +501,8 @@ def paragraph_line_to_html(line: str) -> str:
     """Одна строка поста → <p>; капслок-заголовки — с классом и <strong>."""
     if not line or not str(line).strip():
         return ""
-    raw = str(line).strip()
-    if should_drop_line(raw):
+    raw = clean_line_for_site(str(line))
+    if not raw or should_drop_line(raw):
         return ""
     esc = html.escape(raw)
     if is_caps_lock_heading_line(raw):
@@ -515,6 +515,10 @@ def render_paragraph_lines_html(lines: list[str]) -> str:
 
 
 def should_drop_line(line: str) -> bool:
+    # Строки, осмысленные только в Telegram: «ОБЗОРЫ НОМЕРОВ ТУТ» (слово «тут»
+    # там было ссылкой), «Фото в комментариях» (17.09.2026).
+    if is_link_stub_line(line):
+        return True
     upper = line.upper()
     if "@ABHAZBOOKING_ONLINE" in upper:
         return True

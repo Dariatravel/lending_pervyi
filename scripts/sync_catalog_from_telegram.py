@@ -42,6 +42,7 @@ from sync_abhazbooking_2026 import (  # noqa: E402
     summary_text,
 )
 from apply_all_filters_from_sheet import EMPTY_FILTERS  # noqa: E402
+from telegram_line_filters import clean_line_for_site  # noqa: E402
 from catalog_snapshot import (  # noqa: E402
     build_listing_record,
     deactivate_listing as snapshot_deactivate_listing,
@@ -1114,9 +1115,20 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     media_html = render_media_items(media_items, title)
     why_lines = sections[0]['lines'][:3] if sections else []
     important_lines = sections[1]['lines'][:3] if len(sections) > 1 else []
-    why_html = ''.join(f'<li>{html.escape(line)}</li>' for line in why_lines if not should_drop_line(line))
+    # Телеграм-хвосты чистим до вывода: «ОБЗОРЫ НОМЕРОВ ТУТ» убираем целиком,
+    # у полезных строк обрезаем только хвост (17.09.2026).
+    why_clean = [
+        cleaned
+        for line in why_lines
+        if (cleaned := clean_line_for_site(line)) and not should_drop_line(cleaned)
+    ]
+    why_html = ''.join(f'<li>{html.escape(line)}</li>' for line in why_clean)
     important_visible = trim_dangling_sublist(
-        [line for line in important_lines if not should_drop_line(line)]
+        [
+            cleaned
+            for line in important_lines
+            if (cleaned := clean_line_for_site(line)) and not should_drop_line(cleaned)
+        ]
     )
     important_html = ''.join(f'<li>{html.escape(line)}</li>' for line in important_visible)
     eyebrow_link = '<a href="/#catalog"><strong>Каталог Абхазберег</strong></a>'
