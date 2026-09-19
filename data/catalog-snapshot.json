@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T19:24:51.721094+00:00",
+  "generated_at": "2026-09-19T09:52:46.149814+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 240,
@@ -64639,7 +64639,7 @@
       "page_url": "https://абхазберег.рф/hotels/trio-nomer-na-plyazhe-5176/",
       "telegram_url": "https://t.me/abhazbooking/5176",
       "published_at": "2026-08-07",
-      "has_video": false,
+      "has_video": true,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/trio-nomer-na-plyazhe-5176.jpg",
       "is_active": true,
       "details": {
@@ -64835,12 +64835,16 @@
           "id": 1200011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "image/jpeg",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/trio-nomer-na-plyazhe-5176/photo-10.jpg",
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/trio-nomer-na-plyazhe-5176/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "hotels/trio-nomer-na-plyazhe-5176/photo-10.jpg",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/trio-nomer-na-plyazhe-5176/photo-10.jpg",
-          "details": {}
+          "storage_path": "videos/hotels/trio-nomer-na-plyazhe-5176/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/trio-nomer-na-plyazhe-5176/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5185",
+            "telegram_url": "https://t.me/abhazbooking/5185",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/trio-nomer-na-plyazhe-5176/video-01-poster.jpg"
+          }
         }
       ]
     },
