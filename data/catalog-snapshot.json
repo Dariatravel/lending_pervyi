@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21T21:29:12.029708+00:00",
+  "generated_at": "2026-09-22T10:26:53.641300+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 240,
@@ -24697,6 +24697,22 @@
           },
           {
             "kind": "price",
+            "text": "4500₽ - июнь с 16 по 30"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - июль, август, сентябрь по 15"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - сентябрь с 16 по 30"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место - 500₽"
+          },
+          {
+            "kind": "price",
             "text": "Семейный номер"
           },
           {
@@ -24709,6 +24725,26 @@
           },
           {
             "kind": "price",
+            "text": "5500₽ - июнь с 16 по 30"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - сентябрь с 1 по 15"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - сентябрь с 16 по 30"
+          },
+          {
+            "kind": "price",
             "text": "Люкс двухкомнатный"
           },
           {
@@ -24718,6 +24754,18 @@
           {
             "kind": "price",
             "text": "5000₽ - май, июнь до 16"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "12000₽ - июль, август, сентябрь по 15"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - сентябрь с 16 по 30"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/index.html",
