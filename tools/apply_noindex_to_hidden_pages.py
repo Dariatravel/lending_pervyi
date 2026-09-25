@@ -7,6 +7,11 @@
 Такие страницы помечаем noindex, follow — ссылки внутри робот обойдёт,
 а саму страницу в поиск не возьмёт.
 
+Обратный ход: объект вернулся в каталог (снова is_active и не в
+hidden_listings.json) — noindex с его страницы снимается. Раньше инструмент
+только закрывал, и вернувшийся объект оставался невидимым для поиска: так
+«НАСТА» апартаменты (3258) стояла в каталоге с noindex (аудит 25.09.2026).
+
 Запуск:
     python3 tools/apply_noindex_to_hidden_pages.py [--check]
 """
@@ -26,6 +31,7 @@ SECTIONS = ("hotels", "kvartira")
 ROBOTS_RX = re.compile(r'<meta[^>]*name="robots"[^>]*>|<meta[^>]*content="[^"]*"[^>]*name="robots"[^>]*>', re.I)
 NOINDEX_RX = re.compile(r'<meta[^>]*name="robots"[^>]*noindex|<meta[^>]*noindex[^>]*name="robots"', re.I)
 REDIRECT_RX = re.compile(r'http-equiv="refresh"', re.I)
+INDEX_TAG = '<meta name="robots" content="index, follow, max-image-preview:large" />'
 
 
 def snapshot_rows() -> list[dict]:
@@ -69,6 +75,16 @@ def hidden_slugs() -> set[str]:
     return {s for s in slugs if s}
 
 
+def reopened_candidates(hidden: set[str]) -> set[str]:
+    """Активные в снапшоте и не скрытые вручную — их страницам noindex не нужен."""
+    active = {
+        str(row.get("slug") or "").strip()
+        for row in snapshot_rows()
+        if row.get("is_active") is not False
+    }
+    return {slug for slug in active if slug} - hidden
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="ничего не записывать")
@@ -98,9 +114,31 @@ def main() -> int:
             if not args.check:
                 path.write_text(updated, encoding="utf-8")
 
+    reopened: list[str] = []
+    for section in SECTIONS:
+        base = ROOT / section
+        if not base.is_dir():
+            continue
+        for slug in sorted(reopened_candidates(slugs)):
+            path = base / slug / "index.html"
+            if not path.is_file():
+                continue
+            text = path.read_text(encoding="utf-8")
+            # Перенаправления закрыты от поиска правильно — их не трогаем.
+            if REDIRECT_RX.search(text) or not NOINDEX_RX.search(text):
+                continue
+            updated = ROBOTS_RX.sub(INDEX_TAG, text, count=1)
+            if updated == text:
+                continue
+            reopened.append(f"{section}/{slug}")
+            if not args.check:
+                path.write_text(updated, encoding="utf-8")
+
     for item in changed:
         print(f"noindex → {item}")
-    print(f"Страниц закрыто от индексации: {len(changed)}"
+    for item in reopened:
+        print(f"index ← {item} (объект снова в каталоге)")
+    print(f"Страниц закрыто от индексации: {len(changed)}, открыто обратно: {len(reopened)}"
           f"{' (проверка, без записи)' if args.check else ''}"
           f" | скрытых объектов всего: {len(slugs)}")
     return 0
