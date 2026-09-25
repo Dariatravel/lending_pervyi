@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify / dns-create-com / dns-status-com / media-audit / media-optimize / redirect-create-ru / cert-request-ru / cert-status-ru / dns-create-ru / dns-status-ru / cdn-create-ru / cdn-status-ru / redirect-verify-ru / reviews-scrub / reviews-clean-dry / reviews-clean"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify / dns-create-com / dns-status-com / media-audit / media-optimize / redirect-create-ru / cert-request-ru / cert-status-ru / dns-create-ru / dns-status-ru / cdn-create-ru / cdn-status-ru / redirect-verify-ru / reviews-scrub / reviews-clean-dry / reviews-clean / cdn-site-status / cdn-site-gzip-on / cdn-site-gzip-off / site-compression-check"
         required: true
         default: "probe"
       bucket:
@@ -723,6 +723,39 @@ jobs:
           else
             python3 tools/yc_cdn_tune_media.py
           fi
+
+      # Сжатие текста на CDN сайта (tools/yc_cdn_tune_site.py). Порядок:
+      # cdn-site-status (посмотреть опции) → cdn-site-gzip-on → site-compression-check.
+      # Откат — cdn-site-gzip-off. Опции отправляются полным набором.
+      - name: cdn-site-* — сжатие текста на CDN сайта
+        if: inputs.action == 'cdn-site-status' || inputs.action == 'cdn-site-gzip-on' || inputs.action == 'cdn-site-gzip-off'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CDN_DOMAIN: xn--80aacbklan7f0b.xn--p1ai
+          SITE_ACTION: ${{ inputs.action }}
+        run: |
+          pip install --quiet pyjwt cryptography
+          python3 tools/yc_cdn_tune_site.py "${SITE_ACTION#cdn-site-}"
+
+      # Отдаёт ли живой сайт текст сжатым и не сломалось ли что-то: код ответа,
+      # Content-Encoding и вес до/после для HTML, CSS, JS и JSON каталога.
+      - name: site-compression-check — сжимается ли текст на живом сайте
+        if: inputs.action == 'site-compression-check'
+        run: |
+          BASE="https://xn--80aacbklan7f0b.xn--p1ai"
+          V=$(cat data/asset-version.txt 2>/dev/null | tr -d '[:space:]')
+          FAIL=0
+          for P in "/" "/styles.min.css?v=$V" "/scripts.min.js?v=$V" "/data/catalog-index.json?v=$V" \
+                   "/hotels/regina-otel-vtoroy-korpus-4987/" "/blog/" "/sitemap.xml"; do
+            RAW=$(curl -sS -o /dev/null -w "%{http_code} %{size_download}" --max-time 40 "$BASE$P")
+            GZ=$(curl -sS -o /dev/null -D /tmp/h.txt -w "%{http_code} %{size_download}" --max-time 40 \
+                  -H "Accept-Encoding: gzip" "$BASE$P")
+            ENC=$(grep -i '^content-encoding:' /tmp/h.txt | tr -d '\r' | awk '{print $2}')
+            echo "$P  | без сжатия: код/байт $RAW | со сжатием: код/байт $GZ, Content-Encoding: ${ENC:-нет}"
+            case "$RAW $GZ" in 200*" "200*) ;; *) FAIL=1 ;; esac
+          done
+          [ "$FAIL" = "0" ] && echo "ИТОГ: все адреса отвечают 200." || { echo "ИТОГ: есть не-200 — разобраться!"; exit 1; }
 
       - name: cdn-tune-media — донастройка медиа-CDN (кэш браузера, slice)
         if: inputs.action == 'cdn-tune-media'
