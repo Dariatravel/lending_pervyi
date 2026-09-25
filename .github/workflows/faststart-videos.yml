@@ -1,0 +1,54 @@
+name: Faststart videos
+
+# Ручная пересборка видео бакета, у которых служебный блок (moov) лежит в
+# конце файла: на телефоне такие ролики показывают чёрный квадрат и 00:00,
+# пока не докачается хвост. ffmpeg переставляет блок в начало без
+# перекодирования (tools/faststart_videos.py). После прогона нужно сбросить
+# кэш CDN по списку из артефакта faststart-fixed.
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Сколько видео починить за прогон"
+        required: false
+        default: "80"
+      dry_run:
+        description: "Только найти, ничего не менять (true/false)"
+        required: false
+        default: "false"
+
+jobs:
+  faststart:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: |
+          pip install --quiet boto3
+          sudo apt-get -yq install ffmpeg >/dev/null 2>&1
+
+      - name: Пересобрать видео с moov в конце
+        env:
+          YANDEX_S3_ACCESS_KEY_ID: ${{ secrets.YANDEX_S3_ACCESS_KEY_ID }}
+          YANDEX_S3_SECRET_ACCESS_KEY: ${{ secrets.YANDEX_S3_SECRET_ACCESS_KEY }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python tools/faststart_videos.py --dry-run
+          else
+            python tools/faststart_videos.py --limit "${{ inputs.limit }}"
+          fi
+
+      - name: Список починенных путей
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: faststart-fixed
+          path: output/faststart-fixed.txt
+          if-no-files-found: ignore

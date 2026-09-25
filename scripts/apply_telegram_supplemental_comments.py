@@ -66,6 +66,7 @@ ROOM_RE = re.compile(
 class MediaFile:
     rel_path: str
     kind: str  # photo | video
+    poster_rel: str = ""  # кадр-обложка для video (относительно media/)
 
 
 @dataclass
@@ -460,7 +461,61 @@ async def download_block_media(
                     video_idx -= 1
                 continue
             rel = dest.relative_to(ROOT / "media").as_posix()
-            block.media.append(MediaFile(rel_path=rel, kind=kind))
+            poster_rel = ""
+            if kind == "video":
+                # Как у галереи объекта: moov в начало (иначе телефон ждёт хвост
+                # файла и показывает 00:00) и кадр-обложка вместо чёрного квадрата.
+                faststart_in_place(dest)
+                poster = make_video_poster(dest)
+                if poster:
+                    poster_rel = poster.relative_to(ROOT / "media").as_posix()
+            block.media.append(MediaFile(rel_path=rel, kind=kind, poster_rel=poster_rel))
+
+
+def faststart_in_place(video_path: Path) -> None:
+    """Переставляет блок moov в начало без перекодирования (ffmpeg -c copy).
+
+    Без этого телефон докачивает хвост файла через Range-запросы, которые CDN
+    не кэширует, и до конца докачки показывает чёрный квадрат и 00:00
+    (жалоба Дарьи 25.09.2026). Без ffmpeg файл остаётся как есть.
+    """
+    import shutil as _shutil
+
+    ffmpeg = _shutil.which("ffmpeg")
+    if not ffmpeg:
+        return
+    tmp = video_path.with_name(video_path.stem + ".faststart.mp4")
+    proc = subprocess.run(
+        [ffmpeg, "-y", "-hide_banner", "-loglevel", "error", "-i", str(video_path),
+         "-c", "copy", "-movflags", "+faststart", str(tmp)],
+        capture_output=True, timeout=1800, check=False,
+    )
+    if proc.returncode == 0 and tmp.is_file() and tmp.stat().st_size > 0:
+        tmp.replace(video_path)
+    else:
+        tmp.unlink(missing_ok=True)
+
+
+def make_video_poster(video_path: Path) -> Path | None:
+    """Кадр-обложка <имя>-poster.jpg рядом с видео (для атрибута poster)."""
+    import shutil as _shutil
+
+    ffmpeg = _shutil.which("ffmpeg")
+    if not ffmpeg:
+        return None
+    poster = video_path.with_name(video_path.stem + "-poster.jpg")
+    if poster.is_file() and poster.stat().st_size > 0:
+        return poster
+    for seek in ("1", "0"):
+        proc = subprocess.run(
+            [ffmpeg, "-y", "-hide_banner", "-loglevel", "error", "-ss", seek, "-i", str(video_path),
+             "-frames:v", "1", "-q:v", "4", str(poster)],
+            capture_output=True, timeout=240, check=False,
+        )
+        if proc.returncode == 0 and poster.is_file() and poster.stat().st_size > 0:
+            return poster
+    poster.unlink(missing_ok=True)
+    return None
 
 
 def upload_media_dirs(dirs: list[Path], *, dry_run: bool) -> None:
@@ -489,7 +544,11 @@ def render_media_html(block: SupplementalBlock, target: Target, card_heading: st
             # Блок обзоров всегда ниже первого экрана: metadata заставляла бы
             # браузер тянуть заголовки всех видео сразу, а на слабой мобильной
             # сети эти запросы конкурируют с загрузкой самой страницы.
-            lines.append("                  <video class=\"local-video\" controls preload=\"none\" playsinline>")
+            poster_attr = ""
+            if item.poster_rel:
+                poster_url = yandex_photo_url(f"media/{item.poster_rel}")
+                poster_attr = f' poster="{html.escape(poster_url)}"'
+            lines.append(f"                  <video class=\"local-video\" controls preload=\"none\" playsinline{poster_attr}>")
             lines.append(f'                    <source src="{html.escape(url)}" type="video/mp4" />')
             lines.append("                  </video>")
     lines.append("                </div>")
