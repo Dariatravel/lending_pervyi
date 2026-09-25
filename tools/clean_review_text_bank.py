@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tools.review_text_clean import clean_ocr_review_text
+from tools.review_text_clean import clean_ocr_review_text, is_excluded_review, load_review_excludes
 
 BANK_PATH = ROOT / 'media' / 'reviews' / 'review_text_bank.json'
 PAGE_GLOBS = ('hotels/*/index.html', 'kvartira/*/index.html')
@@ -162,6 +162,9 @@ def reviews_panel_for_slug(design_mod: Any, slug: str, bank: dict[str, list[dict
 
 def clean_bank_payload(payload: dict[str, Any]) -> tuple[dict[str, Any], int]:
     changed = 0
+    # Криво распознанные отзывы из data/review-excludes.json выбрасываем и
+    # здесь, чтобы пересборка банка на Mac не вернула их на сайт.
+    excludes = load_review_excludes()
 
     def clean_entries(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
         nonlocal changed
@@ -171,6 +174,9 @@ def clean_bank_payload(payload: dict[str, Any]) -> tuple[dict[str, Any], int]:
                 continue
             original = str(entry.get('text') or '')
             cleaned = clean_ocr_review_text(original, ensure_sentence_end=False)
+            if is_excluded_review(original, excludes) or is_excluded_review(cleaned, excludes):
+                changed += 1
+                continue
             if cleaned and cleaned != original:
                 changed += 1
             if not cleaned:

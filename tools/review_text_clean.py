@@ -3,7 +3,33 @@
 
 from __future__ import annotations
 
+import json
 import re
+from pathlib import Path
+
+# Отзывы, которые не показываем вовсе. OCR иногда читает скрин так, что
+# правилом текст не вылечить («Отдали июне, сиали домик, на очень
+# понравилось»): такие перечислены в data/review-excludes.json по фрагменту
+# текста. Их выбрасывают и сборка банка на Mac (clean_review_text_bank.py),
+# и дочистка банков в бакете (clean_cdn_review_banks.py).
+REVIEW_EXCLUDES_PATH = Path(__file__).resolve().parents[1] / 'data' / 'review-excludes.json'
+
+
+def _normalize_for_match(text: object) -> str:
+    return re.sub(r'\s+', ' ', str(text or '')).strip().lower()
+
+
+def load_review_excludes(path: Path = REVIEW_EXCLUDES_PATH) -> list[str]:
+    if not path.exists():
+        return []
+    payload = json.loads(path.read_text(encoding='utf-8'))
+    fragments = [_normalize_for_match(item.get('contains')) for item in payload.get('excludes') or []]
+    return [fragment for fragment in fragments if fragment]
+
+
+def is_excluded_review(text: object, excludes: list[str]) -> bool:
+    norm = _normalize_for_match(text)
+    return any(fragment in norm for fragment in excludes)
 
 # Слова, с которых обычно начинается сам отзыв, а не имя автора в шапке скрина.
 _REVIEW_START_WORDS = (
@@ -97,8 +123,28 @@ _OWNER_REPLY = re.compile(
 _YMONTH = (
     r'(?:январ|феврал|март|апрел|ма[йя]|июн|июл|август|сентябр|октябр|ноябр|декабр)\w*'
 )
+# Слова, с которых начинается сам отзыв, — их нельзя принять за ник/площадку
+# перед датой: «Отдыхали 31 августа 2025 в отеле…» должно остаться целым.
+_NOT_REVIEW_START = '(?!(?:' + '|'.join(
+    re.escape(w.strip()) for w in _REVIEW_START_WORDS if w.strip().isalpha() and len(w.strip()) >= 4
+) + '))'
+
+# Короткие настоящие слова: предлоги и союзы, которые нельзя счесть обрывком
+# имени из шапки скрина («Отель на Пицунде» — «на» остаётся).
+_SHORT_REAL_WORDS = (
+    r'(?:в|на|за|до|от|по|из|у|с|к|о|об|но|и|а|не|мы|он|их|нам|там|это|где|как|вот'
+    r'|уже|ещё|еще|при|для|без|под|над|тут|все|всё|так|уж|ни|да|же|бы|ли|то|же|про)'
+)
+
 _PREFIX_PATTERNS = [
     re.compile(r'^\s*[+»«"\']+\s*', re.I),
+    # одно слово-заголовок (площадка или ник) перед датой-словом с годом:
+    # «Автотурист 31 августа 2025 Провели…» (Грант Отель, 25.09.2026).
+    re.compile(rf'^\s*{_NOT_REVIEW_START}[А-ЯЁ][а-яё]+\s+\d{{1,2}}\s+{_YMONTH}\s+20\d{{2}}\s*', re.I),
+    # имя автора и обрывок слова из шапки скрина перед самим отзывом:
+    # «Евгения бо Отдали июне…» (Грант, 25.09.2026). Обрывок — строчный и не
+    # настоящее короткое слово, следом — слово с заглавной.
+    re.compile(rf'^\s*[А-ЯЁ][а-яё]+\s+(?!{_SHORT_REAL_WORDS}\s)[а-яё]{{1,3}}\s+(?=[А-ЯЁ][а-яё])'),
     # метаданные перед звёздами-рейтингом (имя автора и т.п.); «****» в реальном
     # тексте не встречается, границу предложения (.!?) не пересекаем
     re.compile(r'^\s*[^*.!?\n]{0,45}\*{2,}\s*\d?\s*'),

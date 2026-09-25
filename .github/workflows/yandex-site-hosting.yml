@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify / dns-create-com / dns-status-com / media-audit / media-optimize / redirect-create-ru / cert-request-ru / cert-status-ru / dns-create-ru / dns-status-ru / cdn-create-ru / cdn-status-ru / redirect-verify-ru"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify / dns-create-com / dns-status-com / media-audit / media-optimize / redirect-create-ru / cert-request-ru / cert-status-ru / dns-create-ru / dns-status-ru / cdn-create-ru / cdn-status-ru / redirect-verify-ru / reviews-scrub / reviews-clean-dry / reviews-clean"
         required: true
         default: "probe"
       bucket:
@@ -691,6 +691,31 @@ jobs:
           # зря студит кэш фото и видео для гостей.
           if grep -q "файлов с находками 0" /tmp/scrub.log; then
             echo "Банки чистые — кэш CDN не трогаем."
+          else
+            python3 tools/yc_cdn_tune_media.py
+          fi
+
+      # Шапки чужих скринов («Автотурист 31 августа 2025») и криво распознанные
+      # тексты (data/review-excludes.json) в банках отзывов на CDN: чистим прямо
+      # в бакете общими правилами tools/review_text_clean.py. Сначала
+      # reviews-clean-dry — посмотреть, что срежется; потом reviews-clean.
+      - name: reviews-clean — дочистить банки отзывов (шапки скринов, битые тексты)
+        if: inputs.action == 'reviews-clean' || inputs.action == 'reviews-clean-dry'
+        env:
+          YC_SA_KEY_JSON: ${{ secrets.YC_SA_KEY_JSON }}
+          YC_FOLDER_ID: ${{ secrets.YC_FOLDER_ID }}
+          CDN_DOMAIN: media.xn--80aacbklan7f0b.xn--p1ai
+        run: |
+          pip install --quiet boto3 pyjwt cryptography
+          if [ "${{ inputs.action }}" = "reviews-clean-dry" ]; then
+            python3 tools/clean_cdn_review_banks.py --dry-run
+            exit 0
+          fi
+          python3 tools/clean_cdn_review_banks.py | tee /tmp/reviews-clean.log
+          # Кэш CDN сбрасываем только если что-то поменялось: пустой сброс
+          # зря студит кэш фото и видео для гостей.
+          if grep -q "файлов изменено 0" /tmp/reviews-clean.log; then
+            echo "Банки уже чистые — кэш CDN не трогаем."
           else
             python3 tools/yc_cdn_tune_media.py
           fi
