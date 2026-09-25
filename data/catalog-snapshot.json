@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T12:19:18.768142+00:00",
+  "generated_at": "2026-09-25T13:06:52.195493+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 240,
@@ -15343,7 +15343,8 @@
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sozvezdie-mini-otel-3933/video-01-source.mp4",
           "details": {
             "telegram_post": "abhazbooking/3940",
-            "telegram_url": "https://t.me/abhazbooking/3940"
+            "telegram_url": "https://t.me/abhazbooking/3940",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sozvezdie-mini-otel-3933/video-01-source-poster.jpg"
           }
         }
       ]
@@ -39803,7 +39804,8 @@
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/nasta-apartamenty-3258/video-01.mp4",
           "details": {
             "telegram_url": "https://t.me/abhazbooking/3266",
-            "telegram_post": "abhazbooking/3266"
+            "telegram_post": "abhazbooking/3266",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/nasta-apartamenty-3258/video-01-poster.jpg"
           }
         }
       ]
