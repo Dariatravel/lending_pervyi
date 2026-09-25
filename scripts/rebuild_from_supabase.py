@@ -839,6 +839,24 @@ def _normalize_sitemap_location(raw: str) -> str:
     return u.replace(PUNY_ORIGIN_LEGACY, CANON_ORIGIN)
 
 
+_REDIRECT_STUB = re.compile(r'http-equiv=["\']refresh["\']', re.I)
+_NOINDEX_META = re.compile(r'<meta\b[^>]*name=["\']robots["\'][^>]*content=["\'][^"\']*noindex', re.I)
+
+
+def _excluded_from_sitemap(url: str) -> bool:
+    """Страница-перенаправление или закрытая от поиска — в sitemap ей не место.
+
+    Аудит 25.09.2026: в sitemap стояли /kvartira/ (перенаправление в каталог),
+    переехавшая статья блога и страница с noindex — Вебмастер считает такое
+    ошибкой карты сайта. Страницы, которых нет локально, не трогаем.
+    """
+    path = _local_path_for_url(url)
+    if path is None:
+        return False
+    head = path.read_text(encoding="utf-8", errors="replace")[:6000]
+    return bool(_REDIRECT_STUB.search(head) or _NOINDEX_META.search(head))
+
+
 def rebuild_sitemap(rows: list[dict[str, Any]]) -> None:
     ordered: list[str] = []
     seen: set[str] = set()
@@ -848,6 +866,8 @@ def rebuild_sitemap(rows: list[dict[str, Any]]) -> None:
         if not u or u in seen:
             return
         seen.add(u)
+        if _excluded_from_sitemap(u):
+            return
         ordered.append(u)
 
     for u in discover_static_sitemap_urls():
