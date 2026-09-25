@@ -782,7 +782,7 @@ def render_page(slug: str, message_id: int, date_text: str, parsed: dict, photo_
     <link rel="preconnect" href="https://storage.yandexcloud.net" crossorigin />
     <link rel="icon" type="image/png" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/favicon-48.png" />
     <link rel="apple-touch-icon" href="https://storage.yandexcloud.net/abhazbereg-media/media/branding/apple-touch-icon.png" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202609151510" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202609251452" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -862,7 +862,7 @@ def render_page(slug: str, message_id: int, date_text: str, parsed: dict, photo_
         </div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202609151510" defer></script>
+    <script src="../../scripts.min.js?v=202609251452" defer></script>
   </body>
 </html>
 """

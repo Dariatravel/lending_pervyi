@@ -7610,6 +7610,25 @@ html:has(> body.objects-map-page) {
     gap: 12px;
   }
 
+  /* На телефоне «ЦЕНЫ» идут сразу перед «ФОТО И ВИДЕО» (просьба Дарьи
+     25.09.2026): раньше блок лежал в боковой колонке и уезжал в самый низ.
+     Боковая колонка растворяется (display: contents), её блоки встают в общий
+     поток — и цены можно поднять, а «Частые вопросы» с «Контактами» остаются
+     внизу, как и были. */
+  .hotel-site-concept__detail-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hotel-site-concept__detail-aside {
+    display: contents;
+  }
+
+  .hotel-site-concept__detail-aside > .hotel-price-section {
+    order: -1;
+  }
+
   .hotel-site-concept__detail-section .card > h2,
   .hotel-site-concept__detail-section > h2,
   .hotel-site-concept__detail-section .price-card h2.price-card__heading {
