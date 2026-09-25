@@ -22,6 +22,8 @@ import argparse
 import mimetypes
 import os
 import sys
+import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -187,12 +189,27 @@ def upload(client, bucket: str, files: list[Path], dry_run: bool) -> int:
 
 
 def fetch(url: str) -> tuple[int, bytes, str]:
+    """Запрос с повтором сетевых сбоев.
+
+    Ответ сервера (404, 403) — настоящая поломка заливки, повторять нечего.
+    А вот оборванное рукопожатие TLS — это узел облака или сеть раннера:
+    25.09.2026 один такой таймаут на «/» покрасил всю выкатку, хотя сайт
+    уже был залит целиком и все остальные проверки прошли.
+    """
     request = urllib.request.Request(url, headers={"User-Agent": "abhazbereg-deploy-check"})
-    try:
-        with urllib.request.urlopen(request, timeout=30) as response:
-            return response.status, response.read(), response.headers.get("Content-Type", "")
-    except Exception as error:  # noqa: BLE001
-        return 0, str(error).encode(), ""
+    last = ""
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                return response.status, response.read(), response.headers.get("Content-Type", "")
+        except urllib.error.HTTPError as error:
+            return error.code, error.read()[:500], error.headers.get("Content-Type", "")
+        except Exception as error:  # noqa: BLE001
+            last = str(error)
+            if attempt < 2:
+                print(f"        сеть подвела ({last}) — попытка {attempt + 2} из 3", flush=True)
+                time.sleep(10)
+    return 0, last.encode(), ""
 
 
 def verify(bucket: str) -> int:

@@ -79,7 +79,10 @@ jobs:
 
       - name: Залить сайт в бакет
         if: steps.gate.outputs.enabled == 'true'
-        run: python3 tools/deploy_site_to_yandex.py --bucket abhazbereg-site
+        run: |
+          set -o pipefail
+          python3 tools/deploy_site_to_yandex.py --bucket abhazbereg-site \
+            | tee /tmp/deploy.log
 
       # Первый запрос к редкой странице через холодный узел CDN — 4–9 секунд.
       # Обходим весь sitemap сами, чтобы эти секунды не достались гостям
@@ -92,6 +95,12 @@ jobs:
       # Молчим, когда всё хорошо: успешная заливка идёт много раз в сутки.
       # Сообщаем только о поломке — иначе о ней узнаем в тот день, когда
       # домен уже будет переключён на бакет.
+      #
+      # Заголовок выбирается по журналу: «Залито файлов:» есть — значит файлы
+      # в бакете, споткнулась проверка (25.09.2026 так и было: один таймаут
+      # TLS на «/», а сообщение пугало отставшей копией). Нет — заливка
+      # действительно не прошла. Строки «ПЛОХО» кладём прямо в сообщение,
+      # чтобы причина была видна сразу, без похода в журнал.
       - name: Сообщить о сбое заливки
         if: failure() && steps.gate.outputs.enabled == 'true'
         env:
@@ -100,8 +109,15 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then exit 0; fi
-          MSG=$(printf '%s\n\n%s' \
-            "⛔️ Не удалось залить сайт в Яндекс Облако. Копия в бакете отстала от сайта." \
+          if grep -q "Залито файлов:" /tmp/deploy.log 2>/dev/null; then
+            HEAD="⚠️ Сайт залит в Яндекс Облако, но проверка не прошла."
+          else
+            HEAD="⛔️ Не удалось залить сайт в Яндекс Облако. Копия в бакете отстала от сайта."
+          fi
+          WHY=$(grep -A1 "ПЛОХО" /tmp/deploy.log 2>/dev/null | head -c 800)
+          [ -z "$WHY" ] && WHY=$(tail -n 5 /tmp/deploy.log 2>/dev/null | head -c 800)
+          MSG=$(printf '%s\n\n%s\n\n%s' \
+            "$HEAD" "$WHY" \
             "Журнал: ${RUN_URL}")
           curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
             --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
