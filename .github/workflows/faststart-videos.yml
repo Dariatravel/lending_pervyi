@@ -17,6 +17,10 @@ on:
         description: "Только найти, ничего не менять (true/false)"
         required: false
         default: "false"
+      transcode_over_mb:
+        description: "Файлы крупнее N МБ сжать в web-вариант (0 — только переставить moov)"
+        required: false
+        default: "0"
 
 jobs:
   faststart:
@@ -42,7 +46,7 @@ jobs:
           if [ "${{ inputs.dry_run }}" = "true" ]; then
             python tools/faststart_videos.py --dry-run
           else
-            python tools/faststart_videos.py --limit "${{ inputs.limit }}"
+            python tools/faststart_videos.py --limit "${{ inputs.limit }}" --transcode-over-mb "${{ inputs.transcode_over_mb }}"
           fi
 
       - name: Список починенных путей

@@ -65,15 +65,23 @@ def has_faststart(s3, bucket: str, key: str) -> bool:
     return b"moov" in head
 
 
-def remux(src: Path, dst: Path) -> bool:
+def remux(src: Path, dst: Path, *, transcode: bool = False) -> bool:
     ffmpeg = shutil.which("ffmpeg")
     if not ffmpeg:
         print("ffmpeg не найден — пересборка невозможна", file=sys.stderr)
         return False
+    if transcode:
+        # Тяжёлый исходник (например, 60 МБ из Telegram) — сжимаем в web-вариант
+        # теми же параметрами, что штатный синк (960px, H.264 1200k).
+        codec = ["-vf", "scale='min(960,iw)':-2", "-c:v", "libx264", "-preset", "medium",
+                 "-b:v", "1200k", "-maxrate", "1500k", "-bufsize", "3000k",
+                 "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "128k"]
+    else:
+        codec = ["-c", "copy"]
     proc = subprocess.run(
         [ffmpeg, "-y", "-hide_banner", "-loglevel", "error", "-i", str(src),
-         "-c", "copy", "-movflags", "+faststart", str(dst)],
-        capture_output=True, text=True, timeout=1800, check=False,
+         *codec, "-movflags", "+faststart", str(dst)],
+        capture_output=True, text=True, timeout=3600, check=False,
     )
     if proc.returncode != 0 or not dst.is_file() or dst.stat().st_size == 0:
         print(f"  ffmpeg не справился: {proc.stderr.strip()[:200]}", file=sys.stderr)
@@ -89,6 +97,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Faststart для видео бакета без перекодирования.")
     parser.add_argument("--limit", type=int, default=80, help="Сколько видео починить за прогон.")
     parser.add_argument("--dry-run", action="store_true", help="Только найти, ничего не менять.")
+    parser.add_argument(
+        "--transcode-over-mb", type=int, default=0,
+        help="Файлы крупнее N МБ не просто пересобрать, а сжать в web-вариант (0 — не сжимать).",
+    )
     args = parser.parse_args()
 
     load_yandex_env()
@@ -120,7 +132,8 @@ def main() -> int:
             dst = tmp / "out.mp4"
             try:
                 s3.download_file(bucket, key, str(src))
-                if not remux(src, dst):
+                heavy = bool(args.transcode_over_mb) and item["size"] > args.transcode_over_mb * 1024 * 1024
+                if not remux(src, dst, transcode=heavy):
                     failed += 1
                     print(f"[fail] {key}: файл не пересобрать (см. ошибку выше)", file=sys.stderr)
                     continue
