@@ -383,7 +383,7 @@ def pick_cover_card(selected: list[Card], used_images: set[str]) -> Card | None:
 def render_card(card: Card, rank: int) -> str:
     if card.image:
         srcset = responsive_srcset(card.image)
-        srcset_attr = f' srcset="{html.escape(srcset)}" sizes="(max-width: 720px) 92vw, (max-width: 1180px) 45vw, 320px"' if srcset else ""
+        srcset_attr = f' srcset="{html.escape(srcset)}" sizes="(max-width: 520px) 104px, (max-width: 1180px) 45vw, 320px"' if srcset else ""
         media_inner = f'<img src="{html.escape(card.image)}"{srcset_attr} alt="{html.escape(card.alt)}" loading="lazy" decoding="async" />'
     else:
         media_inner = '<div class="catalog-card__media-fallback" role="img" aria-hidden="true">Фото</div>'

@@ -321,7 +321,7 @@ def render_hotel_card(row: dict[str, Any], post_meta: dict[int, dict[str, str]])
         image,
         html.unescape(title),
         loading="lazy",
-        sizes="(max-width: 720px) 92vw, (max-width: 1180px) 45vw, 320px",
+        sizes="(max-width: 520px) 104px, (max-width: 1180px) 45vw, 320px",
     )
     return (
         f'<a class="catalog-card" data-listing-kind="hotel"{video_attr} {attrs} href="{html.escape(href, quote=True)}">'
@@ -377,7 +377,7 @@ def render_kvartira_card(row: dict[str, Any]) -> str:
         image,
         html.unescape(title),
         loading="lazy",
-        sizes="(max-width: 720px) 92vw, (max-width: 1180px) 45vw, 320px",
+        sizes="(max-width: 520px) 104px, (max-width: 1180px) 45vw, 320px",
     )
     return (
         f'<a class="catalog-card" data-listing-kind="kvartira" {attrs} href="{html.escape(href, quote=True)}">'
