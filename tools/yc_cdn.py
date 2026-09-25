@@ -319,6 +319,10 @@ def create() -> int:
         "active": True,
         "options": {
             # Сжатие текста: HTML, CSS и JS поедут к гостю меньшим весом.
+            # Опции здесь раньше не было — комментарий был, а сжатие не
+            # включалось (найдено 25.09.2026, на проде включено
+            # tools/yc_cdn_tune_site.py gzip-on).
+            "compressionOptions": {"gzipOn": {"enabled": True, "value": True}},
             "browserCacheSettings": {"enabled": True, "value": "0"},
             "redirectHttpToHttps": {"enabled": True, "value": True},
             # Статический бакет выбирается по Host; без этого CDN получает 404.
