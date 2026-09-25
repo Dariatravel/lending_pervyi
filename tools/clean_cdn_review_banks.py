@@ -30,6 +30,7 @@ import json
 import os
 import re
 import sys
+from difflib import SequenceMatcher
 from pathlib import Path
 
 import boto3
@@ -61,19 +62,32 @@ def clean_reviews(items: list, excludes: list[str], stats: dict) -> list:
             kept.append(entry)
             continue
         text = str(entry.get("text") or "")
-        cleaned = clean_ocr_review_text(text)
+        # ensure_sentence_end=False — как в сборке банка на Mac
+        # (clean_review_text_bank.py): иначе каждому тексту без точки в конце
+        # она дописывается, и 118 отзывов выглядят «изменёнными» на ровном месте.
+        cleaned = clean_ocr_review_text(text, ensure_sentence_end=False)
         if not cleaned or is_excluded_review(text, excludes) or is_excluded_review(cleaned, excludes):
             stats["dropped"] += 1
             stats["examples"].append(f"выброшен: «{normalize(text)[:45]}…»")
             continue
         if cleaned != text:
             stats["changed"] += 1
-            # В журнал — только срезанная шапка, не сам отзыв.
-            body = cleaned.rstrip(".")
-            head = text[: -len(body)].strip() if body and text.rstrip(".").endswith(body) else ""
-            stats["examples"].append(
-                f"срезано: «{head[:60]}»" if head else "изменено внутри текста"
-            )
+            # В журнал — только то, что убрано, не сам отзыв: срезанная шапка
+            # или удалённые фрагменты (до трёх, по 70 знаков), чтобы по отчёту
+            # пробного прогона было видно, какое правило сработало.
+            if text.endswith(cleaned):
+                head = text[: -len(cleaned)].strip() if cleaned else text.strip()
+                stats["examples"].append(f"срезано: «{head[:60]}»")
+            else:
+                removed = [
+                    text[i1:i2].strip()
+                    for tag, i1, i2, _j1, _j2 in SequenceMatcher(None, text, cleaned).get_opcodes()
+                    if tag in ("delete", "replace") and text[i1:i2].strip()
+                ][:3]
+                stats["examples"].append(
+                    "убрано внутри: " + " | ".join(f"«{piece[:70]}»" for piece in removed)
+                    if removed else "изменено внутри текста"
+                )
             entry["text"] = cleaned
         kept.append(entry)
     return kept
