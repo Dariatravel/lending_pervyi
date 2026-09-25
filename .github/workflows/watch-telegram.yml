@@ -105,8 +105,11 @@ jobs:
             telegram-watch-state-
 
       - name: Проверить каналы (watch-telegram)
+        id: watch
         if: steps.gate.outputs.enabled == 'true'
-        run: python scripts/watch_telegram_updates.py --strict
+        run: |
+          set -o pipefail
+          python scripts/watch_telegram_updates.py --strict 2>&1 | tee /tmp/watch.log
 
       # Точки карты живут в Яндекс-конструкторе (Дарья ставит их руками),
       # синк конструктор → data/objects-map-points.json секретов не требует.
@@ -164,7 +167,9 @@ jobs:
           # --skip-filters убран: при наличии Google-ключа (секрет
           # GOOGLE_SERVICE_ACCOUNT_JSON) пайплайн применяет фильтры из таблицы
           # «СОЦСЕТИ» ко всем объектам; без ключа шаг мягко пропускается.
-          python scripts/run_auto_sync_pipeline.py ${TARGET_ARGS:---mode full} --snapshot-only --skip-review-banks --skip-page-health
+          set -o pipefail
+          python scripts/run_auto_sync_pipeline.py ${TARGET_ARGS:---mode full} --snapshot-only --skip-review-banks --skip-page-health \
+            2>&1 | tee /tmp/sync.log
           echo "done=true" >> "$GITHUB_OUTPUT"
 
       - name: Перенести медиа с подписями из комментариев
@@ -192,7 +197,7 @@ jobs:
         if: steps.sync.outputs.done == 'true'
         run: |
           git config user.name "abhazbereg-autosync"
-          git config user.email "darya.tiande@gmail.com"
+          git config user.email "209351708+Dariatravel@users.noreply.github.com"
           git add -A
           # Игнорируем строки generated_at: если, кроме меток времени, ничего не
           # изменилось — не коммитим (иначе каждый час пустой коммит и деплой).
@@ -248,7 +253,7 @@ jobs:
             exit 0
           fi
           git config user.name "abhazbereg-autosync"
-          git config user.email "darya.tiande@gmail.com"
+          git config user.email "209351708+Dariatravel@users.noreply.github.com"
           git add data/objects-map-points.json
           git commit -m "Авто-синк точек карты из Яндекс-конструктора (GitHub Actions)"
           for attempt in 1 2 3; do
@@ -313,12 +318,19 @@ jobs:
       # 5–8 августа 2026, три дня без синка и без единого сигнала.
       # Бот шлёт через свой токен, а не через сессию, поэтому работает и тогда,
       # когда сессия умерла. Раз в 6 часов, чтобы не заваливать чат каждый час.
+      #
+      # Текст зависит от того, ГДЕ упало. 17.09.2026 тревога винила сессию,
+      # а падал код сборки страниц (name 'is_link_stub_line' is not defined):
+      # сессия была жива, каналы прочитались. Теперь: упала сама проверка
+      # каналов — это Telegram/сессия; упало позже — сессия в порядке, ломается
+      # сборка, и строка ошибки из журнала идёт прямо в сообщение.
       - name: Сообщить о сбое проверки
         if: failure() && steps.gate.outputs.enabled == 'true'
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          WATCH_OUTCOME: ${{ steps.watch.outcome }}
         run: |
           if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
             echo "TG_BOT_TOKEN/TG_REPORT_CHAT_ID не заданы — уведомление о сбое пропущено."
@@ -329,9 +341,19 @@ jobs:
             echo "Час $HOUR UTC — не время для повторного сигнала, молчу."
             exit 0
           fi
-          MSG=$(printf '%s\n\n%s\n\n%s' \
-            "⛔️ Автосинк не работает: проверка каналов Telegram падает." \
-            "Новые посты из каналов НЕ попадают на сайт. Чаще всего причина — Telegram-сессия разлогинилась, тогда нужно перевыпустить TG_STRING_SESSION (tools/make_tg_string_session.py на Mac)." \
+          if [ "$WATCH_OUTCOME" = "failure" ]; then
+            HEAD="⛔️ Автосинк не работает: проверка каналов Telegram падает."
+            HINT="Новые посты из каналов НЕ попадают на сайт. Чаще всего причина — Telegram-сессия разлогинилась, тогда нужно перевыпустить TG_STRING_SESSION (tools/make_tg_string_session.py на Mac)."
+            LOG=/tmp/watch.log
+          else
+            HEAD="⛔️ Автосинк не работает: каналы прочитаны, но сборка страниц падает."
+            HINT="Telegram-сессия в порядке — перевыпускать её не нужно. Новые посты НЕ попадают на сайт из-за ошибки в коде или данных: нужна починка."
+            LOG=/tmp/sync.log
+          fi
+          WHY=$(grep -E "Техническая проблема|Traceback|Error|Ошибка|failed" "$LOG" 2>/dev/null | tail -n 4 | head -c 700)
+          [ -z "$WHY" ] && WHY=$(tail -n 4 "$LOG" 2>/dev/null | head -c 700)
+          MSG=$(printf '%s\n\n%s\n\n%s\n\n%s' \
+            "$HEAD" "$HINT" "${WHY:-причина в журнале}" \
             "Журнал: ${RUN_URL}")
           curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
             --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \

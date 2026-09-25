@@ -39,6 +39,10 @@ concurrency:
   group: deploy-to-yandex
   cancel-in-progress: false
 
+# Только чтение: процесс ничего не пишет в репозиторий (аудит 25.09.2026).
+permissions:
+  contents: read
+
 jobs:
   deploy:
     # После Watch Telegram заливаем только удачные прогоны: упавший синк

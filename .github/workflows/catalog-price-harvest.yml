@@ -10,6 +10,10 @@ on:
         description: "Ссылки на страницы-каталоги (по одной в строке)"
         required: true
 
+# Только чтение: процесс ничего не пишет в репозиторий (аудит 25.09.2026).
+permissions:
+  contents: read
+
 jobs:
   harvest:
     runs-on: ubuntu-latest

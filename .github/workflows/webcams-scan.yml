@@ -13,6 +13,10 @@ on:
         required: false
         default: "false"
 
+# Только чтение: процесс ничего не пишет в репозиторий (аудит 25.09.2026).
+permissions:
+  contents: read
+
 jobs:
   scan:
     runs-on: ubuntu-latest

@@ -5,6 +5,10 @@ on:
   schedule:
     - cron: "17 */6 * * *"
 
+# Только чтение: процесс ничего не пишет в репозиторий (аудит 25.09.2026).
+permissions:
+  contents: read
+
 jobs:
   smoke:
     runs-on: ubuntu-latest

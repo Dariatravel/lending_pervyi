@@ -12,6 +12,10 @@ name: Supplemental audit
 on:
   workflow_dispatch:
 
+# Только чтение: процесс ничего не пишет в репозиторий (аудит 25.09.2026).
+permissions:
+  contents: read
+
 jobs:
   audit:
     runs-on: ubuntu-latest

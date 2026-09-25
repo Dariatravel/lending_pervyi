@@ -12,6 +12,10 @@ on:
         required: false
         default: ""
 
+# Только чтение: процесс ничего не пишет в репозиторий (аудит 25.09.2026).
+permissions:
+  contents: read
+
 jobs:
   backfill:
     runs-on: ubuntu-latest

@@ -48,7 +48,7 @@ jobs:
       - name: Опубликовать
         run: |
           git config user.name "abhazbereg-autosync"
-          git config user.email "darya.tiande@gmail.com"
+          git config user.email "209351708+Dariatravel@users.noreply.github.com"
           git add -A
           if git diff --cached --quiet -I '"generated_at"'; then
             echo "Постеры уже на месте — публиковать нечего."

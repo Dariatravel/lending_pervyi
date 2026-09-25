@@ -14,6 +14,10 @@ on:
   schedule:
     - cron: "41 5,17 * * *"
 
+# Только чтение: процесс ничего не пишет в репозиторий (аудит 25.09.2026).
+permissions:
+  contents: read
+
 jobs:
   certs:
     runs-on: ubuntu-latest
