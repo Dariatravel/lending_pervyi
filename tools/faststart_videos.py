@@ -122,6 +122,7 @@ def main() -> int:
                 s3.download_file(bucket, key, str(src))
                 if not remux(src, dst):
                     failed += 1
+                    print(f"[fail] {key}: файл не пересобрать (см. ошибку выше)", file=sys.stderr)
                     continue
                 upload_file(dst, key, "video/mp4", force=True)
                 fixed.append("/" + key)
