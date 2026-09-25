@@ -755,6 +755,13 @@ jobs:
             echo "$P  | без сжатия: код/байт $RAW | со сжатием: код/байт $GZ, Content-Encoding: ${ENC:-нет}"
             case "$RAW $GZ" in 200*" "200*) ;; *) FAIL=1 ;; esac
           done
+          # Кто отвечает на самом деле: CDN или хранилище напрямую. Если домен
+          # смотрит мимо CDN, опции CDN (сжатие) на гостей не действуют.
+          echo ""; echo "Заголовки ответа главной:"
+          curl -sS -o /dev/null -D - --max-time 40 -H "Accept-Encoding: gzip" "$BASE/" \
+            | grep -iE '^(server|via|x-cache|x-amz|x-yc|cache-control|content-encoding|content-type|age|vary)' || true
+          echo ""; echo "DNS домена:"; getent hosts xn--80aacbklan7f0b.xn--p1ai || true
+          dig +short xn--80aacbklan7f0b.xn--p1ai CNAME 2>/dev/null || true
           [ "$FAIL" = "0" ] && echo "ИТОГ: все адреса отвечают 200." || { echo "ИТОГ: есть не-200 — разобраться!"; exit 1; }
 
       # Лёгкие WebP-копии иконок контактов и обложки видео главной
