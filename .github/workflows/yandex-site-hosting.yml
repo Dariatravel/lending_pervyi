@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify / dns-create-com / dns-status-com / media-audit / media-optimize / redirect-create-ru / cert-request-ru / cert-status-ru / dns-create-ru / dns-status-ru / cdn-create-ru / cdn-status-ru / redirect-verify-ru / reviews-scrub / reviews-clean-dry / reviews-clean / cdn-site-status / cdn-site-gzip-on / cdn-site-gzip-off / site-compression-check"
+        description: "Шаг: probe / create / deploy / verify / cert-request / cert-status / cdn-grant / cdn-probe / cdn-create / cdn-status / dns-snapshot / domain-check / redirect-create / cert-request-com / cert-status-com / cdn-create-com / cdn-status-com / redirect-verify / dns-create-com / dns-status-com / media-audit / media-optimize / redirect-create-ru / cert-request-ru / cert-status-ru / dns-create-ru / dns-status-ru / cdn-create-ru / cdn-status-ru / redirect-verify-ru / reviews-scrub / reviews-clean-dry / reviews-clean / cdn-site-status / cdn-site-gzip-on / cdn-site-gzip-off / site-compression-check / branding-webp-dry / branding-webp"
         required: true
         default: "probe"
       bucket:
@@ -756,6 +756,19 @@ jobs:
             case "$RAW $GZ" in 200*" "200*) ;; *) FAIL=1 ;; esac
           done
           [ "$FAIL" = "0" ] && echo "ИТОГ: все адреса отвечают 200." || { echo "ИТОГ: есть не-200 — разобраться!"; exit 1; }
+
+      # Лёгкие WebP-копии иконок контактов и обложки видео главной
+      # (tools/optimize_branding_assets.py). Новые файлы кладутся рядом,
+      # старые не трогаются. branding-webp-dry — только посчитать.
+      - name: branding-webp — лёгкие копии иконок и обложки видео
+        if: inputs.action == 'branding-webp' || inputs.action == 'branding-webp-dry'
+        run: |
+          pip install --quiet boto3 pillow
+          if [ "${{ inputs.action }}" = "branding-webp-dry" ]; then
+            python3 tools/optimize_branding_assets.py --dry-run
+          else
+            python3 tools/optimize_branding_assets.py
+          fi
 
       - name: cdn-tune-media — донастройка медиа-CDN (кэш браузера, slice)
         if: inputs.action == 'cdn-tune-media'
