@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T13:06:52.195493+00:00",
+  "generated_at": "2026-09-25T17:45:44.583672+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 240,
@@ -13783,7 +13783,7 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - октябрь, ноябрь, декабрь до 25"
+            "text": "3500₽ - октябрь, ноябрь, декабрь до 25"
           },
           {
             "kind": "price",
@@ -13795,7 +13795,7 @@
           },
           {
             "kind": "price",
-            "text": "4500₽ - октябрь, ноябрь, декабрь до 25"
+            "text": "4000₽ - октябрь, ноябрь, декабрь до 25"
           },
           {
             "kind": "note",
@@ -15476,7 +15476,7 @@
           },
           {
             "kind": "price",
-            "text": "6000₽ - эко-домик с видом на море"
+            "text": "4500₽ - эко-домик с видом на море"
           },
           {
             "kind": "price",
@@ -15492,7 +15492,7 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - эко-домик с видом на море"
+            "text": "4500₽ - эко-домик с видом на море"
           },
           {
             "kind": "note",
@@ -19488,6 +19488,118 @@
           {
             "kind": "price",
             "text": "от 7 суток бронирование."
+          },
+          {
+            "kind": "price",
+            "text": "Номера на 1 и 2 этаже без балкона"
+          },
+          {
+            "kind": "price",
+            "text": "3000 ₽ - июнь до 10 числа"
+          },
+          {
+            "kind": "price",
+            "text": "4500 ₽- июнь с 11 числа"
+          },
+          {
+            "kind": "price",
+            "text": "5000 ₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "6000 ₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "5500 ₽ - сентябрь до 20 числа"
+          },
+          {
+            "kind": "price",
+            "text": "4500 ₽ - сентябрь с 21 числа"
+          },
+          {
+            "kind": "price",
+            "text": "3000 ₽ - октябрь"
+          },
+          {
+            "kind": "note",
+            "text": "Доп. место - 500 ₽/сутки"
+          },
+          {
+            "kind": "price",
+            "text": "Номера на 2 этаже с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "3500 ₽ - июнь до 10 числа"
+          },
+          {
+            "kind": "price",
+            "text": "5000 ₽- июнь с 11 числа"
+          },
+          {
+            "kind": "price",
+            "text": "5500 ₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "6500 ₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "6000 ₽ - сентябрь до 20 числа"
+          },
+          {
+            "kind": "price",
+            "text": "5000 ₽ - сентябрь с 21 числа"
+          },
+          {
+            "kind": "price",
+            "text": "3500 ₽ - октябрь"
+          },
+          {
+            "kind": "note",
+            "text": "Доп. место - 500 ₽/сутки"
+          },
+          {
+            "kind": "price",
+            "text": "Вип номер в отдельном здании"
+          },
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "4000 ₽ - июнь до 10 числа"
+          },
+          {
+            "kind": "price",
+            "text": "5500 ₽- июнь с 11 числа"
+          },
+          {
+            "kind": "price",
+            "text": "6000 ₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "7000 ₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "6500 ₽ - сентябрь до 20 числа"
+          },
+          {
+            "kind": "price",
+            "text": "5500 ₽ - сентябрь с 21 числа"
+          },
+          {
+            "kind": "price",
+            "text": "4000 ₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "от 7 суток бронирование."
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/zhasmin-mini-otel-3736/index.html",
@@ -19628,7 +19740,7 @@
           "details": {
             "telegram_post": "abhazbooking/3744",
             "telegram_url": "https://t.me/abhazbooking/3744",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/zhasmin-mini-otel-3736/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/zhasmin-mini-otel-3736/video-01-poster.jpg"
           }
         }
       ]
@@ -35230,7 +35342,8 @@
               "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
               "(будьте внимательны ⚠️только этот контакт для брони)",
               "Я на связи WhatsApp/MAX: +7940-900-33-40",
-              "Весь каталог жилья в Абхазии на 2025 t.me/abhazbooking/680"
+              "————————————————",
+              "Весь каталог жилья в Абхазии на 2025 👉 t.me/abhazbooking/680"
             ]
           }
         ],
@@ -35245,7 +35358,7 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - октябрь"
+            "text": "3000₽ - октябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/sanset-kvartira-1k-ldzaa-1101/index.html",
