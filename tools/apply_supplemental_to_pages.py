@@ -17,6 +17,7 @@ poster при полном манифесте).
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 from pathlib import Path
@@ -71,14 +72,44 @@ def main() -> int:
     args = parser.parse_args()
 
     manifest = load_manifest()
-    pages_changed = posters_added = missing = 0
+    # Обложки из каталога (details.poster_url у видео галереи): страницы объектов
+    # пересобираются только полным синком, поэтому poster_url, дописанный в
+    # снапшот позже, до страницы сам не доходит.
+    snapshot_posters: dict[str, tuple[str, dict[str, str]]] = {}
+    try:
+        snapshot = json.loads((ROOT / "data" / "catalog-snapshot.json").read_text(encoding="utf-8"))
+        for row in snapshot.get("listings", []):
+            if row.get("is_active") is False:
+                continue
+            found = {}
+            for media in row.get("media") or []:
+                if not str(media.get("mime_type") or "").startswith("video/"):
+                    continue
+                poster = str((media.get("details") or {}).get("poster_url") or "")
+                src = str(media.get("public_url") or media.get("source_url") or "")
+                if poster.startswith("http") and src.startswith("http"):
+                    found[src] = poster
+            if found:
+                snapshot_posters[str(row.get("slug"))] = (str(row.get("source_kind") or ""), found)
+    except (OSError, ValueError):
+        pass
+
+    jobs: dict[str, tuple[str, dict[str, str]]] = {}
+    for slug, (kind, posters) in snapshot_posters.items():
+        jobs[slug] = (kind, dict(posters))
     for slug, section in manifest.items():
         if not isinstance(section, dict):
             continue
         posters = poster_map(str(section.get("section_html") or ""))
         if not posters:
             continue
-        page = page_for(slug, str(section.get("kind") or ""))
+        kind, merged = jobs.get(slug, (str(section.get("kind") or ""), {}))
+        merged.update(posters)
+        jobs[slug] = (kind or str(section.get("kind") or ""), merged)
+
+    pages_changed = posters_added = missing = 0
+    for slug, (kind, posters) in jobs.items():
+        page = page_for(slug, kind)
         if page is None:
             missing += 1
             print(f"  нет страницы: {slug}")
