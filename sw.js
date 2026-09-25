@@ -1,5 +1,5 @@
-const APP_SHELL_CACHE = "abhazbereg-app-shell-v202609251452";
-const RUNTIME_CACHE = "abhazbereg-runtime-v202609251452";
+const APP_SHELL_CACHE = "abhazbereg-app-shell-v202609251320";
+const RUNTIME_CACHE = "abhazbereg-runtime-v202609251320";
 // Медиа с 17.08.2026 раздаётся через CDN media.абхазберег.рф; старый прямой
 // адрес бакета оставлен — он встречается в уже закэшированных страницах.
 const MEDIA_SOURCES = [
@@ -10,18 +10,18 @@ const MAX_RUNTIME_MEDIA_ENTRIES = 80;
 
 const APP_SHELL_URLS = [
   "/",
-  "/styles.min.css?v=202609251452",
-  "/scripts.min.js?v=202609251452",
-  "/pwa.js?v=202609251452",
+  "/styles.min.css?v=202609251320",
+  "/scripts.min.js?v=202609251320",
+  "/pwa.js?v=202609251320",
   "/vendor/fonts/manrope-cyrillic.woff2",
   "/vendor/fonts/manrope-latin.woff2",
   "/vendor/fonts/prata-cyrillic.woff2",
   "/vendor/fonts/prata-latin.woff2",
-  "/vendor/leaflet/leaflet.css?v=202609251452",
-  "/vendor/leaflet/leaflet.js?v=202609251452",
-  "/vendor/leaflet-markercluster/MarkerCluster.css?v=202609251452",
-  "/vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202609251452",
-  "/vendor/leaflet-markercluster/leaflet.markercluster.js?v=202609251452",
+  "/vendor/leaflet/leaflet.css?v=202609251320",
+  "/vendor/leaflet/leaflet.js?v=202609251320",
+  "/vendor/leaflet-markercluster/MarkerCluster.css?v=202609251320",
+  "/vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202609251320",
+  "/vendor/leaflet-markercluster/leaflet.markercluster.js?v=202609251320",
   "/app.webmanifest",
   "/404.html",
   "/app-icons/icon-192.png",
@@ -190,6 +190,13 @@ self.addEventListener("fetch", (event) => {
   if (request.method !== "GET") return;
 
   const requestUrl = new URL(request.url);
+  // Банки отзывов лежат среди медиа, но меняются: их чистят прямо в бакете
+  // (tools/clean_cdn_review_banks.py). Из кэша «навсегда» почищенный банк не
+  // доходил до гостей, открывавших страницу раньше, — поэтому сначала сеть.
+  if (isYandexMediaRequest(requestUrl) && isJsonRequest(requestUrl)) {
+    event.respondWith(networkFirst(request));
+    return;
+  }
   if (isYandexMediaRequest(requestUrl)) {
     event.respondWith(mediaCacheFirst(request));
     return;

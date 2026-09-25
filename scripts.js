@@ -254,7 +254,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202609251452";
+  const ASSET_VERSION = "202609251320";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -3807,6 +3807,15 @@
     return `${k} фильтрам`;
   }
 
+  /** Крестик «×» на плашке снятия фильтра — элементом, без innerHTML. */
+  function removablePillCross() {
+    const x = document.createElement("span");
+    x.className = "filter-pill-removable__x";
+    x.setAttribute("aria-hidden", "true");
+    x.textContent = "×";
+    return x;
+  }
+
   /** Плашки снятия фильтров, подпись кнопки «Фильтры», текст пустого блока результатов. */
   function attachCatalogFilterSummaryChrome(spec) {
     const d = spec;
@@ -3825,7 +3834,10 @@
           chip.setAttribute("data-remove-group", group);
           chip.setAttribute("data-remove-token", token);
           chip.setAttribute("aria-label", `Снять фильтр «${label}»`);
-          chip.innerHTML = `${label}<span class="filter-pill-removable__x" aria-hidden="true">\u00d7</span>`;
+          // Подпись — только текстом: токен приходит из адресной строки, и
+          // через innerHTML ссылка ?food=<img onerror=…> выполняла чужой код
+          // на нашем домене (найдено аудитом 25.09.2026).
+          chip.append(label, removablePillCross());
           d.activeFiltersList.appendChild(chip);
         });
       });
@@ -3836,8 +3848,7 @@
         pill.className = "filter-pill-removable filter-pill-removable--muted";
         pill.setAttribute("data-remove-category", "1");
         pill.setAttribute("aria-label", `Снять «${d.categoryLabels[d.filt.committedCat]}»`);
-        pill.innerHTML =
-          `${d.categoryLabels[d.filt.committedCat]}<span class="filter-pill-removable__x" aria-hidden="true">\u00d7</span>`;
+        pill.append(d.categoryLabels[d.filt.committedCat], removablePillCross());
         d.activeFiltersList.appendChild(pill);
       }
 
@@ -3848,12 +3859,7 @@
         pill.className = "filter-pill-removable";
         pill.setAttribute("data-remove-name", "1");
         pill.setAttribute("aria-label", `Снять поиск «${nameQuery}»`);
-        pill.append(`Название: «${nameQuery}»`);
-        const x = document.createElement("span");
-        x.className = "filter-pill-removable__x";
-        x.setAttribute("aria-hidden", "true");
-        x.textContent = "\u00d7";
-        pill.appendChild(x);
+        pill.append(`Название: «${nameQuery}»`, removablePillCross());
         d.activeFiltersList.appendChild(pill);
       }
 
