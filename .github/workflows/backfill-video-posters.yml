@@ -39,6 +39,11 @@ jobs:
       - name: Пересобрать страницы из снапшота
         run: python scripts/rebuild_from_catalog_snapshot.py
 
+      # Пересборка из снапшота блоки «Дополнительные обзоры» не трогает —
+      # обложки из манифеста нужно наложить на страницы отдельно.
+      - name: Наложить блоки обзоров из манифеста на страницы
+        run: python tools/apply_supplemental_to_pages.py
+
       - name: Контрольные аудиты
         run: |
           python tools/audit_supabase_prod_deps.py
