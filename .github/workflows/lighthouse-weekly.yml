@@ -112,6 +112,17 @@ jobs:
           cat "$SUMMARY" >> "$GITHUB_STEP_SUMMARY"
           echo "failed=$FAILED" >> "$GITHUB_OUTPUT"
 
+      # Расшифровка главной и отеля прямо в журнал: что за LCP-элемент, что
+      # блокирует отрисовку, самые тяжёлые файлы, возможности ускорения.
+      # Только чтение отчётов — на пороги и уведомления не влияет.
+      - name: Расшифровка отчётов
+        if: always()
+        continue-on-error: true
+        run: |
+          for name in Главная Отель; do
+            node tools/lighthouse_details.mjs "output/lighthouse-weekly/${name}.json"
+          done
+
       - name: Upload Lighthouse reports
         if: always()
         uses: actions/upload-artifact@v4
