@@ -19,6 +19,7 @@ GitHub Pages, а бакет проверяется по своему адрес�
 from __future__ import annotations
 
 import argparse
+import hashlib
 import mimetypes
 import os
 import sys
@@ -162,14 +163,46 @@ def wave(path: Path) -> int:
     return 0
 
 
-def upload(client, bucket: str, files: list[Path], dry_run: bool) -> int:
+def remote_etags(client, bucket: str) -> dict[str, str]:
+    """Отпечатки (ETag) всех файлов бакета одним списком — пара LIST-запросов."""
+    etags: dict[str, str] = {}
+    paginator = client.get_paginator("list_objects_v2")
+    for page in paginator.paginate(Bucket=bucket):
+        for obj in page.get("Contents") or []:
+            etags[obj["Key"]] = str(obj.get("ETag") or "").strip('"')
+    return etags
+
+
+def local_md5(path: Path) -> str:
+    digest = hashlib.md5()  # noqa: S324 — сравнение с ETag хранилища, не криптография
+    with path.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def upload(client, bucket: str, files: list[Path], dry_run: bool, remote: dict[str, str] | None = None) -> int:
+    """Заливает только изменённые файлы (MD5 ≠ ETag в бакете).
+
+    Раньше каждая выкладка отправляла все ~1100 файлов сайта: за сентябрь
+    2026 — 221 выкладка и 227 тысяч PUT-запросов (124 ₽ в месяц), хотя
+    автосинк обычно меняет пару страниц. ETag хранилища для обычной (не
+    multipart) заливки — это MD5 файла, так что сравнение точное. Файлы с
+    multipart-ETag (содержит «-») и отсутствующие в бакете заливаются всегда.
+    """
     sent = 0
+    skipped = 0
+    remote = remote or {}
     for step in (0, 1, 2):
         batch = [p for p in files if wave(p) == step]
         label = {0: "оформление и данные", 1: "страницы", 2: "service worker"}[step]
         print(f"\n--- Волна {step + 1}: {label} ({len(batch)} файлов) ---", flush=True)
         for path in batch:
             key = str(path.relative_to(ROOT))
+            etag = remote.get(key, "")
+            if etag and "-" not in etag and etag == local_md5(path):
+                skipped += 1
+                continue
             if dry_run:
                 print(f"  [пробный прогон] {key} ({content_type(path)})")
                 sent += 1
@@ -185,6 +218,7 @@ def upload(client, bucket: str, files: list[Path], dry_run: bool) -> int:
             sent += 1
             if sent % 100 == 0:
                 print(f"  залито {sent}...", flush=True)
+    print(f"\nБез изменений, пропущено: {skipped}", flush=True)
     return sent
 
 
@@ -288,7 +322,11 @@ def main() -> int:
                         help="показать состав заливки, ничего не отправляя")
     parser.add_argument("--verify-only", action="store_true",
                         help="только проверить уже залитый сайт")
+    parser.add_argument("--force-all", action="store_true",
+                        help="залить все файлы, даже неизменённые (например, после смены "
+                             "Cache-Control или Content-Type — их отпечаток файла не меняет)")
     args = parser.parse_args()
+    force_all = args.force_all or os.getenv("DEPLOY_FORCE_ALL", "").strip() in {"1", "true", "yes"}
 
     if args.verify_only:
         return verify(args.bucket)
@@ -304,7 +342,16 @@ def main() -> int:
 
     import boto3
     client = boto3.client("s3", endpoint_url=ENDPOINT)
-    sent = upload(client, args.bucket, files, dry_run=False)
+    remote: dict[str, str] = {}
+    if not force_all:
+        try:
+            remote = remote_etags(client, args.bucket)
+            print(f"В бакете сейчас файлов: {len(remote)} — неизменённые пропустим.")
+        except Exception as error:  # noqa: BLE001
+            # Не смогли прочитать список — безопасный путь: залить всё, как раньше.
+            print(f"Список бакета не получен ({error}) — заливаю все файлы.")
+            remote = {}
+    sent = upload(client, args.bucket, files, dry_run=False, remote=remote)
     print(f"\nЗалито файлов: {sent}")
     print("Домен не переключался — сайт по-прежнему открывается с GitHub Pages.")
     return verify(args.bucket)
