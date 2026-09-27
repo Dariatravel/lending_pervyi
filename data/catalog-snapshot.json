@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-27T18:13:55.345303+00:00",
+  "generated_at": "2026-09-27T22:05:38.525078+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 240,
@@ -10030,10 +10030,6 @@
         ],
         "prices": [
           {
-            "kind": "note",
-            "text": "(Раннее бронирование 2027)"
-          },
-          {
             "kind": "price",
             "text": "Стандартный номер до 2 человек"
           },
@@ -10064,6 +10060,10 @@
           {
             "kind": "price",
             "text": "2500₽ - октябрь"
+          },
+          {
+            "kind": "note",
+            "text": "(Раннее бронирование 2027)"
           },
           {
             "kind": "price",
@@ -19382,10 +19382,6 @@
         ],
         "prices": [
           {
-            "kind": "note",
-            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
-          },
-          {
             "kind": "price",
             "text": "Номера на 1 и 2 этаже без балкона"
           },
@@ -19496,6 +19492,10 @@
           {
             "kind": "price",
             "text": "от 7 суток бронирование."
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
           },
           {
             "kind": "price",
@@ -25358,6 +25358,7 @@
             "label": "ДОМ ПЕРВЫЙ ЭТАЖ:",
             "lines": [
               "Первый этаж дома сдается в аренду в августе.",
+              "Фото в комментариях",
               "Размещение до 6 человек.",
               "Кухня-гостиная, спальня, сан узел с душем.",
               "В спальне двуспальная кровать, шкаф, прикроватные тумбочки.",
@@ -25381,6 +25382,10 @@
           }
         ],
         "prices": [
+          {
+            "kind": "note",
+            "text": "(указаны за размещение до 7 человек 2 этаж)"
+          },
           {
             "kind": "price",
             "text": "6500₽ - май"
@@ -25535,7 +25540,7 @@
           "details": {
             "telegram_post": "abhkvartira/1366",
             "telegram_url": "https://t.me/abhkvartira/1366",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/biryuza-etazh-pod-klyuch-gagra-1367/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/biryuza-etazh-pod-klyuch-gagra-1367/video-01-poster.jpg"
           }
         },
         {
@@ -29475,7 +29480,7 @@
           "details": {
             "telegram_post": "abhazbooking/3417",
             "telegram_url": "https://t.me/abhazbooking/3417",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sisayd-domiki-3409/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sisayd-domiki-3409/video-01-poster.jpg"
           }
         }
       ]
@@ -36612,10 +36617,6 @@
         "prices": [
           {
             "kind": "note",
-            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
-          },
-          {
-            "kind": "note",
             "text": "(указаны за двухместное размещение)"
           },
           {
@@ -36633,6 +36634,10 @@
           {
             "kind": "price",
             "text": "3500₽/сутки - октябрь"
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
           },
           {
             "kind": "note",
@@ -42630,7 +42635,7 @@
           "details": {
             "telegram_post": "abhazbooking/3142",
             "telegram_url": "https://t.me/abhazbooking/3142",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/saya-domiki-3134/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/saya-domiki-3134/video-01-poster.jpg"
           }
         }
       ]
@@ -44235,7 +44240,8 @@
               "Верхний корпус делюкс: 6 номеров с обзорным видом с общей веранды: двуспальная кровать и диван.",
               "Нижний корпус делюкс у бассейна: 3 номера, двуспальная кровать и диван.",
               "И 1 двухместный номер на втором этаже отдельного коттеджа недалеко от бассейна.",
-              "Все номера оснащены кондиционером, холодильником, wi-fi, телевизором, постельным бельём, полотенцами. В номерах Люкс, Делюкс и Двухместный в коттедже дополнительно есть чайник и фен. Халаты и тапочки предоставляются по запросу."
+              "Все номера оснащены кондиционером, холодильником, wi-fi, телевизором, постельным бельём, полотенцами. В номерах Люкс, Делюкс и Двухместный в коттедже дополнительно есть чайник и фен. Халаты и тапочки предоставляются по запросу.",
+              "ПОДРОБНЕЕ ФОТО ЗДЕСЬ"
             ]
           },
           {
@@ -52527,7 +52533,7 @@
           "details": {
             "telegram_post": "abhazbooking/2676",
             "telegram_url": "https://t.me/abhazbooking/2676",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/amzara-otel-s-vinodelney-u-zapovednika-2668/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/amzara-otel-s-vinodelney-u-zapovednika-2668/video-01-poster.jpg"
           }
         }
       ]
@@ -53386,7 +53392,7 @@
           "details": {
             "telegram_post": "abhazbooking/2640",
             "telegram_url": "https://t.me/abhazbooking/2640",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/video-01-poster.jpg"
           }
         }
       ]
@@ -54486,10 +54492,6 @@
         "prices": [
           {
             "kind": "note",
-            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
-          },
-          {
-            "kind": "note",
             "text": "(завтраки включены в стоимость)"
           },
           {
@@ -54527,6 +54529,10 @@
           {
             "kind": "price",
             "text": "9000 ₽/сутки - сентябрь"
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
           },
           {
             "kind": "note",
