@@ -440,6 +440,15 @@ def parse_post(raw_text: str):
     for section in sections:
         label_upper = section["label"].upper()
         if "ЦЕН" in label_upper or "СТОИМОСТ" in label_upper:
+            # Уточнение прямо в заголовке — «✔️ЦЕНЫ (при двухместном размещении):» —
+            # раньше терялось вместе с заголовком, и гости спрашивали, за сколько
+            # человек цена (Амзара, 27.09.2026). Переносим его первой строкой-примечанием.
+            label_note = re.search(r"\(([^()]{3,80})\)", section["label"])
+            if label_note:
+                note_text = f"({label_note.group(1).strip()})"
+                already = any(l.strip().casefold() == note_text.casefold() for l in section["lines"])
+                if not already:
+                    prices.append({"kind": "note", "text": note_text})
             for line in section["lines"]:
                 sl = line.strip()
                 if not sl:
