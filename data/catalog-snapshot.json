@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-27T22:05:38.525078+00:00",
+  "generated_at": "2026-09-28T20:58:11.782930+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 240,
@@ -3104,11 +3104,7 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция в сентябре 7+1🔥"
-          },
-          {
-            "kind": "price",
-            "text": "При бронировании домика от 7 дней 1 ночь в подарок🎁"
+            "text": "Гастробар работает до 30 сентября."
           },
           {
             "kind": "heading",
@@ -3124,7 +3120,7 @@
           },
           {
             "kind": "price",
-            "text": "8000₽ - сентябрь 🔥"
+            "text": "8000₽ - сентябрь, октябрь 🔥"
           },
           {
             "kind": "price",
@@ -3136,7 +3132,7 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - сентябрь"
+            "text": "5000₽ - сентябрь, октябрь"
           },
           {
             "kind": "price",
@@ -3151,8 +3147,16 @@
             "text": "10000₽ - август, сентябрь"
           },
           {
+            "kind": "price",
+            "text": "8000₽ - октябрь"
+          },
+          {
             "kind": "note",
             "text": "Доп. место — 1000₽."
+          },
+          {
+            "kind": "price",
+            "text": "Бронирование от трёх суток."
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/plyazhnyy-kompleks-151-na-beregu-4620/index.html",
@@ -64944,7 +64948,11 @@
           },
           {
             "kind": "price",
-            "text": "3000₽ - сентябрь, октябрь, ноябрь, декабрь"
+            "text": "3000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽ - октябрь, ноябрь, декабрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/trio-nomer-na-plyazhe-5176/index.html",
