@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-28T20:58:11.782930+00:00",
+  "generated_at": "2026-09-29T14:33:19.436172+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 240,
+  "listings_total": 241,
   "listings_hotels": 188,
-  "listings_kvartira": 52,
+  "listings_kvartira": 53,
   "listings": [
     {
       "source_kind": "kvartira",
@@ -62,6 +62,10 @@
           {
             "kind": "price",
             "text": "4000₽ - сентябрь, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - ноябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/akira-2k-kvartira-1623/index.html",
@@ -28199,12 +28203,12 @@
       "source_topic_id": 143,
       "slug": "parkovaya-kvartira-2k-suhum-1292",
       "title": "\"ПАРКОВАЯ\" квартира 2к",
-      "summary": "Сухум. ️10 минут до центрального пляжа, размещение до 4 человек.",
+      "summary": "Сухум. 10 минут до центрального пляжа, размещение до 4 человек.",
       "excerpt": "Евро двухкомнатная квартира в самом сердце столицы Абхазии",
       "city": "Сухум",
       "location_text": "Сухум, Аидгылара 36",
-      "distance_text": "️10 минут до центрального пляжа",
-      "beach_text": "️10 минут до центрального пляжа",
+      "distance_text": "10 минут до центрального пляжа",
+      "beach_text": "10 минут до центрального пляжа",
       "capacity_text": "размещение до 4 человек",
       "page_url": "https://абхазберег.рф/kvartira/parkovaya-kvartira-2k-suhum-1292/",
       "telegram_url": "https://t.me/abhkvartira/1284",
@@ -28213,7 +28217,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/parkovaya-kvartira-2k-suhum-1292-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Сухум. ️10 минут до центрального пляжа, размещение до 4 человек.",
+        "lead": "Сухум. 10 минут до центрального пляжа, размещение до 4 человек.",
         "sections": [
           {
             "label": "✔️КВАРТИРА:",
@@ -28250,15 +28254,11 @@
           },
           {
             "kind": "price",
-            "text": "4000₽/сутки - сентябрь"
+            "text": "4000₽/сутки - сентябрь, октябрь"
           },
           {
             "kind": "price",
             "text": "Бронь от 7 дней."
-          },
-          {
-            "kind": "price",
-            "text": "Июнь весь занят."
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/parkovaya-kvartira-2k-suhum-1292/index.html",
@@ -31306,19 +31306,19 @@
         "prices": [
           {
             "kind": "price",
-            "text": "3000₽/сутки - апрель"
-          },
-          {
-            "kind": "price",
-            "text": "3500₽/сутки - май"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽/сутки - июнь"
+            "text": "🎄C 27 декабря по 15 января - 5000₽/сутки"
           },
           {
             "kind": "price",
             "text": "5000₽/сутки - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽/сутки - сентябрь, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽/сутки - с ноября по май"
           },
           {
             "kind": "price",
@@ -33694,14 +33694,6 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция в сентябре 4+1🔥"
-          },
-          {
-            "kind": "price",
-            "text": "При бронировании номера от 4 дней 1 ночь в подарок🎁"
-          },
-          {
-            "kind": "price",
             "text": "1этаж — номер на 4 человек"
           },
           {
@@ -33710,7 +33702,7 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - сентябрь, октябрь"
+            "text": "4000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -33722,7 +33714,7 @@
           },
           {
             "kind": "price",
-            "text": "3000₽ - сентябрь, октябрь"
+            "text": "3000₽ - сентябрь"
           },
           {
             "kind": "note",
@@ -33742,7 +33734,7 @@
           },
           {
             "kind": "price",
-            "text": "8500₽ - сентябрь с 15го, октябрь"
+            "text": "8500₽ - сентябрь с 15го"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/bi-heppi-apart-otel-3334/index.html",
@@ -40259,7 +40251,7 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - октябрь, ноябрь"
+            "text": "5000₽ - октябрь, ноябрь, декабрь"
           },
           {
             "kind": "heading",
@@ -40283,7 +40275,71 @@
           },
           {
             "kind": "price",
-            "text": "3500₽ - октябрь, ноябрь"
+            "text": "3500₽ - октябрь, ноябрь, декабрь"
+          },
+          {
+            "kind": "price",
+            "text": "Каждое доп место -1000₽/сутки."
+          },
+          {
+            "kind": "price",
+            "text": "Бронь от 7 дней."
+          },
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "РАННЕЕ БРОНИРОВАНИЕ 2027"
+          },
+          {
+            "kind": "heading",
+            "text": "Номер люкс двухкомнатный"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - с января по май"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - июнь до 15го"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - июнь с 15го"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - октябрь, ноябрь, декабрь"
+          },
+          {
+            "kind": "heading",
+            "text": "Номер стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - с января по май"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - июль, август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - октябрь, ноябрь, декабрь"
           },
           {
             "kind": "price",
@@ -67742,6 +67798,172 @@
           "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-09.jpg",
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-09.jpg",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "kvartira",
+      "source_channel": "abhkvartira",
+      "source_message_id": 1744,
+      "source_topic_id": 1743,
+      "slug": "chernomorskaya-1-kvartira-2k-1744",
+      "title": "\"ЧЕРНОМОРСКАЯ-1\" квартира 2к",
+      "summary": "Сухум. 2 минуты до центрального пляжа, размещение до 5 человек.",
+      "excerpt": "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\"",
+      "city": "Сухум",
+      "location_text": "Сухум, ул. Лакоба 114, 2 этаж",
+      "distance_text": "2 минуты до центрального пляжа",
+      "beach_text": "2 минуты до центрального пляжа",
+      "capacity_text": "размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/kvartira/chernomorskaya-1-kvartira-2k-1744/",
+      "telegram_url": "https://t.me/abhkvartira/1744",
+      "published_at": "2026-09-29",
+      "has_video": false,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/chernomorskaya-1-kvartira-2k-1744-cover.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Сухум. 2 минуты до центрального пляжа, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️КВАРТИРА:",
+            "lines": [
+              "Двухкомнатная квартира в центре города, напротив гостиницы \"Интер Сухум\".",
+              "Есть три односпальные кровати (можно совмещать).",
+              "Оборудованная кухня с посудой. Санузел с ванной, стиральная машинка.",
+              "Wi-Fi , кондиционер."
+            ]
+          },
+          {
+            "label": "✔️РАСПОЛОЖЕНИЕ:",
+            "lines": [
+              "Дом расположен на второй линии. Во дворе есть место для парковки авто. Детская площадка на набережной.",
+              "Пешком 3 минуты до кромки моря. Пляж галечный, прокат шезлонги, зонты.",
+              "В шаговой доступности центральная набережная, знаменитая \"Брехаловка\". Аптеки, продуктовые магазины, остановка (троллейбус, маршрутка). Рестораны, кафе, столовая, салон красоты, остановка, театр, рынок, ботанический сад. В общем, есть всё)"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "🎄C 27 декабря по 15 января - 5000₽/сутки"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽/сутки - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽/сутки - сентябрь, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽/сутки - с ноября по май"
+          },
+          {
+            "kind": "price",
+            "text": "Бронь от 5 дней."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/chernomorskaya-1-kvartira-2k-1744/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1212,
+      "media": [
+        {
+          "id": 1212001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/chernomorskaya-1-kvartira-2k-1744-cover.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira-cards/chernomorskaya-1-kvartira-2k-1744-cover.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/chernomorskaya-1-kvartira-2k-1744-cover.jpg",
+          "details": {}
+        },
+        {
+          "id": 1212002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/chernomorskaya-1-kvartira-2k-1744/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1212003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/chernomorskaya-1-kvartira-2k-1744/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1212004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/chernomorskaya-1-kvartira-2k-1744/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1212005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/chernomorskaya-1-kvartira-2k-1744/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1212006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/chernomorskaya-1-kvartira-2k-1744/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1212007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/chernomorskaya-1-kvartira-2k-1744/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1212008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/chernomorskaya-1-kvartira-2k-1744/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-07.jpg",
           "details": {}
         }
       ]
