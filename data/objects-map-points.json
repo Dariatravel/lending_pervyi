@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-09T19:05:18.143496+00:00",
+  "generated_at": "2026-09-29T19:44:40.041212+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1835,6 +1835,14 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"ЧЕРНОМОРСКАЯ-1\" КВАРТИРА 2К",
+      "address": "Сухум, ул. Лакоба 114, 2 этаж",
+      "lat": 42.997535,
+      "lon": 41.009323,
+      "url": "/kvartira/chernomorskaya-1-kvartira-2k-1744/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"ЧЕРНОМОРСКАЯ-2\" КВАРТИРА 2К",
       "address": "Сухум, ул. Лакоба 114, 2 этаж",
       "lat": 42.997535,
@@ -1926,16 +1934,16 @@
   "stats": {
     "placemarks_total": 482,
     "placemarks_unique": 241,
-    "pages_total": 491,
-    "pages_on_disk": 547,
+    "pages_total": 492,
+    "pages_on_disk": 548,
     "pages_excluded": 56,
-    "from_constructor": 257,
+    "from_constructor": 258,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 234,
     "skipped_without_coords": 234,
-    "shared_coordinate_groups": 29,
+    "shared_coordinate_groups": 30,
     "deduped_redirect_points": 17,
-    "points_total": 240
+    "points_total": 241
   }
 }
