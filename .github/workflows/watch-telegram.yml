@@ -186,6 +186,15 @@ jobs:
           python tools/validate_catalog_snapshot.py
           python tools/verify_object_media.py
 
+      # Каталог для ИИ (ai/catalog.json) и llms.txt — по свежему снапшоту.
+      # До 02.10.2026 собирались вручную и месяц отставали от сайта: ИИ
+      # предлагал снятую «АФИНУ» и не знал новых объектов. Ошибка здесь не
+      # должна останавливать публикацию самого сайта.
+      - name: Обновить каталог для ИИ
+        if: steps.sync.outputs.done == 'true'
+        continue-on-error: true
+        run: python tools/build_ai_search_assets.py --catalog-only
+
       # Изменения применены и проверены — фиксируем их сигнатуры в watch-state,
       # чтобы тот же самый дифф не попадал в отчёт и синк повторно каждый час.
       - name: Принять применённые изменения в watch-state

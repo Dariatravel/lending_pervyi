@@ -5,6 +5,7 @@ from __future__ import annotations
 import html
 import json
 import re
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -857,15 +858,41 @@ def update_home_schema() -> bool:
     return False
 
 
+def write_catalog(snapshot: dict[str, Any]) -> bool:
+    """Записать ai/catalog.json, если изменилось что-то кроме generated_at.
+
+    Иначе метка времени менялась бы при каждом ежечасном автосинке.
+    """
+    path = ROOT / "ai" / "catalog.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fresh = build_catalog(snapshot)
+    if path.exists():
+        try:
+            old = json.loads(path.read_text(encoding="utf-8"))
+            if {**old, "generated_at": ""} == {**fresh, "generated_at": ""}:
+                return False
+        except json.JSONDecodeError:
+            pass
+    path.write_text(json.dumps(fresh, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return True
+
+
 def main() -> int:
     snapshot = load_snapshot()
+    # --catalog-only — для ежечасного автосинка (watch-telegram.yml): только
+    # каталог для ИИ и llms.txt по свежему снапшоту. Страницы /answers/ и
+    # разметку главной не трогаем — они меняются правкой этого файла, а не
+    # постами в Telegram. До 02.10.2026 каталог собирался вручную и месяц
+    # отставал от сайта: предлагал снятую «АФИНУ», не знал новых объектов.
+    if "--catalog-only" in sys.argv:
+        changed = write_catalog(snapshot)
+        write_llms_txt(snapshot)
+        active = sum(1 for row in snapshot.get("listings", []) if row.get("is_active", True))
+        print(f"ai_catalog_updated={int(changed)} active_listings={active}")
+        return 0
+
     version = asset_version()
-    ai_dir = ROOT / "ai"
-    ai_dir.mkdir(parents=True, exist_ok=True)
-    (ai_dir / "catalog.json").write_text(
-        json.dumps(build_catalog(snapshot), ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
+    write_catalog(snapshot)
     write_llms_txt(snapshot)
     write_answer_pages(version)
     home_schema_updated = update_home_schema()
