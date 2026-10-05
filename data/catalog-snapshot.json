@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-05T09:26:48.363370+00:00",
+  "generated_at": "2026-10-05T16:36:53.134786+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 240,
-  "listings_hotels": 187,
+  "listings_total": 241,
+  "listings_hotels": 188,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -21816,19 +21816,15 @@
           },
           {
             "kind": "price",
-            "text": "Акция🔥"
-          },
-          {
-            "kind": "price",
-            "text": "При бронировании номера от 5 ночей на период с 24 августа по 30 сентября - 1900₽, менее 5 ночей - 2500₽"
-          },
-          {
-            "kind": "price",
             "text": "4000₽ - август"
           },
           {
             "kind": "price",
             "text": "3800₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "1900₽ - октябрь"
           },
           {
             "kind": "price",
@@ -28126,8 +28122,52 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
             "kind": "price",
             "text": "Размещение до 13 человек"
+          },
+          {
+            "kind": "price",
+            "text": "7000 ₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "11000₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "12000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - ноябрь, декабрь"
+          },
+          {
+            "kind": "note",
+            "text": "(БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "price",
+            "text": "Размещение до 13 человек"
+          },
+          {
+            "kind": "price",
+            "text": "5000 ₽ - с января по апрель"
           },
           {
             "kind": "price",
@@ -68507,6 +68547,515 @@
           "storage_path": "kvartira/chernomorskaya-1-kvartira-2k-1744/photo-07.jpg",
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/chernomorskaya-1-kvartira-2k-1744/photo-07.jpg",
           "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5296,
+      "source_topic_id": null,
+      "slug": "royal-rivera-otel-s-basseynom-i-pitaniem-5296",
+      "title": "«РОЯЛ РИВЬЕРА» отель с бассейном и питанием",
+      "summary": "Гагра. 1 минута до собственного пляжа, размещение до 5 человек.",
+      "excerpt": "Однокомнатный Стандарт площадью 30 м²",
+      "city": "Гагра",
+      "location_text": "Гагра, пр-т Ардзинба, 45",
+      "distance_text": "1 минута до собственного пляжа",
+      "beach_text": "1 минута до собственного пляжа",
+      "capacity_text": "Размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/",
+      "telegram_url": "https://t.me/abhazbooking/5296",
+      "published_at": "2026-10-05",
+      "has_video": true,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 1 минута до собственного пляжа, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Однокомнатный Стандарт площадью 30 м².",
+              "Двуспальная кровать. Доп место - кресло-кровать. Размещение до 3 человек.",
+              "Двухкомнатный Семейный площадью 50 м² с видом на море.",
+              "Две отдельные спальни. Размещение до 4 человек.",
+              "Двухкомнатный Люкс с прямым видом на море площадью 60 м².",
+              "Спальня, гостиная и просторная терраса. Размещение до 5 человек.",
+              "В номерах собственный сан узел с тропическим душем. Индивидуальные балконы.",
+              "Оснащение: кондиционер, телевизор, Wi-Fi, мини-холодильник, чайник, фен."
+            ]
+          },
+          {
+            "label": "✔️ПИТАНИЕ:",
+            "lines": [
+              "Ресторан со шведским столом, блюдами местной и международной кухни.",
+              "Тип питания зависит от выбранного тарифа:",
+              "Завтрак с 08:00 до 10:00.",
+              "Полупансион.",
+              "Полный пансион: завтрак, обед и ужин.",
+              "Обед проходит с 13:00 до 15:00, ужин — с 18:00 до 20:00.",
+              "При количестве гостей до 25 человек питание может предоставляться по системе а ля карт."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Открытый круглогодичный бассейн с подогревом, работающий с 08:00 до 20:00.",
+              "На территории отеля:",
+              "• ресторан и бар;",
+              "• детская и взрослая анимация;",
+              "• аквафитнес, танцы, игры и мастер-классы;",
+              "• игры (шахматы, шашки, лото, домино, нарды, игральные карты);",
+              "• мангальная зона;",
+              "• качели и гамаки;",
+              "• охраняемая парковка.",
+              "Для гостей предусмотрены собственный оборудованный пляж через дорогу и пляжный инвентарь."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Галечный пляж и набережная прямо через дорогу.",
+              "В шаговой доступности расположена знаменитая Гагрская колоннада, Зимний театр, Приморский парк и легендарный ресторан «Гагрипш».",
+              "Недалеко расположены замок принца Ольденбургского, древняя крепость Абаата, кафе, рестораны, сувенирные лавки и экскурсионные точки."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "С 1 ноября по 29 декабря и с 11 января по 31 марта:"
+          },
+          {
+            "kind": "price",
+            "text": "Завтрак:"
+          },
+          {
+            "kind": "price",
+            "text": "4038₽ — Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "3230₽ — одноместное размещение в Стандарте"
+          },
+          {
+            "kind": "price",
+            "text": "6555₽ — Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "7030₽ — Люкс с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для взрослого — 1283₽"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для ребенка от 5 до 12 лет — 1026₽"
+          },
+          {
+            "kind": "price",
+            "text": "Полупансион:"
+          },
+          {
+            "kind": "price",
+            "text": "4988₽ — Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "3990₽ — одноместное размещение в Стандарте"
+          },
+          {
+            "kind": "price",
+            "text": "7030₽ — Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "7505₽ — Люкс с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для взрослого — 1473₽"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для ребенка от 5 до 12 лет — 1178₽"
+          },
+          {
+            "kind": "price",
+            "text": "НОВЫЙ ГОД 🎄"
+          },
+          {
+            "kind": "price",
+            "text": "С 30 декабря по 5 января — Полупансион:"
+          },
+          {
+            "kind": "price",
+            "text": "11400₽ — Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "9120₽ — одноместное размещение в Стандарте"
+          },
+          {
+            "kind": "price",
+            "text": "13300₽ — Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "15200₽ — Люкс с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для взрослого — 1900₽"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для ребенка от 5 до 12 лет — 1520₽"
+          },
+          {
+            "kind": "price",
+            "text": "С 5 по 10 января — Полупансион:"
+          },
+          {
+            "kind": "price",
+            "text": "8075₽ — Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "6460₽ — одноместное размещение в Стандарте"
+          },
+          {
+            "kind": "price",
+            "text": "8455₽ — Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "9025₽ — Люкс с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для взрослого — 1900₽"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для ребенка от 5 до 12 лет — 1520₽"
+          },
+          {
+            "kind": "price",
+            "text": "С 1 по 30 апреля:"
+          },
+          {
+            "kind": "price",
+            "text": "Завтрак:"
+          },
+          {
+            "kind": "price",
+            "text": "5605₽ — Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "4484₽ — одноместное размещение в Стандарте"
+          },
+          {
+            "kind": "price",
+            "text": "7315₽ — Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "8265₽ — Люкс с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для взрослого — 1663₽"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для ребенка от 5 до 12 лет — 1330₽"
+          },
+          {
+            "kind": "price",
+            "text": "Полупансион:"
+          },
+          {
+            "kind": "price",
+            "text": "6080₽ — Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "4864₽ — одноместное размещение в Стандарте"
+          },
+          {
+            "kind": "price",
+            "text": "7790₽ — Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "8740₽ — Люкс с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для взрослого — 1853₽"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для ребенка от 5 до 12 лет — 1482₽"
+          },
+          {
+            "kind": "price",
+            "text": "С 1 по 31 мая и с 20 сентября по 19 октября — Полупансион:"
+          },
+          {
+            "kind": "price",
+            "text": "7125₽ — Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "5700₽ — одноместное размещение в Стандарте"
+          },
+          {
+            "kind": "price",
+            "text": "8550₽ — Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "9500₽ — Люкс с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для взрослого — 1900₽"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для ребенка от 5 до 12 лет — 1520₽"
+          },
+          {
+            "kind": "price",
+            "text": "С 1 по 30 июня и с 26 августа по 19 сентября — Полный пансион:"
+          },
+          {
+            "kind": "price",
+            "text": "11875₽ — Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "9500₽ — одноместное размещение в Стандарте"
+          },
+          {
+            "kind": "price",
+            "text": "12825₽ — Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "13300₽ — Люкс с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для взрослого — 2850₽"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для ребенка от 5 до 12 лет — 2280₽"
+          },
+          {
+            "kind": "price",
+            "text": "С 1 июля по 25 августа — Полный пансион:"
+          },
+          {
+            "kind": "price",
+            "text": "15 105₽ — Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "12 084₽ — одноместное размещение в Стандарте"
+          },
+          {
+            "kind": "price",
+            "text": "15 390₽ — Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "16 055₽ — Люкс с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для взрослого — 3325₽"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для ребенка от 5 до 12 лет — 2660₽"
+          },
+          {
+            "kind": "price",
+            "text": "Возвратный депозит в отеле 5000₽ только наличными."
+          },
+          {
+            "kind": "price",
+            "text": "Я НА СВЯЗИ 📲"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/index.html",
+        "filters": {
+          "distance": [
+            "beachfront",
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "pool",
+            "balcony",
+            "tv",
+            "five-plus",
+            "two-room-plus",
+            "beachfront-room"
+          ],
+          "stay": []
+        }
+      },
+      "id": 1213,
+      "media": [
+        {
+          "id": 1213001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296.jpg",
+          "details": {}
+        },
+        {
+          "id": 1213002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1213003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1213004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1213005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1213006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1213007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1213008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1213009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1213010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1213011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5305",
+            "telegram_url": "https://t.me/abhazbooking/5305",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/video-01-poster.jpg"
+          }
         }
       ]
     }

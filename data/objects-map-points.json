@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T19:44:40.041212+00:00",
+  "generated_at": "2026-10-05T16:29:37.879681+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -720,14 +720,6 @@
       "lat": 43.17767700223645,
       "lon": 40.38462772883561,
       "url": "/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/",
-      "cityKey": "ldzaa"
-    },
-    {
-      "title": "\"ДЖАННАТ\" отель на берегу",
-      "address": "Лдзаа, ул. Рыбзаводская, 80",
-      "lat": 43.17402170592871,
-      "lon": 40.3848232784342,
-      "url": "/hotels/dzhannat-otel-na-beregu-s-zavtrakami-4571/",
       "cityKey": "ldzaa"
     },
     {
@@ -1932,18 +1924,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 482,
-    "placemarks_unique": 241,
-    "pages_total": 492,
+    "placemarks_total": 484,
+    "placemarks_unique": 242,
+    "pages_total": 490,
     "pages_on_disk": 548,
-    "pages_excluded": 56,
-    "from_constructor": 258,
+    "pages_excluded": 58,
+    "from_constructor": 257,
     "from_page_coords": 0,
     "from_manual": 0,
-    "skipped_without_constructor": 234,
-    "skipped_without_coords": 234,
+    "skipped_without_constructor": 233,
+    "skipped_without_coords": 233,
     "shared_coordinate_groups": 30,
     "deduped_redirect_points": 17,
-    "points_total": 241
+    "points_total": 240
   }
 }
