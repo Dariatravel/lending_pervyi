@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T16:29:37.879681+00:00",
+  "generated_at": "2026-10-05T23:01:44.731198+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -424,6 +424,14 @@
       "lat": 43.273932,
       "lon": 40.270261,
       "url": "/kvartira/siti-gagra-kvartira-2k-gagra-1242/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "«РОЯЛ РИВЬЕРА» отель с бассейном и питанием",
+      "address": "Гагра, пр-т Ардзинба, 45",
+      "lat": 43.32114,
+      "lon": 40.23882,
+      "url": "/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/",
       "cityKey": "gagra"
     },
     {
@@ -1926,16 +1934,16 @@
   "stats": {
     "placemarks_total": 484,
     "placemarks_unique": 242,
-    "pages_total": 490,
-    "pages_on_disk": 548,
+    "pages_total": 491,
+    "pages_on_disk": 549,
     "pages_excluded": 58,
-    "from_constructor": 257,
+    "from_constructor": 258,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 233,
     "skipped_without_coords": 233,
     "shared_coordinate_groups": 30,
     "deduped_redirect_points": 17,
-    "points_total": 240
+    "points_total": 241
   }
 }
