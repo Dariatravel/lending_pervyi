@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-04T15:41:13.568946+00:00",
+  "generated_at": "2026-10-05T09:26:48.363370+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 241,
-  "listings_hotels": 188,
+  "listings_total": 240,
+  "listings_hotels": 187,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -3343,7 +3343,7 @@
       "published_at": "2026-05-26",
       "has_video": true,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/dzhannat-otel-na-beregu-s-zavtrakami-4571.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Лдзаа. 0 минут до пляжа, размещение до 5 человек.",
         "sections": [
