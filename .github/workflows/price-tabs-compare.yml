@@ -123,3 +123,15 @@ jobs:
           curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
             --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
             --data-urlencode "text=⚠️ Сверка цен (ручная vs авто) упала. Подробности: ${RUN_URL}" >/dev/null
+
+      # Та же тревога — дежурному агенту на Mac mini (см. .github/actions/incident).
+      # Повторы дежурный отсеивает сам по ключу, поэтому без оглядки на часы.
+      - name: Передать инцидент дежурному
+        if: failure()
+        uses: ./.github/actions/incident
+        with:
+          source: сайт
+          text: "Сверка цен (ручная vs авто) упала. ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          key: сайт-сверка-цен
+          url: ${{ secrets.INCIDENT_WEBHOOK_URL }}
+          secret: ${{ secrets.INCIDENT_WEBHOOK_SECRET }}

@@ -57,6 +57,17 @@ jobs:
             --data-urlencode "text=${MSG}" >/dev/null
           echo "Тревога отправлена."
 
+      # Та же тревога — дежурному агенту на Mac mini (см. .github/actions/incident).
+      - name: Передать инцидент дежурному
+        if: steps.check.outputs.failed != '0'
+        uses: ./.github/actions/incident
+        with:
+          source: сайт
+          text: "Сертификаты сайта: нужна реакция (истекают или HTTPS не поднимается). ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          key: сайт-сертификаты
+          url: ${{ secrets.INCIDENT_WEBHOOK_URL }}
+          secret: ${{ secrets.INCIDENT_WEBHOOK_SECRET }}
+
       - name: Провалить прогон при тревоге
         if: steps.check.outputs.failed != '0'
         run: exit 1

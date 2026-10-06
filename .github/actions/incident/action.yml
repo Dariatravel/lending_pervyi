@@ -1,0 +1,59 @@
+# Передать тревогу дежурному агенту на Mac mini.
+#
+# Telegram-бот не видит сообщения других ботов, поэтому тревоги сайта,
+# которые уходят в чат отчётов, дежурный агент (rental-ai, duty_agent.py)
+# сам не получит. Этот шаг дублирует тревогу POST-запросом на вебхук Mac mini
+# (Tailscale Funnel → webhook_server.py, адрес /incident). Если секреты не
+# заданы или Mac mini не в сети — шаг молча пропускается: тревога в Telegram
+# всё равно уже ушла.
+#
+# Секреты репозитория: INCIDENT_WEBHOOK_URL (https://…/incident),
+# INCIDENT_WEBHOOK_SECRET (тот же текст, что в
+# ~/.config/rental-ai/incident-webhook-secret.txt на Mac mini).
+name: Передать инцидент дежурному
+description: Дублирует тревогу на вебхук дежурного агента (Mac mini)
+
+inputs:
+  source:
+    description: Откуда тревога (например «сайт»)
+    required: true
+  text:
+    description: Текст тревоги
+    required: true
+  key:
+    description: Короткий ключ повода, чтобы дежурный не разбирал повтор
+    required: false
+    default: ""
+  url:
+    description: Адрес вебхука (secrets.INCIDENT_WEBHOOK_URL)
+    required: true
+  secret:
+    description: Секрет вебхука (secrets.INCIDENT_WEBHOOK_SECRET)
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: POST на вебхук дежурного
+      shell: bash
+      env:
+        URL: ${{ inputs.url }}
+        SECRET: ${{ inputs.secret }}
+        SOURCE: ${{ inputs.source }}
+        TEXT: ${{ inputs.text }}
+        KEY: ${{ inputs.key }}
+      run: |
+        if [ -z "$URL" ] || [ -z "$SECRET" ]; then
+          echo "INCIDENT_WEBHOOK_URL/SECRET не заданы — дежурному не передаём."
+          exit 0
+        fi
+        payload="$(jq -n --arg s "$SOURCE" --arg t "$TEXT" --arg k "$KEY" \
+          '{source: $s, text: $t} + (if $k == "" then {} else {key: $k} end)')"
+        code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 \
+          -X POST "$URL" \
+          -H 'Content-Type: application/json' \
+          -H "X-Incident-Secret: $SECRET" \
+          --data-binary "$payload" || echo "000")"
+        echo "Дежурный: HTTP $code"
+        # Не роняем workflow: Mac mini мог быть без интернета.
+        exit 0
