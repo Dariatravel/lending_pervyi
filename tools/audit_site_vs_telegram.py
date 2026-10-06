@@ -41,6 +41,7 @@ from watch_telegram_updates import (  # noqa: E402
     site_mismatch_parts,
 )
 
+GRACE_SECONDS = 2 * 3600  # автосинк ходит раз в час; дважды по часу — с запасом
 REPORT_PATH = ROOT / "output" / "site-vs-telegram-report.txt"
 FINDINGS_PATH = ROOT / "output" / "site-vs-telegram-findings.txt"
 
@@ -61,6 +62,7 @@ async def run(limit: int) -> int:
     replaced: list[str] = []   # пост удалён, в теме есть новый
     orphaned: list[str] = []   # пост удалён, замены нет
     mismatched: list[str] = [] # пост жив, но сайт с ним расходится
+    pending: list[str] = []    # пост правлен меньше двух часов назад — автосинк ещё впереди
     errors: list[str] = []
 
     async with connected_telegram_client(session, api_id, api_hash, receive_updates=False) as client:
@@ -104,7 +106,14 @@ async def run(limit: int) -> int:
                         continue
                     parts = site_mismatch_parts(rows.get(item.key), message.message or "")
                     if parts:
-                        mismatched.append(f"{item.title} — не совпадает: {', '.join(parts)} — {item.telegram_url}")
+                        # Пост правили только что — часовой автосинк ещё не успел.
+                        # Такое не расхождение, а очередь: иначе утренний отчёт
+                        # шумел бы о том, что само исправится к следующему часу.
+                        edited_at = getattr(message, "edit_date", None) or getattr(message, "date", None)
+                        if edited_at is not None and (datetime.now(timezone.utc) - edited_at).total_seconds() < GRACE_SECONDS:
+                            pending.append(f"{item.title} — пост правлен {edited_at.astimezone().strftime('%H:%M')}, ждёт автосинка — {item.telegram_url}")
+                        else:
+                            mismatched.append(f"{item.title} — не совпадает: {', '.join(parts)} — {item.telegram_url}")
                 except Exception as error:  # noqa: BLE001
                     errors.append(f"{item.slug}: {error}")
 
@@ -114,6 +123,7 @@ async def run(limit: int) -> int:
         ("Сайт отстал (пост заменён в теме):", replaced),
         ("Пост удалён, объект на сайте остаётся:", orphaned),
         ("Сайт расходится с постом:", mismatched),
+        ("Свежие правки, ждут автосинка (не расхождение):", pending),
         ("Не удалось проверить:", errors),
     ):
         if bucket:
