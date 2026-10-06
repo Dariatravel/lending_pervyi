@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T16:36:53.134786+00:00",
+  "generated_at": "2026-10-06T10:20:13.200118+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 241,
@@ -33155,31 +33155,31 @@
     {
       "source_kind": "kvartira",
       "source_channel": "abhkvartira",
-      "source_message_id": 1276,
+      "source_message_id": 1719,
       "source_topic_id": 412,
       "slug": "feniks-dom-na-bolshuyu-semyu-ldzaa-1282",
       "title": "\"ФЕНИКС\" дом для большой семьи",
-      "summary": "Лдзаа. ️ 14 минут до \"золотого\" песчаного пляжа, размещение до 14 человек.",
+      "summary": "Лдзаа. 14 минут до пляжа, размещение до 14 человек.",
       "excerpt": "Дом расположен в райском уголке, на тихой улице Монашеского ущелья",
       "city": "Лдзаа",
       "location_text": "Лдзаа, Монашеское ущелье, 25Б",
-      "distance_text": "️ 14 минут до \"золотого\" песчаного пляжа",
-      "beach_text": "️ 14 минут до \"золотого\" песчаного пляжа",
+      "distance_text": "14 минут до пляжа",
+      "beach_text": "14 минут до пляжа",
       "capacity_text": "Размещение до 14 человек",
       "page_url": "https://абхазберег.рф/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/",
-      "telegram_url": "https://t.me/abhkvartira/1276",
-      "published_at": "2026-02-04",
+      "telegram_url": "https://t.me/abhkvartira/1719",
+      "published_at": "2026-09-14",
       "has_video": true,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/feniks-dom-na-bolshuyu-semyu-ldzaa-1282-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. ️ 14 минут до \"золотого\" песчаного пляжа, размещение до 14 человек.",
+        "lead": "Лдзаа. 14 минут до пляжа, размещение до 14 человек.",
         "sections": [
           {
             "label": "✔️РАСПОЛОЖЕНИЕ:",
             "lines": [
               "Дом расположен в райском уголке, на тихой улице Монашеского ущелья.",
-              "Большой частный двор, красивый вид на зеленую гору, по утрам поющие птицы, цветы и деревья вокруг. Место невероятного спокойствия и силы.",
+              "Большой частный двор, красивый вид на зеленую гору, по утрам поющие птицы, цветы и деревья вокруг.",
               "Есть батут для детей, качели. Беседка со столами и стульями. Мангальная зона. Каркасный бассейн (4 метра)."
             ]
           },
@@ -33203,11 +33203,7 @@
         "prices": [
           {
             "kind": "note",
-            "text": "(указаны без скидки)"
-          },
-          {
-            "kind": "price",
-            "text": "Акция в июле и августе скидка 2000₽🔥"
+            "text": "(2026)"
           },
           {
             "kind": "price",
@@ -33215,23 +33211,23 @@
           },
           {
             "kind": "price",
-            "text": "5000 ₽/сутки - май"
+            "text": "5000₽ - май"
           },
           {
             "kind": "price",
-            "text": "6000₽/сутки - июнь"
+            "text": "6000₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "9000₽/сутки - июль"
+            "text": "9000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "10000₽/сутки - август"
+            "text": "10000₽ - август"
           },
           {
             "kind": "price",
-            "text": "8000₽/сутки - сентябрь"
+            "text": "8000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -33239,23 +33235,75 @@
           },
           {
             "kind": "price",
-            "text": "6000 ₽/сутки - май"
+            "text": "6000₽ - май"
           },
           {
             "kind": "price",
-            "text": "7000₽/сутки - июнь"
+            "text": "7000₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "10000₽/сутки - июль"
+            "text": "10000₽ - июль"
           },
           {
             "kind": "price",
-            "text": "12000₽/сутки - август"
+            "text": "12000₽ - август"
           },
           {
             "kind": "price",
-            "text": "10000₽/сутки - сентябрь"
+            "text": "10000₽ - сентябрь"
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "price",
+            "text": "Размещение до 8 человек"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Размещение 8-14 человек"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "12000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - сентябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/index.html",
@@ -33369,15 +33417,48 @@
           "id": 121008,
           "media_role": "gallery",
           "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 121009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 121010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 121011,
+          "media_role": "gallery",
+          "sort_order": 10,
           "mime_type": "video/mp4",
           "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
           "storage_path": "videos/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/video-01.mp4",
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/video-01.mp4",
           "details": {
-            "telegram_post": "abhkvartira/1282",
-            "telegram_url": "https://t.me/abhkvartira/1282",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/video-01-source-poster.jpg"
+            "telegram_post": "abhkvartira/1728",
+            "telegram_url": "https://t.me/abhkvartira/1728",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/feniks-dom-na-bolshuyu-semyu-ldzaa-1282/video-01-poster.jpg"
           }
         }
       ]
@@ -36005,7 +36086,7 @@
     {
       "source_kind": "kvartira",
       "source_channel": "abhkvartira",
-      "source_message_id": 1113,
+      "source_message_id": 1732,
       "source_topic_id": 379,
       "slug": "rimma-dve-1k-kvartriry-suhum-1118",
       "title": "\"РИММА\" две квартиры с кухней",
@@ -36017,9 +36098,9 @@
       "beach_text": "5 минут до песчаного пляжа",
       "capacity_text": "размещение по 3 человека",
       "page_url": "https://абхазберег.рф/kvartira/rimma-dve-1k-kvartriry-suhum-1118/",
-      "telegram_url": "https://t.me/abhkvartira/1113",
-      "published_at": "2026-02-03",
-      "has_video": true,
+      "telegram_url": "https://t.me/abhkvartira/1732",
+      "published_at": "2026-09-21",
+      "has_video": false,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/rimma-dve-1k-kvartriry-suhum-1118-cover.jpg",
       "is_active": true,
       "details": {
@@ -36052,15 +36133,15 @@
         "prices": [
           {
             "kind": "price",
-            "text": "Акция🔥"
+            "text": "4000₽/сутки - июль, август"
           },
           {
             "kind": "price",
-            "text": "С 24 июля по 6 августа свободна 1 комната - 3000₽"
+            "text": "3500₽/сутки - сентябрь"
           },
           {
             "kind": "price",
-            "text": "4000₽/сутки - июль, август, сентябрь"
+            "text": "2000₽/сутки - с октября по май"
           },
           {
             "kind": "price",
@@ -36169,16 +36250,56 @@
           "id": 136007,
           "media_role": "gallery",
           "sort_order": 6,
-          "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/rimma-dve-1k-kvartriry-suhum-1118/video-01.mp4",
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-06.jpg",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/kvartira/rimma-dve-1k-kvartriry-suhum-1118/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/rimma-dve-1k-kvartriry-suhum-1118/video-01.mp4",
-          "details": {
-            "telegram_post": "abhkvartira/1118",
-            "telegram_url": "https://t.me/abhkvartira/1118",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/rimma-dve-1k-kvartriry-suhum-1118/video-01-poster.jpg"
-          }
+          "storage_path": "kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 136008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 136009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 136010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 136011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-10.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/rimma-dve-1k-kvartriry-suhum-1118/photo-10.jpg",
+          "details": {}
         }
       ]
     },
@@ -68637,27 +68758,27 @@
           },
           {
             "kind": "price",
-            "text": "4038₽ — Стандарт"
+            "text": "4020₽ — Стандарт"
           },
           {
             "kind": "price",
-            "text": "3230₽ — одноместное размещение в Стандарте"
+            "text": "3220₽ — одноместное размещение в Стандарте"
           },
           {
             "kind": "price",
-            "text": "6555₽ — Семейный"
+            "text": "6520₽ — Семейный"
           },
           {
             "kind": "price",
-            "text": "7030₽ — Люкс с видом на море"
+            "text": "6990₽ — Люкс с видом на море"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1283₽"
+            "text": "Доп место для взрослого — 1280₽"
           },
           {
             "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 1026₽"
+            "text": "Доп место для ребенка от 5 до 12 лет — 1020₽"
           },
           {
             "kind": "price",
@@ -68665,27 +68786,27 @@
           },
           {
             "kind": "price",
-            "text": "4988₽ — Стандарт"
+            "text": "4960₽ — Стандарт"
           },
           {
             "kind": "price",
-            "text": "3990₽ — одноместное размещение в Стандарте"
+            "text": "3970₽ — одноместное размещение в Стандарте"
           },
           {
             "kind": "price",
-            "text": "7030₽ — Семейный"
+            "text": "6990₽ — Семейный"
           },
           {
             "kind": "price",
-            "text": "7505₽ — Люкс с видом на море"
+            "text": "7470₽ — Люкс с видом на море"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1473₽"
+            "text": "Доп место для взрослого — 1470₽"
           },
           {
             "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 1178₽"
+            "text": "Доп место для ребенка от 5 до 12 лет — 1180₽"
           },
           {
             "kind": "price",
@@ -68697,23 +68818,23 @@
           },
           {
             "kind": "price",
-            "text": "11400₽ — Стандарт"
+            "text": "11340₽ — Стандарт"
           },
           {
             "kind": "price",
-            "text": "9120₽ — одноместное размещение в Стандарте"
+            "text": "9070₽ — одноместное размещение в Стандарте"
           },
           {
             "kind": "price",
-            "text": "13300₽ — Семейный"
+            "text": "13230₽ — Семейный"
           },
           {
             "kind": "price",
-            "text": "15200₽ — Люкс с видом на море"
+            "text": "15120₽ — Люкс с видом на море"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1900₽"
+            "text": "Доп место для взрослого — 1890₽"
           },
           {
             "kind": "price",
@@ -68725,23 +68846,23 @@
           },
           {
             "kind": "price",
-            "text": "8075₽ — Стандарт"
+            "text": "8030₽ — Стандарт"
           },
           {
             "kind": "price",
-            "text": "6460₽ — одноместное размещение в Стандарте"
+            "text": "6430₽ — одноместное размещение в Стандарте"
           },
           {
             "kind": "price",
-            "text": "8455₽ — Семейный"
+            "text": "8410₽ — Семейный"
           },
           {
             "kind": "price",
-            "text": "9025₽ — Люкс с видом на море"
+            "text": "8980₽ — Люкс с видом на море"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1900₽"
+            "text": "Доп место для взрослого — 1890₽"
           },
           {
             "kind": "price",
@@ -68757,23 +68878,23 @@
           },
           {
             "kind": "price",
-            "text": "5605₽ — Стандарт"
+            "text": "5580₽ — Стандарт"
           },
           {
             "kind": "price",
-            "text": "4484₽ — одноместное размещение в Стандарте"
+            "text": "4460₽ — одноместное размещение в Стандарте"
           },
           {
             "kind": "price",
-            "text": "7315₽ — Семейный"
+            "text": "7280₽ — Семейный"
           },
           {
             "kind": "price",
-            "text": "8265₽ — Люкс с видом на море"
+            "text": "8220₽ — Люкс с видом на море"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1663₽"
+            "text": "Доп место для взрослого — 1660₽"
           },
           {
             "kind": "price",
@@ -68785,27 +68906,27 @@
           },
           {
             "kind": "price",
-            "text": "6080₽ — Стандарт"
+            "text": "6050₽ — Стандарт"
           },
           {
             "kind": "price",
-            "text": "4864₽ — одноместное размещение в Стандарте"
+            "text": "4840₽ — одноместное размещение в Стандарте"
           },
           {
             "kind": "price",
-            "text": "7790₽ — Семейный"
+            "text": "7750₽ — Семейный"
           },
           {
             "kind": "price",
-            "text": "8740₽ — Люкс с видом на море"
+            "text": "8690₽ — Люкс с видом на море"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1853₽"
+            "text": "Доп место для взрослого — 1850₽"
           },
           {
             "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 1482₽"
+            "text": "Доп место для ребенка от 5 до 12 лет — 1480₽"
           },
           {
             "kind": "price",
@@ -68813,23 +68934,23 @@
           },
           {
             "kind": "price",
-            "text": "7125₽ — Стандарт"
+            "text": "7090₽ — Стандарт"
           },
           {
             "kind": "price",
-            "text": "5700₽ — одноместное размещение в Стандарте"
+            "text": "5670₽ — одноместное размещение в Стандарте"
           },
           {
             "kind": "price",
-            "text": "8550₽ — Семейный"
+            "text": "8500₽ — Семейный"
           },
           {
             "kind": "price",
-            "text": "9500₽ — Люкс с видом на море"
+            "text": "9450₽ — Люкс с видом на море"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1900₽"
+            "text": "Доп место для взрослого — 1890₽"
           },
           {
             "kind": "price",
@@ -68841,27 +68962,27 @@
           },
           {
             "kind": "price",
-            "text": "11875₽ — Стандарт"
+            "text": "11810₽ — Стандарт"
           },
           {
             "kind": "price",
-            "text": "9500₽ — одноместное размещение в Стандарте"
+            "text": "9450₽ — одноместное размещение в Стандарте"
           },
           {
             "kind": "price",
-            "text": "12825₽ — Семейный"
+            "text": "12750₽ — Семейный"
           },
           {
             "kind": "price",
-            "text": "13300₽ — Люкс с видом на море"
+            "text": "13230₽ — Люкс с видом на море"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 2850₽"
+            "text": "Доп место для взрослого — 2840₽"
           },
           {
             "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 2280₽"
+            "text": "Доп место для ребенка от 5 до 12 лет — 2270₽"
           },
           {
             "kind": "price",
@@ -68869,27 +68990,27 @@
           },
           {
             "kind": "price",
-            "text": "15 105₽ — Стандарт"
+            "text": "15020₽ — Стандарт"
           },
           {
             "kind": "price",
-            "text": "12 084₽ — одноместное размещение в Стандарте"
+            "text": "12020₽ — одноместное размещение в Стандарте"
           },
           {
             "kind": "price",
-            "text": "15 390₽ — Семейный"
+            "text": "15300₽ — Семейный"
           },
           {
             "kind": "price",
-            "text": "16 055₽ — Люкс с видом на море"
+            "text": "15970₽ — Люкс с видом на море"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 3325₽"
+            "text": "Доп место для взрослого — 3310₽"
           },
           {
             "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 2660₽"
+            "text": "Доп место для ребенка от 5 до 12 лет — 2650₽"
           },
           {
             "kind": "price",
