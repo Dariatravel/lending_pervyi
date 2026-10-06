@@ -1,0 +1,98 @@
+name: Site vs Telegram audit
+
+# Ежедневная сверка сайта с каналами «по-честному»: для каждого активного
+# объекта проверяем, что исходный пост жив, и что локация/пляж/вместимость/
+# цены на сайте совпадают с постом. Часовой автосинк сообщает только о том,
+# что он сделал; о пропущенном он молчит — так «Феникс» и «Римма» месяц жили
+# старыми данными (06.10.2026). Расхождения уходят отчётом в Telegram-чат.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "20 5 * * *"   # 08:20 МСК, после ночной фиксации цен (03:00 МСК)
+
+concurrency:
+  group: site-vs-telegram-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      TG_STRING_SESSION: ${{ secrets.TG_STRING_SESSION }}
+    steps:
+      - name: Проверить наличие сессии
+        id: gate
+        run: |
+          if [ -z "$TG_STRING_SESSION" ]; then
+            echo "TG_STRING_SESSION не задан — сверка пропущена."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.enabled == 'true'
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.enabled == 'true'
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        if: steps.gate.outputs.enabled == 'true'
+        run: pip install --quiet -r requirements-site-update-bot.txt
+
+      - name: Сверить сайт с Telegram
+        id: audit
+        if: steps.gate.outputs.enabled == 'true'
+        env:
+          OPT_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          OPT_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+        run: |
+          if [ -n "$OPT_API_ID" ]; then export TELEGRAM_API_ID="$OPT_API_ID"; fi
+          if [ -n "$OPT_API_HASH" ]; then export TELEGRAM_API_HASH="$OPT_API_HASH"; fi
+          python tools/audit_site_vs_telegram.py
+          echo "findings=$(cat output/site-vs-telegram-findings.txt 2>/dev/null || echo 0)" >> "$GITHUB_OUTPUT"
+
+      - name: Сохранить отчёт
+        if: always() && steps.gate.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-vs-telegram-report
+          path: output/site-vs-telegram-report.txt
+          if-no-files-found: ignore
+
+      - name: Сообщить о расхождениях в Telegram
+        if: steps.gate.outputs.enabled == 'true' && steps.audit.outputs.findings != '0'
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
+            echo "TG_BOT_TOKEN/TG_REPORT_CHAT_ID не заданы — уведомление пропущено."
+            exit 0
+          fi
+          REPORT=$(head -c 3200 output/site-vs-telegram-report.txt)
+          MSG=$(printf '🔎 Сверка сайта с Telegram: есть расхождения.\n\n%s\n\nПолный отчёт: %s' "$REPORT" "$RUN_URL")
+          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
+            --data-urlencode "text=${MSG}" >/dev/null
+          echo "Уведомление отправлено."
+
+      # Сбой самой сверки (сеть, сессия) — тоже сигнал: иначе тишина будет
+      # выглядеть как «всё совпадает».
+      - name: Сообщить о сбое сверки
+        if: failure() && steps.gate.outputs.enabled == 'true'
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then exit 0; fi
+          MSG=$(printf '⚠️ Сверка сайта с Telegram не выполнилась (сбой прогона).\n\n%s' "$RUN_URL")
+          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
+            --data-urlencode "text=${MSG}" >/dev/null
