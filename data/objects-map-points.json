@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T23:01:44.731198+00:00",
+  "generated_at": "2026-10-06T22:00:33.932794+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -667,14 +667,6 @@
       "cityKey": "ldzaa"
     },
     {
-      "title": "\"БУГЕНВИЛЛЕЯ\" отель с бассейном",
-      "address": "Лдзаа, ул. Аиааира, д. 35",
-      "lat": 43.173836,
-      "lon": 40.372445,
-      "url": "/hotels/bugenvilleya-otel-s-basseynom-3044/",
-      "cityKey": "ldzaa"
-    },
-    {
       "title": "\"В ГОСТЯХ У БЕЛОЧКИ\" домики и номера",
       "address": "Лдзаа, Нозадзе 10",
       "lat": 43.17128219327671,
@@ -1160,6 +1152,14 @@
       "lat": 43.174606380322274,
       "lon": 40.390243152114046,
       "url": "/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "НОВЫЙ ГОД В «БУГЕНВИЛЛЕЯ» С БАССЕЙНОМ",
+      "address": "Лдзаа, ул. Аиааира, д. 35",
+      "lat": 43.173836,
+      "lon": 40.372445,
+      "url": "/hotels/bugenvilleya-otel-s-basseynom-3044/",
       "cityKey": "ldzaa"
     },
     {
@@ -1934,14 +1934,14 @@
   "stats": {
     "placemarks_total": 484,
     "placemarks_unique": 242,
-    "pages_total": 491,
-    "pages_on_disk": 549,
+    "pages_total": 492,
+    "pages_on_disk": 550,
     "pages_excluded": 58,
     "from_constructor": 258,
     "from_page_coords": 0,
     "from_manual": 0,
-    "skipped_without_constructor": 233,
-    "skipped_without_coords": 233,
+    "skipped_without_constructor": 234,
+    "skipped_without_coords": 234,
     "shared_coordinate_groups": 30,
     "deduped_redirect_points": 17,
     "points_total": 241
