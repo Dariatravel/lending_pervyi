@@ -1,0 +1,59 @@
+# Показывает, в какие чаты добавлен бот сайта и какие у них номера (id).
+# Нужен, когда надо вписать номер нового чата в секрет TG_REPORT_CHAT_ID.
+#
+# Печатает ТОЛЬКО названия чатов и их id — ни одного текста сообщений
+# (репозиторий публичный, журналы видны всем). Ничего не отправляет и не
+# подтверждает очередь (getUpdates без offset), так что бот на Mac, если он
+# запущен, получит те же события. Если бот на Mac сейчас опрашивает Telegram,
+# Telegram ответит 409 Conflict — тогда номер чата надо брать из его журнала.
+name: Telegram Chat IDs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  chat-ids:
+    name: Show chat ids
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Read pending updates
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${TG_BOT_TOKEN}" ]; then
+            echo "Не задан секрет TG_BOT_TOKEN"
+            exit 1
+          fi
+          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/getMe" > me.json
+          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/getUpdates?limit=100" > updates.json
+
+          python3 - <<'PY'
+          import json
+          me = json.load(open("me.json"))
+          if me.get("ok"):
+              print(f"Бот: @{me['result'].get('username')}")
+          body = json.load(open("updates.json"))
+          if not body.get("ok"):
+              print("Telegram ответил ошибкой:", body.get("description"))
+              if "Conflict" in str(body.get("description")):
+                  print("Бот на Mac сейчас опрашивает Telegram сам — номер чата ищите в его журнале.")
+              raise SystemExit(1)
+          chats = {}
+          for update in body["result"]:
+              for key in ("message", "edited_message", "channel_post", "my_chat_member", "chat_member"):
+                  obj = update.get(key)
+                  chat = obj and obj.get("chat")
+                  if chat:
+                      title = chat.get("title") or chat.get("first_name") or ""
+                      chats[chat["id"]] = f"{title} ({chat.get('type')})"
+          if not chats:
+              print("В очереди нет событий. Напишите в нужной группе любое сообщение")
+              print("с упоминанием бота или команду /start и запустите снова.")
+              raise SystemExit(0)
+          print("Чаты, где бот видел события:")
+          for chat_id, title in chats.items():
+              print(f"  {chat_id}  —  {title}")
+          PY
