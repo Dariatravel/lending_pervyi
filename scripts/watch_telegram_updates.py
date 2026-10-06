@@ -662,6 +662,26 @@ async def fetch_topic_messages_limited(client: Any, entity: Any, topic_id: int, 
     return result
 
 
+async def find_topic_replacement(client: Any, entity: Any, topic_id: int, old_message_id: int) -> Any | None:
+    """Новый пост-карточка в теме квартиры вместо удалённого (или None)."""
+    try:
+        thread_messages = await fetch_topic_messages_limited(client, entity, topic_id)
+    except Exception:  # noqa: BLE001 - тема могла быть удалена целиком
+        return None
+    candidates = [
+        message
+        for message in thread_messages
+        if int(getattr(message, "id", 0) or 0) != int(old_message_id)
+        and is_kvartira_object_message(str(getattr(message, "message", "") or ""))
+    ]
+    if not candidates:
+        return None
+    return max(
+        candidates,
+        key=lambda item: (topic_message_score(str(getattr(item, "message", "") or "")), int(getattr(item, "id", 0) or 0)),
+    )
+
+
 async def scan_new_kvartira_objects(
     client: Any,
     known: KnownSources,
@@ -922,6 +942,28 @@ async def run(args: argparse.Namespace) -> int:
                     # Пост удалили из канала: это постоянное состояние, а не сбой
                     # связи — strict-режим (и часовой workflow) падать не должен.
                     missing.append(f"{item.slug}: {item.channel}/{item.message_id}")
+                    # Квартиры: старый пост в теме удалили и выложили новый
+                    # («Феникс» 14.09, «Римма» 21.09 — сайт месяц жил старыми
+                    # данными, 06.10.2026). Сканер новых объектов известные темы
+                    # пропускает, поэтому замену ловим здесь: есть свежий текст
+                    # карточки в теме → отдаём тему в точечный синк.
+                    if item.kind == "kvartira" and item.topic_id:
+                        replacement = await find_topic_replacement(client, entity, int(item.topic_id), item.message_id)
+                        if replacement is not None:
+                            changes.append(
+                                Change(
+                                    key=item.key,
+                                    kind=item.kind,
+                                    slug=item.slug,
+                                    title=item.title,
+                                    channel=item.channel,
+                                    message_id=int(replacement.id),
+                                    topic_id=item.topic_id,
+                                    telegram_url=f"https://t.me/{item.channel}/{int(replacement.id)}",
+                                    changed_parts=[f"пост заменён в теме (новый id={int(replacement.id)})"],
+                                    reposted_from_message_id=item.message_id,
+                                )
+                            )
                     continue
                 media_messages = await album_media_messages(client, entity, canonical)
                 signature = build_signature(canonical.message or "", media_messages)
