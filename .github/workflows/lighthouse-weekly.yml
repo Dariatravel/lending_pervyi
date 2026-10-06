@@ -148,8 +148,9 @@ jobs:
             --data-urlencode "text=${MSG}" >/dev/null
 
       # Та же тревога — дежурному агенту на Mac mini (см. .github/actions/incident).
+      # always(): если шаг Telegram упал, без него этот шаг пропускался бы.
       - name: Передать инцидент дежурному
-        if: steps.lh.outputs.failed == 'true'
+        if: always() && steps.lh.outputs.failed == 'true'
         uses: ./.github/actions/incident
         with:
           source: сайт

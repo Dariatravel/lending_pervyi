@@ -58,8 +58,10 @@ jobs:
           echo "Тревога отправлена."
 
       # Та же тревога — дежурному агенту на Mac mini (см. .github/actions/incident).
+      # always(): если шаг Telegram упал, без него этот шаг пропускался бы —
+      # и дежурный узнавал бы о тревоге только когда Telegram в порядке.
       - name: Передать инцидент дежурному
-        if: steps.check.outputs.failed != '0'
+        if: always() && steps.check.outputs.failed != '0'
         uses: ./.github/actions/incident
         with:
           source: сайт

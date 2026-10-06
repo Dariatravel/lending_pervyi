@@ -49,11 +49,21 @@ runs:
         fi
         payload="$(jq -n --arg s "$SOURCE" --arg t "$TEXT" --arg k "$KEY" \
           '{source: $s, text: $t} + (if $k == "" then {} else {key: $k} end)')"
+        # До трёх попыток с паузой: Funnel и Mac mini иногда отвечают не с первого раза.
         code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 \
+          --retry 2 --retry-delay 5 --retry-all-errors \
           -X POST "$URL" \
           -H 'Content-Type: application/json' \
           -H "X-Incident-Secret: $SECRET" \
           --data-binary "$payload" || echo "000")"
         echo "Дежурный: HTTP $code"
-        # Не роняем workflow: Mac mini мог быть без интернета.
+        case "$code" in
+          2*) ;;
+          *)
+            # Недоставку не прячем: предупреждение видно в сводке запуска.
+            # Workflow при этом не роняем — тревога в Telegram уже ушла,
+            # а Mac mini мог быть без интернета.
+            echo "::warning title=Дежурный не получил инцидент::HTTP $code при отправке на вебхук дежурного (источник: $SOURCE, ключ: $KEY)"
+            ;;
+        esac
         exit 0
