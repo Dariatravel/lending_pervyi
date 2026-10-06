@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-06T10:57:32.782598+00:00",
+  "generated_at": "2026-10-06T17:45:19.872551+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 241,
-  "listings_hotels": 188,
+  "listings_total": 242,
+  "listings_hotels": 189,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -2549,7 +2549,7 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - октябрь без завтраков"
+            "text": "5000₽ - октябрь, ноябрь до 8 (без завтраков)"
           },
           {
             "kind": "price",
@@ -2593,7 +2593,7 @@
           },
           {
             "kind": "price",
-            "text": "9000₽ - октябрь без завтраков"
+            "text": "9000₽ - октябрь, ноябрь до 8 (без завтраков)"
           },
           {
             "kind": "price",
@@ -5959,7 +5959,8 @@
               "В домиках двуспальная кровать и раскладной диванчик, прикроватные тумбы, вешалка для одежды, столик и стулья. Сан узел с душем.",
               "Оснащение: кондиционер, Wi‑Fi, телевизор, фен.",
               "Веранда у каждого домика.",
-              "Отдельная кухня на четыре домика."
+              "Отдельная кухня на четыре домика.",
+              "Обзор домика тут"
             ]
           },
           {
@@ -5968,11 +5969,17 @@
               "Номера расположены на 1 и 2 этажах. Во всех номерах есть санузел с душем, кондиционер, телевизор, мини-холодильник, Wi‑Fi, фен.",
               "Два люкса двухкомнатных расположены на 1 и 2 этажах. Размещение до 4 человек и доп место для 5 человека - раскладная кровать.",
               "Двуспальная кровать и диван на кухне. Кухня со всем необходимым, стиральная машинка.",
+              "Обзор номера на 1 этаже тут",
+              "Обзор номера на 2 этаже тут",
               "Десять двухместных номеров расположены на 2 этаже спереди и сзади здания. Двуспальная кровать.",
+              "Фото номера спереди тут",
+              "Фото номера сзади здания тут",
               "Два двухместных номера расположены на 1 этаже у бассейна. Двуспальная кровать.",
               "Два трехместных улучшенных номера расположены на 1 этаже у бассейна.",
               "Двуспальная и односпальная кровати.",
+              "Фото номера тут",
               "Пять трехместных эконом номеров расположены сзади здания на 1 этаже. Три односпальные кровати.",
+              "Фото номера тут",
               "У номеров отдельный вход с улицы и общий балкон."
             ]
           },
@@ -5997,12 +6004,8 @@
         ],
         "prices": [
           {
-            "kind": "price",
-            "text": "АКЦИЯ🔥"
-          },
-          {
-            "kind": "price",
-            "text": "При бронировании от 3х номеров скидка 10% (цены указаны без скидки)"
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
           },
           {
             "kind": "heading",
@@ -6014,15 +6017,19 @@
           },
           {
             "kind": "price",
-            "text": "6000₽ - июль"
+            "text": "3500₽ - май"
           },
           {
             "kind": "price",
-            "text": "5000₽ - август"
+            "text": "5500₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "5000₽ - сентябрь"
+            "text": "6000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - сентябрь"
           },
           {
             "kind": "note",
@@ -6034,15 +6041,19 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - июль"
+            "text": "2000₽ - май"
           },
           {
             "kind": "price",
-            "text": "3000₽ - август"
+            "text": "3500₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "2500₽ - сентябрь"
+            "text": "4000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -6050,15 +6061,19 @@
           },
           {
             "kind": "price",
-            "text": "4500₽ - июль"
+            "text": "2200₽ - май"
           },
           {
             "kind": "price",
-            "text": "3500₽ - август"
+            "text": "4000₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "3000₽ - сентябрь"
+            "text": "4500₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -6066,31 +6081,43 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - июль"
+            "text": "2000₽ - май"
           },
           {
             "kind": "price",
-            "text": "3000₽ - август"
+            "text": "3500₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "2500₽ - сентябрь"
+            "text": "4000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - сентябрь"
           },
           {
             "kind": "heading",
             "text": "Домик"
           },
           {
-            "kind": "price",
-            "text": "5000₽ - июль"
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
           },
           {
             "kind": "price",
-            "text": "4000₽ - август"
+            "text": "2200₽ - май"
           },
           {
             "kind": "price",
-            "text": "3800₽ - сентябрь"
+            "text": "4000₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - сентябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/kiaraz-rezort-gostevoy-kompleks-s-basseynom-4459/index.html",
@@ -14906,7 +14933,15 @@
           },
           {
             "kind": "price",
-            "text": "2100₽\\2500₽ - октябрь, ноябрь"
+            "text": "2100₽\\2500₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽\\2900₽ - с ноября по апрель"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽\\3500₽ - с 28 декабря по 10 января🌲"
           },
           {
             "kind": "note",
@@ -21804,7 +21839,35 @@
           },
           {
             "kind": "price",
-            "text": "1900₽ - октябрь"
+            "text": "1900₽ - октябрь, ноябрь, декабрь"
+          },
+          {
+            "kind": "price",
+            "text": "800₽/сутки - доп место"
+          },
+          {
+            "kind": "note",
+            "text": "(БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение):"
+          },
+          {
+            "kind": "price",
+            "text": "1900₽ - с января по апрель"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "3700₽ - июль, август, сентябрь"
           },
           {
             "kind": "price",
@@ -45439,104 +45502,96 @@
     {
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
-      "source_message_id": 3044,
+      "source_message_id": 5306,
       "source_topic_id": null,
       "slug": "bugenvilleya-otel-s-basseynom-3044",
-      "title": "\"БУГЕНВИЛЛЕЯ\" отель с бассейном",
-      "summary": "Лдзаа. сосновый пляж 5 минут, размещение до 5 человек.",
-      "excerpt": "В отеле 3 этажа с панорамными окнами и 35 номеров",
+      "title": "НОВЫЙ ГОД В «БУГЕНВИЛЛЕЯ» С БАССЕЙНОМ",
+      "summary": "Лдзаа. 5 минут до соснового пляжа, размещение до 5 человек.",
+      "excerpt": "31 декабря для гостей состоится детская и взрослая анимационная программа",
       "city": "Лдзаа",
-      "location_text": "Лдзаа, ул. Аиааира, д. 35",
-      "distance_text": "сосновый пляж 5 минут",
-      "beach_text": "сосновый пляж 5 минут",
-      "capacity_text": "размещение до 5 человек",
+      "location_text": "Лдзаа, ул. Аиааиа, д. 35",
+      "distance_text": "5 минут до соснового пляжа",
+      "beach_text": "5 минут до соснового пляжа",
+      "capacity_text": "Размещение до 5 человек",
       "page_url": "https://абхазберег.рф/hotels/bugenvilleya-otel-s-basseynom-3044/",
-      "telegram_url": "https://t.me/abhazbooking/3044",
-      "published_at": "2026-01-23",
-      "has_video": true,
+      "telegram_url": "https://t.me/abhazbooking/5306",
+      "published_at": "2026-10-06",
+      "has_video": false,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bugenvilleya-otel-s-basseynom-3044.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. сосновый пляж 5 минут, размещение до 5 человек.",
+        "lead": "Лдзаа. 5 минут до соснового пляжа, размещение до 5 человек.",
         "sections": [
+          {
+            "label": "✔️НОВЫЙ ГОД:",
+            "lines": [
+              "31 декабря для гостей состоится детская и взрослая анимационная программа.",
+              "В новогоднюю ночь предусмотрен праздничный салют.",
+              "Мандарины, апельсины и киви для гостей — без ограничений.",
+              "Подогреваемый бассейн работает в новогодние праздники."
+            ]
+          },
+          {
+            "label": "✔️ПИТАНИЕ:",
+            "lines": [
+              "На территории работает кафе.",
+              "Питание не входит в стоимость и оплачивается отдельно.",
+              "Индивидуальный новогодний стол гости могут заказать за дополнительную плату."
+            ]
+          },
           {
             "label": "✔️НОМЕРА:",
             "lines": [
-              "В отеле 3 этажа с панорамными окнами и 35 номеров.",
-              "Кровати бокс спринг - совмещаются в двухместную, шкаф платяной, стол. Оснащение: кондиционер, холодильник, тв с интернетом, WiFi, чайник, фен. Есть сушилка для одежды. На первом этаже теплые полы.",
-              "По запросу халаты и пляжные полотенца.",
-              "Номер 1-комнатный 22м². Двуспальная и односпальная кровати, доп место раскладывающаяся кровать. До 4 человек.",
-              "Номер 2-комнатный 35м². Кровать двуспальная/ односпальная, диван.",
-              "Все номера с балконами, вид либо на бассейн либо на зеленые окрестности."
+              "В трёхэтажном отеле с панорамными окнами расположено 35 номеров.",
+              "Все номера имеют балконы с видом на бассейн или зелёные окрестности. На первом этаже предусмотрены тёплые полы.",
+              "В номерах: кровати бокс спринг - совмещаются в двухместную, односпальная кровать, шкаф платяной, стол.",
+              "Оснащение: кондиционер, холодильник, телевизор с интернетом, Wi-Fi, чайник, фен и сушилка для одежды.",
+              "По запросу предоставляются халаты и пляжные полотенца.",
+              "Однокомнатный Стандарт — 22 м²",
+              "Двуспальная и односпальная кровати. Доп место — раскладная кровать. Размещение до 4 человек.",
+              "Двухкомнатный номер — 35 м²",
+              "Двуспальная и односпальная кровати, диван. Размещение до 5 человек."
             ]
           },
           {
             "label": "✔️ТЕРРИТОРИЯ:",
             "lines": [
-              "Бассейн подогреваемый с пресной водой и с зоной для детей. Вокруг шезлонги, столики, зонты.",
-              "Есть столовая - завтраки можно заказать на месте: с 8:00 до 11:00 шведский стол, а после работает кафе/бар.",
-              "Веранда на 2 этаже с панорамным видом.",
-              "Большая парковочная зона на территории отеля.",
-              "Небольшая детская площадка.",
-              "Детская анимация раз в неделю."
+              "Подогреваемый бассейн с пресной водой и отдельной детской зоной. Вокруг бассейна установлены шезлонги, столики и зонты.",
+              "На втором этаже расположена веранда с панорамным видом.",
+              "Также на территории предусмотрены небольшая детская площадка и просторная парковочная зона."
             ]
           },
           {
-            "label": "✔️РЯДОМ:",
+            "label": "✔️УСЛОВИЯ:",
             "lines": [
-              "Ближайший пляж - мелко-галечный, сосновый берег. Разные водные развлечения.",
-              "В шаговой доступности несколько продуктовых магазинов. Разные вкусные кафе: Тис, Парус Тропиканка (в сосновой роще), Сарос."
+              "Размещение с животными возможно по согласованию.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я НА СВЯЗИ 📲",
+              "в MAX: max.ru/id741113115256_bot",
+              "ВК-чат: vk.cc/cQQnBn",
+              "WhatsApp +7940-900-33-40",
+              "(только сообщение, звонок не пройдёт)"
             ]
           }
         ],
         "prices": [
           {
-            "kind": "heading",
-            "text": "Стандарт"
-          },
-          {
-            "kind": "note",
-            "text": "(за трехместное размещение)"
+            "kind": "price",
+            "text": "С 25 декабря по 15 января:"
           },
           {
             "kind": "price",
-            "text": "5000₽ - сентябрь до 17"
+            "text": "4000₽ - стандарт (за 3х местное размещение)"
           },
           {
             "kind": "price",
-            "text": "3000₽ - сентябрь с 17"
+            "text": "Доп место для четвертого гостя — раскладная кровать, 1000₽"
           },
           {
             "kind": "price",
-            "text": "3000₽ - октябрь"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - с 20 декабря по 20 января 🌲"
-          },
-          {
-            "kind": "note",
-            "text": "Дополнительное место четвертое - раскладная кровать 1000₽."
-          },
-          {
-            "kind": "price",
-            "text": "Двухкомнатный номер"
-          },
-          {
-            "kind": "note",
-            "text": "(за размещение до 5 человек)"
-          },
-          {
-            "kind": "price",
-            "text": "8000₽ - сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "7000₽ - октябрь"
-          },
-          {
-            "kind": "price",
-            "text": "7000₽ - с 20 декабря по 20 января 🌲"
+            "text": "7000₽ - двухкомнатный номер (за 5 местное размещение)"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/bugenvilleya-otel-s-basseynom-3044/index.html",
@@ -45684,16 +45739,12 @@
           "id": 1035011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/bugenvilleya-otel-s-basseynom-3044/video-01.mp4",
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/bugenvilleya-otel-s-basseynom-3044/photo-10.jpg",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/bugenvilleya-otel-s-basseynom-3044/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/bugenvilleya-otel-s-basseynom-3044/video-01.mp4",
-          "details": {
-            "telegram_post": "abhazbooking/3053",
-            "telegram_url": "https://t.me/abhazbooking/3053",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/bugenvilleya-otel-s-basseynom-3044/video-01-poster.jpg"
-          }
+          "storage_path": "hotels/bugenvilleya-otel-s-basseynom-3044/photo-10.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/bugenvilleya-otel-s-basseynom-3044/photo-10.jpg",
+          "details": {}
         }
       ]
     },
@@ -51407,6 +51458,30 @@
           {
             "kind": "price",
             "text": "1500₽/сутки - доплата за персону (проживание)"
+          },
+          {
+            "kind": "price",
+            "text": "🌲с 29 декабря по 15 января (включено трёхразовое питание)"
+          },
+          {
+            "kind": "price",
+            "text": "8400₽/сутки - эконом"
+          },
+          {
+            "kind": "price",
+            "text": "9600₽/сутки - стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "10200₽/сутки - полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "14000₽/сутки - люкс"
+          },
+          {
+            "kind": "price",
+            "text": "4200₽/сутки - доплата за персону с питанием"
           },
           {
             "kind": "price",
@@ -64406,6 +64481,18 @@
           {
             "kind": "price",
             "text": "3500₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽ - ноябрь, декабрь до 29"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - с 29 декабря по 15 января🌲"
+          },
+          {
+            "kind": "price",
+            "text": "🎁На новогодние праздники - вино🍾 и мандарины 🍊при заселении 🔥"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/amor-domiki-s-basseynom-5069/index.html",
@@ -69177,6 +69264,252 @@
             "telegram_url": "https://t.me/abhazbooking/5305",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/video-01-poster.jpg"
           }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5316,
+      "source_topic_id": null,
+      "slug": "novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316",
+      "title": "НОВЫЙ ГОД В «ВИЛЛЕ ЛЕОНА» с трехразовым питанием и бассейном",
+      "summary": "Гагра. 4 минуты пешком до пляжа, размещение до 6 человек.",
+      "excerpt": "С 25 декабря по 15 января в стоимость проживания включено трехразовое питание",
+      "city": "Гагра",
+      "location_text": "Гагра, ул. Гагрипшское ущелье, литер А",
+      "distance_text": "4 минуты пешком до пляжа",
+      "beach_text": "4 минуты пешком до пляжа",
+      "capacity_text": "Размещение до 6 человек",
+      "page_url": "https://абхазберег.рф/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/",
+      "telegram_url": "https://t.me/abhazbooking/5316",
+      "published_at": "2026-10-06",
+      "has_video": false,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 4 минуты пешком до пляжа, размещение до 6 человек.",
+        "sections": [
+          {
+            "label": "",
+            "lines": [
+              "С 25 декабря по 15 января в стоимость проживания включено трехразовое питание.",
+              "На территории отеля работает собственное кафе-столовая с блюдами европейской кухни.",
+              "Для гостей вино, чача и мандарины.",
+              "Подогреваемый бассейн."
+            ]
+          },
+          {
+            "label": "✔️НОВОГОДНЯЯ ПРОГРАММА:",
+            "lines": [
+              "Для гостей, желающих встретить Новый год с праздничным банкетом, недалеко от отеля работает кафе Рица.",
+              "В кафе запланированы новогодняя шоу-программа, банкет и праздничный салют. Посещение и банкет оплачиваются отдельно."
+            ]
+          },
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Номера со всем необходимым для комфортного отдыха. Во всех категориях есть TV, кондиционер, холодильник, чайник, фен. Шампунь, мыло, комплект банных и пляжных полотенец.",
+              "- эконом однокомнатный без балкона, мансардный этаж",
+              "- стандарт однокомнатный с балконом (вид на горы)",
+              "- полулюкс однокомнатный улучшенный с балконом (вид на горы и боковой вид на море)",
+              "- люкс двухкомнатный с тремя балконами (вид на море и горы)",
+              "ЭКОНОМ - до 4 человек",
+              "СТАНДАРТ - до 4 человек",
+              "ПОЛУЛЮКС - до 5 человек",
+              "ЛЮКС - до 6 человек"
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Отель расположен в сердце курортной Гагры, в уютном зелёном уголке всего в 300 метрах от моря.",
+              "На территории:",
+              "• подогреваемый бассейн с зоной отдыха;",
+              "• собственное кафе-столовая;",
+              "• мангальная зона;",
+              "• детская площадка;",
+              "• охраняемая парковка."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "В пешей доступности находятся магазины, кафе, аптеки и остановка общественного транспорта."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "С 29 декабря по 15 января:"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение с трёхразовым питанием)"
+          },
+          {
+            "kind": "price",
+            "text": "8400₽ — Эконом"
+          },
+          {
+            "kind": "price",
+            "text": "9600₽ — Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "10200₽ — Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "14000₽ — Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "Каждое доп место для гостя с питанием — 4200₽"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 5 лет - проживание без предоставления места и питания - бесплатно."
+          },
+          {
+            "kind": "price",
+            "text": "Я НА СВЯЗИ 📲"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1214,
+      "media": [
+        {
+          "id": 1214001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316.jpg",
+          "details": {}
+        },
+        {
+          "id": 1214002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1214003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1214004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1214005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1214006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1214007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1214008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1214009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1214010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1214011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-10.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-10.jpg",
+          "details": {}
         }
       ]
     }
