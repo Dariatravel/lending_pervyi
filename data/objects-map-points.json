@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T22:00:33.932794+00:00",
+  "generated_at": "2026-10-08T17:01:15.853024+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -536,6 +536,14 @@
       "lat": 43.10063196794994,
       "lon": 40.617331186507855,
       "url": "/hotels/esma-domiki-s-basseynom-v-tsentre-4032/",
+      "cityKey": "gudauta"
+    },
+    {
+      "title": "НОВЫЙ ГОД В ГОРАХ В «ГРАСС» С ПОДОГРЕВАЕМЫМ БАССЕЙНОМ",
+      "address": "Рицинское ущелье, 3-й км., дорога на озеро Рица",
+      "lat": 43.27035361008294,
+      "lon": 40.39287427107979,
+      "url": "/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/",
       "cityKey": "gudauta"
     },
     {
@@ -1934,16 +1942,16 @@
   "stats": {
     "placemarks_total": 484,
     "placemarks_unique": 242,
-    "pages_total": 492,
-    "pages_on_disk": 550,
+    "pages_total": 493,
+    "pages_on_disk": 551,
     "pages_excluded": 58,
-    "from_constructor": 258,
+    "from_constructor": 259,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 234,
     "skipped_without_coords": 234,
-    "shared_coordinate_groups": 30,
+    "shared_coordinate_groups": 31,
     "deduped_redirect_points": 17,
-    "points_total": 241
+    "points_total": 242
   }
 }
