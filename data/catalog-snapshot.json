@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-07T22:37:10.898610+00:00",
+  "generated_at": "2026-10-08T09:35:01.284709+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 242,
-  "listings_hotels": 189,
+  "listings_total": 243,
+  "listings_hotels": 190,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -69890,6 +69890,248 @@
           "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-10.jpg",
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/photo-10.jpg",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5326,
+      "source_topic_id": null,
+      "slug": "novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326",
+      "title": "НОВЫЙ ГОД В ГОРАХ В «ГРАСС» С ПОДОГРЕВАЕМЫМ БАССЕЙНОМ",
+      "summary": "Рицинское ущелье. 25 минут до пляжа на автомобиле, размещение до 10 человек.",
+      "excerpt": "Проведите новогодние каникулы среди гор Рицинского заповедника, вдали от городской суеты. Живописные виды, чистый горный воздух и подогреваемый бассейн создадут особенную атмосферу зимнего отдыха",
+      "city": "Рицинское ущелье",
+      "location_text": "Рицинское ущелье, 3-й км дороги на озеро Рица",
+      "distance_text": "25 минут до пляжа на автомобиле",
+      "beach_text": "25 минут до пляжа на автомобиле",
+      "capacity_text": "Размещение до 10 человек",
+      "page_url": "https://абхазберег.рф/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/",
+      "telegram_url": "https://t.me/abhazbooking/5326",
+      "published_at": "2026-10-08",
+      "has_video": false,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Рицинское ущелье. 25 минут до пляжа на автомобиле, размещение до 10 человек.",
+        "sections": [
+          {
+            "label": "",
+            "lines": [
+              "Проведите новогодние каникулы среди гор Рицинского заповедника, вдали от городской суеты. Живописные виды, чистый горный воздух и подогреваемый бассейн создадут особенную атмосферу зимнего отдыха.",
+              "За дополнительную стоимость доступна баня на дровах и питание по меню."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Подогреваемый бассейн размером 5×10 метров с видом на горы.",
+              "На территории:",
+              "• круглосуточная стойка регистрации;",
+              "• Wi-Fi;",
+              "• охраняемая парковка;",
+              "• оборудованная детская площадка.",
+              "За дополнительную плату доступны:",
+              "• сытные завтраки с 08:00 до 10:00;",
+              "• обеды и ужины по меню;",
+              "• беседка для отдыха с кинопроектором;",
+              "• баня на дровах."
+            ]
+          },
+          {
+            "label": "✔️НОМЕРА И ДОМА:",
+            "lines": [
+              "Уютные номера и просторные дома расположены на территории Рицинского заповедника. С балконов открываются живописные виды на горы, реку Бзыбь и ущелье.",
+              "Двухместный номер с балконом",
+              "Площадь 24 м². Размещение до 3 человек.",
+              "В номере двуспальная кровать и раскладное кресло для дополнительного гостя. Есть балкон с видом на горы.",
+              "Домик с видом на реку",
+              "Площадь 24 м². Размещение до 3 человек.",
+              "В домике двуспальная кровать и раскладное кресло для дополнительного гостя.",
+              "Дом в стиле A-frame",
+              "Площадь 100 м². Размещение до 6 человек.",
+              "Трёхэтажный дом с двуспальной кроватью и двумя раскладными диванами-кроватями. Есть камин, собственная кухня со всей необходимой техникой и посудой, современная ванна с панорамным окном.",
+              "Двухэтажный дом с двумя спальнями",
+              "Площадь 110 м². Размещение до 10 человек.",
+              "В доме две спальни, просторная кухня-гостиная, две двуспальные кровати и три раскладных дивана-кровати. Кухня оборудована необходимой техникой и посудой.",
+              "Во всех категориях установлена современная мебель. Гостям предоставляются полотенца, тапочки и туалетные принадлежности."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Горные тропы находятся в пешей доступности. От комплекса удобно добираться до озера Рица и водопадов."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "С 25 декабря по 10 января: 🎄"
+          },
+          {
+            "kind": "price",
+            "text": "7555₽ - домик у реки (доп место 2000₽/сутки)"
+          },
+          {
+            "kind": "price",
+            "text": "7555₽ - двухместный номер (доп место 2000₽/сутки)"
+          },
+          {
+            "kind": "price",
+            "text": "10555₽ - двухместный номер с балконом"
+          },
+          {
+            "kind": "note",
+            "text": "(доп место 2000₽/сутки)"
+          },
+          {
+            "kind": "price",
+            "text": "25555₽ - Аframe-дом до 6 чел"
+          },
+          {
+            "kind": "price",
+            "text": "30555₽ - дом с двумя спальнями до 10 чел"
+          },
+          {
+            "kind": "price",
+            "text": "Я НА СВЯЗИ 📲"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1215,
+      "media": [
+        {
+          "id": 1215001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326.jpg",
+          "details": {}
+        },
+        {
+          "id": 1215002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1215003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1215004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1215005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1215006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1215007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1215008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1215009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1215010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1215011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-10.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-10.jpg",
           "details": {}
         }
       ]

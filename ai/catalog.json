@@ -1,11 +1,11 @@
 {
   "name": "АБХАЗБЕРЕГ - каталог жилья в Абхазии",
   "url": "https://абхазберег.рф/",
-  "generated_at": "2026-10-07T22:37:24.820462+00:00",
+  "generated_at": "2026-10-08T09:35:08.174319+00:00",
   "language": "ru",
   "description": "Машиночитаемый каталог проверенных отелей, домиков, апартаментов и квартир в Абхазии для AI-поиска и агентных рекомендаций.",
   "usage_note": "Используйте page url как канонический источник, цены подтверждайте перед бронированием.",
-  "total": 242,
+  "total": 243,
   "listings": [
     {
       "name": "\"АКИРА\" 2к квартира",
@@ -7056,6 +7056,33 @@
       "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316.jpg",
       "telegram_source": "https://t.me/abhazbooking/5316",
       "updated_at": "2026-10-06"
+    },
+    {
+      "name": "НОВЫЙ ГОД В ГОРАХ В «ГРАСС» С ПОДОГРЕВАЕМЫМ БАССЕЙНОМ",
+      "type": "hotel",
+      "city": "Рицинское ущелье",
+      "location": "Рицинское ущелье, 3-й км дороги на озеро Рица",
+      "beach_distance": "25 минут до пляжа на автомобиле",
+      "capacity": "Размещение до 10 человек",
+      "summary": "Рицинское ущелье. 25 минут до пляжа на автомобиле, размещение до 10 человек.",
+      "amenities": [
+        "бассейн"
+      ],
+      "prices": [
+        "С 25 декабря по 10 января: 🎄",
+        "7555₽ - домик у реки (доп место 2000₽/сутки)",
+        "7555₽ - двухместный номер (доп место 2000₽/сутки)",
+        "10555₽ - двухместный номер с балконом",
+        "(доп место 2000₽/сутки)",
+        "25555₽ - Аframe-дом до 6 чел",
+        "30555₽ - дом с двумя спальнями до 10 чел",
+        "Я НА СВЯЗИ 📲"
+      ],
+      "price_range": "2000-30555 RUB",
+      "url": "https://абхазберег.рф/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326.jpg",
+      "telegram_source": "https://t.me/abhazbooking/5326",
+      "updated_at": "2026-10-08"
     }
   ]
 }
