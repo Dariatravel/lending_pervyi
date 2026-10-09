@@ -106,10 +106,23 @@ def main() -> int:
         # Первый запрос к редкой странице может попасть на холодный узел CDN
         # и ответить за 4–9 секунд — это не поломка сайта. Меряем второй раз
         # и верим прогретому замеру; красним только если медленно оба раза.
+        # 07.10.2026 23:05: главная ответила 5150 мс, затем 3251 мс — второй замер
+        # тоже попал на холодный узел, и проверка покраснела при живом сайте.
+        # Поэтому даём до двух прогретых замеров и верим лучшему из них.
         if row["status"] == 200 and row["ms"] > 3000:
             first_ms = row["ms"]
-            row = check(path)
-            row["cold_first_ms"] = first_ms
+            for _ in range(2):
+                warm = check(path)
+                if warm["status"] != 200:
+                    # Повторный запрос упал — это настоящая проблема, не прячем её за «медленно».
+                    row = warm
+                    break
+                if warm["ms"] < row["ms"]:
+                    row = warm
+                if row["ms"] <= 3000:
+                    break
+            if row["status"] == 200 and row["ms"] < first_ms:
+                row["cold_first_ms"] = first_ms
         issues = []
         if row["status"] != 200:
             issues.append(f"код {row['status'] or 'нет ответа'}{' — ' + row['error'] if row['error'] else ''}")

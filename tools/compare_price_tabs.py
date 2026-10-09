@@ -36,6 +36,12 @@ REPORT_PATH = ROOT / 'output' / 'price_tabs_compare_report.txt'
 SNAPSHOT_PATH = ROOT / 'data' / 'catalog-snapshot.json'
 
 SPREADSHEET_ID = '1MwtvTx_VZ2tPrJ4ejDFipwgf5g5-tB8zX7u9AbCaUgg'
+# 09.10.2026 01:01 МСК: чтение вкладки (includeGridData, до 1500 строк) оборвалось
+# по таймауту сокета («The read operation timed out»), и ночная сверка
+# покраснела при исправной таблице. Клиент Google умеет повторять сам:
+# num_retries повторяет запрос при обрыве сети, таймауте и ответах 5xx/429
+# с нарастающей паузой (до ~15 с на 3 попытки).
+SHEETS_RETRIES = 3
 AUTO_TAB = 'ЦЕНЫ АВТО'
 MANUAL_TAB = 'АКТУАЛЬНЫЕ ЦЕНЫ'
 SEASON_YEAR = 2026
@@ -94,7 +100,7 @@ def fetch_tab(service, title: str) -> dict:
         ranges=[f"'{title}'!A1:Z1500"],
         includeGridData=True,
         fields=fields,
-    ).execute()
+    ).execute(num_retries=SHEETS_RETRIES)
     data = resp['sheets'][0]['data'][0]
     rows_meta = data.get('rowMetadata', [])
     rows = []
@@ -324,21 +330,21 @@ SVERKA_TAB = 'СВЕРКА'
 def write_sverka_tab(service, values: list) -> None:
     """Перезаписывает вкладку «СВЕРКА» переданными строками (создаёт при отсутствии)."""
     meta = service.spreadsheets().get(
-        spreadsheetId=SPREADSHEET_ID, fields='sheets(properties(title))').execute()
+        spreadsheetId=SPREADSHEET_ID, fields='sheets(properties(title))').execute(num_retries=SHEETS_RETRIES)
     titles = [s['properties']['title'] for s in meta.get('sheets', [])]
     if SVERKA_TAB not in titles:
         service.spreadsheets().batchUpdate(
             spreadsheetId=SPREADSHEET_ID,
             body={'requests': [{'addSheet': {'properties': {'title': SVERKA_TAB}}}]},
-        ).execute()
+        ).execute(num_retries=SHEETS_RETRIES)
     service.spreadsheets().values().clear(
-        spreadsheetId=SPREADSHEET_ID, range=f"'{SVERKA_TAB}'!A1:Z5000").execute()
+        spreadsheetId=SPREADSHEET_ID, range=f"'{SVERKA_TAB}'!A1:Z5000").execute(num_retries=SHEETS_RETRIES)
     service.spreadsheets().values().update(
         spreadsheetId=SPREADSHEET_ID,
         range=f"'{SVERKA_TAB}'!A1",
         valueInputOption='RAW',
         body={'values': values},
-    ).execute()
+    ).execute(num_retries=SHEETS_RETRIES)
 
 
 def main() -> int:
