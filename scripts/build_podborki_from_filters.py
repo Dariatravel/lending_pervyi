@@ -44,9 +44,16 @@ MANUAL_SELECTION_SLUGS: dict[str, list[str]] = {
         "grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928",
         "dyshi-glubzhe-domiki-v-gorah-3459",
         "radonovyy-istochnik-otel-v-gorah-3064",
+        # Новогодний пост «Грасса» — отдельный объект, тоже в горах
+        # (Рицинское ущелье; замечание Дарьи 10.10.2026).
+        "novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326",
     ],
 }
 MOUNTAIN_OTHER_SLUGS = set(MANUAL_SELECTION_SLUGS["gory-oteli-v-gorah"])
+# Горные объекты на страницах подборок идут своей группой «В ГОРАХ», а не
+# в безликих «Других локациях».
+MOUNTAIN_REGION_KEY = "mountains"
+MOUNTAIN_REGION_LABEL = "В ГОРАХ"
 
 # Подборка «НОВЫЙ ГОД 2027». Новогодние посты канала приходят отдельными
 # объектами с названием вида «НОВЫЙ ГОД В ГОСТЕВОМ КОМПЛЕКСЕ «ФАЗЕНДА»»,
@@ -317,7 +324,7 @@ def selections() -> list[Selection]:
 
 def city_key(card: Card) -> str:
     if href_slug(card.href) in MOUNTAIN_OTHER_SLUGS:
-        return "other"
+        return MOUNTAIN_REGION_KEY
     for city in CITY_ORDER:
         if city in card.filters.get("city", set()):
             return city
@@ -327,6 +334,8 @@ def city_key(card: Card) -> str:
 def city_label(key: str) -> str:
     if key == "other":
         return "ДРУГИЕ ЛОКАЦИИ"
+    if key == MOUNTAIN_REGION_KEY:
+        return MOUNTAIN_REGION_LABEL
     return CITY_LABELS.get(key, "ДРУГИЕ ЛОКАЦИИ")
 
 
@@ -407,7 +416,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
         grouped: dict[str, list[Card]] = {}
         for card in cards:
             grouped.setdefault(city_key(card), []).append(card)
-        for key in [*CITY_ORDER, "other"]:
+        for key in [*CITY_ORDER, MOUNTAIN_REGION_KEY, "other"]:
             group_cards = sorted(grouped.get(key, []), key=within_city_sort_key)
             if not group_cards:
                 continue

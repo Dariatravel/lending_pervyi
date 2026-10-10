@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T14:57:48.319607+00:00",
+  "generated_at": "2026-10-10T15:41:56.643097+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 245,
@@ -56879,7 +56879,9 @@
           "distance": [],
           "food": [],
           "price": [],
-          "city": [],
+          "city": [
+            "alakhadzy"
+          ],
           "beach": [],
           "room": [],
           "stay": []
@@ -58638,7 +58640,9 @@
           "distance": [],
           "food": [],
           "price": [],
-          "city": [],
+          "city": [
+            "sukhum"
+          ],
           "beach": [],
           "room": [],
           "stay": []
@@ -64955,7 +64959,9 @@
           "distance": [],
           "food": [],
           "price": [],
-          "city": [],
+          "city": [
+            "sukhum"
+          ],
           "beach": [],
           "room": [],
           "stay": []
@@ -69226,7 +69232,9 @@
           "distance": [],
           "food": [],
           "price": [],
-          "city": [],
+          "city": [
+            "pitsunda"
+          ],
           "beach": [],
           "room": [],
           "stay": []
@@ -69430,7 +69438,9 @@
           "distance": [],
           "food": [],
           "price": [],
-          "city": [],
+          "city": [
+            "sukhum"
+          ],
           "beach": [],
           "room": [],
           "stay": []
@@ -70152,7 +70162,9 @@
           "distance": [],
           "food": [],
           "price": [],
-          "city": [],
+          "city": [
+            "gagra"
+          ],
           "beach": [],
           "room": [],
           "stay": []
@@ -70889,7 +70901,9 @@
           "distance": [],
           "food": [],
           "price": [],
-          "city": [],
+          "city": [
+            "gudauta"
+          ],
           "beach": [],
           "room": [],
           "stay": []

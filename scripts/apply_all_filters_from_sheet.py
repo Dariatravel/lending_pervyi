@@ -507,6 +507,32 @@ def main() -> None:
         if source_kind:
             listings_by_kind[source_kind].append(row)
 
+    # Город из адреса — для объектов, которых нет в таблице СОЦСЕТИ (новогодние
+    # посты «НОВЫЙ ГОД В «ВИЛЛЕ ЛЕОНА»…» приходят отдельными объектами и в
+    # таблицу не попадают). Без этого они уезжали в «Другие локации», хотя
+    # адрес «Гагра, …» в каталоге есть (замечание Дарьи 10.10.2026).
+    city_fallback = 0
+    for row in listings:
+        if row.get('is_active') is False:
+            continue
+        details = row.get('details') if isinstance(row.get('details'), dict) else {}
+        filters = details.get('filters') if isinstance(details.get('filters'), dict) else {}
+        if normalize_filter_values(filters.get('city')):
+            continue
+        code = city_code_from_text(str(row.get('city') or '')) or city_code_from_text(str(row.get('location_text') or ''))
+        if not code:
+            continue
+        filters['city'] = [code]
+        for group in GROUPS:
+            filters.setdefault(group, [])
+        details['filters'] = filters
+        row['details'] = details
+        snapshot_update_filters(str(row.get('slug') or ''), filters)
+        city_fallback += 1
+        print(f'  город из адреса: {str(row.get("title") or "")[:50]} → {code}')
+    if city_fallback:
+        print(f'Город из адреса (объектов вне таблицы): {city_fallback}')
+
     updated = 0
     unchanged = 0
     not_found = 0
