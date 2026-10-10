@@ -564,6 +564,43 @@ PODBORKI_INDEX_COVER_OVERRIDES: dict[str, tuple[str, str]] = {
         f"{CDN_MEDIA_BASE}/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/photo-01.jpg",
         "Дом под ключ — «Виста Маре», бассейн на закате",
     ),
+    # Вторая волна замен по скриншотам Дарьи 10.10.2026:
+    "basseyn-vse-varianty": (
+        f"{CDN_MEDIA_BASE}/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/photo-01.jpg",
+        "С бассейном — бассейн у моря, «Мулберри»",
+    ),
+    "ldzaa-vse-varianty": (
+        f"{CDN_MEDIA_BASE}/hotels/apra-gostevoy-dom-na-plyazhe-4348/photo-01.jpg",
+        "Лдзаа — балкон над морем, «Апра»",
+    ),
+    "novyy-afon-vse-varianty": (
+        f"{CDN_MEDIA_BASE}/hotels/nikopsiya-domiki-3015/photo-01.jpg",
+        "Новый Афон — домики «Никопсия» в цветах",
+    ),
+    "suhum-vse-varianty": (
+        f"{CDN_MEDIA_BASE}/kvartira/akirtava-kvartira-3k-suhum-931/photo-01.jpg",
+        "Сухум — вид на город и море",
+    ),
+    "varianty-5-12-tr-srednyak": (
+        f"{CDN_MEDIA_BASE}/hotels/rivera-gostinitsa-vidovaya-2706/photo-01.jpg",
+        "От 5 до 12 тыс. — балкон с видом на море, «Ривера»",
+    ),
+    "dvuhkomnatnye-i-bolee": (
+        f"{CDN_MEDIA_BASE}/hotels/lazurit-novyy-otel-s-zavtrakami-2583/photo-02.jpg",
+        "Две-три комнаты — гостиная номера, «Лазурит»",
+    ),
+    "pyatero-gostey-i-bolee": (
+        f"{CDN_MEDIA_BASE}/hotels/grant-apartamenty-2801/photo-01.jpg",
+        "Пять и более гостей — просторная гостиная, «Грант»",
+    ),
+    "veranda": (
+        f"{CDN_MEDIA_BASE}/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/photo-01.jpg",
+        "С верандой — веранда с видом на пляж, «Вилла Любовь»",
+    ),
+    "televizor-v-nomere": (
+        f"{CDN_MEDIA_BASE}/hotels/kvarts-domiki-4449/photo-03.jpg",
+        "С телевизором — номер с ТВ, «Кварц»",
+    ),
     # Домики должны выглядеть домиками: фасады снаружи, а не кровати
     # (просьба Дарьи 27.08.2026).
     "domiki-vse-varianty": (
