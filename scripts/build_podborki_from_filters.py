@@ -518,6 +518,12 @@ PODBORKI_INDEX_VISUALS: dict[str, tuple[str, str]] = {
 
 # Ручная обложка на индексе подборок (если авто-выбор неудачен)
 PODBORKI_INDEX_COVER_OVERRIDES: dict[str, tuple[str, str]] = {
+    # Новогодняя подборка — новогодний кадр: ёлка на фоне гор из поста «Грасс»
+    # (просьба сотрудницы 10.10.2026). Без него обложкой шла летняя Бугенвиллея.
+    "novyy-god-2027": (
+        f"{CDN_MEDIA_BASE}/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-02.jpg",
+        "Новый год 2027 в Абхазии — ёлка на фоне гор, «Грасс»",
+    ),
     # Домики должны выглядеть домиками: фасады снаружи, а не кровати
     # (просьба Дарьи 27.08.2026).
     "domiki-vse-varianty": (
