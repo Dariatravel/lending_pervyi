@@ -549,20 +549,20 @@ PODBORKI_INDEX_COVER_OVERRIDES: dict[str, tuple[str, str]] = {
         "Песчаный пляж Лдзаа — море и песок, «Аквамарин»",
     ),
     "bereg-morya-oteli-na-beregu": (
-        f"{CDN_MEDIA_BASE}/hotels/briz-domiki-na-beregu-4937/photo-06.jpg",
-        "Жить на берегу — домик «Бриз» прямо у моря",
+        f"{CDN_MEDIA_BASE}/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/photo-08.jpg",
+        "Жить на берегу — двор «Виллы Любовь», выход сразу на пляж",
     ),
     "peschanyy-plyazh-suhum": (
         f"{CDN_MEDIA_BASE}/hotels/peschanyy-bereg-apartamenty-3700/photo-09.jpg",
         "Песчаный пляж в Сухуме — зонтики у моря, «Песчаный берег»",
     ),
     "svoya-kuhnya-v-nomere": (
-        f"{CDN_MEDIA_BASE}/hotels/abyrlash-otel-na-plyazhe-3239/photo-03.jpg",
-        "Своя кухня в номере — «Абырлаш»",
+        f"{CDN_MEDIA_BASE}/kvartira/mira-dom-suhum-1345/photo-02.jpg",
+        "Своя кухня — дом «Мира», Сухум",
     ),
     "doma-pod-klyuch-vse-varianty": (
-        f"{CDN_MEDIA_BASE}/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/photo-02.jpg",
-        "Дом под ключ — «Виста Маре»",
+        f"{CDN_MEDIA_BASE}/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/photo-01.jpg",
+        "Дом под ключ — «Виста Маре», бассейн на закате",
     ),
     # Домики должны выглядеть домиками: фасады снаружи, а не кровати
     # (просьба Дарьи 27.08.2026).
