@@ -533,6 +533,12 @@ PODBORKI_INDEX_COVER_OVERRIDES: dict[str, tuple[str, str]] = {
         f"{CDN_MEDIA_BASE}/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/photo-02.jpg",
         "Новый год 2027 в Абхазии — ёлка на фоне гор, «Грасс»",
     ),
+    # «Вид на море» — кадр с балкона: столик, пляж и море внизу («Сан Амра»),
+    # а не фасад домиков (просьба Дарьи 10.10.2026).
+    "vid-na-more-pryamoy-bokovoy": (
+        f"{CDN_MEDIA_BASE}/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/photo-08.jpg",
+        "Вид на море с балкона — «Сан Амра», люкс номера с видом на море",
+    ),
     # Домики должны выглядеть домиками: фасады снаружи, а не кровати
     # (просьба Дарьи 27.08.2026).
     "domiki-vse-varianty": (
