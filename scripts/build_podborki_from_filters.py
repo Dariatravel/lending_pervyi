@@ -539,6 +539,31 @@ PODBORKI_INDEX_COVER_OVERRIDES: dict[str, tuple[str, str]] = {
         f"{CDN_MEDIA_BASE}/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/photo-08.jpg",
         "Вид на море с балкона — «Сан Амра», люкс номера с видом на море",
     ),
+    # Обложки «по смыслу» (просьба Дарьи 10.10.2026, кадры выбраны глазами):
+    "sosnovyy-plyazh": (
+        f"{CDN_MEDIA_BASE}/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/photo-01.jpg",
+        "Сосновый берег — сосна на пляже у моря, «Пшада»",
+    ),
+    "peschanyy-ldzaa": (
+        f"{CDN_MEDIA_BASE}/kvartira/akvamarin-dom-pod-klyuch-ldzaa-1313/photo-08.jpg",
+        "Песчаный пляж Лдзаа — море и песок, «Аквамарин»",
+    ),
+    "bereg-morya-oteli-na-beregu": (
+        f"{CDN_MEDIA_BASE}/hotels/briz-domiki-na-beregu-4937/photo-06.jpg",
+        "Жить на берегу — домик «Бриз» прямо у моря",
+    ),
+    "peschanyy-plyazh-suhum": (
+        f"{CDN_MEDIA_BASE}/hotels/peschanyy-bereg-apartamenty-3700/photo-09.jpg",
+        "Песчаный пляж в Сухуме — зонтики у моря, «Песчаный берег»",
+    ),
+    "svoya-kuhnya-v-nomere": (
+        f"{CDN_MEDIA_BASE}/hotels/abyrlash-otel-na-plyazhe-3239/photo-03.jpg",
+        "Своя кухня в номере — «Абырлаш»",
+    ),
+    "doma-pod-klyuch-vse-varianty": (
+        f"{CDN_MEDIA_BASE}/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/photo-02.jpg",
+        "Дом под ключ — «Виста Маре»",
+    ),
     # Домики должны выглядеть домиками: фасады снаружи, а не кровати
     # (просьба Дарьи 27.08.2026).
     "domiki-vse-varianty": (
