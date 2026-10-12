@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-10T15:41:56.643097+00:00",
+  "generated_at": "2026-10-12T16:21:35.623176+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 245,
+  "listings_total": 246,
   "listings_hotels": 191,
-  "listings_kvartira": 54,
+  "listings_kvartira": 55,
   "listings": [
     {
       "source_kind": "kvartira",
@@ -70540,38 +70540,38 @@
     {
       "source_kind": "hotel",
       "source_channel": "abhazbooking",
-      "source_message_id": 5336,
+      "source_message_id": 5360,
       "source_topic_id": null,
       "slug": "vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336",
-      "title": "\"ВИСТА МАРЕ\" первый этаж дома под ключ с бассейном",
-      "summary": "Гудаута. 10 минут пешком до пляжа, размещение до 10 человек.",
+      "title": "\"ВИСТА МАРЕ\" второй этаж дома под ключ с бассейном",
+      "summary": "Гудаута. 10 минут пешком до моря, размещение до 11 человек.",
       "excerpt": "Дом расположен в тихом живописном месте, в 650 метрах от моря",
       "city": "Гудаута",
       "location_text": "Гудаута, с. Куланырхуа, ул. Самава, 43.100576,40.663889",
-      "distance_text": "10 минут пешком до пляжа",
-      "beach_text": "10 минут пешком до пляжа",
-      "capacity_text": "Размещение до 10 человек",
+      "distance_text": "10 минут пешком до моря",
+      "beach_text": "10 минут пешком до моря",
+      "capacity_text": "Размещение до 11 человек",
       "page_url": "https://абхазберег.рф/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/",
-      "telegram_url": "https://t.me/abhazbooking/5336",
-      "published_at": "2026-10-09",
+      "telegram_url": "https://t.me/abhazbooking/5360",
+      "published_at": "2026-10-12",
       "has_video": true,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336.jpg",
       "is_active": true,
       "details": {
-        "lead": "Гудаута. 10 минут пешком до пляжа, размещение до 10 человек.",
+        "lead": "Гудаута. 10 минут пешком до моря, размещение до 11 человек.",
         "sections": [
           {
             "label": "✔️ДОМ:",
             "lines": [
               "Дом расположен в тихом живописном месте, в 650 метрах от моря.",
-              "Первый этаж дома сдается полностью под ключ, имеет отдельный вход. Площадь этажа — 110 м².",
+              "Второй этаж дома сдаётся полностью под ключ, имеет отдельный вход. Площадь этажа — 110 м².",
               "Подходит для отдыха большой семьи или дружной компании.",
-              "На первом этаже четыре комнаты: три спальни и просторная оборудованная кухня. В спальнях двуспальные кровати, кресла-кровати и шкафы.",
-              "В каждой спальне есть собственный санузел с тропическим душем.",
+              "На втором этаже четыре комнаты: три спальни и просторная оборудованная кухня. В спальнях двуспальные кровати, кресла-кровати и шкафы.",
+              "В каждой спальне есть собственный санузел с душем.",
               "Везде теплые полы.",
               "На этаже: кондиционеры в каждой комнате, Wi-Fi, телевизор, стиральная машина, сушилка для белья, фен, утюг и гладильные принадлежности.",
-              "Собственная кухня полностью оборудована для самостоятельного приготовления пищи: газовая и электрическая поверхности, посудомоечная машина, микроволновая печь, холодильник, кофеварка, чайник, фильтр для воды, столовые приборы и необходимая посуда.",
-              "С просторной террасы открывается вид на море.",
+              "Собственная кухня полностью оборудована для самостоятельного приготовления пищи: газовая и электрическая поверхности, посудомоечная машина, микроволновая печь, холодильник, чайник, фильтр для воды, столовые приборы и необходимая посуда.",
+              "С Веранды открывается вид на море.",
               "Есть возможность забронировать оба этажа полностью."
             ]
           },
@@ -70609,27 +70609,27 @@
         "prices": [
           {
             "kind": "price",
-            "text": "15000₽ - май, июнь"
+            "text": "13000₽ - май, июнь"
           },
           {
             "kind": "price",
-            "text": "20000₽ - июль, август"
+            "text": "15000₽ - июль, август"
           },
           {
             "kind": "price",
-            "text": "15000₽ - сентябрь"
+            "text": "13000₽ - сентябрь"
           },
           {
             "kind": "price",
-            "text": "10000₽ - октябрь, ноябрь, декабрь до 25го"
+            "text": "8000₽ - октябрь, ноябрь, декабрь до 25го"
           },
           {
             "kind": "price",
-            "text": "15000₽ - с 25 декабря по 15 января, Новый год🎄"
+            "text": "13000₽ - с 25 декабря по 15 января, Новый год🎄"
           },
           {
             "kind": "price",
-            "text": "10000₽ - с 16 января, февраль, март, апрель"
+            "text": "8000₽ - с 16 января, февраль, март, апрель"
           },
           {
             "kind": "price",
@@ -70790,8 +70790,8 @@
           "storage_path": "videos/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/video-01.mp4",
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/video-01.mp4",
           "details": {
-            "telegram_post": "abhazbooking/5345",
-            "telegram_url": "https://t.me/abhazbooking/5345",
+            "telegram_post": "abhazbooking/5369",
+            "telegram_url": "https://t.me/abhazbooking/5369",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/video-01-poster.jpg"
           }
         }
@@ -71034,6 +71034,247 @@
             "telegram_post": "abhkvartira/1762",
             "telegram_url": "https://t.me/abhkvartira/1762",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-1753/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "kvartira",
+      "source_channel": "abhkvartira",
+      "source_message_id": 1765,
+      "source_topic_id": 1764,
+      "slug": "vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765",
+      "title": "\"ВИСТА МАРЕ\" второй этаж дома под ключ с бассейном",
+      "summary": "Гудаута. 10 минут пешком до моря, размещение до 11 человек.",
+      "excerpt": "Дом расположен в тихом живописном месте, в 650 метрах от моря",
+      "city": "Гудаута",
+      "location_text": "Гудаута, с. Куланырхуа, ул. Самава, 43.100576,40.663889",
+      "distance_text": "10 минут пешком до моря",
+      "beach_text": "10 минут пешком до моря",
+      "capacity_text": "Размещение до 11 человек",
+      "page_url": "https://абхазберег.рф/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/",
+      "telegram_url": "https://t.me/abhkvartira/1765",
+      "published_at": "2026-10-12",
+      "has_video": true,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765-cover.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гудаута. 10 минут пешком до моря, размещение до 11 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМ:",
+            "lines": [
+              "Дом расположен в тихом живописном месте, в 650 метрах от моря.",
+              "Второй этаж дома сдаётся полностью под ключ, имеет отдельный вход. Площадь этажа — 110 м².",
+              "Подходит для отдыха большой семьи или дружной компании.",
+              "На втором этаже четыре комнаты: три спальни и просторная оборудованная кухня. В спальнях двуспальные кровати, кресла-кровати и шкафы.",
+              "В каждой спальне есть собственный санузел с душем.",
+              "Везде теплые полы.",
+              "На этаже: кондиционеры в каждой комнате, Wi-Fi, телевизор, стиральная машина, сушилка для белья, фен, утюг и гладильные принадлежности.",
+              "Собственная кухня полностью оборудована для самостоятельного приготовления пищи: газовая и электрическая поверхности, посудомоечная машина, микроволновая печь, холодильник, чайник, фильтр для воды, столовые приборы и необходимая посуда.",
+              "С Веранды открывается вид на море.",
+              "Есть возможность забронировать оба этажа полностью."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Зеленый ухоженный двор.",
+              "На общей территории расположен большой подогреваемый бассейн размером 6×12 метров с шезлонгами.",
+              "Беседка под виноградной лозой.",
+              "Мангальная зона и зона отдыха.",
+              "Теннисный стол.",
+              "Детская площадка.",
+              "Парковка во дворе.",
+              "Видеонаблюдение.",
+              "Wi-Fi на всей территории.",
+              "Возможна организация трансфера за доп плату."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До дикого галечного пляжа 10 минут пешком.",
+              "До оборудованного пляжа около 2 км.",
+              "До центра Гудауты и рынка около 5 минут на автомобиле.",
+              "Продуктовый магазин и остановка общественного транспорта находятся примерно в 10 минутах ходьбы."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с маленькими собачками возможно по согласованию."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "13000₽ - май, июнь"
+          },
+          {
+            "kind": "price",
+            "text": "15000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "13000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - октябрь, ноябрь, декабрь до 25го"
+          },
+          {
+            "kind": "price",
+            "text": "13000₽ - с 25 декабря по 15 января, Новый год🎄"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - с 16 января, февраль, март, апрель"
+          },
+          {
+            "kind": "price",
+            "text": "Я НА СВЯЗИ 📲"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [
+            "gudauta"
+          ],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1218,
+      "media": [
+        {
+          "id": 1218001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765-cover.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira-cards/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765-cover.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765-cover.jpg",
+          "details": {}
+        },
+        {
+          "id": 1218002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1218003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1218004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1218005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1218006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1218007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1218008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1218009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1218010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1218011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/video-01.mp4",
+          "details": {
+            "telegram_post": "abhkvartira/1774",
+            "telegram_url": "https://t.me/abhkvartira/1774",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/video-01-poster.jpg"
           }
         }
       ]
