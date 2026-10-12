@@ -60,6 +60,7 @@ jobs:
         if: always() && steps.gate.outputs.enabled == 'true'
         uses: actions/upload-artifact@v4
         with:
+          retention-days: 30
           name: site-vs-telegram-report
           path: output/site-vs-telegram-report.txt
           if-no-files-found: ignore

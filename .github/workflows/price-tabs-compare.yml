@@ -74,6 +74,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
+          retention-days: 14
           name: price-tabs-compare
           path: output/price_tabs_compare_report.txt
           if-no-files-found: ignore

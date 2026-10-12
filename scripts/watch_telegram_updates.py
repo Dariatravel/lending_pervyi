@@ -16,9 +16,41 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
+from telethon.errors import FloodWaitError, RpcCallFailError, ServerError
+from telethon.errors import TimeoutError as TelegramTimeoutError
 from telethon.tl.functions import messages as message_functions
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# 11.10.2026 23:56: Telegram отвечал «internal issues» (RpcCallFailError) на
+# три объекта подряд; Telethon повторяет запрос 6 раз за ~2 секунды, этого
+# мало для сбоя на стороне Telegram, и часовой прогон упал в strict-режиме.
+# Такие ошибки — не наша поломка: ждём и пробуем ещё, остальные ошибки
+# (удалённый пост, нет доступа, ошибка кода) не прячем.
+TELEGRAM_RETRY_DELAYS = (20, 45)
+TELEGRAM_TRANSIENT_ERRORS = (RpcCallFailError, ServerError, TelegramTimeoutError, ConnectionError)
+
+
+async def read_object_from_telegram(client: Any, entity: Any, message_id: int) -> tuple[Any, list[Any]]:
+    """Пост и его альбом с повторами при временных сбоях Telegram."""
+    attempt = 0
+    while True:
+        try:
+            canonical = await client.get_messages(entity, ids=message_id)
+            if canonical is None:
+                return None, []
+            return canonical, await album_media_messages(client, entity, canonical)
+        except FloodWaitError as error:
+            wait = min(int(getattr(error, "seconds", 0) or 0) + 1, 120)
+            print(f"Telegram просит подождать {wait} с (FloodWait)", flush=True)
+            await asyncio.sleep(wait)
+        except TELEGRAM_TRANSIENT_ERRORS as error:
+            if attempt >= len(TELEGRAM_RETRY_DELAYS):
+                raise
+            delay = TELEGRAM_RETRY_DELAYS[attempt]
+            attempt += 1
+            print(f"Временный сбой Telegram ({type(error).__name__}), повтор через {delay} с", flush=True)
+            await asyncio.sleep(delay)
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 if str(ROOT / "scripts") not in sys.path:
@@ -937,7 +969,7 @@ async def run(args: argparse.Namespace) -> int:
                 if entity is None:
                     entity = await client.get_entity(item.channel)
                     entities[item.channel] = entity
-                canonical = await client.get_messages(entity, ids=item.message_id)
+                canonical, media_messages = await read_object_from_telegram(client, entity, item.message_id)
                 if canonical is None:
                     # Пост удалили из канала: это постоянное состояние, а не сбой
                     # связи — strict-режим (и часовой workflow) падать не должен.
@@ -965,7 +997,6 @@ async def run(args: argparse.Namespace) -> int:
                                 )
                             )
                     continue
-                media_messages = await album_media_messages(client, entity, canonical)
                 signature = build_signature(canonical.message or "", media_messages)
             except Exception as error:  # noqa: BLE001 - keep checking remaining objects
                 errors.append(f"{item.slug}: {error}")

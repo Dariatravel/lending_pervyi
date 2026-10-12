@@ -127,6 +127,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
+          retention-days: 60
           name: lighthouse-weekly
           path: output/lighthouse-weekly/
           if-no-files-found: ignore

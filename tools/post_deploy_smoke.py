@@ -8,11 +8,17 @@ import gzip
 import json
 import re
 import sys
+import time
 from datetime import datetime
 from pathlib import Path
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
+
+# Yandex CDN осенью 2026 изредка отдаёт 5xx на живые файлы (09.10: 504 на
+# reviews/global.json, через минуту — 200). Временные ответы перепрашиваем
+# с паузой, чтобы смоук краснел на реальных поломках, а не на икоте CDN.
+RETRY_DELAYS = (4, 10)
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "output"
@@ -54,9 +60,25 @@ def network_url(url: str) -> str:
     return urlunsplit((parsed.scheme, netloc, parsed.path, parsed.query, parsed.fragment))
 
 
+def open_with_retries(request: Request, timeout: int):
+    """urlopen, который перепрашивает 5xx и обрывы сети; 4xx отдаёт сразу."""
+    attempt = 0
+    while True:
+        try:
+            return urlopen(request, timeout=timeout)
+        except HTTPError as error:
+            if error.code < 500 or attempt >= len(RETRY_DELAYS):
+                raise
+        except (URLError, OSError):
+            if attempt >= len(RETRY_DELAYS):
+                raise
+        time.sleep(RETRY_DELAYS[attempt])
+        attempt += 1
+
+
 def fetch(url: str, timeout: int) -> tuple[int, str]:
     request = Request(network_url(url), headers={"User-Agent": "abhazbereg-smoke/1.0", "Cache-Control": "no-cache"})
-    with urlopen(request, timeout=timeout) as response:
+    with open_with_retries(request, timeout) as response:
         body = response.read(1_500_000).decode("utf-8", errors="replace")
         return int(response.status), body
 
@@ -66,14 +88,14 @@ def fetch_bytes(url: str, timeout: int, *, accept_gzip: bool = False) -> tuple[i
     if accept_gzip:
         headers["Accept-Encoding"] = "gzip"
     request = Request(network_url(url), headers=headers)
-    with urlopen(request, timeout=timeout) as response:
+    with open_with_retries(request, timeout) as response:
         return int(response.status), response.read()
 
 
 def head_ok(url: str, timeout: int) -> tuple[bool, int | None, int | None]:
     request = Request(network_url(url), method="GET", headers={"User-Agent": "abhazbereg-smoke/1.0"})
     try:
-        with urlopen(request, timeout=timeout) as response:
+        with open_with_retries(request, timeout) as response:
             body = response.read(1)
             size = int(response.headers.get("Content-Length") or len(body) or 0)
             return 200 <= int(response.status) < 300, int(response.status), size

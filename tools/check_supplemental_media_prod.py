@@ -21,6 +21,7 @@ import argparse
 import json
 import re
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -60,7 +61,28 @@ MAGIC = {
 }
 
 
+# Yandex CDN в октябре 2026 отдавал единичные 500/504 на живые файлы
+# (3–9 из 795 за прогон, каждый раз разные, через минуту — 200). Такой ответ
+# перепрашиваем с паузой; отсутствующий или битый файл по-прежнему краснит.
+RETRY_DELAYS = (4, 10)
+
+
+def is_transient(status: int) -> bool:
+    return status == 0 or status >= 500
+
+
 def probe_bytes(url: str, timeout: int = 25) -> tuple[int, str, int, bytes]:
+    """probe_once с повторами для временных ошибок CDN (5xx, обрыв сети)."""
+    result = probe_once(url, timeout)
+    for delay in RETRY_DELAYS:
+        if not is_transient(result[0]):
+            break
+        time.sleep(delay)
+        result = probe_once(url, timeout)
+    return result
+
+
+def probe_once(url: str, timeout: int = 25) -> tuple[int, str, int, bytes]:
     """Загружает первые байты файла: код, тип, размер по заголовку, начало тела."""
     request = Request(
         network_url(url),

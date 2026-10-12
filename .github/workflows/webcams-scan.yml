@@ -51,6 +51,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
+          retention-days: 14
           name: webcams-scan
           path: output/webcams-scan.json
           if-no-files-found: ignore
