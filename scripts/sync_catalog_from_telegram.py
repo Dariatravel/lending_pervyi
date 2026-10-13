@@ -1643,6 +1643,38 @@ def find_active_duplicate_by_title(source_kind: str, title: str) -> dict[str, An
     return None
 
 
+def retire_listing_to_href(old_slug: str, old_kind: str, new_href: str) -> None:
+    """Деактивировать объект и превратить его страницу в редирект на new_href (в т.ч. в другой раздел)."""
+    old_slug = (old_slug or '').strip()
+    if not old_slug:
+        return
+    snapshot_deactivate_listing(old_slug)
+    page_dir = (HOTELS_DIR if old_kind == 'hotel' else KVARTIRA_DIR) / old_slug
+    page_dir.mkdir(parents=True, exist_ok=True)
+    (page_dir / 'index.html').write_text(
+        '<!DOCTYPE html>\n<html lang="ru"><head><meta charset="utf-8"/>\n'
+        f'<meta http-equiv="refresh" content="0;url={new_href}"/>\n'
+        f'<link rel="canonical" href="https://абхазберег.рф{new_href}"/>\n'
+        '<meta name="robots" content="noindex"/>\n'
+        f'<title>Страница переехала</title></head>\n'
+        f'<body><p>Объект переехал: <a href="{new_href}">открыть актуальную страницу</a>.</p></body></html>\n',
+        encoding='utf-8',
+    )
+
+
+# Правило Дарьи (13.10.2026, подтверждение решения 19.07.2026): если объект
+# с абсолютно одинаковым названием выложен и в отельном канале @abhazbooking,
+# и в квартирном @abhkvartira, на сайте живёт только отельная версия —
+# в отельном канале чаще обновляют цены и медиа. Квартирную копию второй раз
+# не публикуем, а если она уже была на сайте — снимаем с редиректом на отель.
+def find_hotel_twin_for_kvartira(title: str) -> dict[str, Any] | None:
+    return find_active_duplicate_by_title('hotel', title)
+
+
+def find_kvartira_twin_for_hotel(title: str) -> dict[str, Any] | None:
+    return find_active_duplicate_by_title('kvartira', title)
+
+
 def retire_replaced_listing(old_row: dict[str, Any], new_slug: str, source_kind: str) -> None:
     """Деактивировать заменённый объект и оставить редирект со старого URL на новый."""
     old_slug = str(old_row.get('slug') or '').strip()
@@ -1671,6 +1703,23 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient | None
     parsed = object_data['parsed']
     media_messages = object_data['media_messages']
     title = normalize_title(parsed.get('title') or object_data.get('topic_title') or '')
+    if source_kind == 'kvartira':
+        hotel_twin = find_hotel_twin_for_kvartira(title)
+        if hotel_twin is not None:
+            hotel_href = f"/hotels/{hotel_twin['slug']}/"
+            if existing_listing and existing_listing.get('slug'):
+                retire_listing_to_href(existing_listing['slug'], 'kvartira', hotel_href)
+                if not SKIP_SUPABASE_SYNC and supa is not None and existing_listing.get('id'):
+                    supa.patch_listing(existing_listing['id'], {'is_active': False})
+            print(f"[dedup] '{title}': есть в отельном канале ({hotel_twin['slug']}) — "
+                  f"квартирную версию не публикуем")
+            return {
+                'id': existing_listing['id'] if existing_listing else 0,
+                'slug': existing_listing['slug'] if existing_listing else hotel_twin['slug'],
+                'title': title,
+                'source_id': canonical.id,
+                'hidden': True,
+            }
     if existing_listing:
         slug = existing_listing['slug']
         duplicate_row = None
@@ -1707,6 +1756,14 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient | None
             'source_id': canonical.id,
             'hidden': True,
         }
+
+    if source_kind == 'hotel':
+        kvartira_twin = find_kvartira_twin_for_hotel(title)
+        if kvartira_twin is not None and kvartira_twin.get('slug'):
+            # Отельная версия главнее: квартирную копию снимаем с редиректом сюда.
+            retire_listing_to_href(str(kvartira_twin['slug']), 'kvartira', f'/hotels/{slug}/')
+            print(f"[dedup] '{title}': квартирная копия {kvartira_twin['slug']} снята, "
+                  f"приоритет у отельного канала ({slug})")
 
     gallery_dir = HOTEL_MEDIA_DIR / slug if source_kind == 'hotel' else KV_MEDIA_DIR / slug
     ensure_dir(gallery_dir)

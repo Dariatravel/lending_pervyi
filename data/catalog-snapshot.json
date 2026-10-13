@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-13T19:45:14.050273+00:00",
+  "generated_at": "2026-10-13T20:33:39.471437+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 246,
+  "listings_total": 245,
   "listings_hotels": 191,
-  "listings_kvartira": 55,
+  "listings_kvartira": 54,
   "listings": [
     {
       "source_kind": "kvartira",
@@ -71185,7 +71185,7 @@
       "published_at": "2026-10-12",
       "has_video": true,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765-cover.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Гудаута. 10 минут пешком до моря, размещение до 11 человек.",
         "sections": [
