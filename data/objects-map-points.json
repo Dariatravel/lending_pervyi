@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T19:38:03.959466+00:00",
+  "generated_at": "2026-10-13T20:44:09.813513+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -464,14 +464,6 @@
       "lat": 43.125716,
       "lon": 40.560112,
       "url": "/hotels/belaya-rechka-gostevoy-dom-s-kafe-3517/",
-      "cityKey": "gudauta"
-    },
-    {
-      "title": "\"ВИСТА МАРЕ\" ВТОРОЙ ЭТАЖ ДОМА ПОД КЛЮЧ С БАССЕЙНОМ",
-      "address": "Гудаута, с. Куланырхуа, ул. Самава, 43.100576,40.663889",
-      "lat": 43.1005779686285,
-      "lon": 40.66374013739886,
-      "url": "/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/",
       "cityKey": "gudauta"
     },
     {
@@ -1975,7 +1967,7 @@
     "skipped_without_constructor": 234,
     "skipped_without_coords": 234,
     "shared_coordinate_groups": 32,
-    "deduped_redirect_points": 17,
-    "points_total": 245
+    "deduped_redirect_points": 18,
+    "points_total": 244
   }
 }

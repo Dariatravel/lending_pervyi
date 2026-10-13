@@ -1,11 +1,11 @@
 {
   "name": "АБХАЗБЕРЕГ - каталог жилья в Абхазии",
   "url": "https://абхазберег.рф/",
-  "generated_at": "2026-10-13T19:45:21.775517+00:00",
+  "generated_at": "2026-10-13T20:48:52.924906+00:00",
   "language": "ru",
   "description": "Машиночитаемый каталог проверенных отелей, домиков, апартаментов и квартир в Абхазии для AI-поиска и агентных рекомендаций.",
   "usage_note": "Используйте page url как канонический источник, цены подтверждайте перед бронированием.",
-  "total": 246,
+  "total": 244,
   "listings": [
     {
       "name": "\"АКИРА\" 2к квартира",
@@ -7151,13 +7151,13 @@
       "updated_at": "2026-10-08"
     },
     {
-      "name": "\"ВИСТА МАРЕ\" второй этаж дома под ключ с бассейном",
+      "name": "\"ВИСТА МАРЕ\" первый этаж дома под ключ с бассейном",
       "type": "hotel",
       "city": "Гудаута",
       "location": "Гудаута, с. Куланырхуа, ул. Самава, 43.100576,40.663889",
-      "beach_distance": "10 минут пешком до моря",
-      "capacity": "Размещение до 11 человек",
-      "summary": "Гудаута. 10 минут пешком до моря, размещение до 11 человек.",
+      "beach_distance": "10 минут пешком до пляжа",
+      "capacity": "Размещение до 10 человек",
+      "summary": "Гудаута. 10 минут пешком до пляжа, размещение до 10 человек.",
       "amenities": [
         "бассейн",
         "питание",
@@ -7165,32 +7165,6 @@
         "у моря",
         "вид на море",
         "подходит для семьи"
-      ],
-      "prices": [
-        "13000₽ - май, июнь",
-        "15000₽ - июль, август",
-        "13000₽ - сентябрь",
-        "8000₽ - октябрь, ноябрь, декабрь до 25го",
-        "13000₽ - с 25 декабря по 15 января, Новый год🎄",
-        "8000₽ - с 16 января, февраль, март, апрель",
-        "Я НА СВЯЗИ 📲"
-      ],
-      "price_range": "8000-15000 RUB",
-      "url": "https://абхазберег.рф/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/",
-      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336.jpg",
-      "telegram_source": "https://t.me/abhazbooking/5360",
-      "updated_at": "2026-10-12"
-    },
-    {
-      "name": "\"ВИСТА МАРЕ\" первый этаж дома под ключ с бассейном",
-      "type": "apartment",
-      "city": "Гудаута",
-      "location": "Гудаута, с. Куланырхуа, ул. Самава, 43.100576,40.663889",
-      "beach_distance": "10 минут пешком до пляжа",
-      "capacity": "Размещение до 10 человек",
-      "summary": "Гудаута. 10 минут пешком до пляжа, размещение до 10 человек.",
-      "amenities": [
-        "у моря"
       ],
       "prices": [
         "15000₽ - май, июнь",
@@ -7202,36 +7176,10 @@
         "Я НА СВЯЗИ 📲"
       ],
       "price_range": "10000-20000 RUB",
-      "url": "https://абхазберег.рф/kvartira/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-1753/",
-      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-1753-cover.jpg",
-      "telegram_source": "https://t.me/abhkvartira/1753",
+      "url": "https://абхазберег.рф/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/",
+      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336.jpg",
+      "telegram_source": "https://t.me/abhazbooking/5336",
       "updated_at": "2026-10-09"
-    },
-    {
-      "name": "\"ВИСТА МАРЕ\" второй этаж дома под ключ с бассейном",
-      "type": "apartment",
-      "city": "Гудаута",
-      "location": "Гудаута, с. Куланырхуа, ул. Самава, 43.100576,40.663889",
-      "beach_distance": "10 минут пешком до моря",
-      "capacity": "Размещение до 11 человек",
-      "summary": "Гудаута. 10 минут пешком до моря, размещение до 11 человек.",
-      "amenities": [
-        "у моря"
-      ],
-      "prices": [
-        "13000₽ - май, июнь",
-        "15000₽ - июль, август",
-        "13000₽ - сентябрь",
-        "8000₽ - октябрь, ноябрь, декабрь до 25го",
-        "13000₽ - с 25 декабря по 15 января, Новый год🎄",
-        "8000₽ - с 16 января, февраль, март, апрель",
-        "Я НА СВЯЗИ 📲"
-      ],
-      "price_range": "8000-15000 RUB",
-      "url": "https://абхазберег.рф/kvartira/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765/",
-      "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-1765-cover.jpg",
-      "telegram_source": "https://t.me/abhkvartira/1765",
-      "updated_at": "2026-10-12"
     }
   ]
 }
