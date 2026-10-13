@@ -6,7 +6,7 @@ from pathlib import Path
 from urllib.parse import quote, unquote, urlparse
 from typing import Optional
 
-ROOT = Path('/Users/darya_botova/Documents/New project')
+ROOT = Path(__file__).resolve().parents[1]
 INDEX_FILE = ROOT / 'index.html'
 KVARTIRA_JSON = ROOT / 'kvartira_cards.json'
 CURRENT_PAGES = ROOT / 'output' / 'current_pages.json'

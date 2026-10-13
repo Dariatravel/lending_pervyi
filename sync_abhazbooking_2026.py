@@ -20,7 +20,7 @@ from responsive_images import responsive_img_html  # noqa: E402
 from telegram_line_filters import clean_line_for_site, is_link_stub_line  # noqa: E402
 
 
-ROOT = Path("/Users/darya_botova/Documents/New project")
+ROOT = Path(__file__).resolve().parent
 HOTELS_DIR = ROOT / "hotels"
 MEDIA_HOTELS_DIR = ROOT / "media" / "hotels"
 MEDIA_CARDS_DIR = ROOT / "media" / "cards"

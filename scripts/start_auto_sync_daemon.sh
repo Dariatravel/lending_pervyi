@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJECT_DIR="/Users/darya_botova/Documents/New project"
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PYTHON_BIN="$PROJECT_DIR/.venv/bin/python"
 PIPELINE="$PROJECT_DIR/scripts/run_auto_sync_pipeline.py"
 PID_FILE="$PROJECT_DIR/output/auto-sync/daemon.pid"

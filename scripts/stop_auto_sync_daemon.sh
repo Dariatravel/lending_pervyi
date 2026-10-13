@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PID_FILE="/Users/darya_botova/Documents/New project/output/auto-sync/daemon.pid"
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PID_FILE="$PROJECT_DIR/output/auto-sync/daemon.pid"
 
 if [[ ! -f "$PID_FILE" ]]; then
   echo "PID-файл не найден: $PID_FILE"

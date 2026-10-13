@@ -11,7 +11,7 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
 
-ROOT = Path("/Users/darya_botova/Documents/New project")
+ROOT = Path(__file__).resolve().parents[1]
 ENV_PATH = ROOT / ".env.supabase.local"
 SPREADSHEET_ID = "135fxeZX5OE30rH3Sg5KWpTR4VuhBntCzGrTk0WcdTBY"
 SHEET_NAME = "СОЦСЕТИ"

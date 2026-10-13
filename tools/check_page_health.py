@@ -162,7 +162,6 @@ def check_review_banks(errors: list[str]) -> None:
     source_candidates = [
         ROOT / "media" / "reviews" / "global.json",
         Path("/Users/darya_botova/Documents/GitHub/lending_pervyi/media/reviews/global.json"),
-        Path("/Users/darya_botova/Documents/New project/media/reviews/global.json"),
     ]
     if not any(path.exists() for path in source_candidates):
         errors.append("Не найден локальный источник media/reviews/global.json для CDN-банка отзывов")

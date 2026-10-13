@@ -7,7 +7,7 @@ import urllib.request
 import sys
 from pathlib import Path
 
-ROOT = Path('/Users/darya_botova/Documents/New project')
+ROOT = Path(__file__).resolve().parent
 SCRIPT_ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPT_ROOT / "scripts"))
 

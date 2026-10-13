@@ -7,7 +7,7 @@ import requests
 from rebuild_from_supabase import INDEX_PATH, load_env, load_hotel_card_meta, render_hotel_card, replace_catalog_block
 
 
-ROOT = Path("/Users/darya_botova/Documents/New project")
+ROOT = Path(__file__).resolve().parents[1]
 ENV_PATH = ROOT / ".env.supabase.local"
 
 

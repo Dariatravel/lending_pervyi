@@ -8,7 +8,7 @@ from urllib.parse import quote
 
 import requests
 
-ROOT = Path('/Users/darya_botova/Documents/New project')
+ROOT = Path(__file__).resolve().parents[1]
 SEED_FILE = ROOT / 'output' / 'supabase_seed.json'
 
 SUPABASE_URL = os.getenv('SUPABASE_URL', '').rstrip('/')

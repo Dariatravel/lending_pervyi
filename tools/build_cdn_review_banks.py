@@ -25,8 +25,6 @@ LEGACY_BANK_PATH = REVIEWS_DIR / "review_text_bank.json"
 GLOBAL_PATH = REVIEWS_DIR / "global.json"
 SOURCE_CANDIDATES = (
     Path("/Users/darya_botova/Documents/GitHub/lending_pervyi/media/reviews"),
-    Path("/Users/darya_botova/Documents/New project/media/reviews"),
-    Path("/Users/darya_botova/abhazbereg-bot/lending_pervyi/media/reviews"),
 )
 
 
