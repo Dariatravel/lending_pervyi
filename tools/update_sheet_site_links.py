@@ -2,10 +2,12 @@
 """Автоподстановка ссылок сайта в столбец «Сайт» таблицы «БАЗА - отели и квартиры».
 
 Вкладка СОЦСЕТИ, столбец H. Для каждой видимой строки, чьё название совпадает
-с объектом каталога (data/catalog-index.json), в H должна стоять ссылка вида
-`abhazbereg.ru/<путь-страницы>/` — латиницей, без протокола (домен abhazbereg.ru
-переадресует на абхазберег.рф с сохранением пути). Обновляются только ячейки,
-где значение отличается от актуального.
+с объектом каталога (data/catalog-index.json), в H должна стоять официальная
+короткая ссылка `abhazbereg.ru/<ключ>` (data/short-links.json — ручные, главнее,
+и data/short-links-generated.json). Если короткой ещё нет — полная
+`abhazbereg.ru/<путь-страницы>/`; когда короткая появится, ячейка обновится сама.
+Латиницей, без протокола (домен abhazbereg.ru переадресует на абхазберег.рф
+с сохранением пути). Обновляются только ячейки, где значение отличается от актуального.
 
 Не трогаем (правило 9 CLAUDE.md): скрытые строки и строки с заливкой в красных
 оттенках — эти объекты Дарья не ведёт. Также пропускаем строки без однозначного
@@ -32,6 +34,8 @@ TAB = 'СОЦСЕТИ'
 SITE_COL_INDEX = 7  # H
 LINK_HOST = 'abhazbereg.ru'
 CATALOG_INDEX = ROOT / 'data' / 'catalog-index.json'
+SHORT_LINKS = ROOT / 'data' / 'short-links.json'
+SHORT_LINKS_GENERATED = ROOT / 'data' / 'short-links-generated.json'
 
 
 def pick_google_credentials_path() -> Path:
@@ -63,14 +67,46 @@ def is_reddish(bg) -> bool:
     return bg.get('red', 0) > 0.75 and bg.get('green', 0) < 0.72 and bg.get('blue', 0) < 0.72
 
 
+def with_slash(path: str) -> str:
+    return path if path.endswith('/') else path + '/'
+
+
+def load_short_keys():
+    """Путь страницы → ключ короткой ссылки (abhazbereg.ru/<ключ>)."""
+    path_to_key = {}
+    for source in (SHORT_LINKS_GENERATED, SHORT_LINKS):  # ручные перекрывают автоматические
+        if not source.exists():
+            continue
+        data = json.loads(source.read_text(encoding='utf-8'))
+        for key, target in data.get('links', data).items():
+            if key.startswith('_') or not isinstance(target, str):
+                continue
+            if source is SHORT_LINKS_GENERATED:
+                path_to_key.setdefault(with_slash(target), key)
+            else:
+                path_to_key[with_slash(target)] = key
+    return path_to_key
+
+
+def shorten_existing(current: str, short_keys: dict):
+    """abhazbereg.ru/<полный путь>/ → abhazbereg.ru/<ключ>, если у страницы есть короткая ссылка."""
+    match = re.fullmatch(r'(?:https?://)?(?:www\.)?abhazbereg\.ru(/[^?#\s]+)', current)
+    if not match:
+        return None
+    if match.group(1).strip('/') in short_keys.values():  # уже короткая
+        return current
+    key = short_keys.get(with_slash(match.group(1)))
+    return f'{LINK_HOST}/{key}' if key else None
+
+
 def load_catalog():
     data = json.loads(CATALOG_INDEX.read_text(encoding='utf-8'))
+    short_keys = load_short_keys()
     by_norm, by_qname = {}, {}
     for item in data['listings']:
-        path = item['page_url'].split('абхазберег.рф', 1)[-1]
-        if not path.endswith('/'):
-            path += '/'
-        link = LINK_HOST + path
+        path = with_slash(item['page_url'].split('абхазберег.рф', 1)[-1])
+        key = short_keys.get(path)
+        link = f'{LINK_HOST}/{key}' if key else LINK_HOST + path
         by_norm.setdefault(norm(item['title']), link)
         qname = quoted_name(item['title'])
         if qname:
@@ -102,6 +138,7 @@ def main() -> int:
     service = build('sheets', 'v4', credentials=creds, cache_discovery=False)
 
     by_norm, by_qname = load_catalog()
+    short_keys = load_short_keys()
     rows_meta, rows = fetch_rows(service)
 
     updates, unmatched = [], []
@@ -120,18 +157,23 @@ def main() -> int:
         if is_reddish(name_cell.get('effectiveFormat', {}).get('backgroundColor')):
             continue
 
+        current = ''
+        if len(values) > SITE_COL_INDEX:
+            current = (values[SITE_COL_INDEX].get('formattedValue') or '').strip()
+
         link = by_norm.get(norm(name))
         if not link:
             candidates = by_qname.get(quoted_name(name) or '', [])
             if len(candidates) == 1:
                 link = candidates[0]
         if not link:
+            # Название не узнали, но в ячейке уже полная ссылка на страницу сайта —
+            # меняем её на короткую, если она есть.
+            link = shorten_existing(current, short_keys)
+        if not link:
             unmatched.append((row_no, name))
             continue
 
-        current = ''
-        if len(values) > SITE_COL_INDEX:
-            current = (values[SITE_COL_INDEX].get('formattedValue') or '').strip()
         if current != link:
             updates.append({'range': f'{TAB}!H{row_no}', 'values': [[link]]})
             print(f'  H{row_no} {name[:45]!r}: {current or "(пусто)"} → {link}')
