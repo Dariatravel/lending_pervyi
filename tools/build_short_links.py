@@ -125,10 +125,24 @@ def main() -> int:
     previous = {str(k): str(v) for k, v in (load_json(GENERATED).get("links") or {}).items()}
 
     links: dict[str, str] = dict(manual)
+    # Снятые объекты (is_active=false: скрыты, заменены, отельный двойник):
+    # их страница — редирект, и короткая ссылка вела бы в общий каталог
+    # («Джаннат», 13.10.2026). Такие сгенерированные ссылки убираем.
+    inactive = {
+        f"/{'hotels' if row.get('source_kind') == 'hotel' else 'kvartira'}/{row.get('slug')}/"
+        for row in (load_json(SNAPSHOT).get("listings") or [])
+        if row.get("is_active") is False and row.get("slug")
+    }
+    retired: list[str] = []
     # Прошлые сгенерированные ключи сохраняются, пока жива цель, — старые
     # рассылки не ломаются. Ключ не должен конфликтовать с ручными.
     for key, href in previous.items():
-        if key not in links and (ROOT / href.strip("/") / "index.html").is_file():
+        if key in links:
+            continue
+        if href in inactive:
+            retired.append(key)
+            continue
+        if (ROOT / href.strip("/") / "index.html").is_file():
             links[key] = href
 
     taken = reserved_keys()
@@ -171,6 +185,17 @@ def main() -> int:
             out_dir = ROOT / key
             out_dir.mkdir(parents=True, exist_ok=True)
             (out_dir / "index.html").write_text(STUB.format(href=href), encoding="utf-8")
+
+    for key in retired:
+        stub = ROOT / key / "index.html"
+        print(f"  - снята ссылка /{key}: объект {previous[key]} снят с сайта")
+        # Удаляем только свою страницу-стрелку, чужие папки не трогаем.
+        if not args.check and stub.is_file() and "Открываем страницу" in stub.read_text(encoding="utf-8"):
+            stub.unlink()
+            try:
+                stub.parent.rmdir()
+            except OSError:
+                pass
 
     if not args.check:
         GENERATED.write_text(
