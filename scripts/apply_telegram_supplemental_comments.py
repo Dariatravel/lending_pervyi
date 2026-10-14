@@ -122,7 +122,58 @@ def slugify(value: str, *, max_len: int = 48) -> str:
 
 def has_meaningful_caption(caption: str) -> bool:
     cap = normalize_text(caption)
-    return bool(cap) and cap != "(без подписи)" and len(cap) >= 3 and not REVIEW_RE.search(cap)
+    return bool(cap) and cap != "(без подписи)" and len(cap) >= 3 and not REVIEW_RE.search(cap) and not COVER_CAPTION_RE.search(cap)
+
+
+# Фото в комментариях с подписью «заглавное фото» — новая обложка объекта
+# (просьба Дарьи 14.10.2026, «Грасс»): в блоки «Дополнительные материалы»
+# не идёт, а заливается с WebP-вариантами и записывается в
+# data/card-cover-overrides.json. Берётся самое свежее такое фото.
+COVER_CAPTION_RE = re.compile(r"заглавн\w*\s+фото|фото\s+на\s+заглавн|обложк", re.I)
+
+
+def find_cover_message(messages_by_id: dict[int, Any]) -> Any | None:
+    candidates = [
+        message for message in messages_by_id.values()
+        if media_kind(message) == "photo"
+        and COVER_CAPTION_RE.search(normalize_text(str(getattr(message, "message", "") or "")))
+    ]
+    return max(candidates, key=lambda m: int(m.id)) if candidates else None
+
+
+async def apply_cover_from_comments(client: Any, target: Target, messages_by_id: dict[int, Any], *, dry_run: bool) -> str:
+    message = find_cover_message(messages_by_id)
+    if message is None:
+        return ""
+    from card_covers import cover_override, set_override
+    from image_variants import build_webp_variants_for_file, variant_key
+    from yandex_storage import upload_file, yandex_public_url
+
+    folder = "kvartira" if target.kind == "kvartira" else "hotels"
+    storage_path = f"{folder}/{target.slug}/cover-{int(message.id)}.jpg"
+    public_url = yandex_public_url(storage_path)
+    if cover_override(target.slug) == public_url:
+        return "cover unchanged"
+    if dry_run:
+        return f"cover would be set from comment {int(message.id)}"
+    dest = ROOT / "media" / storage_path
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    await client.download_media(message, file=str(dest))
+    if not looks_like("photo", dest):
+        dest.unlink(missing_ok=True)
+        return "cover skipped: not a photo"
+    upload_file(dest, storage_path, "image/jpeg")
+    import tempfile
+    for width, blob in build_webp_variants_for_file(dest):
+        with tempfile.NamedTemporaryFile(suffix=".webp", delete=False) as tmp:
+            tmp.write(blob)
+            tmp_path = Path(tmp.name)
+        try:
+            upload_file(tmp_path, variant_key(storage_path, width), "image/webp")
+        finally:
+            tmp_path.unlink(missing_ok=True)
+    set_override(target.slug, public_url, f"Комментарий «заглавное фото» (сообщение {int(message.id)}), автосинк.")
+    return f"cover set from comment {int(message.id)}"
 
 
 def card_title(caption: str, object_title: str) -> str:
@@ -627,6 +678,9 @@ async def apply_target(
 
     entity = await client.get_entity(target.channel)
     messages_by_id = await fetch_comment_messages(client, target)
+    cover_note = await apply_cover_from_comments(client, target, messages_by_id, dry_run=dry_run)
+    if cover_note:
+        print(f"  {target.slug}: {cover_note}", flush=True)
     excluded = load_excludes(target.slug)
     if not target.blocks:
         target.blocks = build_blocks_from_comments(messages_by_id, excluded)

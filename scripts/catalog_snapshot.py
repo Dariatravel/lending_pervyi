@@ -32,6 +32,21 @@ def load_listings() -> list[dict[str, Any]]:
     return list(load_payload().get("listings") or [])
 
 
+def _cover_for_index(row: dict[str, Any]) -> Any:
+    """Ручная обложка (data/card-cover-overrides.json) главнее cover_url."""
+    try:
+        import sys
+
+        scripts_dir = str(Path(__file__).resolve().parent)
+        if scripts_dir not in sys.path:
+            sys.path.insert(0, scripts_dir)
+        from card_covers import cover_override
+
+        return cover_override(str(row.get("slug") or "")) or row.get("cover_url")
+    except Exception:  # noqa: BLE001
+        return row.get("cover_url")
+
+
 def compact_listing_for_index(row: dict[str, Any]) -> dict[str, Any]:
     details = row.get("details") if isinstance(row.get("details"), dict) else {}
     filters = details.get("filters") if isinstance(details.get("filters"), dict) else {}
@@ -44,7 +59,7 @@ def compact_listing_for_index(row: dict[str, Any]) -> dict[str, Any]:
         "beach_text": row.get("beach_text"),
         "page_url": row.get("page_url"),
         "has_video": bool(row.get("has_video")),
-        "cover_url": row.get("cover_url"),
+        "cover_url": _cover_for_index(row),
         "details": {"filters": filters},
     }
 

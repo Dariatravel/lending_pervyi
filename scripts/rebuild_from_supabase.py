@@ -148,6 +148,14 @@ def resolve_site_page_path(row: dict[str, Any]) -> Path | None:
 
 
 def pick_cover_url(row: dict[str, Any]) -> str:
+    # Ручная обложка (data/card-cover-overrides.json) главнее первого фото поста.
+    try:
+        from card_covers import cover_override
+        manual = cover_override(str(row.get("slug") or ""))
+        if manual:
+            return manual
+    except Exception:  # noqa: BLE001
+        pass
     media = sorted(row.get("listing_media") or [], key=lambda item: item.get("sort_order") or 0)
     for item in media:
         if item.get("media_role") == "card" and item.get("public_url"):

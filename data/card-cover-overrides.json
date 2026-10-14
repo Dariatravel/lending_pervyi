@@ -1,0 +1,11 @@
+{
+  "_comment": "Ручные обложки объектов: slug → URL фото на media-CDN. См. scripts/card_covers.py.",
+  "covers": {
+    "trio-nomer-na-plyazhe-5176": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/trio-nomer-na-plyazhe-5176/photo-09.jpg",
+    "novyy-god-v-gostevom-komplekse-fazenda-5281": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/photo-02.jpg"
+  },
+  "notes": {
+    "trio-nomer-na-plyazhe-5176": "Дарья, 14.10.2026: на первом фото мангал, а море обрезано сверху — обложка с пляжем и морем (photo-09).",
+    "novyy-god-v-gostevom-komplekse-fazenda-5281": "Дарья, 14.10.2026: заглавным — бассейн с беседками (photo-02), а не ёлка в интерьере."
+  }
+}
