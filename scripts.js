@@ -254,7 +254,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202609251544";
+  const ASSET_VERSION = "202610142155";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -6017,10 +6017,16 @@
         return parts[parts.length - 1] || "";
       })
     );
-    // Порядок статики: сперва отели, затем квартиры (kvartira/general-1409 — служебный).
+    // Порядок статики: сперва объекты с home_rank (межсезон и Новый год —
+    // scripts/home_order.py), затем отели, затем квартиры
+    // (kvartira/general-1409 — служебный).
+    const rankOf = (row) => (Number.isFinite(row?.home_rank) ? row.home_rank : Number.POSITIVE_INFINITY);
     const ordered = rows
       .filter((row) => row?.is_active !== false && row?.slug && row.slug !== "general-1409")
       .sort((a, b) => {
+        const ar = rankOf(a);
+        const br = rankOf(b);
+        if (ar !== br) return ar < br ? -1 : 1;
         const ak = a.source_kind === "kvartira" ? 1 : 0;
         const bk = b.source_kind === "kvartira" ? 1 : 0;
         return ak - bk;

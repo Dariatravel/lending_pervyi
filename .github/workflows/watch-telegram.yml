@@ -213,6 +213,8 @@ jobs:
         run: |
           python tools/sync_telegram_collections.py --offline
           python scripts/build_podborki_from_filters.py
+          # Начало главной: партнёры, Новый год, межсезон (scripts/home_order.py).
+          python tools/reorder_home_grid.py
 
       # Короткие ссылки abhazbereg.ru/<имя> для новых объектов (просьба Дарьи
       # 13.10.2026: раньше генератор запускали вручную, и у 9 новых объектов
@@ -296,9 +298,10 @@ jobs:
         run: |
           python scripts/build_podborki_from_filters.py
           python tools/build_short_links.py || true
+          python tools/reorder_home_grid.py
           git config user.name "abhazbereg-autosync"
           git config user.email "209351708+Dariatravel@users.noreply.github.com"
-          git add -A -- podborki sitemap.xml data/telegram-collections.json data/short-links-generated.json
+          git add -A -- podborki sitemap.xml data/telegram-collections.json data/short-links-generated.json index.html data/catalog-index.json
           git ls-files --others --exclude-standard -- '*/index.html' | grep -E '^[^/]+/index\.html$' | xargs -r git add --
           if git diff --cached --quiet; then
             echo "Подборки не изменились — публиковать нечего."

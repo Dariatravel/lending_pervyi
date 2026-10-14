@@ -49,14 +49,39 @@ def compact_listing_for_index(row: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def home_rank_map() -> dict[str, int]:
+    """Места объектов в начале главной (scripts/home_order.py); без правила — пусто."""
+    try:
+        import sys
+
+        scripts_dir = str(Path(__file__).resolve().parent)
+        if scripts_dir not in sys.path:
+            sys.path.insert(0, scripts_dir)
+        from home_order import home_order
+
+        return {slug: index for index, slug in enumerate(home_order())}
+    except Exception:  # noqa: BLE001 — индекс каталога важнее порядка
+        return {}
+
+
 def write_catalog_index(listings: list[dict[str, Any]], *, generated_at: str = "") -> None:
     active = [row for row in listings if row.get("is_active", True)]
+    ranks = home_rank_map()
+    compact = []
+    for row in active:
+        item = compact_listing_for_index(row)
+        # Браузер дорисовывает главную из этого файла: home_rank ставит
+        # межсезон и Новый год в начало каталога (правило Дарьи 14.10.2026).
+        rank = ranks.get(str(row.get("slug") or ""))
+        if rank is not None:
+            item["home_rank"] = rank
+        compact.append(item)
     payload = {
         "generated_at": generated_at or datetime.now(timezone.utc).isoformat(),
         "schema_version": SCHEMA_VERSION,
         "source": "catalog-snapshot-index",
         "listings_total": len(active),
-        "listings": [compact_listing_for_index(row) for row in active],
+        "listings": compact,
     }
     CATALOG_INDEX_PATH.parent.mkdir(parents=True, exist_ok=True)
     CATALOG_INDEX_PATH.write_text(

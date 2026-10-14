@@ -966,10 +966,72 @@ def load_featured_order() -> list[str]:
         return []
 
 
+def rebuild_home_grid(
+    hotel_rows: list[dict[str, Any]],
+    kvartira_rows: list[dict[str, Any]],
+    featured_rank: dict[str, int],
+) -> None:
+    """Статичные первые карточки главной: объекты с местом в home_order (отели
+    и квартиры вперемешку, по месту), затем отели, затем квартиры — тот же
+    порядок, что у дорисовки из catalog-index.json в scripts.js."""
+    hotel_post_meta = load_hotel_card_meta()
+    ranked: list[tuple[int, str]] = []
+    rest_hotels: list[str] = []
+    rest_kv: list[str] = []
+    for row in hotel_rows:
+        card = render_hotel_card(row, hotel_post_meta)
+        rank = featured_rank.get(str(row.get("slug")))
+        (ranked.append((rank, card)) if rank is not None else rest_hotels.append(card))
+    for row in kvartira_rows:
+        card = render_kvartira_card(row)
+        rank = featured_rank.get(str(row.get("slug")))
+        (ranked.append((rank, card)) if rank is not None else rest_kv.append(card))
+    ranked.sort(key=lambda item: item[0])
+    catalog_cards = [card for _, card in ranked] + rest_hotels + rest_kv
+    total_cards = len(catalog_cards)
+    catalog_cards_html = mark_catalog_cards_initial_hidden(
+        "".join(catalog_cards[:CATALOG_STATIC_LIMIT])
+    )
+    replace_catalog_block(
+        INDEX_PATH,
+        '<div class="catalog-grid" id="catalog-grid">',
+        catalog_cards_html,
+    )
+    sync_catalog_grid_total_attr(total_cards)
+    sync_catalog_visible_count_markup(total_cards)
+
+
+def home_grid_from_rows(rows: list[dict[str, Any]]) -> None:
+    """Только главная (без страниц объектов): для смены порядка без синка."""
+    rows = normalize_catalog_rows(rows)
+    rows = [row for row in rows if row.get("is_active", True)]
+    try:
+        from home_order import home_order
+        ordered_slugs = home_order()
+    except Exception:  # noqa: BLE001
+        ordered_slugs = load_featured_order()
+    featured_rank = {slug: index for index, slug in enumerate(ordered_slugs)}
+    if featured_rank:
+        rows.sort(key=lambda row: featured_rank.get(str(row.get("slug")), len(featured_rank)))
+    hotel_rows = [row for row in rows if row.get("source_kind") == "hotel"]
+    kvartira_rows = [
+        row for row in rows
+        if row.get("source_kind") == "kvartira" and row.get("slug") not in {"general-1409"}
+    ]
+    rebuild_home_grid(hotel_rows, kvartira_rows, featured_rank)
+
+
 def rebuild_catalog(rows: list[dict[str, Any]]) -> None:
     rows = normalize_catalog_rows(rows)
     rows = [row for row in rows if row.get("is_active", True)]
-    featured_rank = {slug: index for index, slug in enumerate(load_featured_order())}
+    # Начало главной: партнёры, Новый год и межсезон из постов, затем летний
+    # список featured-order.json (scripts/home_order.py, правило Дарьи 14.10.2026).
+    try:
+        from home_order import home_order
+        ordered_slugs = home_order()
+    except Exception:  # noqa: BLE001 — сбой правила не должен ронять пересборку
+        ordered_slugs = load_featured_order()
+    featured_rank = {slug: index for index, slug in enumerate(ordered_slugs)}
     if featured_rank:
         # sort стабильный: приоритетные — в заданном порядке, остальные — как были.
         rows.sort(key=lambda row: featured_rank.get(str(row.get("slug")), len(featured_rank)))
@@ -982,21 +1044,7 @@ def rebuild_catalog(rows: list[dict[str, Any]]) -> None:
     ]
     KVARTIRA_DIR.mkdir(parents=True, exist_ok=True)
 
-    hotel_post_meta = load_hotel_card_meta()
-    catalog_cards = [render_hotel_card(row, hotel_post_meta) for row in hotel_rows] + [
-        render_kvartira_card(row) for row in kvartira_rows
-    ]
-    total_cards = len(catalog_cards)
-    catalog_cards_html = mark_catalog_cards_initial_hidden(
-        "".join(catalog_cards[:CATALOG_STATIC_LIMIT])
-    )
-    replace_catalog_block(
-        INDEX_PATH,
-        '<div class="catalog-grid" id="catalog-grid">',
-        catalog_cards_html,
-    )
-    sync_catalog_grid_total_attr(total_cards)
-    sync_catalog_visible_count_markup(total_cards)
+    rebuild_home_grid(hotel_rows, kvartira_rows, featured_rank)
     KVARTIRA_PATH.write_text(render_kvartira_catalog_page(kvartira_rows), encoding="utf-8")
 
     for row in hotel_rows:
