@@ -111,6 +111,20 @@ jobs:
           set -o pipefail
           python scripts/watch_telegram_updates.py --strict 2>&1 | tee /tmp/watch.log
 
+      # Подборки «Межсезон» (пост 5348) и «Новый год 2027» (пост 5346) следуют
+      # за постами-списками в канале (просьба Дарьи 13.10.2026): кто есть в
+      # посте — тот в подборке, города — как в посте. Объекты из поста, которых
+      # ещё нет на сайте, уходят в точечный синк (watch_targets_args.py).
+      # Сбой чтения поста оставляет прежний состав и не валит автосинк.
+      - name: Подборки из постов-списков Telegram
+        id: collections
+        if: steps.gate.outputs.enabled == 'true'
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          python tools/sync_telegram_collections.py 2>&1 | tee /tmp/collections.log
+          grep -E '^(changed|pending)=' /tmp/collections.log >> "$GITHUB_OUTPUT"
+
       # Точки карты живут в Яндекс-конструкторе (Дарья ставит их руками),
       # синк конструктор → data/objects-map-points.json секретов не требует.
       # При телеграм-изменениях карта уедет общим коммитом «Опубликовать
@@ -147,6 +161,11 @@ jobs:
           COUNT=$(python -c "import json;d=json.load(open('output/telegram-watch-changed-targets.json'));print(int(d.get('changed_total') or 0)+int(d.get('new_objects_total') or 0))" 2>/dev/null || echo 0)
           echo "count=$COUNT" >> "$GITHUB_OUTPUT"
           FORCE="${{ inputs.force_hotel_ids }}${{ inputs.force_kv_topics }}"
+          # Объекты из постов-подборок, которых ещё нет на сайте, — тоже повод синка.
+          PENDING="${{ steps.collections.outputs.pending }}"
+          if [ -n "$PENDING" ] && [ "$PENDING" != "0" ]; then
+            COUNT=$((COUNT + PENDING))
+          fi
           if [ "$COUNT" != "0" ] || [ -n "$FORCE" ]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
             echo "::notice::Целей из watch: $COUNT; принудительных: '${FORCE}'."
@@ -185,6 +204,15 @@ jobs:
           python tools/audit_supabase_prod_deps.py
           python tools/validate_catalog_snapshot.py
           python tools/verify_object_media.py
+
+      # Новые объекты из постов-подборок только что появились в каталоге —
+      # пересопоставляем сохранённые ссылки постов и пересобираем подборки.
+      - name: Подборки из постов — после синка
+        if: steps.sync.outputs.done == 'true'
+        continue-on-error: true
+        run: |
+          python tools/sync_telegram_collections.py --offline
+          python scripts/build_podborki_from_filters.py
 
       # Короткие ссылки abhazbereg.ru/<имя> для новых объектов (просьба Дарьи
       # 13.10.2026: раньше генератор запускали вручную, и у 9 новых объектов
@@ -260,6 +288,32 @@ jobs:
       - name: Отправить изменённые страницы в IndexNow
         if: steps.gate.outputs.enabled == 'true' && steps.publish.outputs.pushed == 'true'
         run: python3 tools/submit_indexnow.py HEAD~1..HEAD || true
+
+      # Состав подборок из постов поменялся, а синка объектов не было (все
+      # объекты уже на сайте) — пересобираем подборки и публикуем отдельно.
+      - name: Опубликовать подборки из постов
+        if: steps.gate.outputs.enabled == 'true' && steps.collections.outputs.changed == 'true' && steps.sync.outputs.done != 'true'
+        run: |
+          python scripts/build_podborki_from_filters.py
+          python tools/build_short_links.py || true
+          git config user.name "abhazbereg-autosync"
+          git config user.email "209351708+Dariatravel@users.noreply.github.com"
+          git add -A -- podborki sitemap.xml data/telegram-collections.json data/short-links-generated.json
+          git ls-files --others --exclude-standard -- '*/index.html' | grep -E '^[^/]+/index\.html$' | xargs -r git add --
+          if git diff --cached --quiet; then
+            echo "Подборки не изменились — публиковать нечего."
+            exit 0
+          fi
+          git commit -m "Авто-синк подборок из постов Telegram (GitHub Actions)"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep 10
+          done
+          echo "::error::Не удалось опубликовать подборки после 3 попыток."
+          exit 1
 
       # Карта могла измениться и без изменений в Telegram — тогда общий
       # publish не выполнялся и точки публикуем отдельным коммитом.

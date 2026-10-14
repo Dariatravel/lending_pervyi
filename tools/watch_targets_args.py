@@ -14,6 +14,7 @@ import sys
 from pathlib import Path
 
 TARGETS_PATH = Path(__file__).resolve().parents[1] / "output" / "telegram-watch-changed-targets.json"
+COLLECTIONS_TARGETS_PATH = Path(__file__).resolve().parents[1] / "output" / "telegram-collections-targets.json"
 
 
 def main() -> int:
@@ -27,6 +28,14 @@ def main() -> int:
 
     hotels = {str(x) for x in (data.get("hotel_source_ids") or [])} | extra_hotels
     topics = {str(x) for x in (data.get("kv_topic_ids") or [])} | extra_topics
+    # Объекты из постов-подборок («Межсезон», «Новый год»), которых ещё нет
+    # на сайте (tools/sync_telegram_collections.py).
+    try:
+        collections = json.loads(COLLECTIONS_TARGETS_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        collections = {}
+    hotels |= {str(x) for x in (collections.get("hotel_source_ids") or [])}
+    topics |= {str(x) for x in (collections.get("kv_topic_ids") or [])}
     loose_kv = list(data.get("kv_message_ids_without_topic") or [])
 
     for item in data.get("new_objects") or []:

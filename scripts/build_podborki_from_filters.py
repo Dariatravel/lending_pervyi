@@ -62,6 +62,30 @@ MOUNTAIN_REGION_LABEL = "В ГОРАХ"
 NEW_YEAR_TITLE_MARKERS = ("НОВЫЙ ГОД", "НОВОГОДН", "НГ 2027")
 NEW_YEAR_EXTRA_SLUGS: set[str] = set()
 
+# Подборки, состав которых задаёт пост-список в Telegram («Межсезон» —
+# t.me/abhazbooking/5348, «Новый год 2027» — t.me/abhazbooking/5346;
+# просьба Дарьи 13.10.2026). Состав и города собирает
+# tools/sync_telegram_collections.py в этот файл; если поста или файла нет,
+# подборка собирается по своему обычному правилу.
+TELEGRAM_COLLECTIONS_PATH = ROOT / "data" / "telegram-collections.json"
+
+
+def load_telegram_collections() -> dict[str, list[tuple[str, list[str]]]]:
+    try:
+        payload = json.loads(TELEGRAM_COLLECTIONS_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    out: dict[str, list[tuple[str, list[str]]]] = {}
+    for slug, entry in (payload or {}).items():
+        groups = [
+            (str(group.get("label") or ""), [str(h) for h in group.get("hrefs") or []])
+            for group in (entry or {}).get("groups") or []
+        ]
+        groups = [(label, hrefs) for label, hrefs in groups if hrefs]
+        if groups:
+            out[str(slug)] = groups
+    return out
+
 
 @dataclass(frozen=True)
 class Card:
@@ -80,6 +104,8 @@ class Selection:
     title: str
     predicate: Callable[[Card], bool]
     group_by_city: bool = True
+    # Готовые группы (заголовок, карточки) — порядок и города из поста.
+    groups: tuple[tuple[str, tuple[Card, ...]], ...] = ()
 
 
 def asset_version() -> str:
@@ -280,6 +306,8 @@ def is_new_year_card(card: Card) -> bool:
 def selections() -> list[Selection]:
     return [
         Selection("novyy-god-2027", "НОВЫЙ ГОД 2027 - варианты размещения", is_new_year_card),
+        # Состав — из поста «АБХАЗИЯ КРУГЛЫЙ ГОД»; без него подборка пустая.
+        Selection("mezhsezon", "С ОСЕНИ ДО ВЕСНЫ ЖДУТ ВАС", lambda card: False),
         Selection("doma-pod-klyuch-vse-varianty", "ДОМА ПОД КЛЮЧ", has("stay", "turnkey-house")),
         Selection("gagra-vse-varianty", "ГАГРА - варианты размещения", has("city", "gagra"), False),
         Selection("gudauta-vse-varianty", "ГУДАУТА - варианты размещения", has("city", "gudauta"), False),
@@ -412,7 +440,15 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
     description = page_meta.get("meta_description") or f"{h1}: подборка проверенных вариантов размещения в Абхазии."
     parts: list[str] = []
     rank = 0
-    if selection.group_by_city:
+    if selection.groups:
+        for label, group_cards in selection.groups:
+            parts.append(f'        <h2 class="podborki-region">{html.escape(label)}</h2>')
+            parts.append('        <div class="catalog-grid podborki-catalog-grid">')
+            for card in group_cards:
+                rank += 1
+                parts.append(render_card(card, rank))
+            parts.append("        </div>")
+    elif selection.group_by_city:
         grouped: dict[str, list[Card]] = {}
         for card in cards:
             grouped.setdefault(city_key(card), []).append(card)
@@ -494,6 +530,7 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
 
 PODBORKI_INDEX_VISUALS: dict[str, tuple[str, str]] = {
     "novyy-god-2027": ("new-year", "Новый год"),
+    "mezhsezon": ("default", "межсезон"),
     "doma-pod-klyuch-vse-varianty": ("homes", "дом"),
     "gagra-vse-varianty": ("gagra", "Гагра"),
     "gudauta-vse-varianty": ("gudauta", "Гудаута"),
@@ -538,6 +575,11 @@ PODBORKI_INDEX_COVER_OVERRIDES: dict[str, tuple[str, str]] = {
     "vid-na-more-pryamoy-bokovoy": (
         f"{CDN_MEDIA_BASE}/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/photo-08.jpg",
         "Вид на море с балкона — «Сан Амра», люкс номера с видом на море",
+    ),
+    # Межсезон — уют без пляжа: кофе на фоне гор у «Грасса» (13.10.2026).
+    "mezhsezon": (
+        f"{CDN_MEDIA_BASE}/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/photo-01.jpg",
+        "С осени до весны в Абхазии — кофе с видом на горы, «Грасс»",
     ),
     # Обложки «по смыслу» (просьба Дарьи 10.10.2026, кадры выбраны глазами):
     "sosnovyy-plyazh": (
@@ -644,6 +686,8 @@ def render_index_link(slug: str, title: str, cover_image: str = "", cover_alt: s
 PODBORKI_DISPLAY_ORDER = [
     # Сезонная подборка идёт первой, пока актуальна (просьба Дарьи 09.09.2026).
     "novyy-god-2027",
+    # Межсезонная подборка — сразу за новогодней (13.10.2026).
+    "mezhsezon",
     "sosnovyy-plyazh",
     "peschanyy-ldzaa",
     "basseyn-vse-varianty",
@@ -805,9 +849,24 @@ def main() -> int:
     slugs: list[str] = []
     used_cover_images: set[str] = set()
     cards_by_href = {card.href: card for card in cards}
+    telegram_collections = load_telegram_collections()
     for selection in selections():
         manual_hrefs = manual_selection_hrefs.get(selection.slug)
-        if manual_hrefs:
+        post_groups = telegram_collections.get(selection.slug)
+        if post_groups:
+            groups: list[tuple[str, tuple[Card, ...]]] = []
+            for label, hrefs in post_groups:
+                found = tuple(cards_by_href[h] for h in hrefs if h in cards_by_href)
+                lost = [h for h in hrefs if h not in cards_by_href]
+                if lost:
+                    # Объект из поста не в каталоге (снят/ещё не синхронизирован) —
+                    # пропускаем, а не роняем сборку всех подборок.
+                    report.append(f"! {selection.slug}: нет в каталоге: {', '.join(lost)}")
+                if found:
+                    groups.append((label, found))
+            selected = [card for _, group_cards in groups for card in group_cards]
+            page_selection = Selection(selection.slug, selection.title, selection.predicate, groups=tuple(groups))
+        elif manual_hrefs:
             missing = [href for href in manual_hrefs if href not in cards_by_href]
             if missing:
                 raise RuntimeError(f"{selection.slug}: карточки из ручного списка не найдены в index.html: {', '.join(missing)}")
