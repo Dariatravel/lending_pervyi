@@ -5,6 +5,7 @@
    основной партнёр на межсезон, затем «Мулберри»);
 2. новогодние предложения — объекты из новогоднего поста, оформленные как
    новогодние (в названии «НОВЫЙ ГОД»/«НОВОГОДН»), в порядке поста;
+2a. список «top» из home-priority.json — в порядке Дарьи;
 3. остальные объекты из постов «Межсезон» и «Новый год»: сначала с
    бассейном, потом без, внутри — в порядке постов; объекты из
    home-priority.json «not_in_top» — в самом конце этого блока;
@@ -74,6 +75,9 @@ def home_order() -> list[str]:
     demoted = {str(s) for s in priority.get("not_in_top") or []}
     add([str(s) for s in priority.get("pinned") or []])
     add([s for s in new_year if s in active and is_new_year_offer(active[s]) and s not in demoted])
+    # Список Дарьи «кого в первую двадцатку» — в её порядке, сразу после
+    # новогодних предложений (14.10.2026).
+    add([str(s) for s in priority.get("top") or []])
     seasonal = [s for s in off_season + new_year if s in active and s not in demoted]
     add([s for s in seasonal if has_pool(active[s])])
     add(seasonal)
