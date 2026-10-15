@@ -362,6 +362,12 @@ def _reviews_panel_for_slug(mod: Any, slug: str, page_href: str = '') -> str:
         if preserved:
             return preserved
 
+    # Новые страницы без подтверждённых отзывов не заполняем общими
+    # отзывами о сервисе: посетитель может принять их за отзывы об объекте.
+    # Отсутствующую панель сохраняем и при последующих пересборках.
+    if not _existing_reviews_panel(page_href):
+        return ''
+
     fallback = pick_guest_reviews_for_slug(slug)
     if not fallback:
         return ''

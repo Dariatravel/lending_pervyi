@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-14T19:39:32.311432+00:00",
+  "generated_at": "2026-10-15T12:15:37.489529+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 245,
-  "listings_hotels": 192,
+  "listings_total": 246,
+  "listings_hotels": 193,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -71779,6 +71779,261 @@
             "telegram_post": "abhazbooking/5369",
             "telegram_url": "https://t.me/abhazbooking/5369",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5382,
+      "source_topic_id": null,
+      "slug": "vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382",
+      "title": "\"ВИСТА МАРЕ\" отдельный дом под ключ с бассейном",
+      "summary": "Гудаута. 10 минут пешком до моря, размещение до 11 человек.",
+      "excerpt": "Отдельный двухэтажный дом расположен в тихом живописном месте, в 650 метрах от моря",
+      "city": "Гудаута",
+      "location_text": "Гудаута, с. Куланырхуа, ул. Самава, 43.100576,40.663889",
+      "distance_text": "10 минут пешком до моря",
+      "beach_text": "10 минут пешком до моря",
+      "capacity_text": "Размещение до 11 человек",
+      "page_url": "https://абхазберег.рф/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/",
+      "telegram_url": "https://t.me/abhazbooking/5382",
+      "published_at": "2026-10-15",
+      "has_video": true,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гудаута. 10 минут пешком до моря, размещение до 11 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМ:",
+            "lines": [
+              "Отдельный двухэтажный дом расположен в тихом живописном месте, в 650 метрах от моря.",
+              "Подходит для отдыха большой семьи или дружной компании.",
+              "Площадь дома - 120 м². В доме четыре комнаты. Две комнаты изолированные, одна смежная (на втором этаже).",
+              "Две комнаты расположены на втором этаже, одна на первом этаже.",
+              "Комнаты имеют отдельные входы с улицы. Двуспальные кровати, кресла-кровати и шкафы, на полу ковролин.",
+              "В комнатах санузлы с тропическим душем и теплым полом.",
+              "С просторного балкона на втором этаже открываются живописные виды на территорию и море.",
+              "В доме отопление, телевизоры, Wi-Fi, стиральная машина (на первом этаже в отдельном помещении), сушилка для белья, фен, утюг и гладильные принадлежности.",
+              "Просторная кухня находится в отдельном каменном здании.",
+              "Кухня полностью оборудована для самостоятельного приготовления пищи. Есть газовая и электрическая поверхности, микроволновая печь, холодильник, турка для кофе, электрический чайник, фильтр для воды, столовые приборы и необходимая посуда. Печь на кухне декоративная, не для приготовления пищи.",
+              "На кухне теплый пол.",
+              "Через кухню выход к собственному мангалу."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Зеленый ухоженный двор.",
+              "На общей территории расположен большой подогреваемый бассейн размером 6×12 метров с шезлонгами.",
+              "Беседка под виноградной лозой.",
+              "Теннисный стол.",
+              "Детская площадка.",
+              "Парковка во дворе.",
+              "Видеонаблюдение.",
+              "Wi-Fi на всей территории.",
+              "Возможна организация трансфера за доп плату.",
+              "На территории дополнительно два объекта под сдачу, бассейн общий."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До дикого галечного пляжа 10 минут пешком.",
+              "До оборудованного пляжа около 2 км.",
+              "До центра Гудауты и рынка около 5 минут на автомобиле.",
+              "Продуктовый магазин и остановка общественного транспорта находятся примерно в 10 минутах ходьбы."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "15000₽ - май, июнь"
+          },
+          {
+            "kind": "price",
+            "text": "20000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "15000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - октябрь, ноябрь, декабрь до 25го"
+          },
+          {
+            "kind": "price",
+            "text": "15000₽ - с 25 декабря по 15 января, Новый год🎄"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - с 16 января, февраль, март, апрель"
+          },
+          {
+            "kind": "price",
+            "text": "Я НА СВЯЗИ 📲"
+          }
+        ],
+        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/index.html",
+        "filters": {
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "gudauta"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "pool",
+            "terrace",
+            "tv",
+            "kitchen",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "turnkey-house"
+          ]
+        }
+      },
+      "id": 1220,
+      "media": [
+        {
+          "id": 1220001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382.jpg",
+          "details": {}
+        },
+        {
+          "id": 1220002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1220003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1220004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1220005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1220006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1220007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1220008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1220009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1220010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1220011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5391",
+            "telegram_url": "https://t.me/abhazbooking/5391",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/video-01-poster.jpg"
           }
         }
       ]
