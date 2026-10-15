@@ -76,6 +76,7 @@ jobs:
         run: |
           python tools/audit_supabase_prod_deps.py
           python tools/validate_catalog_snapshot.py
+          python tools/test_derived_filters.py
 
       - name: Убрать ключ
         if: always()

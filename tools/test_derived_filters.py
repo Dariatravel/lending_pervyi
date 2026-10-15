@@ -47,7 +47,19 @@ NOT_HEATED = [
     "Оснащение: кондиционер, обогреватель, водонагреватель. Во дворе бассейн.",
     "В тёплое время года работает бассейн",
     "",
+    # находки ревью 15.10: отрицание после слова, подогрев не бассейна
+    "Бассейн (подогрев не предусмотрен)",
+    "Подогрев бассейна отсутствует",
+    "бассейн: подогрев — нет",
+    "Бассейн с подогревом не работает",
+    "Кондиционер, обогреватель, бассейн",
+    "подогрев пола, во дворе бассейн",
+    "термальные источники и бассейн",
+    "Подогрев полов в номерах. На территории есть большой открытый бассейн с шезлонгами и зонтами",
 ]
+# Столбец AT сам про бассейн: там бывает просто «С подогревом».
+AT_HEATED = ["С подогревом", "Да, подогрев", "Да (с подогревом)", "Есть, подогреваемый", "бассейн; подогрев"]
+AT_NOT_HEATED = ["Без подогрева", "Да", "Каркасный", "подогрев не предусмотрен"]
 
 
 def check(cond: bool, message: str, failures: list[str]) -> None:
@@ -62,20 +74,28 @@ def main() -> int:
         check(mentions_heated_pool(text), f"должен быть тёплый: {text!r}", failures)
     for text in NOT_HEATED:
         check(not mentions_heated_pool(text), f"не должен быть тёплым: {text!r}", failures)
+    for text in AT_HEATED:
+        check(mentions_heated_pool(text, require_pool=False), f"AT должен быть тёплым: {text!r}", failures)
+    for text in AT_NOT_HEATED:
+        check(not mentions_heated_pool(text, require_pool=False), f"AT не должен быть тёплым: {text!r}", failures)
+
+    # Строка через «|» не рассыпается на буквы.
+    out = apply_derived_filters({"stay": "pets|cottages"}, {"slug": "a"}, {"a"})
+    check(out["stay"] == ["pets", "cottages", "offseason"], f"строка через |: {out}", failures)
 
     # Отметка из таблицы сохраняется, даже если в описании подогрева нет.
     row = {"slug": "a", "title": "Отель", "details": {"lead": "Бассейн"}}
     out = apply_derived_filters({"room": ["pool", "heated-pool"], "stay": []}, row, set())
     check(out["room"] == ["pool", "heated-pool"], f"отметка из таблицы потерялась: {out}", failures)
 
-    # Подогрев только в описании («Грасс»): ставится heated-pool и pool.
+    # Подогрев только в описании («Грасс»): ставится heated-pool, pool из таблицы не трогаем.
     row = {
         "slug": "grass",
         "title": "Грасс",
         "details": {"sections": [{"label": "ТЕРРИТОРИЯ", "lines": ["Бассейн с подогревом прямо рядом с домиками"]}]},
     }
     out = apply_derived_filters({"room": ["kitchen"], "stay": []}, row, {"grass"})
-    check(out["room"] == ["pool", "kitchen", "heated-pool"], f"подогрев из описания: {out}", failures)
+    check(out["room"] == ["kitchen", "heated-pool"], f"подогрев из описания: {out}", failures)
     check(out["stay"] == ["offseason"], f"межсезон по подборке: {out}", failures)
 
     # Убрали из подборки — отметка пропадает при следующей сборке.
@@ -107,13 +127,15 @@ def main() -> int:
         path.write_text("{битый", encoding="utf-8")
         check(load_offseason_slugs(path) is None, "битый файл подборки → None", failures)
         check(load_offseason_slugs(Path(tmp) / "нет.json") is None, "нет файла → None", failures)
+        path.write_text(json.dumps({"novyy-god-2027": collection}), encoding="utf-8")
+        check(load_offseason_slugs(path) is None, "нет подборки в файле → None", failures)
 
     if failures:
         print("ОШИБКИ:")
         for failure in failures:
             print(" -", failure)
         return 1
-    print(f"OK: {len(HEATED) + len(NOT_HEATED)} фраз и 9 проверок отметок")
+    print(f"OK: {len(HEATED) + len(NOT_HEATED) + len(AT_HEATED) + len(AT_NOT_HEATED)} фраз и проверки отметок")
     return 0
 
 

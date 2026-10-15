@@ -19,8 +19,8 @@ CANONICAL_FILTER_VALUES = {
     "price": {"economy", "midrange", "premium"},
     "city": {"ldzaa", "pitsunda", "gagra", "alakhadzy", "gudauta", "new-afon", "sukhum", "tsandripsh"},
     "beach": {"pine-pebble-ldzaa-pitsunda", "pitsunda-bay-mixed", "sand-ldzaa", "sand-sukhum", "pebble"},
-    "room": {"sea-view", "pool", "balcony", "terrace", "tv", "kitchen", "five-plus", "two-room-plus", "beachfront-room"},
-    "stay": {"cottages", "apartments", "turnkey-house", "pets", "no-small-kids"},
+    "room": {"sea-view", "pool", "balcony", "terrace", "tv", "kitchen", "five-plus", "two-room-plus", "beachfront-room", "heated-pool"},
+    "stay": {"cottages", "apartments", "turnkey-house", "pets", "no-small-kids", "offseason"},
 }
 
 

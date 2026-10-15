@@ -36,8 +36,8 @@ CANONICAL_FILTER_VALUES = {
     "price": {"economy", "midrange", "premium"},
     "city": {"ldzaa", "pitsunda", "gagra", "alakhadzy", "gudauta", "new-afon", "sukhum", "tsandripsh"},
     "beach": set(BEACH_FILTERS.values()),
-    "room": {"sea-view", "pool", "balcony", "terrace", "tv", "kitchen", "five-plus", "two-room-plus", "beachfront-room"},
-    "stay": {"cottages", "apartments", "turnkey-house", "pets", "no-small-kids"},
+    "room": {"sea-view", "pool", "balcony", "terrace", "tv", "kitchen", "five-plus", "two-room-plus", "beachfront-room", "heated-pool"},
+    "stay": {"cottages", "apartments", "turnkey-house", "pets", "no-small-kids", "offseason"},
 }
 LEGACY_FILTER_VALUE_MAP = {
     "price": {

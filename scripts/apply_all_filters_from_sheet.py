@@ -330,7 +330,7 @@ def infer_room(row: list[str]) -> list[str]:
     if has_yes(get_cell(row, 'room_pool')):
         values.append('pool')
         # «Бассейн с подогревом» в AT → отдельная отметка для подбора (15.10.2026).
-        if mentions_heated_pool(get_cell(row, 'room_pool')):
+        if mentions_heated_pool(get_cell(row, 'room_pool'), require_pool=False):
             values.append(HEATED_POOL)
     if has_yes(get_cell(row, 'room_balcony')):
         values.append('balcony')
