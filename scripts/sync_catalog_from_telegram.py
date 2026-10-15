@@ -2151,6 +2151,12 @@ async def main() -> None:
                 continue
             if matched_row:
                 processed_kv_rows.add(matched_row['id'])
+            # Квартирная копия отельного объекта (приоритет отельного канала,
+            # 13.10.2026) или скрытый объект: карточки нет — как у отелей выше.
+            # Без этой проверки синк падал на KeyError 'page_url' (15.10.2026,
+            # «Виста Маре» в обоих каналах) и новые посты не доходили до сайта.
+            if result.get('hidden'):
+                continue
             kvartira_cards.append({
                 'title': result['title'],
                 'slug': result['slug'],
