@@ -56,6 +56,7 @@
       {
         "label": "ЛДЗАА",
         "hrefs": [
+          "/hotels/plyazhnyy-kompleks-151-na-beregu-4620/",
           "/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/",
           "/hotels/abyrlash-otel-na-plyazhe-3239/",
           "/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/",
@@ -76,6 +77,7 @@
         "hrefs": [
           "/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/",
           "/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/",
+          "/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/",
           "/hotels/esma-domiki-s-basseynom-v-tsentre-4032/",
           "/kvartira/esma-studiya-5ti-mestnaya-gudauta-1355/"
         ]
@@ -117,8 +119,8 @@
       {
         "label": "ЛДЗАА",
         "hrefs": [
+          "/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/",
           "/hotels/bugenvilleya-otel-s-basseynom-3044/",
-          "/hotels/plyazhnyy-kompleks-151-na-beregu-4620/",
           "/hotels/tis-kottedzhi-u-zapovednika-3372/",
           "/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/",
           "/hotels/studio-san-amra-studiya-na-plyazhe-4270/"
@@ -128,7 +130,7 @@
         "label": "ГУДАУТА",
         "hrefs": [
           "/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/",
-          "/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/"
+          "/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/"
         ]
       },
       {

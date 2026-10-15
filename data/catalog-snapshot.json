@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-15T12:15:37.489529+00:00",
+  "generated_at": "2026-10-15T13:14:31.896563+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 246,
-  "listings_hotels": 193,
+  "listings_total": 247,
+  "listings_hotels": 194,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -367,6 +367,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "terrace",
             "tv",
             "five-plus",
@@ -1118,7 +1119,11 @@
           },
           {
             "kind": "price",
-            "text": "4500₽ -сентябрь"
+            "text": "4500₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - с октября по май"
           },
           {
             "kind": "price",
@@ -1135,6 +1140,10 @@
           {
             "kind": "price",
             "text": "5000₽ - июль, август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - с октября по май"
           },
           {
             "kind": "price",
@@ -1289,7 +1298,7 @@
           "details": {
             "telegram_post": "abhazbooking/4710",
             "telegram_url": "https://t.me/abhazbooking/4710",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/simsim-gostevoy-dom-4701/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/simsim-gostevoy-dom-4701/video-01-poster.jpg"
           }
         }
       ]
@@ -2942,6 +2951,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "balcony",
             "tv",
             "five-plus"
@@ -3136,7 +3146,12 @@
           {
             "label": "✔️РЯДОМ:",
             "lines": [
-              "Рядом остановка, продуктовый магазин, кафе, столовая, экскурсионные точки, сувенирные, большая детская площадка."
+              "Рядом остановка, продуктовый магазин, кафе, столовая, экскурсионные точки, сувенирные, большая детская площадка.",
+              "СПЕЦ ПРЕДЛОЖЕНИЕ НА МЕЖСЕЗОНЬЕ 🎄🔥: «Отправь родителей в Абхазию».",
+              "Действует с ноября по 20 апреля, исключение с 25.12 по 15.01",
+              "Стоимость: 100000 в месяц.",
+              "В стоимость входит проживание в коттедже на 4х , трансфер аэропорт/вокзал и обратно, парковка, бунгало с лежаками в свободном доступе, рыбалка на территории ( снасти и весельная лодка)",
+              "Пользование общей кухней и мангалом (для каждого коттеджа в ней предусмотрен личный холодильник)."
             ]
           },
           {
@@ -3172,7 +3187,7 @@
           },
           {
             "kind": "price",
-            "text": "10000₽ - с 29 декабря по 15 января, Новый год🎄"
+            "text": "10000₽ - с 25 декабря по 15 января, Новый год🎄"
           },
           {
             "kind": "price",
@@ -3209,6 +3224,14 @@
           {
             "kind": "price",
             "text": "Бронирование от трёх суток."
+          },
+          {
+            "kind": "price",
+            "text": "Ноябрь, декабрь до 25, с 16 января, февраль, март, апрель до 20го"
+          },
+          {
+            "kind": "price",
+            "text": "100000 - месяц за домик на 4х"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/plyazhnyy-kompleks-151-na-beregu-4620/index.html",
@@ -5369,6 +5392,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "balcony",
             "tv"
           ],
@@ -6906,6 +6930,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "terrace",
             "tv",
             "five-plus"
@@ -7560,6 +7585,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "terrace",
             "tv"
           ],
@@ -7753,6 +7779,10 @@
           {
             "kind": "price",
             "text": "4000₽ - май, июнь, июль, август, сентябрь, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - с ноября по май"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/ladariya-kvartira-1k-1542/index.html",
@@ -20511,6 +20541,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "tv",
             "five-plus"
           ],
@@ -22441,6 +22472,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "balcony",
             "terrace",
             "kitchen"
@@ -25619,6 +25651,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "tv",
             "five-plus",
             "two-room-plus"
@@ -26576,7 +26609,11 @@
           },
           {
             "kind": "price",
-            "text": "Доп место (на ребенка) - 500₽/сутки."
+            "text": "2000₽ - с ноября по май"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место - 500₽/сутки."
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/leon-domiki-3536/index.html",
@@ -29611,6 +29648,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "terrace",
             "tv"
           ],
@@ -41794,6 +41832,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "tv",
             "kitchen",
             "five-plus",
@@ -42299,6 +42338,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "tv",
             "kitchen",
             "five-plus",
@@ -44274,6 +44314,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "balcony",
             "tv",
             "five-plus",
@@ -45392,6 +45433,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "balcony",
             "tv",
             "kitchen",
@@ -47794,8 +47836,8 @@
         ],
         "prices": [
           {
-            "kind": "price",
-            "text": "Акция весь июнь 2500₽/сутки🔥"
+            "kind": "note",
+            "text": "(2026)"
           },
           {
             "kind": "price",
@@ -47808,6 +47850,46 @@
           {
             "kind": "price",
             "text": "2500₽/сутки - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽/сутки - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽/сутки - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽/сутки - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽/сутки - ноябрь, декабрь"
+          },
+          {
+            "kind": "price",
+            "text": "Цена указана за трехместное размещение, доп место 700р/сутки."
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 5 лет бесплатно."
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽/сутки - с января по апрель"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽/сутки - май"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽/сутки - июнь"
           },
           {
             "kind": "price",
@@ -48284,6 +48366,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "balcony",
             "kitchen",
             "five-plus",
@@ -52024,7 +52107,7 @@
           },
           {
             "kind": "price",
-            "text": "5700₽/сутки - ноябрь"
+            "text": "4700₽/сутки - с ноября по апрель"
           },
           {
             "kind": "price",
@@ -52172,7 +52255,7 @@
           "details": {
             "telegram_post": "abhazbooking/2773",
             "telegram_url": "https://t.me/abhazbooking/2773",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/krylya-domiki-vidovye-dvuhkomnatnye-2765/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/krylya-domiki-vidovye-dvuhkomnatnye-2765/video-01-poster.jpg"
           }
         }
       ]
@@ -52466,6 +52549,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "balcony",
             "five-plus",
             "two-room-plus"
@@ -54264,6 +54348,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "tv",
             "five-plus",
             "two-room-plus"
@@ -55604,6 +55689,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "balcony",
             "tv",
             "five-plus"
@@ -57486,6 +57572,10 @@
             "text": "3500 ₽/сутки - октябрь"
           },
           {
+            "kind": "price",
+            "text": "2500 ₽/сутки - с ноября по май"
+          },
+          {
             "kind": "note",
             "text": "Дополнительное место - 1500₽/сутки."
           },
@@ -57991,6 +58081,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "terrace",
             "kitchen",
             "two-room-plus",
@@ -59198,6 +59289,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "terrace",
             "tv",
             "five-plus",
@@ -60182,6 +60274,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "balcony",
             "tv",
             "two-room-plus"
@@ -60497,6 +60590,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "balcony",
             "tv"
           ],
@@ -60871,6 +60965,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "balcony",
             "tv"
           ],
@@ -61447,6 +61542,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "balcony",
             "tv",
             "two-room-plus"
@@ -62385,6 +62481,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "balcony",
             "tv",
             "two-room-plus"
@@ -62907,6 +63004,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "terrace",
             "tv",
             "five-plus"
@@ -64719,6 +64817,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "balcony",
             "tv",
             "beachfront-room"
@@ -66013,6 +66112,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "terrace",
             "tv",
             "five-plus",
@@ -70153,6 +70253,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "balcony",
             "tv",
             "five-plus",
@@ -70831,7 +70932,8 @@
               "Парковка во дворе.",
               "Видеонаблюдение.",
               "Wi-Fi на всей территории.",
-              "Возможна организация трансфера за доп плату."
+              "Возможна организация трансфера за доп плату.",
+              "На территории дополнительно два объекта под сдачу, бассейн общий."
             ]
           },
           {
@@ -70900,6 +71002,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "terrace",
             "tv",
             "kitchen",
@@ -71573,7 +71676,8 @@
               "Парковка во дворе.",
               "Видеонаблюдение.",
               "Wi-Fi на всей территории.",
-              "Возможна организация трансфера за доп плату."
+              "Возможна организация трансфера за доп плату.",
+              "На территории дополнительно два объекта под сдачу, бассейн общий."
             ]
           },
           {
@@ -71642,6 +71746,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "terrace",
             "tv",
             "kitchen",
@@ -71878,7 +71983,7 @@
             "text": "Я НА СВЯЗИ 📲"
           }
         ],
-        "page_path": "/Users/darya_botova/Documents/GitHub/lending_pervyi/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/index.html",
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/index.html",
         "filters": {
           "distance": [
             "up-to-10"
@@ -71898,6 +72003,7 @@
           "room": [
             "sea-view",
             "pool",
+            "heated-pool",
             "terrace",
             "tv",
             "kitchen",
@@ -72035,6 +72141,255 @@
             "telegram_url": "https://t.me/abhazbooking/5391",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/video-01-poster.jpg"
           }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5393,
+      "source_topic_id": null,
+      "slug": "novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393",
+      "title": "НОВЫЙ ГОД НА БЕРЕГУ МОРЯ В «ПЛЯЖНОМ КОМПЛЕКСЕ 151»",
+      "summary": "Лдзаа. 0 минут до пляжа (песок, мелкая галька), размещение до 5 человек.",
+      "excerpt": "Встретьте Новый год прямо на берегу моря, вдали от городской суеты и шумных улиц",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, ул. Приморская, 18А",
+      "distance_text": "0 минут до пляжа (песок, мелкая галька)",
+      "beach_text": "0 минут до пляжа (песок, мелкая галька)",
+      "capacity_text": "Размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/",
+      "telegram_url": "https://t.me/abhazbooking/5393",
+      "published_at": "2026-10-15",
+      "has_video": false,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 0 минут до пляжа (песок, мелкая галька), размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "",
+            "lines": [
+              "Встретьте Новый год прямо на берегу моря, вдали от городской суеты и шумных улиц.",
+              "Здесь можно наслаждаться тишиной, гулять по пляжу, рыбачить и готовить свежепойманную рыбу на мангале.",
+              "Домашняя чача, белое и красное вино, сезонные фрукты без ограничения."
+            ]
+          },
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Всего шесть стильных двухуровневых домиков. Размещение до 5 человек.",
+              "В домиках: двуспальная и две односпальные кровати, комод, шкаф, прикроватные тумбочки. Доп место для 5 человека - раскладная кровать. Сан узел с тропическим душем. Теплый пол.",
+              "Оснащение: кондиционер, телевизор, Wi‑Fi, холодильник, чайник, фен, сейф.",
+              "Веранда у каждого домика со столиком и стульями и с видом на море."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Комплекс расположен непосредственно на пляже.",
+              "Для гостей оборудованы пляжные бунгало с лежаками и зонтами, в новогодний период пользование бесплатно.",
+              "Рядом есть волейбольные площадки, которыми можно пользоваться без ограничения по времени в новогодние праздники.",
+              "В межсезонье открыта общая кухня со всем необходимым для самостоятельного приготовления пищи и мангал.",
+              "На территории также находятся САП-станция, парковка на 10 автомобилей и генератор.",
+              "Домашняя чача, белое и красное вино, сезонные фрукты без ограничения.",
+              "Включен трансфер на автомобиле до рынка Пицунды и центрального магазина Олимп раз в 2 дня."
+            ]
+          },
+          {
+            "label": "✔️РЫБАЛКА И ОТДЫХ НА МОРЕ:",
+            "lines": [
+              "Гости могут бесплатно рыбачить на территории. Необходимые снасти предоставляются.",
+              "Также бесплатно предоставляется весельная лодка для самостоятельного выхода в море.",
+              "Можно поймать рыбу и сразу приготовить её на мангале."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Рядом остановка общественного транспорта, продуктовый магазин будет работать, большая детская площадка."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с животными возможно по согласованию.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я НА СВЯЗИ 📲",
+              "в MAX: max.ru/id741113115256_bot",
+              "ВК-чат: vk.cc/cQQnBn",
+              "WhatsApp +7940-900-33-40",
+              "(только сообщение, звонок не пройдёт)"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "🎄С 25 декабря по 15 января 🎄:"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - домик до 4 человек."
+          },
+          {
+            "kind": "note",
+            "text": "Доп. место - 1000₽."
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - рыбалка с егерем в море 3 часа с человека"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - рыбалка с егерем на реке весь день с человека"
+          },
+          {
+            "kind": "price",
+            "text": "Выход в море с егерем возможен при подходящей погоде. Продолжительность - 3 часа. Стоимость 3000₽ с человека."
+          },
+          {
+            "kind": "price",
+            "text": "Рыбалка на реке с егерем рассчитана на целый день. Стоимость 5000₽ с человека."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1221,
+      "media": [
+        {
+          "id": 1221001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393.jpg",
+          "details": {}
+        },
+        {
+          "id": 1221002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1221003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1221004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1221005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1221006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1221007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1221008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1221009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1221010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1221011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-10.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-10.jpg",
+          "details": {}
         }
       ]
     }

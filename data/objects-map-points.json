@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T23:33:00.800096+00:00",
+  "generated_at": "2026-10-15T12:54:19.917863+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -469,16 +469,16 @@
     {
       "title": "\"ВИСТА МАРЕ\" второй этаж дома под ключ с бассейном",
       "address": "Гудаута, с. Куланырхуа, ул. Самава, 43.100576,40.663889",
-      "lat": 43.1005779686285,
-      "lon": 40.66374013739886,
+      "lat": 43.10080252075841,
+      "lon": 40.664062002480755,
       "url": "/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/",
       "cityKey": "gudauta"
     },
     {
       "title": "\"ВИСТА МАРЕ\" первый этаж дома под ключ с бассейном",
       "address": "Гудаута, с. Куланырхуа, ул. Самава, 43.100576,40.663889",
-      "lat": 43.10063497022921,
-      "lon": 40.66381121593686,
+      "lat": 43.1005779686285,
+      "lon": 40.66374013739886,
       "url": "/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/",
       "cityKey": "gudauta"
     },
@@ -1956,8 +1956,8 @@
     }
   ],
   "stats": {
-    "placemarks_total": 488,
-    "placemarks_unique": 244,
+    "placemarks_total": 490,
+    "placemarks_unique": 245,
     "pages_total": 497,
     "pages_on_disk": 555,
     "pages_excluded": 58,
@@ -1966,7 +1966,7 @@
     "from_manual": 0,
     "skipped_without_constructor": 234,
     "skipped_without_coords": 234,
-    "shared_coordinate_groups": 33,
+    "shared_coordinate_groups": 32,
     "deduped_redirect_points": 19,
     "points_total": 244
   }
