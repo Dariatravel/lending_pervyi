@@ -1,7 +1,7 @@
 {
   "name": "АБХАЗБЕРЕГ - каталог жилья в Абхазии",
   "url": "https://абхазберег.рф/",
-  "generated_at": "2026-10-15T17:37:52.144127+00:00",
+  "generated_at": "2026-10-15T20:39:44.772761+00:00",
   "language": "ru",
   "description": "Машиночитаемый каталог проверенных отелей, домиков, апартаментов и квартир в Абхазии для AI-поиска и агентных рекомендаций.",
   "usage_note": "Используйте page url как канонический источник, цены подтверждайте перед бронированием.",
@@ -1906,9 +1906,10 @@
         "6000₽ - июль",
         "6500₽- август",
         "6000₽ - сентябрь",
-        "5000₽ - октябрь"
+        "5000₽ - октябрь",
+        "4500₽ - с ноября по май"
       ],
-      "price_range": "5000-6500 RUB",
+      "price_range": "4500-6500 RUB",
       "url": "https://абхазберег.рф/kvartira/pitiunt-kvartira-4k-pitsunda-1428/",
       "image": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/pitiunt-kvartira-4k-pitsunda-1428-cover.jpg",
       "telegram_source": "https://t.me/abhkvartira/1420",
