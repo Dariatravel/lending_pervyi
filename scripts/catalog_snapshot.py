@@ -79,12 +79,38 @@ def home_rank_map() -> dict[str, int]:
         return {}
 
 
+def _derived_filters_applier():
+    """Отметки heated-pool и offseason (scripts/derived_filters.py) для индекса.
+
+    Подборка «Межсезон» пополняется, поэтому отметка ставится при каждой
+    записи индекса, а не хранится в снимке. Сбой здесь не должен ломать
+    индекс каталога — тогда фильтры пишутся как есть.
+    """
+    try:
+        import sys
+
+        scripts_dir = str(Path(__file__).resolve().parent)
+        if scripts_dir not in sys.path:
+            sys.path.insert(0, scripts_dir)
+        from derived_filters import apply_derived_filters, load_offseason_slugs
+
+        offseason = load_offseason_slugs()
+        return lambda filters, row: apply_derived_filters(filters, row, offseason)
+    except Exception:  # noqa: BLE001 — индекс каталога важнее отметок
+        return lambda filters, row: filters
+
+
 def write_catalog_index(listings: list[dict[str, Any]], *, generated_at: str = "") -> None:
     active = [row for row in listings if row.get("is_active", True)]
     ranks = home_rank_map()
+    derive = _derived_filters_applier()
     compact = []
     for row in active:
         item = compact_listing_for_index(row)
+        try:
+            item["details"]["filters"] = derive(item["details"]["filters"], row)
+        except Exception:  # noqa: BLE001 — один странный объект не ломает индекс
+            pass
         # Браузер дорисовывает главную из этого файла: home_rank ставит
         # межсезон и Новый год в начало каталога (правило Дарьи 14.10.2026).
         rank = ranks.get(str(row.get("slug") or ""))

@@ -16,6 +16,7 @@ from googleapiclient.discovery import build
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from catalog_snapshot import load_listings as snapshot_load_listings, update_filters as snapshot_update_filters  # noqa: E402
+from derived_filters import HEATED_POOL, mentions_heated_pool  # noqa: E402
 
 ENV_PATH = ROOT / '.env.supabase.local'
 REPORT_PATH = ROOT / 'output' / 'all_filters_sync_report.txt'
@@ -328,6 +329,9 @@ def infer_room(row: list[str]) -> list[str]:
         values.append('sea-view')
     if has_yes(get_cell(row, 'room_pool')):
         values.append('pool')
+        # «Бассейн с подогревом» в AT → отдельная отметка для подбора (15.10.2026).
+        if mentions_heated_pool(get_cell(row, 'room_pool')):
+            values.append(HEATED_POOL)
     if has_yes(get_cell(row, 'room_balcony')):
         values.append('balcony')
     if has_yes(get_cell(row, 'room_terrace')):
