@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T13:14:31.896563+00:00",
+  "generated_at": "2026-10-15T17:37:35.734410+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 247,
@@ -9393,6 +9393,10 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
             "kind": "price",
             "text": "2500₽ - май"
           },
@@ -9567,7 +9571,7 @@
           "details": {
             "telegram_post": "abhazbooking/4317",
             "telegram_url": "https://t.me/abhazbooking/4317",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/neanila-eko-domiki-4308/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/neanila-eko-domiki-4308/video-01-poster.jpg"
           }
         }
       ]
@@ -10999,16 +11003,20 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
             "kind": "price",
             "text": "2500₽ - май"
           },
           {
             "kind": "price",
-            "text": "2500₽ - с 1 по 14 июня"
+            "text": "3000₽ - с 1 по 14 июня"
           },
           {
             "kind": "price",
-            "text": "3000₽ - с 15 по 30 июня"
+            "text": "4000₽ - с 15 по 30 июня"
           },
           {
             "kind": "price",
@@ -11016,11 +11024,7 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "2500₽ - октябрь"
+            "text": "3000₽ - сентябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/diar-domiki-s-basseynom-4192/index.html",
@@ -19844,6 +19848,10 @@
           },
           {
             "kind": "price",
+            "text": "2500₽/сутки - с ноября по апрель"
+          },
+          {
+            "kind": "price",
             "text": "Доп место 1500₽/сутки"
           }
         ],
@@ -27032,7 +27040,23 @@
         "prices": [
           {
             "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "note",
             "text": "(за домик, размещение до 4 человек)"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "4800₽ - июнь до 15"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - июнь с 15"
           },
           {
             "kind": "price",
@@ -38237,7 +38261,7 @@
           },
           {
             "kind": "price",
-            "text": "25000₽/месяц - с октября по май"
+            "text": "20000₽/месяц - с октября по май"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/viktoriya-kvartira-2k-pitsunda-951/index.html",
@@ -44709,7 +44733,7 @@
               "Есть стиральная машинка, общая кухня на 2 этаже.",
               "На первом этаже столовая с приятными ценами.",
               "Выход из комплекса на туристическую дорожку. Множество киосков и ларьков, кафе, чебуречная.",
-              "До пляжа не нужно идти, вы уже тут. Самый любимый сосновый пляж Лдзаа. Утром можно отдыхать прямо на берегу, а в обед прятаться в тени деревьев. Есть водные развлечения, шезлонги в аренду. В роще - спорт-площадка"
+              "До пляжа не нужно идти, вы уже тут. Самый любимый сосновый пляж Лдзаа. Утром можно отдыхать прямо на берегу, а в обед прятаться в тени деревьев. Есть водные развлечения, шезлонги в аренду. В роще - спорт-площадка. Обзор на сосновый пляж тут"
             ]
           },
           {
@@ -44723,6 +44747,10 @@
           }
         ],
         "prices": [
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
           {
             "kind": "note",
             "text": "(трехместное размещение)"
@@ -44907,7 +44935,7 @@
           "details": {
             "telegram_post": "abhazbooking/3103",
             "telegram_url": "https://t.me/abhazbooking/3103",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/mika-gostevoy-dom-ekonom-3094/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/mika-gostevoy-dom-ekonom-3094/video-01-poster.jpg"
           }
         }
       ]

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T12:54:19.917863+00:00",
+  "generated_at": "2026-10-15T17:27:17.189767+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -472,6 +472,14 @@
       "lat": 43.10080252075841,
       "lon": 40.664062002480755,
       "url": "/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/",
+      "cityKey": "gudauta"
+    },
+    {
+      "title": "\"ВИСТА МАРЕ\" отдельный дом под ключ с бассейном",
+      "address": "Гудаута, с. Куланырхуа, ул. Самава, 43.100576,40.663889",
+      "lat": 43.10067428059423,
+      "lon": 40.663888999997916,
+      "url": "/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/",
       "cityKey": "gudauta"
     },
     {
@@ -1184,6 +1192,14 @@
       "lat": 43.173836,
       "lon": 40.372445,
       "url": "/hotels/bugenvilleya-otel-s-basseynom-3044/",
+      "cityKey": "ldzaa"
+    },
+    {
+      "title": "НОВЫЙ ГОД НА БЕРЕГУ МОРЯ В «ПЛЯЖНОМ КОМПЛЕКСЕ 151»",
+      "address": "Лдзаа, ул. Приморская, 18А",
+      "lat": 43.17415114030419,
+      "lon": 40.392794571235115,
+      "url": "/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/",
       "cityKey": "ldzaa"
     },
     {
@@ -1958,16 +1974,16 @@
   "stats": {
     "placemarks_total": 490,
     "placemarks_unique": 245,
-    "pages_total": 497,
-    "pages_on_disk": 555,
+    "pages_total": 499,
+    "pages_on_disk": 557,
     "pages_excluded": 58,
-    "from_constructor": 263,
+    "from_constructor": 265,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 234,
     "skipped_without_coords": 234,
-    "shared_coordinate_groups": 32,
+    "shared_coordinate_groups": 34,
     "deduped_redirect_points": 19,
-    "points_total": 244
+    "points_total": 246
   }
 }
