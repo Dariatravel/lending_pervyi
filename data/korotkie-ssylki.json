@@ -1,0 +1,1441 @@
+{
+  "obnovleno": "2026-10-15",
+  "istochnik": "Google-таблица «БАЗА - отели и квартиры», лист СОЦСЕТИ, столбец «Сайт»",
+  "vsego": 239,
+  "obekty": [
+    {
+      "nazvanie": "\"АБАЗА\" мини-отель",
+      "korotkaya": "abhazbereg.ru/abaza",
+      "slug": "abaza",
+      "stroka": 2
+    },
+    {
+      "nazvanie": "\"АБЫРЛАШ\" отель на пляже",
+      "korotkaya": "abhazbereg.ru/abyrlash",
+      "slug": "abyrlash",
+      "stroka": 3
+    },
+    {
+      "nazvanie": "\"АВРОРА ИНН ГАГРА\" отель",
+      "korotkaya": "abhazbereg.ru/avrora-inn-novyy",
+      "slug": "avrora-inn-novyy",
+      "stroka": 4
+    },
+    {
+      "nazvanie": "\"АДУНЕЙ\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/aduney",
+      "slug": "aduney",
+      "stroka": 5
+    },
+    {
+      "nazvanie": "\"АИША\" отель с бассейнами",
+      "korotkaya": "abhazbereg.ru/aisha",
+      "slug": "aisha",
+      "stroka": 6
+    },
+    {
+      "nazvanie": "\"АКВА\" отель с бассейном и завтраками",
+      "korotkaya": "abhazbereg.ru/akva",
+      "slug": "akva",
+      "stroka": 7
+    },
+    {
+      "nazvanie": "\"АКВАМАРИН\" дом под ключ",
+      "korotkaya": "abhazbereg.ru/akvamarin",
+      "slug": "akvamarin",
+      "stroka": 8
+    },
+    {
+      "nazvanie": "\"АКВАРЕЛЬ\" три 2к квартиры",
+      "korotkaya": "abhazbereg.ru/akvarel-tri",
+      "slug": "akvarel-tri",
+      "stroka": 9
+    },
+    {
+      "nazvanie": "\"АКИРА\" квартира 2к",
+      "korotkaya": "abhazbereg.ru/akira",
+      "slug": "akira",
+      "stroka": 11
+    },
+    {
+      "nazvanie": "\"АЛЕКСАНДРА\" отель с питанием и бассейном у моря",
+      "korotkaya": "abhazbereg.ru/aleksandra",
+      "slug": "aleksandra",
+      "stroka": 12
+    },
+    {
+      "nazvanie": "\"АЛЕКСАНДРИЯ\" домики",
+      "korotkaya": "abhazbereg.ru/aleksandriya",
+      "slug": "aleksandriya",
+      "stroka": 13
+    },
+    {
+      "nazvanie": "\"АЛМА\" домики на берегу",
+      "korotkaya": "abhazbereg.ru/alma",
+      "slug": "alma",
+      "stroka": 14
+    },
+    {
+      "nazvanie": "\"АМЗАРА\" отель c винодельней у заповедника",
+      "korotkaya": "abhazbereg.ru/amzara",
+      "slug": "amzara",
+      "stroka": 16
+    },
+    {
+      "nazvanie": "\"АМИНА\" дом под ключ",
+      "korotkaya": "abhazbereg.ru/amina",
+      "slug": "amina",
+      "stroka": 17
+    },
+    {
+      "nazvanie": "\"АМОР\" апартаменты с кухней и бассейном",
+      "korotkaya": "abhazbereg.ru/amor",
+      "slug": "amor",
+      "stroka": 18
+    },
+    {
+      "nazvanie": "\"АМОР\" домики с бассейном",
+      "korotkaya": "abhazbereg.ru/amor-domiki",
+      "slug": "amor-domiki",
+      "stroka": 19
+    },
+    {
+      "nazvanie": "\"АНАИТ\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/anait",
+      "slug": "anait",
+      "stroka": 20
+    },
+    {
+      "nazvanie": "\"АНИСА\" квартира 1-к",
+      "korotkaya": "abhazbereg.ru/anisa",
+      "slug": "anisa",
+      "stroka": 21
+    },
+    {
+      "nazvanie": "\"АНТАА\" гостиница у пляжа",
+      "korotkaya": "abhazbereg.ru/antaa",
+      "slug": "antaa",
+      "stroka": 22
+    },
+    {
+      "nazvanie": "\"АПРА\" гостевой дом на пляже",
+      "korotkaya": "abhazbereg.ru/apra",
+      "slug": "apra",
+      "stroka": 23
+    },
+    {
+      "nazvanie": "“АПСА” парк-отель",
+      "korotkaya": "abhazbereg.ru/apsa-park",
+      "slug": "apsa-park",
+      "stroka": 24
+    },
+    {
+      "nazvanie": "\"АРАШ\" домики у соснового пляжа",
+      "korotkaya": "abhazbereg.ru/arash",
+      "slug": "arash",
+      "stroka": 25
+    },
+    {
+      "nazvanie": "\"АРГО\" квартира 1-к",
+      "korotkaya": "abhazbereg.ru/argo",
+      "slug": "argo",
+      "stroka": 26
+    },
+    {
+      "nazvanie": "\"АРИНА\" мини-отель",
+      "korotkaya": "abhazbereg.ru/arina",
+      "slug": "arina",
+      "stroka": 27
+    },
+    {
+      "nazvanie": "\"АРТ ОТЕЛЬ\" с питанием и бассейном",
+      "korotkaya": "abhazbereg.ru/art",
+      "slug": "art",
+      "stroka": 29
+    },
+    {
+      "nazvanie": "\"АСЕЛИНА\" коттеджи и студия с кухней",
+      "korotkaya": "abhazbereg.ru/aselina",
+      "slug": "aselina",
+      "stroka": 30
+    },
+    {
+      "nazvanie": "\"АССИР ПИЦУНДА\" гостевой дом в центре",
+      "korotkaya": "abhazbereg.ru/assir-pitsunda",
+      "slug": "assir-pitsunda",
+      "stroka": 32
+    },
+    {
+      "nazvanie": "\"АССИР\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/assir",
+      "slug": "assir",
+      "stroka": 33
+    },
+    {
+      "nazvanie": "\"АТМОСФЕРНАЯ\" квартира 2к",
+      "korotkaya": "abhazbereg.ru/atmosfernaya",
+      "slug": "atmosfernaya",
+      "stroka": 34
+    },
+    {
+      "nazvanie": "\"АШТА ДУ\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/ashta-du",
+      "slug": "ashta-du",
+      "stroka": 35
+    },
+    {
+      "nazvanie": "\"БАГРИПШ\" домики на берегу с питанием",
+      "korotkaya": "abhazbereg.ru/bagripsh",
+      "slug": "bagripsh",
+      "stroka": 38
+    },
+    {
+      "nazvanie": "\"БАНАН И ФУНДУК\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/banan-i-funduk",
+      "slug": "banan-i-funduk",
+      "stroka": 39
+    },
+    {
+      "nazvanie": "\"БАРНАБА\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/barnaba",
+      "slug": "barnaba",
+      "stroka": 40
+    },
+    {
+      "nazvanie": "\"БЕЛАЯ ДАЧА\" отель с питанием",
+      "korotkaya": "abhazbereg.ru/belaya-dacha",
+      "slug": "belaya-dacha",
+      "stroka": 41
+    },
+    {
+      "nazvanie": "\"БЕЛАЯ ЛОШАДЬ\" эко-комплекс с бассейном и собственной конюшней",
+      "korotkaya": "abhazbereg.ru/belaya-loshad",
+      "slug": "belaya-loshad",
+      "stroka": 42
+    },
+    {
+      "nazvanie": "\"БЕЛАЯ РЕЧКА\" гостевой дом с кафе",
+      "korotkaya": "abhazbereg.ru/belaya-rechka",
+      "slug": "belaya-rechka",
+      "stroka": 43
+    },
+    {
+      "nazvanie": "\"БЕЛЫЙ ДОМ\" домики и апартаменты",
+      "korotkaya": "abhazbereg.ru/belyy",
+      "slug": "belyy",
+      "stroka": 44
+    },
+    {
+      "nazvanie": "“БЕЛЬВЕДЕР” гостевой дом",
+      "korotkaya": "abhazbereg.ru/belveder",
+      "slug": "belveder",
+      "stroka": 45
+    },
+    {
+      "nazvanie": "\"БЕРЕГ СВЯТОЙ СОФИИ\" отель",
+      "korotkaya": "abhazbereg.ru/bereg-svyatoy-sofii",
+      "slug": "bereg-svyatoy-sofii",
+      "stroka": 46
+    },
+    {
+      "nazvanie": "\"БИ ХЭППИ\" апарт-отель",
+      "korotkaya": "abhazbereg.ru/bi-heppi-apart",
+      "slug": "bi-heppi-apart",
+      "stroka": 49
+    },
+    {
+      "nazvanie": "\"БИОСФЕРА\" домики у Кындыгского источника",
+      "korotkaya": "abhazbereg.ru/biosfera",
+      "slug": "biosfera",
+      "stroka": 48
+    },
+    {
+      "nazvanie": "\"БИРЮЗА\" апартаменты 60 кв.м",
+      "korotkaya": "abhazbereg.ru/biryuza",
+      "slug": "biryuza",
+      "stroka": 50
+    },
+    {
+      "nazvanie": "\"БЛАГО-ДАРЮ\" отель",
+      "korotkaya": "abhazbereg.ru/blago-daryu",
+      "slug": "blago-daryu",
+      "stroka": 51
+    },
+    {
+      "nazvanie": "\"БЛЭК СИ\" отель с бассейном и питанием",
+      "korotkaya": "abhazbereg.ru/blek-si",
+      "slug": "blek-si",
+      "stroka": 52
+    },
+    {
+      "nazvanie": "\"БОНЖУР\" мини-отель",
+      "korotkaya": "abhazbereg.ru/bonzhur",
+      "slug": "bonzhur",
+      "stroka": 53
+    },
+    {
+      "nazvanie": "\"БОХО\" коттеджи у моря с бассейном и баней",
+      "korotkaya": "abhazbereg.ru/boho",
+      "slug": "boho",
+      "stroka": 54
+    },
+    {
+      "nazvanie": "\"БРИГАНТИНА\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/brigantina",
+      "slug": "brigantina",
+      "stroka": 57
+    },
+    {
+      "nazvanie": "\"БРИЗ\" домики на берегу",
+      "korotkaya": "abhazbereg.ru/briz",
+      "slug": "briz",
+      "stroka": 55
+    },
+    {
+      "nazvanie": "\"БУГЕНВИЛЛЕЯ\" отель с бассейном",
+      "korotkaya": "abhazbereg.ru/bugenvilleya",
+      "slug": "bugenvilleya",
+      "stroka": 56
+    },
+    {
+      "nazvanie": "\"БУНГАЛО\" глэмпинг в горах",
+      "korotkaya": "abhazbereg.ru/bungalo",
+      "slug": "bungalo",
+      "stroka": 58
+    },
+    {
+      "nazvanie": "\"В ГОСТЯХ У БЕЛОЧКИ\" домики и номера",
+      "korotkaya": "abhazbereg.ru/v-gostyah-u-belochki",
+      "slug": "v-gostyah-u-belochki",
+      "stroka": 59
+    },
+    {
+      "nazvanie": "\"В СИНОПЕ\" домики",
+      "korotkaya": "abhazbereg.ru/v-sinope",
+      "slug": "v-sinope",
+      "stroka": 60
+    },
+    {
+      "nazvanie": "\"ВИКТОРИЯ\" квартира 2-к",
+      "korotkaya": "abhazbereg.ru/viktoriya",
+      "slug": "viktoriya",
+      "stroka": 61
+    },
+    {
+      "nazvanie": "\"ВИЛЛА ЛЕОНА\" люкс-отель",
+      "korotkaya": "abhazbereg.ru/villa-leona",
+      "slug": "villa-leona",
+      "stroka": 62
+    },
+    {
+      "nazvanie": "\"ВИЛЛА ЛЮБОВЬ\" выход из отеля сразу на пляж",
+      "korotkaya": "abhazbereg.ru/villa-lyubov",
+      "slug": "villa-lyubov",
+      "stroka": 64
+    },
+    {
+      "nazvanie": "\"ВИЛЛА МАГНОЛИЯ\" эко-отель с завтраками",
+      "korotkaya": "abhazbereg.ru/villa-magnoliya",
+      "slug": "villa-magnoliya",
+      "stroka": 65
+    },
+    {
+      "nazvanie": "\"ВИЛЛА СУХУМ\" коттеджи с кухней",
+      "korotkaya": "abhazbereg.ru/villa-suhum",
+      "slug": "villa-suhum",
+      "stroka": 66
+    },
+    {
+      "nazvanie": "\"ВИСТА МАРЕ\" первый этаж дома под ключ с бассейном",
+      "korotkaya": "abhazbereg.ru/vista-mare-1-etazh",
+      "slug": "vista-mare-1-etazh",
+      "stroka": 67
+    },
+    {
+      "nazvanie": "«ВИСТА МАРЕ» второй этаж дома под ключ с бассейном",
+      "korotkaya": "abhazbereg.ru/vista-mare-2-etazh",
+      "slug": "vista-mare-2-etazh",
+      "stroka": 68
+    },
+    {
+      "nazvanie": "“ВОСХОДЯЩАЯ ЗВЕЗДА” отель с бассейном",
+      "korotkaya": "abhazbereg.ru/voshodyaschaya-zvezda",
+      "slug": "voshodyaschaya-zvezda",
+      "stroka": 71
+    },
+    {
+      "nazvanie": "\"ГРАНТ\" апартаменты",
+      "korotkaya": "abhazbereg.ru/grant-apartamenty",
+      "slug": "grant-apartamenty",
+      "stroka": 72
+    },
+    {
+      "nazvanie": "\"ГРАНТ\" домики",
+      "korotkaya": "abhazbereg.ru/grant-kompleks",
+      "slug": "grant-kompleks",
+      "stroka": 73
+    },
+    {
+      "nazvanie": "\"ГРАНТ\" отель",
+      "korotkaya": "abhazbereg.ru/grant",
+      "slug": "grant",
+      "stroka": 74
+    },
+    {
+      "nazvanie": "\"ГРАСС\" коттеджи в горах Абхазии",
+      "korotkaya": "abhazbereg.ru/grass-novyy-god",
+      "slug": "grass-novyy-god",
+      "stroka": 75
+    },
+    {
+      "nazvanie": "“ГРАФИТ ХАУС” гостевой дом с бассейном",
+      "korotkaya": "abhazbereg.ru/grafit-haus",
+      "slug": "grafit-haus",
+      "stroka": 76
+    },
+    {
+      "nazvanie": "\"ГРЕЙС\" квартира",
+      "korotkaya": "abhazbereg.ru/greys",
+      "slug": "greys",
+      "stroka": 78
+    },
+    {
+      "nazvanie": "\"ГРИН ВИЛЛАДЖ\" домики",
+      "korotkaya": "abhazbereg.ru/grin-villadzh",
+      "slug": "grin-villadzh",
+      "stroka": 79
+    },
+    {
+      "nazvanie": "\"ГРИН ХАУС\" домики",
+      "korotkaya": "abhazbereg.ru/grin-haus",
+      "slug": "grin-haus",
+      "stroka": 80
+    },
+    {
+      "nazvanie": "\"ДАВИД\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/david",
+      "slug": "david",
+      "stroka": 81
+    },
+    {
+      "nazvanie": "\"ДАМИРА\" отель в центре города",
+      "korotkaya": "abhazbereg.ru/damira",
+      "slug": "damira",
+      "stroka": 82
+    },
+    {
+      "nazvanie": "\"ДАНЕЛЯН\" семейный отель со столовой",
+      "korotkaya": "abhazbereg.ru/danelyan-semeynyy",
+      "slug": "danelyan-semeynyy",
+      "stroka": 83
+    },
+    {
+      "nazvanie": "\"ДЕЛЬФИН\" домики",
+      "korotkaya": "abhazbereg.ru/delfin",
+      "slug": "delfin",
+      "stroka": 84
+    },
+    {
+      "nazvanie": "\"ДЕМИ МОККО\" - два уютных домика",
+      "korotkaya": "abhazbereg.ru/demi-mokko-dva-domika",
+      "slug": "demi-mokko-dva-domika",
+      "stroka": 85
+    },
+    {
+      "nazvanie": "\"ДИАР\" домики с бассейном",
+      "korotkaya": "abhazbereg.ru/diar",
+      "slug": "diar",
+      "stroka": 86
+    },
+    {
+      "nazvanie": "\"ДОМИКИ У МАРИНЫ\" отдых у моря",
+      "korotkaya": "abhazbereg.ru/domiki-u-mariny",
+      "slug": "domiki-u-mariny",
+      "stroka": 87
+    },
+    {
+      "nazvanie": "\"ДУЭТ МОККО\" номера",
+      "korotkaya": "abhazbereg.ru/duet-mokko",
+      "slug": "duet-mokko",
+      "stroka": 88
+    },
+    {
+      "nazvanie": "“ДЫШИ ГЛУБЖЕ” домики в горах",
+      "korotkaya": "abhazbereg.ru/dyshi-glubzhe",
+      "slug": "dyshi-glubzhe",
+      "stroka": 89
+    },
+    {
+      "nazvanie": "\"ДЮНА\" домики",
+      "korotkaya": "abhazbereg.ru/dyuna",
+      "slug": "dyuna",
+      "stroka": 90
+    },
+    {
+      "nazvanie": "\"ЖАСМИН\" мини-отель",
+      "korotkaya": "abhazbereg.ru/zhasmin",
+      "slug": "zhasmin",
+      "stroka": 91
+    },
+    {
+      "nazvanie": "\"ЖЕМЧУЖИНА\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/zhemchuzhina",
+      "slug": "zhemchuzhina",
+      "stroka": 92
+    },
+    {
+      "nazvanie": "\"ЗЕЛЕНЫЙ ДВОРИК\" домики и номера",
+      "korotkaya": "abhazbereg.ru/zelenyy-dvorik",
+      "slug": "zelenyy-dvorik",
+      "stroka": 93
+    },
+    {
+      "nazvanie": "\"ЗОЛОТАЯ ВЕРАНДА\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/zolotaya-veranda",
+      "slug": "zolotaya-veranda",
+      "stroka": 94
+    },
+    {
+      "nazvanie": "\"ИНКИТ РЕЗОРТ\" афреймы",
+      "korotkaya": "abhazbereg.ru/inkit-rezort-afreymy",
+      "slug": "inkit-rezort-afreymy",
+      "stroka": 96
+    },
+    {
+      "nazvanie": "\"ИРСЕН\" домики в Алахадзы",
+      "korotkaya": "abhazbereg.ru/irsen",
+      "slug": "irsen",
+      "stroka": 95
+    },
+    {
+      "nazvanie": "\"КАВО ДЕ БУКСО\" домики",
+      "korotkaya": "abhazbereg.ru/kavo-de-bukso",
+      "slug": "kavo-de-bukso",
+      "stroka": 97
+    },
+    {
+      "nazvanie": "\"КАМЕЛИЯ\" домики",
+      "korotkaya": "abhazbereg.ru/kameliya",
+      "slug": "kameliya",
+      "stroka": 98
+    },
+    {
+      "nazvanie": "\"КАМИЛЛА\" квартира 2-к",
+      "korotkaya": "abhazbereg.ru/kamilla",
+      "slug": "kamilla",
+      "stroka": 99
+    },
+    {
+      "nazvanie": "\"КАРАЛИНА\" апартаменты",
+      "korotkaya": "abhazbereg.ru/karalina",
+      "slug": "karalina",
+      "stroka": 100
+    },
+    {
+      "nazvanie": "\"КАРИН\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/karin",
+      "slug": "karin",
+      "stroka": 102
+    },
+    {
+      "nazvanie": "\"КАШТАК\" - домики в зеленом уголке",
+      "korotkaya": "abhazbereg.ru/kashtak",
+      "slug": "kashtak",
+      "stroka": 105
+    },
+    {
+      "nazvanie": "\"КВАРЦ\" домики",
+      "korotkaya": "abhazbereg.ru/kvarts",
+      "slug": "kvarts",
+      "stroka": 104
+    },
+    {
+      "nazvanie": "\"КИАРАЗ РЕЗОРТ\" гостевой комплекс с бассейном",
+      "korotkaya": "abhazbereg.ru/kiaraz-rezort",
+      "slug": "kiaraz-rezort",
+      "stroka": 107
+    },
+    {
+      "nazvanie": "\"КИПАРИСОВАЯ\" квартира 1-к",
+      "korotkaya": "abhazbereg.ru/kiparisovaya",
+      "slug": "kiparisovaya",
+      "stroka": 108
+    },
+    {
+      "nazvanie": "\"КИРА\" гостевой комплекс",
+      "korotkaya": "abhazbereg.ru/kira",
+      "slug": "kira",
+      "stroka": 109
+    },
+    {
+      "nazvanie": "\"КЛАССИКА\" квартира 2-к",
+      "korotkaya": "abhazbereg.ru/klassika",
+      "slug": "klassika",
+      "stroka": 110
+    },
+    {
+      "nazvanie": "\"КРЫЛЬЯ\" домики видовые двухкомнатные",
+      "korotkaya": "abhazbereg.ru/krylya",
+      "slug": "krylya",
+      "stroka": 111
+    },
+    {
+      "nazvanie": "\"КУРОРТНАЯ\" квартира 2-к",
+      "korotkaya": "abhazbereg.ru/kurortnaya",
+      "slug": "kurortnaya",
+      "stroka": 115
+    },
+    {
+      "nazvanie": "\"ЛАВАНДА\" вилла с бассейном",
+      "korotkaya": "abhazbereg.ru/lavanda",
+      "slug": "lavanda",
+      "stroka": 120
+    },
+    {
+      "nazvanie": "\"ЛАДАРИЯ\" квартира 1к",
+      "korotkaya": "abhazbereg.ru/ladariya",
+      "slug": "ladariya",
+      "stroka": 116
+    },
+    {
+      "nazvanie": "\"ЛАЗУРИТ\" новый отель",
+      "korotkaya": "abhazbereg.ru/lazurit-novyy",
+      "slug": "lazurit-novyy",
+      "stroka": 118
+    },
+    {
+      "nazvanie": "\"ЛАЗУРНЫЙ БЕРЕГ\" бутик-отель с питанием",
+      "korotkaya": "abhazbereg.ru/lazurnyy-bereg-butik",
+      "slug": "lazurnyy-bereg-butik",
+      "stroka": 119
+    },
+    {
+      "nazvanie": "“ЛАЙМ” мини-отель с бассейном у заповедника",
+      "korotkaya": "abhazbereg.ru/laym",
+      "slug": "laym",
+      "stroka": 121
+    },
+    {
+      "nazvanie": "\"ЛАТТЕ\" квартира 1к",
+      "korotkaya": "abhazbereg.ru/latte",
+      "slug": "latte",
+      "stroka": 117
+    },
+    {
+      "nazvanie": "\"ЛЕОН\" коттеджи в тихом районе",
+      "korotkaya": "abhazbereg.ru/leon",
+      "slug": "leon",
+      "stroka": 123
+    },
+    {
+      "nazvanie": "\"ЛЕТНЯЯ\" квартира 3к",
+      "korotkaya": "abhazbereg.ru/letnyaya",
+      "slug": "letnyaya",
+      "stroka": 124
+    },
+    {
+      "nazvanie": "\"ЛЕТО\" квартира 2к",
+      "korotkaya": "abhazbereg.ru/leto",
+      "slug": "leto",
+      "stroka": 125
+    },
+    {
+      "nazvanie": "\"ЛИЛИЯ\" отель",
+      "korotkaya": "abhazbereg.ru/liliya-uyutnyy",
+      "slug": "liliya-uyutnyy",
+      "stroka": 126
+    },
+    {
+      "nazvanie": "\"ЛИМАРИ\" домики",
+      "korotkaya": "abhazbereg.ru/limari",
+      "slug": "limari",
+      "stroka": 127
+    },
+    {
+      "nazvanie": "\"ЛИМОН\" отель",
+      "korotkaya": "abhazbereg.ru/limon",
+      "slug": "limon",
+      "stroka": 128
+    },
+    {
+      "nazvanie": "\"ЛК-ОТЕЛЬ\" с бассейном",
+      "korotkaya": "abhazbereg.ru/lk",
+      "slug": "lk",
+      "stroka": 129
+    },
+    {
+      "nazvanie": "\"ЛНД\" гостевой дом в Синопе",
+      "korotkaya": "abhazbereg.ru/lnd",
+      "slug": "lnd",
+      "stroka": 130
+    },
+    {
+      "nazvanie": "\"МАГНОЛИЯ\" квартира 3-к",
+      "korotkaya": "abhazbereg.ru/magnoliya",
+      "slug": "magnoliya",
+      "stroka": 131
+    },
+    {
+      "nazvanie": "\"МАДЛЕНА\" домики",
+      "korotkaya": "abhazbereg.ru/madlena",
+      "slug": "madlena",
+      "stroka": 132
+    },
+    {
+      "nazvanie": "\"МАЛЬБЕК\" отель",
+      "korotkaya": "abhazbereg.ru/malbek",
+      "slug": "malbek",
+      "stroka": 133
+    },
+    {
+      "nazvanie": "\"МАНДАРИН\" отель у соснового пляжа в Лдзаа с завтраками",
+      "korotkaya": "abhazbereg.ru/mandarin",
+      "slug": "mandarin",
+      "stroka": 134
+    },
+    {
+      "nazvanie": "\"МАНДАРИНОВЫЙ ДВОРИК\" дом под ключ",
+      "korotkaya": "abhazbereg.ru/mandarinovyy-dvorik",
+      "slug": "mandarinovyy-dvorik",
+      "stroka": 135
+    },
+    {
+      "nazvanie": "\"МАНОН\" отель со сказочным видом",
+      "korotkaya": "abhazbereg.ru/manon",
+      "slug": "manon",
+      "stroka": 136
+    },
+    {
+      "nazvanie": "“МАРТА” гостевые номера",
+      "korotkaya": "abhazbereg.ru/marta-gostevye",
+      "slug": "marta-gostevye",
+      "stroka": 139
+    },
+    {
+      "nazvanie": "\"МАЯК\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/mayak",
+      "slug": "mayak",
+      "stroka": 140
+    },
+    {
+      "nazvanie": "\"МЕЛАНА\" квартира 3-к",
+      "korotkaya": "abhazbereg.ru/melana",
+      "slug": "melana",
+      "stroka": 141
+    },
+    {
+      "nazvanie": "\"МЕЛОДИ\" домики",
+      "korotkaya": "abhazbereg.ru/melodi-eko",
+      "slug": "melodi-eko",
+      "stroka": 142
+    },
+    {
+      "nazvanie": "\"МЕЧТА\" апартаменты у моря",
+      "korotkaya": "abhazbereg.ru/mechta",
+      "slug": "mechta",
+      "stroka": 143
+    },
+    {
+      "nazvanie": "\"МЗИЯ\" мини-отель",
+      "korotkaya": "abhazbereg.ru/mziya-gostevye",
+      "slug": "mziya-gostevye",
+      "stroka": 144
+    },
+    {
+      "nazvanie": "\"МИКА\" гостевой дом эконом",
+      "korotkaya": "abhazbereg.ru/mika",
+      "slug": "mika",
+      "stroka": 145
+    },
+    {
+      "nazvanie": "\"МИМИ\" домики с видом на горы",
+      "korotkaya": "abhazbereg.ru/mimi",
+      "slug": "mimi",
+      "stroka": 146
+    },
+    {
+      "nazvanie": "\"МИМОЗА\" квартира 3-к",
+      "korotkaya": "abhazbereg.ru/mimoza",
+      "slug": "mimoza",
+      "stroka": 147
+    },
+    {
+      "nazvanie": "\"МИРА\" дом под ключ",
+      "korotkaya": "abhazbereg.ru/mira",
+      "slug": "mira",
+      "stroka": 148
+    },
+    {
+      "nazvanie": "\"МИРА\" домики и номера у озера",
+      "korotkaya": "abhazbereg.ru/mira-domiki",
+      "slug": "mira-domiki",
+      "stroka": 149
+    },
+    {
+      "nazvanie": "\"МИРАНО\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/mirano",
+      "slug": "mirano",
+      "stroka": 151
+    },
+    {
+      "nazvanie": "\"МИРАСЛАВА\" мини-отель",
+      "korotkaya": "abhazbereg.ru/miraslava",
+      "slug": "miraslava",
+      "stroka": 150
+    },
+    {
+      "nazvanie": "\"МОККО БРИЗ\" два домика",
+      "korotkaya": "abhazbereg.ru/mokko-briz-dva-domika",
+      "slug": "mokko-briz-dva-domika",
+      "stroka": 153
+    },
+    {
+      "nazvanie": "\"МОККО ГРЕЙ\" апартаменты 1к",
+      "korotkaya": "abhazbereg.ru/mokko-grey",
+      "slug": "mokko-grey",
+      "stroka": 155
+    },
+    {
+      "nazvanie": "\"МОККО\" апартаменты",
+      "korotkaya": "abhazbereg.ru/mokko",
+      "slug": "mokko",
+      "stroka": 154
+    },
+    {
+      "nazvanie": "\"МОН АМУР\" квартира 1-к",
+      "korotkaya": "abhazbereg.ru/mon-amur",
+      "slug": "mon-amur",
+      "stroka": 156
+    },
+    {
+      "nazvanie": "\"МОНРО\" квартира 2-к",
+      "korotkaya": "abhazbereg.ru/monro",
+      "slug": "monro",
+      "stroka": 157
+    },
+    {
+      "nazvanie": "“МОРЕ-МОРЕ” гостевой комплекс",
+      "korotkaya": "abhazbereg.ru/more-more",
+      "slug": "more-more",
+      "stroka": 158
+    },
+    {
+      "nazvanie": "\"МОРЕОН\" домики",
+      "korotkaya": "abhazbereg.ru/moreon-domiki",
+      "slug": "moreon-domiki",
+      "stroka": 159
+    },
+    {
+      "nazvanie": "\"МОРЕОН\" квартира 2-к",
+      "korotkaya": "abhazbereg.ru/moreon",
+      "slug": "moreon",
+      "stroka": 160
+    },
+    {
+      "nazvanie": "\"МОРСКАЯ ЛАГУНА\" гостиница с завтраками",
+      "korotkaya": "abhazbereg.ru/morskaya-laguna",
+      "slug": "morskaya-laguna",
+      "stroka": 161
+    },
+    {
+      "nazvanie": "\"МУЛБЕРРИ\" с бассейном и кафе",
+      "korotkaya": "abhazbereg.ru/mulberri",
+      "slug": "mulberri",
+      "stroka": 162
+    },
+    {
+      "nazvanie": "\"НА ВРЕМЯ В РАЮ\" полдома под ключ",
+      "korotkaya": "abhazbereg.ru/na-vremya-v-rayu",
+      "slug": "na-vremya-v-rayu",
+      "stroka": 163
+    },
+    {
+      "nazvanie": "\"НА ВЫСОТЕ\" квартира 2-к",
+      "korotkaya": "abhazbereg.ru/na-vysote",
+      "slug": "na-vysote",
+      "stroka": 164
+    },
+    {
+      "nazvanie": "\"НА ПЛЯЖЕ\" квартира 3К видовая",
+      "korotkaya": "abhazbereg.ru/na-plyazhe",
+      "slug": "na-plyazhe",
+      "stroka": 165
+    },
+    {
+      "nazvanie": "\"НАСТА\" апартаменты",
+      "korotkaya": "abhazbereg.ru/nasta",
+      "slug": "nasta",
+      "stroka": 169
+    },
+    {
+      "nazvanie": "\"НАСТА\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/nasta-gostevoy",
+      "slug": "nasta-gostevoy",
+      "stroka": 170
+    },
+    {
+      "nazvanie": "\"НЕАНИЛА\" эко-домики",
+      "korotkaya": "abhazbereg.ru/neanila-eko",
+      "slug": "neanila-eko",
+      "stroka": 171
+    },
+    {
+      "nazvanie": "\"НЕБОСВОД\" афрейм в уединенном месте",
+      "korotkaya": "abhazbereg.ru/nebosvod",
+      "slug": "nebosvod",
+      "stroka": 172
+    },
+    {
+      "nazvanie": "“НИКОЛЬ” гостевой дом",
+      "korotkaya": "abhazbereg.ru/nikol",
+      "slug": "nikol",
+      "stroka": 173
+    },
+    {
+      "nazvanie": "\"НИКОПСИЯ\" домики",
+      "korotkaya": "abhazbereg.ru/nikopsiya",
+      "slug": "nikopsiya",
+      "stroka": 174
+    },
+    {
+      "nazvanie": "\"НОННА\" квартира 2к",
+      "korotkaya": "abhazbereg.ru/nonna",
+      "slug": "nonna",
+      "stroka": 176
+    },
+    {
+      "nazvanie": "\"ОАЗИС\" апартаменты с кухней",
+      "korotkaya": "abhazbereg.ru/oazis-apartamenty",
+      "slug": "oazis-apartamenty",
+      "stroka": 177
+    },
+    {
+      "nazvanie": "\"ОАЗИС\" вилла в Сухуме",
+      "korotkaya": "abhazbereg.ru/oazis",
+      "slug": "oazis",
+      "stroka": 178
+    },
+    {
+      "nazvanie": "\"ОЛИВА\" домики",
+      "korotkaya": "abhazbereg.ru/oliva",
+      "slug": "oliva",
+      "stroka": 179
+    },
+    {
+      "nazvanie": "\"ПАЛЬМА\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/palma",
+      "slug": "palma",
+      "stroka": 180
+    },
+    {
+      "nazvanie": "\"ПАЛЬМА\" квартира 3-к",
+      "korotkaya": "abhazbereg.ru/palma-kvartira",
+      "slug": "palma-kvartira",
+      "stroka": 182
+    },
+    {
+      "nazvanie": "ПАНСИОНАТ «БАГРИПШ» (ГЛАВНЫЙ КОРПУС)",
+      "korotkaya": "abhazbereg.ru/bagripsh-glavnyy",
+      "slug": "bagripsh-glavnyy",
+      "stroka": 185
+    },
+    {
+      "nazvanie": "ПАНСИОНАТ «БАГРИПШ» (КОРПУС «АДЕЛЬ»)",
+      "korotkaya": "abhazbereg.ru/bagripsh-adel",
+      "slug": "bagripsh-adel",
+      "stroka": 184
+    },
+    {
+      "nazvanie": "ПАНСИОНАТ «БАГРИПШ» (НОВЫЙ КОРПУС)",
+      "korotkaya": "abhazbereg.ru/bagripsh-novyy",
+      "slug": "bagripsh-novyy",
+      "stroka": 183
+    },
+    {
+      "nazvanie": "\"ПАРКОВАЯ\" квартира 2-к",
+      "korotkaya": "abhazbereg.ru/parkovaya",
+      "slug": "parkovaya",
+      "stroka": 186
+    },
+    {
+      "nazvanie": "\"ПАРУС\" видовой отель с бассейном и столовой",
+      "korotkaya": "abhazbereg.ru/parus-vidovoy",
+      "slug": "parus-vidovoy",
+      "stroka": 187
+    },
+    {
+      "nazvanie": "\"ПЕГАС\"",
+      "korotkaya": "abhazbereg.ru/pegas",
+      "slug": "pegas",
+      "stroka": 188
+    },
+    {
+      "nazvanie": "\"ПЕРЛ\" доп под ключ",
+      "korotkaya": "abhazbereg.ru/perl",
+      "slug": "perl",
+      "stroka": 189
+    },
+    {
+      "nazvanie": "“ПЕСЧАНЫЙ БЕРЕГ” апартаменты",
+      "korotkaya": "abhazbereg.ru/peschanyy-bereg",
+      "slug": "peschanyy-bereg",
+      "stroka": 190
+    },
+    {
+      "nazvanie": "\"ПИОН\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/pion",
+      "slug": "pion",
+      "stroka": 192
+    },
+    {
+      "nazvanie": "\"ПИТИУНТ\" квартира 4к",
+      "korotkaya": "abhazbereg.ru/pitiunt",
+      "slug": "pitiunt",
+      "stroka": 193
+    },
+    {
+      "nazvanie": "\"ПИЦУНДА\" отель",
+      "korotkaya": "abhazbereg.ru/pitsunda-otel",
+      "slug": "pitsunda-otel",
+      "stroka": 194
+    },
+    {
+      "nazvanie": "\"ПЛЯЖНЫЙ КОМПЛЕКС 151\" на берегу",
+      "korotkaya": "abhazbereg.ru/plyazhnyy",
+      "slug": "plyazhnyy",
+      "stroka": 191
+    },
+    {
+      "nazvanie": "\"ПРОСТОРНАЯ\" квартира 5к",
+      "korotkaya": "abhazbereg.ru/prostornaya",
+      "slug": "prostornaya",
+      "stroka": 195
+    },
+    {
+      "nazvanie": "\"ПТИЧКА\" эко-домики с бассейном",
+      "korotkaya": "abhazbereg.ru/ptichka-eko",
+      "slug": "ptichka-eko",
+      "stroka": 196
+    },
+    {
+      "nazvanie": "\"ПШАДА\" отель с питанием у соснового пляжа",
+      "korotkaya": "abhazbereg.ru/pshada",
+      "slug": "pshada",
+      "stroka": 197
+    },
+    {
+      "nazvanie": "\"РАДОНОВЫЙ ИСТОЧНИК\" отель в горах Ткуарчалский район,",
+      "korotkaya": "abhazbereg.ru/radonovyy-istochnik",
+      "slug": "radonovyy-istochnik",
+      "stroka": 198
+    },
+    {
+      "nazvanie": "\"РАЙСКИЙ БЕРЕГ\" мини-отель",
+      "korotkaya": "abhazbereg.ru/rayskiy-bereg",
+      "slug": "rayskiy-bereg",
+      "stroka": 199
+    },
+    {
+      "nazvanie": "\"РАНЧО ЭЛИВЕЛ\" мини-отель",
+      "korotkaya": "abhazbereg.ru/rancho-elivel",
+      "slug": "rancho-elivel",
+      "stroka": 200
+    },
+    {
+      "nazvanie": "\"РД-ОТЕЛЬ\" в Гагре",
+      "korotkaya": "abhazbereg.ru/rd",
+      "slug": "rd",
+      "stroka": 204
+    },
+    {
+      "nazvanie": "\"РЕГИНА\" ОТЕЛЬ (ВТОРОЙ КОРПУС)",
+      "korotkaya": "abhazbereg.ru/regina",
+      "slug": "regina",
+      "stroka": 202
+    },
+    {
+      "nazvanie": "\"РЕГИНА\" ОТЕЛЬ (ПЕРВЫЙ КОРПУС)",
+      "korotkaya": "abhazbereg.ru/regina-pervyy-korpus",
+      "slug": "regina-pervyy-korpus",
+      "stroka": 201
+    },
+    {
+      "nazvanie": "\"РЕЛАКС ДОМ\" домики",
+      "korotkaya": "abhazbereg.ru/relaks",
+      "slug": "relaks",
+      "stroka": 203
+    },
+    {
+      "nazvanie": "\"РИВЬЕРА\" гостиница видовая",
+      "korotkaya": "abhazbereg.ru/rivera-gostinitsa",
+      "slug": "rivera-gostinitsa",
+      "stroka": 205
+    },
+    {
+      "nazvanie": "\"РИВЬЕРА\" домики на пляже",
+      "korotkaya": "abhazbereg.ru/rivera",
+      "slug": "rivera",
+      "stroka": 206
+    },
+    {
+      "nazvanie": "\"РИММА\" две квартиры 1-к с кухней",
+      "korotkaya": "abhazbereg.ru/rimma-dve",
+      "slug": "rimma-dve",
+      "stroka": 207
+    },
+    {
+      "nazvanie": "\"РИТА\" домики и апартаменты с питанием",
+      "korotkaya": "abhazbereg.ru/rita",
+      "slug": "rita",
+      "stroka": 208
+    },
+    {
+      "nazvanie": "«РОЯЛ РИВЬЕРА» отель с бассейном и питанием",
+      "korotkaya": "abhazbereg.ru/royal-rivera",
+      "slug": "royal-rivera",
+      "stroka": 209
+    },
+    {
+      "nazvanie": "\"РУСАНА\" эко-домики",
+      "korotkaya": "abhazbereg.ru/rusana-eko",
+      "slug": "rusana-eko",
+      "stroka": 210
+    },
+    {
+      "nazvanie": "\"САБИНА\" домики у моря",
+      "korotkaya": "abhazbereg.ru/sabina",
+      "slug": "sabina",
+      "stroka": 211
+    },
+    {
+      "nazvanie": "\"САМШИТ\" домики и номера у заповедника",
+      "korotkaya": "abhazbereg.ru/samshit",
+      "slug": "samshit",
+      "stroka": 212
+    },
+    {
+      "nazvanie": "\"САН АМРА\" новый отель на пляже",
+      "korotkaya": "abhazbereg.ru/san-amra-lyuks",
+      "slug": "san-amra-lyuks",
+      "stroka": 213
+    },
+    {
+      "nazvanie": "\"САН СЕБАСТИАН\" домики с бассейном",
+      "korotkaya": "abhazbereg.ru/san-sebastian",
+      "slug": "san-sebastian",
+      "stroka": 215
+    },
+    {
+      "nazvanie": "\"САНДИ ХАУС\" коттеджный комплекс с бассейном",
+      "korotkaya": "abhazbereg.ru/sandi-haus-kottedzhnyy",
+      "slug": "sandi-haus-kottedzhnyy",
+      "stroka": 214
+    },
+    {
+      "nazvanie": "\"САННИ ХОУМ\" домики с бассейном",
+      "korotkaya": "abhazbereg.ru/sanni-houm",
+      "slug": "sanni-houm",
+      "stroka": 218
+    },
+    {
+      "nazvanie": "\"САНРАЙЗ\" гостевой дом с завтраками",
+      "korotkaya": "abhazbereg.ru/sanrayz",
+      "slug": "sanrayz",
+      "stroka": 217
+    },
+    {
+      "nazvanie": "\"САНРЭЙ\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/sanrey",
+      "slug": "sanrey",
+      "stroka": 219
+    },
+    {
+      "nazvanie": "\"САНСЕТ\" квартира видовая 2-к",
+      "korotkaya": "abhazbereg.ru/sanset",
+      "slug": "sanset",
+      "stroka": 220
+    },
+    {
+      "nazvanie": "\"САЯ\" домики",
+      "korotkaya": "abhazbereg.ru/saya",
+      "slug": "saya",
+      "stroka": 222
+    },
+    {
+      "nazvanie": "\"СВЕТЛЫЙ ДВОРИК\" гостевой дом эконом",
+      "korotkaya": "abhazbereg.ru/svetlyy-dvorik",
+      "slug": "svetlyy-dvorik",
+      "stroka": 223
+    },
+    {
+      "nazvanie": "\"СЕКРЕТ ГАРДЕН\" апартаменты",
+      "korotkaya": "abhazbereg.ru/sekret-garden",
+      "slug": "sekret-garden",
+      "stroka": 224
+    },
+    {
+      "nazvanie": "\"СИА ЛЕНД\" база отдыха",
+      "korotkaya": "abhazbereg.ru/sia-lend",
+      "slug": "sia-lend",
+      "stroka": 226
+    },
+    {
+      "nazvanie": "\"СИЗОН\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/sizon",
+      "slug": "sizon",
+      "stroka": 227
+    },
+    {
+      "nazvanie": "“СИМОНА” гостевой дом",
+      "korotkaya": "abhazbereg.ru/simona",
+      "slug": "simona",
+      "stroka": 228
+    },
+    {
+      "nazvanie": "\"СИМСИМ\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/simsim",
+      "slug": "simsim",
+      "stroka": 229
+    },
+    {
+      "nazvanie": "\"СИНОП ХАУС\" коттеджи",
+      "korotkaya": "abhazbereg.ru/sinop-haus",
+      "slug": "sinop-haus",
+      "stroka": 230
+    },
+    {
+      "nazvanie": "\"СИРИУС\"",
+      "korotkaya": "abhazbereg.ru/sirius",
+      "slug": "sirius",
+      "stroka": 231
+    },
+    {
+      "nazvanie": "\"СИСАЙД\" домики",
+      "korotkaya": "abhazbereg.ru/sisayd",
+      "slug": "sisayd",
+      "stroka": 232
+    },
+    {
+      "nazvanie": "\"СИТИ ГАГРА\" квартира 2-к",
+      "korotkaya": "abhazbereg.ru/siti-gagra",
+      "slug": "siti-gagra",
+      "stroka": 233
+    },
+    {
+      "nazvanie": "\"СОЗВЕЗДИЕ\" мини-отель",
+      "korotkaya": "abhazbereg.ru/sozvezdie",
+      "slug": "sozvezdie",
+      "stroka": 234
+    },
+    {
+      "nazvanie": "\"СОЛНЕЧНАЯ\" квартира 2-к",
+      "korotkaya": "abhazbereg.ru/solnechnaya",
+      "slug": "solnechnaya",
+      "stroka": 235
+    },
+    {
+      "nazvanie": "\"СОЛУНА\" домики и номера",
+      "korotkaya": "abhazbereg.ru/soluna",
+      "slug": "soluna",
+      "stroka": 236
+    },
+    {
+      "nazvanie": "\"СОСНОВАЯ\" квартира 1к",
+      "korotkaya": "abhazbereg.ru/sosnovaya",
+      "slug": "sosnovaya",
+      "stroka": 237
+    },
+    {
+      "nazvanie": "“СОФИЯ” отель у соснового пляжа",
+      "korotkaya": "abhazbereg.ru/sofiya",
+      "slug": "sofiya",
+      "stroka": 238
+    },
+    {
+      "nazvanie": "\"СТАРЫЙ ПРИЧАЛ\" гостевой дом у моря",
+      "korotkaya": "abhazbereg.ru/staryy-prichal",
+      "slug": "staryy-prichal",
+      "stroka": 239
+    },
+    {
+      "nazvanie": "\"СТУДИО САН АМРА\" студия на пляже",
+      "korotkaya": "abhazbereg.ru/studio-san-amra",
+      "slug": "studio-san-amra",
+      "stroka": 240
+    },
+    {
+      "nazvanie": "\"СУХУМ\" дом под ключ",
+      "korotkaya": "abhazbereg.ru/suhum-dom",
+      "slug": "suhum-dom",
+      "stroka": 241
+    },
+    {
+      "nazvanie": "\"ТЕРРА РИВЬЕРА\" эко-комплекс",
+      "korotkaya": "abhazbereg.ru/terra-rivera-eko",
+      "slug": "terra-rivera-eko",
+      "stroka": 247
+    },
+    {
+      "nazvanie": "\"ТИС\" коттеджи у заповедника",
+      "korotkaya": "abhazbereg.ru/tis-kottedzhi",
+      "slug": "tis-kottedzhi",
+      "stroka": 242
+    },
+    {
+      "nazvanie": "\"ТИС\" мини-отель у заповедника",
+      "korotkaya": "abhazbereg.ru/tis",
+      "slug": "tis",
+      "stroka": 243
+    },
+    {
+      "nazvanie": "\"ТИХАЯ БУХТА\" апартаменты на горы",
+      "korotkaya": "abhazbereg.ru/tihaya-buhta",
+      "slug": "tihaya-buhta",
+      "stroka": 244
+    },
+    {
+      "nazvanie": "\"ТИХАЯ ОБИТЕЛЬ\" дом под ключ",
+      "korotkaya": "abhazbereg.ru/tihaya-obitel",
+      "slug": "tihaya-obitel",
+      "stroka": 245
+    },
+    {
+      "nazvanie": "\"ТИХИЙ ЗАКАТ\" домики с бассейном",
+      "korotkaya": "abhazbereg.ru/tihiy-zakat",
+      "slug": "tihiy-zakat",
+      "stroka": 246
+    },
+    {
+      "nazvanie": "\"ТРИО\" номер на пляже",
+      "korotkaya": "abhazbereg.ru/trio-nomer-na-plyazhe",
+      "slug": "trio-nomer-na-plyazhe",
+      "stroka": 248
+    },
+    {
+      "nazvanie": "\"ФАЗЕНДА\" двухэтажные коттеджи с бассейном и питанием",
+      "korotkaya": "abhazbereg.ru/fazenda-dvuhetazhnye",
+      "slug": "fazenda-dvuhetazhnye",
+      "stroka": 250
+    },
+    {
+      "nazvanie": "\"ФАЗЕНДА\" отель с бассейном и питанием",
+      "korotkaya": "abhazbereg.ru/fazenda",
+      "slug": "fazenda",
+      "stroka": 251
+    },
+    {
+      "nazvanie": "\"ФЕМЕЛИ\" база отдыха с бассейном и питанием",
+      "korotkaya": "abhazbereg.ru/femeli",
+      "slug": "femeli",
+      "stroka": 257
+    },
+    {
+      "nazvanie": "\"ФЕНИКС\" дом под ключ",
+      "korotkaya": "abhazbereg.ru/feniks",
+      "slug": "feniks",
+      "stroka": 254
+    },
+    {
+      "nazvanie": "\"ФЛАМИНГО\" гостевой дом",
+      "korotkaya": "abhazbereg.ru/flamingo",
+      "slug": "flamingo",
+      "stroka": 258
+    },
+    {
+      "nazvanie": "\"ФЛОРА\" частный домик",
+      "korotkaya": "abhazbereg.ru/flora",
+      "slug": "flora",
+      "stroka": 255
+    },
+    {
+      "nazvanie": "\"ФУЛЛ ХАУС\" домики с бассейном",
+      "korotkaya": "abhazbereg.ru/full-haus",
+      "slug": "full-haus",
+      "stroka": 259
+    },
+    {
+      "nazvanie": "\"ФЬЮЖН\" три домика с лаунж-зоной",
+      "korotkaya": "abhazbereg.ru/fyuzhn",
+      "slug": "fyuzhn",
+      "stroka": 260
+    },
+    {
+      "nazvanie": "\"ХЭППИ ЛЭНД\" домики двухэтажные",
+      "korotkaya": "abhazbereg.ru/heppi-lend",
+      "slug": "heppi-lend",
+      "stroka": 264
+    },
+    {
+      "nazvanie": "\"ЦАРСКОЕ СЕЛО АНХУА\" коттеджи",
+      "korotkaya": "abhazbereg.ru/tsarskoe-selo-anhua",
+      "slug": "tsarskoe-selo-anhua",
+      "stroka": 265
+    },
+    {
+      "nazvanie": "\"ЦЕНТРАЛЬНЫЙ\" дом под ключ",
+      "korotkaya": "abhazbereg.ru/tsentralnyy",
+      "slug": "tsentralnyy",
+      "stroka": 266
+    },
+    {
+      "nazvanie": "“ЧЕГЕМ” гостевой дом",
+      "korotkaya": "abhazbereg.ru/chegem",
+      "slug": "chegem",
+      "stroka": 267
+    },
+    {
+      "nazvanie": "\"ЧЕРНОМОРСКАЯ-1\" квартира 2-к",
+      "korotkaya": "abhazbereg.ru/chernomorskaya-1",
+      "slug": "chernomorskaya-1",
+      "stroka": 268
+    },
+    {
+      "nazvanie": "\"ЧЕРНОМОРСКАЯ-2\" квартира 2-к",
+      "korotkaya": "abhazbereg.ru/chernomorskaya",
+      "slug": "chernomorskaya",
+      "stroka": 269
+    },
+    {
+      "nazvanie": "\"ЭДЕМ\" домики",
+      "korotkaya": "abhazbereg.ru/edem",
+      "slug": "edem",
+      "stroka": 270
+    },
+    {
+      "nazvanie": "\"ЭКО ХАУС ПИТИУНТ\" домики с бассейном",
+      "korotkaya": "abhazbereg.ru/eko-haus-pitiunt",
+      "slug": "eko-haus-pitiunt",
+      "stroka": 271
+    },
+    {
+      "nazvanie": "\"ЭКОХОУМ\" коттедж-отель",
+      "korotkaya": "abhazbereg.ru/ekohoum",
+      "slug": "ekohoum",
+      "stroka": 272
+    },
+    {
+      "nazvanie": "\"ЭСМА\" - студия",
+      "korotkaya": "abhazbereg.ru/esma-studiya",
+      "slug": "esma-studiya",
+      "stroka": 273
+    },
+    {
+      "nazvanie": "\"ЭСМА\" домики с бассейном в Гудауте",
+      "korotkaya": "abhazbereg.ru/esma",
+      "slug": "esma",
+      "stroka": 274
+    },
+    {
+      "nazvanie": "\"ЮЖНОЕ СЧАСТЬЕ\" домики с бассейном и завтраками",
+      "korotkaya": "abhazbereg.ru/yuzhnoe-schaste",
+      "slug": "yuzhnoe-schaste",
+      "stroka": 275
+    },
+    {
+      "nazvanie": "\"ЮЖНОЕ УТРО\" двухкомнатные апартаменты",
+      "korotkaya": "abhazbereg.ru/yuzhnoe-utro",
+      "slug": "yuzhnoe-utro",
+      "stroka": 276
+    }
+  ]
+}
