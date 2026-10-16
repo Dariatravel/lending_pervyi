@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T12:09:44.898454+00:00",
+  "generated_at": "2026-10-16T17:32:44.937655+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 247,
@@ -1622,6 +1622,10 @@
           },
           {
             "kind": "price",
+            "text": "3500₽/сутки - с ноября по апрель"
+          },
+          {
+            "kind": "price",
             "text": "Комфорт четырехместный однокомнатный"
           },
           {
@@ -1639,6 +1643,10 @@
           {
             "kind": "price",
             "text": "4500₽/сутки - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽/сутки - с ноября по апрель"
           },
           {
             "kind": "price",
@@ -1662,6 +1670,14 @@
           },
           {
             "kind": "price",
+            "text": "4000₽/сутки - с ноября по апрель (до 4 человек)"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽/сутки - с ноября по апрель (до 6 человек)"
+          },
+          {
+            "kind": "price",
             "text": "Люкс двухкомнатный"
           },
           {
@@ -1679,6 +1695,14 @@
           {
             "kind": "price",
             "text": "5000₽/сутки - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽/сутки - с ноября по апрель (до 4 человек)"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽/сутки - с ноября по апрель (до 6 человек)"
           },
           {
             "kind": "price",
@@ -2368,6 +2392,10 @@
           {
             "kind": "price",
             "text": "4000Р - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "4500Р - с ноября по апрель"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/leto-kvartira-2k-1587/index.html",
@@ -2581,6 +2609,10 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
             "kind": "price",
             "text": "Номер с завтраками с боковым видом на море"
           },
@@ -2590,39 +2622,7 @@
           },
           {
             "kind": "price",
-            "text": "5500₽ - июль"
-          },
-          {
-            "kind": "price",
-            "text": "7500₽ - август"
-          },
-          {
-            "kind": "price",
-            "text": "5500₽ - сентябрь"
-          },
-          {
-            "kind": "price",
             "text": "5000₽ - октябрь, ноябрь до 8 (без завтраков)"
-          },
-          {
-            "kind": "price",
-            "text": "Номер с питанием полный пансион с боковым видом на море"
-          },
-          {
-            "kind": "note",
-            "text": "(за двухместное размещение)"
-          },
-          {
-            "kind": "price",
-            "text": "9000₽ - июль"
-          },
-          {
-            "kind": "price",
-            "text": "11000₽ - август"
-          },
-          {
-            "kind": "price",
-            "text": "8000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -2634,39 +2634,7 @@
           },
           {
             "kind": "price",
-            "text": "9900₽ - июль"
-          },
-          {
-            "kind": "price",
-            "text": "12700₽ - август"
-          },
-          {
-            "kind": "price",
-            "text": "9500₽ - сентябрь"
-          },
-          {
-            "kind": "price",
             "text": "9000₽ - октябрь, ноябрь до 8 (без завтраков)"
-          },
-          {
-            "kind": "price",
-            "text": "Двухкомнатный номер с питанием полный пансион с боковым видом на море"
-          },
-          {
-            "kind": "note",
-            "text": "(за четырехместное размещение)"
-          },
-          {
-            "kind": "price",
-            "text": "16200₽ - июль"
-          },
-          {
-            "kind": "price",
-            "text": "19000₽ - август"
-          },
-          {
-            "kind": "price",
-            "text": "15000₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -2679,6 +2647,90 @@
           {
             "kind": "price",
             "text": "Доп место с питанием полный пансион - 2700₽"
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "price",
+            "text": "Завтраки оплачиваются отдельно - 1500₽ за номер."
+          },
+          {
+            "kind": "price",
+            "text": "Номер с боковым видом на море"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - июнь до 15"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - июнь с 15"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Двухкомнатный номер с боковым видом на море"
+          },
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - июнь до 15"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - июнь с 15"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "10700₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Номер с прямым видом на море + 500₽"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место - 1500₽"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место с завтраками - 2200₽"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/belaya-dacha-otel-s-pitaniem-4630/index.html",
@@ -12133,12 +12185,20 @@
         ],
         "prices": [
           {
-            "kind": "price",
-            "text": "Акция в июне - 4500₽ домик🔥"
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
           },
           {
             "kind": "price",
-            "text": "5500₽ - май, июнь, июль, август, сентябрь, октябрь"
+            "text": "3000₽ - апрель"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - июнь, июль, август, сентябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/mokko-briz-dva-domika-4152/index.html",
@@ -12292,7 +12352,7 @@
           "details": {
             "telegram_post": "abhazbooking/4161",
             "telegram_url": "https://t.me/abhazbooking/4161",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/mokko-briz-dva-domika-4152/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/mokko-briz-dva-domika-4152/video-01-poster.jpg"
           }
         }
       ]
@@ -14811,12 +14871,24 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
             "kind": "price",
             "text": "Четырехместный коттедж:"
           },
           {
             "kind": "price",
-            "text": "4000₽ - июль, август"
+            "text": "3000₽ - май, июнь"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - август"
           },
           {
             "kind": "price",
@@ -14825,6 +14897,10 @@
           {
             "kind": "price",
             "text": "Большой пятиместный коттедж:"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - май, июнь"
           },
           {
             "kind": "price",
@@ -15516,8 +15592,32 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
             "kind": "price",
             "text": "2000₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - сентябрь, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - с ноября по май"
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
           },
           {
             "kind": "price",
@@ -20580,7 +20680,15 @@
           },
           {
             "kind": "price",
-            "text": "1500₽ - октябрь"
+            "text": "1500₽ - октябрь, ноябрь, декабрь до 25"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽ - с 25 декабря по 15 января🌲"
+          },
+          {
+            "kind": "price",
+            "text": "1500₽ - с января по апрель"
           },
           {
             "kind": "price",
@@ -20588,11 +20696,15 @@
           },
           {
             "kind": "price",
-            "text": "5000₽ - июль"
+            "text": "Трехместное"
           },
           {
             "kind": "price",
-            "text": "6000₽ - август"
+            "text": "4500₽ - июль"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - август"
           },
           {
             "kind": "price",
@@ -20600,7 +20712,15 @@
           },
           {
             "kind": "price",
-            "text": "1500₽ - октябрь"
+            "text": "1500₽ - октябрь, ноябрь, декабрь до 25"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽ - с 25 декабря по 15 января🌲"
+          },
+          {
+            "kind": "price",
+            "text": "1500₽ - с января по апрель"
           },
           {
             "kind": "price",
@@ -36303,12 +36423,12 @@
       "source_topic_id": 1082,
       "slug": "perl-dom-pod-klyuch-gudauta-1092",
       "title": "\"ПЕРЛ\" дом под ключ",
-      "summary": "Гудаута. ️ 0 минут до пляжа, размещение до 15 человек.",
+      "summary": "Гудаута. 0 минут до пляжа, размещение до 15 человек.",
       "excerpt": "Дом для семейного отдыха, для компании друзей, для небольших интеллигентных групп, для проведения ретритов",
       "city": "Гудаута",
       "location_text": "Гудаута, ул. Гумистинская 34",
-      "distance_text": "️ 0 минут до пляжа",
-      "beach_text": "️ 0 минут до пляжа",
+      "distance_text": "0 минут до пляжа",
+      "beach_text": "0 минут до пляжа",
       "capacity_text": "размещение до 15 человек",
       "page_url": "https://абхазберег.рф/kvartira/perl-dom-pod-klyuch-gudauta-1092/",
       "telegram_url": "https://t.me/abhkvartira/1083",
@@ -36317,7 +36437,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/perl-dom-pod-klyuch-gudauta-1092-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Гудаута. ️ 0 минут до пляжа, размещение до 15 человек.",
+        "lead": "Гудаута. 0 минут до пляжа, размещение до 15 человек.",
         "sections": [
           {
             "label": "✔️ТЕРРИТОРИЯ:",
@@ -36337,6 +36457,30 @@
           }
         ],
         "prices": [
+          {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
+            "kind": "price",
+            "text": "Дом целиком под ключ"
+          },
+          {
+            "kind": "price",
+            "text": "30 000₽/сутки - с октября по май"
+          },
+          {
+            "kind": "price",
+            "text": "Одна комната"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽/сутки - с октября по май"
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
           {
             "kind": "price",
             "text": "Дом целиком под ключ"
@@ -37216,6 +37360,10 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
             "kind": "price",
             "text": "5000₽ - июнь"
           },
@@ -37230,6 +37378,26 @@
           {
             "kind": "price",
             "text": "5000₽ - с октября по май"
+          },
+          {
+            "kind": "price",
+            "text": "С октября по апрель возможна длительная аренда - 30тыс/месяц."
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - сентябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142/index.html",
@@ -37438,6 +37606,10 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
             "kind": "price",
             "text": "8000₽ - июнь"
           },
@@ -37452,6 +37624,26 @@
           {
             "kind": "price",
             "text": "6000₽ - с октября по май"
+          },
+          {
+            "kind": "price",
+            "text": "С октября по апрель возможна длительная аренда - 45 тыс/месяц"
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "15000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - сентябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/index.html",
@@ -37664,6 +37856,10 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
             "kind": "price",
             "text": "5000₽/сутки - июнь"
           },
@@ -37682,6 +37878,34 @@
           {
             "kind": "price",
             "text": "5000₽/сутки - сентябрь с 15 числа"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽/сутки - с октября по май"
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽/сутки - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽/сутки - июль"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽/сутки - август"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽/сутки - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽/сутки - с октября по май"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/moreon-kvartira-2k-pitsunda-1391/index.html",
@@ -43361,11 +43585,23 @@
           },
           {
             "kind": "price",
-            "text": "2000₽/сутки - октябрь"
+            "text": "2000₽/сутки - октябрь, ноябрь, декабрь до 25"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽/сутки - с 25 декабря по 15 января🌲"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽/сутки - с 15 января по апрель"
           },
           {
             "kind": "price",
             "text": "Доп место 500₽/сутки"
+          },
+          {
+            "kind": "price",
+            "text": "Бронирование от трёх суток."
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/miraslava-mini-otel-3143/index.html",
@@ -43789,12 +44025,12 @@
       "source_topic_id": null,
       "slug": "saya-domiki-3134",
       "title": "\"САЯ\" домики",
-      "summary": "Пицунда. ️ 20 минут до пляжа, размещение до 5 человек.",
+      "summary": "Пицунда. 20 минут до пляжа, размещение до 5 человек.",
       "excerpt": "Домики выполнены из натурального дерева. Оснащение: кoндициoнер, холодильник, тв, вайфай. В каждом двухместная кровать, раскладной диван. Санузел с душем. Терраса с садовой мебелью",
       "city": "Пицунда",
       "location_text": "Пицунда, Агрба 24",
-      "distance_text": "️ 20 минут до пляжа",
-      "beach_text": "️ 20 минут до пляжа",
+      "distance_text": "20 минут до пляжа",
+      "beach_text": "20 минут до пляжа",
       "capacity_text": "размещение до 5 человек",
       "page_url": "https://абхазберег.рф/hotels/saya-domiki-3134/",
       "telegram_url": "https://t.me/abhazbooking/3134",
@@ -43803,17 +44039,17 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/saya-domiki-3134.jpg",
       "is_active": true,
       "details": {
-        "lead": "Пицунда. ️ 20 минут до пляжа, размещение до 5 человек.",
+        "lead": "Пицунда. 20 минут до пляжа, размещение до 5 человек.",
         "sections": [
           {
-            "label": "✔ДОМИКИ:",
+            "label": "✔️ДОМИКИ:",
             "lines": [
               "Домики выполнены из натурального дерева. Оснащение: кoндициoнер, холодильник, тв, вайфай. В каждом двухместная кровать, раскладной диван. Санузел с душем. Терраса с садовой мебелью.",
               "Всего на территории 4 домика, в каждом уникальный интерьер - атмосфера домашнего уюта."
             ]
           },
           {
-            "label": "✔ТЕРРИТОРИЯ:",
+            "label": "✔️ТЕРРИТОРИЯ:",
             "lines": [
               "Уютная общая кухня для самостоятельного приготовления еды, стиральная машинка, зона отдыха, мангальная, парковка.",
               "Ближайший продуктовый магазин в 200 м. Центральный рынок - 500м. Поблизости расположены множество фруктово-овощных точек, столовые, шашлычные.",
@@ -43822,7 +44058,7 @@
             ]
           },
           {
-            "label": "✔РЯДОМ:",
+            "label": "✔️РЯДОМ:",
             "lines": [
               "Продуктовые и хозяйственные магазины. Рынок центральный в 7 минутах пешком. Остановка, аптеки. Достопримечательности.",
               "Пляж в 20 минутах пешком, в Пицундской бухте, чистое море, сосновый берег."
@@ -43832,11 +44068,19 @@
         "prices": [
           {
             "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "note",
             "text": "(указаны за четырёхместное размещение)"
           },
           {
             "kind": "price",
-            "text": "3500₽/сутки - июнь до 15го"
+            "text": "2500₽/сутки - май"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽/сутки - июнь до 15го"
           },
           {
             "kind": "price",
@@ -43849,10 +44093,6 @@
           {
             "kind": "price",
             "text": "4000₽/сутки - сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "3500₽/сутки - октябрь"
           },
           {
             "kind": "price",
@@ -48670,6 +48910,10 @@
         "prices": [
           {
             "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "note",
             "text": "(указаны за домик, вместимость 3-4 человека)"
           },
           {
@@ -48837,7 +49081,7 @@
           "details": {
             "telegram_post": "abhazbooking/2927",
             "telegram_url": "https://t.me/abhazbooking/2927",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/moreon-domiki-2919/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/moreon-domiki-2919/video-01-poster.jpg"
           }
         }
       ]
@@ -62935,6 +63179,10 @@
           },
           {
             "kind": "price",
+            "text": "1500₽ - с октября по апрель"
+          },
+          {
+            "kind": "price",
             "text": "Отдельный домик"
           },
           {
@@ -63106,7 +63354,7 @@
           "details": {
             "telegram_post": "abhazbooking/5006",
             "telegram_url": "https://t.me/abhazbooking/5006",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/brigantina-gostevoy-dom-4997/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/brigantina-gostevoy-dom-4997/video-01-poster.jpg"
           }
         }
       ]
