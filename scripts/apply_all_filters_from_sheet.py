@@ -618,10 +618,22 @@ def main() -> None:
     # получили свежие фильтры из таблицы, поэтому берём их значения после цикла.
     ny_inherited: list[str] = []
     ny_unmatched: list[str] = []
+    # Своя строка в таблице есть, даже если ссылка не нашлась: пост перевыложен
+    # под новогодним заголовком («Бугенвиллея»: строка на пост 3044, slug …-3044,
+    # а message_id уже 5306). Такие объекты не трогаем — у них свои фильтры.
+    # Номера постов отельного канала и тем квартир — разные ряды чисел, не смешиваем.
+    sheet_ids_by_kind = {
+        'hotel': {message_id for channel, message_id in sheet_filters if channel != 'abhkvartira'},
+        'kvartira': {message_id for channel, message_id in sheet_filters if channel == 'abhkvartira'},
+    }
     active_listings = [row for row in listings if row.get('is_active', True) is not False]
     for row in active_listings:
         slug = str(row.get('slug') or '')
         if not slug or slug in sheet_slugs or not is_new_year_offer(row):
+            continue
+        sheet_message_ids = sheet_ids_by_kind.get(str(row.get('source_kind') or 'hotel'), set())
+        slug_id = re.search(r'-(\d+)$', slug)
+        if (slug_id and int(slug_id.group(1)) in sheet_message_ids) or int(row.get('source_message_id') or 0) in sheet_message_ids:
             continue
         if site_only and not listing_exists_on_site(row):
             continue
@@ -629,8 +641,11 @@ def main() -> None:
         parent_details = parent.get('details') if parent and isinstance(parent.get('details'), dict) else {}
         parent_filters = parent_details.get('filters') if isinstance(parent_details.get('filters'), dict) else {}
         inherited = {group: normalize_filter_values(parent_filters.get(group)) for group in GROUPS}
-        if not parent or not any(inherited.values()):
+        if not parent:
             ny_unmatched.append(str(row.get('title') or slug))
+            continue
+        if not any(inherited.values()):
+            ny_unmatched.append(f'{row.get("title") or slug} (у отеля {parent.get("slug")} нет фильтров)')
             continue
         details = row.get('details') if isinstance(row.get('details'), dict) else {}
         current = details.get('filters') if isinstance(details.get('filters'), dict) else {}

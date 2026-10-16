@@ -75,14 +75,15 @@ def find_parent_listing(row: dict[str, Any], listings: Iterable[dict[str, Any]])
             return []
         return [other for other in rows if name_stems <= _stems(other.get("title"))]
 
+    # По одному адресу бывают разные отели («Аква» и «Аиша», «Апра» и «Абырлаш»),
+    # поэтому название в кавычках, если оно есть, должно совпасть и здесь.
     address = _address_key(row.get("location_text"))
     if address:
         same_address = [other for other in candidates if _address_key(other.get("location_text")) == address]
+        if name_stems:
+            same_address = by_name(same_address)
         if len(same_address) == 1:
             return same_address[0]
-        if len(same_address) > 1:
-            narrowed = by_name(same_address)
-            return narrowed[0] if len(narrowed) == 1 else None
 
     named = by_name(candidates)
     return named[0] if len(named) == 1 else None
