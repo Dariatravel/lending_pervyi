@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T19:30:48.794001+00:00",
+  "generated_at": "2026-10-16T20:17:58.776282+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 247,
@@ -16759,6 +16759,10 @@
           }
         ],
         "prices": [
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
           {
             "kind": "note",
             "text": "(указаны за размещение 4 человека)"
@@ -35728,6 +35732,26 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
+            "kind": "price",
+            "text": "3000/сутки - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "1000/сутки - с ноября по май"
+          },
+          {
+            "kind": "price",
+            "text": "20000/месяц - с ноября по май (длительно)"
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
             "kind": "price",
             "text": "4000/сутки - июнь"
           },
@@ -35749,7 +35773,7 @@
           },
           {
             "kind": "price",
-            "text": "20000/месяц - с ноября по май"
+            "text": "20000/месяц - с ноября по май (длительно)"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/na-vysote-kvartira-pitsunda-1053/index.html",
@@ -35794,7 +35818,7 @@
           "details": {
             "telegram_post": "abhkvartira/1053",
             "telegram_url": "https://t.me/abhkvartira/1053",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/na-vysote-kvartira-pitsunda-1053/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/na-vysote-kvartira-pitsunda-1053/video-01-poster.jpg"
           }
         }
       ]
@@ -63671,10 +63695,6 @@
           },
           {
             "kind": "price",
-            "text": "3000₽ - октябрь"
-          },
-          {
-            "kind": "price",
             "text": "Четырехместный номер"
           },
           {
@@ -63684,10 +63704,6 @@
           {
             "kind": "price",
             "text": "5000₽ - с 11 по 30 сентября"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - октябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/flamingo-gostevoy-dom-5018/index.html",
