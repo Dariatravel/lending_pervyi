@@ -28,7 +28,9 @@ on:
     # Daily price refresh добавлен 08.09.2026: его пуш тоже идёт из-под
     # GITHUB_TOKEN, и без этого триггера свежие «Цены от …» доезжали до
     # бакета только со следующим ежечасным автосинком.
-    workflows: ["Watch Telegram", "Blog Sync", "Daily price refresh"]
+    # Filters from sheet добавлен 16.10.2026 по той же причине: фильтры из
+    # «БАЗЫ» (и новогодние — от своего отеля) иначе ждали следующего синка.
+    workflows: ["Watch Telegram", "Blog Sync", "Daily price refresh", "Filters from sheet"]
     types: [completed]
     branches: [main]
   workflow_dispatch:
