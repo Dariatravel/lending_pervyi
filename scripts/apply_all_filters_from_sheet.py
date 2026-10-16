@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from catalog_snapshot import load_listings as snapshot_load_listings, update_filters as snapshot_update_filters  # noqa: E402
 from derived_filters import HEATED_POOL, mentions_heated_pool  # noqa: E402
+from new_year_parent import find_parent_listing, is_new_year_offer  # noqa: E402
 
 ENV_PATH = ROOT / '.env.supabase.local'
 REPORT_PATH = ROOT / 'output' / 'all_filters_sync_report.txt'
@@ -546,6 +547,7 @@ def main() -> None:
     group_changed: Counter[str] = Counter()
     group_assigned: Counter[str] = Counter()
     not_found_links: list[str] = []
+    sheet_slugs: set[str] = set()
 
     for key, new_filters in sheet_filters.items():
         listing = listing_map.get(key)
@@ -566,6 +568,7 @@ def main() -> None:
             not_found_links.append(tg_source_by_key[key])
             continue
 
+        sheet_slugs.add(str(listing.get('slug') or ''))
         if site_only and not listing_exists_on_site(listing):
             skipped_not_on_site += 1
             continue
@@ -610,6 +613,39 @@ def main() -> None:
             snapshot_updated += 1
         updated += 1
 
+    # Новогодние предложения без своей строки в таблице — фильтры их отеля
+    # (решение Дарьи 16.10.2026, scripts/new_year_parent.py). Отели выше уже
+    # получили свежие фильтры из таблицы, поэтому берём их значения после цикла.
+    ny_inherited: list[str] = []
+    ny_unmatched: list[str] = []
+    active_listings = [row for row in listings if row.get('is_active', True) is not False]
+    for row in active_listings:
+        slug = str(row.get('slug') or '')
+        if not slug or slug in sheet_slugs or not is_new_year_offer(row):
+            continue
+        if site_only and not listing_exists_on_site(row):
+            continue
+        parent = find_parent_listing(row, active_listings)
+        parent_details = parent.get('details') if parent and isinstance(parent.get('details'), dict) else {}
+        parent_filters = parent_details.get('filters') if isinstance(parent_details.get('filters'), dict) else {}
+        inherited = {group: normalize_filter_values(parent_filters.get(group)) for group in GROUPS}
+        if not parent or not any(inherited.values()):
+            ny_unmatched.append(str(row.get('title') or slug))
+            continue
+        details = row.get('details') if isinstance(row.get('details'), dict) else {}
+        current = details.get('filters') if isinstance(details.get('filters'), dict) else {}
+        if all(normalize_filter_values(current.get(group)) == inherited[group] for group in GROUPS):
+            continue
+        details['filters'] = inherited
+        row['details'] = details
+        if not snapshot_only:
+            patch_listing_details(supabase_url, service_role, int(row['id']), details)
+        if snapshot_update_filters(slug, inherited):
+            snapshot_updated += 1
+        updated += 1
+        ny_inherited.append(f'{row.get("title") or slug} ← {parent.get("title") or parent.get("slug")}')
+        print(f'  Новый год: {slug} ← фильтры {parent.get("slug")}')
+
     lines: list[str] = []
     lines.append('Готово. Массовый перенос фильтров из СОЦСЕТИ выполнен.')
     lines.append(f'Режим snapshot-only: {snapshot_only}')
@@ -639,6 +675,14 @@ def main() -> None:
             tg_link = get_cell(row, 'tg_link')
             if has_value(tg_link) and parse_telegram_link(tg_link) is None:
                 lines.append(f'- {tg_link}')
+
+    if ny_inherited or ny_unmatched:
+        lines.append('')
+        lines.append(f'Новогодние предложения — фильтры отеля: обновлено {len(ny_inherited)}')
+        lines.extend(f'- {item}' for item in ny_inherited)
+        if ny_unmatched:
+            lines.append('Отель однозначно не найден (фильтры не тронуты):')
+            lines.extend(f'- {title}' for title in ny_unmatched)
 
     if not_found_links:
         lines.append('')
