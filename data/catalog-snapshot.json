@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T17:32:44.937655+00:00",
+  "generated_at": "2026-10-16T19:30:48.794001+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 247,
@@ -70026,15 +70026,33 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-v-gostevom-komplekse-fazenda-5281/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "breakfast",
+            "cafe"
+          ],
+          "price": [
+            "midrange"
+          ],
           "city": [
             "pitsunda"
           ],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "beach": [
+            "pine-pebble-ldzaa-pitsunda"
+          ],
+          "room": [
+            "pool",
+            "heated-pool",
+            "tv",
+            "kitchen",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "pets"
+          ]
         }
       },
       "id": 1211,
@@ -70957,14 +70975,29 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "full-board"
+          ],
+          "price": [
+            "premium"
+          ],
           "city": [
             "gagra"
           ],
-          "beach": [],
-          "room": [],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "pool",
+            "heated-pool",
+            "balcony",
+            "five-plus",
+            "two-room-plus"
+          ],
           "stay": []
         }
       },
@@ -71201,13 +71234,33 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
+          "distance": [
+            "over-10"
+          ],
+          "food": [
+            "breakfast",
+            "cafe"
+          ],
+          "price": [
+            "premium"
+          ],
           "city": [],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "pool",
+            "heated-pool",
+            "balcony",
+            "kitchen",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "cottages",
+            "turnkey-house",
+            "pets"
+          ]
         }
       },
       "id": 1215,
@@ -72710,15 +72763,34 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
+          "distance": [
+            "beachfront",
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "premium"
+          ],
           "city": [
             "ldzaa"
           ],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "beach": [
+            "pitsunda-bay-mixed"
+          ],
+          "room": [
+            "sea-view",
+            "terrace",
+            "tv",
+            "five-plus",
+            "two-room-plus",
+            "beachfront-room"
+          ],
+          "stay": [
+            "cottages",
+            "pets"
+          ]
         }
       },
       "id": 1221,
