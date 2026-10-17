@@ -20,7 +20,9 @@ from __future__ import annotations
 import re
 from typing import Any, Iterable
 
-NEW_YEAR_RE = re.compile(r"НОВЫЙ\s+ГОД|НОВОГОДН", re.I)
+# Новогодние предложения и спецпредложения (17.10.2026: «СПЕЦПРЕДЛОЖЕНИЕ НА МЕЖСЕЗОНЬЕ
+# «ОТПРАВЬ РОДИТЕЛЕЙ В АБХАЗИЮ» ❤ «ПЛЯЖНЫЙ КОМПЛЕКС 151»…») — фильтры своего отеля.
+NEW_YEAR_RE = re.compile(r"НОВЫЙ\s+ГОД|НОВОГОДН|СПЕЦ\s*-?\s*ПРЕДЛОЖЕН", re.I)
 _QUOTED_RE = re.compile(r"[«\"“]([^»\"”]{2,80})[»\"”]")
 _WORD_RE = re.compile(r"[а-яa-z0-9]+")
 # Слова, которые не отличают один объект от другого.
@@ -59,6 +61,11 @@ def quoted_name(title: Any) -> str:
     return match.group(1).strip() if match else ""
 
 
+def quoted_names(title: Any) -> list[str]:
+    """Все названия в кавычках: у спецпредложения первым бывает название акции, а не отеля."""
+    return [m.strip() for m in _QUOTED_RE.findall(str(title or "")) if m.strip()]
+
+
 def find_parent_listing(row: dict[str, Any], listings: Iterable[dict[str, Any]]) -> dict[str, Any] | None:
     """Летний объект того же отеля для новогоднего предложения; None — не нашли однозначно."""
     candidates = [
@@ -68,12 +75,14 @@ def find_parent_listing(row: dict[str, Any], listings: Iterable[dict[str, Any]])
         and other.get("is_active", True)
         and not is_new_year_offer(other)
     ]
-    name_stems = _stems(quoted_name(row.get("title")))
+    names = [stems for stems in (_stems(n) for n in quoted_names(row.get("title"))) if stems]
+    name_stems = bool(names)
 
     def by_name(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        if not name_stems:
+        # Подходит, если совпало хотя бы одно из названий в кавычках.
+        if not names:
             return []
-        return [other for other in rows if name_stems <= _stems(other.get("title"))]
+        return [other for other in rows if any(stems <= _stems(other.get("title")) for stems in names)]
 
     # По одному адресу бывают разные отели («Аква» и «Аиша», «Апра» и «Абырлаш»),
     # поэтому название в кавычках, если оно есть, должно совпасть и здесь.
