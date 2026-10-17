@@ -1704,18 +1704,20 @@ def retire_replaced_listing(old_row: dict[str, Any], new_slug: str, source_kind:
 
 
 _HOTEL_POST_EXISTS: dict[int, bool] = {}
+_HOTEL_CHANNEL: dict[str, Any] = {}
 
 
 async def hotel_post_still_exists(client: TelegramClient, message_id: Any) -> bool:
     """Старый пост объекта ещё лежит в отельном канале?
 
-    Правило Дарьи 17.10.2026: новый пост заменяет объект на сайте, только если
-    это полная перевыкладка — старый пост удалён, новый размещён. Если старый
-    пост на месте, новый (спецпредложение на межсезонье, Новый год и т. п.)
-    размещается дополнительно, отдельным объектом. Раньше точечный синк видел
-    «неиспользованным» любой объект, чей пост не входил в цели, и спецпредложение
-    «ПЛЯЖНЫЙ КОМПЛЕКС 151» (5403) заняло место основного поста 4620, а новогодний
-    пост «Бугенвиллеи» (5306) — место 3044.
+    Правило Дарьи 17.10.2026: спецпредложения (межсезонье, Новый год и т. п.)
+    размещаются дополнительно, отдельным объектом. Основной объект им отдаётся,
+    только если это полная перевыкладка — старый пост удалён. Пост с тем же
+    названием по-прежнему считается перевыкладкой (сопоставление по title_key),
+    эта проверка — для совпадения только по «бренду» при другом названии.
+    Раньше точечный синк видел «неиспользованным» любой объект вне целей, и
+    спецпредложение 5403 заняло основной «ПЛЯЖНЫЙ КОМПЛЕКС 151» (4620), а
+    новогодний 5306 — «Бугенвиллею» (3044).
 
     При сбое проверки считаем, что пост есть: лишний отдельный объект лучше,
     чем потерянный основной.
@@ -1729,8 +1731,9 @@ async def hotel_post_still_exists(client: TelegramClient, message_id: Any) -> bo
     if msg_id in _HOTEL_POST_EXISTS:
         return _HOTEL_POST_EXISTS[msg_id]
     try:
-        entity = await client.get_entity('abhazbooking')
-        message = await client.get_messages(entity, ids=msg_id)
+        if 'entity' not in _HOTEL_CHANNEL:
+            _HOTEL_CHANNEL['entity'] = await client.get_entity('abhazbooking')
+        message = await client.get_messages(_HOTEL_CHANNEL['entity'], ids=msg_id)
         exists = message is not None and not getattr(message, 'action', None)
     except Exception as error:  # noqa: BLE001
         print(f'[warn] не удалось проверить пост {msg_id}: {error} — считаем, что он есть', flush=True)
@@ -1779,15 +1782,6 @@ async def materialize_object(client: TelegramClient, supa: SupabaseClient | None
         duplicate_row = None
     else:
         duplicate_row = find_active_duplicate_by_title(source_kind, title)
-        if duplicate_row is not None and source_kind == 'hotel':
-            # Отель с тем же названием уже есть. Заменяем его только при полной
-            # перевыкладке (его пост удалён). Если его пост на месте — оба поста
-            # живые: новый объект размещается дополнительно, старый не трогаем.
-            # Это же касается более старого поста при уже опубликованном новом:
-            # раз мы его сейчас прочитали, он в канале, и «остатком» он не считается.
-            dup_id = int(duplicate_row.get('source_message_id') or 0)
-            if dup_id >= canonical.id or not await replaces_existing_hotel(client, duplicate_row, canonical.id):
-                duplicate_row = None
         if duplicate_row is not None and int(duplicate_row.get('source_message_id') or 0) >= canonical.id:
             # Пост старее уже опубликованного объекта с тем же названием
             # (остаток перевыкладки) — копию не создаём.
@@ -2139,9 +2133,9 @@ async def main() -> None:
                 for row in hotel_by_title.get(key, []):
                     if row['id'] in processed_hotel_rows:
                         continue
-                    # «Не в целях синка» ещё не значит «пост удалён»: в точечном
-                    # режиме в цели попадают только новые посты (правило 17.10.2026).
-                    if row['id'] in unused_rows and await replaces_existing_hotel(client, row, obj['canonical'].id):
+                    # То же название — перевыкладка: новый пост занимает объект
+                    # (в том числе когда старый пост удалят чуть позже).
+                    if row['id'] in unused_rows:
                         matched_row = row
                         break
             if matched_row is None:
@@ -2155,9 +2149,15 @@ async def main() -> None:
                         continue
                     identity_candidates[row['id']] = row
                 if len(identity_candidates) == 1:
+                    # Название другое, совпал только «бренд» (СПЕЦПРЕДЛОЖЕНИЕ … «ПЛЯЖНЫЙ
+                    # КОМПЛЕКС 151», НОВЫЙ ГОД В «БУГЕНВИЛЛЕЯ»). Объект отдаём новому посту,
+                    # только если старый пост удалён; иначе новый — отдельно, а старый
+                    # объект помечаем обработанным, чтобы полный прогон его не удалил.
                     candidate = next(iter(identity_candidates.values()))
                     if await replaces_existing_hotel(client, candidate, obj['canonical'].id):
                         matched_row = candidate
+                    else:
+                        processed_hotel_rows.add(candidate['id'])
             try:
                 result = await materialize_object(client, supa, matched_row, obj, slug_pool)
             except Exception as error:  # noqa: BLE001
