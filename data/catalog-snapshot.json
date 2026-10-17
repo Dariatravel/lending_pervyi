@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-17T06:28:55.135556+00:00",
+  "generated_at": "2026-10-17T09:53:04.010214+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 249,
@@ -73343,15 +73343,34 @@
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/index.html",
         "filters": {
-          "distance": [],
-          "food": [],
-          "price": [],
+          "distance": [
+            "beachfront",
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "premium"
+          ],
           "city": [
             "ldzaa"
           ],
-          "beach": [],
-          "room": [],
-          "stay": []
+          "beach": [
+            "pitsunda-bay-mixed"
+          ],
+          "room": [
+            "sea-view",
+            "terrace",
+            "tv",
+            "five-plus",
+            "two-room-plus",
+            "beachfront-room"
+          ],
+          "stay": [
+            "cottages",
+            "pets"
+          ]
         }
       },
       "id": 1223,
