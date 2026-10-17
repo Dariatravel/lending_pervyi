@@ -98,7 +98,8 @@ def find_parent_listing(row: dict[str, Any], listings: Iterable[dict[str, Any]])
     # Без совпадения адреса: по последнему названию — как есть; по остальным
     # (вероятно, название акции) не берём — «ЛЕТО» или «ВИД НА МОРЕ» найдут чужой отель.
     # И только в том же городе (первая часть адреса до запятой), если адрес есть.
-    if names:
+    # Без адреса и при нескольких названиях не угадываем: непонятно, где акция, а где отель.
+    if names and not (not address and len(names) > 1):
         found = matching(candidates, names[0])
         city = _city_key(row.get("location_text"))
         if city:
