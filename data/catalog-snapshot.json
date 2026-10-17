@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-16T20:17:58.776282+00:00",
+  "generated_at": "2026-10-17T06:12:26.277814+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 247,
-  "listings_hotels": 194,
+  "listings_total": 249,
+  "listings_hotels": 196,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -3149,110 +3149,141 @@
       "source_topic_id": null,
       "slug": "plyazhnyy-kompleks-151-na-beregu-4620",
       "title": "\"ПЛЯЖНЫЙ КОМПЛЕКС 151\" на берегу",
-      "summary": "Лдзаа. 0 минут до пляжа. Песок и мелкая галька, размещение до 4 человек.",
-      "excerpt": "Подарите родителям или близким людям продолжительный отдых у моря осенью, зимой или весной вдали от городской суеты",
+      "summary": "Лдзаа. 0 минут до пляжа (песок, мелкая галька), размещение до 5 человек.",
+      "excerpt": "Всего шесть стильных двухуровневых домиков. Размещение до 5 человек",
       "city": "Лдзаа",
       "location_text": "Лдзаа, ул. Приморская, 18А",
-      "distance_text": "0 минут до пляжа. Песок и мелкая галька",
-      "beach_text": "0 минут до пляжа. Песок и мелкая галька",
-      "capacity_text": "размещение до 4 человек",
+      "distance_text": "0 минут до пляжа (песок, мелкая галька)",
+      "beach_text": "0 минут до пляжа (песок, мелкая галька)",
+      "capacity_text": "размещение до 5 человек",
       "page_url": "https://абхазберег.рф/hotels/plyazhnyy-kompleks-151-na-beregu-4620/",
       "telegram_url": "https://t.me/abhazbooking/4620",
-      "published_at": "2026-10-16",
+      "published_at": "2026-05-27",
       "has_video": true,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-4620.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. 0 минут до пляжа. Песок и мелкая галька, размещение до 4 человек.",
+        "lead": "Лдзаа. 0 минут до пляжа (песок, мелкая галька), размещение до 5 человек.",
         "sections": [
-          {
-            "label": "",
-            "lines": [
-              "Подарите родителям или близким людям продолжительный отдых у моря осенью, зимой или весной вдали от городской суеты.",
-              "Свежий морской воздух, тихий пляж, прогулки по побережью, рыбалка и уютный двухуровневый домик с тёплым полом — всё необходимое для спокойного отдыха в межсезонье.",
-              "Предложение действует с ноября по 20 апреля, кроме периода с 25 декабря по 15 января."
-            ]
-          },
           {
             "label": "✔️ДОМИКИ:",
             "lines": [
-              "На территории расположено шесть стильных двухуровневых домиков.",
-              "В каждом домике установлены двуспальная или две односпальные кровати и две односпальные кровати на втором ярусе. Из мебели предусмотрены шкаф, комод и прикроватные тумбочки.",
-              "Есть собственный санузел с тропическим душем и тёплый пол.",
-              "Оснащение: кондиционер, телевизор, Wi-Fi, холодильник, чайник, фен и сейф.",
-              "У каждого домика есть собственная веранда со столиком, стульями и видом на море."
+              "Всего шесть стильных двухуровневых домиков. Размещение до 5 человек.",
+              "В домиках: двуспальная и две односпальные кровати, комод, шкаф, прикроватные тумбочки. Доп место для 5 человека - раскладная кровать. Сан узел с тропическим душем. Теплый пол.",
+              "Оснащение: кондиционер, телевизор, Wi‑Fi, холодильник, чайник, фен, сейф.",
+              "Веранда у каждого домика со столиком и стульями и с видом на море."
+            ]
+          },
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Всего два однокомнатных номера. Размещение до 3 человек.",
+              "В номерах: двуспальная кровать, комод, шкаф, прикроватная тумбочка. Сан узел с душем. Доп место для 3 человека - раскладная кровать.",
+              "Один двухкомнатный номер. Размещение до 5 человек.",
+              "В номере: двуспальная и двухъярусная кровати, прикроватные тумбочки, комод, шкаф, пуфики. В другой комнате односпальная кровать, прикроватная тумбочка. Сан узел с тропическим душем. Теплый пол.",
+              "Оснащение во всех номерах: кондиционер, телевизор, Wi‑Fi, мини-холодильник, чайник, фен."
             ]
           },
           {
             "label": "✔️ТЕРРИТОРИЯ:",
             "lines": [
-              "В межсезонье пользование бунгало с шезлонгами на пляже в свободном доступе.",
-              "Общая оборудованная кухня для самостоятельного приготовления с личным холодильником для каждого домика.",
-              "Мангальная зона.",
+              "Комплекс на пляже с Гастробар 151 и зоной отдыха.",
+              "Есть площадка для волейбола, САП-станция, массаж, кальян, бунгало, зонты и лежаки.",
+              "Для гостей домиков и номеров — бесплатный зонт и 2 лежака около домика/номера.",
+              "Парковка во дворе на 10 автомобилей.",
               "Есть генератор.",
-              "Парковка на 10 автомобилей.",
-              "В стоимость проживания включена аренда волейбольной площадки 1 час в день. Если больше 1 часа, то 1000/час.",
-              "Гастробар 151 на территории не работает.",
-              "Включен трансфер с вокзала или аэропорта и обратно."
-            ]
-          },
-          {
-            "label": "✔️РЫБАЛКА И ОТДЫХ НА МОРЕ:",
-            "lines": [
-              "Гости могут бесплатно рыбачить на территории. Необходимые снасти предоставляются.",
-              "Также бесплатно предоставляется весельная лодка для самостоятельного выхода в море.",
-              "Можно поймать рыбу и сразу приготовить её на мангале."
+              "Гастробар 151 работает до 30 сентября."
             ]
           },
           {
             "label": "✔️РЯДОМ:",
             "lines": [
-              "Рядом остановка общественного транспорта, продуктовый магазин будет работать, большая детская площадка."
+              "Рядом остановка, продуктовый магазин, кафе, столовая, экскурсионные точки, сувенирные, большая детская площадка.",
+              "СПЕЦ ПРЕДЛОЖЕНИЕ НА МЕЖСЕЗОНЬЕ 🎄🔥: «Отправь родителей в Абхазию».",
+              "Действует с ноября по 20 апреля, исключение с 25.12 по 15.01",
+              "Стоимость: 100000 в месяц.",
+              "В стоимость входит проживание в коттедже на 4х , трансфер аэропорт/вокзал и обратно, парковка, бунгало с лежаками в свободном доступе, рыбалка на территории ( снасти и весельная лодка)",
+              "Пользование общей кухней и мангалом (для каждого коттеджа в ней предусмотрен личный холодильник)."
             ]
           },
           {
             "label": "✔️УСЛОВИЯ:",
             "lines": [
-              "Размещение с животными возможно по согласованию.",
-              "По бронированию и наличию номеров пишите в телеграм:",
-              "@abhazbooking_online",
+              "Размещение с животными возможно.",
+              "По бронированию и наличию номеров пишите в сообщения @abhazbooking_online",
               "(будьте внимательны ⚠️только этот контакт для брони)",
-              "Я НА СВЯЗИ 📲",
-              "в MAX: max.ru/id741113115256_bot",
-              "ВК-чат: vk.cc/cQQnBn",
-              "WhatsApp +7940-900-33-40",
-              "(только сообщение, звонок не пройдёт)"
+              "Я на связи WhatsApp/MAX: +7940-900-33-40"
             ]
           }
         ],
         "prices": [
           {
             "kind": "price",
+            "text": "Гастробар работает до 30 сентября."
+          },
+          {
+            "kind": "heading",
+            "text": "Домик"
+          },
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "15000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - сентябрь, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - с 25 декабря по 15 января, Новый год🎄"
+          },
+          {
+            "kind": "price",
+            "text": "Однокомнатный номер"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - сентябрь, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Двухкомнатный номер"
+          },
+          {
+            "kind": "note",
+            "text": "(за пятиместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - октябрь"
+          },
+          {
+            "kind": "note",
+            "text": "Доп. место — 1000₽."
+          },
+          {
+            "kind": "price",
+            "text": "Бронирование от трёх суток."
+          },
+          {
+            "kind": "price",
             "text": "Ноябрь, декабрь до 25, с 16 января, февраль, март, апрель до 20го"
           },
           {
             "kind": "price",
-            "text": "100000₽ - месяц за домик на 4х"
-          },
-          {
-            "kind": "price",
-            "text": "Период с 25 декабря по 15 января в предложение не входит."
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - рыбалка с егерем в море 3 часа с человека"
-          },
-          {
-            "kind": "price",
-            "text": "5000₽ - рыбалка с егерем на реке весь день с человека"
-          },
-          {
-            "kind": "price",
-            "text": "Выход в море с егерем возможен при подходящей погоде. Продолжительность - 3 часа. Стоимость 3000₽ с человека."
-          },
-          {
-            "kind": "price",
-            "text": "Рыбалка на реке с егерем рассчитана на целый день. Стоимость 5000₽ с человека."
+            "text": "100000 - месяц за домик на 4х"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/plyazhnyy-kompleks-151-na-beregu-4620/index.html",
@@ -3409,8 +3440,8 @@
           "storage_path": "videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01.mp4",
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01.mp4",
           "details": {
-            "telegram_post": "abhazbooking/5412",
-            "telegram_url": "https://t.me/abhazbooking/5412",
+            "telegram_post": "abhazbooking/4629",
+            "telegram_url": "https://t.me/abhazbooking/4629",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-4620/video-01-poster.jpg"
           }
         }
@@ -46487,92 +46518,100 @@
       "source_topic_id": null,
       "slug": "bugenvilleya-otel-s-basseynom-3044",
       "title": "\"БУГЕНВИЛЛЕЯ\" отель с бассейном",
-      "summary": "Лдзаа. 5 минут до соснового пляжа, размещение до 5 человек.",
-      "excerpt": "31 декабря для гостей состоится детская и взрослая анимационная программа",
+      "summary": "Лдзаа. сосновый пляж 5 минут, размещение до 5 человек.",
+      "excerpt": "В отеле 3 этажа с панорамными окнами и 35 номеров",
       "city": "Лдзаа",
-      "location_text": "Лдзаа, ул. Аиааиа, д. 35",
-      "distance_text": "5 минут до соснового пляжа",
-      "beach_text": "5 минут до соснового пляжа",
-      "capacity_text": "Размещение до 5 человек",
+      "location_text": "Лдзаа, ул. Аиааира, д. 35",
+      "distance_text": "сосновый пляж 5 минут",
+      "beach_text": "сосновый пляж 5 минут",
+      "capacity_text": "размещение до 5 человек",
       "page_url": "https://абхазберег.рф/hotels/bugenvilleya-otel-s-basseynom-3044/",
       "telegram_url": "https://t.me/abhazbooking/3044",
-      "published_at": "2026-10-06",
-      "has_video": false,
+      "published_at": "2026-01-23",
+      "has_video": true,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bugenvilleya-otel-s-basseynom-3044.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. 5 минут до соснового пляжа, размещение до 5 человек.",
+        "lead": "Лдзаа. сосновый пляж 5 минут, размещение до 5 человек.",
         "sections": [
-          {
-            "label": "✔️НОВЫЙ ГОД:",
-            "lines": [
-              "31 декабря для гостей состоится детская и взрослая анимационная программа.",
-              "В новогоднюю ночь предусмотрен праздничный салют.",
-              "Мандарины, апельсины и киви для гостей — без ограничений.",
-              "Подогреваемый бассейн работает в новогодние праздники."
-            ]
-          },
-          {
-            "label": "✔️ПИТАНИЕ:",
-            "lines": [
-              "На территории работает кафе.",
-              "Питание не входит в стоимость и оплачивается отдельно.",
-              "Индивидуальный новогодний стол гости могут заказать за дополнительную плату."
-            ]
-          },
           {
             "label": "✔️НОМЕРА:",
             "lines": [
-              "В трёхэтажном отеле с панорамными окнами расположено 35 номеров.",
-              "Все номера имеют балконы с видом на бассейн или зелёные окрестности. На первом этаже предусмотрены тёплые полы.",
-              "В номерах: кровати бокс спринг - совмещаются в двухместную, односпальная кровать, шкаф платяной, стол.",
-              "Оснащение: кондиционер, холодильник, телевизор с интернетом, Wi-Fi, чайник, фен и сушилка для одежды.",
-              "По запросу предоставляются халаты и пляжные полотенца.",
-              "Однокомнатный Стандарт — 22 м²",
-              "Двуспальная и односпальная кровати. Доп место — раскладная кровать. Размещение до 4 человек.",
-              "Двухкомнатный номер — 35 м²",
-              "Двуспальная и односпальная кровати, диван. Размещение до 5 человек."
+              "В отеле 3 этажа с панорамными окнами и 35 номеров.",
+              "Кровати бокс спринг - совмещаются в двухместную, шкаф платяной, стол. Оснащение: кондиционер, холодильник, тв с интернетом, WiFi, чайник, фен. Есть сушилка для одежды. На первом этаже теплые полы.",
+              "По запросу халаты и пляжные полотенца.",
+              "Номер 1-комнатный 22м². Двуспальная и односпальная кровати, доп место раскладывающаяся кровать. До 4 человек.",
+              "Номер 2-комнатный 35м². Кровать двуспальная/ односпальная, диван.",
+              "Все номера с балконами, вид либо на бассейн либо на зеленые окрестности."
             ]
           },
           {
             "label": "✔️ТЕРРИТОРИЯ:",
             "lines": [
-              "Подогреваемый бассейн с пресной водой и отдельной детской зоной. Вокруг бассейна установлены шезлонги, столики и зонты.",
-              "На втором этаже расположена веранда с панорамным видом.",
-              "Также на территории предусмотрены небольшая детская площадка и просторная парковочная зона."
+              "Бассейн подогреваемый с пресной водой и с зоной для детей. Вокруг шезлонги, столики, зонты.",
+              "Есть столовая - завтраки можно заказать на месте: с 8:00 до 11:00 шведский стол, а после работает кафе/бар.",
+              "Веранда на 2 этаже с панорамным видом.",
+              "Большая парковочная зона на территории отеля.",
+              "Небольшая детская площадка.",
+              "Детская анимация раз в неделю."
             ]
           },
           {
-            "label": "✔️УСЛОВИЯ:",
+            "label": "✔️РЯДОМ:",
             "lines": [
-              "Размещение с животными возможно по согласованию.",
-              "По бронированию и наличию номеров пишите в телеграм:",
-              "@abhazbooking_online",
-              "(будьте внимательны ⚠️только этот контакт для брони)",
-              "Я НА СВЯЗИ 📲",
-              "в MAX: max.ru/id741113115256_bot",
-              "ВК-чат: vk.cc/cQQnBn",
-              "WhatsApp +7940-900-33-40",
-              "(только сообщение, звонок не пройдёт)"
+              "Ближайший пляж - мелко-галечный, сосновый берег. Разные водные развлечения.",
+              "В шаговой доступности несколько продуктовых магазинов. Разные вкусные кафе: Тис, Парус Тропиканка (в сосновой роще), Сарос."
             ]
           }
         ],
         "prices": [
           {
-            "kind": "price",
-            "text": "С 25 декабря по 15 января:"
+            "kind": "heading",
+            "text": "Стандарт"
+          },
+          {
+            "kind": "note",
+            "text": "(за трехместное размещение)"
           },
           {
             "kind": "price",
-            "text": "4000₽ - стандарт (за 3х местное размещение)"
+            "text": "5000₽ - сентябрь до 17"
           },
           {
             "kind": "price",
-            "text": "Доп место для четвертого гостя — раскладная кровать, 1000₽"
+            "text": "3000₽ - сентябрь с 17"
           },
           {
             "kind": "price",
-            "text": "7000₽ - двухкомнатный номер (за 5 местное размещение)"
+            "text": "3000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - с 20 декабря по 20 января 🌲"
+          },
+          {
+            "kind": "note",
+            "text": "Дополнительное место четвертое - раскладная кровать 1000₽."
+          },
+          {
+            "kind": "price",
+            "text": "Двухкомнатный номер"
+          },
+          {
+            "kind": "note",
+            "text": "(за размещение до 5 человек)"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - с 20 декабря по 20 января 🌲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/bugenvilleya-otel-s-basseynom-3044/index.html",
@@ -46594,6 +46633,7 @@
           ],
           "room": [
             "pool",
+            "heated-pool",
             "balcony",
             "tv",
             "five-plus",
@@ -46720,12 +46760,16 @@
           "id": 1035011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "image/jpeg",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/bugenvilleya-otel-s-basseynom-3044/photo-10.jpg",
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/bugenvilleya-otel-s-basseynom-3044/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "hotels/bugenvilleya-otel-s-basseynom-3044/photo-10.jpg",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/bugenvilleya-otel-s-basseynom-3044/photo-10.jpg",
-          "details": {}
+          "storage_path": "videos/hotels/bugenvilleya-otel-s-basseynom-3044/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/bugenvilleya-otel-s-basseynom-3044/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/3053",
+            "telegram_url": "https://t.me/abhazbooking/3053",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/bugenvilleya-otel-s-basseynom-3044/video-01-poster.jpg"
+          }
         }
       ]
     },
@@ -72931,6 +72975,511 @@
           "storage_path": "hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-10.jpg",
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/photo-10.jpg",
           "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5306,
+      "source_topic_id": null,
+      "slug": "novyy-god-v-bugenvilleya-s-basseynom-5306",
+      "title": "НОВЫЙ ГОД В «БУГЕНВИЛЛЕЯ» С БАССЕЙНОМ",
+      "summary": "Лдзаа. 5 минут до соснового пляжа, размещение до 5 человек.",
+      "excerpt": "31 декабря для гостей состоится детская и взрослая анимационная программа",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, ул. Аиааиа, д. 35",
+      "distance_text": "5 минут до соснового пляжа",
+      "beach_text": "5 минут до соснового пляжа",
+      "capacity_text": "Размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/",
+      "telegram_url": "https://t.me/abhazbooking/5306",
+      "published_at": "2026-10-06",
+      "has_video": false,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-bugenvilleya-s-basseynom-5306.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 5 минут до соснового пляжа, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️НОВЫЙ ГОД:",
+            "lines": [
+              "31 декабря для гостей состоится детская и взрослая анимационная программа.",
+              "В новогоднюю ночь предусмотрен праздничный салют.",
+              "Мандарины, апельсины и киви для гостей — без ограничений.",
+              "Подогреваемый бассейн работает в новогодние праздники."
+            ]
+          },
+          {
+            "label": "✔️ПИТАНИЕ:",
+            "lines": [
+              "На территории работает кафе.",
+              "Питание не входит в стоимость и оплачивается отдельно.",
+              "Индивидуальный новогодний стол гости могут заказать за дополнительную плату."
+            ]
+          },
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "В трёхэтажном отеле с панорамными окнами расположено 35 номеров.",
+              "Все номера имеют балконы с видом на бассейн или зелёные окрестности. На первом этаже предусмотрены тёплые полы.",
+              "В номерах: кровати бокс спринг - совмещаются в двухместную, односпальная кровать, шкаф платяной, стол.",
+              "Оснащение: кондиционер, холодильник, телевизор с интернетом, Wi-Fi, чайник, фен и сушилка для одежды.",
+              "По запросу предоставляются халаты и пляжные полотенца.",
+              "Однокомнатный Стандарт — 22 м²",
+              "Двуспальная и односпальная кровати. Доп место — раскладная кровать. Размещение до 4 человек.",
+              "Двухкомнатный номер — 35 м²",
+              "Двуспальная и односпальная кровати, диван. Размещение до 5 человек."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Подогреваемый бассейн с пресной водой и отдельной детской зоной. Вокруг бассейна установлены шезлонги, столики и зонты.",
+              "На втором этаже расположена веранда с панорамным видом.",
+              "Также на территории предусмотрены небольшая детская площадка и просторная парковочная зона."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с животными возможно по согласованию.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я НА СВЯЗИ 📲",
+              "в MAX: max.ru/id741113115256_bot",
+              "ВК-чат: vk.cc/cQQnBn",
+              "WhatsApp +7940-900-33-40",
+              "(только сообщение, звонок не пройдёт)"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "С 25 декабря по 15 января:"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - стандарт (за 3х местное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для четвертого гостя — раскладная кровать, 1000₽"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - двухкомнатный номер (за 5 местное размещение)"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/index.html",
+        "filters": {
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [
+            "pine-pebble-ldzaa-pitsunda"
+          ],
+          "room": [
+            "pool",
+            "heated-pool",
+            "balcony",
+            "tv",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "pets"
+          ]
+        }
+      },
+      "id": 1222,
+      "media": [
+        {
+          "id": 1222001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-bugenvilleya-s-basseynom-5306.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/novyy-god-v-bugenvilleya-s-basseynom-5306.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-bugenvilleya-s-basseynom-5306.jpg",
+          "details": {}
+        },
+        {
+          "id": 1222002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1222003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1222004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1222005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1222006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1222007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1222008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1222009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1222010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1222011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-10.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/photo-10.jpg",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5403,
+      "source_topic_id": null,
+      "slug": "spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403",
+      "title": "СПЕЦПРЕДЛОЖЕНИЕ НА МЕЖСЕЗОНЬЕ «ОТПРАВЬ РОДИТЕЛЕЙ В АБХАЗИЮ» ❤ «ПЛЯЖНЫЙ КОМПЛЕКС 151» на берегу моря",
+      "summary": "Лдзаа. 0 минут до пляжа. Песок и мелкая галька, размещение до 4 человек.",
+      "excerpt": "Подарите родителям или близким людям продолжительный отдых у моря осенью, зимой или весной вдали от городской суеты",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, ул. Приморская, 18А",
+      "distance_text": "0 минут до пляжа. Песок и мелкая галька",
+      "beach_text": "0 минут до пляжа. Песок и мелкая галька",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/",
+      "telegram_url": "https://t.me/abhazbooking/5403",
+      "published_at": "2026-10-16",
+      "has_video": true,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 0 минут до пляжа. Песок и мелкая галька, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "",
+            "lines": [
+              "Подарите родителям или близким людям продолжительный отдых у моря осенью, зимой или весной вдали от городской суеты.",
+              "Свежий морской воздух, тихий пляж, прогулки по побережью, рыбалка и уютный двухуровневый домик с тёплым полом — всё необходимое для спокойного отдыха в межсезонье.",
+              "Предложение действует с ноября по 20 апреля, кроме периода с 25 декабря по 15 января."
+            ]
+          },
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "На территории расположено шесть стильных двухуровневых домиков.",
+              "В каждом домике установлены двуспальная или две односпальные кровати и две односпальные кровати на втором ярусе. Из мебели предусмотрены шкаф, комод и прикроватные тумбочки.",
+              "Есть собственный санузел с тропическим душем и тёплый пол.",
+              "Оснащение: кондиционер, телевизор, Wi-Fi, холодильник, чайник, фен и сейф.",
+              "У каждого домика есть собственная веранда со столиком, стульями и видом на море."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "В межсезонье пользование бунгало с шезлонгами на пляже в свободном доступе.",
+              "Общая оборудованная кухня для самостоятельного приготовления с личным холодильником для каждого домика.",
+              "Мангальная зона.",
+              "Есть генератор.",
+              "Парковка на 10 автомобилей.",
+              "В стоимость проживания включена аренда волейбольной площадки 1 час в день. Если больше 1 часа, то 1000/час.",
+              "Гастробар 151 на территории не работает.",
+              "Включен трансфер с вокзала или аэропорта и обратно."
+            ]
+          },
+          {
+            "label": "✔️РЫБАЛКА И ОТДЫХ НА МОРЕ:",
+            "lines": [
+              "Гости могут бесплатно рыбачить на территории. Необходимые снасти предоставляются.",
+              "Также бесплатно предоставляется весельная лодка для самостоятельного выхода в море.",
+              "Можно поймать рыбу и сразу приготовить её на мангале."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Рядом остановка общественного транспорта, продуктовый магазин будет работать, большая детская площадка."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с животными возможно по согласованию.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я НА СВЯЗИ 📲",
+              "в MAX: max.ru/id741113115256_bot",
+              "ВК-чат: vk.cc/cQQnBn",
+              "WhatsApp +7940-900-33-40",
+              "(только сообщение, звонок не пройдёт)"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Ноябрь, декабрь до 25, с 16 января, февраль, март, апрель до 20го"
+          },
+          {
+            "kind": "price",
+            "text": "100000₽ - месяц за домик на 4х"
+          },
+          {
+            "kind": "price",
+            "text": "Период с 25 декабря по 15 января в предложение не входит."
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - рыбалка с егерем в море 3 часа с человека"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - рыбалка с егерем на реке весь день с человека"
+          },
+          {
+            "kind": "price",
+            "text": "Выход в море с егерем возможен при подходящей погоде. Продолжительность - 3 часа. Стоимость 3000₽ с человека."
+          },
+          {
+            "kind": "price",
+            "text": "Рыбалка на реке с егерем рассчитана на целый день. Стоимость 5000₽ с человека."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1223,
+      "media": [
+        {
+          "id": 1223001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403.jpg",
+          "details": {}
+        },
+        {
+          "id": 1223002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1223003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1223004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1223005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1223006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1223007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1223008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1223009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1223010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1223011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5412",
+            "telegram_url": "https://t.me/abhazbooking/5412",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/video-01-poster.jpg"
+          }
         }
       ]
     }
