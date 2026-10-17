@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T17:02:48.249530+00:00",
+  "generated_at": "2026-10-17T11:16:17.956793+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -699,6 +699,14 @@
       "cityKey": "ldzaa"
     },
     {
+      "title": "\"БУГЕНВИЛЛЕЯ\" отель с бассейном",
+      "address": "Лдзаа, ул. Аиааира, д. 35",
+      "lat": 43.173836,
+      "lon": 40.372445,
+      "url": "/hotels/bugenvilleya-otel-s-basseynom-3044/",
+      "cityKey": "ldzaa"
+    },
+    {
       "title": "\"В ГОСТЯХ У БЕЛОЧКИ\" домики и номера",
       "address": "Лдзаа, Нозадзе 10",
       "lat": 43.17128219327671,
@@ -987,6 +995,14 @@
       "cityKey": "ldzaa"
     },
     {
+      "title": "\"ПЛЯЖНЫЙ КОМПЛЕКС 151\" на берегу",
+      "address": "Лдзаа, ул. Приморская, 18А",
+      "lat": 43.17415114030419,
+      "lon": 40.392794571235115,
+      "url": "/hotels/plyazhnyy-kompleks-151-na-beregu-4620/",
+      "cityKey": "ldzaa"
+    },
+    {
       "title": "\"ПШАДА\" отель с питанием у соснового пляжа",
       "address": "Лдзаа, улица Политрука Нозадзе, 21Б",
       "lat": 43.171855991314416,
@@ -1183,7 +1199,7 @@
       "address": "Лдзаа, ул. Аиааира, д. 35",
       "lat": 43.173836,
       "lon": 40.372445,
-      "url": "/hotels/bugenvilleya-otel-s-basseynom-3044/",
+      "url": "/hotels/novyy-god-v-bugenvilleya-s-basseynom-5306/",
       "cityKey": "ldzaa"
     },
     {
@@ -1192,14 +1208,6 @@
       "lat": 43.17415114030419,
       "lon": 40.392794571235115,
       "url": "/hotels/novyy-god-na-beregu-morya-v-plyazhnom-komplekse-151-5393/",
-      "cityKey": "ldzaa"
-    },
-    {
-      "title": "СПЕЦПРЕДЛОЖЕНИЕ НА МЕЖСЕЗОНЬЕ «ОТПРАВЬ РОДИТЕЛЕЙ В АБХАЗИЮ» ❤ «ПЛЯЖНЫЙ КОМПЛЕКС 151» на берегу моря",
-      "address": "Лдзаа, ул. Приморская, 18А",
-      "lat": 43.17415114030419,
-      "lon": 40.392794571235115,
-      "url": "/hotels/plyazhnyy-kompleks-151-na-beregu-4620/",
       "cityKey": "ldzaa"
     },
     {
@@ -1974,16 +1982,16 @@
   "stats": {
     "placemarks_total": 490,
     "placemarks_unique": 245,
-    "pages_total": 499,
-    "pages_on_disk": 557,
+    "pages_total": 501,
+    "pages_on_disk": 559,
     "pages_excluded": 58,
-    "from_constructor": 265,
+    "from_constructor": 266,
     "from_page_coords": 0,
     "from_manual": 0,
-    "skipped_without_constructor": 234,
-    "skipped_without_coords": 234,
-    "shared_coordinate_groups": 34,
+    "skipped_without_constructor": 235,
+    "skipped_without_coords": 235,
+    "shared_coordinate_groups": 35,
     "deduped_redirect_points": 19,
-    "points_total": 246
+    "points_total": 247
   }
 }
