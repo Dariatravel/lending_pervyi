@@ -328,7 +328,15 @@ def _existing_reviews_panel(page_href: str) -> str:
         match = REVIEWS_PANEL_RE.search(path.read_text(encoding='utf-8'))
     except OSError:
         return ''
-    return match.group(0) if match else ''
+    return strip_reviewer_surnames(match.group(0)) if match else ''
+
+
+_REVIEWER_NAME_RE = re.compile(r'(<div class="review-card__top">\s*<strong>)([^<]+)(</strong>)')
+
+
+def strip_reviewer_surnames(panel_html: str) -> str:
+    """Под отзывом — только имя, без фамилии (решение Дарьи 17.10.2026): «МАРИЯ ОСИПОВА» → «МАРИЯ»."""
+    return _REVIEWER_NAME_RE.sub(lambda m: m.group(1) + (m.group(2).split() or ['ГОСТЬ'])[0] + m.group(3), panel_html)
 
 
 def _reviews_panel_for_slug(mod: Any, slug: str, page_href: str = '') -> str:
@@ -336,7 +344,7 @@ def _reviews_panel_for_slug(mod: Any, slug: str, page_href: str = '') -> str:
     if object_reviews:
         reviews_html = ''
         for review in object_reviews[:2]:
-            author = str(review.get('name') or 'Гость').upper()
+            author = (str(review.get('name') or 'Гость').split() or ['Гость'])[0].upper()
             body = _clean_ocr_review_text(str(review.get('text') or ''))
             if not body:
                 continue
@@ -374,7 +382,7 @@ def _reviews_panel_for_slug(mod: Any, slug: str, page_href: str = '') -> str:
     reviews_html = ''.join(
         f"""              <article class="review-card">
                 <div class="review-card__top">
-                  <strong>{html.escape(review['head'].upper())}</strong>
+                  <strong>{html.escape((review['head'].split() or ['Гость'])[0].upper())}</strong>
                   <span>Гость</span>
                 </div>
                 <p>{html.escape(review['text'])}</p>
@@ -1207,7 +1215,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
 {preload_block}    <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202610172339" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202610172355" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1295,7 +1303,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202610172339" defer></script>
+    <script src="../../scripts.min.js?v=202610172355" defer></script>
     <a aria-label="Наверх" class="back-to-top" href="#top"><span aria-hidden="true" class="back-to-top__icon">↑</span></a>
   </body>
 </html>'''

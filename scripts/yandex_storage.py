@@ -71,8 +71,13 @@ def upload_file(
     mime_type: str | None = None,
     *,
     force: bool = False,
+    cache_control: str = "public, max-age=31536000, immutable",
 ) -> str:
-    """Upload a local file; return public Yandex URL."""
+    """Upload a local file; return public Yandex URL.
+
+    cache_control: по умолчанию год (фото и видео не меняются). Для файлов, которые
+    перезаливаются по тому же адресу (банки отзывов), — короткий срок: CDN не учитывает ?v=.
+    """
     load_yandex_env()
     bucket = os.environ.get("YANDEX_S3_BUCKET", "abhazbereg-media")
     key = yandex_object_key(storage_path)
@@ -87,7 +92,7 @@ def upload_file(
         key,
         ExtraArgs={
             "ContentType": content_type,
-            "CacheControl": "public, max-age=31536000, immutable",
+            "CacheControl": cache_control,
         },
     )
     return yandex_public_url(storage_path)

@@ -187,7 +187,12 @@ def upload_banks(files: list[Path], *, force: bool, dry_run: bool) -> list[dict[
         if dry_run:
             url = yandex_public_url(rel)
         else:
-            url = upload_file(path, rel, "application/json", force=force)
+            # Банк перезаливается по тому же адресу, а CDN не смотрит на ?v= — короткий кеш
+            # (17.10.2026: после перезаливки CDN неделю отдавал августовский global.json).
+            # Узлы CDN держат своё (до 7 дней) — после заливки всё равно сброс кеша:
+            # yc cdn cache purge --resource-id bc8rdqgehd54bizqjljj --path "/media/reviews/*"
+            url = upload_file(path, rel, "application/json", force=force,
+                              cache_control="public, max-age=600")
         uploaded.append({"path": rel, "url": url})
     return uploaded
 
