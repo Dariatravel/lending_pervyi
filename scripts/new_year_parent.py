@@ -75,24 +75,40 @@ def find_parent_listing(row: dict[str, Any], listings: Iterable[dict[str, Any]])
         and other.get("is_active", True)
         and not is_new_year_offer(other)
     ]
-    names = [stems for stems in (_stems(n) for n in quoted_names(row.get("title"))) if stems]
-    name_stems = bool(names)
+    # Названия в кавычках — с последнего: у спецпредложения первым идёт название
+    # акции («ОТПРАВЬ РОДИТЕЛЕЙ В АБХАЗИЮ», «ВСЁ ВКЛЮЧЕНО»), отель — в конце.
+    names = [stems for stems in (_stems(n) for n in reversed(quoted_names(row.get("title")))) if stems]
 
-    def by_name(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        # Подходит, если совпало хотя бы одно из названий в кавычках.
-        if not names:
-            return []
-        return [other for other in rows if any(stems <= _stems(other.get("title")) for stems in names)]
+    def matching(rows: list[dict[str, Any]], stems: set[str]) -> list[dict[str, Any]]:
+        return [other for other in rows if stems <= _stems(other.get("title"))]
 
     # По одному адресу бывают разные отели («Аква» и «Аиша», «Апра» и «Абырлаш»),
     # поэтому название в кавычках, если оно есть, должно совпасть и здесь.
     address = _address_key(row.get("location_text"))
-    if address:
-        same_address = [other for other in candidates if _address_key(other.get("location_text")) == address]
-        if name_stems:
-            same_address = by_name(same_address)
-        if len(same_address) == 1:
-            return same_address[0]
+    same_address = (
+        [other for other in candidates if _address_key(other.get("location_text")) == address] if address else []
+    )
+    if address and not names and len(same_address) == 1:
+        return same_address[0]
+    for stems in names:
+        found = matching(same_address, stems)
+        if len(found) == 1:
+            return found[0]
 
-    named = by_name(candidates)
-    return named[0] if len(named) == 1 else None
+    # Без совпадения адреса: по последнему названию — как есть; по остальным
+    # (вероятно, название акции) не берём — «ЛЕТО» или «ВИД НА МОРЕ» найдут чужой отель.
+    # И только в том же городе (первая часть адреса до запятой), если адрес есть.
+    if names:
+        found = matching(candidates, names[0])
+        city = _city_key(row.get("location_text"))
+        if city:
+            found = [other for other in found if _city_key(other.get("location_text")) in ("", city)]
+        if len(found) == 1:
+            return found[0]
+    return None
+
+
+def _city_key(text: Any) -> str:
+    """Город из адреса: первые слова до запятой («Лдзаа, ул. …» → «лдзаа», «Рицинское ущелье, …»)."""
+    head = _norm(text).split(",", 1)[0]
+    return " ".join(_WORD_RE.findall(head))
