@@ -254,7 +254,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202610142155";
+  const ASSET_VERSION = "202610172339";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -1424,27 +1424,108 @@
     return card;
   }
 
-  function getObjectReviewSlotCount(panel) {
+  /* Карусель отзывов на странице объекта (Дарья, 17.10.2026): 6–8 отзывов листаются
+     на месте, по высоте блок как прежние две карточки. */
+  const OBJECT_REVIEW_CAROUSEL_MAX = 8;
+
+  function getObjectReviewSlotCount(panel, poolSize) {
     const existing = panel ? panel.querySelectorAll(".review-card").length : 0;
-    return Math.max(existing || 2, 1);
+    return Math.max(Math.min(OBJECT_REVIEW_CAROUSEL_MAX, poolSize || 0), existing || 2, 1);
+  }
+
+  function updateReviewCarouselButtons(grid, prev, next) {
+    const maxScroll = grid.scrollWidth - grid.clientWidth - 2;
+    prev.disabled = grid.scrollLeft <= 2;
+    next.disabled = grid.scrollLeft >= maxScroll;
+  }
+
+  function detachReviewCarousel(panel, grid) {
+    grid.classList.remove("reviews-grid--carousel");
+    grid.removeAttribute("tabindex");
+    grid.removeAttribute("role");
+    grid.removeAttribute("aria-label");
+    panel.querySelector(".reviews-carousel-nav")?.remove();
+    panel.querySelector(".reviews-panel__head")?.classList.remove("reviews-panel__head--nav");
+  }
+
+  function attachReviewCarousel(panel, grid) {
+    grid.classList.add("reviews-grid--carousel");
+    grid.setAttribute("tabindex", "0");
+    grid.setAttribute("role", "region");
+    grid.setAttribute("aria-label", "Отзывы гостей, листайте");
+    if (!grid.id) grid.id = `reviews-grid-${Math.random().toString(36).slice(2, 8)}`;
+    let nav = panel.querySelector(".reviews-carousel-nav");
+    if (!nav) {
+      nav = document.createElement("div");
+      nav.className = "reviews-carousel-nav";
+      const prev = document.createElement("button");
+      prev.type = "button";
+      prev.className = "reviews-carousel-nav__btn";
+      prev.setAttribute("aria-label", "Предыдущие отзывы");
+      prev.setAttribute("aria-controls", grid.id);
+      prev.textContent = "‹";
+      const next = document.createElement("button");
+      next.type = "button";
+      next.className = "reviews-carousel-nav__btn";
+      next.setAttribute("aria-label", "Следующие отзывы");
+      next.setAttribute("aria-controls", grid.id);
+      next.textContent = "›";
+      nav.append(prev, next);
+      const head = panel.querySelector(".reviews-panel__head") || panel;
+      head.classList.add("reviews-panel__head--nav");
+      head.appendChild(nav);
+      const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      const step = (direction) => {
+        const card = grid.querySelector(".review-card");
+        const gap = parseFloat(getComputedStyle(grid).columnGap) || 0;
+        const width = card ? card.getBoundingClientRect().width + gap : grid.clientWidth;
+        grid.scrollBy({ left: direction * width, behavior: reduceMotion ? "auto" : "smooth" });
+      };
+      prev.addEventListener("click", () => step(-1));
+      next.addEventListener("click", () => step(1));
+      const update = () => updateReviewCarouselButtons(grid, prev, next);
+      grid.addEventListener("scroll", update, { passive: true });
+      // Блок мог быть скрыт или нулевой ширины при отрисовке — пересчитываем при любом изменении размера.
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(update).observe(grid);
+      } else {
+        window.addEventListener("resize", update, { passive: true });
+      }
+    }
+    grid.scrollLeft = 0;
+    const [prev, next] = nav.querySelectorAll("button");
+    requestAnimationFrame(() => updateReviewCarouselButtons(grid, prev, next));
   }
 
   function renderObjectReviewPanels(context, objectPool) {
     const panels = Array.from(document.querySelectorAll(".reviews-panel"));
     if (!panels.length || !objectPool.length) return false;
     let hydrated = false;
+    const poolKey = `${context.slug || window.location.pathname}:${objectPool.length}`;
 
     panels.forEach((panel, index) => {
       const grid = panel.querySelector(".reviews-grid");
       if (!grid) return;
+      // Повторная отрисовка с теми же отзывами (hydrateHotelPage) — не перемешиваем
+      // и не сбрасываем карусель, которую человек уже листал.
+      if (grid.dataset.reviewsPool === poolKey) {
+        hydrated = true;
+        return;
+      }
 
-      const count = getObjectReviewSlotCount(panel);
+      const count = getObjectReviewSlotCount(panel, objectPool.length);
       const reviews = pickReviews(
         objectPool,
         count,
         `abhaz:reviews:panel:${context.slug || window.location.pathname}:${index}`
       );
       grid.replaceChildren(...reviews.map(createObjectReviewCard));
+      grid.dataset.reviewsPool = poolKey;
+      if (reviews.length > 2) {
+        attachReviewCarousel(panel, grid);
+      } else {
+        detachReviewCarousel(panel, grid);
+      }
       hydrated = true;
     });
 
@@ -1903,6 +1984,8 @@
   function renderHotelReviews(row) {
     const context = extractObjectReviewContext(row);
     const objectPool = getObjectReviewPool(context.slug);
+    // Своих отзывов нет — блок не трогаем: отзывы о других местах под «Отзывы гостей»
+    // этого отеля вводили бы в заблуждение (ревью 17.10.2026).
     renderObjectReviewPanels(context, objectPool);
     const scrollers = Array.from(
       document.querySelectorAll(".reviews-scroller:not([data-random-reviews])")

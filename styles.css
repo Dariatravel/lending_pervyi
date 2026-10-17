@@ -9289,3 +9289,73 @@ body.podborka-mode #catalog-grid .catalog-card.podborka-hit {
     font-size: 1rem;
   }
 }
+
+/* Карусель отзывов на странице объекта (17.10.2026): две карточки в ряд на компьютере,
+   одна с краешком следующей на телефоне; листается пальцем или кнопками. */
+.hotel-site-concept .reviews-grid.reviews-grid--carousel {
+  display: grid;
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 14px) / 2);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hotel-site-concept .reviews-grid--carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.hotel-site-concept .reviews-grid--carousel .review-card {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.reviews-carousel-nav {
+  display: flex;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.reviews-carousel-nav__btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(20, 32, 26, 0.12);
+  background: #fff;
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.reviews-carousel-nav__btn:hover:not(:disabled) {
+  background: var(--accent-soft);
+}
+
+.reviews-carousel-nav__btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.hotel-site-concept .reviews-panel__head.reviews-panel__head--nav {
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* До 1160px блок отзывов и раньше был в одну колонку (правило выше, ~4451) — одна карточка
+   с краешком следующей. На телефоне у абзацев свой отступ — в карточке он не нужен. */
+@media (max-width: 1160px) {
+  .hotel-site-concept .reviews-grid.reviews-grid--carousel {
+    grid-auto-columns: 86%;
+  }
+}
+
+@media (max-width: 760px) {
+  .hotel-site-concept .reviews-grid--carousel .review-card p {
+    padding-block: 0;
+  }
+}
