@@ -36,6 +36,8 @@ jobs:
     timeout-minutes: 170
     permissions:
       contents: write
+      # запуск blog-sync.yml, когда правился пост-источник статьи блога
+      actions: write
     env:
       TG_STRING_SESSION: ${{ secrets.TG_STRING_SESSION }}
     steps:
@@ -361,6 +363,59 @@ jobs:
         with:
           path: output/telegram-watch-state.json
           key: telegram-watch-state-${{ github.run_id }}
+
+      # Статьи блога следуют за правками постов-источников (просьба Дарьи
+      # 18.10.2026). Правка поста у статьи, которую собирает синк блога, —
+      # запуск blog-sync.yml для неё; у статьи, правленной вручную, — одно
+      # уведомление в Telegram. Состояние — data/blog-sources.json.
+      - name: Проверить правки постов блога
+        id: blogedits
+        if: steps.gate.outputs.enabled == 'true'
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          python tools/check_blog_source_edits.py 2>&1 | tee /tmp/blogedits.log
+          grep -E '^(auto_ids|notify_count|state_changed)=' /tmp/blogedits.log >> "$GITHUB_OUTPUT"
+
+      - name: Пересобрать изменённые статьи блога
+        if: steps.blogedits.outputs.auto_ids != ''
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Посты изменены: ${{ steps.blogedits.outputs.auto_ids }} — запускаю blog-sync"
+          gh workflow run blog-sync.yml -f post_ids="${{ steps.blogedits.outputs.auto_ids }}" -f publish=true
+
+      - name: Сообщить о правках постов у статей, правленных вручную
+        if: steps.blogedits.outputs.notify_count != '' && steps.blogedits.outputs.notify_count != '0'
+        continue-on-error: true
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
+        run: |
+          if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
+            echo "TG_BOT_TOKEN/TG_REPORT_CHAT_ID не заданы — уведомление пропущено."; exit 0
+          fi
+          MSG=$(printf '📝 Правка поста у статьи блога, которую правили вручную — статью нужно обновить:\n\n%s' "$(cat output/blog-edits-notify.txt)")
+          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
+            --data-urlencode "text=${MSG}" >/dev/null && echo "Уведомление отправлено."
+
+      # Отметки «уже уведомили» и новые статьи — в data/blog-sources.json.
+      - name: Сохранить состояние проверки блога
+        if: steps.blogedits.outputs.state_changed == 'true'
+        continue-on-error: true
+        run: |
+          git config user.name "abhazbereg-autosync"
+          git config user.email "209351708+Dariatravel@users.noreply.github.com"
+          git add data/blog-sources.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Блог: состояние проверки правок постов (GitHub Actions)"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep 10
+          done
 
       - name: Уведомить в Telegram
         if: steps.gate.outputs.enabled == 'true' && steps.detect.outputs.changed == 'true'

@@ -1,0 +1,261 @@
+{
+  "_comment": "Хеши текста постов-источников статей блога (tools/check_blog_source_edits.py). mode=auto — при правке поста автосинк пересобирает статью; mode=manual — статья правлена вручную, только уведомление.",
+  "articles": {
+    "abhazskoe-vino-domashnee-ili-zavodskoe": {
+      "channel": "abhazbereg",
+      "hash": "97712872789f9468",
+      "message_id": 2472,
+      "mode": "auto"
+    },
+    "chego-boyatsya-v-abhazii": {
+      "channel": "abhazbereg",
+      "hash": "9c39247b3c64771e",
+      "message_id": 2119,
+      "mode": "auto"
+    },
+    "chto-takoe-citrusovyy-abhaziya": {
+      "channel": "abhazbereg",
+      "hash": "da39a3ee5e6b4b0d",
+      "message_id": 2383,
+      "mode": "auto"
+    },
+    "delfinariy-v-abhazii-gagra": {
+      "channel": "abhazbereg",
+      "hash": "12f522e295d47203",
+      "message_id": 2481,
+      "mode": "auto"
+    },
+    "dengi-i-oplata-v-abhazii": {
+      "channel": "abhazbereg",
+      "hash": "3aee20e04a76e4f3",
+      "message_id": 2213,
+      "mode": "auto"
+    },
+    "deti-i-granica-abhaziya-2026": {
+      "channel": "abhazbooking",
+      "hash": "09a4813d297a01cc",
+      "message_id": 4852,
+      "mode": "auto"
+    },
+    "duty-free-na-granitse-psou": {
+      "channel": "abhazbereg",
+      "hash": "0c913d79fa470ae2",
+      "message_id": 2411,
+      "mode": "auto"
+    },
+    "edinyj-bilet-v-abhaziyu": {
+      "channel": "abhazbereg",
+      "hash": "497d5537d206da35",
+      "message_id": 2313,
+      "mode": "auto"
+    },
+    "goryachie-istochniki-abhazii": {
+      "channel": "abhazbereg",
+      "hash": "6938dd34b2f95bb3",
+      "message_id": 2240,
+      "mode": "auto"
+    },
+    "gudauta-nedootsenennyy-kurort": {
+      "channel": "abhazbereg",
+      "hash": "c92610bc0204c9fc",
+      "message_id": 2465,
+      "mode": "auto"
+    },
+    "inostrannye-pravila-vezda-abkhazia": {
+      "channel": "abhazbooking",
+      "hash": "6524dd3d3c52c920",
+      "message_id": 3757,
+      "mode": "auto"
+    },
+    "kak-posmotret-abhaziyu-do-poezdki": {
+      "channel": "abhazbereg",
+      "hash": "7cdf3adee11d4c50",
+      "message_id": 2488,
+      "mode": "auto"
+    },
+    "kak-projti-granicu-psou": {
+      "channel": "abhazbereg",
+      "hash": "5bc30b9e53e69670",
+      "message_id": 2166,
+      "mode": "manual",
+      "note": "18.10.2026: детские документы исправлены вручную по посту @abhazbooking/4852"
+    },
+    "kak-vybrat-kurort-abkhaziya-pervyy-raz": {
+      "channel": "abhazbooking",
+      "hash": "c44ba37d71381638",
+      "message_id": 3613,
+      "mode": "auto"
+    },
+    "ldzaa-shtil-pitsunda-volny": {
+      "channel": "abhazbereg",
+      "hash": "d2002210172c2630",
+      "message_id": 2422,
+      "mode": "auto"
+    },
+    "marshrutki-ot-granitsy-psou": {
+      "channel": "abhazbereg",
+      "hash": "97990f2348e64f1d",
+      "message_id": 2261,
+      "mode": "auto"
+    },
+    "minusy-otdyha-abkhazia": {
+      "channel": "abhazbooking",
+      "hash": "92fe9b7f63d313b8",
+      "message_id": 3745,
+      "mode": "auto"
+    },
+    "mobilnaya-svyaz-i-internet-abkhaziya": {
+      "channel": "abhazbooking",
+      "hash": "0a31a4b2b383444d",
+      "message_id": 3821,
+      "mode": "auto"
+    },
+    "mozhno-li-zapuskat-dron-v-abhazii": {
+      "channel": "abhazbereg",
+      "hash": "a371e0c389e226bf",
+      "message_id": 2467,
+      "mode": "auto"
+    },
+    "neft-tuapse-i-more-abhaziya": {
+      "channel": "abhazbereg",
+      "hash": "fe28d524278bd81d",
+      "message_id": 2266,
+      "mode": "auto"
+    },
+    "o-chem-zhaleyut-turisty-v-abhazii": {
+      "channel": "abhazbereg",
+      "hash": "544e7e24ea3763c4",
+      "message_id": 2468,
+      "mode": "auto"
+    },
+    "pamyatka-turistu-abkhazia": {
+      "channel": "abhazbooking",
+      "hash": "000c3e4f6d3dc43f",
+      "message_id": 3573,
+      "mode": "manual",
+      "note": "18.10.2026: убрана фраза про билет только по загранпаспорту (правка поста 24.06)"
+    },
+    "paraplany-gagra-mamzyshha": {
+      "channel": "abhazbereg",
+      "hash": "ee1a3e945d1aff96",
+      "message_id": 2423,
+      "mode": "auto"
+    },
+    "parom-sochi-suhum-kometa": {
+      "channel": "abhazbereg",
+      "hash": "041b4db9b36b9439",
+      "message_id": 2294,
+      "mode": "auto"
+    },
+    "peschanye-plyazhi-abhazii": {
+      "channel": "abhazbereg",
+      "hash": "165b3aaac422a3e7",
+      "message_id": 2218,
+      "mode": "auto"
+    },
+    "plyazhi-abhazii-obzor-chast-1": {
+      "channel": "abhazbereg",
+      "hash": "8bf7dfd8af021082",
+      "message_id": 2460,
+      "mode": "auto"
+    },
+    "plyazhi-abhazii-obzor-chast-2": {
+      "channel": "abhazbereg",
+      "hash": "a793e58fa94319f7",
+      "message_id": 2461,
+      "mode": "auto"
+    },
+    "poezd-po-svidetelstvu-rozhdeniya": {
+      "channel": "abhazbereg",
+      "hash": "fe98020e440144ac",
+      "message_id": 2337,
+      "mode": "auto"
+    },
+    "poezda-i-samolet-do-suhuma": {
+      "channel": "abhazbereg",
+      "hash": "3b211fd7914a5d2d",
+      "message_id": 2336,
+      "mode": "auto"
+    },
+    "poezdka-v-abhaziyu-s-zhivotnym": {
+      "channel": "abhazbereg",
+      "hash": "9674604179d956ed",
+      "message_id": 2327,
+      "mode": "auto"
+    },
+    "pogoda-v-abhazii-stoit-li-verit-prognozu": {
+      "channel": "abhazbooking",
+      "hash": "77dedc13831692a9",
+      "message_id": 5252,
+      "mode": "auto"
+    },
+    "prava-i-shtrafy-avto-abhaziya": {
+      "channel": "abhazbereg",
+      "hash": "ce79eb84c196b3c8",
+      "message_id": 2256,
+      "mode": "manual",
+      "note": "18.10.2026: вручную возвращён чек-лист «Что сделать перед выездом»"
+    },
+    "pravila-poezdki-s-detmi-abkhaziya-2026": {
+      "channel": "abhazbooking",
+      "hash": "60a3d4ceebea90ea",
+      "message_id": 3758,
+      "mode": "manual",
+      "note": "18.10.2026: детские документы исправлены вручную по посту @abhazbooking/4852"
+    },
+    "proverka-dolgov-pered-poezdkoj": {
+      "channel": "abhazbereg",
+      "hash": "63cbb075534fae2c",
+      "message_id": 2325,
+      "mode": "auto"
+    },
+    "rotavirus-mify-otdyh-more": {
+      "channel": "abhazbereg",
+      "hash": "7201385f4e1333c5",
+      "message_id": 2149,
+      "mode": "auto"
+    },
+    "sedobnye-suveniry-iz-abhazii": {
+      "channel": "abhazbereg",
+      "hash": "47e0e5a21b655d04",
+      "message_id": 2466,
+      "mode": "auto"
+    },
+    "shtraf-za-kupalnik-v-abhazii": {
+      "channel": "abhazbereg",
+      "hash": "abd7a5ab4580c388",
+      "message_id": 2245,
+      "mode": "auto"
+    },
+    "suhum-ili-sochi-kakoy-reys-vybrat": {
+      "channel": "abhazbereg",
+      "hash": "3af7c6985e75bc8c",
+      "message_id": 2458,
+      "mode": "auto"
+    },
+    "veyp-i-elektronnye-sigarety-abhaziya": {
+      "channel": "abhazbereg",
+      "hash": "334f516e3a62b9df",
+      "message_id": 2421,
+      "mode": "auto"
+    },
+    "vremya-v-abhazii-moskovskoe": {
+      "channel": "abhazbereg",
+      "hash": "da39a3ee5e6b4b0d",
+      "message_id": 2385,
+      "mode": "auto"
+    },
+    "zagar-i-spf-na-more-abhaziya": {
+      "channel": "abhazbereg",
+      "hash": "358589386da8c5ad",
+      "message_id": 2392,
+      "mode": "auto"
+    },
+    "znakomstvo-darya-bronirovanie-abhaziya": {
+      "channel": "abhazbooking",
+      "hash": "40b139e10b95848b",
+      "message_id": 2572,
+      "mode": "auto"
+    }
+  }
+}

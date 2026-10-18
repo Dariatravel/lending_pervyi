@@ -77,6 +77,19 @@ jobs:
         if: inputs.publish == 'true'
         run: python3 scripts/upload_blog_media.py
 
+      # Синк пересобирает страницу статьи с нуля — возвращаем то, что
+      # добавляется поверх неё: доп. заголовки, разметку для поисковиков и
+      # «Читайте по теме». Затем принимаем текущий текст постов как
+      # опубликованный (data/blog-sources.json) — автосинк больше не считает
+      # их изменёнными.
+      - name: Доп. блоки статей и отметка «опубликовано»
+        if: inputs.publish == 'true'
+        run: |
+          python3 tools/apply_blog_extra_headings.py
+          python3 scripts/apply_blog_schema_extras.py
+          python3 scripts/inject_blog_related_links.py
+          python3 tools/check_blog_source_edits.py --accept "${TARGET_BLOG_POST_IDS}"
+
       - name: Аудиты
         if: inputs.publish == 'true'
         run: |
@@ -89,7 +102,7 @@ jobs:
         run: |
           git config user.name "abhazbereg-autosync"
           git config user.email "209351708+Dariatravel@users.noreply.github.com"
-          git add blog data/blog-posts.json sitemap.xml scripts/blog_telegram_sources
+          git add blog data/blog-posts.json data/blog-sources.json sitemap.xml scripts/blog_telegram_sources
           if git diff --cached --quiet; then
             echo "Изменений нет — публиковать нечего."; exit 0
           fi
