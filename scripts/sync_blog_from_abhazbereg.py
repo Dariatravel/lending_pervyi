@@ -680,6 +680,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   <link rel="icon" type="image/png" href="{yandex_media_base}/media/branding/favicon-48.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={css_version}" />
   <script type="application/ld+json">{json_ld}</script>
+  <script data-schema="breadcrumbs" type="application/ld+json">{breadcrumbs_ld}</script>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -842,6 +843,21 @@ def render_article_page(art: BuiltArticle, body_html: str) -> str:
         },
         ensure_ascii=False,
     )
+    # «Хлебные крошки» для поисковиков: раньше их добавлял разовый
+    # tools/apply_seo_improvements.py, и пересборка статьи их теряла (18.10.2026).
+    breadcrumbs_ld = json.dumps(
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://абхазберег.рф/"},
+                {"@type": "ListItem", "position": 2, "name": "Блог", "item": "https://абхазберег.рф/blog/"},
+                {"@type": "ListItem", "position": 3, "name": art.title, "item": f"https://абхазберег.рф/blog/{art.slug}/"},
+            ],
+        },
+        ensure_ascii=False,
+        separators=(",", ":"),
+    ).replace("<", "\\u003c")
     image_src = f"{YANDEX_MEDIA_BASE}/media/blog/{art.image_name}"
     return PAGE_TEMPLATE.format(
         html_title=html.escape(f"{art.title_short} — АБХАЗБЕРЕГ"),
@@ -855,6 +871,7 @@ def render_article_page(art: BuiltArticle, body_html: str) -> str:
         article_image_sizes=BLOG_ARTICLE_IMAGE_SIZES,
         css_version=CSS_VERSION,
         json_ld=json_ld,
+        breadcrumbs_ld=breadcrumbs_ld,
         breadcrumb_esc=html.escape(art.breadcrumb),
         eyebrow_esc=html.escape(art.eyebrow),
         h1_esc=html.escape(art.title),
