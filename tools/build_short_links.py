@@ -116,6 +116,29 @@ def reserved_keys() -> set[str]:
     return taken
 
 
+def refresh_catalog_index_short_urls(manual: dict[str, str], generated: dict[str, str]) -> None:
+    """Дописывает short_url объектам в data/catalog-index.json: по нему шахматка
+    берёт короткую ссылку для постов, Справочника и бота. Сбой не ломает ссылки."""
+    try:
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from catalog_snapshot import CATALOG_INDEX_PATH, apply_short_urls, short_key_by_path
+
+        if not CATALOG_INDEX_PATH.is_file():
+            return
+        payload = json.loads(CATALOG_INDEX_PATH.read_text(encoding="utf-8"))
+        items = payload.get("listings") or []
+        before = json.dumps(items, ensure_ascii=False)
+        found = apply_short_urls(items, short_key_by_path(manual, generated))
+        if json.dumps(items, ensure_ascii=False) != before:
+            CATALOG_INDEX_PATH.write_text(
+                json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n",
+                encoding="utf-8",
+            )
+        print(f"  короткие ссылки в каталоге: {found} из {len(items)}")
+    except Exception as error:  # noqa: BLE001
+        print(f"  ! каталог не обновлён короткими ссылками: {error}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="только показать, ничего не менять")
@@ -203,6 +226,7 @@ def main() -> int:
                        ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
+        refresh_catalog_index_short_urls(manual, generated)
     print(f"\nИтог: ссылок {len(links)} (ручных {len(manual)}, новых {added}), целей не найдено {broken}")
     return 1 if broken else 0
 

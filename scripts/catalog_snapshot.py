@@ -12,6 +12,11 @@ SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 CATALOG_INDEX_PATH = ROOT / "data" / "catalog-index.json"
 SCHEMA_VERSION = 1
 STORAGE_BUCKET = "abhazbereg-media"
+SHORT_LINKS_MANUAL_PATH = ROOT / "data" / "short-links.json"
+SHORT_LINKS_GENERATED_PATH = ROOT / "data" / "short-links-generated.json"
+# Короткие ссылки — главные для публикаций, домен латиницей (Дарья 19.10.2026:
+# «abhazbereg.com/grass», без кириллицы в ссылках).
+SHORT_LINK_ORIGIN = "https://abhazbereg.com"
 
 
 def load_payload() -> dict[str, Any]:
@@ -45,6 +50,54 @@ def _cover_for_index(row: dict[str, Any]) -> Any:
         return cover_override(str(row.get("slug") or "")) or row.get("cover_url")
     except Exception:  # noqa: BLE001
         return row.get("cover_url")
+
+
+def listing_path(row: dict[str, Any]) -> str:
+    kind = "kvartira" if row.get("source_kind") == "kvartira" else "hotels"
+    return f"/{kind}/{row.get('slug')}/"
+
+
+def _registry_links(path: Path) -> dict[str, str]:
+    try:
+        links = json.loads(path.read_text(encoding="utf-8")).get("links") or {}
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return {}
+    return {str(k): str(v) for k, v in links.items()} if isinstance(links, dict) else {}
+
+
+def short_key_by_path(
+    manual: dict[str, str] | None = None,
+    generated: dict[str, str] | None = None,
+) -> dict[str, str]:
+    """Путь страницы → короткий ключ. Ручной ключ главнее автоматического;
+    из нескольких ключей одного вида берётся самый короткий."""
+    if manual is None:
+        manual = _registry_links(SHORT_LINKS_MANUAL_PATH)
+    if generated is None:
+        generated = _registry_links(SHORT_LINKS_GENERATED_PATH)
+    result: dict[str, str] = {}
+    for links in (manual, generated):
+        best: dict[str, str] = {}
+        for key, href in links.items():
+            href = "/" + href.strip("/") + "/"
+            if href not in best or (len(key), key) < (len(best[href]), best[href]):
+                best[href] = key
+        for href, key in best.items():
+            result.setdefault(href, key)
+    return result
+
+
+def apply_short_urls(items: list[dict[str, Any]], keys: dict[str, str]) -> int:
+    """Проставляет short_url записям индекса; возвращает, сколько получили ссылку."""
+    found = 0
+    for item in items:
+        key = keys.get(listing_path(item))
+        if key:
+            item["short_url"] = f"{SHORT_LINK_ORIGIN}/{key}"
+            found += 1
+        else:
+            item.pop("short_url", None)
+    return found
 
 
 def compact_listing_for_index(row: dict[str, Any]) -> dict[str, Any]:
@@ -117,6 +170,9 @@ def write_catalog_index(listings: list[dict[str, Any]], *, generated_at: str = "
         if rank is not None:
             item["home_rank"] = rank
         compact.append(item)
+    # Для новых объектов ключ появится после tools/build_short_links.py —
+    # он сам допишет short_url в этот файл.
+    apply_short_urls(compact, short_key_by_path())
     payload = {
         "generated_at": generated_at or datetime.now(timezone.utc).isoformat(),
         "schema_version": SCHEMA_VERSION,
