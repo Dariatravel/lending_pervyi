@@ -39,7 +39,8 @@ def blog_image_srcset(src: str) -> str:
     return ", ".join(f"{stem}-{width}.webp {width}w" for width in (480, 960, 1440))
 
 POST_IDS = [
-    2119, 2149, 2166, 2213, 2218, 2240, 2245, 2256, 2261, 2266, 2294, 2313, 2325, 2327, 2336, 2337,
+    # 2166 «Как пройти границу» снят 18.10.2026: устарело про загранпаспорт детям.
+    2119, 2149, 2213, 2218, 2240, 2245, 2256, 2261, 2266, 2294, 2313, 2325, 2327, 2336, 2337,
     2383, 2385, 2392, 2411, 2421, 2422, 2423, 2458, 2460, 2461, 2465, 2466, 2467, 2468, 2472,
     2481, 2488,
     5252,  # @abhazbooking (см. "channel" в POST_META)
@@ -796,7 +797,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   </section>
 
 </main>
-  <script src="../../scripts.min.js?v=202610180002" defer></script>
+  <script src="../../scripts.min.js?v=202610181926" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>
@@ -1042,7 +1043,7 @@ def render_blog_index(cards: list[dict[str, str]]) -> str:
   </section>
 
 </main>
-  <script src="../scripts.min.js?v=202610180002" defer></script>
+  <script src="../scripts.min.js?v=202610181926" defer></script>
   <a class="back-to-top" href="#top" aria-label="Наверх"><span class="back-to-top__icon" aria-hidden="true">↑</span></a>
 </body>
 </html>

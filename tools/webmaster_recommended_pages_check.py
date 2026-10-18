@@ -36,7 +36,6 @@ DEFAULT_PATHS = [
     "/blog/veyp-i-elektronnye-sigarety-abhaziya/",
     "/blog/marshrutki-ot-granitsy-psou/",
     "/blog/duty-free-na-granitse-psou/",
-    "/blog/kak-projti-granicu-psou/",
     "/blog/chto-takoe-citrusovyy-abhaziya/",
     "/blog/vremya-v-abhazii-moskovskoe/",
     "/blog/edinyj-bilet-v-abhaziyu/",

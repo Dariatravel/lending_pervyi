@@ -43,7 +43,7 @@ EXTRA_MAP = {
     "/tpost/anz10dnpj1-v-abhaziyu-s-zhivotnimi-chto-nuzhno-znat": "/blog/poezdka-v-abhaziyu-s-zhivotnym/",
     "/tpost/dfbup2mky1-goryachie-istochniki-v-abhazii": "/blog/goryachie-istochniki-abhazii/",
     "/tpost/fxrrv8czr1-abhaziya-minusi-otdiha": "/blog/minusy-otdyha-abkhazia/",
-    "/tpost/granica": "/blog/kak-projti-granicu-psou/",
+    "/tpost/granica": "/blog/pamyatka-turistu-abkhazia/",
     "/tpost/jckj0uma31-za-eto-vas-lishat-prav-v-abhazii": "/blog/prava-i-shtrafy-avto-abhaziya/",
     "/tpost/kurort": "/blog/kak-vybrat-kurort-abkhaziya-pervyy-raz/",
     "/tpost/presentation": "/blog/znakomstvo-darya-bronirovanie-abhaziya/",

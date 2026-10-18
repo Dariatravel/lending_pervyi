@@ -254,7 +254,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202610180002";
+  const ASSET_VERSION = "202610181926";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -2260,9 +2260,18 @@
     const grid = video.closest(".media-grid, .hotel-card__gallery, .hotel-media-section");
     const img = grid?.querySelector("img[src]:not(.local-video-preview)");
     if (img) return gallerySrcFromImage(img);
+    const src = gallerySrcFromVideo(video);
+    // Тот же ролик ниже на странице уже со своей обложкой — берём её: у части
+    // объектов кадр назван «…-source-poster.jpg», и угаданный «…-poster.jpg»
+    // отдавал 404 — верхнее превью было чёрным («Сухум» дом, 18.10.2026).
+    if (src) {
+      const twin = Array.from(document.querySelectorAll("video[poster]")).find(
+        (other) => other !== video && gallerySrcFromVideo(other) === src && !other.poster.startsWith("data:")
+      );
+      if (twin) return twin.getAttribute("poster");
+    }
     // Допблоки: рядом с видео нет фото, но пайплайн всегда кладёт
     // <name>-poster.jpg рядом с <name>.mp4 — берём его по соглашению об именах.
-    const src = gallerySrcFromVideo(video);
     if (/\.mp4(\?|$)/i.test(src)) return src.replace(/\.mp4(\?|$)/i, "-poster.jpg$1");
     return "";
   }
