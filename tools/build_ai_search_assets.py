@@ -218,7 +218,6 @@ ANSWER_PAGES: list[dict[str, Any]] = [
         "links": [
             ("/blog/poezd-po-svidetelstvu-rozhdeniya/", "Поездка ребёнка по свидетельству о рождении"),
             ("/blog/proverka-dolgov-pered-poezdkoj/", "Как проверить долги перед поездкой"),
-            ("/blog/pravila-poezdki-s-detmi-abkhaziya-2026/", "Правила поездки с детьми"),
             ("/blog/inostrannye-pravila-vezda-abkhazia/", "Правила въезда для иностранцев"),
         ],
         "faq": [

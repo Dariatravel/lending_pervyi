@@ -37,7 +37,7 @@ STATIC_MAP = {
 EXTRA_MAP = {
     "/tpost/1zusms4cv1-chego-boyatsya-v-abhazii": "/blog/chego-boyatsya-v-abhazii/",
     "/tpost/24cc5d0vg1-chto-vazhno-znat-pro-svyaz-v-abhazii": "/blog/mobilnaya-svyaz-i-internet-abkhaziya/",
-    "/tpost/29xaf86hv1-vazhnie-pravila-poezdki-v-abhaziyu-s-det": "/blog/pravila-poezdki-s-detmi-abkhaziya-2026/",
+    "/tpost/29xaf86hv1-vazhnie-pravila-poezdki-v-abhaziyu-s-det": "/blog/poezd-po-svidetelstvu-rozhdeniya/",
     "/tpost/3zgj3ahdx1-pamyatka-turistu-v-abhaziyu-2026": "/blog/pamyatka-turistu-abkhazia/",
     "/tpost/9fdztv8lv1-vezd-v-abhaziyu-dlya-kakih-stran-deistvu": "/blog/inostrannye-pravila-vezda-abkhazia/",
     "/tpost/anz10dnpj1-v-abhaziyu-s-zhivotnimi-chto-nuzhno-znat": "/blog/poezdka-v-abhaziyu-s-zhivotnym/",
