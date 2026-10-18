@@ -16,6 +16,7 @@ canonical на цель и noindex — поисковую выдачу не тр
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import re
 import sys
@@ -27,14 +28,58 @@ GENERATED = ROOT / "data" / "short-links-generated.json"
 SNAPSHOT = ROOT / "data" / "catalog-snapshot.json"
 BLOG_MANIFEST = ROOT / "data" / "blog-posts.json"
 
+# Скрипт передаёт цели «?utm_…» и «#…» (без них реклама не видит, откуда
+# гость): meta refresh их теряет и остаётся запасным путём без JS.
+# og-теги — превью объекта в Telegram и ВК: по переадресации внутри страницы
+# они не переходят и иначе показали бы «Открываем страницу» без фото.
 STUB = """<!DOCTYPE html>
 <html lang="ru"><head><meta charset="utf-8"/>
+<script>location.replace({href_js}+location.search+location.hash)</script>
 <meta http-equiv="refresh" content="0;url={href}"/>
 <link rel="canonical" href="https://абхазберег.рф{href}"/>
 <meta name="robots" content="noindex"/>
-<title>Открываем страницу — АБХАЗБЕРЕГ</title></head>
+<title>{title}</title>
+{og}</head>
 <body><p>Открываем страницу: <a href="{href}">{href}</a></p></body></html>
 """
+STUB_TITLE = "Открываем страницу — АБХАЗБЕРЕГ"
+
+
+def og_tags(href: str, listing: dict | None) -> tuple[str, str]:
+    """(title, og-теги) страницы-стрелки: у объекта — его название, описание и обложка."""
+    url = f"https://abhazbereg.com{href}"
+    if not listing:
+        return STUB_TITLE, f'<meta property="og:url" content="{html.escape(url)}"/>'
+    title = str(listing.get("title") or "").strip() or "АБХАЗБЕРЕГ"
+    description = str(listing.get("summary") or listing.get("excerpt") or "").strip()[:300]
+    try:
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from catalog_snapshot import _cover_for_index
+
+        image = str(_cover_for_index(listing) or "")
+    except Exception:  # noqa: BLE001 — без обложки превью всё равно с названием
+        image = str(listing.get("cover_url") or "")
+    tags = [
+        '<meta property="og:type" content="website"/>',
+        '<meta property="og:site_name" content="АБХАЗБЕРЕГ"/>',
+        f'<meta property="og:title" content="{html.escape(title)}"/>',
+        f'<meta property="og:url" content="{html.escape(url)}"/>',
+    ]
+    if description:
+        tags.append(f'<meta property="og:description" content="{html.escape(description)}"/>')
+    if image.startswith("https://"):
+        tags.append(f'<meta property="og:image" content="{html.escape(image)}"/>')
+    return html.escape(f"{title} — АБХАЗБЕРЕГ"), "\n".join(tags)
+
+
+def listings_by_path() -> dict[str, dict]:
+    result: dict[str, dict] = {}
+    for row in load_json(SNAPSHOT).get("listings") or []:
+        if row.get("is_active") is False or not row.get("slug"):
+            continue
+        kind = "hotels" if row.get("source_kind") == "hotel" else "kvartira"
+        result[f"/{kind}/{row['slug']}/"] = row
+    return result
 
 # Типовые слова в слагах объектов: всё после них — описание, а не имя.
 TYPE_WORDS = {
@@ -198,6 +243,7 @@ def main() -> int:
 
     generated = {k: v for k, v in sorted(links.items()) if k not in manual}
     broken = 0
+    by_path = listings_by_path()
     for key, href in sorted(links.items()):
         target = ROOT / href.strip("/") / "index.html"
         if not target.is_file():
@@ -207,7 +253,9 @@ def main() -> int:
         if not args.check:
             out_dir = ROOT / key
             out_dir.mkdir(parents=True, exist_ok=True)
-            (out_dir / "index.html").write_text(STUB.format(href=href), encoding="utf-8")
+            title, og = og_tags(href, by_path.get(href))
+            page = STUB.format(href=href, href_js=json.dumps(href), title=title, og=og)
+            (out_dir / "index.html").write_text(page, encoding="utf-8")
 
     for key in retired:
         stub = ROOT / key / "index.html"

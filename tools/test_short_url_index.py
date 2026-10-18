@@ -57,6 +57,22 @@ def test_real_registry_covers_catalog() -> None:
         assert leona[0]["short_url"] == "https://abhazbereg.com/villa-leona", leona[0]["short_url"]
 
 
+def test_stub_keeps_utm_and_has_preview() -> None:
+    sys.path.insert(0, str(ROOT / "tools"))
+    import json
+
+    import build_short_links as b
+
+    title, og = b.og_tags("/hotels/x-1/", {"title": 'Отель "Море" <b>', "summary": "У моря", "cover_url": "https://media.example/c.jpg"})
+    page = b.STUB.format(href="/hotels/x-1/", href_js=json.dumps("/hotels/x-1/"), title=title, og=og)
+    assert 'location.replace("/hotels/x-1/"+location.search+location.hash)' in page
+    assert 'og:title" content="Отель &quot;Море&quot; &lt;b&gt;"' in page, page
+    assert 'og:image" content="https://media.example/c.jpg"' in page
+    assert "Открываем страницу" in page, "по этой фразе генератор узнаёт свои страницы при снятии"
+    title2, og2 = b.og_tags("/blog/pamyatka/", None)
+    assert title2 == b.STUB_TITLE and "og:image" not in og2
+
+
 def main() -> int:
     tests = [v for k, v in globals().items() if k.startswith("test_") and callable(v)]
     for test in tests:
