@@ -2,12 +2,14 @@
 """Автоподстановка ссылок сайта в столбец «Сайт» таблицы «БАЗА - отели и квартиры».
 
 Вкладка СОЦСЕТИ, столбец H. Для каждой видимой строки, чьё название совпадает
-с объектом каталога (data/catalog-index.json), в H должна стоять официальная
-короткая ссылка `abhazbereg.ru/<ключ>` (data/short-links.json — ручные, главнее,
-и data/short-links-generated.json). Если короткой ещё нет — полная
-`abhazbereg.ru/<путь-страницы>/`; когда короткая появится, ячейка обновится сама.
-Латиницей, без протокола (домен abhazbereg.ru переадресует на абхазберег.рф
-с сохранением пути). Обновляются только ячейки, где значение отличается от актуального.
+с объектом каталога (data/catalog-index.json), в H должна стоять короткая ссылка
+`abhazbereg.com/<ключ>` — та же, что в `short_url` каталога (её считает сайт:
+ручной ключ из data/short-links.json главнее автоматического). Если короткой ещё
+нет — полная `abhazbereg.com/<путь-страницы>/`; когда короткая появится, ячейка
+обновится сама. Домен латиницей (решение Дарьи 19.10.2026), без протокола:
+abhazbereg.com переадресует на абхазберег.рф с сохранением пути и меток.
+Прежние ссылки abhazbereg.ru/<ключ> продолжают работать — их никто не удаляет.
+Обновляются только ячейки, где значение отличается от актуального.
 
 Не трогаем (правило 9 CLAUDE.md): скрытые строки и строки с заливкой в красных
 оттенках — эти объекты Дарья не ведёт. Также пропускаем строки без однозначного
@@ -32,7 +34,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SPREADSHEET_ID = '135fxeZX5OE30rH3Sg5KWpTR4VuhBntCzGrTk0WcdTBY'
 TAB = 'СОЦСЕТИ'
 SITE_COL_INDEX = 7  # H
-LINK_HOST = 'abhazbereg.ru'
+LINK_HOST = 'abhazbereg.com'
+# Наши домены в старых ячейках: ссылку на них переводим на LINK_HOST, чужие не трогаем.
+OUR_HOSTS = r'(?:www\.)?(?:abhazbereg\.ru|abhazbereg\.com|абхазберег\.рф|xn--80aacbklan7f0b\.xn--p1ai)'
 CATALOG_INDEX = ROOT / 'data' / 'catalog-index.json'
 SHORT_LINKS = ROOT / 'data' / 'short-links.json'
 SHORT_LINKS_GENERATED = ROOT / 'data' / 'short-links-generated.json'
@@ -89,14 +93,25 @@ def load_short_keys():
 
 
 def shorten_existing(current: str, short_keys: dict):
-    """abhazbereg.ru/<полный путь>/ → abhazbereg.ru/<ключ>, если у страницы есть короткая ссылка."""
-    match = re.fullmatch(r'(?:https?://)?(?:www\.)?abhazbereg\.ru(/[^?#\s]+)', current)
+    """Наш домен/<полный путь>/ → LINK_HOST/<ключ>; старый домен/<ключ> → LINK_HOST/<ключ>."""
+    match = re.fullmatch(r'(?:https?://)?' + OUR_HOSTS + r'(/[^?#\s]+)', current)
     if not match:
         return None
-    if match.group(1).strip('/') in short_keys.values():  # уже короткая
-        return current
+    key_part = match.group(1).strip('/')
+    if key_part in short_keys.values():  # уже короткая — только домен
+        return f'{LINK_HOST}/{key_part}'
     key = short_keys.get(with_slash(match.group(1)))
     return f'{LINK_HOST}/{key}' if key else None
+
+
+def short_link_of(item: dict, short_keys: dict, path: str) -> str:
+    """Короткая ссылка объекта: short_url каталога (его считает сайт), иначе реестры, иначе полный путь."""
+    short_url = str(item.get('short_url') or '')
+    match = re.fullmatch(r'https://abhazbereg\.com/([a-z0-9-]+)', short_url)
+    if match:
+        return f'{LINK_HOST}/{match.group(1)}'
+    key = short_keys.get(path)
+    return f'{LINK_HOST}/{key}' if key else LINK_HOST + path
 
 
 def load_catalog():
@@ -105,8 +120,7 @@ def load_catalog():
     by_norm, by_qname = {}, {}
     for item in data['listings']:
         path = with_slash(item['page_url'].split('абхазберег.рф', 1)[-1])
-        key = short_keys.get(path)
-        link = f'{LINK_HOST}/{key}' if key else LINK_HOST + path
+        link = short_link_of(item, short_keys, path)
         by_norm.setdefault(norm(item['title']), link)
         qname = quoted_name(item['title'])
         if qname:
