@@ -150,7 +150,9 @@ def build() -> int:
     # abhazbereg.ru — кладём и «ключ/index.html» (путь со слэшем), и просто
     # «ключ» (путь без слэша), чтобы срабатывали оба написания.
     shorts = 0
-    for name in ("short-links.json", "short-links-generated.json"):
+    # Общий реестр первым, ручные последними: ручной адрес главнее (общий
+    # с 19.10.2026 хранит и ручные ключи — мог остаться прежний адрес).
+    for name in ("short-links-generated.json", "short-links.json"):
         try:
             links = json.loads((ROOT / "data" / name).read_text(encoding="utf-8")).get("links") or {}
         except (OSError, json.JSONDecodeError):
