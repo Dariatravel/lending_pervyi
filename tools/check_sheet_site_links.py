@@ -27,7 +27,8 @@ HOP_RE = re.compile(r'http-equiv=["\']refresh["\'][^>]*url=([^"\'>\s]+)|location
 
 
 def fetch(url: str) -> tuple[int, str, str]:
-    req = urllib.request.Request(url, headers={"User-Agent": "abhazbereg-link-check/1.0"})
+    # Как браузер: сокращатели (clck.ru) неизвестным клиентам отвечают 404.
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Macintosh) abhazbereg-link-check/1.0"})
     try:
         with urllib.request.urlopen(req, timeout=25) as resp:
             return resp.status, resp.geturl(), resp.read(6000).decode("utf-8", errors="ignore")
