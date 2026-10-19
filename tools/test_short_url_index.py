@@ -73,6 +73,49 @@ def test_stub_keeps_utm_and_has_preview() -> None:
     assert title2 == b.STUB_TITLE and "og:image" not in og2
 
 
+def test_links_are_never_deleted() -> None:
+    """Дарья 19.10.2026: «ссылки вообще нельзя удалять». Снятый объект и пропавшая
+    цель — ключ остаётся в реестре, страница-переходник на месте."""
+    import json
+    import tempfile
+
+    sys.path.insert(0, str(ROOT / "tools"))
+    import build_short_links as b
+
+    saved = {k: getattr(b, k) for k in ("ROOT", "MANIFEST", "GENERATED", "SNAPSHOT", "BLOG_MANIFEST", "refresh_catalog_index_short_urls")}
+    saved_argv = sys.argv
+    with tempfile.TemporaryDirectory() as raw:
+        tmp = Path(raw)
+        (tmp / "data").mkdir()
+        (tmp / "hotels" / "live-1").mkdir(parents=True)
+        (tmp / "hotels" / "live-1" / "index.html").write_text("<html></html>", encoding="utf-8")
+        (tmp / "hotels" / "off-2").mkdir(parents=True)
+        (tmp / "hotels" / "off-2" / "index.html").write_text("<html>переадресация</html>", encoding="utf-8")
+        (tmp / "data" / "short-links.json").write_text('{"links": {}}', encoding="utf-8")
+        (tmp / "data" / "short-links-generated.json").write_text(json.dumps({"links": {
+            "live": "/hotels/live-1/", "off": "/hotels/off-2/", "gone": "/hotels/gone-3/"}}), encoding="utf-8")
+        (tmp / "data" / "catalog-snapshot.json").write_text(json.dumps({"listings": [
+            {"slug": "live-1", "source_kind": "hotel", "is_active": True, "title": "Живой"},
+            {"slug": "off-2", "source_kind": "hotel", "is_active": False, "title": "Снятый"},
+        ]}, ensure_ascii=False), encoding="utf-8")
+        b.ROOT, b.MANIFEST = tmp, tmp / "data" / "short-links.json"
+        b.GENERATED, b.SNAPSHOT = tmp / "data" / "short-links-generated.json", tmp / "data" / "catalog-snapshot.json"
+        b.BLOG_MANIFEST = tmp / "data" / "blog-posts.json"
+        b.refresh_catalog_index_short_urls = lambda manual, generated: None  # настоящий каталог не трогаем
+        sys.argv = ["build_short_links.py"]
+        try:
+            b.main()
+        finally:
+            for k, v in saved.items():
+                setattr(b, k, v)
+            sys.argv = saved_argv
+        links = json.loads((tmp / "data" / "short-links-generated.json").read_text(encoding="utf-8"))["links"]
+        assert {"live", "off", "gone"} <= set(links), links
+        assert links["gone"] == "/hotels/gone-3/", "ключ хранит прежнюю цель — вернётся страница, вернётся и переход"
+        assert 'location.replace("/hotels/off-2/"' in (tmp / "off" / "index.html").read_text(encoding="utf-8")
+        assert 'location.replace("/"' in (tmp / "gone" / "index.html").read_text(encoding="utf-8")
+
+
 def main() -> int:
     tests = [v for k, v in globals().items() if k.startswith("test_") and callable(v)]
     for test in tests:

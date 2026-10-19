@@ -193,24 +193,13 @@ def main() -> int:
     previous = {str(k): str(v) for k, v in (load_json(GENERATED).get("links") or {}).items()}
 
     links: dict[str, str] = dict(manual)
-    # Снятые объекты (is_active=false: скрыты, заменены, отельный двойник):
-    # их страница — редирект, и короткая ссылка вела бы в общий каталог
-    # («Джаннат», 13.10.2026). Такие сгенерированные ссылки убираем.
-    inactive = {
-        f"/{'hotels' if row.get('source_kind') == 'hotel' else 'kvartira'}/{row.get('slug')}/"
-        for row in (load_json(SNAPSHOT).get("listings") or [])
-        if row.get("is_active") is False and row.get("slug")
-    }
-    retired: list[str] = []
-    # Прошлые сгенерированные ключи сохраняются, пока жива цель, — старые
-    # рассылки не ломаются. Ключ не должен конфликтовать с ручными.
+    # Однажды выданная ссылка не удаляется никогда (Дарья 19.10.2026: «ссылки
+    # вообще нельзя удалять» — они уже размещены в постах и рассылках). Даже у
+    # снятого объекта ключ остаётся: его страница — переадресация на замену
+    # или в каталог. Пропала сама цель — ссылка ведёт на главную (см. ниже).
+    # Ключ не должен конфликтовать с ручными.
     for key, href in previous.items():
-        if key in links:
-            continue
-        if href in inactive:
-            retired.append(key)
-            continue
-        if (ROOT / href.strip("/") / "index.html").is_file():
+        if key not in links:
             links[key] = href
 
     taken = reserved_keys()
@@ -246,27 +235,19 @@ def main() -> int:
     by_path = listings_by_path()
     for key, href in sorted(links.items()):
         target = ROOT / href.strip("/") / "index.html"
+        go = href
         if not target.is_file():
-            print(f"  ! цель не найдена: /{key} → {href}")
+            # Ссылку не удаляем: пока цели нет, ведём на главную. Ключ в
+            # реестре прежний — вернётся страница, вернётся и переход на неё.
+            print(f"  ! цель не найдена: /{key} → {href} — ведёт на главную")
             broken += 1
-            continue
+            go = "/"
         if not args.check:
             out_dir = ROOT / key
             out_dir.mkdir(parents=True, exist_ok=True)
-            title, og = og_tags(href, by_path.get(href))
-            page = STUB.format(href=href, href_js=json.dumps(href), title=title, og=og)
+            title, og = og_tags(go, by_path.get(go))
+            page = STUB.format(href=go, href_js=json.dumps(go), title=title, og=og)
             (out_dir / "index.html").write_text(page, encoding="utf-8")
-
-    for key in retired:
-        stub = ROOT / key / "index.html"
-        print(f"  - снята ссылка /{key}: объект {previous[key]} снят с сайта")
-        # Удаляем только свою страницу-стрелку, чужие папки не трогаем.
-        if not args.check and stub.is_file() and "Открываем страницу" in stub.read_text(encoding="utf-8"):
-            stub.unlink()
-            try:
-                stub.parent.rmdir()
-            except OSError:
-                pass
 
     if not args.check:
         GENERATED.write_text(
