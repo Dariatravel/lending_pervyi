@@ -20,6 +20,8 @@ abhazbereg.com переадресует на абхазберег.рф с сох
 google-service-account.json в корне репо или ключ в Downloads на Mac.
 """
 
+from __future__ import annotations
+
 import argparse
 import json
 import os
@@ -92,12 +94,15 @@ def load_short_keys():
     return path_to_key
 
 
-def shorten_existing(current: str, short_keys: dict):
-    """Наш домен/<полный путь>/ → LINK_HOST/<ключ>; старый домен/<ключ> → LINK_HOST/<ключ>."""
+def shorten_existing(current: str, short_keys: dict, promo_keys: set | None = None):
+    """Наш домен/<полный путь>/ → LINK_HOST/<ключ>; старый домен/<ключ> → LINK_HOST/<ключ>.
+    Ключ страницы-акции в строке объекта — не «уже короткая», а ошибка: строка идёт в отчёт."""
     match = re.fullmatch(r'(?:https?://)?' + OUR_HOSTS + r'(/[^?#\s]+)', current)
     if not match:
         return None
     key_part = match.group(1).strip('/')
+    if key_part in (promo_keys or set()):
+        return None
     if key_part in short_keys.values():  # уже короткая — только домен
         return f'{LINK_HOST}/{key_part}'
     key = short_keys.get(with_slash(match.group(1)))
@@ -114,36 +119,62 @@ def short_link_of(item: dict, short_keys: dict, path: str) -> str:
     return f'{LINK_HOST}/{key}' if key else LINK_HOST + path
 
 
+PROMO_TITLE = re.compile(r'^\s*(новый год|спецпредложение|акция|скидк)', re.I)
+
+
+def is_promo(item: dict) -> bool:
+    """Страница-акция («НОВЫЙ ГОД В «ГРАСС»…», «СПЕЦПРЕДЛОЖЕНИЕ…»): это не объект.
+    В таблице БАЗА строки — объекты, поэтому акции в кандидаты не идут (ревью 19.10.2026:
+    «ГРАСС» коттеджи получили ссылку на новогодний пост)."""
+    return bool(PROMO_TITLE.match(item.get('title') or ''))
+
+
 def load_catalog():
     data = json.loads(CATALOG_INDEX.read_text(encoding='utf-8'))
     short_keys = load_short_keys()
-    by_norm, by_qname = {}, {}
+    by_norm, by_qname, promo_keys = {}, {}, set()
     for item in data['listings']:
         path = with_slash(item['page_url'].split('абхазберег.рф', 1)[-1])
         link = short_link_of(item, short_keys, path)
         by_norm.setdefault(norm(item['title']), link)
+        if is_promo(item):
+            promo_keys.add(link.split('/', 1)[1].strip('/'))
+            continue
         qname = quoted_name(item['title'])
         if qname:
             by_qname.setdefault(qname, []).append(link)
-    return by_norm, by_qname
+    return by_norm, by_qname, promo_keys
+
+
+def is_our_link(value: str) -> bool:
+    return not value or bool(re.match(r'(?:https?://)?' + OUR_HOSTS + r'(/|$)', value))
 
 
 def fetch_rows(service):
     fields = ('sheets(data(rowMetadata(hiddenByUser,hiddenByFilter),'
               'rowData(values(formattedValue,effectiveFormat(backgroundColor)))))')
+    # Только название (A) и «Сайт» (H): контакты и прочие столбцы не читаем.
     resp = service.spreadsheets().get(
         spreadsheetId=SPREADSHEET_ID,
-        ranges=[f"'{TAB}'!A1:H1500"],
+        ranges=[f"'{TAB}'!A1:A1500", f"'{TAB}'!H1:H1500"],
         includeGridData=True,
         fields=fields,
     ).execute()
-    data = resp['sheets'][0]['data'][0]
-    return data.get('rowMetadata', []), data.get('rowData', [])
+    col_a, col_h = resp['sheets'][0]['data'][0], resp['sheets'][0]['data'][1]
+    rows_a, rows_h = col_a.get('rowData', []), col_h.get('rowData', [])
+    rows = []
+    for i in range(max(len(rows_a), len(rows_h))):
+        a = (rows_a[i].get('values') or [{}])[0] if i < len(rows_a) else {}
+        h = (rows_h[i].get('values') or [{}])[0] if i < len(rows_h) else {}
+        rows.append({'values': [a] + [{}] * (SITE_COL_INDEX - 1) + [h]})
+    return col_a.get('rowMetadata', []), rows
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description='Автоссылки abhazbereg.ru в столбце «Сайт» таблицы БАЗА.')
     parser.add_argument('--dry-run', action='store_true', help='только показать, ничего не записывать')
+    parser.add_argument('--replace-foreign', action='store_true',
+                        help='заменять и чужие ссылки (clck.ru, t.me…); по умолчанию они только в отчёте')
     args = parser.parse_args()
 
     creds = service_account.Credentials.from_service_account_file(
@@ -151,11 +182,11 @@ def main() -> int:
         scopes=['https://www.googleapis.com/auth/spreadsheets'])
     service = build('sheets', 'v4', credentials=creds, cache_discovery=False)
 
-    by_norm, by_qname = load_catalog()
+    by_norm, by_qname, promo_keys = load_catalog()
     short_keys = load_short_keys()
     rows_meta, rows = fetch_rows(service)
 
-    updates, unmatched = [], []
+    updates, unmatched, foreign = [], [], []
     for i, row in enumerate(rows):
         row_no = i + 1
         if row_no == 1:
@@ -183,18 +214,26 @@ def main() -> int:
         if not link:
             # Название не узнали, но в ячейке уже полная ссылка на страницу сайта —
             # меняем её на короткую, если она есть.
-            link = shorten_existing(current, short_keys)
+            link = shorten_existing(current, short_keys, promo_keys)
         if not link:
             unmatched.append((row_no, name))
+            continue
+        # Чужую ссылку (clck.ru, t.me, avito…) не затираем молча: ссылки не удаляем
+        # (Дарья 19.10.2026) — такие строки в отдельный отчёт, замена только с --replace-foreign.
+        if not is_our_link(current) and not args.replace_foreign:
+            foreign.append((row_no, name, current, link))
             continue
 
         if current != link:
             updates.append({'range': f'{TAB}!H{row_no}', 'values': [[link]]})
             print(f'  H{row_no} {name[:45]!r}: {current or "(пусто)"} → {link}')
 
-    print(f'Строк к обновлению: {len(updates)}; без соответствия каталогу: {len(unmatched)}')
+    print(f'Строк к обновлению: {len(updates)}; без соответствия каталогу: {len(unmatched)}; '
+          f'чужая ссылка оставлена: {len(foreign)}')
     for row_no, name in unmatched:
         print(f'  нет на сайте / неоднозначно: r{row_no} {name[:60]!r}')
+    for row_no, name, current, link in foreign:
+        print(f'  чужая ссылка оставлена: r{row_no} {name[:45]!r}: {current} (наша была бы {link})')
 
     if updates and not args.dry_run:
         service.spreadsheets().values().batchUpdate(
