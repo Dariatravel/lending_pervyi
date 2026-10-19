@@ -305,6 +305,8 @@ jobs:
           git config user.email "209351708+Dariatravel@users.noreply.github.com"
           git add -A -- podborki sitemap.xml data/telegram-collections.json data/short-links-generated.json index.html data/catalog-index.json
           git ls-files --others --exclude-standard -- '*/index.html' | grep -E '^[^/]+/index\.html$' | xargs -r git add --
+          # и изменённые переходники коротких ссылок (например, теперь ведут на главную)
+          git diff --name-only -- '*/index.html' | grep -E '^[^/]+/index\.html$' | xargs -r git add --
           if git diff --cached --quiet; then
             echo "Подборки не изменились — публиковать нечего."
             exit 0

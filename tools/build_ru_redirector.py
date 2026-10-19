@@ -156,7 +156,9 @@ def build() -> int:
         except (OSError, json.JSONDecodeError):
             links = {}
         for key, href in sorted(links.items()):
-            page = redirect_page(str(href))
+            # Ссылки не удаляем (Дарья 19.10.2026); цели нет — на главную, не в 404.
+            target_exists = (ROOT / str(href).strip("/") / "index.html").is_file()
+            page = redirect_page(str(href) if target_exists else "/")
             put(f"{key}/index.html", page)
             put(key, page)
             shorts += 1

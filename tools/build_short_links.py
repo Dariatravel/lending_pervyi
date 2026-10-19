@@ -6,10 +6,11 @@
 - автоматика по всему сайту: объекты (имя объекта: /aisha, /sia-lend),
   подборки (суть: /gagra, /basseyn) и статьи блога (слаг без гео-хвоста).
 
-Сгенерированные пары запоминаются в data/short-links-generated.json:
-однажды выданный короткий адрес не меняется, пока жива его цель, — ссылки
-из старых рассылок не ломаются. Страница-стрелка: мгновенный переезд,
-canonical на цель и noindex — поисковую выдачу не трогает.
+Все выданные пары запоминаются в data/short-links-generated.json: однажды
+выданный короткий адрес не удаляется и не меняется никогда (Дарья 19.10.2026:
+«ссылки вообще нельзя удалять»). Цель пропала — переходник ведёт на главную.
+Страница-стрелка: мгновенный переезд, canonical на цель и noindex — поисковую
+выдачу не трогает.
 
 Запуск: python3 tools/build_short_links.py [--check]
 """
@@ -230,34 +231,53 @@ def main() -> int:
         taken.add(key)
         added += 1
 
-    generated = {k: v for k, v in sorted(links.items()) if k not in manual}
-    broken = 0
+    # В реестр выданных пишем и ручные ключи: уберут ключ из short-links.json —
+    # ссылка всё равно останется (ручной ключ главнее, пока он есть в ручных).
+    generated = dict(sorted(links.items()))
+    broken = clashes = 0
     by_path = listings_by_path()
     for key, href in sorted(links.items()):
         target = ROOT / href.strip("/") / "index.html"
         go = href
-        if not target.is_file():
-            # Ссылку не удаляем: пока цели нет, ведём на главную. Ключ в
-            # реестре прежний — вернётся страница, вернётся и переход на неё.
+        if not target.is_file() or is_stub(target):
+            # Ссылку не удаляем: пока цели нет (или она сама переходник —
+            # иначе гость ходил бы по кругу), ведём на главную. Ключ в реестре
+            # прежний — вернётся страница, вернётся и переход на неё.
             print(f"  ! цель не найдена: /{key} → {href} — ведёт на главную")
             broken += 1
             go = "/"
         if not args.check:
-            out_dir = ROOT / key
-            out_dir.mkdir(parents=True, exist_ok=True)
+            out_file = ROOT / key / "index.html"
+            # Настоящую страницу с тем же именем (например, город) не затираем.
+            if out_file.is_file() and not is_stub(out_file):
+                print(f"::warning title=Короткая ссылка::/{key} — там настоящая страница, переходник не записан")
+                clashes += 1
+                continue
+            out_file.parent.mkdir(parents=True, exist_ok=True)
             title, og = og_tags(go, by_path.get(go))
             page = STUB.format(href=go, href_js=json.dumps(go), title=title, og=og)
-            (out_dir / "index.html").write_text(page, encoding="utf-8")
+            out_file.write_text(page, encoding="utf-8")
 
     if not args.check:
         GENERATED.write_text(
-            json.dumps({"_comment": "Автосгенерированные короткие ссылки (build_short_links.py). Не редактировать руками — ручные живут в short-links.json.", "links": generated},
+            json.dumps({"_comment": "Все выданные короткие ссылки (build_short_links.py), ключи не удаляются никогда. Не редактировать руками — ручные живут в short-links.json.", "links": generated},
                        ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
         refresh_catalog_index_short_urls(manual, generated)
-    print(f"\nИтог: ссылок {len(links)} (ручных {len(manual)}, новых {added}), целей не найдено {broken}")
-    return 1 if broken else 0
+    print(f"\nИтог: ссылок {len(links)} (ручных {len(manual)}, новых {added}), "
+          f"ведут на главную {broken}, заняты настоящей страницей {clashes}")
+    # Пропавшая цель — не сбой (ссылка работает, ведёт на главную): код 0,
+    # чтобы предупреждение в синке значило настоящее падение генератора.
+    return 0
+
+
+def is_stub(page: Path) -> bool:
+    """Страница — наш переходник (по этой фразе генератор узнаёт свои страницы)."""
+    try:
+        return "Открываем страницу" in page.read_text(encoding="utf-8")
+    except OSError:
+        return False
 
 
 if __name__ == "__main__":

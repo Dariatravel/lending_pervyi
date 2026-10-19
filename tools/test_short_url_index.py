@@ -91,9 +91,13 @@ def test_links_are_never_deleted() -> None:
         (tmp / "hotels" / "live-1" / "index.html").write_text("<html></html>", encoding="utf-8")
         (tmp / "hotels" / "off-2").mkdir(parents=True)
         (tmp / "hotels" / "off-2" / "index.html").write_text("<html>переадресация</html>", encoding="utf-8")
-        (tmp / "data" / "short-links.json").write_text('{"links": {}}', encoding="utf-8")
+        (tmp / "data" / "short-links.json").write_text('{"links": {"ruchnoy": "/hotels/live-1/"}}', encoding="utf-8")
         (tmp / "data" / "short-links-generated.json").write_text(json.dumps({"links": {
-            "live": "/hotels/live-1/", "off": "/hotels/off-2/", "gone": "/hotels/gone-3/"}}), encoding="utf-8")
+            "live": "/hotels/live-1/", "off": "/hotels/off-2/", "gone": "/hotels/gone-3/",
+            "gorod": "/hotels/live-1/", "petlya": "/petlya/"}}), encoding="utf-8")
+        # настоящая страница с тем же именем, что и ключ, — её не затирать
+        (tmp / "gorod").mkdir()
+        (tmp / "gorod" / "index.html").write_text("<html>Город</html>", encoding="utf-8")
         (tmp / "data" / "catalog-snapshot.json").write_text(json.dumps({"listings": [
             {"slug": "live-1", "source_kind": "hotel", "is_active": True, "title": "Живой"},
             {"slug": "off-2", "source_kind": "hotel", "is_active": False, "title": "Снятый"},
@@ -104,16 +108,22 @@ def test_links_are_never_deleted() -> None:
         b.refresh_catalog_index_short_urls = lambda manual, generated: None  # настоящий каталог не трогаем
         sys.argv = ["build_short_links.py"]
         try:
-            b.main()
+            assert b.main() == 0
+            # ручной ключ убрали из short-links.json — ссылка всё равно остаётся
+            (tmp / "data" / "short-links.json").write_text('{"links": {}}', encoding="utf-8")
+            assert b.main() == 0
         finally:
             for k, v in saved.items():
                 setattr(b, k, v)
             sys.argv = saved_argv
         links = json.loads((tmp / "data" / "short-links-generated.json").read_text(encoding="utf-8"))["links"]
-        assert {"live", "off", "gone"} <= set(links), links
+        assert {"live", "off", "gone", "ruchnoy", "gorod", "petlya"} <= set(links), links
         assert links["gone"] == "/hotels/gone-3/", "ключ хранит прежнюю цель — вернётся страница, вернётся и переход"
         assert 'location.replace("/hotels/off-2/"' in (tmp / "off" / "index.html").read_text(encoding="utf-8")
         assert 'location.replace("/"' in (tmp / "gone" / "index.html").read_text(encoding="utf-8")
+        assert 'location.replace("/hotels/live-1/"' in (tmp / "ruchnoy" / "index.html").read_text(encoding="utf-8")
+        assert (tmp / "gorod" / "index.html").read_text(encoding="utf-8") == "<html>Город</html>", "настоящая страница затёрта"
+        assert 'location.replace("/"' in (tmp / "petlya" / "index.html").read_text(encoding="utf-8"), "ссылка на саму себя — петля"
 
 
 def main() -> int:

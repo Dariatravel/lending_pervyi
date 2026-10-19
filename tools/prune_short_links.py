@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Удалить осиротевшие короткие ссылки из обоих бакетов.
+"""Показать короткие ссылки в бакетах сверх реестров. НИЧЕГО НЕ УДАЛЯЕТ.
+
+С 19.10.2026 ссылки не удаляются никогда (Дарья: «ссылки вообще нельзя
+удалять» — они уже размещены). Ниже — прежнее описание, для истории.
 
 Заливка сайта и редиректора только добавляет и обновляет файлы: когда
 короткая ссылка исчезает из data/short-links*.json (объект снят с сайта),
@@ -84,30 +87,18 @@ def list_keys(s3, bucket: str) -> list[str]:
 def main() -> int:
     s3 = s3_client()
 
+    # Дарья 19.10.2026: «ссылки вообще нельзя удалять» — они уже размещены в
+    # постах и рассылках. Скрипт больше ничего не удаляет, только показывает,
+    # что лежит в бакетах сверх реестров (для сверки руками).
     valid = valid_ru_keys()
-    removed_ru = 0
-    for key in list_keys(s3, RU_BUCKET):
-        if key not in valid:
-            s3.delete_object(Bucket=RU_BUCKET, Key=key)
-            print(f"  {RU_BUCKET}: удалён {key}")
-            removed_ru += 1
-    print(f"Редиректор abhazbereg.ru: удалено осиротевших объектов {removed_ru}")
+    extra_ru = [key for key in list_keys(s3, RU_BUCKET) if key not in valid]
+    for key in extra_ru:
+        print(f"  {RU_BUCKET}: вне реестров (оставлен) {key}")
+    print(f"Редиректор abhazbereg.ru: вне реестров {len(extra_ru)}, удалено 0")
 
     prune_keys = [k.strip().strip("/") for k in os.getenv("PRUNE_KEYS", "").split(",") if k.strip()]
-    current = set(load_links("short-links.json")) | set(load_links("short-links-generated.json"))
-    removed_site = 0
-    for key in prune_keys:
-        if key in current:
-            print(f"  {SITE_BUCKET}: /{key} всё ещё в манифестах — пропуск")
-            continue
-        if (ROOT / key / "index.html").is_file():
-            print(f"  {SITE_BUCKET}: папка {key}/ существует в репозитории — пропуск")
-            continue
-        s3.delete_object(Bucket=SITE_BUCKET, Key=f"{key}/index.html")
-        s3.delete_object(Bucket=SITE_BUCKET, Key=key)
-        print(f"  {SITE_BUCKET}: удалён {key}/index.html")
-        removed_site += 1
-    print(f"Бакет сайта: удалено ключей {removed_site} (запрошено {len(prune_keys)})")
+    if prune_keys:
+        print(f"Бакет сайта: запрошено удалить {len(prune_keys)} — не удаляю, ссылки удалять нельзя")
     return 0
 
 
