@@ -2609,6 +2609,10 @@ a.podborki-card--link:hover {
   line-height: 1.25;
 }
 
+.blog-card > a:not([class]) {
+  text-decoration: none;
+}
+
 .blog-card h3 a {
   color: inherit;
   text-decoration: none;

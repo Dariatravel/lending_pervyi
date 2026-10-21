@@ -1,5 +1,5 @@
-const APP_SHELL_CACHE = "abhazbereg-app-shell-v202610212151";
-const RUNTIME_CACHE = "abhazbereg-runtime-v202610212151";
+const APP_SHELL_CACHE = "abhazbereg-app-shell-v202610212206";
+const RUNTIME_CACHE = "abhazbereg-runtime-v202610212206";
 // Медиа с 17.08.2026 раздаётся через CDN media.абхазберег.рф; старый прямой
 // адрес бакета оставлен — он встречается в уже закэшированных страницах.
 const MEDIA_SOURCES = [
@@ -10,18 +10,18 @@ const MAX_RUNTIME_MEDIA_ENTRIES = 80;
 
 const APP_SHELL_URLS = [
   "/",
-  "/styles.min.css?v=202610212151",
-  "/scripts.min.js?v=202610212151",
-  "/pwa.js?v=202610212151",
+  "/styles.min.css?v=202610212206",
+  "/scripts.min.js?v=202610212206",
+  "/pwa.js?v=202610212206",
   "/vendor/fonts/manrope-cyrillic.woff2",
   "/vendor/fonts/manrope-latin.woff2",
   "/vendor/fonts/prata-cyrillic.woff2",
   "/vendor/fonts/prata-latin.woff2",
-  "/vendor/leaflet/leaflet.css?v=202610212151",
-  "/vendor/leaflet/leaflet.js?v=202610212151",
-  "/vendor/leaflet-markercluster/MarkerCluster.css?v=202610212151",
-  "/vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202610212151",
-  "/vendor/leaflet-markercluster/leaflet.markercluster.js?v=202610212151",
+  "/vendor/leaflet/leaflet.css?v=202610212206",
+  "/vendor/leaflet/leaflet.js?v=202610212206",
+  "/vendor/leaflet-markercluster/MarkerCluster.css?v=202610212206",
+  "/vendor/leaflet-markercluster/MarkerCluster.Default.css?v=202610212206",
+  "/vendor/leaflet-markercluster/leaflet.markercluster.js?v=202610212206",
   "/app.webmanifest",
   "/404.html",
   "/app-icons/icon-192.png",
