@@ -450,9 +450,64 @@ MARKDOWN_ANSWER_PAGES: list[dict[str, Any]] = [
         ],
     },
 ]
+# Десять страниц ответов из agents-darias, ai-visibility/content/site/answers/
+# (Дарья, 21.10.2026). Формат: «Описание:», «Ответ:» (первый абзац), вопросы
+# подзаголовками ###, «Полезные ссылки» — в боковой блок. Встают в конец списка.
+MARKDOWN_ANSWER_PAGES += [
+    {"slug": slug, "source": f"{slug}.md"}
+    for slug in (
+        "novyy-god-v-abhazii",
+        "rannee-bronirovanie-abhaziya-2027",
+        "skolko-stoit-pervaya-liniya-v-abhazii",
+        "skolko-stoit-zhile-v-abhazii-letom",
+        "skolko-stoit-zhile-v-abhazii-v-sentyabre",
+        "suhum-ili-gagra",
+        "kvartiry-v-suhume-posutochno",
+        "oteli-abhazii-s-pitaniem",
+        "kak-ne-narvatsya-na-moshennikov-abhaziya",
+        "chto-takoe-vaucher-na-prozhivanie",
+    )
+]
 
-_MD_DESCRIPTION_PREFIX = "Описание для поисковиков:"
+_MD_DESCRIPTION_PREFIXES = ("Описание для поисковиков:", "Описание:")
+_MD_LEAD_PREFIX = "Ответ:"
 _MD_UPDATED_PREFIX = "Дата обновления:"
+_MD_LINKS_TITLE = "Полезные ссылки"
+
+
+def _site_page_label(path: str) -> str:
+    """Подпись для ссылки без подписи: заголовок страницы сайта."""
+    if path == "/podborki/":
+        return "Подборки жилья"
+    m = re.fullmatch(r"/answers/([^/]+)/", path)
+    if m:
+        for page in ANSWER_PAGES:
+            if page["slug"] == m.group(1):
+                return page["title"]
+    m = re.fullmatch(r"/podborki/([^/]+)/", path)
+    if m:
+        meta_path = ROOT / "podbori_txt" / "_collection_meta.json"
+        try:
+            meta = json.loads(meta_path.read_text(encoding="utf-8")).get(m.group(1)) or {}
+        except (OSError, ValueError):
+            meta = {}
+        if meta.get("h1"):
+            return str(meta["h1"])
+    raise ValueError(f"Нет подписи для ссылки {path}: добавьте её в текст («Подпись: адрес»)")
+
+
+def _md_links(items: list[str]) -> list[tuple[str, str]]:
+    """«Подпись: https://абхазберег.рф/…» или голый адрес → (путь, подпись)."""
+    links = []
+    for item in items:
+        m = re.search(r"https://[^\s]+", item)
+        if not m:
+            raise ValueError(f"В полезной ссылке нет адреса: {item}")
+        href = m.group(0)
+        path = href[len(CANON_ORIGIN):] if href.startswith(CANON_ORIGIN + "/") else href
+        label = item[: m.start()].strip().rstrip(":").strip()
+        links.append((path, label or _site_page_label(path)))
+    return links
 
 
 def _md_paragraphs(lines: list[str]) -> list[list[str]]:
@@ -495,11 +550,33 @@ def load_markdown_answer(spec: dict[str, Any]) -> dict[str, Any]:
     current: dict[str, Any] | None = None
     body: list[str] = []
 
+    links: list[tuple[str, str]] = []
+
     def flush() -> None:
+        nonlocal links
         if current is None:
             return
         blocks: list[dict[str, Any]] = []
-        for block in _md_paragraphs(body):
+        paragraphs = _md_paragraphs(body)
+        if current["title"] == _MD_LINKS_TITLE:
+            # Полезные ссылки — в боковой блок, как у соседних страниц.
+            items = [line[2:].strip() for block in paragraphs for line in block if line.startswith("- ")]
+            links = _md_links(items)
+            return
+        if current["title"] == "Частые вопросы" and any(line.startswith("### ") for line in body):
+            # Вопрос — подзаголовок ###, ответ — абзацы под ним.
+            question, answer = "", []
+            for line in body + ["### "]:
+                if line.startswith("### "):
+                    if question:
+                        if not answer:
+                            raise ValueError(f"Вопрос без ответа: {question}")
+                        faq.append((question, " ".join(answer)))
+                    question, answer = line[4:].strip(), []
+                elif line.strip():
+                    answer.append(line.strip())
+            paragraphs = []
+        for block in paragraphs:
             if block[0].startswith("|"):
                 blocks.append(_md_table(block))
             elif all(line.startswith("- ") for line in block):
@@ -518,8 +595,11 @@ def load_markdown_answer(spec: dict[str, Any]) -> dict[str, Any]:
     for line in lines:
         if line.startswith("# ") and not h1:
             h1 = line[2:].strip()
-        elif line.startswith(_MD_DESCRIPTION_PREFIX):
-            description = line[len(_MD_DESCRIPTION_PREFIX):].strip()
+        elif line.startswith(_MD_DESCRIPTION_PREFIXES):
+            prefix = next(p for p in _MD_DESCRIPTION_PREFIXES if line.startswith(p))
+            description = line[len(prefix):].strip()
+        elif line.startswith(_MD_LEAD_PREFIX) and current is None and not lead:
+            lead = line[len(_MD_LEAD_PREFIX):].strip()
         elif line.startswith(_MD_UPDATED_PREFIX):
             updated = line.strip()
         elif line.startswith("## "):
@@ -532,10 +612,14 @@ def load_markdown_answer(spec: dict[str, Any]) -> dict[str, Any]:
             body.append(line)
     flush()
     intro = _md_paragraphs(preamble)
-    if intro:
+    if intro and not lead:
         lead = " ".join(line.strip() for line in intro[0])
     if not (h1 and description and lead and faq):
         raise ValueError(f"{spec['source']}: нет заголовка, описания, вводного абзаца или вопросов")
+    if links and "links" not in spec:
+        spec = {**spec, "links": links}
+    if "links" not in spec:
+        raise ValueError(f"{spec['source']}: нет полезных ссылок")
     return {
         **spec,
         "title": h1,
@@ -824,8 +908,10 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
             if section["faq"]:
                 parts.append(faq_block.lstrip("\n"))
                 continue
+            # «Коротко» оформляем как у соседних страниц ответов.
+            section_class = "blog-section blog-section--summary" if section["title"] == "Коротко" else "blog-section"
             parts.append(
-                "        <section class=\"blog-section\">\n"
+                f"        <section class=\"{section_class}\">\n"
                 f"          <h2>{html.escape(section['title'])}</h2>\n"
                 + "\n".join(_md_block_html(block) for block in section["blocks"])
                 + "\n        </section>"
@@ -903,6 +989,7 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
   <meta property="og:title" content="{html.escape(page["title"], quote=True)}" />
   <meta property="og:description" content="{html.escape(page["description"], quote=True)}" />
   <meta property="og:url" content="{canonical}" />
+  <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" />
   <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
   <link rel="icon" type="image/png" href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" />
   <link rel="apple-touch-icon" href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" />
@@ -974,6 +1061,7 @@ def write_answer_pages(version: str) -> None:
   <meta name="description" content="Короткие экспертные ответы об отдыхе, жилье, районах, пляжах, ценах и безопасном бронировании в Абхазии." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="{CANON_ORIGIN}/answers/" />
+  <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" />
   <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
   <link rel="icon" type="image/png" href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" />
   <link rel="apple-touch-icon" href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" />
