@@ -466,6 +466,17 @@ MARKDOWN_ANSWER_PAGES += [
         "oteli-abhazii-s-pitaniem",
         "kak-ne-narvatsya-na-moshennikov-abhaziya",
         "chto-takoe-vaucher-na-prozhivanie",
+        # Партия 2 (Дарья, 21.10.2026).
+        "ldzaa-ili-pitsunda",
+        "gde-samoe-spokoynoe-more-v-abhazii",
+        "zhile-v-abhazii-do-5000-rubley",
+        "gostevoy-dom-ili-kvartira-v-abhazii",
+        "abhaziya-s-malenkim-rebenkom",
+        "abhaziya-s-sobakoy",
+        "rebenok-v-abhaziyu-po-svidetelstvu-o-rozhdenii",
+        "kogda-bronirovat-zhile-v-abhazii-na-leto",
+        "rabotayut-li-karty-v-abhazii",
+        "dom-pod-klyuch-v-abhazii-dlya-bolshoy-semi",
     )
 ]
 
@@ -473,6 +484,11 @@ _MD_DESCRIPTION_PREFIXES = ("Описание для поисковиков:", "
 _MD_LEAD_PREFIX = "Ответ:"
 _MD_UPDATED_PREFIX = "Дата обновления:"
 _MD_LINKS_TITLE = "Полезные ссылки"
+# «- адрес картинки - подпись - адрес страницы объекта»: фото со ссылкой на объект.
+_MD_IMAGES_TITLE = "Картинки"
+# Размеры картинок (для width/height): скачиваются один раз, дальше берутся отсюда,
+# чтобы ежечасный автосинк не ходил за ними в CDN.
+MARKDOWN_IMAGE_SIZES = MARKDOWN_ANSWER_DIR / "image-sizes.json"
 
 
 def _site_page_label(path: str) -> str:
@@ -508,6 +524,38 @@ def _md_links(items: list[str]) -> list[tuple[str, str]]:
         label = item[: m.start()].strip().rstrip(":").strip()
         links.append((path, label or _site_page_label(path)))
     return links
+
+
+def _md_images(items: list[str]) -> list[dict[str, str]]:
+    """«адрес картинки - подпись - адрес страницы» → картинка со ссылкой на объект."""
+    images = []
+    for item in items:
+        src, sep, rest = item.partition(" - ")
+        caption, sep2, href = rest.rpartition(" - ")
+        if not (sep and sep2 and src.startswith("https://") and href.startswith(CANON_ORIGIN + "/")):
+            raise ValueError(f"Картинка не в формате «адрес - подпись - страница»: {item}")
+        images.append({"src": src.strip(), "caption": caption.strip(), "href": href[len(CANON_ORIGIN):].strip()})
+    return images
+
+
+def _image_size(src: str) -> tuple[int, int]:
+    try:
+        sizes = json.loads(MARKDOWN_IMAGE_SIZES.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        sizes = {}
+    if src not in sizes:
+        import io
+        import urllib.request
+
+        from PIL import Image
+
+        with urllib.request.urlopen(src, timeout=60) as response:
+            sizes[src] = list(Image.open(io.BytesIO(response.read())).size)
+        MARKDOWN_IMAGE_SIZES.write_text(
+            json.dumps(dict(sorted(sizes.items())), ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
+    width, height = sizes[src]
+    return int(width), int(height)
 
 
 def _md_paragraphs(lines: list[str]) -> list[list[str]]:
@@ -551,9 +599,10 @@ def load_markdown_answer(spec: dict[str, Any]) -> dict[str, Any]:
     body: list[str] = []
 
     links: list[tuple[str, str]] = []
+    images: list[dict[str, str]] = []
 
     def flush() -> None:
-        nonlocal links
+        nonlocal links, images
         if current is None:
             return
         blocks: list[dict[str, Any]] = []
@@ -562,6 +611,12 @@ def load_markdown_answer(spec: dict[str, Any]) -> dict[str, Any]:
             # Полезные ссылки — в боковой блок, как у соседних страниц.
             items = [line[2:].strip() for block in paragraphs for line in block if line.startswith("- ")]
             links = _md_links(items)
+            return
+        if current["title"] == _MD_IMAGES_TITLE:
+            # Фото объектов выводятся сеткой на месте блока, без заголовка «Картинки».
+            items = [line[2:].strip() for block in paragraphs for line in block if line.startswith("- ")]
+            images = _md_images(items)
+            sections.append({"title": current["title"], "images": True, "faq": False, "blocks": []})
             return
         if current["title"] == "Частые вопросы" and any(line.startswith("### ") for line in body):
             # Вопрос — подзаголовок ###, ответ — абзацы под ним.
@@ -629,6 +684,7 @@ def load_markdown_answer(spec: dict[str, Any]) -> dict[str, Any]:
         "md_sections": sections,
         "faq": faq,
         "updated": updated,
+        "images": images,
     }
 
 
@@ -857,6 +913,29 @@ def _md_block_html(block: dict[str, Any]) -> str:
           </div>"""
 
 
+def _md_images_html(images: list[dict[str, str]]) -> str:
+    """Фото объектов: каждое — ссылка на страницу объекта, подпись под фото."""
+    figures = []
+    for image in images:
+        width, height = _image_size(image["src"])
+        base = image["src"].rsplit(".", 1)[0]
+        srcset = ", ".join(f"{base}-{w}.webp {w}w" for w in (480, 960, 1440))
+        href = html.escape(image["href"], quote=True)
+        caption = html.escape(image["caption"], quote=True)
+        figures.append(
+            f"""            <figure class="answers-photos__item">
+              <a href="{href}"><img src="{html.escape(image["src"], quote=True)}" srcset="{srcset}" sizes="(max-width: 600px) 100vw, 320px" width="{width}" height="{height}" alt="{caption}" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="{href}">{caption}</a></figcaption>
+            </figure>"""
+        )
+    return (
+        '        <section class="blog-section answers-photos" aria-label="Фото объектов">\n'
+        '          <div class="answers-photos__grid">\n'
+        + "\n".join(figures)
+        + "\n          </div>\n        </section>"
+    )
+
+
 # Таблица сравнения: на широком экране обычная таблица, на телефоне каждая
 # строка становится карточкой «подпись: значение», чтобы страница не
 # прокручивалась вбок. Стили только для этой страницы, общий styles.css не трогаем.
@@ -870,6 +949,14 @@ _ANSWERS_COMPARE_CSS = """  <style>
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
+    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos__item { margin: 0; min-width: 0; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
+    .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
+    @media (max-width: 600px) {
+      .answers-photos__grid { grid-template-columns: 1fr; }
+    }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
       .answers-compare__table thead { display: none; }
@@ -908,6 +995,9 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
             if section["faq"]:
                 parts.append(faq_block.lstrip("\n"))
                 continue
+            if section.get("images"):
+                parts.append(_md_images_html(page["images"]))
+                continue
             # «Коротко» оформляем как у соседних страниц ответов.
             section_class = "blog-section blog-section--summary" if section["title"] == "Коротко" else "blog-section"
             parts.append(
@@ -942,6 +1032,14 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
         extra_head = ""
         content_mod = ""
         updated = ""
+    # Первое фото страницы — картинка статьи для поисковиков и соцсетей.
+    first_image: dict[str, Any] | None = None
+    og_image = ""
+    if page.get("images"):
+        src = page["images"][0]["src"]
+        width, height = _image_size(src)
+        first_image = {"@type": "ImageObject", "url": src, "width": width, "height": height}
+        og_image = f'\n  <meta property="og:image" content="{html.escape(src, quote=True)}" />'
     graph = [
         {
             "@context": "https://schema.org",
@@ -952,6 +1050,7 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
             "inLanguage": "ru",
             "author": {"@type": "Organization", "name": BRAND, "url": CANON_ORIGIN + "/"},
             "publisher": {"@type": "Organization", "name": BRAND, "url": CANON_ORIGIN + "/"},
+            **({"image": first_image} if first_image else {}),
         },
         {
             "@context": "https://schema.org",
@@ -988,7 +1087,7 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
   <meta property="og:type" content="article" />
   <meta property="og:title" content="{html.escape(page["title"], quote=True)}" />
   <meta property="og:description" content="{html.escape(page["description"], quote=True)}" />
-  <meta property="og:url" content="{canonical}" />
+  <meta property="og:url" content="{canonical}" />{og_image}
   <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" />
   <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
   <link rel="icon" type="image/png" href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" />

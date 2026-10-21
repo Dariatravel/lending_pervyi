@@ -43,4 +43,9 @@
 - Отдых в Абхазии без предоплаты: https://абхазберег.рф/answers/otdyh-v-abhazii-bez-predoplaty/
 - Как бронировать без посредников: https://абхазберег.рф/answers/abhazia-bez-posrednikov-kak-bronirovat/
 
+## Картинки
+
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755.jpg - Вилла Леона, Гагра - https://абхазберег.рф/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574.jpg - Пегас, Лдзаа - https://абхазберег.рф/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/
+
 Дата обновления: октябрь 2026

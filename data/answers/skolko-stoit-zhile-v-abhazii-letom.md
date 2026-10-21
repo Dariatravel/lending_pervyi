@@ -43,4 +43,11 @@
 - https://абхазберег.рф/podborki/varianty-do-5-tr-ekonom/
 - https://абхазберег.рф/answers/skolko-stoit-otdyh-v-abhazii-2026/
 
+## Картинки
+
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/diar-domiki-s-basseynom-4192.jpg - Диар, Алахадзы - https://абхазберег.рф/hotels/diar-domiki-s-basseynom-4192/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/chernomorskaya-1-kvartira-2k-1744-cover.jpg - Черноморская-1, Сухум - https://абхазберег.рф/kvartira/chernomorskaya-1-kvartira-2k-1744/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/ptichka-eko-domiki-s-basseynom-5089.jpg - Птичка, Пицунда - https://абхазберег.рф/hotels/ptichka-eko-domiki-s-basseynom-5089/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074.jpg - Мулберри, Лдзаа - https://абхазберег.рф/hotels/mulberri-otel-na-plyazhe-s-basseynom-i-kafe-3074/
+
 Дата обновления: октябрь 2026

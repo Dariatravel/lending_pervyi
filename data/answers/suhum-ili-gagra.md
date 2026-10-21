@@ -43,4 +43,11 @@
 - Все варианты в Сухуме: https://абхазберег.рф/podborki/suhum-vse-varianty/
 - Все варианты в Гагре: https://абхазберег.рф/podborki/gagra-vse-varianty/
 
+## Картинки
+
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/domiki-u-mariny-otdyh-u-morya-3922.jpg - Домики У Марины, Сухум - https://абхазберег.рф/hotels/domiki-u-mariny-otdyh-u-morya-3922/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/chernomorskaya-1-kvartira-2k-1744-cover.jpg - Черноморская-1, Сухум - https://абхазберег.рф/kvartira/chernomorskaya-1-kvartira-2k-1744/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755.jpg - Вилла Леона, Гагра - https://абхазберег.рф/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296.jpg - Роял Ривьера, Гагра - https://абхазберег.рф/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/
+
 Дата обновления: октябрь 2026

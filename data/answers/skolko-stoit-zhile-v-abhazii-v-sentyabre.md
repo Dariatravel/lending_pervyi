@@ -43,4 +43,11 @@
 - https://абхазберег.рф/answers/kogda-luchshe-ehat-v-abhaziyu-sezon/
 - https://абхазберег.рф/podborki/mezhsezon/
 
+## Картинки
+
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296.jpg - Роял Ривьера, Гагра - https://абхазберег.рф/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755.jpg - Вилла Леона, Гагра - https://абхазберег.рф/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rayskiy-bereg-mini-otel-3277.jpg - Райский Берег, Гагра - https://абхазберег.рф/hotels/rayskiy-bereg-mini-otel-3277/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karin-gostevoy-dom-3267.jpg - Карин, Гагра - https://абхазберег.рф/hotels/karin-gostevoy-dom-3267/
+
 Дата обновления: октябрь 2026

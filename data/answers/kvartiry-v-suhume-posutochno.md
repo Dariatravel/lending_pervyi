@@ -43,4 +43,11 @@
 - Все варианты в Сухуме: https://абхазберег.рф/podborki/suhum-vse-varianty/
 - Все квартиры каталога: https://абхазберег.рф/podborki/kvartiry-vse-varianty/
 
+## Картинки
+
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/chernomorskaya-1-kvartira-2k-1744-cover.jpg - Черноморская-1, Сухум - https://абхазберег.рф/kvartira/chernomorskaya-1-kvartira-2k-1744/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/chernomorskaya-kvartira-suhum-1201-cover.jpg - Черноморская-2, Сухум - https://абхазберег.рф/kvartira/chernomorskaya-kvartira-suhum-1201/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mokko-briz-dva-domika-4152.jpg - Мокко Бриз, Сухум - https://абхазберег.рф/hotels/mokko-briz-dva-domika-4152/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/rimma-dve-1k-kvartriry-suhum-1118-cover.jpg - Римма, Сухум - https://абхазберег.рф/kvartira/rimma-dve-1k-kvartriry-suhum-1118/
+
 Дата обновления: октябрь 2026

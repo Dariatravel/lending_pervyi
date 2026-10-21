@@ -43,4 +43,9 @@
 - Отдых в Абхазии без предоплаты: https://абхазберег.рф/answers/otdyh-v-abhazii-bez-predoplaty/
 - Как бронировать без посредников: https://абхазберег.рф/answers/abhazia-bez-posrednikov-kak-bronirovat/
 
+## Картинки
+
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/staryy-prichal-gostevoy-dom-u-morya-3891.jpg - Старый Причал, Лдзаа - https://абхазберег.рф/hotels/staryy-prichal-gostevoy-dom-u-morya-3891/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/laym-mini-otel-s-basseynom-u-zapovednika-3554.jpg - Лайм, Пицунда - https://абхазберег.рф/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/
+
 Дата обновления: октябрь 2026

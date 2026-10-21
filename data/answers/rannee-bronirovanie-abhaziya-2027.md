@@ -43,4 +43,11 @@
 - https://абхазберег.рф/podborki/
 - https://абхазберег.рф/podborki/bereg-morya-oteli-na-beregu/
 
+## Картинки
+
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/briz-domiki-na-beregu-4937.jpg - Бриз, Лдзаа - https://абхазберег.рф/hotels/briz-domiki-na-beregu-4937/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/san-amra-lyuks-nomera-s-vidom-na-more-2631.jpg - Сан Амра, Лдзаа - https://абхазберег.рф/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/lazurnyy-bereg-butik-otel-s-pitaniem-2592.jpg - Лазурный Берег, Лдзаа - https://абхазберег.рф/hotels/lazurnyy-bereg-butik-otel-s-pitaniem-2592/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/diar-domiki-s-basseynom-4192.jpg - Диар, Алахадзы - https://абхазберег.рф/hotels/diar-domiki-s-basseynom-4192/
+
 Дата обновления: октябрь 2026

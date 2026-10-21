@@ -43,4 +43,11 @@
 - https://абхазберег.рф/podborki/bereg-morya-oteli-na-beregu/
 - https://абхазберег.рф/answers/skolko-stoit-otdyh-v-abhazii-2026/
 
+## Картинки
+
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/staryy-prichal-gostevoy-dom-u-morya-3891.jpg - Старый Причал, Лдзаа - https://абхазберег.рф/hotels/staryy-prichal-gostevoy-dom-u-morya-3891/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574.jpg - Пегас, Лдзаа - https://абхазберег.рф/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/domiki-u-mariny-otdyh-u-morya-3922.jpg - Домики У Марины, Сухум - https://абхазберег.рф/hotels/domiki-u-mariny-otdyh-u-morya-3922/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mokko-briz-dva-domika-4152.jpg - Мокко Бриз, Сухум - https://абхазберег.рф/hotels/mokko-briz-dva-domika-4152/
+
 Дата обновления: октябрь 2026

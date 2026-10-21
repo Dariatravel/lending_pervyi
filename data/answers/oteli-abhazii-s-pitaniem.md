@@ -43,4 +43,11 @@
 - Подборка отелей с питанием и своим кафе: https://абхазберег.рф/podborki/pitanie-v-otele-ili-svoe-kafe/
 - Жильё у моря для семьи: https://абхазберег.рф/answers/zhile-v-abhazii-u-morya-dlya-semi/
 
+## Картинки
+
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133.jpg - Мандарин, Лдзаа - https://абхазберег.рф/hotels/mandarin-otel-u-sosnovogo-plyazha-s-zavtrakami-4133/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belaya-dacha-otel-s-pitaniem-4630.jpg - Белая Дача, Гагра - https://абхазберег.рф/hotels/belaya-dacha-otel-s-pitaniem-4630/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/danelyan-semeynyy-otel-so-stolovoy-4652.jpg - Данелян, Лдзаа - https://абхазберег.рф/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bagripsh-domiki-na-beregu-s-pitaniem-4399.jpg - Багрипш, Гагрский район - https://абхазберег.рф/hotels/bagripsh-domiki-na-beregu-s-pitaniem-4399/
+
 Дата обновления: октябрь 2026

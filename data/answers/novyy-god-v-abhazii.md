@@ -43,4 +43,11 @@
 - https://абхазберег.рф/podborki/novyy-god-2027/
 - https://абхазберег.рф/answers/otdyh-v-abhazii-zimoy/
 
+## Картинки
+
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219.jpg - Фазенда, Пицунда - https://абхазберег.рф/hotels/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755.jpg - Вилла Леона, Гагра - https://абхазберег.рф/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928.jpg - Грасс Отель, Рицинское ущелье - https://абхазберег.рф/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/
+- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-4620.jpg - Пляжный Комплекс 151, Лдзаа - https://абхазберег.рф/hotels/plyazhnyy-kompleks-151-na-beregu-4620/
+
 Дата обновления: октябрь 2026
