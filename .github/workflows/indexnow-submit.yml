@@ -1,0 +1,56 @@
+name: IndexNow submit
+
+# Ручная отправка страниц в IndexNow и проверка их разметки валидатором
+# schema.org. Из песочницы агента оба сервиса закрыты прокси, отсюда открыты.
+# Пример paths: /answers/sravnenie-servisov-bronirovaniya-abhazii/ /answers/
+
+on:
+  workflow_dispatch:
+    inputs:
+      paths:
+        description: "Пути страниц через пробел"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Проверить разметку валидатором schema.org
+        env:
+          PATHS: ${{ inputs.paths }}
+        run: |
+          python3 - <<'EOF'
+          import json, os, urllib.parse, urllib.request
+          origin = "https://xn--80aacbklan7f0b.xn--p1ai"
+          for path in os.environ["PATHS"].split():
+              url = origin + path
+              data = urllib.parse.urlencode({"url": url}).encode()
+              try:
+                  with urllib.request.urlopen(urllib.request.Request("https://validator.schema.org/validate", data=data), timeout=60) as r:
+                      raw = r.read().decode("utf-8")
+              except Exception as error:  # noqa: BLE001
+                  print(f"{path}: валидатор не ответил ({error})")
+                  continue
+              raw = raw[raw.index("{"):]
+              report = json.loads(raw)
+              print(f"{path}: ошибок {report.get('numErrors')}, предупреждений {report.get('numWarnings')}")
+              for group in report.get("tripleGroups", []):
+                  nodes = group.get("nodes", [])
+                  errors = [e for node in nodes for e in node.get("errors", [])] + group.get("errors", [])
+                  print(f"  {group.get('type')}: ошибок {len(errors)}")
+                  for error in errors[:10]:
+                      print("    ", json.dumps(error, ensure_ascii=False)[:300])
+          EOF
+      - name: Отправить в IndexNow
+        env:
+          PATHS: ${{ inputs.paths }}
+        # $PATHS без кавычек: пути передаются отдельными аргументами
+        run: python3 tools/submit_indexnow.py --urls $PATHS

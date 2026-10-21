@@ -324,6 +324,7 @@ ANSWER_PAGES: list[dict[str, Any]] = [
             ("/#catalog", "Каталог проверенного жилья"),
             ("/answers/abhazia-bez-posrednikov-kak-bronirovat/", "Как безопасно бронировать напрямую"),
             ("/blog/pamyatka-turistu-abkhazia/", "Памятка туристу"),
+            ("/answers/sravnenie-servisov-bronirovaniya-abhazii/", "Сравнение сервисов бронирования"),
         ],
         "faq": [
             ("Работает ли Booking.com в Абхазии?", "Нет, Booking.com и Airbnb в Абхазии не работают. Бронировать можно через российские агрегаторы, туроператоров, локальные сервисы или напрямую."),
@@ -429,6 +430,129 @@ ANSWER_PAGES: list[dict[str, Any]] = [
         ],
     },
 ]
+
+
+# Страницы ответов, текст которых пишется отдельно (agents-darias,
+# ai-visibility/content/site/) и кладётся сюда как есть, в Markdown.
+# Текст не переписываем: генератор только раскладывает его по шаблону.
+MARKDOWN_ANSWER_DIR = ROOT / "data" / "answers"
+MARKDOWN_ANSWER_PAGES: list[dict[str, Any]] = [
+    {
+        "slug": "sravnenie-servisov-bronirovaniya-abhazii",
+        "source": "sravnenie-servisov-bronirovaniya-abhazii.md",
+        # Встать в списке сразу после обзора всех способов бронирования.
+        "after": "gde-bronirovat-zhile-v-abhazii",
+        "links": [
+            ("/answers/gde-bronirovat-zhile-v-abhazii/", "Где бронировать жилье: все способы"),
+            ("/answers/abhazia-bez-posrednikov-kak-bronirovat/", "Как безопасно бронировать напрямую"),
+            ("/podborki/", "Подборки жилья"),
+            ("/#catalog", "Каталог проверенного жилья"),
+        ],
+    },
+]
+
+_MD_DESCRIPTION_PREFIX = "Описание для поисковиков:"
+_MD_UPDATED_PREFIX = "Дата обновления:"
+
+
+def _md_paragraphs(lines: list[str]) -> list[list[str]]:
+    """Разбить строки на блоки по пустым строкам."""
+    blocks: list[list[str]] = []
+    current: list[str] = []
+    for line in lines:
+        if line.strip():
+            current.append(line.rstrip())
+        elif current:
+            blocks.append(current)
+            current = []
+    if current:
+        blocks.append(current)
+    return blocks
+
+
+def _md_table(block: list[str]) -> dict[str, Any]:
+    def cells(row: str) -> list[str]:
+        return [cell.strip() for cell in row.strip().strip("|").split("|")]
+
+    head = cells(block[0])
+    rows = [cells(row) for row in block[2:]]
+    for row in rows:
+        if len(row) != len(head):
+            raise ValueError(f"Строка таблицы не совпадает с шапкой: {row}")
+    return {"type": "table", "head": head, "rows": rows}
+
+
+def load_markdown_answer(spec: dict[str, Any]) -> dict[str, Any]:
+    text = (MARKDOWN_ANSWER_DIR / spec["source"]).read_text(encoding="utf-8")
+    lines = text.splitlines()
+    h1 = ""
+    description = ""
+    updated = ""
+    lead = ""
+    sections: list[dict[str, Any]] = []
+    faq: list[tuple[str, str]] = []
+    preamble: list[str] = []
+    current: dict[str, Any] | None = None
+    body: list[str] = []
+
+    def flush() -> None:
+        if current is None:
+            return
+        blocks: list[dict[str, Any]] = []
+        for block in _md_paragraphs(body):
+            if block[0].startswith("|"):
+                blocks.append(_md_table(block))
+            elif all(line.startswith("- ") for line in block):
+                blocks.append({"type": "list", "items": [line[2:].strip() for line in block]})
+            elif current["title"] == "Частые вопросы":
+                if len(block) != 2:
+                    raise ValueError(f"Вопрос без ответа или лишние строки: {block}")
+                faq.append((block[0].strip(), block[1].strip()))
+            else:
+                blocks.append({"type": "p", "text": " ".join(line.strip() for line in block)})
+        current["blocks"] = blocks
+        # Вопросы остаются на своём месте среди разделов (маркер faq).
+        current["faq"] = current["title"] == "Частые вопросы"
+        sections.append(current)
+
+    for line in lines:
+        if line.startswith("# ") and not h1:
+            h1 = line[2:].strip()
+        elif line.startswith(_MD_DESCRIPTION_PREFIX):
+            description = line[len(_MD_DESCRIPTION_PREFIX):].strip()
+        elif line.startswith(_MD_UPDATED_PREFIX):
+            updated = line.strip()
+        elif line.startswith("## "):
+            flush()
+            current = {"title": line[3:].strip()}
+            body = []
+        elif current is None:
+            preamble.append(line)
+        else:
+            body.append(line)
+    flush()
+    intro = _md_paragraphs(preamble)
+    if intro:
+        lead = " ".join(line.strip() for line in intro[0])
+    if not (h1 and description and lead and faq):
+        raise ValueError(f"{spec['source']}: нет заголовка, описания, вводного абзаца или вопросов")
+    return {
+        **spec,
+        "title": h1,
+        "h1": h1,
+        "description": description,
+        "lead": lead,
+        "md_sections": sections,
+        "faq": faq,
+        "updated": updated,
+    }
+
+
+for _spec in MARKDOWN_ANSWER_PAGES:
+    _page = load_markdown_answer(_spec)
+    _slugs = [item["slug"] for item in ANSWER_PAGES]
+    _pos = _slugs.index(_spec["after"]) + 1 if _spec.get("after") in _slugs else len(ANSWER_PAGES)
+    ANSWER_PAGES.insert(_pos, _page)
 
 
 def asset_version() -> str:
@@ -588,19 +712,100 @@ def json_ld(data: dict[str, Any]) -> str:
     return json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
 
 
+_MD_URL_RE = re.compile(r"https://[^\s()<>]+[^\s()<>.,;:]")
+# Контакты в тексте написаны без https:// — превращаем в ссылки, текст не трогаем.
+_MD_CONTACT_LINKS = (
+    (re.compile(r"@abhazbooking_online\b"), "https://t.me/abhazbooking_online"),
+    (re.compile(r"(?<![/\w])max\.ru/abhazbereg\b"), "https://max.ru/abhazbereg"),
+    (re.compile(r"(?<![/\w])vk\.ru/abhazbereg\b"), "https://vk.ru/abhazbereg"),
+    (re.compile(r"\+7 940 900-33-40"), "https://wa.me/79409003340"),
+)
+
+
+def _md_inline(text: str) -> str:
+    """Экранировать текст и сделать ссылки кликабельными, не меняя слов."""
+    spans: list[tuple[int, int, str]] = []
+    for match in _MD_URL_RE.finditer(text):
+        href = match.group(0)
+        if href.startswith(CANON_ORIGIN + "/"):
+            href = href[len(CANON_ORIGIN):]
+        spans.append((match.start(), match.end(), href))
+    for pattern, href in _MD_CONTACT_LINKS:
+        for match in pattern.finditer(text):
+            if not any(a <= match.start() < b for a, b, _ in spans):
+                spans.append((match.start(), match.end(), href))
+    spans.sort()
+    out: list[str] = []
+    pos = 0
+    for start, end, href in spans:
+        out.append(html.escape(text[pos:start]))
+        external = href.startswith("http")
+        rel = ' target="_blank" rel="noopener"' if external else ""
+        out.append(f'<a href="{html.escape(href, quote=True)}"{rel}>{html.escape(text[start:end])}</a>')
+        pos = end
+    out.append(html.escape(text[pos:]))
+    return "".join(out)
+
+
+def _md_block_html(block: dict[str, Any]) -> str:
+    if block["type"] == "p":
+        return f"          <p>{_md_inline(block['text'])}</p>"
+    if block["type"] == "list":
+        items = "\n".join(f"            <li>{_md_inline(item)}</li>" for item in block["items"])
+        return f"          <ul>\n{items}\n          </ul>"
+    head = "".join(f'<th scope="col">{html.escape(cell)}</th>' for cell in block["head"])
+    rows = []
+    for row in block["rows"]:
+        first, rest = row[0], row[1:]
+        tds = "".join(
+            f'<td data-label="{html.escape(label, quote=True)}">{_md_inline(cell)}</td>'
+            for label, cell in zip(block["head"][1:], rest)
+        )
+        rows.append(f'              <tr><th scope="row">{html.escape(first)}</th>{tds}</tr>')
+    body = "\n".join(rows)
+    return f"""          <div class="answers-compare">
+            <table class="answers-compare__table">
+              <thead><tr>{head}</tr></thead>
+              <tbody>
+{body}
+              </tbody>
+            </table>
+          </div>"""
+
+
+# Таблица сравнения: на широком экране обычная таблица, на телефоне каждая
+# строка становится карточкой «подпись: значение», чтобы страница не
+# прокручивалась вбок. Стили только для этой страницы, общий styles.css не трогаем.
+_ANSWERS_COMPARE_CSS = """  <style>
+    .answers-compare { margin-top: 12px; }
+    .answers-compare__table { width: 100%; border-collapse: collapse; background: rgba(255, 255, 255, 0.84); font-size: 14px; line-height: 1.45; }
+    .answers-compare__table th, .answers-compare__table td { border: 1px solid rgba(100, 121, 107, 0.2); padding: 8px 10px; text-align: left; vertical-align: top; word-break: normal; overflow-wrap: break-word; hyphens: auto; }
+    .answers-compare__table thead th { background: rgba(41, 74, 61, 0.1); font-weight: 800; }
+    .answers-compare__table tbody th { font-weight: 800; }
+    .blog-article__content--md { max-width: none; }
+    .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
+    .blog-article__content--md .blog-section p + p { margin-top: 10px; }
+    .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
+    @media (max-width: 1100px) {
+      .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
+      .answers-compare__table thead { display: none; }
+      .answers-compare__table { background: transparent; }
+      .answers-compare__table tr { margin: 0 0 12px; border: 1px solid rgba(100, 121, 107, 0.2); border-radius: 14px; background: rgba(255, 255, 255, 0.9); overflow: hidden; }
+      .answers-compare__table tbody th { background: rgba(41, 74, 61, 0.1); border: 0; font-size: 15px; }
+      .answers-compare__table td { border: 0; border-top: 1px solid rgba(100, 121, 107, 0.14); }
+      .answers-compare__table td::before { content: attr(data-label); display: block; font-weight: 700; font-size: 12px; color: rgba(41, 74, 61, 0.72); margin-bottom: 2px; }
+    }
+  </style>
+"""
+
+
 def render_answer_page(page: dict[str, Any], version: str) -> str:
     canonical = f"{CANON_ORIGIN}/answers/{page['slug']}/"
     links = "\n".join(
         f'          <a class="blog-note-card__nav-link" href="{html.escape(href)}">{html.escape(label)}</a>'
         for href, label in page["links"]
     )
-    sections = "\n".join(
-        f"""        <section class="blog-section">
-          <h2>{html.escape(title)}</h2>
-          <p>{html.escape(body)}</p>
-        </section>"""
-        for title, body in page["sections"]
-    )
+    is_md = "md_sections" in page
     faq_html = "\n".join(
         f"""        <article class="blog-section">
           <h2>{html.escape(question)}</h2>
@@ -608,6 +813,49 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
         </article>"""
         for question, answer in page["faq"]
     )
+    faq_block = f"""
+        <section class="blog-section">
+          <h2>Частые вопросы</h2>
+        </section>
+{faq_html}"""
+    if is_md:
+        parts = []
+        for section in page["md_sections"]:
+            if section["faq"]:
+                parts.append(faq_block.lstrip("\n"))
+                continue
+            parts.append(
+                "        <section class=\"blog-section\">\n"
+                f"          <h2>{html.escape(section['title'])}</h2>\n"
+                + "\n".join(_md_block_html(block) for block in section["blocks"])
+                + "\n        </section>"
+            )
+        sections = "\n".join(parts)
+        faq_block = ""
+        # Блок «Коротко» — общий текст шаблона, в тексте страницы его нет.
+        summary = ""
+        extra_head = _ANSWERS_COMPARE_CSS
+        content_mod = " blog-article__content--md"
+        updated = (
+            f'\n        <p class="blog-article__updated">{html.escape(page["updated"])}</p>'
+            if page.get("updated") else ""
+        )
+    else:
+        sections = "\n".join(
+            f"""        <section class="blog-section">
+          <h2>{html.escape(title)}</h2>
+          <p>{html.escape(body)}</p>
+        </section>"""
+            for title, body in page["sections"]
+        )
+        summary = """
+        <section class="blog-section blog-section--summary">
+          <h2>Коротко</h2>
+          <p>Если хотите быстрее подобрать жилье, откройте подходящую подборку ниже или напишите даты, состав гостей и бюджет — подберем варианты по реальным условиям.</p>
+        </section>"""
+        extra_head = ""
+        content_mod = ""
+        updated = ""
     graph = [
         {
             "@context": "https://schema.org",
@@ -647,7 +895,7 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{html.escape(page["title"])} — АБХАЗБЕРЕГ</title>
+  <title>{html.escape(page["title"])}{" - " if is_md else " — "}АБХАЗБЕРЕГ</title>
   <meta name="description" content="{html.escape(page["description"], quote=True)}" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="{canonical}" />
@@ -659,7 +907,7 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
   <link rel="icon" type="image/png" href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" />
   <link rel="apple-touch-icon" href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" />
   <link rel="stylesheet" href="../../styles.min.css?v={version}" />
-{schema}
+{extra_head}{schema}
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -684,16 +932,8 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
         <p class="blog-article__lead">{html.escape(page["lead"])}</p>
       </header>
       <div class="blog-article__layout">
-        <div class="blog-article__content blog-article__content--sections blog-article__content--guide">
-{sections}
-        <section class="blog-section blog-section--summary">
-          <h2>Коротко</h2>
-          <p>Если хотите быстрее подобрать жилье, откройте подходящую подборку ниже или напишите даты, состав гостей и бюджет — подберем варианты по реальным условиям.</p>
-        </section>
-        <section class="blog-section">
-          <h2>Частые вопросы</h2>
-        </section>
-{faq_html}
+        <div class="blog-article__content blog-article__content--sections blog-article__content--guide{content_mod}">
+{sections}{summary}{faq_block}{updated}
         </div>
         <aside class="blog-article__aside">
           <article class="blog-note-card">
