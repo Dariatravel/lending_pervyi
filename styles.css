@@ -2602,6 +2602,13 @@ a.podborki-card--link:hover {
   overflow: hidden;
 }
 
+/* /answers/: заголовок карточки — ссылка-h2, без этого он берёт размер общего h2 */
+.blog-card > a > h2 {
+  margin: 0 0 8px;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  line-height: 1.25;
+}
+
 .blog-card h3 a {
   color: inherit;
   text-decoration: none;
