@@ -36,7 +36,18 @@ FOOD = [
     # (AV, ожидаемо, что проверяем)
     ("", [], "пусто → не указано"),
     ("   ", [], "одни пробелы → не указано"),
-    ("Своя кухня", [], "текст не разобран → не указано"),
+    ("по договорённости", [], "текст не разобран → не указано"),
+    ("n/a", [], "n/a → не указано"),
+    ("?", [], "вопрос → не указано"),
+    ("Своя кухня", ["no-food"], "своя кухня → без питания"),
+    ("самостоятельно", ["no-food"], "готовят сами → без питания"),
+    ("Завтраки, есть кухня", ["breakfast"], "завтраки и кухня → только завтраки"),
+    ("Питания нет", ["no-food"], "питания нет"),
+    ("питание не предусмотрено", ["no-food"], "питание не предусмотрено"),
+    ("Отсутствует", ["no-food"], "отсутствует"),
+    ("Нет.", ["no-food"], "«Нет.» с точкой"),
+    ("–", ["no-food"], "короткое тире"),
+    ("нет питания, рядом кафе", ["no-food", "cafe"], "нет питания и кафе — кафе не теряется"),
     ("Без питания", ["no-food"], "явно «без питания»"),
     ("без питания, рядом кафе", ["no-food", "cafe"], "без питания и кафе"),
     ("нет", ["no-food"], "отрицание «нет»"),
@@ -114,6 +125,40 @@ def check_dry_run(failures: list[str]) -> None:
         check("Питание не указано (AV пусто): 1" in text, "сухой прогон: счёт пустого питания", failures)
 
 
+def check_normal_run_writes(failures: list[str]) -> None:
+    """Без --dry-run запись в snapshot идёт, как раньше."""
+    listing = {
+        "slug": "test-1", "source_channel": "abhazbooking", "source_message_id": 1,
+        "source_kind": "hotel", "is_active": True,
+        "details": {"filters": {"food": ["no-food"], "beach": ["pebble"]}},
+    }
+    sheet = [row(title="Тест", tg_link="https://t.me/abhazbooking/1", food_filter="Завтраки")]
+    writes: list[tuple[str, list[str]]] = []
+    names = ("pick_google_credentials_path", "fetch_sheet_rows", "snapshot_load_listings",
+             "snapshot_update_filters", "listing_exists_on_site", "REPORT_PATH")
+    saved = {name: getattr(aaf, name) for name in names}
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            aaf.pick_google_credentials_path = lambda: Path(tmp)
+            aaf.fetch_sheet_rows = lambda _path: sheet
+            aaf.snapshot_load_listings = lambda: [listing]
+            aaf.snapshot_update_filters = lambda slug, f: writes.append((slug, list(f["food"]))) or True
+            aaf.listing_exists_on_site = lambda *_a: True
+            aaf.REPORT_PATH = Path(tmp) / "report.txt"
+            old_argv = sys.argv
+            sys.argv = ["apply_all_filters_from_sheet.py", "--snapshot-only"]
+            try:
+                with contextlib.redirect_stdout(io.StringIO()):
+                    aaf.main()
+            finally:
+                sys.argv = old_argv
+            check(aaf.REPORT_PATH.exists(), "обычный прогон: файл отчёта записан", failures)
+        finally:
+            for name, value in saved.items():
+                setattr(aaf, name, value)
+    check(writes == [("test-1", ["breakfast"])], f"обычный прогон: запись в snapshot {writes}", failures)
+
+
 def main() -> int:
     failures: list[str] = []
 
@@ -129,13 +174,14 @@ def main() -> int:
     check(all(values == [] for values in empty.values()), f"пустая строка → все группы пусты: {empty}", failures)
 
     check_dry_run(failures)
+    check_normal_run_writes(failures)
 
     if failures:
         print("ОШИБКИ:")
         for failure in failures:
             print(" -", failure)
         return 1
-    print(f"OK: питание {len(FOOD)}, пляж {len(BEACH)}, пустая строка, сухой прогон")
+    print(f"OK: питание {len(FOOD)}, пляж {len(BEACH)}, пустая строка, сухой и обычный прогон")
     return 0
 
 

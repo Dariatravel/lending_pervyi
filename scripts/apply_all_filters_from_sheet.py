@@ -211,33 +211,45 @@ def infer_distance(row: list[str]) -> list[str]:
     return dedupe(values)
 
 
-def infer_food(row: list[str]) -> list[str]:
-    """Питание из AV. Пустая или неразобранная ячейка — [] («не указано»).
+# Явное «без питания» в тексте AV (21.10.2026). Сильное — ставится всегда
+# («без питания, рядом кафе» → no-food + cafe); слабое (готовят сами) —
+# только если других кодов питания нет («завтраки, есть кухня» → breakfast).
+NO_FOOD_STRONG = re.compile(r'без\s*питан|питани[ея]\s+нет|нет\s+питан|не\s*предусм|отсутств')
+NO_FOOD_WEAK = re.compile(r'самостоят|кухн')
+# Ячейка целиком — отрицание («нет», «Нет.», прочерк, 0) → «без питания».
+NO_FOOD_WORD = re.compile(r'(нет|no|0|-|–|—)[.,!]?')
+# Ячейка целиком — «неизвестно» → не указано.
+UNKNOWN_WORD = re.compile(r'(n/?a|\?+|не\s*знаю|уточнить)')
 
-    «Без питания» (no-food) — только когда это написано явно: «без питания»
-    или отрицание («нет», «—», «не предусмотрено»). Раньше пустая ячейка тоже
-    давала no-food, и на сайте «Без питания» значилось у объектов, про питание
-    которых в таблице ничего нет (21.10.2026).
+
+def infer_food(row: list[str]) -> list[str]:
+    """Питание из AV. Пустая, неизвестная или неразобранная ячейка — [] («не указано»).
+
+    «Без питания» (no-food) — только когда это написано явно: «без питания»,
+    «питания нет», «не предусмотрено», «своя кухня», прочерк или «нет». Раньше
+    пустая ячейка тоже давала no-food, и на сайте «Без питания» значилось у
+    объектов, про питание которых в таблице ничего нет (21.10.2026).
     """
-    raw = get_cell(row, 'food_filter')
-    text = raw.lower()
+    text = get_cell(row, 'food_filter').lower().replace('ё', 'е').strip()
     values: list[str] = []
 
-    if not text:
+    if not text or UNKNOWN_WORD.fullmatch(text):
         return []
-    if not has_yes(raw):
+    if NO_FOOD_WORD.fullmatch(text):
         return ['no-food']
 
-    if 'без питан' in text:
+    if NO_FOOD_STRONG.search(text):
         values.append('no-food')
     if 'полупансион' in text:
         values.append('half-board')
-    if 'завтрак' in text and ('обед' in text or 'ужин' in text or 'трехраз' in text or 'трёхраз' in text):
+    if 'завтрак' in text and ('обед' in text or 'ужин' in text or 'трехраз' in text):
         values.append('full-board')
     if 'завтрак' in text and 'full-board' not in values:
         values.append('breakfast')
     if 'кафе' in text or 'столов' in text:
         values.append('cafe')
+    if not values and NO_FOOD_WEAK.search(text):
+        values.append('no-food')
 
     # Текст есть, но не разобран — не угадываем; такие строки видны в отчёте.
     return dedupe(values)
@@ -475,8 +487,12 @@ def main() -> None:
     site_only = not args.all_listings
     dry_run = args.dry_run
     snapshot_only = args.snapshot_only or dry_run
-    # В сухом прогоне запись подменяется: считаем, будто строка нашлась и обновлена.
-    write_filters = (lambda slug, _filters: bool(slug)) if dry_run else snapshot_update_filters
+    # В сухом прогоне запись подменяется: «обновлена» — только если такая строка есть в снимке.
+    if dry_run:
+        snapshot_slugs = {str(r.get('slug') or '') for r in snapshot_load_listings()}
+        write_filters = lambda slug, _filters: bool(slug) and slug in snapshot_slugs  # noqa: E731
+    else:
+        write_filters = snapshot_update_filters
 
     env = load_env(ENV_PATH)
     supabase_url = env.get('SUPABASE_URL', '').rstrip('/')
@@ -700,7 +716,7 @@ def main() -> None:
         lines.append('Сухой прогон: ничего не записано (snapshot, Supabase, файл отчёта не тронуты).')
     else:
         lines.append('Готово. Массовый перенос фильтров из СОЦСЕТИ выполнен.')
-    lines.append(f'Режим snapshot-only: {snapshot_only}')
+    lines.append(f'Режим snapshot-only: {args.snapshot_only}' + (' (сухой прогон: объекты из снимка, запись выключена)' if dry_run else ''))
     lines.append('')
     lines.append(f'Режим: {"только объекты с HTML на сайте" if site_only else "все активные listings"}')
     lines.append(f'Строк в СОЦСЕТИ: {len(sheet_rows)}')
