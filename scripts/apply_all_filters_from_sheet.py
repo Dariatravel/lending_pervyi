@@ -211,15 +211,43 @@ def infer_distance(row: list[str]) -> list[str]:
     return dedupe(values)
 
 
-# Явное «без питания» в тексте AV (21.10.2026). Сильное — ставится всегда
-# («без питания, рядом кафе» → no-food + cafe); слабое (готовят сами) —
-# только если других кодов питания нет («завтраки, есть кухня» → breakfast).
-NO_FOOD_STRONG = re.compile(r'без\s*питан|питани[ея]\s+нет|нет\s+питан|не\s*предусм|отсутств')
+# Питание из AV разбирается по частям фразы (между запятыми, точками, скобками):
+# отрицание действует только внутри своей части. «Завтраки, обед не
+# предусмотрен» — завтраки, а не «без питания» + «полный пансион» (ревью
+# 21.10.2026). Часть-отрицание без названия блюда («нет», «отсутствует», «без
+# питания», «питание не предусмотрено») — «без питания»; с названием («обед не
+# предусмотрен», «кафе — нет») — только это блюдо не считается.
+FOOD_PARTS = re.compile(r'[,;.()\n]+')
+FOOD_NEG = re.compile(r'не\s*предусм|отсутств|(?<![а-я])нет(?![а-я])')
+FOOD_ITEMS = {
+    'breakfast': re.compile(r'завтрак'),
+    'lunch': re.compile(r'обед'),
+    'dinner': re.compile(r'ужин'),
+    'three': re.compile(r'тр[её]храз'),
+    'half': re.compile(r'полупансион'),
+    'cafe': re.compile(r'кафе|столов'),
+    'food': re.compile(r'питан'),
+}
+# «без X» — отрицание только самого X («завтрак без доплаты» — завтрак есть).
+FOOD_WITHOUT = re.compile(r'(?<![а-я])без\s+(\w+)')
+# Готовят сами — «без питания», только если других кодов питания нет
+# («завтраки, есть кухня» → breakfast).
 NO_FOOD_WEAK = re.compile(r'самостоят|кухн')
 # Ячейка целиком — отрицание («нет», «Нет.», прочерк, 0) → «без питания».
 NO_FOOD_WORD = re.compile(r'(нет|no|0|-|–|—)[.,!]?')
 # Ячейка целиком — «неизвестно» → не указано.
 UNKNOWN_WORD = re.compile(r'(n/?a|\?+|не\s*знаю|уточнить)')
+
+
+def _food_part(part: str) -> tuple[set[str], set[str]]:
+    """Часть фразы → (что есть, что отрицается). Отрицание без блюда — {'food'}."""
+    mentioned = {key for key, rx in FOOD_ITEMS.items() if rx.search(part)}
+    denied: set[str] = set()
+    for word in FOOD_WITHOUT.findall(part):
+        denied |= {key for key, rx in FOOD_ITEMS.items() if rx.match(word)}
+    if FOOD_NEG.search(part):
+        denied |= mentioned or {'food'}
+    return mentioned - denied, denied
 
 
 def infer_food(row: list[str]) -> list[str]:
@@ -231,22 +259,30 @@ def infer_food(row: list[str]) -> list[str]:
     объектов, про питание которых в таблице ничего нет (21.10.2026).
     """
     text = get_cell(row, 'food_filter').lower().replace('ё', 'е').strip()
-    values: list[str] = []
 
     if not text or UNKNOWN_WORD.fullmatch(text):
         return []
     if NO_FOOD_WORD.fullmatch(text):
         return ['no-food']
 
-    if NO_FOOD_STRONG.search(text):
+    has: set[str] = set()
+    denied: set[str] = set()
+    for part in FOOD_PARTS.split(text):
+        part_has, part_denied = _food_part(part)
+        has |= part_has
+        denied |= part_denied
+    has -= denied
+
+    values: list[str] = []
+    if 'food' in denied:
         values.append('no-food')
-    if 'полупансион' in text:
+    if 'half' in has:
         values.append('half-board')
-    if 'завтрак' in text and ('обед' in text or 'ужин' in text or 'трехраз' in text):
+    if 'three' in has or ('breakfast' in has and ('lunch' in has or 'dinner' in has)):
         values.append('full-board')
-    if 'завтрак' in text and 'full-board' not in values:
+    elif 'breakfast' in has:
         values.append('breakfast')
-    if 'кафе' in text or 'столов' in text:
+    if 'cafe' in has:
         values.append('cafe')
     if not values and NO_FOOD_WEAK.search(text):
         values.append('no-food')
