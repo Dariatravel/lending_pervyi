@@ -1,6 +1,6 @@
 name: IndexNow submit
 
-# Ручная отправка страниц в IndexNow и проверка их разметки валидатором
+# Ручная отправка страниц в IndexNow (Яндекс и Bing) и проверка разметки валидатором
 # schema.org. Из песочницы агента оба сервиса закрыты прокси, отсюда открыты.
 # Пример paths: /answers/sravnenie-servisov-bronirovaniya-abhazii/ /answers/
 
@@ -8,9 +8,15 @@ on:
   workflow_dispatch:
     inputs:
       paths:
-        description: "Пути страниц через пробел"
-        required: true
+        description: "Пути страниц через пробел (пусто — если отправляется вся карта сайта)"
+        required: false
+        default: ""
         type: string
+      sitemap:
+        description: "Отправить все адреса из sitemap.xml (сначала /answers/ и /podborki/)"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -24,6 +30,7 @@ jobs:
         with:
           ref: main
       - name: Проверить разметку валидатором schema.org
+        if: inputs.paths != ''
         env:
           PATHS: ${{ inputs.paths }}
         run: |
@@ -49,8 +56,15 @@ jobs:
                   for error in errors[:10]:
                       print("    ", json.dumps(error, ensure_ascii=False)[:300])
           EOF
-      - name: Отправить в IndexNow
+      - name: Отправить в IndexNow (Яндекс и Bing)
         env:
           PATHS: ${{ inputs.paths }}
+          SITEMAP: ${{ inputs.sitemap }}
         # $PATHS без кавычек: пути передаются отдельными аргументами
-        run: python3 tools/submit_indexnow.py --urls $PATHS
+        run: |
+          if [ "$SITEMAP" = "true" ]; then
+            python3 tools/submit_indexnow.py --sitemap
+          fi
+          if [ -n "$PATHS" ]; then
+            python3 tools/submit_indexnow.py --urls $PATHS
+          fi
