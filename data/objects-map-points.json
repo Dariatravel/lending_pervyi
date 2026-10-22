@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-17T11:16:17.956793+00:00",
+  "generated_at": "2026-10-22T17:42:43.480029+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -8,6 +8,14 @@
       "lat": 42.79754674851691,
       "lon": 41.26351849453625,
       "url": "/hotels/biosfera-domiki-u-kyndygskogo-istochnika-5197/",
+      "cityKey": ""
+    },
+    {
+      "title": "\"ЛАЗУРИТ СУХУМ\" отель с бассейном и завтраками",
+      "address": "с. Дранда, ул. Морская, 2А, 42.879091, 41.098381",
+      "lat": 42.879035767396914,
+      "lon": 41.09848828836055,
+      "url": "/hotels/lazurit-suhum-otel-s-basseynom-i-zavtrakami-5414/",
       "cityKey": ""
     },
     {
@@ -1982,16 +1990,16 @@
   "stats": {
     "placemarks_total": 490,
     "placemarks_unique": 245,
-    "pages_total": 501,
-    "pages_on_disk": 559,
+    "pages_total": 502,
+    "pages_on_disk": 560,
     "pages_excluded": 58,
-    "from_constructor": 266,
+    "from_constructor": 267,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 235,
     "skipped_without_coords": 235,
     "shared_coordinate_groups": 35,
     "deduped_redirect_points": 19,
-    "points_total": 247
+    "points_total": 248
   }
 }
