@@ -1153,9 +1153,21 @@ def _site_covers() -> dict[str, str]:
     return covers
 
 
+# Фото карточки, выбранное вручную (Дарья, 23.10.2026): автоматический выбор
+# попал на новогодний плакат и на обложку статьи с надписью.
+ANSWER_CARD_COVERS = {
+    "rebenok-v-abhaziyu-po-svidetelstvu-o-rozhdenii": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/danelyan-semeynyy-otel-so-stolovoy-4652.jpg",
+    "otdyh-v-abhazii-bez-predoplaty": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bagripsh-domiki-na-beregu-s-pitaniem-4399.jpg",
+    "rabotayut-li-karty-v-abhazii": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/sosnovaya-kvartira-1k-1610-cover.jpg",
+}
+
+
 def _answer_cover(page: dict[str, Any], covers: dict[str, str], used: set[str]) -> str:
-    """Фото карточки: первое своё фото страницы, иначе обложка первой подборки
-    или статьи из «Полезных ссылок», которая ещё не стоит на другой карточке."""
+    """Фото карточки: ручной выбор, иначе первое своё фото страницы, иначе обложка
+    первой подборки или статьи из «Полезных ссылок», которая ещё не стоит на другой карточке."""
+    if page["slug"] in ANSWER_CARD_COVERS:
+        used.add(ANSWER_CARD_COVERS[page["slug"]])
+        return ANSWER_CARD_COVERS[page["slug"]]
     candidates = [image["src"] for image in page.get("images") or []]
     candidates += [covers[href] for href, _ in page["links"] if href in covers]
     # Ссылки только на другие ответы — берём фото оттуда.
