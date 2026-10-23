@@ -1139,18 +1139,67 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
 """
 
 
+def _site_covers() -> dict[str, str]:
+    """Обложки подборок и статей блога: путь страницы → адрес фото."""
+    covers: dict[str, str] = {}
+    podborki = (ROOT / "podborki" / "index.html").read_text(encoding="utf-8")
+    for href, src in re.findall(
+        r'href="(/podborki/[^"]+/)"><span[^>]*><img class="podborki-index__photo" src="([^"]+)"', podborki
+    ):
+        covers.setdefault(href, src)
+    blog = (ROOT / "blog" / "index.html").read_text(encoding="utf-8")
+    for href, src in re.findall(r'<a class="blog-card__image-link" href="([^"]+)">\s*<img src="([^"]+)"', blog):
+        covers.setdefault(href, src)
+    return covers
+
+
+def _answer_cover(page: dict[str, Any], covers: dict[str, str], used: set[str]) -> str:
+    """Фото карточки: первое своё фото страницы, иначе обложка первой подборки
+    или статьи из «Полезных ссылок», которая ещё не стоит на другой карточке."""
+    candidates = [image["src"] for image in page.get("images") or []]
+    candidates += [covers[href] for href, _ in page["links"] if href in covers]
+    # Ссылки только на другие ответы — берём фото оттуда.
+    by_path = {f"/answers/{other['slug']}/": other for other in ANSWER_PAGES}
+    for href, _ in page["links"]:
+        other = by_path.get(href)
+        if other:
+            candidates += [image["src"] for image in other.get("images") or []]
+            candidates += [covers[link] for link, _ in other["links"] if link in covers]
+    if not candidates:
+        raise ValueError(f"Нет фото для карточки {page['slug']}")
+    # Все подходящие уже заняты — любое свободное фото объекта со страниц ответов.
+    candidates += [image["src"] for other in ANSWER_PAGES for image in other.get("images") or []]
+    cover = next((src for src in candidates if src not in used), candidates[0])
+    used.add(cover)
+    return cover
+
+
+def _answer_card(page: dict[str, Any], cover: str) -> str:
+    """Карточка в списке /answers/ — как карточка статьи в блоге."""
+    href = f"/answers/{html.escape(page['slug'])}/"
+    title = html.escape(page["title"])
+    srcset = ""
+    if cover.startswith("https://media.") and cover.endswith(".jpg"):
+        base = cover[: -len(".jpg")]
+        srcset = f' srcset="{base}-480.webp 480w, {base}-960.webp 960w, {base}-1440.webp 1440w" sizes="(max-width: 760px) 100vw, 220px"'
+    return f"""        <article class="blog-card">
+          <a class="blog-card__image-link" href="{href}">
+            <img src="{html.escape(cover, quote=True)}"{srcset} width="480" height="330" alt="{html.escape(page['title'], quote=True)}" loading="lazy" decoding="async" />
+          </a>
+          <div class="blog-card__body">
+            <h3><a href="{href}">{title}</a></h3>
+            <p>{html.escape(page['description'])}</p>
+            <a class="blog-card__cta" href="{href}">Читать ответ</a>
+          </div>
+        </article>"""
+
+
 def write_answer_pages(version: str) -> None:
     index_dir = ROOT / "answers"
     index_dir.mkdir(parents=True, exist_ok=True)
-    cards = "\n".join(
-        f"""        <article class="blog-card">
-          <a href="/answers/{html.escape(page['slug'])}/">
-            <h2>{html.escape(page['title'])}</h2>
-            <p>{html.escape(page['description'])}</p>
-          </a>
-        </article>"""
-        for page in ANSWER_PAGES
-    )
+    covers = _site_covers()
+    used: set[str] = set()
+    cards = "\n".join(_answer_card(page, _answer_cover(page, covers, used)) for page in ANSWER_PAGES)
     index_html = f"""<!DOCTYPE html>
 <html lang="ru" id="top">
 <head>
