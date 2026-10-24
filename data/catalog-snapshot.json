@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T15:02:58.847468+00:00",
+  "generated_at": "2026-10-24T18:42:12.546715+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 250,
@@ -322,7 +322,7 @@
           },
           {
             "kind": "price",
-            "text": "3500₽ - октябрь"
+            "text": "2500₽ - октябрь, ноябрь"
           },
           {
             "kind": "note",
@@ -354,7 +354,7 @@
           },
           {
             "kind": "price",
-            "text": "5500₽ - октябрь"
+            "text": "5000₽ - октябрь, ноябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/sanni-houm-domiki-s-basseynom-4731/index.html",
@@ -875,6 +875,10 @@
           },
           {
             "kind": "price",
+            "text": "2000₽ - с ноября по апрель"
+          },
+          {
+            "kind": "price",
             "text": "Четырёхместный номер"
           },
           {
@@ -900,6 +904,10 @@
           {
             "kind": "price",
             "text": "4000₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - с ноября по апрель"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/lk-otel-s-basseynom-4123/index.html",
@@ -22969,7 +22977,11 @@
           },
           {
             "kind": "price",
-            "text": "1900₽ - октябрь, ноябрь, декабрь"
+            "text": "1900₽ - октябрь, ноябрь, декабрь (от 5 ночей)"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽ - октябрь, ноябрь, декабрь (3-4 ночи)"
           },
           {
             "kind": "price",
@@ -22985,7 +22997,11 @@
           },
           {
             "kind": "price",
-            "text": "1900₽ - с января по апрель"
+            "text": "1900₽ - с января по апрель (от 5 ночей)"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽ - с января по апрель (3-4 ночи)"
           },
           {
             "kind": "price",
@@ -26273,6 +26289,14 @@
           }
         ],
         "prices": [
+          {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
+            "kind": "price",
+            "text": "🌲 В НОВОГОДНИЕ ПРАЗДНИКИ (25.12 - 15.01) БРОНИРОВАНИЕ ОТ 5 СУТОК ЛЮКС, ОТ 3 СУТОК СЕМЕЙНЫЙ И СТАНДАРТ"
+          },
           {
             "kind": "heading",
             "text": "Стандарт"
@@ -29724,6 +29748,14 @@
           },
           {
             "kind": "price",
+            "text": "4000₽/сутки - с октября по апрель"
+          },
+          {
+            "kind": "price",
+            "text": "С октября по апрель возможна длительная аренда - 40 000/месяц."
+          },
+          {
+            "kind": "price",
             "text": "Возможно доп место - 1000₽/сутки"
           },
           {
@@ -29870,7 +29902,7 @@
           "details": {
             "telegram_post": "abhkvartira/1303",
             "telegram_url": "https://t.me/abhkvartira/1303",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/klassika-kvartira-3k-ldzaa-1303/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/klassika-kvartira-3k-ldzaa-1303/video-01-poster.jpg"
           }
         }
       ]
@@ -55317,7 +55349,7 @@
           },
           {
             "kind": "price",
-            "text": "3000₽/сутки - с октября по апрель"
+            "text": "3500₽/сутки - с октября по апрель"
           },
           {
             "kind": "note",
