@@ -11,7 +11,7 @@ import os
 import re
 import sys
 import unicodedata
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -137,6 +137,13 @@ class KnownSources:
     kvartira_message_ids: set[int]
     kvartira_topic_ids: set[int]
     repost_index: dict[str, list[WatchItem]]
+    # Названия активных отелей в том же виде, что сравнивает синк
+    # (find_hotel_twin_for_kvartira): clean_line + strip + upper.
+    active_hotel_titles: set[str] = field(default_factory=set)
+
+
+def hotel_twin_key(title: str) -> str:
+    return clean_line(title or "").strip().upper()
 
 
 def load_env_files() -> None:
@@ -474,6 +481,7 @@ def load_known_sources() -> KnownSources:
     kvartira_message_ids: set[int] = set()
     kvartira_topic_ids: set[int] = set()
     repost_index: dict[str, list[WatchItem]] = {}
+    active_hotel_titles: set[str] = set()
     for row in payload.get("listings") or []:
         is_active = row.get("is_active") is not False
         kind = str(row.get("source_kind") or "").strip()
@@ -484,6 +492,8 @@ def load_known_sources() -> KnownSources:
         topic_id = int(row.get("source_topic_id") or 0)
         if channel and message_id:
             source_pairs.add((channel, message_id))
+        if kind == "hotel" and is_active and hotel_twin_key(title):
+            active_hotel_titles.add(hotel_twin_key(title))
         if kind == "hotel" and channel == "abhazbooking" and message_id:
             hotel_message_ids.add(message_id)
             if is_active:
@@ -528,6 +538,7 @@ def load_known_sources() -> KnownSources:
         kvartira_message_ids=kvartira_message_ids,
         kvartira_topic_ids=kvartira_topic_ids,
         repost_index=repost_index,
+        active_hotel_titles=active_hotel_titles,
     )
 
 
@@ -765,10 +776,18 @@ async def scan_new_kvartira_objects(
         if ("abhkvartira", message_id) in known.source_pairs:
             continue
         text = str(getattr(canonical, "message", "") or "")
+        title = object_title(text, fallback=topic_title or "новая квартира")
+        if hotel_twin_key(title) in known.active_hotel_titles:
+            # Синк такую квартирную копию нарочно не публикует: объект уже есть
+            # в отельном канале (materialize_object, правило «один объект —
+            # одно название»). Раньше она приходила «новым объектом» каждый час
+            # (с 15.10.2026 так десятки раз приходил «ВИСТА МАРЕ» отдельный дом, abhkvartira/1779).
+            print(f"[watch] '{title}' (abhkvartira/{message_id}) уже есть в отельном канале — не новый объект")
+            continue
         found.append(
             NewObject(
                 kind="kvartira",
-                title=object_title(text, fallback=topic_title or "новая квартира"),
+                title=title,
                 channel="abhkvartira",
                 message_id=message_id,
                 topic_id=topic_id,
