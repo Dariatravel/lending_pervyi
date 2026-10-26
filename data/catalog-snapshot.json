@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-26T07:21:51.159562+00:00",
+  "generated_at": "2026-10-26T11:23:05.786337+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 248,
-  "listings_hotels": 195,
+  "listings_total": 247,
+  "listings_hotels": 194,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -31073,7 +31073,7 @@
       "published_at": "2026-02-06",
       "has_video": true,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sisayd-domiki-3409.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Приморское/Новый Афон. 1 минута до пляжа, размещение до 3 человек.",
         "sections": [
