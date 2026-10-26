@@ -242,7 +242,9 @@ def check_share_domain_redirector(timeout: int) -> tuple[dict[str, object], list
     url = "https://abhazbereg.com/"
     try:
         req = Request(url, headers={"User-Agent": "abhazbereg-smoke"})
-        with urlopen(req, timeout=timeout) as response:
+        # С повтором, как остальные проверки: 26.10.2026 один сброс соединения
+        # (Errno 104) с раннера GitHub дал ложную тревогу «редиректор недоступен».
+        with open_with_retries(req, timeout) as response:
             body = response.read(4096).decode("utf-8", "replace")
             status = response.status
     except Exception as exc:  # noqa: BLE001
