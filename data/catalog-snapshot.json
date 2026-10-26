@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T11:23:05.786337+00:00",
+  "generated_at": "2026-10-26T15:19:30.070675+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 247,
@@ -6888,7 +6888,15 @@
           },
           {
             "kind": "price",
-            "text": "6000₽ - июль, август, сентябрь"
+            "text": "6000₽ - июль, август, сентябрь, октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽ - с ноября по апрель (30 000₽ - месяц)"
+          },
+          {
+            "kind": "price",
+            "text": "Бронирование от 7 дней."
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/greys-kvartira-1564/index.html",
@@ -7042,7 +7050,7 @@
           "details": {
             "telegram_post": "abhkvartira/1573",
             "telegram_url": "https://t.me/abhkvartira/1573",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/greys-kvartira-1564/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/greys-kvartira-1564/video-01-poster.jpg"
           }
         }
       ]
@@ -69145,7 +69153,7 @@
           },
           {
             "kind": "price",
-            "text": "Август, сентябрь, октябрь"
+            "text": "Ноябрь, декабрь"
           },
           {
             "kind": "price",
@@ -69153,15 +69161,15 @@
           },
           {
             "kind": "price",
-            "text": "7800₽ - при бронировании от 3 до 6 суток"
+            "text": "7500₽ - при бронировании от 3 до 6 суток"
           },
           {
             "kind": "price",
-            "text": "7500₽ - при бронировании от 7 до 9 суток"
+            "text": "6900₽ - при бронировании от 7 до 9 суток"
           },
           {
             "kind": "price",
-            "text": "7000₽ - при бронировании от 10 суток"
+            "text": "6000₽ - при бронировании от 10 суток"
           },
           {
             "kind": "price",
