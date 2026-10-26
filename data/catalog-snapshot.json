@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-25T20:04:49.699184+00:00",
+  "generated_at": "2026-10-26T07:21:51.159562+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 250,
-  "listings_hotels": 197,
+  "listings_total": 248,
+  "listings_hotels": 195,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -47446,7 +47446,7 @@
       "published_at": "2026-01-23",
       "has_video": true,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bugenvilleya-otel-s-basseynom-3044.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Лдзаа. сосновый пляж 5 минут, размещение до 5 человек.",
         "sections": [
@@ -74251,7 +74251,7 @@
       "published_at": "2026-10-06",
       "has_video": false,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-bugenvilleya-s-basseynom-5306.jpg",
-      "is_active": true,
+      "is_active": false,
       "details": {
         "lead": "Лдзаа. 5 минут до соснового пляжа, размещение до 5 человек.",
         "sections": [
