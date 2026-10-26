@@ -47,6 +47,5 @@
 
 - https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/sanni-houm-domiki-s-basseynom-4731.jpg - Санни Хоум, Пицунда - https://абхазберег.рф/hotels/sanni-houm-domiki-s-basseynom-4731/
 - https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219.jpg - Фазенда, Пицунда - https://абхазберег.рф/hotels/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219/
-- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bugenvilleya-otel-s-basseynom-3044.jpg - Бугенвиллея, Лдзаа - https://абхазберег.рф/hotels/bugenvilleya-otel-s-basseynom-3044/
 
 Дата обновления: октябрь 2026

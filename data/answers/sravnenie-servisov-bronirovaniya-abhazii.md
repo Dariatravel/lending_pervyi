@@ -68,6 +68,5 @@
 - https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755.jpg - Вилла Леона, Гагра - https://абхазберег.рф/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/
 - https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/ptichka-eko-domiki-s-basseynom-5089.jpg - Птичка, Пицунда - https://абхазберег.рф/hotels/ptichka-eko-domiki-s-basseynom-5089/
 - https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/sosnovaya-kvartira-1k-1610-cover.jpg - Сосновая, Пицунда - https://абхазберег.рф/kvartira/sosnovaya-kvartira-1k-1610/
-- https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/bugenvilleya-otel-s-basseynom-3044.jpg - Бугенвиллея, Лдзаа - https://абхазберег.рф/hotels/bugenvilleya-otel-s-basseynom-3044/
 
 Дата обновления: октябрь 2026
