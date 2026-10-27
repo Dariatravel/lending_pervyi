@@ -48,6 +48,11 @@ COMMENTS_TAIL = re.compile(
 )
 
 
+# Любые эмодзи в конце строки («…ПО ССЫЛКЕ🫶», «…тут✨») — только для сравнения
+# с шаблонами отсылок; в обычных строках эмодзи автора остаются.
+TRAILING_EMOJI = re.compile(r"[\U0001F000-\U0001FAFF←-⇿☀-➿⬀-⯿️‍\s]+$")
+
+
 def strip_pointer_emoji(line: str) -> str:
     """Убирает стрелки-указатели, оставляя текст."""
     text = re.sub(r"\s+", " ", POINTER_EMOJI.sub("", line or ""))
@@ -59,7 +64,7 @@ def strip_pointer_emoji(line: str) -> str:
 
 def is_link_stub_line(line: str) -> bool:
     """Строка целиком бессмысленна без телеграм-ссылки."""
-    text = strip_pointer_emoji(line).strip(" •—-–")
+    text = TRAILING_EMOJI.sub("", strip_pointer_emoji(line)).strip(" •—-–")
     if not text:
         return False
     if LINK_STUB_LINE.match(text):
@@ -94,7 +99,9 @@ def clean_line_for_site(line: str) -> str:
 
     # 3. Хвост в конце полезной строки — обрезаем только хвост.
     for pattern in (LINK_STUB_TAIL, COMMENTS_TAIL):
-        trimmed = pattern.sub("", text)
+        trimmed = pattern.sub("", TRAILING_EMOJI.sub("", text))
+        if trimmed == TRAILING_EMOJI.sub("", text):
+            continue
         if trimmed.strip() and trimmed != text:
             text = trimmed.rstrip(" ,;")
 
