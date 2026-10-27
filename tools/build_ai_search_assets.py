@@ -733,16 +733,42 @@ def extract_prices(row: dict[str, Any]) -> list[str]:
     return prices
 
 
-def price_range(prices: list[str]) -> str:
+# Доплаты не цена проживания: «Доп. место — 500₽» давало «Санни Хоум» диапазон
+# от 500 ₽ (замечание 27.10.2026). Стоп-слова — те же, что у «Цены от» на карточках,
+# плюс питание и места «с человека».
+# Месячная цена и пакеты «7 дней - 77 510 ₽» — тоже не цена за сутки.
+_PRICE_EXTRA_STOP = re.compile(
+    r"с\s+человека|за\s+персону|питание\s*[-—–]|место\s+для\s+\d|взросл|"
+    r"(?<!любой )месяц\s+за|за\s+месяц|помесячн|\+\s*\d|к\s+цене|"
+    r"^\d+\s*(?:дн\w*|ноч\w*|сут\w*)\s*[-—–]",
+    re.I,
+)
+
+
+def price_range(row: dict[str, Any]) -> str:
+    """Диапазон цен проживания за сутки по всем строкам цен объекта."""
+    from build_min_prices import STOP_WORDS, extract_price, has_money
+
     values: list[int] = []
-    for text in prices:
-        for raw in re.findall(r"(\d[\d\s]{2,})\s*₽", text):
-            try:
-                values.append(int(raw.replace(" ", "")))
-            except ValueError:
-                pass
+    # Подзаголовок «Дополнительное место:» / «Доп места:» — строки под ним
+    # доплаты, пока не начнётся следующий номер (строка без цены).
+    under_extra = False
+    for item in ((row.get("details") or {}).get("prices") or []):
+        text = clean_text(str(item.get("text") or ""))
+        if not has_money(text):
+            under_extra = bool(STOP_WORDS.search(text))
+            continue
+        if under_extra or item.get("kind", "price") != "price" or _PRICE_EXTRA_STOP.search(text):
+            continue
+        value = extract_price(text)
+        if value:
+            values.append(value)
     if not values:
         return ""
+    # Опечатка в посте («4 чел - 95000₽» среди цен 3000-12600) не должна стать
+    # верхней границей: отбрасываем значения в 5+ раз выше медианы объекта.
+    median = sorted(values)[len(values) // 2]
+    values = [value for value in values if value <= median * 5]
     return f"{min(values)}-{max(values)} RUB"
 
 
@@ -788,7 +814,7 @@ def build_catalog(snapshot: dict[str, Any]) -> dict[str, Any]:
             "summary": clean_text(str(row.get("summary") or row.get("excerpt") or "")),
             "amenities": listing_amenities(row),
             "prices": prices,
-            "price_range": price_range(prices),
+            "price_range": price_range(row),
             "url": clean_text(str(row.get("page_url") or "")),
             "image": yandex_media_url(str(row.get("cover_url") or "")),
             "telegram_source": clean_text(str(row.get("telegram_url") or "")),

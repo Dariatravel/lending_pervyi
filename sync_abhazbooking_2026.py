@@ -538,6 +538,9 @@ def should_drop_line(line: str) -> bool:
         return True
     if "WHATSAPP" in upper or ("MAX" in upper and "Я НА СВЯЗИ" in upper):
         return True
+    # «Я НА СВЯЗИ 📲» отдельной строкой — тоже часть блока контактов (27.10.2026).
+    if re.fullmatch(r"Я НА СВЯЗИ\W*", upper.strip()):
+        return True
     if "ПО БРОНИРОВАНИЮ" in upper or "НАЛИЧИЮ НОМЕРОВ ПИШ" in upper:
         return True
     if "ПИШИТЕ В СООБЩЕНИЯ" in upper and ("БРОНИРОВАН" in upper or "НАЛИЧ" in upper):
