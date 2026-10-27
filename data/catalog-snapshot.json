@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T11:03:53.031752+00:00",
+  "generated_at": "2026-10-27T17:40:33.032744+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 247,
@@ -9019,6 +9019,10 @@
         "prices": [
           {
             "kind": "note",
+            "text": "(2026)"
+          },
+          {
+            "kind": "note",
             "text": "(указаны при двухместном размещении)"
           },
           {
@@ -9027,23 +9031,11 @@
           },
           {
             "kind": "price",
-            "text": "4200 ₽ — май"
+            "text": "4200 ₽ - октябрь, ноябрь, декабрь до 27"
           },
           {
             "kind": "price",
-            "text": "4900 ₽ — майские праздники (01.05–10.05)"
-          },
-          {
-            "kind": "price",
-            "text": "4200 ₽ — июнь"
-          },
-          {
-            "kind": "price",
-            "text": "5500 ₽ — июль, август, сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "4200 ₽ — октябрь до 15го"
+            "text": "5900 ₽ - с 27 декабря по 10 января 🌲"
           },
           {
             "kind": "price",
@@ -9051,19 +9043,11 @@
           },
           {
             "kind": "price",
-            "text": "5600 ₽ — май"
+            "text": "5600 ₽ - октябрь, ноябрь, декабрь до 27"
           },
           {
             "kind": "price",
-            "text": "6300 ₽ — майские праздники"
-          },
-          {
-            "kind": "price",
-            "text": "5600 ₽ — июнь"
-          },
-          {
-            "kind": "price",
-            "text": "6900 ₽ — июль, август, сентябрь"
+            "text": "7300 ₽ - с 27 декабря по 10 января 🌲"
           },
           {
             "kind": "price",
@@ -9071,19 +9055,11 @@
           },
           {
             "kind": "price",
-            "text": "4900 ₽ — май"
+            "text": "4900 ₽ - октябрь, ноябрь, декабрь до 27"
           },
           {
             "kind": "price",
-            "text": "5500 ₽ — майские праздники"
-          },
-          {
-            "kind": "price",
-            "text": "6900 ₽ — июнь, июль, август, сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "4900 ₽ — октябрь до 15го"
+            "text": "6900 ₽ - с 27 декабря по 10 января 🌲"
           },
           {
             "kind": "price",
@@ -9091,15 +9067,11 @@
           },
           {
             "kind": "price",
-            "text": "6300 ₽ — май"
+            "text": "6300 ₽ - октябрь, ноябрь, декабрь до 27"
           },
           {
             "kind": "price",
-            "text": "6900 ₽ — майские праздники"
-          },
-          {
-            "kind": "price",
-            "text": "7900 ₽ — июнь, июль, август, сентябрь"
+            "text": "8300 ₽ - с 27 декабря по 10 января 🌲"
           },
           {
             "kind": "price",
@@ -9107,19 +9079,11 @@
           },
           {
             "kind": "price",
-            "text": "5900 ₽ — май"
+            "text": "5900 ₽ - октябрь, ноябрь, декабрь до 27"
           },
           {
             "kind": "price",
-            "text": "6500 ₽ — майские праздники"
-          },
-          {
-            "kind": "price",
-            "text": "6900 ₽ — июнь, июль, август, сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "5900 ₽ — октябрь до 15го"
+            "text": "7900 ₽ - с 27 декабря по 10 января 🌲"
           },
           {
             "kind": "price",
@@ -9127,15 +9091,11 @@
           },
           {
             "kind": "price",
-            "text": "7300 ₽ — май"
+            "text": "7300 ₽ - октябрь, ноябрь, декабрь до 27"
           },
           {
             "kind": "price",
-            "text": "7900 ₽ — майские праздники"
-          },
-          {
-            "kind": "price",
-            "text": "8300 ₽ — июнь, июль, август, сентябрь"
+            "text": "9300 ₽ - с 27 декабря по 10 января 🌲"
           },
           {
             "kind": "price",
@@ -9143,19 +9103,11 @@
           },
           {
             "kind": "price",
-            "text": "7900 ₽ — май"
+            "text": "7900 ₽ - октябрь, ноябрь, декабрь до 27"
           },
           {
             "kind": "price",
-            "text": "8800 ₽ — майские праздники"
-          },
-          {
-            "kind": "price",
-            "text": "9900 ₽ — июнь, июль, август, сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "7900 ₽ — октябрь до 15го"
+            "text": "9900 ₽ - с 27 декабря по 10 января 🌲"
           },
           {
             "kind": "price",
@@ -9163,15 +9115,11 @@
           },
           {
             "kind": "price",
-            "text": "9300 ₽ — май"
+            "text": "9300 ₽ - октябрь, ноябрь, декабрь до 27"
           },
           {
             "kind": "price",
-            "text": "10200 ₽ — майские праздники"
-          },
-          {
-            "kind": "price",
-            "text": "11300 ₽ — июнь, июль, август, сентябрь"
+            "text": "11300 ₽ - с 27 декабря по 10 января 🌲"
           },
           {
             "kind": "note",
@@ -9179,19 +9127,11 @@
           },
           {
             "kind": "price",
-            "text": "1000 ₽ — январь, февраль, март, апрель, май"
+            "text": "1000 ₽ - октябрь, ноябрь, декабрь"
           },
           {
             "kind": "price",
-            "text": "1500 ₽ — майские праздники"
-          },
-          {
-            "kind": "price",
-            "text": "1500 ₽ — июнь, июль, август, сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "1000 ₽ — октябрь до 15го"
+            "text": "1500 ₽ - новогодние праздники🌲"
           },
           {
             "kind": "note",
@@ -9199,15 +9139,207 @@
           },
           {
             "kind": "price",
-            "text": "1700 ₽ — январь, февраль, март, апрель, май"
+            "text": "1700 ₽ - октябрь, ноябрь, декабрь"
           },
           {
             "kind": "price",
-            "text": "2200 ₽ — майские праздники"
+            "text": "2200 ₽ - новогодние праздники🌲"
           },
           {
             "kind": "price",
-            "text": "1700 ₽ — июнь, июль, август, сентябрь"
+            "text": "Дети до 12 лет без предоставления места - бесплатно."
+          },
+          {
+            "kind": "note",
+            "text": "(БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "note",
+            "text": "(указаны при двухместном размещении)"
+          },
+          {
+            "kind": "price",
+            "text": "Стандарт с видом на горы (возможно до 3 человек)"
+          },
+          {
+            "kind": "price",
+            "text": "5200₽ - с января по май"
+          },
+          {
+            "kind": "price",
+            "text": "5900₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "5900₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5200₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "С завтраком:"
+          },
+          {
+            "kind": "price",
+            "text": "7600₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "8700₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "7600₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Комфорт с видом на море (возможно до 3 человек)"
+          },
+          {
+            "kind": "price",
+            "text": "6200₽ - с января по май"
+          },
+          {
+            "kind": "price",
+            "text": "6900₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "6900₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "6200₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "С завтраком:"
+          },
+          {
+            "kind": "price",
+            "text": "8600₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "9700₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "8600₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Делюкс с панорамным видом (возможно до 2 человек)"
+          },
+          {
+            "kind": "price",
+            "text": "6900₽ - с января по май"
+          },
+          {
+            "kind": "price",
+            "text": "7900₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "7900₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "6900₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "С завтраком:"
+          },
+          {
+            "kind": "price",
+            "text": "9600₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "10700₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "9600₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Семейный люкс (возможно до 6 человек)"
+          },
+          {
+            "kind": "price",
+            "text": "8900₽ - с января по май"
+          },
+          {
+            "kind": "price",
+            "text": "9900₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "11000₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "9900₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "8900₽ - октябрь"
+          },
+          {
+            "kind": "price",
+            "text": "С завтраком:"
+          },
+          {
+            "kind": "price",
+            "text": "11600₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "12700₽ - июль, август"
+          },
+          {
+            "kind": "price",
+            "text": "11600₽ - сентябрь"
+          },
+          {
+            "kind": "note",
+            "text": "Дополнительное место:"
+          },
+          {
+            "kind": "price",
+            "text": "1000₽ - с января по май"
+          },
+          {
+            "kind": "price",
+            "text": "1500₽ - с июня по сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "1000₽ - октябрь"
+          },
+          {
+            "kind": "note",
+            "text": "Дополнительное место с завтраком:"
+          },
+          {
+            "kind": "price",
+            "text": "2350₽ - июнь, июль, август, сентябрь"
           },
           {
             "kind": "price",
@@ -31640,12 +31772,12 @@
       "source_topic_id": null,
       "slug": "tis-mini-otel-u-zapovednika-3381",
       "title": "\"ТИС\" мини-отель у заповедника",
-      "summary": "Лдзаа. ️ сосновый пляж в минуте, размещение 3-4 человека.",
+      "summary": "Лдзаа. сосновый пляж в минуте, размещение 3-4 человека.",
       "excerpt": "Уютный и просторный зеленый двор с зонами отдыха. Есть мангал. Парковка на территории",
       "city": "Лдзаа",
       "location_text": "Лдзаа, ул. Политрука Нозадзе, 30а",
-      "distance_text": "️ сосновый пляж в минуте",
-      "beach_text": "️ сосновый пляж в минуте",
+      "distance_text": "сосновый пляж в минуте",
+      "beach_text": "сосновый пляж в минуте",
       "capacity_text": "размещение 3-4 человека",
       "page_url": "https://абхазберег.рф/hotels/tis-mini-otel-u-zapovednika-3381/",
       "telegram_url": "https://t.me/abhazbooking/3381",
@@ -31654,7 +31786,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tis-mini-otel-u-zapovednika-3381.jpg",
       "is_active": true,
       "details": {
-        "lead": "Лдзаа. ️ сосновый пляж в минуте, размещение 3-4 человека.",
+        "lead": "Лдзаа. сосновый пляж в минуте, размещение 3-4 человека.",
         "sections": [
           {
             "label": "✔️ТЕРРИТОРИЯ:",
@@ -31682,6 +31814,10 @@
           }
         ],
         "prices": [
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
           {
             "kind": "note",
             "text": "(за размещение до 3 человек)"
@@ -31858,7 +31994,7 @@
           "details": {
             "telegram_post": "abhazbooking/3389",
             "telegram_url": "https://t.me/abhazbooking/3389",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/tis-mini-otel-u-zapovednika-3381/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/tis-mini-otel-u-zapovednika-3381/video-01-poster.jpg"
           }
         }
       ]
@@ -50976,7 +51112,7 @@
           },
           {
             "kind": "price",
-            "text": "4 чел - 95000₽"
+            "text": "4 чел - 9500₽"
           },
           {
             "kind": "price",
@@ -63045,8 +63181,20 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
             "kind": "price",
             "text": "Люкс одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "4250₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "5550₽ - июнь"
           },
           {
             "kind": "price",
@@ -63058,11 +63206,19 @@
           },
           {
             "kind": "price",
-            "text": "5550₽ - с 16 сентября по 10 октября"
+            "text": "5550₽ - с 16 сентября по 31 октября"
           },
           {
             "kind": "price",
             "text": "Люкс двухместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "5750₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "7050₽ - июнь"
           },
           {
             "kind": "price",
@@ -63074,11 +63230,19 @@
           },
           {
             "kind": "price",
-            "text": "7050₽ - с 16 сентября по 10 октября"
+            "text": "7050₽ - с 16 сентября по 31 октября"
           },
           {
             "kind": "price",
             "text": "Стандарт с балконом одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "2850₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "4050₽ - июнь"
           },
           {
             "kind": "price",
@@ -63090,11 +63254,19 @@
           },
           {
             "kind": "price",
-            "text": "3750₽ - с 16 сентября по 10 октября"
+            "text": "3750₽ - с 16 сентября по 31 октября"
           },
           {
             "kind": "price",
             "text": "Стандарт с балконом двухместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "4350₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "5550₽ - июнь"
           },
           {
             "kind": "price",
@@ -63106,11 +63278,19 @@
           },
           {
             "kind": "price",
-            "text": "5250₽ - с 16 сентября по 10 октября"
+            "text": "5250₽ - с 16 сентября по 31 октября"
           },
           {
             "kind": "price",
             "text": "Стандарт без балкона одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "2350₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "3450₽ - июнь"
           },
           {
             "kind": "price",
@@ -63122,11 +63302,19 @@
           },
           {
             "kind": "price",
-            "text": "3250₽ - с 16 сентября по 10 октября"
+            "text": "3250₽ - с 16 сентября по 31 октября"
           },
           {
             "kind": "price",
             "text": "Стандарт без балкона двухместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "3850₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "4950₽ - июнь"
           },
           {
             "kind": "price",
@@ -63138,7 +63326,7 @@
           },
           {
             "kind": "price",
-            "text": "4750₽ - с 16 сентября по 10 октября"
+            "text": "4750₽ - с 16 сентября по 31 октября"
           },
           {
             "kind": "price",
@@ -63984,8 +64172,20 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
             "kind": "price",
             "text": "Стандарт с балконом одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "2350₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "3450₽ - июнь"
           },
           {
             "kind": "price",
@@ -63997,11 +64197,19 @@
           },
           {
             "kind": "price",
-            "text": "3250₽ - с 16 сентября по 10 октября"
+            "text": "3250₽ - с 16 сентября по 31 октября"
           },
           {
             "kind": "price",
             "text": "Стандарт с балконом двухместное размещение. Без доп места"
+          },
+          {
+            "kind": "price",
+            "text": "3850₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "4950₽ - июнь"
           },
           {
             "kind": "price",
@@ -64013,11 +64221,19 @@
           },
           {
             "kind": "price",
-            "text": "4750₽ - с 16 сентября по 10 октября"
+            "text": "4750₽ - с 16 сентября по 31 октября"
           },
           {
             "kind": "price",
             "text": "Улучшенный номер с балконом / двухкомнатный с балконом одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "2850₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "4050₽ - июнь"
           },
           {
             "kind": "price",
@@ -64029,11 +64245,19 @@
           },
           {
             "kind": "price",
-            "text": "4250₽ - с 16 сентября по 10 октября"
+            "text": "4250₽ - с 16 сентября по 31 октября"
           },
           {
             "kind": "price",
             "text": "Улучшенный номер с балконом / двухкомнатный с балконом двухместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "4350₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "5550₽ - июнь"
           },
           {
             "kind": "price",
@@ -64045,11 +64269,19 @@
           },
           {
             "kind": "price",
-            "text": "5750₽ - с 16 сентября по 10 октября"
+            "text": "5750₽ - с 16 сентября по 31 октября"
           },
           {
             "kind": "price",
             "text": "Улучшенный номер без балкона / двухкомнатный без балкона одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "2550₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "3750₽ - июнь"
           },
           {
             "kind": "price",
@@ -64061,11 +64293,19 @@
           },
           {
             "kind": "price",
-            "text": "3750₽ - с 16 сентября по 10 октября"
+            "text": "3750₽ - с 16 сентября по 31 октября"
           },
           {
             "kind": "price",
             "text": "Улучшенный номер без балкона / двухкомнатный без балкона двухместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "4050₽ - май"
+          },
+          {
+            "kind": "price",
+            "text": "5250₽ - июнь"
           },
           {
             "kind": "price",
@@ -64077,7 +64317,7 @@
           },
           {
             "kind": "price",
-            "text": "5250₽ - с 16 сентября по 10 октября"
+            "text": "5250₽ - с 16 сентября по 31 октября"
           },
           {
             "kind": "price",
@@ -68425,10 +68665,6 @@
           {
             "kind": "price",
             "text": "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет."
-          },
-          {
-            "kind": "price",
-            "text": "Я НА СВЯЗИ 📲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/terra-rivera-eko-kompleks-5166/index.html",
@@ -68986,10 +69222,6 @@
           {
             "kind": "price",
             "text": "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет."
-          },
-          {
-            "kind": "price",
-            "text": "Я НА СВЯЗИ 📲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/ashta-du-gostevoy-dom-5186/index.html",
@@ -69450,10 +69682,6 @@
           {
             "kind": "price",
             "text": "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет."
-          },
-          {
-            "kind": "price",
-            "text": "Я НА СВЯЗИ 📲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/mokko-grey-apartamenty-1k-1681/index.html",
@@ -69931,10 +70159,6 @@
           {
             "kind": "price",
             "text": "Я работаю с ценами точь-в-точь как у объекта размещения. Комиссии за мои услуги нет."
-          },
-          {
-            "kind": "price",
-            "text": "Я НА СВЯЗИ 📲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/david-gostevoy-dom-5219/index.html",
@@ -71144,10 +71368,6 @@
           {
             "kind": "price",
             "text": "Доп место - 1000₽"
-          },
-          {
-            "kind": "price",
-            "text": "Я НА СВЯЗИ 📲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/malbek-otel-5270/index.html",
@@ -72088,10 +72308,6 @@
           {
             "kind": "price",
             "text": "Возвратный депозит в отеле 5000₽ только наличными."
-          },
-          {
-            "kind": "price",
-            "text": "Я НА СВЯЗИ 📲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/index.html",
@@ -72358,10 +72574,6 @@
           {
             "kind": "price",
             "text": "Дети до 5 лет - проживание без предоставления места и питания - бесплатно."
-          },
-          {
-            "kind": "price",
-            "text": "Я НА СВЯЗИ 📲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-v-ville-leona-s-trehrazovym-pitaniem-i-basseynom-5316/index.html",
@@ -72617,10 +72829,6 @@
           {
             "kind": "price",
             "text": "30555₽ - дом с двумя спальнями до 10 чел"
-          },
-          {
-            "kind": "price",
-            "text": "Я НА СВЯЗИ 📲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-v-gorah-v-grass-s-podogrevaemym-basseynom-5326/index.html",
@@ -72873,10 +73081,6 @@
           {
             "kind": "price",
             "text": "10000₽ - с 16 января, февраль, март, апрель"
-          },
-          {
-            "kind": "price",
-            "text": "Я НА СВЯЗИ 📲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/index.html",
@@ -73617,10 +73821,6 @@
           {
             "kind": "price",
             "text": "8000₽ - с 16 января, февраль, март, апрель"
-          },
-          {
-            "kind": "price",
-            "text": "Я НА СВЯЗИ 📲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/index.html",
@@ -73874,10 +74074,6 @@
           {
             "kind": "price",
             "text": "10000₽ - с 16 января, февраль, март, апрель"
-          },
-          {
-            "kind": "price",
-            "text": "Я НА СВЯЗИ 📲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/index.html",
@@ -74982,10 +75178,6 @@
           {
             "kind": "price",
             "text": "Ребенок до 3 лет без предоставления отдельного места и питания размещается бесплатно."
-          },
-          {
-            "kind": "price",
-            "text": "Я НА СВЯЗИ 📲"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/lazurit-suhum-otel-s-basseynom-i-zavtrakami-5414/index.html",
