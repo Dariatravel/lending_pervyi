@@ -50,6 +50,79 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 """
 
 
+# Корень abhazbereg.ru/ — ещё и адрес возврата VK ID приложения «Абхазберег» (54522510, 29.10.2026):
+# с ?code=…&state=… страница остаётся и показывает адрес возврата для vkid_token.py на Mac mini
+# (прежняя мгновенно уезжала и теряла код), без них — тот же переезд на абхазберег.рф.
+# Источник и проверка — agents-darias/ВК-КЛЮЧ (abhazbereg-ru-index.html, check_abz_page.cjs).
+ROOT_PAGE = """<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://абхазберег.рф/">
+<title>Страница переехала — АБХАЗБЕРЕГ</title>
+<!--
+  abhazbereg.ru/ — адрес возврата VK ID приложения «Абхазберег» (54522510). Прежняя страница сразу
+  уводила на абхазберег.рф и теряла ?code=…&state=…&device_id=… (28.10.2026 код пришлось доставать из
+  истории браузера). Теперь: в адресе есть ответ VK ID — остаёмся и показываем адрес возврата для
+  vkid_token.py finish на Mac mini; иначе — как раньше, переход на абхазберег.рф.
+  Код одноразовый, живёт минуты и без проверочного ключа (PKCE), который лежит только на mini,
+  бесполезен. Настройки приложения ВК не меняются: адрес возврата тот же.
+-->
+<noscript><meta http-equiv="refresh" content="0;url=https://xn--80aacbklan7f0b.xn--p1ai/"></noscript>
+<style>
+  body { font: 16px/1.45 system-ui, -apple-system, sans-serif; margin: 0; padding: 16px; background: #f7f7f5; color: #1d1d1b; }
+  .box { max-width: 640px; margin: 24px auto; background: #fff; border: 1px solid #ddd; border-radius: 12px; padding: 16px; }
+  textarea { width: 100%; box-sizing: border-box; height: 7em; font: 13px/1.3 ui-monospace, monospace; }
+  button { font: inherit; padding: 8px 14px; border-radius: 8px; border: 1px solid #1d6b52; background: #1d6b52; color: #fff; }
+  .muted { color: #666; font-size: 14px; }
+  .err { color: #a40000; }
+</style>
+</head>
+<body>
+<div id="vk" class="box" hidden>
+  <h1 style="font-size:20px;margin-top:0">Вход ВК: ответ получен</h1>
+  <p id="vk-err" class="err" hidden></p>
+  <div id="vk-ok" hidden>
+    <p>Скопируйте адрес возврата и вставьте его на Mac mini в <code>vkid_token.py finish</code>. Код действует несколько минут.</p>
+    <textarea id="vk-url" readonly></textarea>
+    <p><button id="vk-copy" type="button">Скопировать</button> <span id="vk-copied" class="muted"></span></p>
+  </div>
+  <p class="muted">Эту страницу никому не пересылайте и не публикуйте. Сайт АБХАЗБЕРЕГ: <a href="https://xn--80aacbklan7f0b.xn--p1ai/">абхазберег.рф</a></p>
+</div>
+<p id="moved">Страница переехала: <a href="https://xn--80aacbklan7f0b.xn--p1ai/">https://абхазберег.рф/</a></p>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var isVk = (q.has('code') && q.has('state')) || (q.has('error') && q.has('state'));
+  if (!isVk) { location.replace('https://xn--80aacbklan7f0b.xn--p1ai/'); return; }
+  var full = location.href;
+  // адрес с кодом — только в поле для копирования; из строки браузера и истории убираем
+  try { history.replaceState(null, '', location.pathname); } catch (e) {}
+  document.getElementById('moved').hidden = true;
+  document.getElementById('vk').hidden = false;
+  if (q.has('error')) {
+    var e = document.getElementById('vk-err');
+    e.textContent = 'ВК вернул ошибку: ' + q.get('error') + (q.get('error_description') ? ' — ' + q.get('error_description') : '');
+    e.hidden = false;
+    return;
+  }
+  document.getElementById('vk-ok').hidden = false;
+  var t = document.getElementById('vk-url');
+  t.value = full;
+  document.getElementById('vk-copy').onclick = function () {
+    var done = function () { document.getElementById('vk-copied').textContent = 'Скопировано'; };
+    if (navigator.clipboard) navigator.clipboard.writeText(full).then(done, function () { t.select(); document.execCommand('copy'); done(); });
+    else { t.select(); document.execCommand('copy'); done(); }
+  };
+})();
+</script>
+</body>
+</html>
+"""
+
+
 def s3_client():
     return boto3.client(
         "s3",
@@ -145,6 +218,8 @@ def build() -> int:
         put(path_to_key(path), redirect_page(target))
         count += 1
     put("error.html", redirect_page("/"))
+    # корень — последним: страница возврата VK ID поверх обычного переезда на «/»
+    put("index.html", ROOT_PAGE.encode("utf-8"))
 
     # Короткие ссылки для рассылок (data/short-links*.json): работают и на
     # abhazbereg.ru — кладём и «ключ/index.html» (путь со слэшем), и просто
