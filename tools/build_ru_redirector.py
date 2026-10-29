@@ -59,7 +59,6 @@ ROOT_PAGE = """<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
 <link rel="canonical" href="https://абхазберег.рф/">
 <title>Страница переехала — АБХАЗБЕРЕГ</title>
 <!--
@@ -104,7 +103,9 @@ ROOT_PAGE = """<!DOCTYPE html>
   document.getElementById('vk').hidden = false;
   if (q.has('error')) {
     var e = document.getElementById('vk-err');
-    e.textContent = 'ВК вернул ошибку: ' + q.get('error') + (q.get('error_description') ? ' — ' + q.get('error_description') : '');
+    // только код ошибки и только латиница/подчёркивания: произвольный текст из адреса на странице бренда не показываем
+    var code = String(q.get('error') || '').replace(/[^a-z_]/gi, '').slice(0, 40) || 'ошибка';
+    e.textContent = 'ВК вернул ошибку: ' + code + '. Начните вход заново на Mac mini.';
     e.hidden = false;
     return;
   }
