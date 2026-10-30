@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-29T19:32:53.285965+00:00",
+  "generated_at": "2026-10-30T10:34:20.856107+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 247,
-  "listings_hotels": 194,
+  "listings_total": 248,
+  "listings_hotels": 195,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -75465,6 +75465,371 @@
           "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/lazurit-suhum-otel-s-basseynom-i-zavtrakami-5414/photo-10.jpg",
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/lazurit-suhum-otel-s-basseynom-i-zavtrakami-5414/photo-10.jpg",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5424,
+      "source_topic_id": null,
+      "slug": "ainlan-otel-s-basseynom-i-saunoy-5424",
+      "title": "\"АИНЛАН\" отель с бассейном и сауной",
+      "summary": "Сухум. 6 минут до пляжа, размещение до 5 человек.",
+      "excerpt": "В отеле 27 номеров различных категорий",
+      "city": "Сухум",
+      "location_text": "Сухум, ул. Агумава, 44",
+      "distance_text": "6 минут до пляжа",
+      "beach_text": "6 минут до пляжа",
+      "capacity_text": "размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/",
+      "telegram_url": "https://t.me/abhazbooking/5424",
+      "published_at": "2026-10-30",
+      "has_video": false,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/ainlan-otel-s-basseynom-i-saunoy-5424.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Сухум. 6 минут до пляжа, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "В отеле 27 номеров различных категорий.",
+              "Одиннадцать двухместных номеров площадью 22 кв. м. с двуспальной кроватью и балконом.",
+              "Девять двухместных номеров площадью 22 кв. м. с раздельными кроватями и балконом.",
+              "Четыре трехместных номера площадью 22 кв. м. с двуспальной кроватью и доп местом кресло-кровать без балкона.",
+              "Два двухкомнатных номера люкс площадью 75 кв.м. с балконом.",
+              "Двуспальная кровать, диван, два кресла-кровати. Размещение до 5 человек. Сан узел с тропическим душем и ванной.",
+              "Один трехместный полулюкс площадью 30 кв.м. с балконом.",
+              "Двуспальная кровать и кресло-кровать.",
+              "Во всех номерах сан узел с душем.",
+              "На первом и втором этажах настенные обогреватели.",
+              "Оснащение: Wi-Fi, кондиционер, мини-холодильник, телевизор, телефон, чайник, сейф и фен. Предусмотрены халаты, тапочки, полотенца, туалетные принадлежности."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Подогреваемый в межсезонье бассейн 13 х 7, глубиной 150-170 см с шезлонгами и крытой небольшой зоной бассейна с выходом в сауну.",
+              "Финская сауна включена в стоимость с 13:00 до 19:00, в другие часы за дополнительную плату.",
+              "Зона отдыха.",
+              "Есть парковка.",
+              "Завтраки включены в Новогодний период.",
+              "Дополнительно можно заказать трансфер и экскурсии, услуги прачки."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До галечного пляжа и набережной около 6 минут пешком.",
+              "В шаговой доступности центральный рынок.",
+              "До центра Сухума с городскими парками около 20 минут пешком.",
+              "До Ботанического сада около 25 минут пешком.",
+              "Рядом магазины, аптеки, кафе, остановка общественного транспорта.",
+              "До популярного песчаного пляжа Мокко около 15 минут на авто или около 30 минут на общественном транспорте."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с маленькими собачками возможно по согласованию с доп платой 500₽ в сутки.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я НА СВЯЗИ 📲",
+              "в MAX: max.ru/id741113115256_bot",
+              "ВК-чат: vk.cc/cQQnBn",
+              "WhatsApp +7940-900-33-40",
+              "(только сообщение, звонок не пройдёт)"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Двухместный номер с двуспальной кроватью и балконом"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - ноябрь, декабрь до 25-го"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - с 26 декабря по 13 января, Новый год 🎄с завтраком"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - с 14 января, февраль"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - март"
+          },
+          {
+            "kind": "price",
+            "text": "6500₽ - апрель"
+          },
+          {
+            "kind": "price",
+            "text": "Двухместный номер с раздельными кроватями и балконом"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - ноябрь, декабрь до 25-го"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - с 26 декабря по 13 января, Новый год 🎄с завтраком"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - с 14 января, февраль"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - март"
+          },
+          {
+            "kind": "price",
+            "text": "6500₽ - апрель"
+          },
+          {
+            "kind": "price",
+            "text": "Трехместный номер без балкона"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - ноябрь, декабрь до 25-го"
+          },
+          {
+            "kind": "price",
+            "text": "11000₽ - с 26 декабря по 13 января, Новый год 🎄с завтраком"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - с 14 января, февраль"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - март"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - апрель"
+          },
+          {
+            "kind": "price",
+            "text": "Трехместный полулюкс у бассейна"
+          },
+          {
+            "kind": "price",
+            "text": "8500₽ - ноябрь, декабрь до 25-го"
+          },
+          {
+            "kind": "price",
+            "text": "12000₽ - с 26 декабря по 13 января, Новый год 🎄с завтраком"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - с 14 января по 28 февраля"
+          },
+          {
+            "kind": "price",
+            "text": "8500₽ - март"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - апрель"
+          },
+          {
+            "kind": "price",
+            "text": "Двухкомнатный люкс"
+          },
+          {
+            "kind": "note",
+            "text": "(за размещение до 5 человек)"
+          },
+          {
+            "kind": "price",
+            "text": "11000₽ - ноябрь, декабрь до 25-го"
+          },
+          {
+            "kind": "price",
+            "text": "18000₽ - с 26 декабря по 13 января, Новый год 🎄с завтраком"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - с 14 января, февраль"
+          },
+          {
+            "kind": "price",
+            "text": "11000₽ - март"
+          },
+          {
+            "kind": "price",
+            "text": "12000₽ - апрель"
+          },
+          {
+            "kind": "price",
+            "text": "Один ребенок до 5 лет размещается бесплатно без предоставления отдельного места."
+          },
+          {
+            "kind": "price",
+            "text": "Детская кроватка по запросу - 500₽ в сутки."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/index.html",
+        "filters": {
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "breakfast"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "sukhum"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "pool",
+            "heated-pool",
+            "balcony",
+            "tv",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "pets"
+          ]
+        }
+      },
+      "id": 1225,
+      "media": [
+        {
+          "id": 1225001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/ainlan-otel-s-basseynom-i-saunoy-5424.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/ainlan-otel-s-basseynom-i-saunoy-5424.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/ainlan-otel-s-basseynom-i-saunoy-5424.jpg",
+          "details": {}
+        },
+        {
+          "id": 1225002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1225003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1225004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1225005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1225006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1225007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1225008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1225009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1225010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1225011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-10.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-10.jpg",
           "details": {}
         }
       ]
