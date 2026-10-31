@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T17:01:48.826297+00:00",
+  "generated_at": "2026-10-31T18:52:38.539275+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 248,
@@ -30288,10 +30288,6 @@
           {
             "kind": "price",
             "text": "4000₽/сутки - сентябрь, октябрь"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽/сутки - с ноября по апрель"
           },
           {
             "kind": "price",
