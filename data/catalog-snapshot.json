@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T18:52:38.539275+00:00",
+  "generated_at": "2026-11-01T20:59:59.605897+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 248,
@@ -36850,16 +36850,8 @@
         ],
         "prices": [
           {
-            "kind": "price",
-            "text": "3500₽/сутки - май"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽/сутки - июнь, июль, август"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽/сутки - сентябрь"
+            "kind": "note",
+            "text": "(2026)"
           },
           {
             "kind": "price",
@@ -36868,6 +36860,18 @@
           {
             "kind": "price",
             "text": "3000₽/сутки - с декабря по май"
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽/сутки - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽/сутки - июль, август"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/mon-amur-kvartira-1k-gagra-1062/index.html",
@@ -40804,6 +40808,26 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽/сутки - с октября по апрель"
+          },
+          {
+            "kind": "price",
+            "text": "*Цены указаны за размещение 4 человек. Доп. место 1000₽/сутки"
+          },
+          {
+            "kind": "price",
+            "text": "Бронь от 5 дней. Возвратный депозит 5000 рублей."
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
             "kind": "price",
             "text": "3500₽/сутки - май"
           },
@@ -40822,10 +40846,6 @@
           {
             "kind": "price",
             "text": "4500₽/сутки - сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽/сутки - с октября по апрель"
           },
           {
             "kind": "price",
@@ -48553,6 +48573,18 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽ - с ноября по май"
+          },
+          {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
             "kind": "price",
             "text": "4500₽ - июнь"
           },
@@ -48575,10 +48607,6 @@
           {
             "kind": "price",
             "text": "2500₽ - октябрь"
-          },
-          {
-            "kind": "price",
-            "text": "2000₽ - с ноября по май"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/alma-domiki-na-beregu-2996/index.html",
