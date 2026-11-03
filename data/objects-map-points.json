@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T17:42:43.480029+00:00",
+  "generated_at": "2026-11-03T10:06:41.944178+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1555,6 +1555,14 @@
       "cityKey": "pitsunda"
     },
     {
+      "title": "\"АИНЛАН\" отель с бассейном и сауной",
+      "address": "Сухум, ул. Агумава, 44",
+      "lat": 43.0013,
+      "lon": 41.001526,
+      "url": "/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"АКИРА\" 2К КВАРТИРА",
       "address": "Сухум, ул. Акиртава, 7, 6 этаж",
       "lat": 43.00042062454251,
@@ -1964,17 +1972,17 @@
     }
   ],
   "stats": {
-    "placemarks_total": 490,
-    "placemarks_unique": 245,
-    "pages_total": 502,
-    "pages_on_disk": 560,
-    "pages_excluded": 58,
-    "from_constructor": 267,
+    "placemarks_total": 488,
+    "placemarks_unique": 244,
+    "pages_total": 498,
+    "pages_on_disk": 561,
+    "pages_excluded": 63,
+    "from_constructor": 265,
     "from_page_coords": 0,
     "from_manual": 0,
-    "skipped_without_constructor": 235,
-    "skipped_without_coords": 235,
-    "shared_coordinate_groups": 35,
+    "skipped_without_constructor": 233,
+    "skipped_without_coords": 233,
+    "shared_coordinate_groups": 34,
     "deduped_redirect_points": 19,
     "points_total": 246
   }
