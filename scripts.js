@@ -53,8 +53,8 @@
     return text;
   }
 
-  async function copyPublicUrl(triggerBtn, copiedLabel = "Ссылка скопирована", defaultLabel = "") {
-    const url = buildPublicShareUrl();
+  async function copyPublicUrl(triggerBtn, copiedLabel = "Ссылка скопирована", defaultLabel = "", explicitUrl = "") {
+    const url = explicitUrl || buildPublicShareUrl();
     const original = triggerBtn?.textContent || defaultLabel;
     try {
       if (navigator.clipboard?.writeText) {
@@ -72,6 +72,24 @@
     } catch (error) {
       window.prompt("Скопируйте ссылку:", url);
     }
+  }
+
+  let listingShortUrlsPromise = null;
+
+  async function getListingShortUrl(slug, sourceKind) {
+    if (!listingShortUrlsPromise) {
+      listingShortUrlsPromise = fetch("/data/catalog-index.json", { cache: "no-cache" })
+        .then((response) => {
+          if (!response.ok) throw new Error(`catalog-index: ${response.status}`);
+          return response.json();
+        })
+        .then((payload) => Array.isArray(payload?.listings) ? payload.listings : [])
+        .catch(() => []);
+    }
+    const listings = await listingShortUrlsPromise;
+    const item = listings.find((row) => row?.slug === slug && row?.source_kind === sourceKind);
+    const shortUrl = String(item?.short_url || "").trim();
+    return /^https:\/\/abhazbereg\.com\/[a-z0-9-]+\/?$/.test(shortUrl) ? shortUrl.replace(/\/$/, "") : "";
   }
 
   function initCanonicalUrlDisplay() {
@@ -144,8 +162,16 @@
     btn.className = "save-button";
     btn.id = "copy-listing-link";
     btn.textContent = "Скопировать ссылку";
+    btn.disabled = true;
+    let listingShareUrl = buildPublicShareUrl();
+    const sourceKind = window.location.pathname.startsWith("/kvartira/") ? "kvartira" : "hotel";
+    void getListingShortUrl(match[1], sourceKind).then((shortUrl) => {
+      if (shortUrl) listingShareUrl = shortUrl;
+    }).finally(() => {
+      btn.disabled = false;
+    });
     btn.addEventListener("click", () => {
-      void copyPublicUrl(btn);
+      void copyPublicUrl(btn, "Ссылка скопирована", "", listingShareUrl);
     });
     actions.insertBefore(btn, catalogBtn);
   }
@@ -254,7 +280,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202610212206";
+  const ASSET_VERSION = "202611041747";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
