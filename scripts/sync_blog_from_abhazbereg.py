@@ -820,6 +820,15 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 
 
 def render_article_page(art: BuiltArticle, body_html: str) -> str:
+    if art.slug == "kak-posmotret-abhaziyu-do-poezdki":
+        # Пост-анонс должен сразу вести на отдельную функциональную страницу
+        # с ежедневными снимками и кнопками прямых эфиров.
+        body_html = (
+            '        <p><a href="/veb-kamery-abhazii/">'
+            'Смотреть онлайн-камеры Абхазии: свежие снимки и прямые эфиры'
+            '</a></p>\n\n'
+            + body_html
+        )
     tags_html = "".join(f"<span>{html.escape(t)}</span>" for t in art.tags)
     meta_desc = art.meta_desc[:300]
     og_desc = meta_desc[:180]
