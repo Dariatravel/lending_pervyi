@@ -1765,15 +1765,11 @@ section.site-concept__contacts.section {
 }
 
 :is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__icon--whatsapp {
-  background-image: none;
-  color: #25d366;
+  background-image: url("/media/branding/icon-whatsapp-green.png");
 }
 
 :is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__icon--whatsapp svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  fill: currentColor;
+  display: none;
 }
 
 :is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__copy,
