@@ -450,8 +450,8 @@ MARKDOWN_ANSWER_PAGES: list[dict[str, Any]] = [
         ],
     },
 ]
-# Десять страниц ответов из agents-darias, ai-visibility/content/site/answers/
-# (Дарья, 21.10.2026). Формат: «Описание:», «Ответ:» (первый абзац), вопросы
+# Страницы ответов из agents-darias, ai-visibility/content/site/answers/.
+# Формат: «Описание:», «Ответ:» (первый абзац), вопросы
 # подзаголовками ###, «Полезные ссылки» — в боковой блок. Встают в конец списка.
 MARKDOWN_ANSWER_PAGES += [
     {"slug": slug, "source": f"{slug}.md"}
@@ -477,6 +477,37 @@ MARKDOWN_ANSWER_PAGES += [
         "kogda-bronirovat-zhile-v-abhazii-na-leto",
         "rabotayut-li-karty-v-abhazii",
         "dom-pod-klyuch-v-abhazii-dlya-bolshoy-semi",
+        # Партия 3: 30 ответов по вопросам TravelAsk (Дарья, 05.11.2026).
+        "gagra-staraya-ili-novaya",
+        "tsandripsh-ili-gagra",
+        "alahadzy-bez-mashiny",
+        "gudauta-ili-novyy-afon",
+        "suhum-kakoy-rayon-vybrat",
+        "abhaziya-pozhilym-roditelyam",
+        "abhaziya-s-kolyaskoy",
+        "zhile-u-morya-kak-proverit-put",
+        "zhile-s-generatorom-chto-sprosit",
+        "podogrevaemyy-basseyn-chto-utochnit",
+        "granitsa-psou-peshkom-bagazh",
+        "nochnoe-pribytie-v-abhaziyu",
+        "transfer-ili-taksi-ot-granitsy",
+        "marshrutki-po-abhazii",
+        "iz-gagry-v-pitsundu",
+        "iz-suhuma-v-novyy-afon",
+        "zheleznodorozhnaya-stantsiya-transfer",
+        "sim-karta-ili-rouming",
+        "internet-dlya-udalennoy-raboty",
+        "nalichnye-na-kazhdyy-den",
+        "ritsa-samostoyatelno-ili-ekskursiya",
+        "gegskiy-vodopad-poezdka",
+        "novoafonskaya-peshchera-chto-vzyat",
+        "ekskursiya-s-detmi-dzhiping",
+        "dozhd-v-abhazii-chto-delat",
+        "gde-poest-stolovaya-ili-apatskha",
+        "abhaziya-s-kuhney-ili-pitaniem",
+        "plyazh-galka-chto-vzyat",
+        "mandarinovyy-sezon-poezdka",
+        "kyndyg-na-odin-den",
     )
 ]
 
