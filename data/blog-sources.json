@@ -84,7 +84,8 @@
       "channel": "abhazbooking",
       "hash": "c44ba37d71381638",
       "message_id": 3613,
-      "mode": "auto"
+      "mode": "manual",
+      "note": "05.11.2026: редакционная версия по поручению Дарьи. Основа – прежняя статья, дополнена краткими советами TravelAsk. Повторно не переносить пост @abhazbooking/3613; текст хранится в data/resort-guide-editorial.html, опубликован по прежнему URL."
     },
     "ldzaa-shtil-pitsunda-volny": {
       "channel": "abhazbereg",

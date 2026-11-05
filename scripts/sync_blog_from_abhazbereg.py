@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 from telegram_line_filters import clean_line_for_site  # noqa: E402
+from blog_editorial_policy import protected_article, protected_source  # noqa: E402
 
 API_ID = 32916166
 API_HASH = "eefdec49605521b061de4bdf62ef784e"
@@ -413,7 +414,7 @@ EXISTING_CARDS = [
         "iso_date": "2026-02-27",
         "card_tag": "гид",
         "title": "Едете в Абхазию впервые? Как выбрать место для отдыха",
-        "excerpt": "Пицунда и Лдзаа, Гагра, Сухум и другие локации — чем отличаются море, инфраструктура и атмосфера.",
+        "excerpt": "Пляжи, достопримечательности и практические советы по выбору жилья в семи курортах Абхазии.",
         "image": "telegram-3613.jpg",
         "alt": "Как выбрать курорт в Абхазии",
     },
@@ -1138,7 +1139,14 @@ async def sync_posts(post_ids: list[int] | None = None) -> list[BuiltArticle]:
     target_ids = post_ids or POST_IDS
     by_channel: dict[str, list[int]] = {}
     for pid in target_ids:
+        if (protected_article(str(POST_META.get(pid, {}).get("slug", "")))
+                or protected_source(post_channel(pid), pid)
+                or (pid not in POST_META and protected_source("abhazbooking", pid))):
+            print(f"Пропущен редакционный материал из Telegram: #{pid}")
+            continue
         by_channel.setdefault(post_channel(pid), []).append(pid)
+    if not by_channel:
+        return built
     async with connected_telegram_client(SESSION, API_ID, API_HASH, receive_updates=False) as client:
       for channel_name, channel_ids in by_channel.items():
         entity = await client.get_entity(channel_name)
@@ -1253,28 +1261,26 @@ async def main_async() -> int:
         }
         for art in built
     ]
-    if post_ids:
-        from build_blog_posts_manifest import build_manifest
+    # Сохраняем карточки ручных статей также при полном синке.
+    from build_blog_posts_manifest import build_manifest
 
-        known_cards = {
-            str(card["slug"]): {
-                "slug": str(card["slug"]),
-                "iso_date": str(card.get("iso_date") or ""),
-                "card_tag": str(card.get("card_tag") or ""),
-                "title": str(card.get("title") or ""),
-                "excerpt": str(card.get("excerpt") or ""),
-                "image": str(card.get("image") or ""),
-                "alt": str(card.get("title") or card["slug"]),
-            }
-            for card in build_manifest()
+    known_cards = {
+        str(card["slug"]): {
+            "slug": str(card["slug"]),
+            "iso_date": str(card.get("iso_date") or ""),
+            "card_tag": str(card.get("card_tag") or ""),
+            "title": str(card.get("title") or ""),
+            "excerpt": str(card.get("excerpt") or ""),
+            "image": str(card.get("image") or ""),
+            "alt": str(card.get("title") or card["slug"]),
         }
-        for card in EXISTING_CARDS:
-            known_cards.setdefault(str(card["slug"]), card)
-        for card in new_cards:
-            known_cards[str(card["slug"])] = card
-        all_cards = list(known_cards.values())
-    else:
-        all_cards = new_cards + EXISTING_CARDS
+        for card in build_manifest()
+    }
+    for card in EXISTING_CARDS:
+        known_cards.setdefault(str(card["slug"]), card)
+    for card in new_cards:
+        known_cards[str(card["slug"])] = card
+    all_cards = list(known_cards.values())
     all_cards.sort(key=lambda c: c["iso_date"], reverse=True)
     (BLOG_DIR / "index.html").write_text(render_blog_index(all_cards), encoding="utf-8")
     print(f"updated blog/index.html ({len(all_cards)} cards)")

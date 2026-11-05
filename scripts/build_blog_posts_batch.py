@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import html
 from pathlib import Path
+from blog_editorial_policy import protected_article
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSET_VERSION = (ROOT / 'data' / 'asset-version.txt').read_text(encoding='utf-8').strip()
@@ -280,6 +281,9 @@ def main() -> None:
     import json as json_lib
 
     for art in ARTICLES:
+        if protected_article(art['slug']):
+            print(f"Пропущена редакционная статья: {art['slug']}")
+            continue
         raw = Path(art['src']).read_text(encoding='utf-8')
         body_ps = telegram_chunks_to_ps(raw)
         tid = art['id']
