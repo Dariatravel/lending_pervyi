@@ -1026,6 +1026,26 @@ _ANSWERS_COMPARE_CSS = """  <style>
   </style>
 """
 
+_ANSWERS_PROMO_CSS = """  <style>
+    .answers-promo { margin: 28px 0; padding: 24px; border: 1px solid #d6aa65; border-radius: 20px; background: #fff2d8; color: #294a3d; box-shadow: 0 12px 30px rgba(83, 62, 35, 0.1); }
+    .answers-promo p { margin: 0; color: inherit; }
+    .answers-promo p + p { margin-top: 12px; }
+    .answers-promo__button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; margin-top: 18px; padding: 10px 20px; border: 1px solid #294a3d; border-radius: 999px; background: #294a3d; color: #fff; font-weight: 500; line-height: 1.25; text-align: center; text-decoration: none; transition: background-color 0.2s ease, transform 0.2s ease; }
+    .answers-promo__button:hover { background: #1f3b30; transform: translateY(-1px); }
+    .answers-promo__button:focus-visible { outline: 3px solid rgba(41, 74, 61, 0.32); outline-offset: 3px; }
+    @media (max-width: 600px) {
+      .answers-promo { margin: 22px 0; padding: 20px 18px; border-radius: 16px; }
+      .answers-promo__button { width: 100%; }
+    }
+  </style>
+"""
+
+_ANSWERS_PROMO_HTML = """        <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
+          <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
+        </aside>"""
+
 
 def render_answer_page(page: dict[str, Any], version: str) -> str:
     canonical = f"{CANON_ORIGIN}/answers/{page['slug']}/"
@@ -1048,9 +1068,12 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
 {faq_html}"""
     if is_md:
         parts = []
+        promo_added = False
         for section in page["md_sections"]:
             if section["faq"]:
+                parts.append(_ANSWERS_PROMO_HTML)
                 parts.append(faq_block.lstrip("\n"))
+                promo_added = True
                 continue
             if section.get("images"):
                 parts.append(_md_images_html(page["images"]))
@@ -1063,11 +1086,13 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
                 + "\n".join(_md_block_html(block) for block in section["blocks"])
                 + "\n        </section>"
             )
+        if not promo_added:
+            parts.append(_ANSWERS_PROMO_HTML)
         sections = "\n".join(parts)
         faq_block = ""
         # Блок «Коротко» — общий текст шаблона, в тексте страницы его нет.
         summary = ""
-        extra_head = _ANSWERS_COMPARE_CSS
+        extra_head = _ANSWERS_COMPARE_CSS + _ANSWERS_PROMO_CSS
         content_mod = " blog-article__content--md"
         updated = (
             f'\n        <p class="blog-article__updated">{html.escape(page["updated"])}</p>'
@@ -1081,12 +1106,8 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
         </section>"""
             for title, body in page["sections"]
         )
-        summary = """
-        <section class="blog-section blog-section--summary">
-          <h2>Коротко</h2>
-          <p>Если хотите быстрее подобрать жилье, откройте подходящую подборку ниже или напишите даты, состав гостей и бюджет — подберем варианты по реальным условиям.</p>
-        </section>"""
-        extra_head = ""
+        summary = "\n" + _ANSWERS_PROMO_HTML
+        extra_head = _ANSWERS_PROMO_CSS
         content_mod = ""
         updated = ""
     # Первое фото страницы — картинка статьи для поисковиков и соцсетей.

@@ -45,6 +45,18 @@
       .answers-compare__table td::before { content: attr(data-label); display: block; font-weight: 700; font-size: 12px; color: rgba(41, 74, 61, 0.72); margin-bottom: 2px; }
     }
   </style>
+  <style>
+    .answers-promo { margin: 28px 0; padding: 24px; border: 1px solid #d6aa65; border-radius: 20px; background: #fff2d8; color: #294a3d; box-shadow: 0 12px 30px rgba(83, 62, 35, 0.1); }
+    .answers-promo p { margin: 0; color: inherit; }
+    .answers-promo p + p { margin-top: 12px; }
+    .answers-promo__button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; margin-top: 18px; padding: 10px 20px; border: 1px solid #294a3d; border-radius: 999px; background: #294a3d; color: #fff; font-weight: 500; line-height: 1.25; text-align: center; text-decoration: none; transition: background-color 0.2s ease, transform 0.2s ease; }
+    .answers-promo__button:hover { background: #1f3b30; transform: translateY(-1px); }
+    .answers-promo__button:focus-visible { outline: 3px solid rgba(41, 74, 61, 0.32); outline-offset: 3px; }
+    @media (max-width: 600px) {
+      .answers-promo { margin: 22px 0; padding: 20px 18px; border-radius: 16px; }
+      .answers-promo__button { width: 100%; }
+    }
+  </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Что такое ваучер на проживание и зачем он при бронировании в Абхазии","description":"Ваучер на проживание - документ после оплаты брони: даты, стоимость, сколько оплачено и сколько платить при заселении. Что в нём должно быть и зачем он нужен.","url":"https://абхазберег.рф/answers/chto-takoe-vaucher-na-prozhivanie/","inLanguage":"ru","author":{"@type":"Organization","name":"АБХАЗБЕРЕГ","url":"https://абхазберег.рф/"},"publisher":{"@type":"Organization","name":"АБХАЗБЕРЕГ","url":"https://абхазберег.рф/"},"image":{"@type":"ImageObject","url":"https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755.jpg","width":960,"height":1280}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Когда выдают ваучер?","acceptedAnswer":{"@type":"Answer","text":"После внесения предоплаты. В нём указано, сколько уже оплачено и сколько платить при заселении."}},{"@type":"Question","name":"Чем невозвратный ваучер отличается от обычного?","acceptedAnswer":{"@type":"Answer","text":"Невозвратный выдаётся на бронь, где предоплата при отмене не возвращается; обычный - на бронь по стандартным условиям. Условия в обоих случаях прописаны в документе."}},{"@type":"Question","name":"Что делать, если даты поездки изменились?","acceptedAnswer":{"@type":"Answer","text":"Сообщить менеджеру: при переносе оформляется отдельный документ о переносе брони с новыми датами."}}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://абхазберег.рф/"},{"@type":"ListItem","position":2,"name":"Ответы","item":"https://абхазберег.рф/answers/"},{"@type":"ListItem","position":3,"name":"Что такое ваучер на проживание и зачем он при бронировании в Абхазии","item":"https://абхазберег.рф/answers/chto-takoe-vaucher-na-prozhivanie/"}]}</script>
@@ -93,6 +105,11 @@
           <h2>Коротко</h2>
           <p>Ваучер - документ после оплаты с датами, суммами и условиями брони. Без него подтверждённой брони, по сути, нет.</p>
         </section>
+        <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
+          <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
+        </aside>
         <section class="blog-section">
           <h2>Частые вопросы</h2>
         </section>

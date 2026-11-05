@@ -45,6 +45,18 @@
       .answers-compare__table td::before { content: attr(data-label); display: block; font-weight: 700; font-size: 12px; color: rgba(41, 74, 61, 0.72); margin-bottom: 2px; }
     }
   </style>
+  <style>
+    .answers-promo { margin: 28px 0; padding: 24px; border: 1px solid #d6aa65; border-radius: 20px; background: #fff2d8; color: #294a3d; box-shadow: 0 12px 30px rgba(83, 62, 35, 0.1); }
+    .answers-promo p { margin: 0; color: inherit; }
+    .answers-promo p + p { margin-top: 12px; }
+    .answers-promo__button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; margin-top: 18px; padding: 10px 20px; border: 1px solid #294a3d; border-radius: 999px; background: #294a3d; color: #fff; font-weight: 500; line-height: 1.25; text-align: center; text-decoration: none; transition: background-color 0.2s ease, transform 0.2s ease; }
+    .answers-promo__button:hover { background: #1f3b30; transform: translateY(-1px); }
+    .answers-promo__button:focus-visible { outline: 3px solid rgba(41, 74, 61, 0.32); outline-offset: 3px; }
+    @media (max-width: 600px) {
+      .answers-promo { margin: 22px 0; padding: 20px 18px; border-radius: 16px; }
+      .answers-promo__button { width: 100%; }
+    }
+  </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Как ездить на маршрутках между городами Абхазии?","description":"Как уточнить направление маршрутки, место посадки и обратный путь, не полагаясь на старые расписания и цены из переписки.","url":"https://абхазберег.рф/answers/marshrutki-po-abhazii/","inLanguage":"ru","author":{"@type":"Organization","name":"АБХАЗБЕРЕГ","url":"https://абхазберег.рф/"},"publisher":{"@type":"Organization","name":"АБХАЗБЕРЕГ","url":"https://абхазберег.рф/"},"image":{"@type":"ImageObject","url":"https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-301-01.jpg","width":800,"height":450}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Есть ли единый интервал движения?","acceptedAnswer":{"@type":"Answer","text":"Не рассчитывайте на одинаковый интервал для всех направлений. Конкретный рейс и отправление нужно уточнять отдельно."}},{"@type":"Question","name":"Подойдёт ли проходящая маршрутка?","acceptedAnswer":{"@type":"Answer","text":"Возможно, если водитель подтвердит нужную остановку и наличие места. Одна табличка не заменяет уточнения."}},{"@type":"Question","name":"Можно ли ехать на вечернюю пересадку без запаса?","acceptedAnswer":{"@type":"Answer","text":"Это ненадёжный план. Сначала подтвердите оба участка и предусмотрите вариант на случай задержки."}}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://абхазберег.рф/"},{"@type":"ListItem","position":2,"name":"Ответы","item":"https://абхазберег.рф/answers/"},{"@type":"ListItem","position":3,"name":"Как ездить на маршрутках между городами Абхазии?","item":"https://абхазберег.рф/answers/marshrutki-po-abhazii/"}]}</script>
@@ -95,6 +107,11 @@
           <p>В обсуждениях есть несовпадающие ответы о последних отправлениях и рассказы, когда вечером оставалось только такси. Из них нельзя собрать единое действующее расписание. Проверяйте обратный выезд на свою дату у перевозчика или на месте посадки.</p>
           <p>Не стройте день вокруг единственной непроверенной последней машины. Заранее определите запасной вариант и оставьте на него деньги. Если обратный выезд не подтверждается, сократите прогулку или смените транспорт, пока решение ещё не принимается в спешке.</p>
         </section>
+        <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
+          <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
+        </aside>
         <section class="blog-section">
           <h2>Частые вопросы</h2>
         </section>
