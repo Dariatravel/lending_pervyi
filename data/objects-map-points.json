@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T10:06:41.944178+00:00",
+  "generated_at": "2026-11-05T00:39:14.953587+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1635,6 +1635,14 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"ДЖАНАТ\" отель с бассейном и завтраком",
+      "address": "Сухум, Синопское ущелье, 11",
+      "lat": 42.990868,
+      "lon": 41.068289,
+      "url": "/hotels/dzhanat-otel-s-basseynom-i-zavtrakom-5436/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"ДОМИКИ У МАРИНЫ\" отдых у моря",
       "address": "г. Сухум, пос. Мачара, ул. Солнечная, 46а",
       "lat": 42.947138,
@@ -1972,18 +1980,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 488,
-    "placemarks_unique": 244,
-    "pages_total": 498,
-    "pages_on_disk": 561,
+    "placemarks_total": 490,
+    "placemarks_unique": 245,
+    "pages_total": 499,
+    "pages_on_disk": 562,
     "pages_excluded": 63,
-    "from_constructor": 265,
+    "from_constructor": 266,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 233,
     "skipped_without_coords": 233,
     "shared_coordinate_groups": 34,
     "deduped_redirect_points": 19,
-    "points_total": 246
+    "points_total": 247
   }
 }
