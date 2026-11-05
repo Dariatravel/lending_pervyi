@@ -2801,11 +2801,17 @@ a.podborki-card--link:hover {
   margin: 0;
   padding-left: 18px;
   display: grid;
-  gap: 6px;
+  gap: 10px;
+}
+
+.blog-related__list li {
+  padding-left: 2px;
+  line-height: 1.55;
 }
 
 .blog-related__list a {
   color: inherit;
+  line-height: inherit;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
