@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -91,11 +95,27 @@
           <p>В ответах о поездках для Гагры называют разные участки посадки, а для Сухума обсуждают рынок и вокзал. Это не взаимозаменяемые точки. Слова «отправляется из города» недостаточно, чтобы выйти из дома и сразу оказаться у нужной машины.</p>
           <p>Не выбирайте ожидание на обочине только потому, что так описал свою поездку другой турист. Для первого выезда удобнее найти понятную остановку, где можно уточнить направление и спокойно сесть.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/vezu/suhum-chernigovka-istochnik-kyndyg-301/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-301-01.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-301-01-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-301-01-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-301-01-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="800" height="450" alt="Колоннада на набережной Сухума" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/vezu/suhum-chernigovka-istochnik-kyndyg-301/">Колоннада на набережной Сухума</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Спросите про свой выход</h2>
           <p>Крупная надпись на машине может обозначать конечный город, а нужный промежуточный пункт быть написан мелко. В дайджесте есть рассказ о пропущенной маршрутке именно из-за этого. Лучше уточнять маршрут, чем ждать исключительно табличку с названием своей остановки.</p>
           <p>При этом направление вдоль побережья не означает заезд к любому пляжу или гостевому дому. Назовите водителю конкретное место и спросите, где выходить. Особенно важно различать сам населённый пункт и поворот к нему на основной дороге.</p>
           <p>Сохраните свою остановку на карте. Незнакомые названия на слух легко перепутать, а показывать точку часто проще, чем объяснять дорогу словами. Попросите предупредить о выходе, но и сами следите за маршрутом.</p>
+        </section>
+        <section class="blog-section answers-photos answers-photos--middle" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/vezu/novyy-afon-80/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="180" height="320" alt="Историческая станция Псырцха в Новом Афоне" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/vezu/novyy-afon-80/">Историческая станция Псырцха в Новом Афоне</a></figcaption>
+            </figure>
+          </div>
         </section>
         <section class="blog-section">
           <h2>Проясните оплату и багаж</h2>
@@ -109,7 +129,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -127,18 +147,6 @@
           <h2>Можно ли ехать на вечернюю пересадку без запаса?</h2>
           <p>Это ненадёжный план. Сначала подтвердите оба участка и предусмотрите вариант на случай задержки.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/vezu/suhum-chernigovka-istochnik-kyndyg-301/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-301-01.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-301-01-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-301-01-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-301-01-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="800" height="450" alt="Колоннада на набережной Сухума" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/vezu/suhum-chernigovka-istochnik-kyndyg-301/">Колоннада на набережной Сухума</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/vezu/novyy-afon-80/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="180" height="320" alt="Историческая станция Псырцха в Новом Афоне" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/vezu/novyy-afon-80/">Историческая станция Псырцха в Новом Афоне</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: 5 ноября 2026.</p>
         </div>
         <aside class="blog-article__aside">

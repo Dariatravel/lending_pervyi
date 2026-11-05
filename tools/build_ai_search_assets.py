@@ -970,8 +970,8 @@ def _md_block_html(block: dict[str, Any]) -> str:
           </div>"""
 
 
-def _md_images_html(images: list[dict[str, str]]) -> str:
-    """Фото объектов: каждое — ссылка на страницу объекта, подпись под фото."""
+def _md_images_html(images: list[dict[str, str]], placement: str) -> str:
+    """Крупные фото объектов внутри текста: ссылка на объект и подпись."""
     figures = []
     for image in images:
         width, height = _image_size(image["src"])
@@ -986,7 +986,7 @@ def _md_images_html(images: list[dict[str, str]]) -> str:
             </figure>"""
         )
     return (
-        '        <section class="blog-section answers-photos" aria-label="Фото объектов">\n'
+        f'        <section class="blog-section answers-photos answers-photos--{placement}" aria-label="Фото объектов">\n'
         '          <div class="answers-photos__grid">\n'
         + "\n".join(figures)
         + "\n          </div>\n        </section>"
@@ -1006,13 +1006,17 @@ _ANSWERS_COMPARE_CSS = """  <style>
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -1042,7 +1046,7 @@ _ANSWERS_PROMO_CSS = """  <style>
 
 _ANSWERS_PROMO_HTML = """        <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>"""
 
@@ -1069,14 +1073,38 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
     if is_md:
         parts = []
         promo_added = False
+        images = page.get("images") or []
+        split_at = (len(images) + 1) // 2
+        top_images = images[:split_at]
+        middle_images = images[split_at:]
+        text_sections = [
+            section for section in page["md_sections"]
+            if not section["faq"] and not section.get("images")
+        ]
+        middle_after = min(len(text_sections), max(2, (len(text_sections) + 1) // 2))
+        text_section_number = 0
+        top_images_added = False
+        middle_images_added = False
+
+        def add_pending_images() -> None:
+            nonlocal top_images_added, middle_images_added
+            if top_images and not top_images_added:
+                parts.append(_md_images_html(top_images, "top"))
+                top_images_added = True
+            if middle_images and not middle_images_added:
+                parts.append(_md_images_html(middle_images, "middle"))
+                middle_images_added = True
+
         for section in page["md_sections"]:
             if section["faq"]:
+                add_pending_images()
                 parts.append(_ANSWERS_PROMO_HTML)
                 parts.append(faq_block.lstrip("\n"))
                 promo_added = True
                 continue
             if section.get("images"):
-                parts.append(_md_images_html(page["images"]))
+                # Исходный маркер картинок обычно стоит внизу. Фотографии уже
+                # распределены выше: после первого раздела и в середине текста.
                 continue
             # «Коротко» оформляем как у соседних страниц ответов.
             section_class = "blog-section blog-section--summary" if section["title"] == "Коротко" else "blog-section"
@@ -1086,7 +1114,15 @@ def render_answer_page(page: dict[str, Any], version: str) -> str:
                 + "\n".join(_md_block_html(block) for block in section["blocks"])
                 + "\n        </section>"
             )
+            text_section_number += 1
+            if text_section_number == 1 and top_images:
+                parts.append(_md_images_html(top_images, "top"))
+                top_images_added = True
+            if text_section_number == middle_after and middle_images:
+                parts.append(_md_images_html(middle_images, "middle"))
+                middle_images_added = True
         if not promo_added:
+            add_pending_images()
             parts.append(_ANSWERS_PROMO_HTML)
         sections = "\n".join(parts)
         faq_block = ""

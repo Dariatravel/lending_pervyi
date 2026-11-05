@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -91,10 +95,26 @@
           <p>Участники обсуждений поездок описывают и поездки с пересадкой у границы, и заранее заказанную доставку до адреса. Поэтому названия услуги недостаточно. Спросите, будет ли смена автомобиля, кто сопровождает пассажиров и нужно ли самостоятельно переносить чемоданы.</p>
           <p>Сборный трансфер сравнивайте с учётом ожидания и развоза. Если попутчики живут в разных местах, дорога до вашей калитки может включать заезды. Индивидуальный заказ тоже требует точного описания маршрута, а не только обещания удобства.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/blog/kak-projti-granicu-psou/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2166.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2166-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2166-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2166-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="896" height="1200" alt="Иллюстрация прохождения границы на Псоу из статьи сайта" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/blog/kak-projti-granicu-psou/">Иллюстрация прохождения границы на Псоу из статьи сайта</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Закажите машину под людей и вещи</h2>
           <p>Несколько пассажиров с небольшими рюкзаками и столько же людей с большими чемоданами требуют разного места. Сообщите перевозчику количество и примерный размер багажа. Если нужны детские кресла, согласуйте их наличие и подходящий вариант заранее.</p>
           <p>Полезный вопрос звучит просто: «Мы все и наши вещи помещаемся в одну машину без дополнительных поездок?» Ответ сохраните вместе с заказом. Нельзя исходить из того, что свободный багажник и нужные кресла найдутся у первого предложившего поездку водителя.</p>
+        </section>
+        <section class="blog-section answers-photos answers-photos--middle" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/alma-domiki-na-beregu-2996/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="720" alt="Домики «Алма» в Цандрипше: один из вариантов размещения после границы" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/alma-domiki-na-beregu-2996/">Домики «Алма» в Цандрипше: один из вариантов размещения после границы</a></figcaption>
+            </figure>
+          </div>
         </section>
         <section class="blog-section">
           <h2>Уточните цену до посадки</h2>
@@ -109,7 +129,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -127,18 +147,6 @@
           <h2>Что важнее при поездке с чемоданами?</h2>
           <p>Подтверждённое место для багажа, понятная встреча и доставка к входу, а не только цена в объявлении.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/blog/kak-projti-granicu-psou/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2166.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2166-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2166-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2166-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="896" height="1200" alt="Иллюстрация прохождения границы на Псоу из статьи сайта" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/blog/kak-projti-granicu-psou/">Иллюстрация прохождения границы на Псоу из статьи сайта</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/alma-domiki-na-beregu-2996/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="720" alt="Домики «Алма» в Цандрипше: один из вариантов размещения после границы" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/alma-domiki-na-beregu-2996/">Домики «Алма» в Цандрипше: один из вариантов размещения после границы</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: 5 ноября 2026.</p>
         </div>
         <aside class="blog-article__aside">

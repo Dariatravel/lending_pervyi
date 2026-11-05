@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -90,10 +94,26 @@
           <p>В Новом Афоне можно разделить знакомство с городом на несколько прогулок: парк сегодня, другая часть города завтра. Это полезно, если не хочется пытаться увидеть всё за один насыщенный день. Но близость достопримечательностей на карте не делает каждый маршрут лёгким.</p>
           <p>Если основной план состоит из моря и отдыха в жилье, а Новый Афон нужен для одного выезда, необязательно жить именно там. Рассмотрите Гудауту и заранее продумайте эту поездку. При выборе важен ваш недельный распорядок, а не количество известных названий вокруг.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Фото объекта размещения: Лилия, Гудаута" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/">Фото объекта размещения: Лилия, Гудаута</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Адрес может изменить впечатление о курорте</h2>
           <p>В ответах об Афоне встречаются ориентиры на улицу Лакоба: море рядом, но между жильём и берегом может быть дорога. Есть и варианты выше по склону. Поэтому слова «центр» и «недалеко от моря» нужно переводить в конкретный пеший маршрут.</p>
           <p>У Гудауты другая частая ловушка поиска: в выдачу по городу попадает жильё в окрестных сёлах. Например, в каталоге есть объекты с указанием Куланырхуа и Хыпсты. Они могут подходить для отдыха, но их нельзя автоматически считать адресами в пешей доступности от городских прогулок и покупок.</p>
+        </section>
+        <section class="blog-section answers-photos answers-photos--middle" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/vezu/novyy-afon-80/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="180" height="320" alt="Историческая станция Псырцха в Новом Афоне" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/vezu/novyy-afon-80/">Историческая станция Псырцха в Новом Афоне</a></figcaption>
+            </figure>
+          </div>
         </section>
         <section class="blog-section">
           <h2>Сравните обед и вечер, а не только пляж</h2>
@@ -107,7 +127,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -125,18 +145,6 @@
           <h2>Весь Новый Афон удобен для пешего отдыха?</h2>
           <p>Нет единого ответа для всех адресов. Жильё у берега, на склоне и в окрестностях даёт разную нагрузку. Просите показать маршрут именно от выбранного дома.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Фото объекта размещения: Лилия, Гудаута" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/">Фото объекта размещения: Лилия, Гудаута</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/vezu/novyy-afon-80/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-80-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="180" height="320" alt="Историческая станция Псырцха в Новом Афоне" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/vezu/novyy-afon-80/">Историческая станция Псырцха в Новом Афоне</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: 5 ноября 2026.</p>
         </div>
         <aside class="blog-article__aside">

@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -90,10 +94,26 @@
           <p>В обсуждениях Алахадзы одни гости описывают кафе, магазины и вечернюю музыку возле моря, другие считают место слишком уединённым. Такие впечатления могут относиться к разным адресам и ожиданиям. Вывод «везде тихо» столь же ненадёжен, как обещание городской инфраструктуры у каждого дома.</p>
           <p>Попросите отметить на карте вход в жильё, ближайший продуктовый магазин, место для ужина и проход на пляж. Проверьте, можно ли пройти этот круг пешком без длинного участка вдоль проезжей части. Именно такой маршрут понадобится чаще всего.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/tihiy-zakat-domiki-s-basseynom-3942/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tihiy-zakat-domiki-s-basseynom-3942.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tihiy-zakat-domiki-s-basseynom-3942-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tihiy-zakat-domiki-s-basseynom-3942-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tihiy-zakat-domiki-s-basseynom-3942-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="853" height="1280" alt="Фото объекта размещения: «Тихий Закат», Алахадзы" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/tihiy-zakat-domiki-s-basseynom-3942/">Фото объекта размещения: «Тихий Закат», Алахадзы</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Приезд с чемоданами продумайте отдельно</h2>
           <p>В ответах о дороге встречается вариант выйти у поворота на Алахадзы и затем добираться до улицы Шаумяна. Для человека налегке и семьи с чемоданами это разные задачи. Близость остановки к посёлку ещё не означает близости к вашему номеру.</p>
           <p>Перед выездом согласуйте точку высадки и последний отрезок пути. Если хозяева предлагают встречу, выясните, откуда именно, в какое время и на каких условиях. Не закладывайте случайную попутную машину как обязательную часть маршрута, особенно при первом приезде или с детьми.</p>
+        </section>
+        <section class="blog-section answers-photos answers-photos--middle" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/irsen-domiki-3642/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="853" alt="Фото объекта размещения: «Ирсен», Алахадзы" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/irsen-domiki-3642/">Фото объекта размещения: «Ирсен», Алахадзы</a></figcaption>
+            </figure>
+          </div>
         </section>
         <section class="blog-section">
           <h2>Поездки в Пицунду и Гагру</h2>
@@ -107,7 +127,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -125,18 +145,6 @@
           <h2>Стоит ли рассчитывать на маршрутку после позднего ужина?</h2>
           <p>Только после проверки актуального обратного сообщения. Чужой отзыв о дневной поездке ничего не говорит о возвращении вечером. Запасной вариант лучше определить заранее.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/hotels/tihiy-zakat-domiki-s-basseynom-3942/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tihiy-zakat-domiki-s-basseynom-3942.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tihiy-zakat-domiki-s-basseynom-3942-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tihiy-zakat-domiki-s-basseynom-3942-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/tihiy-zakat-domiki-s-basseynom-3942-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="853" height="1280" alt="Фото объекта размещения: «Тихий Закат», Алахадзы" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/tihiy-zakat-domiki-s-basseynom-3942/">Фото объекта размещения: «Тихий Закат», Алахадзы</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/irsen-domiki-3642/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="853" alt="Фото объекта размещения: «Ирсен», Алахадзы" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/irsen-domiki-3642/">Фото объекта размещения: «Ирсен», Алахадзы</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: 5 ноября 2026.</p>
         </div>
         <aside class="blog-article__aside">

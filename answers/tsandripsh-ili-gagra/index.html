@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -90,10 +94,26 @@
           <p>Выбирайте Цандрипш, если вас устраивает простой ритм: завтрак, море, отдых во дворе, ужин неподалёку. Но слово «посёлок» не обещает тишины под любым окном. Проверять соседние кафе, дорогу и вечернюю музыку всё равно придётся.</p>
           <p>В Гагре можно строить отдельные прогулки по разным частям города, в том числе у Приморского парка и колоннады. При этом близость к прогулочным местам не означает, что они будут возле любого номера. Смотрите точку на карте, а не только название курорта.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/alma-domiki-na-beregu-2996/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="720" alt="Фото объекта размещения: «Алма», Цандрипш" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/alma-domiki-na-beregu-2996/">Фото объекта размещения: «Алма», Цандрипш</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Где покупать продукты и искать обед</h2>
           <p>В дайджесте есть характерный вопрос из Цандрипша: где найти большой супермаркет и рынок, а не отдельные торговые точки. В ответах упоминают местный рынок и поездку в Гагру. Это повод проверить привычный набор покупок до бронирования, а не считать, что за всем обязательно придётся ездить.</p>
           <p>Составьте короткий список: продукты на завтрак, вода, фрукты, бытовые мелочи. Попросите отметить ближайшие магазины и столовую. Если в жилье предлагается питание, узнайте его формат и часы: наличие кафе во дворе ещё не объясняет, где поесть после поздней экскурсии.</p>
+        </section>
+        <section class="blog-section answers-photos answers-photos--middle" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/belaya-dacha-otel-s-pitaniem-4630/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belaya-dacha-otel-s-pitaniem-4630.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belaya-dacha-otel-s-pitaniem-4630-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belaya-dacha-otel-s-pitaniem-4630-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belaya-dacha-otel-s-pitaniem-4630-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="960" alt="Фото объекта размещения: «Белая Дача», Гагра" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/belaya-dacha-otel-s-pitaniem-4630/">Фото объекта размещения: «Белая Дача», Гагра</a></figcaption>
+            </figure>
+          </div>
         </section>
         <section class="blog-section">
           <h2>Близость к границе не решает весь маршрут</h2>
@@ -107,7 +127,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -125,18 +145,6 @@
           <h2>Можно ли выбрать только по пляжным фотографиям?</h2>
           <p>Нет. Нужны точный адрес, видео прохода к воде и понимание, где вы будете есть. Красивый берег не показывает дорогу, шум вечером и бытовые расстояния.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/hotels/alma-domiki-na-beregu-2996/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/alma-domiki-na-beregu-2996-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="720" alt="Фото объекта размещения: «Алма», Цандрипш" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/alma-domiki-na-beregu-2996/">Фото объекта размещения: «Алма», Цандрипш</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/belaya-dacha-otel-s-pitaniem-4630/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belaya-dacha-otel-s-pitaniem-4630.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belaya-dacha-otel-s-pitaniem-4630-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belaya-dacha-otel-s-pitaniem-4630-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/belaya-dacha-otel-s-pitaniem-4630-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="960" alt="Фото объекта размещения: «Белая Дача», Гагра" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/belaya-dacha-otel-s-pitaniem-4630/">Фото объекта размещения: «Белая Дача», Гагра</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: 5 ноября 2026.</p>
         </div>
         <aside class="blog-article__aside">

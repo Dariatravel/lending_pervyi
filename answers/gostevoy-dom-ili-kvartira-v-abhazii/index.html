@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -89,6 +93,18 @@
           <h2>Сколько вариантов и сколько стоят</h2>
           <p>В каталоге 191 гостевой дом, отель и домики и 53 квартиры и дома (без новогодних предложений). Летняя медианная цена у квартир 7000 ₽ за сутки, у гостевых домов 6000 ₽: квартира стоит дороже, но рассчитана на всю семью, а не на двоих. В карточках цена бывает за номер или за человека, это стоит уточнить до брони. Наценки для гостя нет.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152-cover.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152-cover-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152-cover-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152-cover-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="960" alt="Южное Утро, Лдзаа" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/">Южное Утро, Лдзаа</a></figcaption>
+            </figure>
+            <figure class="answers-photos__item">
+              <a href="/kvartira/mokko-apartamenty-suhum-1024/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mokko-apartamenty-suhum-1024-cover.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mokko-apartamenty-suhum-1024-cover-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mokko-apartamenty-suhum-1024-cover-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mokko-apartamenty-suhum-1024-cover-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Мокко, Сухум" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/kvartira/mokko-apartamenty-suhum-1024/">Мокко, Сухум</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Кухня и питание</h2>
           <p>Своя кухня есть в 46 квартирах из 53 и только в 41 гостевом доме из 191. Зато питание отмечено у 129 гостевых домов из 191: завтраки, столовая или кафе на территории. Если планируете готовить сами, квартира выигрывает почти всегда; если хотите отдыхать от плиты, ищите гостевой дом с питанием и уточняйте, что входит в цену.</p>
@@ -96,6 +112,18 @@
         <section class="blog-section">
           <h2>Море и бассейн</h2>
           <p>Не дальше 5 минут от пляжа стоят 118 гостевых домов из 191 и 28 квартир из 53 - гостевые дома в целом ближе к воде. Бассейн есть у 53 гостевых домов и только у 4 квартир, а бассейн - один из самых частых запросов гостей. Если важно купаться у дома, а не только в море, выбор среди квартир почти нулевой.</p>
+        </section>
+        <section class="blog-section answers-photos answers-photos--middle" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Лилия, Гудаута" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/">Лилия, Гудаута</a></figcaption>
+            </figure>
+            <figure class="answers-photos__item">
+              <a href="/hotels/zolotaya-veranda-gostevoy-kompleks-3769/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/zolotaya-veranda-gostevoy-kompleks-3769.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/zolotaya-veranda-gostevoy-kompleks-3769-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/zolotaya-veranda-gostevoy-kompleks-3769-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/zolotaya-veranda-gostevoy-kompleks-3769-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Золотая Веранда, Гагра" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/zolotaya-veranda-gostevoy-kompleks-3769/">Золотая Веранда, Гагра</a></figcaption>
+            </figure>
+          </div>
         </section>
         <section class="blog-section">
           <h2>Условия брони</h2>
@@ -107,7 +135,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -125,26 +153,6 @@
           <h2>Есть ли квартиры в Абхазии с бассейном?</h2>
           <p>Почти нет: с бассейном только 4 квартиры из 53. Среди гостевых домов и отелей бассейн у 53 объектов из 191.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152-cover.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152-cover-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152-cover-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152-cover-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="960" alt="Южное Утро, Лдзаа" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/">Южное Утро, Лдзаа</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/kvartira/mokko-apartamenty-suhum-1024/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mokko-apartamenty-suhum-1024-cover.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mokko-apartamenty-suhum-1024-cover-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mokko-apartamenty-suhum-1024-cover-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/mokko-apartamenty-suhum-1024-cover-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Мокко, Сухум" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/kvartira/mokko-apartamenty-suhum-1024/">Мокко, Сухум</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/liliya-uyutnyy-otel-s-zavtrakami-3832-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Лилия, Гудаута" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/liliya-uyutnyy-otel-s-zavtrakami-3832/">Лилия, Гудаута</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/zolotaya-veranda-gostevoy-kompleks-3769/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/zolotaya-veranda-gostevoy-kompleks-3769.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/zolotaya-veranda-gostevoy-kompleks-3769-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/zolotaya-veranda-gostevoy-kompleks-3769-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/zolotaya-veranda-gostevoy-kompleks-3769-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Золотая Веранда, Гагра" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/zolotaya-veranda-gostevoy-kompleks-3769/">Золотая Веранда, Гагра</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: октябрь 2026</p>
         </div>
         <aside class="blog-article__aside">

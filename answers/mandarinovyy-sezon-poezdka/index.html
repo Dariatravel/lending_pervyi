@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -90,6 +94,14 @@
           <p>В осенних обсуждениях встречаются разные наблюдения: кто-то уже нашёл сладкие плоды, кто-то пробовал кислые ранние мандарины, а кто-то ещё ищет открытый сад. Это не точный календарь созревания. Имеют значение конкретное место, сорт и цель поездки.</p>
           <p>Если едете прежде всего ради сбора, сначала свяжитесь с принимающим хозяйством и подтвердите возможность участия. Спросите, что будет, если урожай соберут раньше или в нужный день пойдёт дождь. Оставьте другой план на день, чтобы вся поездка не зависела от одной прогулки между деревьями.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/blog/sedobnye-suveniry-iz-abhazii/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2466.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2466-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2466-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2466-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Цитрусовые, другие фрукты и сладости на торговом прилавке" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/blog/sedobnye-suveniry-iz-abhazii/">Цитрусовые, другие фрукты и сладости на торговом прилавке</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Разделите прогулку, дегустацию и фрукты на вынос</h2>
           <p>Фраза «вход в сад» может означать только посещение территории. В ответах путешественников отдельно упоминаются прогулка, возможность попробовать фрукты и покупка собранного с собой. Не объединяйте их в одну услугу без подтверждения хозяев.</p>
@@ -107,7 +119,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -125,14 +137,6 @@
           <h2>Нужна ли экскурсия ради покупки мандаринов?</h2>
           <p>Не обязательно. Экскурсию выбирают ради самой поездки и знакомства с садом. Если задача только купить фрукты, сравните этот план с обычным походом на рынок.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/blog/sedobnye-suveniry-iz-abhazii/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2466.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2466-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2466-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2466-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Цитрусовые, другие фрукты и сладости на торговом прилавке" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/blog/sedobnye-suveniry-iz-abhazii/">Цитрусовые, другие фрукты и сладости на торговом прилавке</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: 5 ноября 2026</p>
         </div>
         <aside class="blog-article__aside">

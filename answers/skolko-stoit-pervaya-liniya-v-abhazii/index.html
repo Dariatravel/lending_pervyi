@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -89,6 +93,18 @@
           <h2>Сколько стоит берег и как растёт цена с расстоянием</h2>
           <p>На берегу или в минуте от моря летом медиана - 10 000 ₽ за сутки. Жильё до 5 минут от пляжа стоит около 6000 ₽, от 10 минут и дальше - около 5750 ₽. То есть первые пять минут пешком экономят почти 40% стоимости, а дальше цена почти не меняется. В карточках цена бывает за номер или за человека, так что перед сравнением смотрите, как именно она указана.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/staryy-prichal-gostevoy-dom-u-morya-3891/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/staryy-prichal-gostevoy-dom-u-morya-3891.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/staryy-prichal-gostevoy-dom-u-morya-3891-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/staryy-prichal-gostevoy-dom-u-morya-3891-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/staryy-prichal-gostevoy-dom-u-morya-3891-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="853" height="1280" alt="Старый Причал, Лдзаа" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/staryy-prichal-gostevoy-dom-u-morya-3891/">Старый Причал, Лдзаа</a></figcaption>
+            </figure>
+            <figure class="answers-photos__item">
+              <a href="/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Пегас, Лдзаа" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/">Пегас, Лдзаа</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Где искать первую линию</h2>
           <p>Около 40 объектов каталога стоят на берегу или в минуте от моря, и около 25 из них - в Лдзаа, посёлке рядом с Пицундой. В других городах таких вариантов единицы, поэтому если нужен именно выход к морю из калитки, начинать стоит с Лдзаа. Бассейн на первой линии - отдельный частый запрос гостей, таких объектов ещё меньше.</p>
@@ -96,6 +112,18 @@
         <section class="blog-section">
           <h2>Примеры с ценами</h2>
           <p>«Старый причал» в Лдзаа - 500-5000 ₽ за сутки, «Пегас» в Лдзаа - 1000-7000 ₽, «Домики у Марины» в Сухуме у песчаного пляжа - 2500-6000 ₽, «Бриз» в Лдзаа - 4000-12 000 ₽. Нижняя граница - межсезонье или самый простой номер, верхняя - июль и август. Разброс в одной карточке показывает, как сильно цена зависит от месяца.</p>
+        </section>
+        <section class="blog-section answers-photos answers-photos--middle" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/domiki-u-mariny-otdyh-u-morya-3922/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/domiki-u-mariny-otdyh-u-morya-3922.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/domiki-u-mariny-otdyh-u-morya-3922-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/domiki-u-mariny-otdyh-u-morya-3922-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/domiki-u-mariny-otdyh-u-morya-3922-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="853" height="1280" alt="Домики У Марины, Сухум" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/domiki-u-mariny-otdyh-u-morya-3922/">Домики У Марины, Сухум</a></figcaption>
+            </figure>
+            <figure class="answers-photos__item">
+              <a href="/hotels/mokko-briz-dva-domika-4152/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mokko-briz-dva-domika-4152.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mokko-briz-dva-domika-4152-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mokko-briz-dva-domika-4152-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mokko-briz-dva-domika-4152-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="768" height="1218" alt="Мокко Бриз, Сухум" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/mokko-briz-dva-domika-4152/">Мокко Бриз, Сухум</a></figcaption>
+            </figure>
+          </div>
         </section>
         <section class="blog-section">
           <h2>Как бронировать</h2>
@@ -107,7 +135,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -125,26 +153,6 @@
           <h2>Где в Абхазии больше всего жилья на первой линии?</h2>
           <p>В Лдзаа - около 25 объектов из примерно 40 по каталогу. В Сухуме есть варианты у песчаного пляжа, например «Домики у Марины» за 2500-6000 ₽.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/hotels/staryy-prichal-gostevoy-dom-u-morya-3891/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/staryy-prichal-gostevoy-dom-u-morya-3891.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/staryy-prichal-gostevoy-dom-u-morya-3891-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/staryy-prichal-gostevoy-dom-u-morya-3891-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/staryy-prichal-gostevoy-dom-u-morya-3891-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="853" height="1280" alt="Старый Причал, Лдзаа" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/staryy-prichal-gostevoy-dom-u-morya-3891/">Старый Причал, Лдзаа</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/pegas-otel-na-pervoy-linii-vid-na-more-2574-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Пегас, Лдзаа" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/pegas-otel-na-pervoy-linii-vid-na-more-2574/">Пегас, Лдзаа</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/domiki-u-mariny-otdyh-u-morya-3922/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/domiki-u-mariny-otdyh-u-morya-3922.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/domiki-u-mariny-otdyh-u-morya-3922-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/domiki-u-mariny-otdyh-u-morya-3922-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/domiki-u-mariny-otdyh-u-morya-3922-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="853" height="1280" alt="Домики У Марины, Сухум" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/domiki-u-mariny-otdyh-u-morya-3922/">Домики У Марины, Сухум</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/mokko-briz-dva-domika-4152/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mokko-briz-dva-domika-4152.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mokko-briz-dva-domika-4152-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mokko-briz-dva-domika-4152-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/mokko-briz-dva-domika-4152-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="768" height="1218" alt="Мокко Бриз, Сухум" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/mokko-briz-dva-domika-4152/">Мокко Бриз, Сухум</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: октябрь 2026</p>
         </div>
         <aside class="blog-article__aside">

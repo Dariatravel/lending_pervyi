@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -89,6 +93,18 @@
           <h2>Средняя цена в сентябре</h2>
           <p>Медиана - 5500 ₽ за сутки по 215 карточкам: на сентябрь цену указали больше объектов, чем на любой другой месяц. Для сравнения, в июле и августе медиана - 6000 ₽, в мае - 3500 ₽. Сентябрь дешевле лета ненамного, потому что первая половина месяца ещё высокий сезон. В карточках цена бывает за номер или за человека - при сравнении обращайте на это внимание.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="884" alt="Роял Ривьера, Гагра" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/">Роял Ривьера, Гагра</a></figcaption>
+            </figure>
+            <figure class="answers-photos__item">
+              <a href="/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Вилла Леона, Гагра" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/">Вилла Леона, Гагра</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Цены по городам</h2>
           <p>Сентябрьские медианы: Лдзаа - 6000 ₽, Пицунда - 5500 ₽, Новый Афон - около 5450 ₽, Алахадзы и Цандрипш - 5000 ₽, Гудаута - около 4750 ₽, Гагра - 4500 ₽, Сухум - около 4250 ₽. Разница между Лдзаа и Сухумом - 1750 ₽ за сутки. Гагра и Сухум в сентябре дешевеют заметнее других: летом у них 5700 и 5500 ₽.</p>
@@ -96,6 +112,18 @@
         <section class="blog-section">
           <h2>Почему важна дата 15 сентября</h2>
           <p>У многих карточек две сентябрьские цены: «сентябрь до 15» и «с 15». Первая половина месяца часто идёт по летнему тарифу, вторая - по осеннему. Заезд 14 сентября и заезд 16 сентября могут отличаться по цене на сотни или тысячи рублей за сутки, поэтому перед бронью называйте точные даты и спрашивайте, какая цена действует на каждую ночь.</p>
+        </section>
+        <section class="blog-section answers-photos answers-photos--middle" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/rayskiy-bereg-mini-otel-3277/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rayskiy-bereg-mini-otel-3277.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rayskiy-bereg-mini-otel-3277-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rayskiy-bereg-mini-otel-3277-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rayskiy-bereg-mini-otel-3277-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="853" alt="Райский Берег, Гагра" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/rayskiy-bereg-mini-otel-3277/">Райский Берег, Гагра</a></figcaption>
+            </figure>
+            <figure class="answers-photos__item">
+              <a href="/hotels/karin-gostevoy-dom-3267/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karin-gostevoy-dom-3267.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karin-gostevoy-dom-3267-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karin-gostevoy-dom-3267-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karin-gostevoy-dom-3267-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="853" alt="Карин, Гагра" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/karin-gostevoy-dom-3267/">Карин, Гагра</a></figcaption>
+            </figure>
+          </div>
         </section>
         <section class="blog-section">
           <h2>Как бронировать на сентябрь</h2>
@@ -107,7 +135,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -125,26 +153,6 @@
           <h2>Сентябрь или май: что дешевле?</h2>
           <p>Май заметно дешевле: медиана 3500 ₽ за сутки против 5500 ₽ в сентябре. Но в сентябре море тёплое после лета, поэтому спрос и цены выше.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/royal-rivera-otel-s-basseynom-i-pitaniem-5296-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="884" alt="Роял Ривьера, Гагра" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/">Роял Ривьера, Гагра</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Вилла Леона, Гагра" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/">Вилла Леона, Гагра</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/rayskiy-bereg-mini-otel-3277/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rayskiy-bereg-mini-otel-3277.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rayskiy-bereg-mini-otel-3277-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rayskiy-bereg-mini-otel-3277-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rayskiy-bereg-mini-otel-3277-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="853" alt="Райский Берег, Гагра" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/rayskiy-bereg-mini-otel-3277/">Райский Берег, Гагра</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/karin-gostevoy-dom-3267/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karin-gostevoy-dom-3267.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karin-gostevoy-dom-3267-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karin-gostevoy-dom-3267-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karin-gostevoy-dom-3267-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="853" alt="Карин, Гагра" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/karin-gostevoy-dom-3267/">Карин, Гагра</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: октябрь 2026</p>
         </div>
         <aside class="blog-article__aside">

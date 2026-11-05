@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -90,10 +94,26 @@
           <p>В обсуждениях регулярно смешивают два вопроса: можно ли доехать своей машиной до Рицы и можно ли на ней же добраться до Гегского водопада. Это разные участки маршрута. Чужой удачный проезд к озеру ничего не говорит о возможностях вашей машины на ответвлении к водопаду.</p>
           <p>Не выбирайте автомобиль только по слову «кроссовер» в его названии. Уточняйте у организатора, где меняется покрытие, нужна ли пересадка и до какого места довозят пассажиров. Состояние дороги после осадков нельзя надёжно определить по летнему отзыву или красивому ролику.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-07.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-07-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-07-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-07-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="768" height="1024" alt="Гегский водопад: поток воды у скальной стены" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/">Гегский водопад: поток воды у скальной стены</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Спросите, как именно проходит поездка</h2>
           <p>В ответах о Гегском встречаются две совсем разные оценки: пешком почти не пришлось идти, зато в машине сильно трясло. Поэтому вопрос «сложная ли экскурсия?» слишком общий. Разделите его на автомобильную часть, прогулку от высадки и условия ожидания обратного транспорта.</p>
           <p>Узнайте, будет ли машина закрытой, есть ли обычные пассажирские места и ремни, сколько человек поедет. Для семьи дополнительно согласуйте детское удерживающее устройство. Если на просьбу ехать спокойно отвечают шутками про гонки по горам, лучше выбрать другого перевозчика до выезда.</p>
+        </section>
+        <section class="blog-section answers-photos answers-photos--middle" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-06.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-06-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-06-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-06-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="576" height="768" alt="Внедорожники и посетители у Гегского водопада" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/">Внедорожники и посетители у Гегского водопада</a></figcaption>
+            </figure>
+          </div>
         </section>
         <section class="blog-section">
           <h2>Соберите вещи для брызг и прохлады</h2>
@@ -107,7 +127,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -125,18 +145,6 @@
           <h2>Подойдёт ли поездка тем, кто не любит тряску?</h2>
           <p>Это повод рассмотреть другой маршрут. Уточнение типа машины полезно, но само слово «джип» не обещает мягкой и спокойной дороги.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-07.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-07-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-07-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-07-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="768" height="1024" alt="Гегский водопад: поток воды у скальной стены" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/">Гегский водопад: поток воды у скальной стены</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-06.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-06-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-06-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-06-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="576" height="768" alt="Внедорожники и посетители у Гегского водопада" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/">Внедорожники и посетители у Гегского водопада</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: 5 ноября 2026</p>
         </div>
         <aside class="blog-article__aside">

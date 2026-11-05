@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -90,10 +94,26 @@
           <p>Ходить по камням босиком комфортно не всем. Подберите обувь для воды, которая держится на ноге и не болтается при шаге. Лучше примерить её заранее: случайная покупка на берегу не обязательно подойдёт по размеру и форме.</p>
           <p>Обычные шлёпанцы удобны по дороге, но могут слетать на гальке. Для ребёнка особенно важны застёжка и привычная посадка. При этом любая обувь остаётся только вещью для удобства: она не заменяет внимательность у воды и не делает купание подходящим при волнении.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/irsen-domiki-3642/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="853" alt="Домики «Ирсен» в Алахадзы: вариант размещения у моря" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/irsen-domiki-3642/">Домики «Ирсен» в Алахадзы: вариант размещения у моря</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Для отдыха на камнях нужна опора</h2>
           <p>Тонкое полотенце не всегда скрывает неровности гальки. Возьмите более плотную подстилку или заранее узнайте о шезлонгах на нужном участке. Не рассчитывайте на аренду только потому, что её упоминали в летнем обсуждении другого пляжа.</p>
           <p>О тени тоже спросите отдельно. Близость сосен или парка не означает, что в удобном вам месте получится сидеть под деревьями весь день. Продумайте головной убор, питьевую воду и время возвращения. Если берёте свой зонт, заранее проверьте, подходит ли его крепление для каменистого берега.</p>
+        </section>
+        <section class="blog-section answers-photos answers-photos--middle" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/blog/chto-takoe-citrusovyy-abhaziya/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2383.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2383-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2383-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2383-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1024" height="768" alt="Сосны и палатки на побережье в районе Цитрусового" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/blog/chto-takoe-citrusovyy-abhaziya/">Сосны и палатки на побережье в районе Цитрусового</a></figcaption>
+            </figure>
+          </div>
         </section>
         <section class="blog-section">
           <h2>Песок на фотографии не описывает вход в море</h2>
@@ -107,7 +127,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -125,18 +145,6 @@
           <h2>Можно ли выбрать берег только по названию города?</h2>
           <p>Нет. Сравнивайте конкретный участок, путь к нему и заход в воду. Даже близкие пляжи могут заметно отличаться по удобству для вашей семьи.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/hotels/irsen-domiki-3642/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/irsen-domiki-3642-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="853" alt="Домики «Ирсен» в Алахадзы: вариант размещения у моря" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/irsen-domiki-3642/">Домики «Ирсен» в Алахадзы: вариант размещения у моря</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/blog/chto-takoe-citrusovyy-abhaziya/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2383.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2383-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2383-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/blog/telegram-bereg-2383-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1024" height="768" alt="Сосны и палатки на побережье в районе Цитрусового" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/blog/chto-takoe-citrusovyy-abhaziya/">Сосны и палатки на побережье в районе Цитрусового</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: 5 ноября 2026</p>
         </div>
         <aside class="blog-article__aside">

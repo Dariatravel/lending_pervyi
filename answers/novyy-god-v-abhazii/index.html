@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -89,6 +93,18 @@
           <h2>Пять новогодних предложений</h2>
           <p>«Фазенда» в Пицунде принимает с 29 декабря 2026 по 15 января 2027: номер на четверых - 5000 ₽, двухкомнатные апартаменты - 8000 ₽, коттедж на шестерых - 11 000 ₽, на восьмерых - 15 000 ₽ за сутки. Есть бассейн, дети до 5 лет без места бесплатно, возвратный депозит 5000 ₽. «Вилла Леона» в Гагре в те же даты с трёхразовым питанием: за двоих от 8400 ₽ в экономе до 14 000 ₽ в люксе, бассейн, 4 минуты до пляжа.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1262" height="946" alt="Фазенда, Пицунда" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219/">Фазенда, Пицунда</a></figcaption>
+            </figure>
+            <figure class="answers-photos__item">
+              <a href="/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Вилла Леона, Гагра" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/">Вилла Леона, Гагра</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Горы или берег</h2>
           <p>«Грасс» в горах у Рицы открыт с 25 декабря по 10 января, бассейн подогреваемый: домик у реки или номер - 7555 ₽, A-frame до 6 человек - 25 555 ₽, дом до 10 человек - 30 555 ₽ за сутки. На берегу в Лдзаа «Пляжный комплекс 151» с 25 декабря по 15 января сдаёт домик до 4 человек за 10 000 ₽, рыбалка в море с егерем - 3000 ₽ с человека.</p>
@@ -96,6 +112,18 @@
         <section class="blog-section">
           <h2>Что входит в цену и что уточнить</h2>
           <p>Питание включено только у «Виллы Леона», у остальных его и праздничный ужин 31 декабря уточняйте отдельно, как и работу бассейна зимой. Менеджер сам видит каждый объект до публикации и заранее говорит, кому вносить предоплату - нам или напрямую отелю. После оплаты приходит ваучер с датами, суммой оплаты и остатком к оплате при заселении.</p>
+        </section>
+        <section class="blog-section answers-photos answers-photos--middle" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="720" height="1280" alt="Грасс Отель, Рицинское ущелье" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/">Грасс Отель, Рицинское ущелье</a></figcaption>
+            </figure>
+            <figure class="answers-photos__item">
+              <a href="/hotels/plyazhnyy-kompleks-151-na-beregu-4620/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-4620.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-4620-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-4620-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-4620-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="960" alt="Пляжный Комплекс 151, Лдзаа" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/hotels/plyazhnyy-kompleks-151-na-beregu-4620/">Пляжный Комплекс 151, Лдзаа</a></figcaption>
+            </figure>
+          </div>
         </section>
         <section class="blog-section">
           <h2>Если новогодних предложений мало</h2>
@@ -107,7 +135,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -125,26 +153,6 @@
           <h2>С какого числа действуют новогодние цены?</h2>
           <p>У «Фазенды» и «Виллы Леона» - с 29 декабря по 15 января, у «Пляжного комплекса 151» - с 25 декабря по 15 января, у «Грасса» - с 25 декабря по 10 января.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/hotels/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1262" height="946" alt="Фазенда, Пицунда" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/fazenda-dvuhetazhnye-kottedzhi-s-basseynom-i-pitaniem-3219/">Фазенда, Пицунда</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Вилла Леона, Гагра" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/">Вилла Леона, Гагра</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="720" height="1280" alt="Грасс Отель, Рицинское ущелье" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/">Грасс Отель, Рицинское ущелье</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/hotels/plyazhnyy-kompleks-151-na-beregu-4620/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-4620.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-4620-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-4620-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-4620-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="1280" height="960" alt="Пляжный Комплекс 151, Лдзаа" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/hotels/plyazhnyy-kompleks-151-na-beregu-4620/">Пляжный Комплекс 151, Лдзаа</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: октябрь 2026</p>
         </div>
         <aside class="blog-article__aside">

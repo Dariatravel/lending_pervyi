@@ -27,13 +27,17 @@
     .blog-article__content--md .blog-section ul { margin: 8px 0; padding-left: 20px; }
     .blog-article__content--md .blog-section p + p { margin-top: 10px; }
     .blog-article__updated { color: rgba(41, 74, 61, 0.72); font-size: 14px; }
-    .answers-photos__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .answers-photos { margin: 26px 0 32px; }
+    .answers-photos__grid { display: grid; grid-template-columns: minmax(0, 820px); justify-content: center; gap: 24px; }
     .answers-photos__item { margin: 0; min-width: 0; }
-    .answers-photos__item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; }
+    .answers-photos__item img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 18px; box-shadow: 0 12px 28px rgba(41, 74, 61, 0.12); }
     .answers-photos__item figcaption { margin-top: 6px; font-size: 14px; line-height: 1.35; }
     .answers-photos__item figcaption a { color: inherit; text-decoration: none; }
     @media (max-width: 600px) {
       .answers-photos__grid { grid-template-columns: 1fr; }
+      .answers-photos { margin: 22px 0 26px; }
+      .answers-photos__grid { gap: 20px; }
+      .answers-photos__item img { border-radius: 14px; }
     }
     @media (max-width: 1100px) {
       .answers-compare__table, .answers-compare__table tbody, .answers-compare__table tr, .answers-compare__table th, .answers-compare__table td { display: block; width: auto; }
@@ -90,10 +94,26 @@
           <p>Если ребёнку трудно долго сидеть на месте, насыщенный выезд на весь день вряд ли станет удачной первой пробой. Для начала удобнее короткая поездка с одной главной целью и возможностью вернуться раньше. Учитывайте сон, привычное время еды и то, как ребёнок переносит дорогу.</p>
           <p>В обсуждениях родители спрашивают, какую экскурсию осилит малыш, а в ответ получают совершенно разный опыт. Взрослое «мы всё успели» не показывает, сколько ребёнок провёл в машине и как чувствовал себя вечером. Просите описание обычного дня по порядку, включая ожидание остальных участников.</p>
         </section>
+        <section class="blog-section answers-photos answers-photos--top" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-05.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-05-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-05-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-05-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Внедорожник на лесной дороге экскурсионного маршрута" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/">Внедорожник на лесной дороге экскурсионного маршрута</a></figcaption>
+            </figure>
+          </div>
+        </section>
         <section class="blog-section">
           <h2>Разделите автомобильную и пешую части</h2>
           <p>У красивого водопада может оказаться непростой подъезд, а после высадки ещё предстоит прогулка. Выясните, где трясёт, где нужно идти, есть ли ступени и можно ли отказаться от отдельного участка. Слово «лёгкий» без таких подробностей мало помогает.</p>
           <p>Не считайте поездку к Рице и маршрут с добавлением Гегского одинаковыми. В ответах о водопаде встречаются рассказы, что идти почти не пришлось, зато машину заметно трясло. Уточняйте всю цепочку передвижений, включая пересадки, а не только расстояние от стоянки до фотографии.</p>
+        </section>
+        <section class="blog-section answers-photos answers-photos--middle" aria-label="Фото объектов">
+          <div class="answers-photos__grid">
+            <figure class="answers-photos__item">
+              <a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-04.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-04-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-04-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-04-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Озеро Рица и горы вокруг него" loading="lazy" decoding="async" /></a>
+              <figcaption><a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/">Озеро Рица и горы вокруг него</a></figcaption>
+            </figure>
+          </div>
         </section>
         <section class="blog-section">
           <h2>Проверьте посадку и договорённости с водителем</h2>
@@ -107,7 +127,7 @@
         </section>
         <aside class="answers-promo" id="podbor-zhilya" aria-label="Подбор проверенного жилья">
           <p>Доверьтесь нам с выбором жилья в Абхазии. Мы сами знакомимся с каждым объектом, прежде чем добавить его на сайт, и собираем всё важное в одном месте: фото, видео, цены и условия проживания.</p>
-          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно спокойно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать без наценки для вас.</p>
+          <p>Загляните в каталог - посмотрите, как у нас всё устроено. Можно сравнить варианты и выбрать тот, где хочется провести отпуск. А если нужна помощь, менеджер подскажет и поможет забронировать, по цене напрямую от отеля.</p>
           <a class="answers-promo__button" href="/#catalog">Посмотреть проверенное жильё</a>
         </aside>
         <section class="blog-section">
@@ -125,18 +145,6 @@
           <h2>Нужно ли покупать всё заранее?</h2>
           <p>Сначала согласуйте программу и условия изменения поездки. Не принимайте устное «с детьми все ездят» за ответ на вопросы о кресле, питании и продолжительности.</p>
         </article>
-        <section class="blog-section answers-photos" aria-label="Фото объектов">
-          <div class="answers-photos__grid">
-            <figure class="answers-photos__item">
-              <a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-05.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-05-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-05-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-05-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Внедорожник на лесной дороге экскурсионного маршрута" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/">Внедорожник на лесной дороге экскурсионного маршрута</a></figcaption>
-            </figure>
-            <figure class="answers-photos__item">
-              <a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/"><img src="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-04.jpg" srcset="https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-04-480.webp 480w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-04-960.webp 960w, https://media.xn--80aacbklan7f0b.xn--p1ai/media/vezu/telegram-vezu-174-04-1440.webp 1440w" sizes="(max-width: 600px) 100vw, 320px" width="960" height="1280" alt="Озеро Рица и горы вокруг него" loading="lazy" decoding="async" /></a>
-              <figcaption><a href="/vezu/ritsa-gegskiy-vodopad-alpiyskie-luga-174/">Озеро Рица и горы вокруг него</a></figcaption>
-            </figure>
-          </div>
-        </section>
         <p class="blog-article__updated">Дата обновления: 5 ноября 2026</p>
         </div>
         <aside class="blog-article__aside">
