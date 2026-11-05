@@ -1765,7 +1765,7 @@ section.site-concept__contacts.section {
 }
 
 :is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__icon--whatsapp {
-  background-image: url("https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/icon-wa-circle-128.webp");
+  background-image: url("/media/branding/icon-wa-circle.png");
 }
 
 :is(.site-concept__contacts, .hotel-contact-wrap, .hotel-contact-section) .contact-channel-card__copy,
