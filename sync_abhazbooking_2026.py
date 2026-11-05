@@ -349,6 +349,11 @@ def _line_with_ruble_belongs_in_description(line: str) -> bool:
     low = s.lower()
     if "депозит" in low or "залог" in low or "страхов" in low:
         return True
+    # Возвратный обеспечительный платёж не всегда назван «депозитом»:
+    # «При заезде вносится 5000₽ — возвращается при сохранности имущества».
+    # Такая строка относится к условиям проживания, а не к тарифам номера.
+    if "при заезде" in low and re.search(r"\bвнос\w*", low) and re.search(r"\bвозвращ\w*", low):
+        return True
     if re.search(r"(собач|кошк|животн|питомц)", low) and ("₽" in s or "руб" in low):
         return True
     if len(s) < 85 or ("₽" not in s and "руб" not in low):

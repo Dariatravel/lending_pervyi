@@ -22,7 +22,9 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import difflib
 import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -38,12 +40,54 @@ from watch_telegram_updates import (  # noqa: E402
     load_catalog_payload,
     load_env_files,
     load_watch_items,
+    price_texts,
     site_mismatch_parts,
 )
+from sync_abhazbooking_2026 import parse_post  # noqa: E402
 
 GRACE_SECONDS = 2 * 3600  # автосинк ходит раз в час; дважды по часу — с запасом
 REPORT_PATH = ROOT / "output" / "site-vs-telegram-report.txt"
 FINDINGS_PATH = ROOT / "output" / "site-vs-telegram-findings.txt"
+
+
+def _numbers(value: str) -> list[str]:
+    """Числа строки без пробелов: помогает отличить новую сумму от новой подписи."""
+    return [re.sub(r"\s+", "", item) for item in re.findall(r"\d[\d\s]*", value or "")]
+
+
+def price_mismatch_details(row: dict | None, telegram_text: str, limit: int = 12) -> list[str]:
+    """Понятный diff тарифов: что было на сайте и что сейчас в Telegram."""
+    if not row:
+        return []
+    try:
+        parsed = parse_post(telegram_text)
+    except Exception:  # noqa: BLE001 - основной аудит не должен падать на одном посте
+        return []
+    current_details = row.get("details") if isinstance(row.get("details"), dict) else {}
+    current = price_texts(current_details.get("prices"))
+    expected = price_texts(parsed.get("prices"))
+    if current == expected:
+        return []
+
+    details: list[str] = []
+    matcher = difflib.SequenceMatcher(a=current, b=expected, autojunk=False)
+    for tag, old_start, old_end, new_start, new_end in matcher.get_opcodes():
+        if tag == "equal":
+            continue
+        old_rows = current[old_start:old_end]
+        new_rows = expected[new_start:new_end]
+        count = max(len(old_rows), len(new_rows))
+        for index in range(count):
+            old = old_rows[index] if index < len(old_rows) else "—"
+            new = new_rows[index] if index < len(new_rows) else "—"
+            change = "подпись цены" if old != "—" and new != "—" and _numbers(old) == _numbers(new) else "цена/период"
+            details.append(f"{change}: сайт «{old}» → Telegram «{new}»")
+            if len(details) >= limit:
+                remaining = sum(1 for opcode in matcher.get_opcodes() if opcode[0] != "equal")
+                if remaining > 1:
+                    details.append("остальные отличия — в полном отчёте")
+                return details
+    return details
 
 
 async def run(limit: int) -> int:
@@ -113,7 +157,12 @@ async def run(limit: int) -> int:
                         if edited_at is not None and (datetime.now(timezone.utc) - edited_at).total_seconds() < GRACE_SECONDS:
                             pending.append(f"{item.title} — пост правлен {edited_at.astimezone().strftime('%H:%M')}, ждёт автосинка — {item.telegram_url}")
                         else:
-                            mismatched.append(f"{item.title} — не совпадает: {', '.join(parts)} — {item.telegram_url}")
+                            entry = f"{item.title} — не совпадает: {', '.join(parts)} — {item.telegram_url}"
+                            if "цены сайта" in parts:
+                                price_details = price_mismatch_details(rows.get(item.key), message.message or "")
+                                if price_details:
+                                    entry += "\n    " + "\n    ".join(price_details)
+                            mismatched.append(entry)
                 except Exception as error:  # noqa: BLE001
                     errors.append(f"{item.slug}: {error}")
 
