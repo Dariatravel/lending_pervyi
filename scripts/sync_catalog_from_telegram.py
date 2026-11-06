@@ -1101,6 +1101,24 @@ def render_top_gallery(media_items: list[dict[str, Any]], title: str) -> str:
           </div>'''
 
 
+def select_guest_facts(sections):
+    """Выбирает дословные факты по смыслу раздела, независимо от его позиции."""
+    benefits, conditions, accommodation = [], [], []
+    for section in sections:
+        label = str(section.get('label', '')).upper()
+        rules = bool(re.search(r'УСЛОВ|ПРАВИЛ|ВАЖНО', label))
+        amenities = bool(re.search(r'ТЕРРИТОР|РЯДОМ|РАСПОЛОЖ|ПИТАН|УСЛУГ|ВКЛЮЧЕНО', label))
+        for raw in section.get('lines', []):
+            line = clean_line_for_site(raw)
+            if not line or should_drop_line(line) or re.search(r'@|https?://|комисси|по бронированию|я на связи|контакт для брони|я работаю', line, re.I):
+                continue
+            is_rule = rules or bool(re.search(r'по согласован|заезд|выезд|залог|депозит|запрещ|доплат|бесплат|с животн|собач|минимальн', line, re.I))
+            target = conditions if is_rule else benefits if amenities else accommodation
+            if line not in target:
+                target.append(line)
+    return benefits[:3], (conditions + accommodation)[:3]
+
+
 def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text: str, parsed: dict[str, Any], media_items: list[dict[str, Any]], page_href: str) -> str:
     _ = date_text
     # Рекламный хвост из поста («РАННЕЕ БРОНИРОВАНИЕ 2027», «скидка 10%…») в
@@ -1127,8 +1145,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     reviews_panel = _reviews_panel_for_slug(mod, slug, page_href)
     top_gallery = render_top_gallery(media_items, title)
     media_html = render_media_items(media_items, title)
-    why_lines = sections[0]['lines'][:3] if sections else []
-    important_lines = sections[1]['lines'][:3] if len(sections) > 1 else []
+    why_lines, important_lines = select_guest_facts(sections)
     # Телеграм-хвосты чистим до вывода: «ОБЗОРЫ НОМЕРОВ ТУТ» убираем целиком,
     # у полезных строк обрезаем только хвост (17.09.2026).
     why_clean = [
@@ -1215,7 +1232,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
 {preload_block}    <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202611052247" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202611061949" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1303,7 +1320,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202611052247" defer></script>
+    <script src="../../scripts.min.js?v=202611061949" defer></script>
     <a aria-label="Наверх" class="back-to-top" href="#top"><span aria-hidden="true" class="back-to-top__icon">↑</span></a>
   </body>
 </html>'''
