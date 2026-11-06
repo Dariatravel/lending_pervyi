@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T00:39:14.953587+00:00",
+  "generated_at": "2026-11-06T23:37:16.029817+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -280,6 +280,14 @@
       "lat": 43.316642418799624,
       "lon": 40.24571017790979,
       "url": "/hotels/blago-daryu-otel-5079/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "\"БОХО\" - зимний отдых у моря с бассейном и сауной",
+      "address": "Гагра, ул. Лакоба 99",
+      "lat": 43.26333731982378,
+      "lon": 40.268478915343486,
+      "url": "/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/",
       "cityKey": "gagra"
     },
     {
@@ -1982,16 +1990,16 @@
   "stats": {
     "placemarks_total": 490,
     "placemarks_unique": 245,
-    "pages_total": 499,
-    "pages_on_disk": 562,
+    "pages_total": 500,
+    "pages_on_disk": 563,
     "pages_excluded": 63,
-    "from_constructor": 266,
+    "from_constructor": 267,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 233,
     "skipped_without_coords": 233,
-    "shared_coordinate_groups": 34,
+    "shared_coordinate_groups": 35,
     "deduped_redirect_points": 19,
-    "points_total": 247
+    "points_total": 248
   }
 }
