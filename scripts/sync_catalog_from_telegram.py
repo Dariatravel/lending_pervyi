@@ -1112,11 +1112,15 @@ def select_guest_facts(sections):
             line = clean_line_for_site(raw)
             if not line or should_drop_line(line) or re.search(r'@|https?://|комисси|по бронированию|я на связи|контакт для брони|я работаю', line, re.I):
                 continue
-            is_rule = rules or bool(re.search(r'по согласован|заезд|выезд|залог|депозит|запрещ|доплат|бесплат|с животн|собач|минимальн', line, re.I))
-            target = conditions if is_rule else benefits if amenities else accommodation
+            is_rule = bool(re.search(r'по согласован|заезд|выезд|залог|депозит|запрещ|доплат|доп.?\s*плат|с животн|собач|питомц|минимальн|без лифта|нет лифта|уборк|смен[аыу] бель|курени|предоплат|возврат|отмен|ребен|ребён|дет[ьи].*лет|только.*взросл|общий санузел|санузел.*общ', line, re.I))
+            advantage = bool(re.search(r'бассейн|подогрев|пляж|берегов|вид на|видом на|панорам|сад|зел[её]н|территор|кухн|мангал|барбекю|парков|площадк|завтрак|питани|столов|кафе|ресторан|генератор|заповедник|шезлонг|лежак|беседк|батут|качел|магазин|балкон|террас|веранд', line, re.I))
+            # Правила имеют приоритет; бесплатные удобства остаются преимуществами.
+            target = conditions if is_rule else benefits if advantage else conditions if rules else accommodation
             if line not in target:
                 target.append(line)
-    return benefits[:3], (conditions + accommodation)[:3]
+    # Категории номеров и перечни кроватей не заполняют карточку ради количества.
+    features = [line for line in accommodation if re.search(r'этаж|лифт|вход|вмест|размещ|общ|лестниц|дорог|расстоян', line, re.I) and not re.search(r'категори|двуспальн|односпальн|кроват', line, re.I)]
+    return benefits[:3], (conditions + features)[:3]
 
 
 def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text: str, parsed: dict[str, Any], media_items: list[dict[str, Any]], page_href: str) -> str:
@@ -1232,7 +1236,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <link rel="preconnect" href="https://media.xn--80aacbklan7f0b.xn--p1ai" crossorigin />
 {preload_block}    <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link rel="stylesheet" href="../../styles.min.css?v=202611061949" />
+    <link rel="stylesheet" href="../../styles.min.css?v=202611062137" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -1320,7 +1324,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         <div class="catalog-grid hotel-site-concept__similar-grid" data-similar-listings-grid></div>
       </section>
     </main>
-    <script src="../../scripts.min.js?v=202611061949" defer></script>
+    <script src="../../scripts.min.js?v=202611062137" defer></script>
     <a aria-label="Наверх" class="back-to-top" href="#top"><span aria-hidden="true" class="back-to-top__icon">↑</span></a>
   </body>
 </html>'''
