@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-06T11:39:47.581944+00:00",
+  "generated_at": "2026-11-06T18:39:09.303081+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 249,
-  "listings_hotels": 196,
+  "listings_total": 250,
+  "listings_hotels": 197,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -72378,7 +72378,15 @@
           },
           {
             "kind": "price",
-            "text": "С 1 по 30 ноября:"
+            "text": "+1 взр./реб. — стоимость доп. места"
+          },
+          {
+            "kind": "price",
+            "text": "Реб. — от 5 до 12 лет"
+          },
+          {
+            "kind": "price",
+            "text": "1–30 ноября"
           },
           {
             "kind": "price",
@@ -72386,27 +72394,27 @@
           },
           {
             "kind": "price",
-            "text": "4490₽ — Стандарт"
+            "text": "4490₽ Стандарт"
           },
           {
             "kind": "price",
-            "text": "3590₽ — одноместное размещение в Стандарте"
+            "text": "3590₽ Стандарт 1-мест."
           },
           {
             "kind": "price",
-            "text": "6520₽ — Семейный"
+            "text": "6520₽ Семейный"
           },
           {
             "kind": "price",
-            "text": "6990₽ — Люкс с видом на море"
+            "text": "6990₽ Люкс"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1280₽"
+            "text": "1280₽ +1 взр."
           },
           {
             "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 1020₽"
+            "text": "1020₽ +1 реб."
           },
           {
             "kind": "price",
@@ -72414,31 +72422,31 @@
           },
           {
             "kind": "price",
-            "text": "4960₽ — Стандарт"
+            "text": "4960₽ Стандарт"
           },
           {
             "kind": "price",
-            "text": "3970₽ — одноместное размещение в Стандарте"
+            "text": "3970₽ Стандарт 1-мест."
           },
           {
             "kind": "price",
-            "text": "6990₽ — Семейный"
+            "text": "6990₽ Семейный"
           },
           {
             "kind": "price",
-            "text": "7470₽ — Люкс с видом на море"
+            "text": "7470₽ Люкс"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1470₽"
+            "text": "1470₽ +1 взр."
           },
           {
             "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 1180₽"
+            "text": "1180₽ +1 реб."
           },
           {
             "kind": "price",
-            "text": "С 1 декабря по 29 декабря и с 11 января по 31 марта:"
+            "text": "1–29 декабря и 11 января–31 марта"
           },
           {
             "kind": "price",
@@ -72446,27 +72454,27 @@
           },
           {
             "kind": "price",
-            "text": "4020₽ — Стандарт"
+            "text": "4020₽ Стандарт"
           },
           {
             "kind": "price",
-            "text": "3220₽ — одноместное размещение в Стандарте"
+            "text": "3220₽ Стандарт 1-мест."
           },
           {
             "kind": "price",
-            "text": "6520₽ — Семейный"
+            "text": "6520₽ Семейный"
           },
           {
             "kind": "price",
-            "text": "6990₽ — Люкс с видом на море"
+            "text": "6990₽ Люкс"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1280₽"
+            "text": "1280₽ +1 взр."
           },
           {
             "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 1020₽"
+            "text": "1020₽ +1 реб."
           },
           {
             "kind": "price",
@@ -72474,27 +72482,27 @@
           },
           {
             "kind": "price",
-            "text": "4490₽ — Стандарт"
+            "text": "4490₽ Стандарт"
           },
           {
             "kind": "price",
-            "text": "3590₽ — одноместное размещение в Стандарте"
+            "text": "3590₽ Стандарт 1-мест."
           },
           {
             "kind": "price",
-            "text": "6990₽ — Семейный"
+            "text": "6990₽ Семейный"
           },
           {
             "kind": "price",
-            "text": "7470₽ — Люкс с видом на море"
+            "text": "7470₽ Люкс"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1470₽"
+            "text": "1470₽ +1 взр."
           },
           {
             "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 1180₽"
+            "text": "1180₽ +1 реб."
           },
           {
             "kind": "price",
@@ -72502,91 +72510,7 @@
           },
           {
             "kind": "price",
-            "text": "С 30 декабря по 5 января — Полупансион:"
-          },
-          {
-            "kind": "price",
-            "text": "11340₽ — Стандарт"
-          },
-          {
-            "kind": "price",
-            "text": "9070₽ — одноместное размещение в Стандарте"
-          },
-          {
-            "kind": "price",
-            "text": "13230₽ — Семейный"
-          },
-          {
-            "kind": "price",
-            "text": "15120₽ — Люкс с видом на море"
-          },
-          {
-            "kind": "price",
-            "text": "Доп место для взрослого — 1890₽"
-          },
-          {
-            "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 1520₽"
-          },
-          {
-            "kind": "price",
-            "text": "С 5 по 10 января — Полупансион:"
-          },
-          {
-            "kind": "price",
-            "text": "8030₽ — Стандарт"
-          },
-          {
-            "kind": "price",
-            "text": "6430₽ — одноместное размещение в Стандарте"
-          },
-          {
-            "kind": "price",
-            "text": "9920₽ — Семейный"
-          },
-          {
-            "kind": "price",
-            "text": "10300₽ — Люкс с видом на море"
-          },
-          {
-            "kind": "price",
-            "text": "Доп место для взрослого — 1890₽"
-          },
-          {
-            "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 1520₽"
-          },
-          {
-            "kind": "price",
-            "text": "С 1 по 30 апреля:"
-          },
-          {
-            "kind": "price",
-            "text": "Завтрак:"
-          },
-          {
-            "kind": "price",
-            "text": "5580₽ — Стандарт"
-          },
-          {
-            "kind": "price",
-            "text": "4460₽ — одноместное размещение в Стандарте"
-          },
-          {
-            "kind": "price",
-            "text": "7280₽ — Семейный"
-          },
-          {
-            "kind": "price",
-            "text": "8220₽ — Люкс с видом на море"
-          },
-          {
-            "kind": "price",
-            "text": "Доп место для взрослого — 1660₽"
-          },
-          {
-            "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 1330₽"
+            "text": "30 декабря–5 января"
           },
           {
             "kind": "price",
@@ -72594,55 +72518,215 @@
           },
           {
             "kind": "price",
-            "text": "6050₽ — Стандарт"
+            "text": "11340₽ Стандарт"
           },
           {
             "kind": "price",
-            "text": "4840₽ — одноместное размещение в Стандарте"
+            "text": "9070₽ Стандарт 1-мест."
           },
           {
             "kind": "price",
-            "text": "7750₽ — Семейный"
+            "text": "13230₽ Семейный"
           },
           {
             "kind": "price",
-            "text": "8690₽ — Люкс с видом на море"
+            "text": "15120₽ Люкс"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1850₽"
+            "text": "1890₽ +1 взр."
           },
           {
             "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 1480₽"
+            "text": "1520₽ +1 реб."
           },
           {
             "kind": "price",
-            "text": "С 1 по 31 мая и с 20 сентября по 19 октября — Полупансион:"
+            "text": "5–10 января"
           },
           {
             "kind": "price",
-            "text": "7090₽ — Стандарт"
+            "text": "Полупансион:"
           },
           {
             "kind": "price",
-            "text": "5670₽ — одноместное размещение в Стандарте"
+            "text": "8030₽ Стандарт"
           },
           {
             "kind": "price",
-            "text": "8500₽ — Семейный"
+            "text": "6430₽ Стандарт 1-мест."
           },
           {
             "kind": "price",
-            "text": "9450₽ — Люкс с видом на море"
+            "text": "9920₽ Семейный"
           },
           {
             "kind": "price",
-            "text": "Доп место для взрослого — 1890₽"
+            "text": "10300₽ Люкс"
           },
           {
             "kind": "price",
-            "text": "Доп место для ребенка от 5 до 12 лет — 1520₽"
+            "text": "1890₽ +1 взр."
+          },
+          {
+            "kind": "price",
+            "text": "1520₽ +1 реб."
+          },
+          {
+            "kind": "price",
+            "text": "1–30 апреля"
+          },
+          {
+            "kind": "price",
+            "text": "Завтрак:"
+          },
+          {
+            "kind": "price",
+            "text": "5580₽ Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "4460₽ Стандарт 1-мест."
+          },
+          {
+            "kind": "price",
+            "text": "7280₽ Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "8220₽ Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "1660₽ +1 взр."
+          },
+          {
+            "kind": "price",
+            "text": "1330₽ +1 реб."
+          },
+          {
+            "kind": "price",
+            "text": "Полупансион:"
+          },
+          {
+            "kind": "price",
+            "text": "6050₽ Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "4840₽ Стандарт 1-мест."
+          },
+          {
+            "kind": "price",
+            "text": "7750₽ Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "8690₽ Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "1850₽ +1 взр."
+          },
+          {
+            "kind": "price",
+            "text": "1480₽ +1 реб."
+          },
+          {
+            "kind": "price",
+            "text": "1–31 мая и 20 сентября–19 октября"
+          },
+          {
+            "kind": "price",
+            "text": "Полупансион:"
+          },
+          {
+            "kind": "price",
+            "text": "7090₽ Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "5670₽ Стандарт 1-мест."
+          },
+          {
+            "kind": "price",
+            "text": "8500₽ Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "9450₽ Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "1890₽ +1 взр."
+          },
+          {
+            "kind": "price",
+            "text": "1520₽ +1 реб."
+          },
+          {
+            "kind": "price",
+            "text": "1–30 июня и 26 августа–19 сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Полный пансион:"
+          },
+          {
+            "kind": "price",
+            "text": "11810₽ Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "9450₽ Стандарт 1-мест."
+          },
+          {
+            "kind": "price",
+            "text": "12750₽ Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "13230₽ Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "2840₽ +1 взр."
+          },
+          {
+            "kind": "price",
+            "text": "2270₽ +1 реб."
+          },
+          {
+            "kind": "price",
+            "text": "1 июля–25 августа"
+          },
+          {
+            "kind": "price",
+            "text": "Полный пансион:"
+          },
+          {
+            "kind": "price",
+            "text": "15020₽ Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "12020₽ Стандарт 1-мест."
+          },
+          {
+            "kind": "price",
+            "text": "15300₽ Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "15970₽ Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "3310₽ +1 взр."
+          },
+          {
+            "kind": "price",
+            "text": "2650₽ +1 реб."
           },
           {
             "kind": "price",
@@ -76433,6 +76517,232 @@
             "telegram_post": "abhazbooking/5445",
             "telegram_url": "https://t.me/abhazbooking/5445",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/dzhanat-otel-s-basseynom-i-zavtrakom-5436/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5446,
+      "source_topic_id": null,
+      "slug": "boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446",
+      "title": "\"БОХО\" - зимний отдых у моря с бассейном и сауной",
+      "summary": "Гагра. 0 минут до пляжа, размещение до 4 человек.",
+      "excerpt": "Пляжный сезон закончился, а отдых у моря - нет! 🌅",
+      "city": "Гагра",
+      "location_text": "Гагра, ул. Лакоба 99",
+      "distance_text": "0 минут до пляжа",
+      "beach_text": "0 минут до пляжа",
+      "capacity_text": "Размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/",
+      "telegram_url": "https://t.me/abhazbooking/5446",
+      "published_at": "2026-11-06",
+      "has_video": true,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 0 минут до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "",
+            "lines": [
+              "Пляжный сезон закончился, а отдых у моря - нет! 🌅",
+              "Подогреваемый бассейн прямо на берегу, сауна, а вокруг - море и горы. 🏔🌊",
+              "После сауны - в теплый бассейн или, если хочется контраста, прямо в море! 💦",
+              "В Бохо такой отдых, ради которого хочется вырваться даже в межсезонье. 🔥"
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ И УСЛУГИ:",
+            "lines": [
+              "Свой оборудованный пляж, бар у моря и новая VIP-зона с бассейном и сауной прямо на берегу.",
+              "На территории: качели для красивых фото, Wi-Fi до 50 метров, чистые кабинки для переодевания и душевые лейки. Шезлонги с матрасами и зонтами - бесплатно для гостей.",
+              "Работает ресторан с абхазской и европейской кухней. Завтраки включены в стоимость. Вкусные блюда, приятные цены, панорамный вид на море.",
+              "Для активного отдыха - скидки на банан, ватрушку и гидроцикл. Сапы - 1 час в день бесплатно, далее - скидка 50%. Для детей есть площадка и батут.",
+              "Подогреваемый бассейн 7 × 12 м у пляжа и оборудованая VIP-зона с электрической сауной.",
+              "В этот период доступно: пользование бассейном, шезлонги, парная.",
+              "Комната отдыха в это время не предоставляется.",
+              "Еду и напитки гости могут заказать отдельно - обслуживание официантами.",
+              "С 18:00 доступ в ВИП-зону и к бассейну только для гостей отеля."
+            ]
+          },
+          {
+            "label": "✔️КОТТЕДЖИ:",
+            "lines": [
+              "Проcтоpные коттeджи c панoрaмными окнaми прямо на море.",
+              "В каждом - oтдeльная cпaльня c кoмфортной двуспальной кроватью, кондиционером и мягким освещением.",
+              "Просторная зона отдыха с диваном, обеденным столом, телевизором со Smаrt ТV и кондиционером, Wi-Fi, мини-бар.",
+              "Полностью оборудованная кухня (холодильник, микроволновка, чайник, мойка, индукционная плита, столовые приборы и посуда).",
+              "Современная ванная комната с душевой зоной \"тропический дождь\" и гигиеническими принадлежностями. Предоставляются пляжные полотенца, халаты и тапочки.",
+              "Стильная терраса с мебелью для отдыха на свежем воздухе."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(указаны за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "8400₽ - ноябрь, декабрь до 30го"
+          },
+          {
+            "kind": "price",
+            "text": "1400₽/сутки - доп. место"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 3 лет бесплатно (с завтраком)"
+          },
+          {
+            "kind": "price",
+            "text": "С 9:00 до 18:00 формат свободного посещения VIP-зоны. Для проживающих гостей - вход бесплатный, включён в стоимость проживания. (Для сторонних гостей - 2 500 ₽ с человека)"
+          },
+          {
+            "kind": "price",
+            "text": "С 18:00 сауна работает только по индивидуальному бронированию. (Стоимость - 5 000 ₽ в час). Включено: парная, комната отдыха, санузел."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [
+            "gagra"
+          ],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1227,
+      "media": [
+        {
+          "id": 1227001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446.jpg",
+          "details": {}
+        },
+        {
+          "id": 1227002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1227003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1227004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1227005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1227006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1227007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1227008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1227009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1227010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1227011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5455",
+            "telegram_url": "https://t.me/abhazbooking/5455",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/video-01-poster.jpg"
           }
         }
       ]

@@ -8,22 +8,26 @@
           "/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/",
           "/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/",
           "/hotels/rayskiy-bereg-mini-otel-3277/",
-          "/hotels/karin-gostevoy-dom-3267/",
           "/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/",
           "/hotels/david-gostevoy-dom-5219/",
           "/hotels/amor-domiki-s-basseynom-5069/",
           "/hotels/sekret-garden-apartamenty-4162/",
           "/kvartira/mon-amur-kvartira-1k-gagra-1062/",
           "/kvartira/magnoliya-kvartira-3k-gagra-1253/",
-          "/kvartira/kiparisovaya-kvartira-1k-gagry-976/"
+          "/kvartira/kiparisovaya-kvartira-1k-gagry-976/",
+          "/kvartira/kurortnaya-kvartira-2k-bagripsh-gagra-998/",
+          "/kvartira/biryuza-etazh-pod-klyuch-gagra-1367/"
         ]
       },
       {
         "label": "СУХУМ",
         "hrefs": [
+          "/hotels/dzhanat-otel-s-basseynom-i-zavtrakom-5436/",
+          "/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/",
           "/hotels/oazis-villa-4052/",
           "/hotels/oazis-apartamenty-s-kuhney-4061/",
           "/hotels/mayak-gostevoy-dom-3810/",
+          "/hotels/sinop-haus-domiki-3748/",
           "/hotels/edem-domiki-4409/",
           "/hotels/mziya-gostevye-nomera-3659/",
           "/hotels/demi-mokko-dva-domika-3353/",
@@ -40,7 +44,8 @@
           "/kvartira/prostornaya-kvartira-5k-1695/",
           "/kvartira/rimma-dve-1k-kvartriry-suhum-1118/",
           "/kvartira/chernomorskaya-1-kvartira-2k-1744/",
-          "/kvartira/chernomorskaya-kvartira-suhum-1201/"
+          "/kvartira/ladariya-kvartira-1k-1542/",
+          "/kvartira/latte-kvartira-1k-1707/"
         ]
       },
       {
@@ -48,30 +53,41 @@
         "hrefs": [
           "/hotels/apsa-park-otel-v-zapovednike-2611/",
           "/hotels/laym-mini-otel-s-basseynom-u-zapovednika-3554/",
+          "/hotels/lk-otel-s-basseynom-4123/",
+          "/hotels/amzara-otel-s-vinodelney-u-zapovednika-2668/",
           "/hotels/belaya-loshad-glemping-s-basseynom-3650/",
           "/hotels/mira-domiki-i-nomera-u-ozera-2956/",
-          "/hotels/simona-gostevoy-dom-3592/",
+          "/hotels/samshit-domiki-i-nomera-u-zapovednika-2677/",
           "/hotels/karalina-apartamenty-3124/",
-          "/kvartira/sosnovaya-kvartira-1k-1610/"
+          "/kvartira/sosnovaya-kvartira-1k-1610/",
+          "/kvartira/kamilla-kvartira-2k-pitsunda-968/",
+          "/kvartira/pitiunt-kvartira-4k-pitsunda-1428/"
         ]
       },
       {
         "label": "ЛДЗАА",
         "hrefs": [
           "/hotels/spetspredlozhenie-na-mezhsezone-otprav-roditeley-v-abhaziyu-plyazhnyy-kompleks-151-na-beregu-morya-5403/",
+          "/hotels/villa-lyubov-vyhod-iz-otelya-srazu-na-plyazh-2716/",
           "/hotels/abyrlash-otel-na-plyazhe-3239/",
           "/hotels/lazurnyy-bereg-butik-otel-s-pitaniem-2592/",
           "/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/",
           "/hotels/zhasmin-mini-otel-3736/",
+          "/hotels/danelyan-semeynyy-otel-so-stolovoy-4652/",
+          "/hotels/zhemchuzhina-gostevoy-dom-4113/",
           "/hotels/rivera-domiki-na-plyazhe-2966/",
-          "/hotels/kvarts-domiki-4449/",
           "/hotels/oliva-domiki-4671/",
+          "/hotels/belyy-dom-domiki-i-apartamenty-4081/",
           "/hotels/tis-kottedzhi-u-zapovednika-3372/",
           "/kvartira/akvamarin-dom-pod-klyuch-ldzaa-1313/",
           "/hotels/san-amra-lyuks-nomera-s-vidom-na-more-2631/",
-          "/hotels/studio-san-amra-studiya-na-plyazhe-4270/",
-          "/hotels/mechta-apartamenty-s-kuhney-3363/",
-          "/hotels/trio-nomer-na-plyazhe-5176/"
+          "/hotels/trio-nomer-na-plyazhe-5176/",
+          "/kvartira/tihaya-buhta-apartamenty-na-5-spalnyh-mest-s-vidom-na-goru-ldzaa-1142/",
+          "/kvartira/yuzhnoe-utro-apartamenty-na-6-spalnyh-mest-s-vidom-na-more-ldzaa-1152/",
+          "/kvartira/na-plyazhe-apartamenty-3k-ldzaa-1073/",
+          "/kvartira/greys-kvartira-1564/",
+          "/kvartira/klassika-kvartira-3k-ldzaa-1303/",
+          "/kvartira/palma-kvartira-3k-ldzaa-1080/"
         ]
       },
       {
@@ -81,14 +97,31 @@
           "/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/",
           "/hotels/vista-mare-otdelnyy-dom-pod-klyuch-s-basseynom-5382/",
           "/hotels/esma-domiki-s-basseynom-v-tsentre-4032/",
-          "/kvartira/esma-studiya-5ti-mestnaya-gudauta-1355/"
+          "/kvartira/esma-studiya-5ti-mestnaya-gudauta-1355/",
+          "/kvartira/perl-dom-pod-klyuch-gudauta-1092/"
         ]
       },
       {
         "label": "НОВЫЙ АФОН",
         "hrefs": [
           "/hotels/tsarskoe-selo-anhua-kottedzhi-3871/",
-          "/hotels/manon-otel-so-skazochnym-vidom-2512/"
+          "/hotels/manon-otel-so-skazochnym-vidom-2512/",
+          "/hotels/nebosvod-domik-afreym-v-uedinennom-meste-4640/",
+          "/hotels/mandarinovyy-dvorik-dom-pod-klyuch-3789/",
+          "/hotels/na-vremya-v-rayu-zhile-pod-klyuch-4357/"
+        ]
+      },
+      {
+        "label": "ЦАНДРИПШ",
+        "hrefs": [
+          "/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/",
+          "/hotels/grafit-haus-gostevoy-dom-s-basseynom-3707/"
+        ]
+      },
+      {
+        "label": "АЛАХАДЗЫ",
+        "hrefs": [
+          "/hotels/femeli-baza-otdyha-s-basseynom-i-pitaniem-4829/"
         ]
       },
       {
@@ -96,11 +129,15 @@
         "hrefs": [
           "/hotels/grass-otel-kottedzhi-v-gorah-abhazii-s-basseynom-2928/",
           "/hotels/radonovyy-istochnik-otel-v-gorah-3064/",
-          "/hotels/dyshi-glubzhe-domiki-v-gorah-3459/"
+          "/hotels/dyshi-glubzhe-domiki-v-gorah-3459/",
+          "/hotels/bungalo-glemping-3623/"
         ]
       }
     ],
-    "skipped": []
+    "skipped": [
+      "t.me/abhazbooking/5346: нет на сайте — синхронизирую",
+      "t.me/abhkvartira/1104: объект снят с сайта"
+    ]
   },
   "novyy-god-2027": {
     "post": "https://t.me/abhazbooking/5346",
