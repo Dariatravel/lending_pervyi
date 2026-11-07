@@ -20,11 +20,16 @@ def main():
         grid = soup.select_one('.benefit-grid')
         if not grid:
             continue
-        groups = select_guest_facts(row.get('details', {}).get('sections', []))
+        groups = select_guest_facts(row.get('details', {}).get('sections', []), row['slug'])
+        expected = [(title, lines) for title, lines in
+                    zip(('Почему выбирают', 'Важно для гостя'), groups) if lines]
+        actual = [(article.strong.get_text(strip=True), [item.get_text(strip=True)
+                   for item in article.select('li')])
+                  for article in grid.select('article') if article.select_one('li')]
+        if actual == expected:
+            continue
         grid.clear()
-        for title, lines in zip(('Почему выбирают', 'Важно для гостя'), groups):
-            if not lines:
-                continue
+        for title, lines in expected:
             article = soup.new_tag('article')
             heading = soup.new_tag('strong')
             heading.string = title

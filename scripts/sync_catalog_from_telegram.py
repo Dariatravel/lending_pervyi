@@ -1101,8 +1101,29 @@ def render_top_gallery(media_items: list[dict[str, Any]], title: str) -> str:
           </div>'''
 
 
-def select_guest_facts(sections):
+def select_guest_facts(sections, slug=''):
     """Выбирает дословные факты по смыслу раздела, независимо от его позиции."""
+    # В этих постах одна строка объединяет этаж, вид и оснащение.
+    # Короткие выдержки применяем, пока они дословно есть в актуальном посте.
+    excerpts = {
+        'magnoliya-kvartira-3k-gagra-1253': (
+            ('Со всех сторон вид на зеленый город и голубые дали гор.',
+             'Рынок с местными продуктами в 3 минутах.',
+             'До пляжа неспеша 7 минут, галечный, есть прокат шезлонгов.'),
+            ('Трехкомнатная квартира расположена на 5 этаже.',),
+        ),
+        'akvarel-tri-2k-kvartiry-1646': (
+            ('До пляжа 2 минуты пешком, песчаный с мелкой галькой, море чистое.',
+             'Парковка во дворе.', 'Рядом детская площадка.'),
+            ('Двухкомнатная квартира со свежим ремонтом на 1 этаже с отдельным входом.',
+             'Таких 3 похожих квартиры на 1 этаже, каждая с отдельным входом. Наполнение такое же, метраж может не сильно отличаться.'),
+        ),
+    }.get(slug)
+    if excerpts:
+        source_lines = [line for section in sections for line in section.get('lines', [])]
+        if all(any(fact in line for line in source_lines) for group in excerpts for fact in group):
+            return tuple(list(group) for group in excerpts)
+
     benefits, conditions, accommodation = [], [], []
     for section in sections:
         label = str(section.get('label', '')).upper()
@@ -1149,7 +1170,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     reviews_panel = _reviews_panel_for_slug(mod, slug, page_href)
     top_gallery = render_top_gallery(media_items, title)
     media_html = render_media_items(media_items, title)
-    why_lines, important_lines = select_guest_facts(sections)
+    why_lines, important_lines = select_guest_facts(sections, slug)
     # Телеграм-хвосты чистим до вывода: «ОБЗОРЫ НОМЕРОВ ТУТ» убираем целиком,
     # у полезных строк обрезаем только хвост (17.09.2026).
     why_clean = [
