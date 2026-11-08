@@ -28,9 +28,6 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
-
 ROOT = Path(__file__).resolve().parents[1]
 REPORT_PATH = ROOT / 'output' / 'price_tabs_compare_report.txt'
 SNAPSHOT_PATH = ROOT / 'data' / 'catalog-snapshot.json'
@@ -172,12 +169,14 @@ def parse_auto_period(text: str):
 
 # --------------------------------------------- разбор ячейки цены (ручная)
 
-def parse_manual_cell(text: str, col_days: list) -> tuple[dict, bool, list]:
+def parse_manual_cell(text: str, col_days: list, meal_alternatives: bool = False) -> tuple[dict, bool, list]:
     """Разбирает ячейку ручной вкладки в посуточные цены в пределах колонки.
 
     Понимает: '3500' | '5000 до 15' | '2800 с 16' | '6000 до 25 авг'
     | '5000 до 15го\\3000 с 16'. -> ({дата: цена}, чистая_ли, свободные_числа).
     Свободные числа (без дат, если их больше одного) сравниваются «мягко».
+    При meal_alternatives=True простая пара тарифов питания возвращается
+    кортежем допустимых цен на каждый день общего периода.
     """
     t = (text or '').strip().lower().replace('ё', 'е')
     if not t:
@@ -187,6 +186,15 @@ def parse_manual_cell(text: str, col_days: list) -> tuple[dict, bool, list]:
         return {d: p for d in col_days}, True, []
     if 'месяц' in t:  # помесячная аренда — не сравниваем
         return {}, False, []
+
+    # В строке «без завтрака/с завтраком» обе цены относятся к одному
+    # периоду. Не превращаем вторую цену в «до», а первую — в «после».
+    pair = re.fullmatch(r'(\d{3,6})\s*/\s*(\d{3,6})(\s*(?:до|по|с)\s*\d{1,2}(?:\s*(?:-?го|е))?(?:\s+[а-я]{3,})?)?', t)
+    if meal_alternatives and pair:
+        variants = [parse_manual_cell(price + (pair.group(3) or ''), col_days)[0]
+                    for price in pair.group(1, 2)]
+        return {d: tuple(v[d] for v in variants if d in v)
+                for d in col_days if any(d in v for v in variants)}, False, []
 
     series: dict = {}
     consumed = []
@@ -288,10 +296,18 @@ def cat_tokens(text: str) -> set:
     for kw in CAT_KEYWORDS:
         if kw in n:
             toks.add(kw)
+    if re.search(r'\bМАЛ(?:ЫЙ|ЫЕ|ЕНЬК\w*)\b', n):
+        toks.add('РАЗМЕР_МАЛЫЙ')
+    if re.search(r'\bБОЛЬШ(?:ОЙ|ИЕ)\b', n):
+        toks.add('РАЗМЕР_БОЛЬШОЙ')
     return toks
 
 
 def tokens_conflict(a: set, b: set) -> bool:
+    sizes_a = {t for t in a if t.startswith('РАЗМЕР_')}
+    sizes_b = {t for t in b if t.startswith('РАЗМЕР_')}
+    if sizes_a and sizes_b and not (sizes_a & sizes_b):
+        return True
     for prefix in ('МЕСТ', 'КОМН'):
         av = {t for t in a if t.endswith(prefix)}
         bv = {t for t in b if t.endswith(prefix)}
@@ -307,6 +323,29 @@ def tokens_conflict(a: set, b: set) -> bool:
 
 
 # ------------------------------------------------------------------- отчёт
+
+def match_category(manual_name: str, auto_title: str, cats: list) -> tuple:
+    remainder = norm_text(manual_name)
+    for w in auto_title_core(auto_title).split():
+        remainder = re.sub(rf'(?<![А-ЯA-Z0-9]){re.escape(w)}(?![А-ЯA-Z0-9])', ' ', remainder)
+    want = cat_tokens(remainder)
+    if len(cats) == 1:
+        return (None, False) if tokens_conflict(want, cat_tokens(cats[0])) else (cats[0], True)
+    want_strong = want & STRONG_KEYWORDS
+    scored = []
+    for c in cats:
+        have = cat_tokens(c)
+        if tokens_conflict(want, have):
+            continue
+        if want_strong and not (want_strong & have):
+            continue
+        scored.append((len(want & have), -len(have - want), c))
+    scored.sort(reverse=True)
+    if not want or not scored or scored[0][0] == 0:
+        return None, False
+    if len(scored) > 1 and scored[0][:2] == scored[1][:2]:
+        return None, False
+    return scored[0][2], True
 
 def group_dates(dates):
     out = []
@@ -348,6 +387,9 @@ def write_sverka_tab(service, values: list) -> None:
 
 
 def main() -> int:
+    from google.oauth2 import service_account
+    from googleapiclient.discovery import build
+
     ap = argparse.ArgumentParser()
     ap.add_argument('--from-date', default=None, help='YYYY-MM-DD, по умолчанию сегодня')
     ap.add_argument('--to-date', default=f'{SEASON_YEAR}-12-31')
@@ -423,34 +465,6 @@ def main() -> int:
             return candidates[0][1]
         return None
 
-    def match_category(manual_name: str, auto_title: str):
-        cats = list(auto_prices[auto_title].keys())
-        remainder = norm_text(manual_name)
-        for w in auto_cores[auto_title].split():
-            remainder = re.sub(rf'(?<![А-ЯA-Z0-9]){re.escape(w)}(?![А-ЯA-Z0-9])', ' ', remainder)
-        want = cat_tokens(remainder)
-        if len(cats) == 1:
-            if tokens_conflict(want, cat_tokens(cats[0])):
-                return None, False
-            return cats[0], True
-        want_strong = want & STRONG_KEYWORDS
-        scored = []
-        for c in cats:
-            have = cat_tokens(c)
-            if tokens_conflict(want, have):
-                continue
-            # класс номера (стандарт/люкс/комфорт…) из ручного названия обязан
-            # найтись в категории авто, иначе матч ненадёжен
-            if want_strong and not (want_strong & have):
-                continue
-            scored.append((len(want & have), -len(have - want), c))
-        scored.sort(reverse=True)
-        if not want or not scored or scored[0][0] == 0:
-            return None, False
-        if len(scored) > 1 and scored[0][:2] == scored[1][:2]:
-            return None, False
-        return scored[0][2], True
-
     # ---- Проход по ручной вкладке ----
     mismatches, matched_ok = [], []
     skipped_red, no_object, no_category = [], [], []
@@ -479,7 +493,7 @@ def main() -> int:
         if '2027' in auto_title:
             early_2027.append((r['row'], name, auto_title))
             continue
-        cat, ok = match_category(name, auto_title)
+        cat, ok = match_category(name, auto_title, list(auto_prices[auto_title]))
         if not ok:
             no_category.append((r['row'], name, auto_title, len(auto_prices[auto_title])))
             continue
@@ -492,7 +506,8 @@ def main() -> int:
             if not raw:
                 continue
             col_days = daterange_days(m1, d1, m2, d2)
-            series, clean, loose = parse_manual_cell(raw, col_days)
+            meals = bool(re.search(r'без\s+завтрака\s*/\s*с\s+завтраком', name, re.I))
+            series, clean, loose = parse_manual_cell(raw, col_days, meal_alternatives=meals)
             if not clean and (series or loose):
                 dirty_cells.append((r['row'], name, raw))
             for d in col_days:
@@ -509,9 +524,11 @@ def main() -> int:
                             diffs_by_key[(loose[0], ap_, f' (в ручной: «{raw}»)')].append(d)
                     continue
                 compared_days += 1
-                if mp != ap_:
+                options = mp if isinstance(mp, tuple) else (mp,)
+                if ap_ not in options:
                     note = '' if clean else f' (в ручной: «{raw}»)'
-                    diffs_by_key[(mp, ap_, note)].append(d)
+                    display_price = '/'.join(map(str, options)) if isinstance(mp, tuple) else mp
+                    diffs_by_key[(display_price, ap_, note)].append(d)
         if diffs_by_key:
             detail = []
             for (mp, ap_, note), dates in sorted(diffs_by_key.items(), key=lambda kv: min(kv[1])):
