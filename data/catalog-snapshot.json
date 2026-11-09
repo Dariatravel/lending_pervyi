@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-08T22:05:04.079625+00:00",
+  "generated_at": "2026-11-09T22:49:56.117328+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 250,
-  "listings_hotels": 197,
+  "listings_total": 251,
+  "listings_hotels": 198,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -75787,6 +75787,336 @@
             "telegram_post": "abhazbooking/5455",
             "telegram_url": "https://t.me/abhazbooking/5455",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5456,
+      "source_topic_id": null,
+      "slug": "plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456",
+      "title": "\"ПЛЯЖНЫЙ КОМПЛЕКС 151\" на берегу 🔥БРОНИРОВАНИЕ 2027🔥",
+      "summary": "Лдзаа. 0 минут до пляжа (песок, мелкая галька), размещение до 5 человек.",
+      "excerpt": "Всего шесть стильных двухуровневых домиков. Размещение до 5 человек",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, ул. Приморская, 18А",
+      "distance_text": "0 минут до пляжа (песок, мелкая галька)",
+      "beach_text": "0 минут до пляжа (песок, мелкая галька)",
+      "capacity_text": "размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/",
+      "telegram_url": "https://t.me/abhazbooking/5456",
+      "published_at": "2026-11-09",
+      "has_video": true,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 0 минут до пляжа (песок, мелкая галька), размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Всего шесть стильных двухуровневых домиков. Размещение до 5 человек.",
+              "В домиках: двуспальная или две односпальные кровати и две односпальные кровати на втором ярусе, комод, шкаф, прикроватные тумбочки. Доп место для 5 человека - раскладная кровать. Сан узел с тропическим душем. Теплый пол.",
+              "Оснащение: кондиционер, телевизор, Wi‑Fi, холодильник, чайник, фен, сейф.",
+              "Веранда у каждого домика со столиком и стульями и с видом на море."
+            ]
+          },
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Всего два однокомнатных номера. Размещение до 3 человек.",
+              "В номерах: двуспальная кровать, комод, шкаф, прикроватная тумбочка. Сан узел с душем. Доп место для 3 человека - раскладная кровать.",
+              "Один двухкомнатный номер. Размещение до 5 человек.",
+              "В номере: двуспальная и двухъярусная кровати, прикроватные тумбочки, комод, шкаф, пуфики. В другой комнате односпальная кровать, прикроватная тумбочка. Сан узел с тропическим душем. Теплый пол.",
+              "Оснащение во всех номерах: кондиционер, телевизор, Wi‑Fi, мини-холодильник, чайник, фен."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Комплекс на пляже с рестораном Гастробар 151с панорамным видом на море.",
+              "В меню сочетаются кавказская, европейская и итальянская кухни. Особенно популярны блюда на мангале и пицца из дровяной печи, а также авторские коктейли.",
+              "Зона отдыха.",
+              "За доп плату есть площадка для волейбола, САП-станция, массаж, кальян, бунгало, зонты и лежаки.",
+              "Для гостей домиков и номеров — бесплатный зонт и 2 лежака около домика/номера.",
+              "Парковка во дворе на 10 автомобилей.",
+              "Есть генератор.",
+              "Гастробар 151 работает до 30 сентября."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Рядом остановка, продуктовый магазин, кафе, столовая, экскурсионные точки, сувенирные, большая детская площадка."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "heading",
+            "text": "Домик"
+          },
+          {
+            "kind": "note",
+            "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - май, июнь до 10го"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - июнь с 10го"
+          },
+          {
+            "kind": "price",
+            "text": "15000₽ - июль до 20го"
+          },
+          {
+            "kind": "price",
+            "text": "17000₽ - с 20 июля, август, сентябрь до 15го"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - с 15го сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Однокомнатный номер"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - май, июнь до 10го"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - июнь с 10го"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - июль, август, сентябрь до 15го"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - с 15го сентября"
+          },
+          {
+            "kind": "price",
+            "text": "Двухкомнатный номер"
+          },
+          {
+            "kind": "note",
+            "text": "(за пятиместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - май, июнь до 10го"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - июнь с 10го"
+          },
+          {
+            "kind": "price",
+            "text": "15000₽ - июль, август, сентябрь до 15го"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - с 15го сентября"
+          },
+          {
+            "kind": "note",
+            "text": "Доп. место — 1000₽."
+          },
+          {
+            "kind": "price",
+            "text": "Бронирование от трёх суток."
+          },
+          {
+            "kind": "price",
+            "text": "При бронировании от 14 суток - скидка 7% (в период май, июнь, июль до 20го, сентябрь)"
+          },
+          {
+            "kind": "price",
+            "text": "Малое пляжное бунгало"
+          },
+          {
+            "kind": "price",
+            "text": "Май - включено в стоимость проживания"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - июль, август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Большое пляжное бунгало"
+          },
+          {
+            "kind": "price",
+            "text": "Май - включено в стоимость проживания"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - июнь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - июль, август, сентябрь"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1228,
+      "media": [
+        {
+          "id": 1228001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456.jpg",
+          "details": {}
+        },
+        {
+          "id": 1228002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1228003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1228004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1228005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1228006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1228007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1228008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1228009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1228010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1228011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5465",
+            "telegram_url": "https://t.me/abhazbooking/5465",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/video-01-poster.jpg"
           }
         }
       ]
