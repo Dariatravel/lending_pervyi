@@ -1699,14 +1699,6 @@
       "cityKey": "sukhum"
     },
     {
-      "title": "\"ЛАТТЕ\" КВАРТИРА 1К",
-      "address": "Сухум, ул. Ладария, 20",
-      "lat": 43.00017715549584,
-      "lon": 41.04031498643788,
-      "url": "/kvartira/latte-kvartira-1k-1707/",
-      "cityKey": "sukhum"
-    },
-    {
       "title": "\"ЛЕТНЯЯ\" КВАРТИРА 3К",
       "address": "Сухум, Кодорское шоссе, 22",
       "lat": 42.981391,
@@ -2008,6 +2000,6 @@
     "skipped_without_coords": 233,
     "shared_coordinate_groups": 35,
     "deduped_redirect_points": 19,
-    "points_total": 249
+    "points_total": 248
   }
 }
