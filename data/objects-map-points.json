@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-08T15:44:21.413212+00:00",
+  "generated_at": "2026-11-10T04:26:00.600542+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1011,6 +1011,14 @@
       "cityKey": "ldzaa"
     },
     {
+      "title": "\"ПЛЯЖНЫЙ КОМПЛЕКС 151\" на берегу 🔥БРОНИРОВАНИЕ 2027🔥",
+      "address": "Лдзаа, ул. Приморская, 18А",
+      "lat": 43.17415114030419,
+      "lon": 40.392794571235115,
+      "url": "/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/",
+      "cityKey": "ldzaa"
+    },
+    {
       "title": "\"ПШАДА\" отель с питанием у соснового пляжа",
       "address": "Лдзаа, улица Политрука Нозадзе, 21Б",
       "lat": 43.171855991314416,
@@ -1990,16 +1998,16 @@
   "stats": {
     "placemarks_total": 490,
     "placemarks_unique": 245,
-    "pages_total": 500,
-    "pages_on_disk": 563,
+    "pages_total": 501,
+    "pages_on_disk": 564,
     "pages_excluded": 63,
-    "from_constructor": 267,
+    "from_constructor": 268,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 233,
     "skipped_without_coords": 233,
     "shared_coordinate_groups": 35,
     "deduped_redirect_points": 19,
-    "points_total": 248
+    "points_total": 249
   }
 }
