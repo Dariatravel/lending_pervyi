@@ -31,9 +31,9 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: output/price-tabs-compare-state.txt
-          key: price-tabs-compare-state-${{ github.run_id }}
+          key: price-tabs-compare-state-${{ vars.TG_PRICE_REPORT_CHAT_ID }}-${{ github.run_id }}
           restore-keys: |
-            price-tabs-compare-state-
+            price-tabs-compare-state-${{ vars.TG_PRICE_REPORT_CHAT_ID }}-
 
       - name: Run price tabs compare
         env:
@@ -63,13 +63,6 @@ jobs:
           fi
           printf '%s' "$HASH" > "$STATE"
 
-      - name: Save state
-        if: always()
-        uses: actions/cache/save@v4
-        with:
-          path: output/price-tabs-compare-state.txt
-          key: price-tabs-compare-state-${{ github.run_id }}
-
       - name: Upload report
         if: always()
         uses: actions/upload-artifact@v4
@@ -79,15 +72,40 @@ jobs:
           path: output/price_tabs_compare_report.txt
           if-no-files-found: ignore
 
+      # Только эта сверка идёт в «Абхазберег · Реклама».
+      # Общий secrets.TG_REPORT_CHAT_ID остаётся у остальных отчётов.
+      - name: Verify price report destination
+        id: telegram_destination
+        if: always()
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_REPORT_CHAT_ID: ${{ vars.TG_PRICE_REPORT_CHAT_ID }}
+        run: |
+          if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
+            echo "TG_BOT_TOKEN/TG_PRICE_REPORT_CHAT_ID не заданы. Запасного получателя нет."
+            exit 1
+          fi
+          ME=$(curl --fail-with-body -sS --max-time 30 "https://api.telegram.org/bot${TG_BOT_TOKEN}/getMe")
+          printf '%s' "$ME" | jq -e '.ok == true and .result.username == "abhazbereg_checkbot"' >/dev/null
+          BOT_ID=$(printf '%s' "$ME" | jq -er '.result.id')
+          CHAT=$(curl --fail-with-body -sS --max-time 30 "https://api.telegram.org/bot${TG_BOT_TOKEN}/getChat" \
+            --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}")
+          printf '%s' "$CHAT" | jq -e --argjson chat "$TG_REPORT_CHAT_ID" \
+            '.ok == true and .result.id == $chat and (.result.type == "group" or .result.type == "supergroup") and (.result.title | test("^Абхазберег[[:space:]·—–-]+Реклама$"; "i"))' >/dev/null
+          MEMBER=$(curl --fail-with-body -sS --max-time 30 "https://api.telegram.org/bot${TG_BOT_TOKEN}/getChatMember" \
+            --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" --data-urlencode "user_id=${BOT_ID}")
+          printf '%s' "$MEMBER" | jq -e '.ok == true and (.result.status == "administrator" or .result.status == "creator")' >/dev/null
+          echo "Проверены @abhazbereg_checkbot и рекламная группа ${TG_REPORT_CHAT_ID}."
+
       - name: Notify Telegram
         if: steps.detect.outputs.changed == 'true'
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
+          TG_REPORT_CHAT_ID: ${{ vars.TG_PRICE_REPORT_CHAT_ID }}
         run: |
           if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
-            echo "TG_BOT_TOKEN/TG_REPORT_CHAT_ID не заданы — уведомление пропущено."
-            exit 0
+            echo "TG_BOT_TOKEN/TG_PRICE_REPORT_CHAT_ID не заданы."
+            exit 1
           fi
           REPORT="output/price_tabs_compare_report.txt"
           SUMMARY=$(sed -n '1,12p' "$REPORT")
@@ -99,18 +117,26 @@ jobs:
             MSG=$(printf '📊 Сверка цен (ручная vs авто): результат изменился\n\n%s\n\nРасхождений цен нет ✅\n%s' "$SUMMARY" "$RUN_URL")
           fi
           printf '%s' "$MSG" | head -c 3900 > msg.txt
-          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+          RESULT=$(curl --fail-with-body -sS --max-time 30 "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
             --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
-            --data-urlencode "text@msg.txt" >/dev/null
-          echo "Уведомление отправлено."
+            --data-urlencode "text@msg.txt")
+          printf '%s' "$RESULT" | jq -e --argjson chat "$TG_REPORT_CHAT_ID" '.ok == true and .result.chat.id == $chat' >/dev/null
+          printf '%s' "$RESULT" | jq -c '{sent: .ok, chat_id: .result.chat.id, message_id: .result.message_id}'
+
+      # Сохраняем отпечаток только после успешной доставки (или если изменений нет).
+      - name: Save state
+        uses: actions/cache/save@v4
+        with:
+          path: output/price-tabs-compare-state.txt
+          key: price-tabs-compare-state-${{ vars.TG_PRICE_REPORT_CHAT_ID }}-${{ github.run_id }}
 
       # Не чаще раза в 6 часов, чтобы при поломке не заваливать чат каждый час
       # (тот же приём, что в watch-telegram.yml).
       - name: Notify Telegram on failure
-        if: failure()
+        if: failure() && steps.telegram_destination.outcome == 'success'
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
+          TG_REPORT_CHAT_ID: ${{ vars.TG_PRICE_REPORT_CHAT_ID }}
         run: |
           if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
             exit 0
@@ -121,9 +147,10 @@ jobs:
             exit 0
           fi
           RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+          RESULT=$(curl --fail-with-body -sS --max-time 30 "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
             --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
-            --data-urlencode "text=⚠️ Сверка цен (ручная vs авто) упала. Подробности: ${RUN_URL}" >/dev/null
+            --data-urlencode "text=⚠️ Сверка цен (ручная vs авто) упала. Подробности: ${RUN_URL}")
+          printf '%s' "$RESULT" | jq -e --argjson chat "$TG_REPORT_CHAT_ID" '.ok == true and .result.chat.id == $chat' >/dev/null
 
       # Та же тревога — дежурному агенту на Mac mini (см. .github/actions/incident).
       # Повторы дежурный отсеивает сам по ключу, поэтому без оглядки на часы.
