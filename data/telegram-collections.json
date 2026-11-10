@@ -44,8 +44,7 @@
           "/kvartira/prostornaya-kvartira-5k-1695/",
           "/kvartira/rimma-dve-1k-kvartriry-suhum-1118/",
           "/kvartira/chernomorskaya-1-kvartira-2k-1744/",
-          "/kvartira/ladariya-kvartira-1k-1542/",
-          "/kvartira/latte-kvartira-1k-1707/"
+          "/kvartira/ladariya-kvartira-1k-1542/"
         ]
       },
       {
@@ -136,7 +135,8 @@
     ],
     "skipped": [
       "t.me/abhazbooking/5346: нет на сайте — синхронизирую",
-      "t.me/abhkvartira/1104: объект снят с сайта"
+      "t.me/abhkvartira/1104: объект снят с сайта",
+      "t.me/abhkvartira/1707: объект снят с сайта"
     ]
   },
   "novyy-god-2027": {

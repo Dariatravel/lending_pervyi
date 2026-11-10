@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T04:26:00.600542+00:00",
+  "generated_at": "2026-11-10T20:43:38.542537+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1859,6 +1859,14 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"СТОЛИЦА\" отель с бассейном и завтраками",
+      "address": "Сухум, ул. Калмыкова, 22",
+      "lat": 42.99993387790385,
+      "lon": 41.0095754515538,
+      "url": "/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"СУХУМ\" ДОМ ПОД КЛЮЧ ЦЕЛЫЙ ПОЛНОЦЕННЫЙ ДОМ ДЛЯ ТЕХ, КТО ХОЧЕТ ТИШИНЫ И ОТСУТСТВИЯ СОСЕДЕЙ.",
       "address": "Сухум, ул. Пхазария 4",
       "lat": 42.97004560406641,
@@ -1991,8 +1999,8 @@
     "placemarks_total": 490,
     "placemarks_unique": 245,
     "pages_total": 501,
-    "pages_on_disk": 564,
-    "pages_excluded": 63,
+    "pages_on_disk": 565,
+    "pages_excluded": 64,
     "from_constructor": 268,
     "from_page_coords": 0,
     "from_manual": 0,
@@ -2000,6 +2008,6 @@
     "skipped_without_coords": 233,
     "shared_coordinate_groups": 35,
     "deduped_redirect_points": 19,
-    "points_total": 248
+    "points_total": 249
   }
 }
