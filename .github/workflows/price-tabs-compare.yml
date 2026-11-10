@@ -73,7 +73,7 @@ jobs:
           if-no-files-found: ignore
 
       # Только эта сверка идёт в «Абхазберег · Реклама».
-      # Общий secrets.TG_REPORT_CHAT_ID остаётся у остальных отчётов.
+      # Общий secrets.TG_REPORT_CHAT_ID остаётся у технических тревог и остальных отчётов.
       - name: Verify price report destination
         id: telegram_destination
         if: always()
@@ -133,10 +133,10 @@ jobs:
       # Не чаще раза в 6 часов, чтобы при поломке не заваливать чат каждый час
       # (тот же приём, что в watch-telegram.yml).
       - name: Notify Telegram on failure
-        if: failure() && steps.telegram_destination.outcome == 'success'
+        if: failure()
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_REPORT_CHAT_ID: ${{ vars.TG_PRICE_REPORT_CHAT_ID }}
+          TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
         run: |
           if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
             exit 0
