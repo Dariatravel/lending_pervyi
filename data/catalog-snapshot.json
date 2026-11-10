@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-09T22:49:56.117328+00:00",
+  "generated_at": "2026-11-10T13:09:09.298637+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 251,
-  "listings_hotels": 198,
+  "listings_total": 252,
+  "listings_hotels": 199,
   "listings_kvartira": 53,
   "listings": [
     {
@@ -76117,6 +76117,352 @@
             "telegram_post": "abhazbooking/5465",
             "telegram_url": "https://t.me/abhazbooking/5465",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5466,
+      "source_topic_id": null,
+      "slug": "stolitsa-otel-s-basseynom-i-zavtrakami-5466",
+      "title": "\"СТОЛИЦА\" отель с бассейном и завтраками",
+      "summary": "Сухум. 7 минут до пляжа, размещение до 4 человек.",
+      "excerpt": "Небольшой отель на восемь номеров, расположенных в четырехэтажном здании",
+      "city": "Сухум",
+      "location_text": "Сухум, ул. Калмыкова, 22",
+      "distance_text": "7 минут до пляжа",
+      "beach_text": "7 минут до пляжа",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/",
+      "telegram_url": "https://t.me/abhazbooking/5466",
+      "published_at": "2026-11-10",
+      "has_video": true,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/stolitsa-otel-s-basseynom-i-zavtrakami-5466.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Сухум. 7 минут до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Небольшой отель на восемь номеров, расположенных в четырехэтажном здании.",
+              "Четыре трехместных номера площадью 24 кв. м. Двуспальная кровать с ортопедическим матрасом и раскладное кресло, прикроватные тумбочки, шкаф, стол. Сан узел с тропическим душем. Размещение до 3 человек.",
+              "Два номера Делюкс площадью 38 кв. м. Двуспальная кровать с ортопедическим матрасом и раскладной диван, прикроватные тумбочки, шкаф, стол. Сан узел с тропическим душем. Размещение до 4 человек.",
+              "Один Семейный номер площадью 50 кв. м. Двуспальная кровать с ортопедическим матрасом и раскладной диван, прикроватные тумбочки, шкаф, стол. Сан узел с ванной. Размещение до 4 человек.",
+              "Один номер Люкс площадью 52 кв. м. Двуспальная кровать с ортопедическим матрасом и диван, прикроватные тумбочки, шкаф, стол. Сан узел с ванной. Размещение до 4 человек.",
+              "Во всех номерах есть балконы.",
+              "Оснащение: Wi-Fi, кондиционер, телевизор, мини-холодильник, чайник."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Подогреваемый бассейн 10 х 5 глубиной 160 см с отдельной зоной для детей и с шезлонгами.",
+              "Зона отдыха и мангальная зона.",
+              "Завтраки включены в стоимость проживания.",
+              "Есть парковка."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До центрального галечного пляжа и набережной 7 минут пешком.",
+              "Рядом центральный рынок, магазины, кафе, аптеки, остановка общественного транспорта.",
+              "В пешей доступности Парк Славы, Сухумская колоннада, Ботанический сад, бульвар улицы Инал-Ипа и драматический театр."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Ноябрь, декабрь до 28го"
+          },
+          {
+            "kind": "price",
+            "text": "Январь с 16го, февраль, март, апрель, май"
+          },
+          {
+            "kind": "price",
+            "text": "Трёхместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "6500₽ - за 1–2 человек"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - за 3 человек"
+          },
+          {
+            "kind": "price",
+            "text": "Делюкс"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - за 1–2 человек"
+          },
+          {
+            "kind": "price",
+            "text": "8400₽ - за 3 человек"
+          },
+          {
+            "kind": "price",
+            "text": "8800₽ - за 4 человек"
+          },
+          {
+            "kind": "price",
+            "text": "Семейный комфорт"
+          },
+          {
+            "kind": "price",
+            "text": "8200₽ - за 1–2 человек"
+          },
+          {
+            "kind": "price",
+            "text": "8200₽ - за 3 человек"
+          },
+          {
+            "kind": "price",
+            "text": "8200₽ - за 4 человек"
+          },
+          {
+            "kind": "heading",
+            "text": "Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "8500₽ - за 1–2 человек"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - за 3 человек"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - за 4 человек"
+          },
+          {
+            "kind": "price",
+            "text": "С 29 декабря по 15 января. Новый год 🎄"
+          },
+          {
+            "kind": "price",
+            "text": "Июнь, июль, август, сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "Трёхместный номер"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - за 1–2 человек"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - за 3 человек"
+          },
+          {
+            "kind": "price",
+            "text": "Делюкс"
+          },
+          {
+            "kind": "price",
+            "text": "8400₽ - за 1–2 человек"
+          },
+          {
+            "kind": "price",
+            "text": "8600₽ - за 3 человек"
+          },
+          {
+            "kind": "price",
+            "text": "8800₽ - за 4 человек"
+          },
+          {
+            "kind": "price",
+            "text": "Семейный комфорт"
+          },
+          {
+            "kind": "price",
+            "text": "8600₽ - за 1–2 человек"
+          },
+          {
+            "kind": "price",
+            "text": "8800₽ - за 3 человек"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - за 4 человек"
+          },
+          {
+            "kind": "heading",
+            "text": "Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - за 1–2 человек"
+          },
+          {
+            "kind": "price",
+            "text": "9600₽ - за 3 человек"
+          },
+          {
+            "kind": "price",
+            "text": "10000₽ - за 4 человек"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/index.html",
+        "filters": {
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "breakfast"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "sukhum"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "pool",
+            "heated-pool",
+            "balcony",
+            "tv"
+          ],
+          "stay": []
+        }
+      },
+      "id": 1229,
+      "media": [
+        {
+          "id": 1229001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/stolitsa-otel-s-basseynom-i-zavtrakami-5466.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/stolitsa-otel-s-basseynom-i-zavtrakami-5466.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/stolitsa-otel-s-basseynom-i-zavtrakami-5466.jpg",
+          "details": {}
+        },
+        {
+          "id": 1229002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1229003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1229004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1229005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1229006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1229007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1229008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1229009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1229010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1229011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5475",
+            "telegram_url": "https://t.me/abhazbooking/5475",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/video-01-poster.jpg"
           }
         }
       ]
