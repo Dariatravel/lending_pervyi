@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T08:27:22.820865+00:00",
+  "generated_at": "2026-11-11T17:04:06.408854+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 251,
@@ -75831,7 +75831,7 @@
           {
             "label": "✔️ТЕРРИТОРИЯ:",
             "lines": [
-              "Комплекс на пляже с рестораном Гастробар 151с панорамным видом на море.",
+              "Комплекс на пляже с рестораном Гастробар 151 с панорамным видом на море.",
               "В меню сочетаются кавказская, европейская и итальянская кухни. Особенно популярны блюда на мангале и пицца из дровяной печи, а также авторские коктейли.",
               "Зона отдыха.",
               "За доп плату есть площадка для волейбола, САП-станция, массаж, кальян, бунгало, зонты и лежаки.",
@@ -76104,14 +76104,13 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/video-01.mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/video-01.mp4",
+          "storage_path": "videos/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/video-01-source.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/video-01-source.mp4",
           "details": {
             "telegram_post": "abhazbooking/5465",
-            "telegram_url": "https://t.me/abhazbooking/5465",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/plyazhnyy-kompleks-151-na-beregu-bronirovanie-2027-5456/video-01-poster.jpg"
+            "telegram_url": "https://t.me/abhazbooking/5465"
           }
         }
       ]
