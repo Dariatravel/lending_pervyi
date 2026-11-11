@@ -1870,61 +1870,6 @@ section.site-concept__contacts.section {
   margin-top: clamp(6px, 1vw, 10px);
 }
 
-.blog-toc__lead {
-  margin: 0 0 14px;
-  max-width: 52ch;
-  color: rgba(26, 48, 39, 0.82);
-  font-size: 15px;
-  line-height: 1.55;
-}
-
-.blog-toc__nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.blog-toc__nav a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  padding: 0 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(34, 57, 47, 0.14);
-  background: rgba(255, 255, 255, 0.72);
-  color: #1d4336;
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
-  transition:
-    background 0.18s ease,
-    border-color 0.18s ease,
-    transform 0.18s ease;
-}
-
-.blog-toc__nav a:hover,
-.blog-toc__nav a:focus-visible {
-  border-color: rgba(34, 57, 47, 0.28);
-  background: rgba(255, 255, 255, 0.95);
-  transform: translateY(-1px);
-}
-
-.blog-subanchor {
-  grid-column: 1 / -1;
-  margin: 6px 0 2px;
-  padding: 0;
-  color: #1d4336;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  scroll-margin-top: clamp(72px, 10vw, 96px);
-}
-
-#pravila-i-shtrafy {
-  scroll-margin-top: clamp(72px, 10vw, 96px);
-}
-
 .blog-page .site-concept__hero-card,
 .blog-page .site-concept__section-block {
   padding: clamp(16px, 2.1vw, 26px);
