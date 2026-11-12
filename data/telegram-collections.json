@@ -6,6 +6,7 @@
         "label": "ГАГРА",
         "hrefs": [
           "/hotels/royal-rivera-otel-s-basseynom-i-pitaniem-5296/",
+          "/hotels/boho-zimniy-otdyh-u-morya-s-basseynom-i-saunoy-5446/",
           "/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/",
           "/hotels/rayskiy-bereg-mini-otel-3277/",
           "/hotels/sanrayz-gostevoy-dom-s-zavtrakami-3953/",
@@ -24,6 +25,8 @@
         "hrefs": [
           "/hotels/dzhanat-otel-s-basseynom-i-zavtrakom-5436/",
           "/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/",
+          "/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/",
+          "/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/",
           "/hotels/oazis-villa-4052/",
           "/hotels/oazis-apartamenty-s-kuhney-4061/",
           "/hotels/mayak-gostevoy-dom-3810/",
@@ -135,8 +138,7 @@
     ],
     "skipped": [
       "t.me/abhazbooking/5346: нет на сайте — синхронизирую",
-      "t.me/abhkvartira/1104: объект снят с сайта",
-      "t.me/abhkvartira/1707: объект снят с сайта"
+      "t.me/abhkvartira/1104: объект снят с сайта"
     ]
   },
   "novyy-god-2027": {
@@ -179,7 +181,11 @@
           "/hotels/oazis-apartamenty-s-kuhney-4061/",
           "/kvartira/zarechnyy-etazh-v-dome-pod-klyuch-1669/",
           "/kvartira/mira-dom-suhum-1345/",
-          "/hotels/lazurit-suhum-otel-s-basseynom-i-zavtrakami-5414/"
+          "/hotels/lazurit-suhum-otel-s-basseynom-i-zavtrakami-5414/",
+          "/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/",
+          "/hotels/dzhanat-otel-s-basseynom-i-zavtrakom-5436/",
+          "/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/",
+          "/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/"
         ]
       },
       {

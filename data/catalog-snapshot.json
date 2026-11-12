@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-11T17:04:06.408854+00:00",
+  "generated_at": "2026-11-12T13:31:06.370784+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 251,
-  "listings_hotels": 199,
+  "listings_total": 252,
+  "listings_hotels": 200,
   "listings_kvartira": 52,
   "listings": [
     {
@@ -74820,7 +74820,7 @@
       "page_url": "https://абхазберег.рф/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/",
       "telegram_url": "https://t.me/abhazbooking/5424",
       "published_at": "2026-10-30",
-      "has_video": false,
+      "has_video": true,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/ainlan-otel-s-basseynom-i-saunoy-5424.jpg",
       "is_active": true,
       "details": {
@@ -75159,12 +75159,16 @@
           "id": 1225011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "image/jpeg",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-10.jpg",
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/video-01.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-10.jpg",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/photo-10.jpg",
-          "details": {}
+          "storage_path": "videos/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5433",
+            "telegram_url": "https://t.me/abhazbooking/5433",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/ainlan-otel-s-basseynom-i-saunoy-5424/video-01-poster.jpg"
+          }
         }
       ]
     },
@@ -76457,6 +76461,389 @@
             "telegram_post": "abhazbooking/5475",
             "telegram_url": "https://t.me/abhazbooking/5475",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/stolitsa-otel-s-basseynom-i-zavtrakami-5466/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5477,
+      "source_topic_id": null,
+      "slug": "karakas-spa-otel-s-basseynom-i-pitaniem-5477",
+      "title": "\"КАРАКАС\" СПА отель с бассейном и питанием",
+      "summary": "Сухум. 5 минут до пляжа, размещение до 4 человек.",
+      "excerpt": "Тридцать номеров различных категорий, расположенных в четырехэтажном здании и в двухэтажном отдельном здании на втором этаже",
+      "city": "Сухум",
+      "location_text": "Сухум, ул. Акиртава, 27",
+      "distance_text": "5 минут до пляжа",
+      "beach_text": "5 минут до пляжа",
+      "capacity_text": "Размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/",
+      "telegram_url": "https://t.me/abhazbooking/5477",
+      "published_at": "2026-11-12",
+      "has_video": true,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karakas-spa-otel-s-basseynom-i-pitaniem-5477.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Сухум. 5 минут до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Тридцать номеров различных категорий, расположенных в четырехэтажном здании и в двухэтажном отдельном здании на втором этаже.",
+              "Два номера Эконом площадью 13м². Двухместное размещение (без доп места).",
+              "Двуспальная кровать, столик со стулом, шкаф. Сан узел с душем.",
+              "Оснащение: Wi-Fi, кондиционер, телевизор, мини-холодильник, чайная станция, фен, туалетные принадлежности.",
+              "Двадцать один номер Стандарт.",
+              "Просторный однокомнатный номер. Размещение до 3 человек. (2 основных и 1 доп место - раскладная кровать)",
+              "Две односпальные кровати или двуспальная кровать, прикроватные тумбочки, шкаф, столик. Сан узел с душем.",
+              "Оснащение: Wi-Fi, кондиционер, телевизор, мини-холодильник, чайная станция, фен, туалетные принадлежности, сейф.",
+              "Пять номеров Полулюкс.",
+              "Однокомнатный номер повышенной комфортности с балконом. Размещение до 4 человек (2 основных и 2 доп места).",
+              "Двуспальная кровать, прикроватные тумбочки, столик, шкаф.",
+              "Сан узел с ванной.",
+              "Оснащение: Wi-Fi, кондиционер, телевизор, мини-холодильник, чайная станция, фен, туалетные принадлежности, сейф.",
+              "Два номера Люкс.",
+              "Просторный двухкомнатный номер. Размещение до 4 человек (2 основных и 2 доп места).",
+              "В спальне двуспальная кровать, комод, прикроватные тумбочки, телевизор и сейф. Сан узел с ванной.",
+              "В гостиной диван, два кресла, журнальный столик, холодильник, чайная станция, кондиционер и телевизор. Сан узел.",
+              "Предоставляются полотенца, халаты, тапочки, туалетные принадлежности и фен.",
+              "Все номера отличаются по дизайну."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Кафе работает с июня по октябрь.",
+              "Включены завтраки, либо завтраки и ужины в зависимости от выбранного типа питания.",
+              "Закрытая охраняемая территория.",
+              "Зоны отдыха.",
+              "Тренажерный зал.",
+              "Парковка.",
+              "Есть генератор.",
+              "Крытый бассейн с системой противотока размером 10 х 4 метров, глубиной 150 см.",
+              "В стоимость проживания включено посещение бассейна в течение одного часа в день до 18:00.",
+              "Посещение бассейна после 18:00 и доп время оплачиваются отдельно.",
+              "За доп плату доступны хамам, соляная сауна, фитобочки, косметологические услуги, салон красоты."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До галечного пляжа санатория МВО и набережной 5 минут пешком.",
+              "До песчаного пляжа Мокко одна остановка (3 минуты на маршрутке).",
+              "В шаговой доступности магазины, кафе, столовые, торговые лавки, аптека и остановка общественного транспорта.",
+              "До руин замка Баграта около 10 минут пешком.",
+              "До Эвкалиптового парка около 18 минут пешком."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с животными возможно с доп платой 2000₽.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я НА СВЯЗИ 📲",
+              "в MAX: max.ru/id741113115256_bot",
+              "ВК-чат: vk.cc/cQQnBn",
+              "WhatsApp +7940-900-33-40",
+              "(только сообщение, звонок не пройдёт)"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "Ноябрь, декабрь до 28го, без питания:"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - Эконом"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - Двухкомнатный люкс"
+          },
+          {
+            "kind": "price",
+            "text": "с 29 декабря по 20 января Новый год🎄 с завтраком и ужином:"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - Эконом"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "12500₽ - Двухкомнатный люкс"
+          },
+          {
+            "kind": "price",
+            "text": "С 21 января, февраль, март, апрель, май (кроме праздников), без питания:"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - Эконом"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - Двухкомнатный люкс"
+          },
+          {
+            "kind": "price",
+            "text": "С 1 по 10 мая с завтраком:"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - Эконом"
+          },
+          {
+            "kind": "price",
+            "text": "6500₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "11500₽ - Двухкомнатный люкс"
+          },
+          {
+            "kind": "price",
+            "text": "Июнь, июль, август, сентябрь с завтраком:"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - Эконом"
+          },
+          {
+            "kind": "price",
+            "text": "6500₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "11500₽ - Двухкомнатный люкс"
+          },
+          {
+            "kind": "price",
+            "text": "Июнь, июль, август, сентябрь с завтраком и ужином:"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - Эконом"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "12500₽ - Двухкомнатный люкс"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 5 лет без предоставления отдельного места размещаются бесплатно. Детская кроватка по запросу."
+          },
+          {
+            "kind": "price",
+            "text": "Доп место с завтраком - 1000₽"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место с завтраком и ужином - 1600₽"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/index.html",
+        "filters": {
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "sukhum"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "pool",
+            "balcony",
+            "tv",
+            "two-room-plus"
+          ],
+          "stay": [
+            "pets"
+          ]
+        }
+      },
+      "id": 1230,
+      "media": [
+        {
+          "id": 1230001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karakas-spa-otel-s-basseynom-i-pitaniem-5477.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/karakas-spa-otel-s-basseynom-i-pitaniem-5477.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/karakas-spa-otel-s-basseynom-i-pitaniem-5477.jpg",
+          "details": {}
+        },
+        {
+          "id": 1230002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1230003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1230004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1230005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1230006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1230007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1230008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1230009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1230010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1230011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5486",
+            "telegram_url": "https://t.me/abhazbooking/5486",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/video-01-poster.jpg"
           }
         }
       ]
