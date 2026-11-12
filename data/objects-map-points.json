@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T20:43:38.542537+00:00",
+  "generated_at": "2026-11-12T21:11:44.711177+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1683,6 +1683,14 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"КАРАКАС\" СПА отель с бассейном и питанием",
+      "address": "Сухум, ул. Акиртава, 27",
+      "lat": 42.9979733128328,
+      "lon": 41.043465847885045,
+      "url": "/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"КАШТАК\" домики",
       "address": "Сухум, ул. Абжуйское шоссе, 94",
       "lat": 42.956283,
@@ -1996,18 +2004,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 490,
-    "placemarks_unique": 245,
-    "pages_total": 501,
-    "pages_on_disk": 565,
+    "placemarks_total": 492,
+    "placemarks_unique": 246,
+    "pages_total": 502,
+    "pages_on_disk": 566,
     "pages_excluded": 64,
-    "from_constructor": 268,
+    "from_constructor": 269,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 233,
     "skipped_without_coords": 233,
     "shared_coordinate_groups": 35,
     "deduped_redirect_points": 19,
-    "points_total": 249
+    "points_total": 250
   }
 }
