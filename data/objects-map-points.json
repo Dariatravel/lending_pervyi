@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T21:11:44.711177+00:00",
+  "generated_at": "2026-11-13T23:58:19.541145+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1699,6 +1699,14 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"КОМФОРТ\" отель с бассейном и завтраком",
+      "address": "Сухум, ул. Чачба, 77",
+      "lat": 43.00184686731466,
+      "lon": 41.00657083068798,
+      "url": "/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"ЛАДАРИЯ\" КВАРТИРА 1К",
       "address": "Сухум, ул. Ладария, 20",
       "lat": 43.000061,
@@ -2004,18 +2012,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 492,
-    "placemarks_unique": 246,
-    "pages_total": 502,
-    "pages_on_disk": 566,
+    "placemarks_total": 494,
+    "placemarks_unique": 247,
+    "pages_total": 503,
+    "pages_on_disk": 567,
     "pages_excluded": 64,
-    "from_constructor": 269,
+    "from_constructor": 270,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 233,
     "skipped_without_coords": 233,
     "shared_coordinate_groups": 35,
     "deduped_redirect_points": 19,
-    "points_total": 250
+    "points_total": 251
   }
 }
