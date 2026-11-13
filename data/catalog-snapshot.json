@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-12T13:31:06.370784+00:00",
+  "generated_at": "2026-11-13T18:24:49.603497+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 252,
-  "listings_hotels": 200,
+  "listings_total": 253,
+  "listings_hotels": 201,
   "listings_kvartira": 52,
   "listings": [
     {
@@ -9695,19 +9695,7 @@
         "prices": [
           {
             "kind": "note",
-            "text": "(2026)"
-          },
-          {
-            "kind": "note",
             "text": "(указаны за трёхместное размещение)"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - ноябрь"
-          },
-          {
-            "kind": "price",
-            "text": "Доп место - 1000₽/сутки (ребенок до 12 лет)"
           },
           {
             "kind": "price",
@@ -14006,6 +13994,10 @@
             "text": "(2026)"
           },
           {
+            "kind": "note",
+            "text": "(указаны за двухместное размещение)"
+          },
+          {
             "kind": "price",
             "text": "1500₽ - ноябрь, декабрь до 25"
           },
@@ -14014,12 +14006,16 @@
             "text": "2000₽ - с 25 декабря по 15 января 🌲"
           },
           {
+            "kind": "price",
+            "text": "Доп место - 500₽/сутки"
+          },
+          {
             "kind": "note",
             "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
           },
           {
             "kind": "price",
-            "text": "1500₽ - с января по апрель (2000₽ если более 2х человек)"
+            "text": "1500₽ - с января по апрель (за двухместное размещение, доп место - 500₽/сутки )"
           },
           {
             "kind": "price",
@@ -17939,6 +17935,22 @@
           }
         ],
         "prices": [
+          {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽ - ноябрь, декабрь"
+          },
+          {
+            "kind": "note",
+            "text": "(БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽ - с января по апрель"
+          },
           {
             "kind": "price",
             "text": "3000₽ - май"
@@ -36227,6 +36239,10 @@
             "text": "2500₽/сутки - с ноября по май"
           },
           {
+            "kind": "price",
+            "text": "В новогодние праздники квартира не сдаётся."
+          },
+          {
             "kind": "note",
             "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
           },
@@ -40883,12 +40899,40 @@
         ],
         "prices": [
           {
-            "kind": "price",
-            "text": "март, апрель"
+            "kind": "note",
+            "text": "(2026)"
           },
           {
             "kind": "price",
-            "text": "1500₽/сутки - двухместное размещение"
+            "text": "ноябрь, декабрь"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽/сутки - двухместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "2500₽/сутки - трех/ четырехместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽/сутки - пятиместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽/сутки - двухкомнатный номер"
+          },
+          {
+            "kind": "note",
+            "text": "(БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "price",
+            "text": "с января по май"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽/сутки - двухместное размещение"
           },
           {
             "kind": "price",
@@ -40896,31 +40940,11 @@
           },
           {
             "kind": "price",
-            "text": "2500₽ четырех/пятиместное размещение"
+            "text": "2500₽/сутки - четырех/ пятиместное размещение"
           },
           {
             "kind": "price",
             "text": "3000₽/сутки - двухкомнатный номер"
-          },
-          {
-            "kind": "price",
-            "text": "май"
-          },
-          {
-            "kind": "price",
-            "text": "1000₽/сутки - двухместное размещение"
-          },
-          {
-            "kind": "price",
-            "text": "1500₽/сутки - трехместное размещение"
-          },
-          {
-            "kind": "price",
-            "text": "2000₽/сутки - четырех/ пятиместное размещение"
-          },
-          {
-            "kind": "price",
-            "text": "2000₽/сутки - двухкомнатный номер"
           },
           {
             "kind": "price",
@@ -40976,11 +41000,11 @@
           },
           {
             "kind": "price",
-            "text": "4000₽/сутки - трехместное размещение"
+            "text": "4000₽/сутки - трех/четырёхместное размещение"
           },
           {
             "kind": "price",
-            "text": "5000₽/сутки - четырех/ пятиместное размещение"
+            "text": "5000₽/сутки - пятиместное размещение"
           },
           {
             "kind": "price",
@@ -40997,26 +41021,6 @@
           {
             "kind": "price",
             "text": "2500₽/сутки - трех/ четырех/ пятиместное размещение"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽/сутки - двухкомнатный номер"
-          },
-          {
-            "kind": "price",
-            "text": "с ноября по апрель 2027"
-          },
-          {
-            "kind": "price",
-            "text": "2000₽/сутки - двухместное размещение"
-          },
-          {
-            "kind": "price",
-            "text": "2500₽/сутки - трех/ четырехместное размещение"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽/сутки - пятиместное размещение"
           },
           {
             "kind": "price",
@@ -63962,7 +63966,7 @@
             "lines": [
               "Отдельный домик на территории. Размещение до 3 человек.",
               "Двуспальная кровать. Доп место - кресло-кровать. Сан узел с душем.",
-              "Веранда со столиком и стульями."
+              "Веранда со столиком и стульями. С апреля 2027 так же будет своя кухня."
             ]
           },
           {
@@ -67946,13 +67950,13 @@
       "source_topic_id": null,
       "slug": "terra-rivera-eko-kompleks-5166",
       "title": "\"ТЕРРА РИВЬЕРА\" эко-комплекс",
-      "summary": "с. Дранда. 0 минут до пляжа, размещение до 4 человек.",
+      "summary": "с. Дранда. 0 минут до пляжа, размещение до 5 человек.",
       "excerpt": "Десять современных домиков площадью 28 м²",
       "city": "с. Дранда",
       "location_text": "с. Дранда, ул. Морская, 42.886073, 41.096884",
       "distance_text": "0 минут до пляжа",
       "beach_text": "0 минут до пляжа",
-      "capacity_text": "размещение до 4 человек",
+      "capacity_text": "размещение до 5 человек",
       "page_url": "https://абхазберег.рф/hotels/terra-rivera-eko-kompleks-5166/",
       "telegram_url": "https://t.me/abhazbooking/5166",
       "published_at": "2026-08-07",
@@ -67960,7 +67964,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/terra-rivera-eko-kompleks-5166.jpg",
       "is_active": true,
       "details": {
-        "lead": "с. Дранда. 0 минут до пляжа, размещение до 4 человек.",
+        "lead": "с. Дранда. 0 минут до пляжа, размещение до 5 человек.",
         "sections": [
           {
             "label": "✔️ДОМИКИ:",
@@ -68003,6 +68007,10 @@
           {
             "kind": "price",
             "text": "6000₽ - с 21 декабря по 10 января🌲"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место без доплаты (раскладная кровать)"
           },
           {
             "kind": "note",
@@ -68051,6 +68059,10 @@
           {
             "kind": "price",
             "text": "7000₽ - май с 1 по 10"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место без доплаты (раскладная кровать)"
           },
           {
             "kind": "price",
@@ -76845,6 +76857,300 @@
             "telegram_url": "https://t.me/abhazbooking/5486",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/video-01-poster.jpg"
           }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5487,
+      "source_topic_id": null,
+      "slug": "komfort-otel-s-basseynom-i-zavtrakom-5487",
+      "title": "\"КОМФОРТ\" отель с бассейном и завтраком",
+      "summary": "Сухум. 9 минут до пляжа, размещение до 4 человек.",
+      "excerpt": "В отеле 30 номеров, расположенных на четырех этажах с лифтом",
+      "city": "Сухум",
+      "location_text": "Сухум, ул. Чачба, 77",
+      "distance_text": "9 минут до пляжа",
+      "beach_text": "9 минут до пляжа",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/",
+      "telegram_url": "https://t.me/abhazbooking/5487",
+      "published_at": "2026-11-13",
+      "has_video": false,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/komfort-otel-s-basseynom-i-zavtrakom-5487.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Сухум. 9 минут до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "В отеле 30 номеров, расположенных на четырех этажах с лифтом.",
+              "Номер стандарт площадью 15 кв м.",
+              "Двуспальная кровать, прикроватные тумбочки, шкаф, стол. Санузел с душем. Размещение до 2 человек.",
+              "Оснащение: кондиционер, телевизор, Wi-Fi, мини-холодильник, сейф, чайник по запросу и фен.",
+              "Номер Улучшенный стандарт площадью 22 кв м. Двуспальная или две односпальные кровати, прикроватные тумбочки, шкаф, стол. Доп место - раскладная кровать. Санузел с душем. Размещение до 3 человек (2 основных + 1 доп).",
+              "Оснащение: кондиционер, телевизор, Wi-Fi, мини-холодильник, сейф, чайник по запросу и фен.",
+              "Номер Трехместный семейный площадью 30 кв м.",
+              "Двуспальная кровать, кресло-кровать, прикроватные тумбочки, шкаф, стол. Санузел с душем. Размещение до 3 человек (2 основных + 1 доп).",
+              "Оснащение: кондиционер, телевизор, Wi-Fi, мини-холодильник, сейф, чайник и фен.",
+              "Номер Люкс площадью 35 кв м.",
+              "Двуспальная кровать, раскладной диван, прикроватные тумбочки, шкаф, стол. Санузел с душем. Размещение до 4 человек (2 основных + 2 доп).",
+              "Оснащение: кондиционер, телевизор, Wi-Fi, мини-холодильник, сейф, чайник и фен.",
+              "Для людей с ограниченными возможностями есть специальные номера в категориях Трехместный семейный и Люкс."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "На всей территории создана доступная среда для людей с ограниченными возможностями.",
+              "Подогреваемый бассейн, оборудован подъемником, 12 х 10 метров, глубиной 170 см с шезлонгами.",
+              "Зона отдыха с креслами и диванчиками.",
+              "Тренажерный зал.",
+              "Мангальная зона.",
+              "Работают кафе-апацха и бар по меню.",
+              "Завтраки включены в стоимость проживания.",
+              "Парковка во дворе.",
+              "Есть генератор.",
+              "За доп плату можно организовать трансфер и экскурсии.",
+              "Для людей с ограниченными возможностями предусмотрена машина с пандусом."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "До городского галечного пляжа и набережной 9 минут пешком. В шаговой доступности центральный рынок, продуктовые магазины, кафе, аптеки и остановка общественного транспорта.",
+              "В пешей доступности Парк Славы, Сухумская колоннада, Ботанический сад, бульвар улицы Инал-Ипа и драматический театр."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с животными возможно по согласованию с доп платой 500₽/сутки, собаки свыше 7 кг - 700₽/сутки.",
+              "При заезде вносится возвратный депозит наличными - 5000₽, возвращается при сохранности имущества отеля.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Я НА СВЯЗИ 📲",
+              "в MAX: max.ru/id741113115256_bot",
+              "ВК-чат: vk.cc/cQQnBn",
+              "WhatsApp +7940-900-33-40",
+              "(только сообщение, звонок не пройдёт)"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(указаны за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "Ноябрь, декабрь до 24го"
+          },
+          {
+            "kind": "price",
+            "text": "4700₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "5400₽ - Улучшенный стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "6300₽ - Трехместный семейный"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "С 25 декабря по 10 января, Новый год🎄"
+          },
+          {
+            "kind": "price",
+            "text": "7700₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "8500₽ - Улучшенный стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "9900₽ - Трехместный семейный"
+          },
+          {
+            "kind": "price",
+            "text": "11300₽ - Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место с завтраком - 1500₽."
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 5 лет без отдельного места и питания размещаются бесплатно."
+          },
+          {
+            "kind": "note",
+            "text": "Дополнительный завтрак - 700₽."
+          },
+          {
+            "kind": "price",
+            "text": "За доп плату есть сауна - 3500₽/час, свыше 4 человек доп плата 500₽."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/index.html",
+        "filters": {
+          "distance": [
+            "up-to-10"
+          ],
+          "food": [
+            "no-food"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "sukhum"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "pool",
+            "heated-pool",
+            "tv"
+          ],
+          "stay": [
+            "pets"
+          ]
+        }
+      },
+      "id": 1231,
+      "media": [
+        {
+          "id": 1231001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/komfort-otel-s-basseynom-i-zavtrakom-5487.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/komfort-otel-s-basseynom-i-zavtrakom-5487.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/komfort-otel-s-basseynom-i-zavtrakom-5487.jpg",
+          "details": {}
+        },
+        {
+          "id": 1231002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1231003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1231004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1231005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1231006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1231007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1231008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1231009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1231010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1231011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-10.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-10.jpg",
+          "details": {}
         }
       ]
     }
