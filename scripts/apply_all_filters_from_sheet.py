@@ -211,28 +211,83 @@ def infer_distance(row: list[str]) -> list[str]:
     return dedupe(values)
 
 
-def infer_food(row: list[str]) -> list[str]:
-    text = get_cell(row, 'food_filter').lower()
-    values: list[str] = []
+# Питание из AV разбирается по частям фразы (между запятыми, точками, скобками):
+# отрицание действует только внутри своей части. «Завтраки, обед не
+# предусмотрен» — завтраки, а не «без питания» + «полный пансион» (ревью
+# 21.10.2026). Часть-отрицание без названия блюда («нет», «отсутствует», «без
+# питания», «питание не предусмотрено») — «без питания»; с названием («обед не
+# предусмотрен», «кафе — нет») — только это блюдо не считается.
+FOOD_PARTS = re.compile(r'[,;.()\n]+')
+FOOD_NEG = re.compile(r'не\s*предусм|отсутств|(?<![а-я])нет(?![а-я])')
+FOOD_ITEMS = {
+    'breakfast': re.compile(r'завтрак'),
+    'lunch': re.compile(r'обед'),
+    'dinner': re.compile(r'ужин'),
+    'three': re.compile(r'тр[её]храз'),
+    'half': re.compile(r'полупансион'),
+    'cafe': re.compile(r'кафе|столов'),
+    'food': re.compile(r'питан'),
+}
+# «без X» — отрицание только самого X («завтрак без доплаты» — завтрак есть).
+FOOD_WITHOUT = re.compile(r'(?<![а-я])без\s+(\w+)')
+# Готовят сами — «без питания», только если других кодов питания нет
+# («завтраки, есть кухня» → breakfast).
+NO_FOOD_WEAK = re.compile(r'самостоят|кухн')
+# Ячейка целиком — отрицание («нет», «Нет.», прочерк, 0) → «без питания».
+NO_FOOD_WORD = re.compile(r'(нет|no|0|-|–|—)[.,!]?')
+# Ячейка целиком — «неизвестно» → не указано.
+UNKNOWN_WORD = re.compile(r'(n/?a|\?+|не\s*знаю|уточнить)')
 
-    if not text:
+
+def _food_part(part: str) -> tuple[set[str], set[str]]:
+    """Часть фразы → (что есть, что отрицается). Отрицание без блюда — {'food'}."""
+    mentioned = {key for key, rx in FOOD_ITEMS.items() if rx.search(part)}
+    denied: set[str] = set()
+    for word in FOOD_WITHOUT.findall(part):
+        denied |= {key for key, rx in FOOD_ITEMS.items() if rx.match(word)}
+    if FOOD_NEG.search(part):
+        denied |= mentioned or {'food'}
+    return mentioned - denied, denied
+
+
+def infer_food(row: list[str]) -> list[str]:
+    """Питание из AV. Пустая, неизвестная или неразобранная ячейка — [] («не указано»).
+
+    «Без питания» (no-food) — только когда это написано явно: «без питания»,
+    «питания нет», «не предусмотрено», «своя кухня», прочерк или «нет». Раньше
+    пустая ячейка тоже давала no-food, и на сайте «Без питания» значилось у
+    объектов, про питание которых в таблице ничего нет (21.10.2026).
+    """
+    text = get_cell(row, 'food_filter').lower().replace('ё', 'е').strip()
+
+    if not text or UNKNOWN_WORD.fullmatch(text):
+        return []
+    if NO_FOOD_WORD.fullmatch(text):
         return ['no-food']
 
-    if 'без питан' in text:
+    has: set[str] = set()
+    denied: set[str] = set()
+    for part in FOOD_PARTS.split(text):
+        part_has, part_denied = _food_part(part)
+        has |= part_has
+        denied |= part_denied
+    has -= denied
+
+    values: list[str] = []
+    if 'food' in denied:
         values.append('no-food')
-    if 'полупансион' in text:
+    if 'half' in has:
         values.append('half-board')
-    if 'завтрак' in text and ('обед' in text or 'ужин' in text or 'трехраз' in text or 'трёхраз' in text):
+    if 'three' in has or ('breakfast' in has and ('lunch' in has or 'dinner' in has)):
         values.append('full-board')
-    if 'завтрак' in text and 'full-board' not in values:
+    elif 'breakfast' in has:
         values.append('breakfast')
-    if 'кафе' in text or 'столов' in text:
+    if 'cafe' in has:
         values.append('cafe')
-
-    # Если текст есть, но не разобран — считаем как без питания
-    if not values:
+    if not values and NO_FOOD_WEAK.search(text):
         values.append('no-food')
 
+    # Текст есть, но не разобран — не угадываем; такие строки видны в отчёте.
     return dedupe(values)
 
 
@@ -318,7 +373,10 @@ def infer_beach(row: list[str]) -> list[str]:
     if has_yes(af):
         values.append('sand-sukhum')
 
-    if not any([has_yes(ad), has_yes(ae), has_yes(af)]):
+    # Отдельного столбца «галечный» в таблице нет. Галечный — только когда все
+    # три столбца пляжа заполнены и все три — отрицание: песка и сосен нет.
+    # Пустые столбцы — «не указано» ([]), а не «галечный» (21.10.2026).
+    if all(has_value(v) and not has_yes(v) for v in (ad, ae, af)):
         values.append('pebble')
 
     return dedupe(values)
@@ -456,9 +514,21 @@ def main() -> None:
         action='store_true',
         help='Писать только в data/catalog-snapshot.json (без Supabase REST).',
     )
+    parser.add_argument(
+        '--dry-run',
+        action='store_true',
+        help='Сухой прогон: ничего не пишет (ни snapshot, ни Supabase, ни файл отчёта), печатает, что изменилось бы.',
+    )
     args = parser.parse_args()
     site_only = not args.all_listings
-    snapshot_only = args.snapshot_only
+    dry_run = args.dry_run
+    snapshot_only = args.snapshot_only or dry_run
+    # В сухом прогоне запись подменяется: «обновлена» — только если такая строка есть в снимке.
+    if dry_run:
+        snapshot_slugs = {str(r.get('slug') or '') for r in snapshot_load_listings()}
+        write_filters = lambda slug, _filters: bool(slug) and slug in snapshot_slugs  # noqa: E731
+    else:
+        write_filters = snapshot_update_filters
 
     env = load_env(ENV_PATH)
     supabase_url = env.get('SUPABASE_URL', '').rstrip('/')
@@ -476,6 +546,10 @@ def main() -> None:
     sheet_title_by_key: dict[tuple[str, int], str] = {}
 
     sheet_group_value_counts: dict[str, Counter[str]] = {g: Counter() for g in GROUPS}
+    # «Не указано» — чтобы видеть, у скольких строк питание и пляж пустые.
+    food_empty = 0
+    food_unparsed: Counter[str] = Counter()
+    beach_unknown = 0
 
     for row in sheet_rows:
         tg_link = get_cell(row, 'tg_link')
@@ -495,6 +569,14 @@ def main() -> None:
         for group in GROUPS:
             for value in filters[group]:
                 sheet_group_value_counts[group][value] += 1
+        if not filters['food']:
+            food_text = get_cell(row, 'food_filter')
+            if food_text:
+                food_unparsed[food_text[:60]] += 1
+            else:
+                food_empty += 1
+        if not filters['beach']:
+            beach_unknown += 1
 
     listings = snapshot_load_listings() if snapshot_only else fetch_listings(supabase_url, service_role)
     snapshot_updated = 0
@@ -532,7 +614,7 @@ def main() -> None:
             filters.setdefault(group, [])
         details['filters'] = filters
         row['details'] = details
-        snapshot_update_filters(str(row.get('slug') or ''), filters)
+        write_filters(str(row.get('slug') or ''), filters)
         city_fallback += 1
         print(f'  город из адреса: {str(row.get("title") or "")[:50]} → {code}')
     if city_fallback:
@@ -545,6 +627,8 @@ def main() -> None:
     on_site_total = 0
 
     group_changed: Counter[str] = Counter()
+    # Было → стало по питанию и пляжу: видно, сколько «без питания»/«галечный» уходит в «не указано».
+    transitions: Counter[str] = Counter()
     group_assigned: Counter[str] = Counter()
     not_found_links: list[str] = []
     sheet_slugs: set[str] = set()
@@ -591,6 +675,8 @@ def main() -> None:
             if old_values != new_values:
                 changed_any = True
                 group_changed[group] += 1
+                if group in ('food', 'beach'):
+                    transitions[f'{group}: {"|".join(old_values) or "—"} → {"|".join(new_values) or "не указано"}'] += 1
 
             existing_filters[group] = new_values
             if new_values:
@@ -602,14 +688,14 @@ def main() -> None:
 
         details['filters'] = existing_filters
         if snapshot_only:
-            if snapshot_update_filters(str(listing.get('slug') or ''), existing_filters):
+            if write_filters(str(listing.get('slug') or ''), existing_filters):
                 snapshot_updated += 1
                 updated += 1
             continue
         patch_listing_details(supabase_url, service_role, int(listing['id']), details)
         slug = str(listing.get('slug') or '').strip()
         if slug:
-            snapshot_update_filters(slug, existing_filters)
+            write_filters(slug, existing_filters)
             snapshot_updated += 1
         updated += 1
 
@@ -655,15 +741,18 @@ def main() -> None:
         row['details'] = details
         if not snapshot_only:
             patch_listing_details(supabase_url, service_role, int(row['id']), details)
-        if snapshot_update_filters(slug, inherited):
+        if write_filters(slug, inherited):
             snapshot_updated += 1
         updated += 1
         ny_inherited.append(f'{row.get("title") or slug} ← {parent.get("title") or parent.get("slug")}')
         print(f'  Новый год: {slug} ← фильтры {parent.get("slug")}')
 
     lines: list[str] = []
-    lines.append('Готово. Массовый перенос фильтров из СОЦСЕТИ выполнен.')
-    lines.append(f'Режим snapshot-only: {snapshot_only}')
+    if dry_run:
+        lines.append('Сухой прогон: ничего не записано (snapshot, Supabase, файл отчёта не тронуты).')
+    else:
+        lines.append('Готово. Массовый перенос фильтров из СОЦСЕТИ выполнен.')
+    lines.append(f'Режим snapshot-only: {args.snapshot_only}' + (' (сухой прогон: объекты из снимка, запись выключена)' if dry_run else ''))
     lines.append('')
     lines.append(f'Режим: {"только объекты с HTML на сайте" if site_only else "все активные listings"}')
     lines.append(f'Строк в СОЦСЕТИ: {len(sheet_rows)}')
@@ -682,6 +771,15 @@ def main() -> None:
         lines.append(f'- {group}: заполнено по таблице (непустые) у {group_assigned[group]} объектов, изменено у {group_changed[group]} объектов')
         values_repr = ', '.join(f'{k}:{v}' for k, v in sheet_group_value_counts[group].most_common()) or 'нет значений'
         lines.append(f'  значения: {values_repr}')
+
+    lines.append('')
+    lines.append(f'Питание не указано (AV пусто): {food_empty}')
+    lines.append(f'Питание не разобрано (текст есть, кода нет): {sum(food_unparsed.values())}')
+    lines.extend(f'  «{text}»: {count}' for text, count in food_unparsed.most_common())
+    lines.append(f'Пляж не указан (AD–AF без «да» и не все три «нет»): {beach_unknown}')
+    if transitions:
+        lines.append('Питание и пляж, было → стало (объектов):')
+        lines.extend(f'  {key}: {count}' for key, count in transitions.most_common())
 
     if rows_unparsed_link:
         lines.append('')
@@ -708,6 +806,8 @@ def main() -> None:
     report = '\n'.join(lines)
     print(report)
 
+    if dry_run:
+        return
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
     REPORT_PATH.write_text(report, encoding='utf-8')
 
