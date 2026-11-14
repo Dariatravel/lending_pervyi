@@ -1673,7 +1673,8 @@
     if (!text) return null;
     const gender = entry.gender === "male" ? "male" : "female";
     const names = gender === "male" ? MALE_REVIEW_NAMES : FEMALE_REVIEW_NAMES;
-    const name = sanitizeReviewName(entry.name || "", text) || names[stableIndex(text, names.length)];
+    const pseudonym = /^[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+ \(псевдоним\)$/.test(entry.name || "");
+    const name = pseudonym ? entry.name : sanitizeReviewName(entry.name || "", text) || names[stableIndex(text, names.length)];
     return {
       id: String(entry.id || fallbackId || `ocr-${stableIndex(text, 10_000_000)}`),
       name,
@@ -1761,7 +1762,9 @@
     });
     const byObject = {};
     const objectSlug = String(objectPayload?.slug || slug || "").trim();
-    const objectEntries = Array.isArray(objectPayload?.reviews) ? objectPayload.reviews : [];
+    const objectEntries = objectSlug === slug && Array.isArray(objectPayload?.reviews)
+      ? objectPayload.reviews.filter(entry => entry && (!entry.object_slug || entry.object_slug === slug))
+      : [];
     const objectReviews = objectEntries
       .map((entry, index) => normalizeBankReview(entry, `ocr-${objectSlug || slug}-${index + 1}`, objectSlug || slug))
       .filter(Boolean);
@@ -1822,27 +1825,7 @@
     const cleanSlug = String(slug || "").trim();
     if (!cleanSlug) return [];
     const byObject = screenshotReviewBank?.by_object || {};
-    if (Array.isArray(byObject[cleanSlug])) return byObject[cleanSlug];
-
-    const normalizedTarget = normalizeSlugForMatch(cleanSlug);
-    if (!normalizedTarget) return [];
-
-    const excluded = getExcludedFuzzyReviewSlugs();
-    let bestKey = "";
-    let bestScore = 0;
-
-    Object.keys(byObject).forEach((candidateKey) => {
-      if (excluded.has(candidateKey)) return;
-      const candidateNorm = normalizeSlugForMatch(candidateKey);
-      const score = slugMatchScore(candidateNorm, normalizedTarget);
-      if (score > bestScore) {
-        bestScore = score;
-        bestKey = candidateKey;
-      }
-    });
-
-    if (!bestKey || bestScore < 1200) return [];
-    return Array.isArray(byObject[bestKey]) ? byObject[bestKey] : [];
+    return Array.isArray(byObject[cleanSlug]) ? byObject[cleanSlug] : [];
   }
 
   function detectReviewGender(text) {
@@ -2010,15 +1993,22 @@
   function renderHotelReviews(row) {
     const context = extractObjectReviewContext(row);
     const objectPool = getObjectReviewPool(context.slug);
-    // Своих отзывов нет — блок не трогаем: отзывы о других местах под «Отзывы гостей»
-    // этого отеля вводили бы в заблуждение (ревью 17.10.2026).
-    renderObjectReviewPanels(context, objectPool);
+    const pool = objectPool.length ? objectPool : getGlobalReviewPool();
+    document.querySelectorAll(".reviews-panel").forEach(panel => {
+      panel.hidden = !pool.length;
+      let label = panel.querySelector(".reviews-other-objects");
+      if (!label && !objectPool.length && pool.length) {
+        label = document.createElement("p");
+        label.className = "reviews-other-objects";
+        label.textContent = "Отзывы о других объектах";
+        panel.prepend(label);
+      }
+      if (label) label.hidden = objectPool.length > 0;
+    });
+    renderObjectReviewPanels(context, pool);
     const scrollers = Array.from(
       document.querySelectorAll(".reviews-scroller:not([data-random-reviews])")
     );
-    if (!scrollers.length) return;
-
-    const pool = objectPool.length ? objectPool : getGlobalReviewPool();
     if (!pool.length) return;
 
     scrollers.forEach((scroller, index) => {
@@ -2029,6 +2019,14 @@
         `abhaz:reviews:object:${context.slug || window.location.pathname}:${index}:${objectPool.length ? "specific" : "fallback"}`
       );
       renderReviewItems(scroller, reviews);
+      let label = scroller.previousElementSibling;
+      if (!label?.classList.contains("reviews-other-objects")) {
+        label = document.createElement("p");
+        label.className = "reviews-other-objects";
+        label.textContent = "Отзывы о других объектах";
+        scroller.before(label);
+      }
+      label.hidden = objectPool.length > 0;
     });
   }
 
