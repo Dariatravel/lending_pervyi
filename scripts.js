@@ -173,7 +173,7 @@
     btn.addEventListener("click", () => {
       void copyPublicUrl(btn, "Ссылка скопирована", "", listingShareUrl);
     });
-    actions.insertBefore(btn, catalogBtn);
+    catalogBtn.after(btn);
   }
 
   initCanonicalUrlDisplay();
@@ -280,7 +280,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202611111043";
+  const ASSET_VERSION = "202611141454";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
