@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-14T14:38:39.576688+00:00",
+  "generated_at": "2026-11-15T11:36:24.654458+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 253,
@@ -31771,16 +31771,8 @@
         ],
         "prices": [
           {
-            "kind": "price",
-            "text": "5500₽ - август, сентябрь по 20"
-          },
-          {
-            "kind": "price",
-            "text": "4500₽ - сентябрь с 20"
-          },
-          {
-            "kind": "price",
-            "text": "4000₽ - октябрь"
+            "kind": "note",
+            "text": "(2026)"
           },
           {
             "kind": "price",
