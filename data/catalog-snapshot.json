@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-17T15:03:00.170007+00:00",
+  "generated_at": "2026-11-17T23:15:53.831293+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 253,
@@ -17953,11 +17953,7 @@
           },
           {
             "kind": "price",
-            "text": "3000₽ - май"
-          },
-          {
-            "kind": "price",
-            "text": "3500₽ - июнь"
+            "text": "3000₽ - май, июнь"
           },
           {
             "kind": "price",
