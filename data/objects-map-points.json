@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-16T22:36:57.886949+00:00",
+  "generated_at": "2026-11-18T13:33:38.083712+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1219,6 +1219,14 @@
       "cityKey": "ldzaa"
     },
     {
+      "title": "🎣 РЫБАЛКА В АБХАЗИИ: ГОРНАЯ РЕКА, ЧЕРНОЕ МОРЕ И ДОМИК НА БЕРЕГУ В ЛДЗАА ОТ «ПЛЯЖНЫЙ КОМПЛЕКС 151» 🔥",
+      "address": "Лдзаа, ул. Приморская, 18А",
+      "lat": 43.17415114030419,
+      "lon": 40.392794571235115,
+      "url": "/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/",
+      "cityKey": "ldzaa"
+    },
+    {
       "title": "\"ДЕЛЬФИН\" домики",
       "address": "Новый Афон, Псырцха, проезд Братьев Джинджолия, 6",
       "lat": 43.081015,
@@ -2014,16 +2022,16 @@
   "stats": {
     "placemarks_total": 494,
     "placemarks_unique": 247,
-    "pages_total": 503,
-    "pages_on_disk": 567,
+    "pages_total": 504,
+    "pages_on_disk": 568,
     "pages_excluded": 64,
-    "from_constructor": 270,
+    "from_constructor": 271,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 233,
     "skipped_without_coords": 233,
     "shared_coordinate_groups": 35,
     "deduped_redirect_points": 19,
-    "points_total": 251
+    "points_total": 252
   }
 }
