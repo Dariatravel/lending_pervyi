@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-17T23:15:53.831293+00:00",
+  "generated_at": "2026-11-18T11:07:40.500441+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 253,
-  "listings_hotels": 201,
+  "listings_total": 254,
+  "listings_hotels": 202,
   "listings_kvartira": 52,
   "listings": [
     {
@@ -77234,6 +77234,255 @@
           "storage_path": "hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-10.jpg",
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/photo-10.jpg",
           "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5499,
+      "source_topic_id": null,
+      "slug": "rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499",
+      "title": "🎣 РЫБАЛКА В АБХАЗИИ: ГОРНАЯ РЕКА, ЧЕРНОЕ МОРЕ И ДОМИК НА БЕРЕГУ В ЛДЗАА ОТ «ПЛЯЖНЫЙ КОМПЛЕКС 151» 🔥",
+      "summary": "Лдзаа. 0 минут до пляжа. песок и мелкая галька, размещение до 4 человек.",
+      "excerpt": "Четыре дня среди гор, у реки и моря - с азартом рыбалки и отдыхом в комфортных условиях. После каждого рыболовного дня вы возвращаетесь в теплый домик с видом на море, где вас ждёт вкусный ужин. 🌊🏔",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, ул. Приморская, 18А",
+      "distance_text": "0 минут до пляжа. песок и мелкая галька",
+      "beach_text": "0 минут до пляжа. песок и мелкая галька",
+      "capacity_text": "размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/",
+      "telegram_url": "https://t.me/abhazbooking/5499",
+      "published_at": "2026-11-18",
+      "has_video": true,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 0 минут до пляжа. песок и мелкая галька, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "",
+            "lines": [
+              "Четыре дня среди гор, у реки и моря - с азартом рыбалки и отдыхом в комфортных условиях. После каждого рыболовного дня вы возвращаетесь в теплый домик с видом на море, где вас ждёт вкусный ужин. 🌊🏔"
+            ]
+          },
+          {
+            "label": "✔️ПРОГРАММА:",
+            "lines": [
+              "4 дня / 3 ночи.",
+              "День приезда - для заселения и отдыха.",
+              "2 дня рыбалки по программе с гидом.",
+              "День отъезда - для спокойных сборов.",
+              "Возможные форматы рыбалки:",
+              "🏞 Горная река - спиннинг и ловля дикой форели.",
+              "🌊 Море с берега - рыбалка на побережье Черного моря.",
+              "🚤 Море с лодки - выход за ставридой, барабулькой и другой морской рыбой."
+            ]
+          },
+          {
+            "label": "✔️ПРОЖИВАНИЕ:",
+            "lines": [
+              "Гости живут в комфортабельных двухуровневых домиках на берегу моря. Каждый домик рассчитан на четырех человек, но обычно в нём размещаются двое-трое гостей из одной компании.",
+              "У каждого домика - собственная веранда со столиком, стульями и видом на море.",
+              "Внутри есть санузел с тропическим душем и тёплым полом, кондиционер, телевизор, Wi-Fi, мини-холодильник, чайник, фен и сейф.",
+              "Есть генератор."
+            ]
+          },
+          {
+            "label": "✔️ПИТАНИЕ:",
+            "lines": [
+              "Трехразовое питание включено на протяжении тура. Утром - завтрак в формате шведского стола: сыр, колбаса, йогурты, сосиски и другие блюда.",
+              "Обед берете с собой на рыбалку - сухой паек, бутерброды, яйца, термос с чаем.",
+              "Вечером вас ждёт ужин - например, шашлык, мясное рагу или другое блюдо, приготовленное на мангале. 🍽",
+              "Есть кухня для самостоятельного приготовления и мангал."
+            ]
+          },
+          {
+            "label": "✔️МОЖНО ПРИЕХАТЬ С СЕМЬЕЙ:",
+            "lines": [
+              "Не обязательно расставаться с близкими ради рыбалки! Приезжайте вместе - ваша семья будет жить с вами в комфортабельном домике на берегу моря. ❤️",
+              "Пока рыбаки отправляются к реке или выходят в море, их близкие могут гулять по окрестностям, дышать морским воздухом и отдыхать в своем ритме. А вечером снова встречаться за ужином, делиться фотографиями и историями дня, проводить время вместе на берегу моря. 🌊🏡",
+              "Размещение каждого сопровождающего члена семьи - 6000₽ с человека за тур. В эту стоимость включены завтраки и ужины. Обед можно приготовить самостоятельно на оборудованной общей кухне."
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "Трансфер от границы до отеля и обратно, проживание в домике, трехразовое питание, сопровождение гида, аренда лодки и рыболовное снаряжение."
+          },
+          {
+            "kind": "price",
+            "text": "В стоимость тура включена аренда волейбольной площадки 1 час в день. Если больше 1 часа, то 1000/час."
+          },
+          {
+            "kind": "price",
+            "text": "📅 3–6 декабря - к этому туру можно присоединиться."
+          },
+          {
+            "kind": "price",
+            "text": "Другие даты доступны, когда набирается группа от 4 человек."
+          },
+          {
+            "kind": "price",
+            "text": "Напишите желаемые даты, будем формировать группу."
+          },
+          {
+            "kind": "price",
+            "text": "Рыбалка доступна с декабря по апрель, за исключением Новогодних каникул."
+          },
+          {
+            "kind": "price",
+            "text": "Стоимость - 45000₽ с человека."
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - дополнительно за члена семьи, который не участвует в рыбалке. С завтраками и ужинами."
+          },
+          {
+            "kind": "price",
+            "text": "Днем - рыбалка среди гор или на Черном море. Вечером - ужин и отдых в домике на берегу. Всё для поездки уже организовано: выбирайте даты и собирайтесь на рыбалку! 🎣"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1232,
+      "media": [
+        {
+          "id": 1232001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499.jpg",
+          "details": {}
+        },
+        {
+          "id": 1232002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1232003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1232004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1232005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1232006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1232007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1232008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1232009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1232010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1232011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5508",
+            "telegram_url": "https://t.me/abhazbooking/5508",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/video-01-poster.jpg"
+          }
         }
       ]
     }
