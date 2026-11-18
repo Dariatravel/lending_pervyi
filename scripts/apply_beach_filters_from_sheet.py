@@ -153,6 +153,9 @@ def patch_listing_details(supabase_url: str, service_role: str, listing_id: int,
 
 
 def main() -> None:
+    # Устарел (21.10.2026): ставил «галечный» любому объекту с пустыми AD–AF.
+    # Пляж считает scripts/apply_all_filters_from_sheet.py — запускать его.
+    raise SystemExit('Устарел: пляж считает scripts/apply_all_filters_from_sheet.py (21.10.2026).')
     env = load_env(ENV_PATH)
     supabase_url = env.get("SUPABASE_URL", "").rstrip("/")
     service_role = env.get("SUPABASE_SERVICE_ROLE_KEY", "")

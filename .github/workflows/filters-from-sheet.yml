@@ -58,6 +58,8 @@ jobs:
           # Отметки «тёплый бассейн» и «межсезон» (scripts/derived_filters.py).
           python tools/test_derived_filters.py
           python tools/test_new_year_parent.py
+          # Питание и пляж не выдумываются: пусто — «не указано» (21.10.2026).
+          python tools/test_sheet_filters_inference.py
           python scripts/apply_all_filters_from_sheet.py --snapshot-only
           # Пересобирать страницы имеет смысл, только если фильтры реально
           # поменялись: пересборка каждый раз переписывает даты в sitemap.xml,
