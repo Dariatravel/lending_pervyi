@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-18T22:13:40.520793+00:00",
+  "generated_at": "2026-11-19T12:16:25.175606+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 254,
-  "listings_hotels": 202,
+  "listings_total": 255,
+  "listings_hotels": 203,
   "listings_kvartira": 52,
   "listings": [
     {
@@ -77323,6 +77323,10 @@
           {
             "kind": "price",
             "text": "Днем - рыбалка среди гор или на Черном море. Вечером - ужин и отдых в домике на берегу. Всё для поездки уже организовано: выбирайте даты и собирайтесь на рыбалку! 🎣"
+          },
+          {
+            "kind": "price",
+            "text": "Мой сайт: abhazbereg.ru"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/index.html",
@@ -77464,6 +77468,417 @@
             "telegram_url": "https://t.me/abhazbooking/5508",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/rybalka-v-abhazii-gornaya-reka-chernoe-more-i-domik-na-beregu-v-ldzaa-ot-plyazhnyy-kompleks-151-5499/video-01-poster.jpg"
           }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5510,
+      "source_topic_id": null,
+      "slug": "gega-otel-s-basseynom-i-zavtrakami-5510",
+      "title": "\"ГЕГА\" отель с бассейном и завтраками",
+      "summary": "Гагра. 15 минут до пляжа, размещение до 4 человек.",
+      "excerpt": "В отеле 23 номера, расположенных на четырех этажах",
+      "city": "Гагра",
+      "location_text": "Гагра, ул. Демерджипа, 130А",
+      "distance_text": "15 минут до пляжа",
+      "beach_text": "15 минут до пляжа",
+      "capacity_text": "Размещение до 4 человек",
+      "page_url": "https://абхазберег.рф/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/",
+      "telegram_url": "https://t.me/abhazbooking/5510",
+      "published_at": "2026-11-19",
+      "has_video": false,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/gega-otel-s-basseynom-i-zavtrakami-5510.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 15 минут до пляжа, размещение до 4 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "В отеле 23 номера, расположенных на четырех этажах.",
+              "Шесть номеров Стандарт с балконом площадью 18 кв. м.",
+              "Двуспальная кровать. Размещение до 2х человек.",
+              "Два номера Стандарт без балкона площадью 18 кв. м.",
+              "Двуспальная кровать. Размещение до 2х человек.",
+              "Два номера Стандарт без балкона с раздельными кроватями площадью 18 кв. м.",
+              "Две односпальные кровати. Размещение до 2х человек.",
+              "Пять номеров Стандарт с выходом к бассейну площадью 19 кв. м. Двуспальная кровать. Отдельный выход к бассейну. Размещение до 3х человек (2 основных + 1 доп место по согласованию).",
+              "Два номера Делюкс с балконом площадью 19 кв. м. Двуспальная кровать. Размещение до 3х человек (2 основных + 1 доп место).",
+              "Два номера Полулюкс с балконом площадью 19 кв. м. Двуспальная кровать. Размещение до 2х человек.",
+              "Два номера Семейный полулюкс с балконом площадью 23 кв. м. Двуспальная кровать, диван софа на одного. Размещение до 3х человек (3 основных).",
+              "Два номера Двухкомнатный люкс с террасой площадью 29 кв. м, расположены на 4 этаже. Двуспальная кровать м и раскладной диван. Размещение до 4х человек (3 основных + 1 доп место).",
+              "Один люкс с видом на море, второй - на горы.",
+              "Во всех номерах санузел с душем. Двуспальные кровати с ортопедическим матрасом.",
+              "Оснащение: кондиционер, мини-холодильник, телевизор, Wi-Fi, чайник, сейф и фен, тапочки."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Открытый подогреваемый бассейн 10 х 5 метров с шезлонгами и зонтами и полотенцами для бассейна.",
+              "Зона отдыха со столами, стульями и диванами, бар.",
+              "Парковка во дворе.",
+              "Есть генератор.",
+              "Дополнительно можно заказать трансфер и экскурсии."
+            ]
+          },
+          {
+            "label": "✔️РЯДОМ:",
+            "lines": [
+              "Отель расположен в Новой Гагре.",
+              "До городского галечного пляжа и набережной около 15 минут пешком.",
+              "В шаговой доступности магазины, кафе и рестораны, аптека, рынок, остановка общественного транспорта.",
+              "До дельфинария 13 минут пешком.",
+              "До аквапарка 20 минут пешком."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с животными возможно с доп платой 2500₽.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Мой сайт: abhazbereg.ru"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение."
+          },
+          {
+            "kind": "price",
+            "text": "Для номеров Семейный полулюкс и Люкс за трехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "С 1 ноября по 25 декабря - с завтраком"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - Стандарт без балкона"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - Стандарт с раздельными кроватями без балкона"
+          },
+          {
+            "kind": "price",
+            "text": "3200₽ - Стандарт с выходом к бассейну"
+          },
+          {
+            "kind": "price",
+            "text": "3200₽ - Стандарт с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "3400₽ - Делюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - Полулюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "4400₽ - Семейный полулюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "С 26 декабря по 10 января - с завтраком и ужином. Новый год 🎄"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - Стандарт без балкона"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - Стандарт с раздельными кроватями без балкона"
+          },
+          {
+            "kind": "price",
+            "text": "6200₽ - Стандарт с выходом к бассейну"
+          },
+          {
+            "kind": "price",
+            "text": "6300₽ - Стандарт с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "6500₽ - Делюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "6700₽ - Полулюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "8200₽ - Семейный полулюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "С 11 января, февраль, март - с завтраком"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - Стандарт без балкона"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - Стандарт с раздельными кроватями без балкона"
+          },
+          {
+            "kind": "price",
+            "text": "3200₽ - Стандарт с выходом к бассейну"
+          },
+          {
+            "kind": "price",
+            "text": "3300₽ - Стандарт с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "3500₽ - Делюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "3600₽ - Полулюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - Семейный полулюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "Апрель с завтраками и ужинами"
+          },
+          {
+            "kind": "price",
+            "text": "3600₽ - стандарт без балкона"
+          },
+          {
+            "kind": "price",
+            "text": "3600₽ - стандарт с раздельными кроватями без балкона"
+          },
+          {
+            "kind": "price",
+            "text": "3800₽ - стандарт с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "3800₽ - большой стандарт с выходом к бассейну"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - Делюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "4200₽ - Полулюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - Семейный полулюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "Дети до 2х лет без предоставления отдельного места и питания бесплатно."
+          },
+          {
+            "kind": "price",
+            "text": "800₽ - Дети с 2 до 5 лет за питание без предоставления места."
+          },
+          {
+            "kind": "price",
+            "text": "600₽ - ужин в период межсезонья"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место с 1 ноября по 25 декабря и с 11 января по март - 1500 ₽/сутки."
+          },
+          {
+            "kind": "price",
+            "text": "С 26 декабря по 10 января и с апреля доп место - 2000₽/сутки."
+          },
+          {
+            "kind": "price",
+            "text": "Сауна оплачивается отдельно - 2000 ₽/час за компанию до 4 человек."
+          },
+          {
+            "kind": "price",
+            "text": "За каждого следующего гостя доплата 500 ₽/час, максимальная вместимость - 6 человек."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/index.html",
+        "filters": {
+          "distance": [
+            "over-10"
+          ],
+          "food": [
+            "full-board",
+            "cafe"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "pool",
+            "heated-pool",
+            "balcony",
+            "tv",
+            "two-room-plus"
+          ],
+          "stay": [
+            "pets"
+          ]
+        }
+      },
+      "id": 1233,
+      "media": [
+        {
+          "id": 1233001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/gega-otel-s-basseynom-i-zavtrakami-5510.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/gega-otel-s-basseynom-i-zavtrakami-5510.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/gega-otel-s-basseynom-i-zavtrakami-5510.jpg",
+          "details": {}
+        },
+        {
+          "id": 1233002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1233003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1233004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1233005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1233006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1233007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1233008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1233009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1233010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1233011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-10.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-10.jpg",
+          "details": {}
         }
       ]
     }
