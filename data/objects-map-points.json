@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T02:54:41.198354+00:00",
+  "generated_at": "2026-11-19T21:04:40.964133+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -304,6 +304,14 @@
       "lat": 43.31791277709123,
       "lon": 40.24851913359021,
       "url": "/hotels/villa-leona-otel-s-basseynom-pitaniem-i-sobstvennym-plyazhem-2755/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "\"ГЕГА\" отель с бассейном и завтраками",
+      "address": "Гагра, ул. Демерджипа, 130А",
+      "lat": 43.27070957976575,
+      "lon": 40.27804979017826,
+      "url": "/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/",
       "cityKey": "gagra"
     },
     {
@@ -2020,18 +2028,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 494,
-    "placemarks_unique": 247,
-    "pages_total": 504,
-    "pages_on_disk": 568,
+    "placemarks_total": 496,
+    "placemarks_unique": 248,
+    "pages_total": 505,
+    "pages_on_disk": 569,
     "pages_excluded": 64,
-    "from_constructor": 271,
+    "from_constructor": 272,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 233,
     "skipped_without_coords": 233,
     "shared_coordinate_groups": 35,
     "deduped_redirect_points": 19,
-    "points_total": 252
+    "points_total": 253
   }
 }

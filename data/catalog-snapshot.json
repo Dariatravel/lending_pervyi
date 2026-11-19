@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-19T12:16:25.175606+00:00",
+  "generated_at": "2026-11-19T21:12:50.471177+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 255,
-  "listings_hotels": 203,
+  "listings_total": 256,
+  "listings_hotels": 204,
   "listings_kvartira": 52,
   "listings": [
     {
@@ -71397,7 +71397,7 @@
           },
           {
             "kind": "price",
-            "text": "1–21 ноября"
+            "text": "1–30 ноября"
           },
           {
             "kind": "price",
@@ -71457,7 +71457,7 @@
           },
           {
             "kind": "price",
-            "text": "22 ноября–29 декабря и 11 января–28 февраля"
+            "text": "1–29 декабря и 11 января–28 февраля"
           },
           {
             "kind": "price",
@@ -77878,6 +77878,451 @@
           "storage_bucket": "abhazbereg-media",
           "storage_path": "hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-10.jpg",
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/gega-otel-s-basseynom-i-zavtrakami-5510/photo-10.jpg",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5520,
+      "source_topic_id": null,
+      "slug": "shambala-eko-otel-na-beregu-morya-s-basseynom-5520",
+      "title": "\"ШАМБАЛА\" эко-отель на берегу моря с бассейном",
+      "summary": "Сухум. 0 минут до пляжа, размещение до 6 человек.",
+      "excerpt": "Стандарт площадью 16 кв. м. Двуспальная кровать. Размещение до 2 человек",
+      "city": "Сухум",
+      "location_text": "Сухум, п. Пшап, ул. Морская, 48",
+      "distance_text": "0 минут до пляжа",
+      "beach_text": "0 минут до пляжа",
+      "capacity_text": "размещение до 6 человек",
+      "page_url": "https://абхазберег.рф/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/",
+      "telegram_url": "https://t.me/abhazbooking/5520",
+      "published_at": "2026-11-19",
+      "has_video": false,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/shambala-eko-otel-na-beregu-morya-s-basseynom-5520.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Сухум. 0 минут до пляжа, размещение до 6 человек.",
+        "sections": [
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "Стандарт площадью 16 кв. м. Двуспальная кровать. Размещение до 2 человек.",
+              "Комфорт площадью 18 кв. м. Двуспальная кровать. Доп место - раскладная кровать. Размещение до 3 человек.",
+              "Делюкс площадью 25 кв. м. Двуспальная кровать. Отдельная гостиная зона со столиком и мягкими стульями. Размещение до 3 человек.",
+              "Полулюкс площадью 33 кв. м. Двуспальная кровать и диван. Размещение до 5 человек.",
+              "Двухкомнатный Люкс площадью 40 кв. м. Двуспальная кровать, раскладной диван, два раскладных кресла. Размещение до 5 человек.",
+              "Трехкомнатный Семейный люкс с террасой площадью 77 кв. м. с двумя спальнями, гостиной с диваном и террасой. Размещение до 10 человек.",
+              "Двухкомнатный Семейный люкс с крытой террасой площадью 53 кв. м. спальня, гостиная с диваном. Размещение до 6 человек.",
+              "Во всех номерах: сан узел с тропическим душем. Есть балкон. С балконов в зависимости от расположения открывается вид на море, горы или территорию.",
+              "Оснащение во всех номерах: кондиционер, телевизор, Wi-Fi, мини-холодильник, чайная станция, фен, сейф."
+            ]
+          },
+          {
+            "label": "✔️ДОМИКИ:",
+            "lines": [
+              "Домик Афрейм площадью 48 кв. м. с панорамными окнами, кухонным уголком, диваном, кроватью-татами на верхнем ярусе. Размещение до 5 человек.",
+              "Домик Барнхаус площадью 70 кв. м. с двумя спальнями, гостиной с диваном. Размещение до 6 человек.",
+              "В домиках: сан узел с душем, своя терраса.",
+              "Оснащение: кондиционер, телевизор, Wi-Fi, мини-холодильник, чайная станция, фен, сейф."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ И УСЛУГИ:",
+            "lines": [
+              "Собственный оборудованный пляж на первой линии: шезлонги, зонты, пляжный бар и спокойный вход в море",
+              "Подогреваемый бассейн 12 х 4 метра, глубиной 160 см.",
+              "Зона отдыха.",
+              "Десткая площадка",
+              "Ресторан-пацха «Огонь и Душа» с блюдами абхазской и кавказской кухни, приготовленными в печи и на углях. Завтраки по меню за доп плату с 09:00 до 12:00.",
+              "Доп услуги:",
+              "Русская баня и хамам из натурального дерева, ароматерапия и веничный массаж по предварительной записи.",
+              "Можно покататься на сапах, велосипедах, заказать конную прогулку, экскурсии по Абхазии.",
+              "На территории проводятся ретриты; также можно организовать свой ретрит, банкет, мероприятие или корпоратив - условия согласовываются индивидуально.",
+              "Есть парковка.",
+              "Трансфер из аэропорта Сухум и обратно бесплатно."
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с животными возможно с доп платой 5000₽, при весе от 5 кг с доп платой - 10000₽, со средними животными возможно размещение только в домик.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Мой сайт: abhazbereg.ru"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "указаны за 2х местное размещение,"
+          },
+          {
+            "kind": "price",
+            "text": "динамические, меняются, актуальные цены уточняйте в сообщениях)"
+          },
+          {
+            "kind": "price",
+            "text": "Ноябрь"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - Комфорт"
+          },
+          {
+            "kind": "price",
+            "text": "7000₽ - Делюкс"
+          },
+          {
+            "kind": "price",
+            "text": "12000₽ - Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "21000₽ - Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "30000₽ - Семейный люкс с террасой"
+          },
+          {
+            "kind": "price",
+            "text": "30000₽ - Семейный люкс с крытой террасой"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - Афрейм"
+          },
+          {
+            "kind": "price",
+            "text": "10500₽ - Барнхаус"
+          },
+          {
+            "kind": "price",
+            "text": "с 31 декабря по 6 января Новый год 🎄"
+          },
+          {
+            "kind": "price",
+            "text": "23000₽ - Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "32000₽ - Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "37000₽ - Семейный люкс с террасой"
+          },
+          {
+            "kind": "price",
+            "text": "Новогодняя программа - 10000₽ с человека."
+          },
+          {
+            "kind": "price",
+            "text": "Декабрь до 30го, январь с 10-го, февраль, март, апрель и май"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "5400₽ - Комфорт"
+          },
+          {
+            "kind": "price",
+            "text": "6300₽ - Делюкс"
+          },
+          {
+            "kind": "price",
+            "text": "10800₽ - Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "18900₽ - Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "27000₽ - Семейный люкс с террасой"
+          },
+          {
+            "kind": "price",
+            "text": "27000₽ - Семейный люкс с крытой террасой"
+          },
+          {
+            "kind": "price",
+            "text": "6750₽ - Афрейм"
+          },
+          {
+            "kind": "price",
+            "text": "9450₽ - Барнхаус"
+          },
+          {
+            "kind": "price",
+            "text": "С 1 по 15 июня"
+          },
+          {
+            "kind": "price",
+            "text": "6300₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "7200₽ - Комфорт"
+          },
+          {
+            "kind": "price",
+            "text": "8100₽ - Делюкс"
+          },
+          {
+            "kind": "price",
+            "text": "8550₽ - Афрейм"
+          },
+          {
+            "kind": "price",
+            "text": "11250₽ - Барнхаус"
+          },
+          {
+            "kind": "price",
+            "text": "12600₽ - Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "20700₽ - Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "28800₽ - Семейный люкс с террасой"
+          },
+          {
+            "kind": "price",
+            "text": "28800₽ - Семейный люкс с крытой террасой"
+          },
+          {
+            "kind": "price",
+            "text": "С 16 по 30 июня"
+          },
+          {
+            "kind": "price",
+            "text": "8100₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - Комфорт"
+          },
+          {
+            "kind": "price",
+            "text": "9900₽ - Делюкс"
+          },
+          {
+            "kind": "price",
+            "text": "14400₽ - Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "22500₽ - Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "30600₽ - Семейный люкс с террасой"
+          },
+          {
+            "kind": "price",
+            "text": "30600₽ - Семейный люкс с крытой террасой"
+          },
+          {
+            "kind": "price",
+            "text": "10350₽ - А-фрейм"
+          },
+          {
+            "kind": "price",
+            "text": "13050₽ - Барнхаус"
+          },
+          {
+            "kind": "price",
+            "text": "Июль"
+          },
+          {
+            "kind": "price",
+            "text": "9900₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "10800₽ - Комфорт"
+          },
+          {
+            "kind": "price",
+            "text": "11700₽ - Делюкс"
+          },
+          {
+            "kind": "price",
+            "text": "16200₽ - Полулюкс"
+          },
+          {
+            "kind": "price",
+            "text": "24300₽ - Люкс"
+          },
+          {
+            "kind": "price",
+            "text": "31500₽ - Семейный люкс с террасой"
+          },
+          {
+            "kind": "price",
+            "text": "31500₽ - Семейный люкс с крытой террасой"
+          },
+          {
+            "kind": "price",
+            "text": "12150₽ - Афрейм"
+          },
+          {
+            "kind": "price",
+            "text": "14850₽ - Барнхаус"
+          },
+          {
+            "kind": "price",
+            "text": "Паделкорт. Аренда корта: 2500₽/час для 2 игроков или 5000₽/час для 4. Ракетки и мячи предоставляются."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/index.html",
+        "filters": {
+          "distance": [],
+          "food": [],
+          "price": [],
+          "city": [
+            "sukhum"
+          ],
+          "beach": [],
+          "room": [],
+          "stay": []
+        }
+      },
+      "id": 1234,
+      "media": [
+        {
+          "id": 1234001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/shambala-eko-otel-na-beregu-morya-s-basseynom-5520.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/shambala-eko-otel-na-beregu-morya-s-basseynom-5520.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/shambala-eko-otel-na-beregu-morya-s-basseynom-5520.jpg",
+          "details": {}
+        },
+        {
+          "id": 1234002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1234003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1234004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1234005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1234006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1234007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1234008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1234009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1234010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1234011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-10.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-10.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-10.jpg",
           "details": {}
         }
       ]
