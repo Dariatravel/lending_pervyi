@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T21:04:40.964133+00:00",
+  "generated_at": "2026-11-20T10:56:34.737500+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -1947,6 +1947,14 @@
       "cityKey": "sukhum"
     },
     {
+      "title": "\"ШАМБАЛА\" эко-отель на берегу моря с бассейном",
+      "address": "Сухум, Гулрыпшский район, п. Н. Пщап, ул. Морская, 48",
+      "lat": 42.8950746172912,
+      "lon": 41.09543492261431,
+      "url": "/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/",
+      "cityKey": "sukhum"
+    },
+    {
       "title": "\"ЭДЕМ\" домики",
       "address": "Сухум, ул. Анчабадзе, 13",
       "lat": 43.001373,
@@ -2028,18 +2036,18 @@
     }
   ],
   "stats": {
-    "placemarks_total": 496,
-    "placemarks_unique": 248,
-    "pages_total": 505,
-    "pages_on_disk": 569,
+    "placemarks_total": 498,
+    "placemarks_unique": 249,
+    "pages_total": 506,
+    "pages_on_disk": 570,
     "pages_excluded": 64,
-    "from_constructor": 272,
+    "from_constructor": 273,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 233,
     "skipped_without_coords": 233,
     "shared_coordinate_groups": 35,
     "deduped_redirect_points": 19,
-    "points_total": 253
+    "points_total": 254
   }
 }
