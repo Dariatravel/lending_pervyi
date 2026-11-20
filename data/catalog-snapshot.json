@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-20T10:57:18.653998+00:00",
+  "generated_at": "2026-11-20T19:04:58.412356+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 256,
-  "listings_hotels": 204,
+  "listings_total": 257,
+  "listings_hotels": 205,
   "listings_kvartira": 52,
   "listings": [
     {
@@ -297,6 +297,10 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(РАННЕЕ БРОНИРОВАНИЕ 2027)"
+          },
+          {
             "kind": "price",
             "text": "Однокомнатный домик"
           },
@@ -310,11 +314,11 @@
           },
           {
             "kind": "price",
-            "text": "6500₽ - июль"
+            "text": "7500₽ - июль"
           },
           {
             "kind": "price",
-            "text": "7000₽ - август"
+            "text": "8000₽ - август"
           },
           {
             "kind": "price",
@@ -342,11 +346,11 @@
           },
           {
             "kind": "price",
-            "text": "8500₽ - июль"
+            "text": "9500₽ - июль"
           },
           {
             "kind": "price",
-            "text": "9000₽ - август"
+            "text": "10000₽ - август"
           },
           {
             "kind": "price",
@@ -68800,7 +68804,7 @@
           },
           {
             "kind": "price",
-            "text": "Ноябрь, декабрь"
+            "text": "Ноябрь, декабрь, с 10 января по 6 марта"
           },
           {
             "kind": "price",
@@ -68817,6 +68821,14 @@
           {
             "kind": "price",
             "text": "6000₽ - при бронировании от 10 суток"
+          },
+          {
+            "kind": "price",
+            "text": "🌲Новый год (28 декабря - 10 января)"
+          },
+          {
+            "kind": "price",
+            "text": "11000₽/сутки. При бронировании от 5 суток скидка 10%."
           },
           {
             "kind": "price",
@@ -76871,13 +76883,13 @@
       "source_topic_id": null,
       "slug": "komfort-otel-s-basseynom-i-zavtrakom-5487",
       "title": "\"КОМФОРТ\" отель с бассейном и завтраком",
-      "summary": "Сухум. 9 минут до пляжа, размещение до 4 человек.",
+      "summary": "Сухум. 9 минут до пляжа, размещение до 5 человек.",
       "excerpt": "В отеле 30 номеров, расположенных на четырех этажах с лифтом",
       "city": "Сухум",
       "location_text": "Сухум, ул. Чачба, 77",
       "distance_text": "9 минут до пляжа",
       "beach_text": "9 минут до пляжа",
-      "capacity_text": "размещение до 4 человек",
+      "capacity_text": "размещение до 5 человек",
       "page_url": "https://абхазберег.рф/hotels/komfort-otel-s-basseynom-i-zavtrakom-5487/",
       "telegram_url": "https://t.me/abhazbooking/5487",
       "published_at": "2026-11-13",
@@ -76885,7 +76897,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/komfort-otel-s-basseynom-i-zavtrakom-5487.jpg",
       "is_active": true,
       "details": {
-        "lead": "Сухум. 9 минут до пляжа, размещение до 4 человек.",
+        "lead": "Сухум. 9 минут до пляжа, размещение до 5 человек.",
         "sections": [
           {
             "label": "✔️НОМЕРА:",
@@ -76897,10 +76909,10 @@
               "Номер Улучшенный стандарт площадью 22 кв м. Двуспальная или две односпальные кровати, прикроватные тумбочки, шкаф, стол. Доп место - раскладная кровать. Санузел с душем. Размещение до 3 человек (2 основных + 1 доп).",
               "Оснащение: кондиционер, телевизор, Wi-Fi, мини-холодильник, сейф, чайник по запросу и фен.",
               "Номер Трехместный семейный площадью 30 кв м.",
-              "Двуспальная кровать, кресло-кровать, прикроватные тумбочки, шкаф, стол. Санузел с душем. Размещение до 3 человек (2 основных + 1 доп).",
+              "Двуспальная кровать, кресло-кровать, прикроватные тумбочки, шкаф, стол. Санузел с душем. Размещение до 4 человек (3 основных + 1 доп).",
               "Оснащение: кондиционер, телевизор, Wi-Fi, мини-холодильник, сейф, чайник и фен.",
               "Номер Люкс площадью 35 кв м.",
-              "Двуспальная кровать, раскладной диван, прикроватные тумбочки, шкаф, стол. Санузел с душем. Размещение до 4 человек (2 основных + 2 доп).",
+              "Двуспальная кровать, раскладной диван, прикроватные тумбочки, шкаф, стол. Санузел с душем. Размещение до 5 человек (4 основных + 1 доп).",
               "Оснащение: кондиционер, телевизор, Wi-Fi, мини-холодильник, сейф, чайник и фен.",
               "Для людей с ограниченными возможностями есть специальные номера в категориях Трехместный семейный и Люкс."
             ]
@@ -76946,24 +76958,20 @@
         ],
         "prices": [
           {
-            "kind": "note",
-            "text": "(указаны за двухместное размещение)"
-          },
-          {
             "kind": "price",
             "text": "Ноябрь, декабрь до 24го"
           },
           {
             "kind": "price",
-            "text": "4700₽ - Стандарт"
+            "text": "4500₽ - Стандарт"
           },
           {
             "kind": "price",
-            "text": "5400₽ - Улучшенный стандарт"
+            "text": "5000₽ - Улучшенный стандарт"
           },
           {
             "kind": "price",
-            "text": "6300₽ - Трехместный семейный"
+            "text": "6000₽ - Трехместный семейный"
           },
           {
             "kind": "price",
@@ -77051,6 +77059,10 @@
           },
           {
             "kind": "price",
+            "text": "Цены динамические, могут незначительно меняться, уточните личным сообщением."
+          },
+          {
+            "kind": "price",
             "text": "Доп место с завтраком - 1500₽."
           },
           {
@@ -77086,7 +77098,8 @@
           "room": [
             "pool",
             "heated-pool",
-            "tv"
+            "tv",
+            "five-plus"
           ],
           "stay": [
             "pets"
@@ -77538,6 +77551,7 @@
             "label": "✔️УСЛОВИЯ:",
             "lines": [
               "Размещение с животными возможно с доп платой 2500₽.",
+              "Цены динамические, могут меняться, уточните личным сообщением.",
               "По бронированию и наличию номеров пишите в телеграм:",
               "@abhazbooking_online",
               "(будьте внимательны ⚠️только этот контакт для брони)",
@@ -77664,27 +77678,27 @@
           },
           {
             "kind": "price",
-            "text": "Апрель с завтраками и ужинами"
+            "text": "С 1 по 29 апреля с завтраками и ужинами"
           },
           {
             "kind": "price",
-            "text": "3600₽ - стандарт без балкона"
+            "text": "3800₽ - Стандарт с балконом"
           },
           {
             "kind": "price",
-            "text": "3600₽ - стандарт с раздельными кроватями без балкона"
-          },
-          {
-            "kind": "price",
-            "text": "3800₽ - стандарт с балконом"
-          },
-          {
-            "kind": "price",
-            "text": "3800₽ - большой стандарт с выходом к бассейну"
+            "text": "3600₽ - Стандарт без балкона"
           },
           {
             "kind": "price",
             "text": "4000₽ - Делюкс с балконом"
+          },
+          {
+            "kind": "price",
+            "text": "3800₽ - Большой стандарт с выходом к бассейну"
+          },
+          {
+            "kind": "price",
+            "text": "3600₽ - Стандарт с раздельными кроватями без балкона"
           },
           {
             "kind": "price",
@@ -77716,7 +77730,7 @@
           },
           {
             "kind": "price",
-            "text": "С 26 декабря по 10 января и с апреля доп место - 2000₽/сутки."
+            "text": "С 26 декабря по 10 января и с апреля по сентябрь доп место - 2000₽/сутки."
           },
           {
             "kind": "price",
@@ -77889,12 +77903,12 @@
       "source_topic_id": null,
       "slug": "shambala-eko-otel-na-beregu-morya-s-basseynom-5520",
       "title": "\"ШАМБАЛА\" эко-отель на берегу моря с бассейном",
-      "summary": "Сухум. 0 минут до пляжа, размещение до 9 человек.",
+      "summary": "Сухум. 0 минут до пляжа, галечный, размещение до 9 человек.",
       "excerpt": "Стандарт площадью 16 кв. м. Двуспальная кровать. Размещение до 2 человек",
       "city": "Сухум",
       "location_text": "Сухум, Гулрыпшский район, п. Н. Пщап, ул. Морская, 48",
-      "distance_text": "0 минут до пляжа",
-      "beach_text": "0 минут до пляжа",
+      "distance_text": "0 минут до пляжа, галечный",
+      "beach_text": "0 минут до пляжа, галечный",
       "capacity_text": "размещение до 9 человек",
       "page_url": "https://абхазберег.рф/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/",
       "telegram_url": "https://t.me/abhazbooking/5520",
@@ -77903,7 +77917,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/shambala-eko-otel-na-beregu-morya-s-basseynom-5520.jpg",
       "is_active": true,
       "details": {
-        "lead": "Сухум. 0 минут до пляжа, размещение до 9 человек.",
+        "lead": "Сухум. 0 минут до пляжа, галечный, размещение до 9 человек.",
         "sections": [
           {
             "label": "✔️НОМЕРА:",
@@ -78348,6 +78362,384 @@
           "storage_path": "hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-10.jpg",
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-10.jpg",
           "details": {}
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5531,
+      "source_topic_id": null,
+      "slug": "novyy-god-v-royal-rivera-barhatnaya-zima-5531",
+      "title": "🎄 НОВЫЙ ГОД В \"РОЯЛ РИВЬЕРА\" БАРХАТНАЯ ЗИМА",
+      "summary": "Гагра. 1 минута до собственного пляжа, размещение до 5 человек.",
+      "excerpt": "Роял Ривьера открывает двери в бархатную зиму: мерцание",
+      "city": "Гагра",
+      "location_text": "Гагра, пр-т Ардзинба, 45",
+      "distance_text": "1 минута до собственного пляжа",
+      "beach_text": "1 минута до собственного пляжа",
+      "capacity_text": "Размещение до 5 человек",
+      "page_url": "https://абхазберег.рф/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/",
+      "telegram_url": "https://t.me/abhazbooking/5531",
+      "published_at": "2026-11-20",
+      "has_video": true,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-royal-rivera-barhatnaya-zima-5531.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Гагра. 1 минута до собственного пляжа, размещение до 5 человек.",
+        "sections": [
+          {
+            "label": "",
+            "lines": [
+              "Роял Ривьера открывает двери в бархатную зиму: мерцание",
+              "свечей, праздничное убранство залов, живая музыка и",
+              "гастрономический гала-ужин. Встречайте 2027 год там, где",
+              "каждая деталь продумана для вашего праздника."
+            ]
+          },
+          {
+            "label": "✔️ОТЕЛЬ:",
+            "lines": [
+              "Четырёхзвёздочный отель расположен в старой Гагре, рядом с Колоннадой. Номера категорий Стандарт, Двухкомнатный Семейный, Двухкомнатный Люкс.",
+              "На территории работают ресторан и бар, а открытый подогреваемый бассейн доступен круглый год. 🌊"
+            ]
+          },
+          {
+            "label": "✔️НОВОГОДНЯЯ НОЧЬ:",
+            "lines": [
+              "31 декабря гостей ждут к 21:00. В программе - гала-ужин, ведущий и развлечения, встреча 2027 года с шампанским, праздничный салют, DJ и танцы до утра! 🥂🎆",
+              "На столе - закуски, салаты, форель, мясные блюда, шашлык, выпечка, десерты и напитки. Можно выбрать места в основном или втором зале. Дресс-код - коктейльные наряды. 💃",
+              "🎄 ГАЛА-УЖИН · 31 ДЕКАБРЯ",
+              "МЕНЮ НОВОГОДНЕЙ НОЧИ",
+              "✨ ФИРМЕННОЕ БЛЮДО",
+              "🐇 Кролик, запечённый целиком с лимонной цедрой и тимьяном",
+              "🧀 ХОЛОДНЫЕ ЗАКУСКИ",
+              "🧀 Ассорти домашних сыров",
+              "🥩 Мясное ассорти: сыровяленое мясо, куриный рулет с курагой и грецким орехом, свиной рулет с зеленью и болгарским перцем",
+              "🥒 Ассорти кавказских солений",
+              "🥗 САЛАТЫ",
+              "🥗 Салат «Оливье» с нежной грудкой индейки",
+              "🍅 Салат с бурратой и томатами",
+              "🍽 ГОРЯЧИЕ БЛЮДА В СТОЛ",
+              "🐟 Стейки радужной форели в миндальной стружке, с соусом «Мармандес»",
+              "🥩 Говяжьи медальоны в беконе со спаржей и соусом «Сальса»",
+              "🍄 Говяжий язык в сливочном соусе с шампиньонами под сырной шапкой",
+              "🔥 Шашлык из свинины с маринованным луком",
+              "🔥 Шашлык из цыплёнка с маринованным луком",
+              "🥐 ВЫПЕЧКА И ДЕСЕРТЫ",
+              "🧀 Хачапури по-абхазски с молодым сыром",
+              "🥧 Кулебяка с крабовым мясом и сёмгой",
+              "🍞 Хлебная корзина",
+              "🍰 Десерты в ассортименте",
+              "🍇 Фруктовое ассорти",
+              "🥔 ГАРНИРЫ",
+              "🥔 Запечённый картофель",
+              "🫑 Овощи, запечённые на мангале",
+              "🥣 СОУСЫ",
+              "Цахтон · Томатный · Асызбал",
+              "🥂 НАПИТКИ",
+              "🧃 Соки и компоты",
+              "🍾 Шампанское · Вино · Водка"
+            ]
+          },
+          {
+            "label": "✔️ПРАЗДНИЧНЫЕ КАНИКУЛЫ:",
+            "lines": [
+              "РЕСТОРАН ОТЕЛЯ · ЕЖЕДНЕВНО",
+              "🕯 30 декабря — Кинозал при свечах",
+              "Классика кино в тёплом свете свечей",
+              "🎄31 декабря — Гала-ужин🎄",
+              "21:00 · ведущий, DJ-сет, салют",
+              "🎹 1 января — Первые аккорды года",
+              "Вечер живого фортепиано",
+              "🎸 2 января — Тёплые струны",
+              "Акустическая гитара за ужином",
+              "🎻 3 января — Шёпот смычка",
+              "Нежная классика в исполнении скрипачки",
+              "🎤 4 января — Квиз об Абхазии",
+              "Знакомство с традициями и культурой Абхазии и вечер потрясающей живой музыки в исполнении певицы",
+              "🍷 5 января — Винное казино",
+              "Игра на дегустации абхазских вин",
+              "6 января — Код личности",
+              "Цифровая психология и открытия о себе",
+              "🎄 7 января — Рождественская сказка",
+              "Праздничный стол и уют в день Рождества",
+              "🕵️ 8 января — Город засыпает",
+              "Детективная игра с ведущим",
+              "🎻 9 января — Романс для двоих",
+              "Скрипка, свечи и романтическое настроение",
+              "🎶 10 января — Джаз на клавишах",
+              "Фортепиано: джаз и любимая классика",
+              "🎶 12 января — Зимняя соната",
+              "Скрипка в сопровождении ужина",
+              "🃏 13 января — Последний ход",
+              "Финальная партия мафии накануне Старого Нового года"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "note",
+            "text": "(оплачивается отдельно)"
+          },
+          {
+            "kind": "price",
+            "text": "Основной зал:"
+          },
+          {
+            "kind": "price",
+            "text": "11000₽ - взрослый"
+          },
+          {
+            "kind": "price",
+            "text": "5500₽ - ребенок от 5 до 12 лет"
+          },
+          {
+            "kind": "price",
+            "text": "Второй зал:"
+          },
+          {
+            "kind": "price",
+            "text": "9000₽ - взрослый"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - ребенок от 5 до 12 лет"
+          },
+          {
+            "kind": "note",
+            "text": "(за двухместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "+1 взр./реб. — стоимость доп. места"
+          },
+          {
+            "kind": "price",
+            "text": "Реб. — от 5 до 12 лет"
+          },
+          {
+            "kind": "price",
+            "text": "С 30 декабря по 5 января:"
+          },
+          {
+            "kind": "price",
+            "text": "11340₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "9070₽ - Стандарт, одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "13230₽ - Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "15120₽ - Люкс с видом на море"
+          },
+          {
+            "kind": "price",
+            "text": "С 6 по 10 января:"
+          },
+          {
+            "kind": "price",
+            "text": "8030₽ - Стандарт"
+          },
+          {
+            "kind": "price",
+            "text": "6430₽ - Стандарт, одноместное размещение"
+          },
+          {
+            "kind": "price",
+            "text": "9920₽ - Семейный"
+          },
+          {
+            "kind": "price",
+            "text": "10300₽ - Люкс с видом на море"
+          },
+          {
+            "kind": "note",
+            "text": "Доп. место для взрослого - 1890₽"
+          },
+          {
+            "kind": "note",
+            "text": "Доп. место для ребёнка - 1520₽"
+          },
+          {
+            "kind": "price",
+            "text": "Количество мест ограничено, дресс-код: коктейльные наряды."
+          },
+          {
+            "kind": "price",
+            "text": "Гала-ужин доступен по предварительному бронированию."
+          },
+          {
+            "kind": "price",
+            "text": "Изображения в публикации носят иллюстративный характер и передают атмосферу новогоднего вечера. Фактическое оформление зала, декор и сервировка могут отличаться от представленных на изображениях."
+          },
+          {
+            "kind": "price",
+            "text": "Мой сайт: abhazbereg.ru"
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/index.html",
+        "filters": {
+          "distance": [
+            "beachfront",
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "premium"
+          ],
+          "city": [
+            "gagra"
+          ],
+          "beach": [
+            "pebble"
+          ],
+          "room": [
+            "sea-view",
+            "pool",
+            "heated-pool",
+            "balcony",
+            "tv",
+            "five-plus",
+            "two-room-plus",
+            "beachfront-room"
+          ],
+          "stay": []
+        }
+      },
+      "id": 1235,
+      "media": [
+        {
+          "id": 1235001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-royal-rivera-barhatnaya-zima-5531.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/novyy-god-v-royal-rivera-barhatnaya-zima-5531.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-royal-rivera-barhatnaya-zima-5531.jpg",
+          "details": {}
+        },
+        {
+          "id": 1235002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1235003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1235004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1235005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1235006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1235007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1235008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1235009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1235010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1235011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5540",
+            "telegram_url": "https://t.me/abhazbooking/5540",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/video-01-poster.jpg"
+          }
         }
       ]
     }
