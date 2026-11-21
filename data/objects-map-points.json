@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-20T10:56:34.737500+00:00",
+  "generated_at": "2026-11-21T01:04:49.685350+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -480,6 +480,14 @@
       "lat": 43.35920580873396,
       "lon": 40.12286031106655,
       "url": "/hotels/pansionat-bagripsh-novyy-korpus-4914/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "🎄 НОВЫЙ ГОД В \"РОЯЛ РИВЬЕРА\" БАРХАТНАЯ ЗИМА",
+      "address": "Гагра, пр-т Ардзинба, 45",
+      "lat": 43.32114,
+      "lon": 40.23882,
+      "url": "/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/",
       "cityKey": "gagra"
     },
     {
@@ -2038,16 +2046,16 @@
   "stats": {
     "placemarks_total": 498,
     "placemarks_unique": 249,
-    "pages_total": 506,
-    "pages_on_disk": 570,
+    "pages_total": 507,
+    "pages_on_disk": 571,
     "pages_excluded": 64,
-    "from_constructor": 273,
+    "from_constructor": 274,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 233,
     "skipped_without_coords": 233,
-    "shared_coordinate_groups": 35,
+    "shared_coordinate_groups": 36,
     "deduped_redirect_points": 19,
-    "points_total": 254
+    "points_total": 255
   }
 }
