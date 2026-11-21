@@ -52,13 +52,32 @@ def deliver(summary,report):
         k,_,v=line.removeprefix('export ').partition('=')
         env[k.strip()]=v.strip().strip('"').strip("'")
     base='https://api.telegram.org/bot'+env['TELEGRAM_BOT_TOKEN']
-    chat=env['TELEGRAM_ALERTS_CHAT_ID']
+    chat=str(json.loads((CONFIG/'ads-comment-watch.json').read_text())['telegramChat'])
+    if chat!='-5555716212': raise RuntimeError('Изменился ID рекламной группы')
     def call(method,**kwargs):
-        response=requests.post(base+'/'+method,data={'chat_id':chat,**kwargs.pop('data',{})},timeout=45,**kwargs)
+        try:
+            response=requests.post(base+'/'+method,data={'chat_id':chat,**kwargs.pop('data',{})},timeout=45,**kwargs)
+        except requests.RequestException:
+            raise RuntimeError('Нет ответа Telegram: '+method) from None
+        if method=='sendDocument' and response.status_code in (400,401,403,404,429) and response.json().get('ok') is False:
+            (PRIVATE/'advertising.pending').unlink(missing_ok=True)
         if response.status_code!=200 or not response.json().get('ok'): raise RuntimeError('Telegram: '+method+' не подтверждён')
         return response.json()['result']
-    if call('getChat').get('title')!='Я и мои боты': raise RuntimeError('Не подтверждён личный чат')
-    call('sendDocument',data={'caption':summary[:1024]},files={'document':('Сверка цен.txt',report.encode(),'text/plain')})
+    destination=call('getChat')
+    if str(destination['id'])!=chat or destination.get('title')!='Абхазберег · Реклама' or destination.get('type') not in ('group','supergroup'):
+        raise RuntimeError('Не подтверждена рекламная группа')
+    pending=PRIVATE/'advertising.pending'
+    delivered=PRIVATE/'advertising.delivered.sha256'
+    if pending.exists() and delivered.exists() and pending.read_text()==delivered.read_text():
+        pending.unlink()
+    if pending.exists():
+        raise RuntimeError('Предыдущая доставка не подтверждена. Проверьте историю чата перед повтором.')
+    pending.write_text(hashlib.sha256(report.encode()).hexdigest())
+    sent=call('sendDocument',data={'caption':summary[:1024]},files={'document':('Сверка цен.txt',report.encode(),'text/plain')})
+    if str(sent['chat']['id'])!=chat or not sent.get('message_id'):
+        raise RuntimeError('Нет подтверждения доставки')
+    print('Telegram подтвердил сообщение',sent['message_id'],destination['title'])
+
 
 
 def main():
@@ -79,11 +98,14 @@ def main():
         tmp=PRIVATE/'report.next';tmp.write_text(report);tmp.replace(PRIVATE/'report.txt')
         print(summary)
         digest=hashlib.sha256(report.encode()).hexdigest()
-        state=PRIVATE/'delivered.sha256'
+        state=PRIVATE/'advertising.delivered.sha256'
         if args.notify and (not state.exists() or state.read_text()!=digest):
             first=next((r for status in ('Расхождение цен','Наложение периодов','Пропуск дат') for r in ordered if r[0]==status),None)
             deliver(summary+('\n\n'+'\n'.join(first) if first else '')+'\nВсе исходные строки в приложении.',report)
             tmp.write_text(digest);tmp.replace(state)
+            (PRIVATE/'advertising.pending').unlink()
+        elif args.notify:
+            print('Отчёт не изменился, повтор пропущен')
 
 
 if __name__=='__main__':

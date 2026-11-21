@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.abhazbereg.card-price-audit</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/bereg/.venvs/chessmate/bin/python</string>
+		<string>-u</string>
+		<string>/Users/bereg/dev/card-price-audit/tools/run_card_price_audit.py</string>
+		<string>--notify</string>
+	</array>
+	<key>StandardErrorPath</key>
+	<string>/Users/bereg/dev/rental-ai-data/private_сырые_не_для_облака/card-price-audit/errors.log</string>
+	<key>StandardOutPath</key>
+	<string>/Users/bereg/dev/rental-ai-data/private_сырые_не_для_облака/card-price-audit/service.log</string>
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Minute</key>
+		<integer>10</integer>
+	</dict>
+</dict>
+</plist>
