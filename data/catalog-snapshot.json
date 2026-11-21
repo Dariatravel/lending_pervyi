@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-20T19:04:58.412356+00:00",
+  "generated_at": "2026-11-21T14:50:48.725809+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 257,
@@ -73,9 +73,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -366,9 +364,7 @@
           "city": [
             "pitsunda"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "room": [
             "pool",
             "heated-pool",
@@ -918,9 +914,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -1166,9 +1160,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -1391,9 +1383,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -1962,9 +1952,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -2200,9 +2188,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -2418,9 +2404,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -2963,9 +2947,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -3996,9 +3978,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -4231,9 +4211,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -4545,9 +4523,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -5434,7 +5410,7 @@
             "up-to-5"
           ],
           "food": [
-            "no-food"
+            "full-board"
           ],
           "price": [
             "premium"
@@ -5646,9 +5622,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -5977,9 +5951,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -6309,9 +6281,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -6582,9 +6552,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -6795,9 +6763,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -7048,9 +7014,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -7339,9 +7303,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -7703,7 +7665,7 @@
             "up-to-5"
           ],
           "food": [
-            "no-food"
+            "full-board"
           ],
           "price": [
             "midrange"
@@ -7922,9 +7884,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -8387,9 +8347,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -9670,9 +9628,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -10102,9 +10058,7 @@
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/mimoza-3k-kvartira-1499/index.html",
         "filters": {
           "distance": [],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [],
           "city": [
             "pitsunda"
@@ -10347,9 +10301,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -10588,9 +10540,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -11020,9 +10970,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -11244,9 +11192,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -12112,9 +12058,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -12345,9 +12289,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -12860,9 +12802,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -13096,9 +13036,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -13454,9 +13392,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -13756,9 +13692,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -14010,9 +13944,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -14532,9 +14464,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -14785,9 +14715,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -15039,9 +14967,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -15274,9 +15200,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -15744,9 +15668,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -16016,9 +15938,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -16322,9 +16242,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -16606,7 +16524,7 @@
             "up-to-10"
           ],
           "food": [
-            "full-board",
+            "half-board",
             "cafe"
           ],
           "price": [
@@ -16627,6 +16545,7 @@
             "two-room-plus"
           ],
           "stay": [
+            "cottages",
             "pets"
           ]
         }
@@ -16844,9 +16763,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -17126,9 +17043,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -17944,9 +17859,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -18739,9 +18652,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -19004,9 +18915,7 @@
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/sia-lend-baza-otdyha-3800/index.html",
         "filters": {
           "distance": [],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -19249,9 +19158,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -19813,9 +19720,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -20070,9 +19975,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -20626,9 +20529,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -20924,9 +20825,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -21368,9 +21267,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -21637,9 +21534,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -22201,9 +22096,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -22891,9 +22784,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -23101,9 +22992,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -23335,9 +23224,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -23868,9 +23755,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -24125,9 +24010,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -24543,9 +24426,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -24828,9 +24709,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -25070,9 +24949,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -25297,9 +25174,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -25501,9 +25376,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -25717,9 +25590,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -26078,9 +25949,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -26356,9 +26225,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -26633,9 +26500,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -26904,9 +26769,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -27121,9 +26984,7 @@
           "city": [
             "gudauta"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "room": [
             "terrace",
             "five-plus"
@@ -27572,9 +27433,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -27807,9 +27666,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -28041,9 +27898,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -28264,9 +28119,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -28925,9 +28778,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -29434,9 +29285,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -29643,9 +29492,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -29857,9 +29704,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -30154,9 +29999,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -31764,9 +31607,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -31989,9 +31830,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -32098,9 +31937,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -32764,9 +32601,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -32955,9 +32790,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -33104,9 +32937,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -33327,9 +33158,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -33584,9 +33413,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -34349,9 +34176,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -34834,9 +34659,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -35071,9 +34894,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -35345,9 +35166,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -35584,9 +35403,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -35860,9 +35677,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -36104,9 +35919,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -36223,9 +36036,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -36449,9 +36260,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -36720,9 +36529,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -36915,9 +36722,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -37150,9 +36955,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -37363,9 +37166,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -37825,9 +37626,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -38071,9 +37870,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -38332,9 +38129,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -38525,9 +38320,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -38759,9 +38552,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -38969,9 +38760,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -39227,9 +39016,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -39448,9 +39235,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -39661,9 +39446,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -39956,9 +39739,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -40194,9 +39975,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -40421,9 +40200,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -40680,9 +40457,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -40995,9 +40770,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -41246,9 +41019,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -41524,9 +41295,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -41736,9 +41505,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -42152,9 +41919,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -42451,9 +42216,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -43509,9 +43272,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -44016,9 +43777,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -44271,9 +44030,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -44770,9 +44527,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -45014,9 +44769,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -45509,9 +45262,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -46031,9 +45782,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -46661,7 +46410,7 @@
             "over-10"
           ],
           "food": [
-            "no-food"
+            "cafe"
           ],
           "price": [
             "economy"
@@ -47409,9 +47158,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -47653,9 +47400,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -47893,9 +47638,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -48357,9 +48100,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -48603,9 +48344,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -48860,9 +48599,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -49544,9 +49281,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -49796,9 +49531,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -50267,9 +50000,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -50588,6 +50319,7 @@
           ],
           "food": [
             "full-board",
+            "breakfast",
             "cafe"
           ],
           "price": [
@@ -50898,9 +50630,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -51154,9 +50884,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -51727,9 +51455,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -52785,9 +52511,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -53017,9 +52741,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -53654,9 +53376,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -53886,9 +53606,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -54260,9 +53978,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -54572,9 +54288,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -55096,9 +54810,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -55694,9 +55406,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -55950,9 +55660,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -57030,6 +56738,7 @@
           ],
           "food": [
             "full-board",
+            "breakfast",
             "cafe"
           ],
           "price": [
@@ -57579,9 +57288,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -57828,9 +57535,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -58353,9 +58058,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -59309,9 +59012,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -60800,7 +60501,7 @@
             "beachfront"
           ],
           "food": [
-            "no-food"
+            "cafe"
           ],
           "price": [
             "premium"
@@ -61332,6 +61033,7 @@
             "up-to-5"
           ],
           "food": [
+            "full-board",
             "cafe"
           ],
           "price": [
@@ -61684,6 +61386,7 @@
             "up-to-5"
           ],
           "food": [
+            "full-board",
             "cafe"
           ],
           "price": [
@@ -62127,6 +61830,7 @@
             "up-to-5"
           ],
           "food": [
+            "full-board",
             "cafe"
           ],
           "price": [
@@ -62372,9 +62076,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -64082,9 +63784,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -65474,9 +65174,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -65901,9 +65599,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -66211,6 +65907,7 @@
             "up-to-5"
           ],
           "food": [
+            "full-board",
             "cafe"
           ],
           "price": [
@@ -66425,9 +66122,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -66923,9 +66618,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -67202,9 +66895,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -67514,9 +67205,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -67751,6 +67440,7 @@
             "up-to-5"
           ],
           "food": [
+            "breakfast",
             "cafe"
           ],
           "price": [
@@ -68031,9 +67721,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -68295,9 +67983,7 @@
             "beachfront",
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -68579,9 +68265,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -68840,9 +68524,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -69047,9 +68729,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -69282,9 +68962,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -69524,9 +69202,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -69747,9 +69423,7 @@
           "distance": [
             "over-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -70243,9 +69917,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -70489,9 +70161,7 @@
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "economy"
           ],
@@ -71823,6 +71493,7 @@
             "up-to-5"
           ],
           "food": [
+            "breakfast",
             "cafe"
           ],
           "price": [
@@ -72595,9 +72266,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -73336,9 +73005,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -73590,9 +73257,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "premium"
           ],
@@ -75055,7 +74720,8 @@
             "up-to-10"
           ],
           "food": [
-            "breakfast"
+            "breakfast",
+            "cafe"
           ],
           "price": [
             "premium"
@@ -75451,6 +75117,7 @@
             "over-10"
           ],
           "food": [
+            "breakfast",
             "cafe"
           ],
           "price": [
@@ -76725,7 +76392,8 @@
             "up-to-5"
           ],
           "food": [
-            "no-food"
+            "breakfast",
+            "cafe"
           ],
           "price": [
             "midrange"
@@ -77083,9 +76751,7 @@
           "distance": [
             "up-to-10"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -77747,7 +77413,8 @@
             "over-10"
           ],
           "food": [
-            "full-board",
+            "half-board",
+            "breakfast",
             "cafe"
           ],
           "price": [
@@ -78590,6 +78257,7 @@
             "up-to-5"
           ],
           "food": [
+            "breakfast",
             "cafe"
           ],
           "price": [
