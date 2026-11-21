@@ -64,10 +64,11 @@ COL = {
     'stay_pets': 48,        # AW
 
     # Питание
+    'food_description': 46,  # AU
     'food_filter': 47,      # AV
 
     # Город: текстовая метка (AX) и чекбоксы по городам (AY–BF)
-    'city_text': 49,        # AX
+    'ldzaa_cottages': 49,        # AX
     'city_ldzaa': 50,       # AY
     'city_pitsunda': 51,    # AZ
     'city_gagra': 52,       # BA
@@ -212,26 +213,26 @@ def infer_distance(row: list[str]) -> list[str]:
 
 
 def infer_food(row: list[str]) -> list[str]:
-    text = get_cell(row, 'food_filter').lower()
+    label = get_cell(row, 'food_filter').lower().replace('ё', 'е')
+    description = get_cell(row, 'food_description').lower().replace('ё', 'е')
+    text = label or description
     values: list[str] = []
-
-    if not text:
-        return ['no-food']
-
     if 'без питан' in text:
         values.append('no-food')
-    if 'полупансион' in text:
-        values.append('half-board')
-    if 'завтрак' in text and ('обед' in text or 'ужин' in text or 'трехраз' in text or 'трёхраз' in text):
+    if any(word in text for word in ('трехраз', 'полный пансион', 'все включено')) or (
+        label and all(word in label for word in ('завтрак', 'обед', 'ужин'))
+    ):
         values.append('full-board')
-    if 'завтрак' in text and 'full-board' not in values:
+    elif 'полупансион' in text or (label and 'завтрак' in label and 'ужин' in label):
+        values.append('half-board')
+    elif 'завтрак' in text and not any(word in text for word in ('без завтрак', 'завтрака нет')):
         values.append('breakfast')
-    if 'кафе' in text or 'столов' in text:
+    # Кафе в AV не описывает включённый в цену завтрак из AU.
+    breakfast_option = re.search(r'завтрак[иа]?\s*(?:,?\s*(?:либо|или)|включен)', description + ' ' + label)
+    if breakfast_option and 'breakfast' not in values and 'no-food' not in values:
+        values.append('breakfast')
+    if any(word in text for word in ('кафе', 'столовая', 'столовой', 'ресторан', 'кофейня')):
         values.append('cafe')
-
-    # Если текст есть, но не разобран — считаем как без питания
-    if not values:
-        values.append('no-food')
 
     return dedupe(values)
 
@@ -271,6 +272,10 @@ def city_code_from_text(raw: str) -> str | None:
     return None
 
 
+def is_ldzaa_cottage(row: list[str]) -> bool:
+    return get_cell(row, 'ldzaa_cottages').strip().lower() in {'да', 'лдзаа', 'true', '1'}
+
+
 def infer_city(row: list[str]) -> list[str]:
     values: list[str] = []
     if has_yes(get_cell(row, 'city_sukhum')):
@@ -289,10 +294,8 @@ def infer_city(row: list[str]) -> list[str]:
         values.append('gagra')
     if has_yes(get_cell(row, 'city_tsandripsh')):
         values.append('tsandripsh')
-    if not values:
-        code = city_code_from_text(get_cell(row, 'city_text'))
-        if code:
-            values.append(code)
+    if is_ldzaa_cottage(row):
+        values.append('ldzaa')
     return dedupe(values)
 
 
@@ -352,7 +355,7 @@ def infer_room(row: list[str]) -> list[str]:
 
 def infer_stay(row: list[str]) -> list[str]:
     values: list[str] = []
-    if has_yes(get_cell(row, 'stay_cottages')):
+    if has_yes(get_cell(row, 'stay_cottages')) or is_ldzaa_cottage(row):
         values.append('cottages')
     if has_yes(get_cell(row, 'stay_apartments')):
         values.append('apartments')
