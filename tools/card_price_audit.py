@@ -6,6 +6,7 @@ import datetime as dt
 import re
 from collections import defaultdict
 from itertools import groupby
+from urllib.parse import urlsplit, parse_qs
 
 from compare_price_tabs import MONTHS, cell_text, is_reddish
 
@@ -19,8 +20,16 @@ def norm(s):
 
 
 def identity(link):
-    m = re.fullmatch(r'https?://t\.me/(\w+)/(\d+)/?', link.strip(), re.I)
-    return (m[1].lower(), int(m[2])) if m else None
+    try:
+        u = urlsplit(link.strip())
+    except ValueError:
+        return None
+    if u.scheme not in ('http','https') or u.netloc.lower() not in ('t.me','telegram.me','www.t.me','www.telegram.me'):
+        return None
+    if set(parse_qs(u.query,keep_blank_values=True)) - {'single'} or u.fragment:
+        return None
+    m=re.fullmatch(r'/([a-zA-Z0-9_]+)/(?:[0-9]+/)?([0-9]+)/?',u.path)
+    return (m[1].lower(),int(m[2])) if m else None
 
 
 def period(text, year):
@@ -55,6 +64,65 @@ def tariff(label, meal, double):
     return (category, meal, occupancy)
 
 
+def inline_periods(text, year):
+    result=[]
+    for part in norm(text.strip(' 🌲🎄')).split(','):
+        part=part.strip()
+        bounds=re.fullmatch(rf'с ({MONTH}) по ({MONTH})',part)
+        half=re.fullmatch(rf'({MONTH}) (до|с) (\d{{1,2}})(?:го)?',part)
+        if bounds:
+            m1,m2=(MONTHS[x] for x in bounds.groups())
+            y2=year+int(m2<m1)
+            spans=[(dt.date(year,m1,1),dt.date(y2,m2,calendar.monthrange(y2,m2)[1]))]
+        elif half:
+            month=MONTHS[half[1]]
+            try: cut=dt.date(year,month,int(half[3]))
+            except ValueError: return []
+            spans=[(dt.date(year,month,1),cut)] if half[2]=='до' else [(cut,dt.date(year,month,calendar.monthrange(year,month)[1]))]
+        else:
+            spans=period(part,year)
+        if not spans: return []
+        result.extend(spans)
+    return result
+
+
+def read_inline(card, offers):
+    year=meal=category=None
+    hints=set()
+    parsed=0
+    card["_examples"]=[]
+    for i,item in enumerate(card['prices'] or [],1):
+        raw=item.get('text','').strip()
+        text=norm(raw)
+        y=re.fullmatch(r'\(?(?:(?:раннее )?бронирование )?(20\d{2})\)?',text)
+        if y:
+            year=int(y[1]);meal=category=None
+            continue
+        if text.rstrip(':') in MEALS:
+            meal=text.rstrip(':')
+            continue
+        price=re.fullmatch(r'([0-9 ]+)\s*(?:₽(?:/сутки)?|/сутки)\s*[–—-]\s*(.+)',text)
+        if price:
+            if not year: hints.add('год')
+            if not meal: hints.add('питание')
+            if not category: hints.add('категорию')
+            spans=inline_periods(price[2],year) if year else []
+            if spans:
+                parsed+=1
+                card['_examples'].append((category or '',meal or '',year,i,raw))
+                if category and meal:
+                    key=tariff(category,meal,False)
+                    if key[2]:
+                        for lo,hi in spans:
+                            offers[key].append((lo,hi,int(price[1].replace(' ','')),f'{card["title"]}, строка {i}: {year}, {category}, {meal}, {raw}'))
+            continue
+        if re.fullmatch(r'(?:одно|двух|трех|четырех)комнатный номер|(?:двух|трех|четырех)местное|(?:стандарт|люкс|семейный)(?: 1-мест\.?)?',text):
+            category,meal=text,None
+        else:
+            category=meal=None
+    card['_parsed_periods']=parsed
+    card['_missing']=sorted(hints)
+
 def card_rates(card):
     offers = defaultdict(list)
     dates, meal, double, year = [], None, False, None
@@ -68,7 +136,7 @@ def card_rates(card):
     for i, item in enumerate(card['prices'] or [], 1):
         raw = item.get('text', '').strip()
         text = norm(raw)
-        y = re.fullmatch(r'\(?(20\d{2})\)?', text)
+        y = re.fullmatch(r'\(?(?:(?:раннее )?бронирование )?(20\d{2})\)?', text)
         if y:
             year, dates, meal, double = int(y[1]), [], None, False
         elif text == '(за двухместное размещение)':
@@ -86,6 +154,7 @@ def card_rates(card):
                     offers[tariff(m[2], meal, double)].append((start,end,int(m[1]),ref))
         else:
             dates, meal = [], None
+    read_inline(card,offers)
     return offers
 
 
@@ -140,10 +209,17 @@ def audit(rows, cards, today):
         rates = []
         if name.startswith(prefix) and meal:
             label = name[len(prefix):-len(meal)].strip()
+            if (card['_royal_checked'] and label=='люкс с видом на море'
+                    and card.get('suite_evidence')=='Двухкомнатный Люкс с видом на море площадью 60 м².'):
+                label='люкс'
             double_explicit = label.endswith(' двухместное размещение')
             label = label.removesuffix(' двухместное размещение')
             rates = card['_rates'].get(tariff(label,meal,double_explicit or card['_royal_checked']),[])
         if not rates:
+            examples=[e for e in card['_examples'] if e[0] and e[0] in name]
+            if examples:
+                category,food,year,i,raw=examples[0]
+                ref+=f' | строка {i}, {category}, {year}: {raw} (кандидат)'
             emit('Тариф не сопоставлен','точное размещение, категория или питание не установлены',ref)
             continue
         from compare_price_tabs import MANUAL_COLUMNS

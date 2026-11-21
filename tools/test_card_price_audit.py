@@ -28,3 +28,17 @@ class PriceAuditTests(unittest.TestCase):
 
     def test_new_year(self):
         self.assertEqual(period('30 декабря–5 января',2026),[(dt.date(2026,12,30),dt.date(2027,1,5))])
+
+    def test_topic_and_album_links(self):
+        for url in ('https://telegram.me/abhazbooking/4539?single','https://t.me/abhazbooking/121/4539'):
+            self.assertEqual(identity(url),('abhazbooking',4539))
+        for url in ('https://t.me/abhazbooking/4539?comment=1','https://t.me.evil/abhazbooking/4539','https://[bad'):
+            self.assertIsNone(identity(url))
+
+    def test_inline_context_and_new_year(self):
+        c={'title':'Дом','post':1,'channel':'channel','prices':[{'text':s} for s in
+            ['(2026)','Стандарт 1-мест.','Завтрак:','3000₽ - с ноября по апрель','Люкс 1-мест.','5000₽ - ноябрь','(БРОНИРОВАНИЕ 2027)','Стандарт 1-мест.','Завтрак:','7000₽ - май']]}
+        rates=card_rates(c)
+        self.assertNotIn(('люкс','завтрак',1),rates)
+        self.assertEqual(rates[('стандарт','завтрак',1)][0][1],dt.date(2027,4,30))
+        self.assertEqual(rates[('стандарт','завтрак',1)][1][0],dt.date(2027,5,1))

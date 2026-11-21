@@ -23,7 +23,10 @@ CONFIG=HOME/'.config/rental-ai'
 
 def get_cards():
     sql="""SELECT COALESCE(json_agg(json_build_object('title',h.title,'channel',lower(c.source_channel),
-    'post',c.source_message_id,'prices',c.site_prices)), '[]'::json)
+    'post',c.source_message_id,'prices',c.site_prices,
+    'suite_evidence',(SELECT line FROM jsonb_array_elements(CASE WHEN c.source_channel='abhazbooking' AND c.source_message_id=5296
+    THEN c.site_sections::jsonb ELSE '[]'::jsonb END) sec CROSS JOIN LATERAL jsonb_array_elements_text(sec->'lines') line
+    WHERE sec->>'label' ILIKE '%НОМЕРА%' AND line='Двухкомнатный Люкс с видом на море площадью 60 м².' LIMIT 1))), '[]'::json)
     FROM public.hotel_cards c JOIN public.hotels h ON h.id=c.hotel_id WHERE c.source_message_id IS NOT NULL"""
     cmd=['/bin/sh','-c','. "$HOME/.config/rental-ai/supabase-db.env" && exec /opt/homebrew/opt/postgresql@17/bin/psql "$SUPABASE_DB_URL" -XAt -v ON_ERROR_STOP=1']
     cards=json.loads(subprocess.run(cmd,input=sql,text=True,capture_output=True,check=True,timeout=60).stdout)
