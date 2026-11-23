@@ -3,11 +3,11 @@
 
 Вкладка СОЦСЕТИ, столбец H. Для каждой видимой строки, чьё название совпадает
 с объектом каталога (data/catalog-index.json), в H должна стоять короткая ссылка
-`abhazbereg.com/<ключ>` — та же, что в `short_url` каталога (её считает сайт:
+`abhazbereg.ru/<ключ>` — та же, что в `short_url` каталога (её считает сайт:
 ручной ключ из data/short-links.json главнее автоматического). Если короткой ещё
-нет — полная `abhazbereg.com/<путь-страницы>/`; когда короткая появится, ячейка
+нет — полная `abhazbereg.ru/<путь-страницы>/`; когда короткая появится, ячейка
 обновится сама. Домен латиницей (решение Дарьи 19.10.2026), без протокола:
-abhazbereg.com переадресует на абхазберег.рф с сохранением пути и меток.
+abhazbereg.ru переадресует на абхазберег.рф с сохранением пути и меток.
 Прежние ссылки abhazbereg.ru/<ключ> продолжают работать — их никто не удаляет.
 Обновляются только ячейки, где значение отличается от актуального.
 
@@ -36,7 +36,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SPREADSHEET_ID = '135fxeZX5OE30rH3Sg5KWpTR4VuhBntCzGrTk0WcdTBY'
 TAB = 'СОЦСЕТИ'
 SITE_COL_INDEX = 7  # H
-LINK_HOST = 'abhazbereg.com'
+LINK_HOST = 'abhazbereg.ru'
 # Наши домены в старых ячейках: ссылку на них переводим на LINK_HOST, чужие не трогаем.
 OUR_HOSTS = r'(?:www\.)?(?:abhazbereg\.ru|abhazbereg\.com|абхазберег\.рф|xn--80aacbklan7f0b\.xn--p1ai)'
 CATALOG_INDEX = ROOT / 'data' / 'catalog-index.json'
@@ -112,7 +112,7 @@ def shorten_existing(current: str, short_keys: dict, promo_keys: set | None = No
 def short_link_of(item: dict, short_keys: dict, path: str) -> str:
     """Короткая ссылка объекта: short_url каталога (его считает сайт), иначе реестры, иначе полный путь."""
     short_url = str(item.get('short_url') or '')
-    match = re.fullmatch(r'https://abhazbereg\.com/([a-z0-9-]+)', short_url)
+    match = re.fullmatch(r'https://abhazbereg\.(?:ru|com)/([a-z0-9-]+)', short_url)
     if match:
         return f'{LINK_HOST}/{match.group(1)}'
     key = short_keys.get(path)

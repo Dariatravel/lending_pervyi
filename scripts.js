@@ -4,22 +4,22 @@
   const METRIKA_ID = 108214677;
   const GA4_ID = "G-MZ2NTRDDJ5";
   const SITE_CANONICAL_ORIGIN = "https://абхазберег.рф";
-  // Красивый латинский домен для переписок: abhazbereg.com — редиректор,
+  // Красивый латинский домен для переписок: abhazbereg.ru — редиректор,
   // ведёт на абхазберег.рф с сохранением пути. Canonical/SEO остаются на
   // кириллическом домене. Решение Дарьи от 10.08.2026: ссылки в переписках
   // остаются латинскими, а сам редиректор переносится с GitHub Pages на
   // российскую площадку — чтобы гость из проблемной сети до него доходил.
-  const SHARE_ORIGIN = "https://abhazbereg.com";
+  const SHARE_ORIGIN = "https://abhazbereg.ru";
   const PUNY_SITE_HOST = "xn--80aacbklan7f0b.xn--p1ai";
   const PUNY_SITE_ORIGINS = [
     `https://${PUNY_SITE_HOST}`,
     `http://${PUNY_SITE_HOST}`,
   ];
 
-  // Редиректор abhazbereg.com сохраняет путь, но ОТБРАСЫВАЕТ query («?…») —
+  // Редиректор abhazbereg.ru сохраняет путь, но ОТБРАСЫВАЕТ query («?…») —
   // 21.08.2026 из-за этого ссылки на подборки с фильтрами открывали голый
   // каталог. Часть после «#» браузер переносит через редирект сам, поэтому
-  // в share-ссылках фильтры кодируем фрагментом: abhazbereg.com/#price=…
+  // в share-ссылках фильтры кодируем фрагментом: abhazbereg.ru/#price=…
   function buildPublicShareUrl(pathname = window.location.pathname, search = window.location.search) {
     const path = pathname || "/";
     const query = (search || "").replace(/^\?/, "");
@@ -54,7 +54,7 @@
   }
 
   async function copyPublicUrl(triggerBtn, copiedLabel = "Ссылка скопирована", defaultLabel = "", explicitUrl = "") {
-    const url = explicitUrl || buildPublicShareUrl();
+    const url = (explicitUrl || buildPublicShareUrl()).replace(/^https?:\/\//, "");
     const original = triggerBtn?.textContent || defaultLabel;
     try {
       if (navigator.clipboard?.writeText) {
@@ -89,7 +89,8 @@
     const listings = await listingShortUrlsPromise;
     const item = listings.find((row) => row?.slug === slug && row?.source_kind === sourceKind);
     const shortUrl = String(item?.short_url || "").trim();
-    return /^https:\/\/abhazbereg\.com\/[a-z0-9-]+\/?$/.test(shortUrl) ? shortUrl.replace(/\/$/, "") : "";
+    return /^https:\/\/abhazbereg\.(?:ru|com)\/[a-z0-9-]+\/?$/.test(shortUrl)
+      ? shortUrl.replace(/^https:\/\/abhazbereg\.com/, SHARE_ORIGIN).replace(/\/$/, "") : "";
   }
 
   function initCanonicalUrlDisplay() {
@@ -280,7 +281,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202611141540";
+  const ASSET_VERSION = "202611231250";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */

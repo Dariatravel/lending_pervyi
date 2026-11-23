@@ -48,7 +48,7 @@ STUB_TITLE = "Открываем страницу — АБХАЗБЕРЕГ"
 
 def og_tags(href: str, listing: dict | None) -> tuple[str, str]:
     """(title, og-теги) страницы-стрелки: у объекта — его название, описание и обложка."""
-    url = f"https://abhazbereg.com{href}"
+    url = f"https://abhazbereg.ru{href}"
     if not listing:
         return STUB_TITLE, f'<meta property="og:url" content="{html.escape(url)}"/>'
     title = str(listing.get("title") or "").strip() or "АБХАЗБЕРЕГ"

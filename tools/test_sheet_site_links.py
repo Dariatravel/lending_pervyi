@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Столбец «Сайт» таблицы БАЗА: короткие ссылки abhazbereg.com, акции не объекты, чужие ссылки целы.
+"""Столбец «Сайт» таблицы БАЗА: короткие ссылки abhazbereg.ru, акции не объекты, чужие ссылки целы.
 
 Запуск: python3 tools/test_sheet_site_links.py
 """
@@ -15,16 +15,16 @@ import update_sheet_site_links as u  # noqa: E402
 
 
 def test_short_link_prefers_catalog_short_url() -> None:
-    item = {"short_url": "https://abhazbereg.com/grass", "page_url": "https://абхазберег.рф/hotels/grass-2928/"}
-    assert u.short_link_of(item, {"/hotels/grass-2928/": "staryy"}, "/hotels/grass-2928/") == "abhazbereg.com/grass"
-    assert u.short_link_of({}, {"/hotels/x-1/": "x"}, "/hotels/x-1/") == "abhazbereg.com/x"
-    assert u.short_link_of({}, {}, "/hotels/x-1/") == "abhazbereg.com/hotels/x-1/"
+    item = {"short_url": "https://abhazbereg.ru/grass", "page_url": "https://абхазберег.рф/hotels/grass-2928/"}
+    assert u.short_link_of(item, {"/hotels/grass-2928/": "staryy"}, "/hotels/grass-2928/") == "abhazbereg.ru/grass"
+    assert u.short_link_of({}, {"/hotels/x-1/": "x"}, "/hotels/x-1/") == "abhazbereg.ru/x"
+    assert u.short_link_of({}, {}, "/hotels/x-1/") == "abhazbereg.ru/hotels/x-1/"
 
 
 def test_shorten_existing_changes_only_domain_and_flags_promo() -> None:
     keys = {"/hotels/grass-2928/": "grass", "/hotels/novyy-god-5326/": "grass-novyy-god"}
-    assert u.shorten_existing("abhazbereg.ru/grass", keys, set()) == "abhazbereg.com/grass"
-    assert u.shorten_existing("https://абхазберег.рф/hotels/grass-2928/", keys, set()) == "abhazbereg.com/grass"
+    assert u.shorten_existing("abhazbereg.ru/grass", keys, set()) == "abhazbereg.ru/grass"
+    assert u.shorten_existing("https://абхазберег.рф/hotels/grass-2928/", keys, set()) == "abhazbereg.ru/grass"
     # ключ акции в строке объекта — не «уже короткая», а в отчёт
     assert u.shorten_existing("abhazbereg.ru/grass-novyy-god", keys, {"grass-novyy-god"}) is None
     # чужие ссылки не наши

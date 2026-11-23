@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Короткие ссылки объектов в data/catalog-index.json (Дарья 19.10.2026).
 
-Каждому объекту — short_url вида https://abhazbereg.com/<ключ>: ручной ключ
+Каждому объекту — short_url вида https://abhazbereg.ru/<ключ>: ручной ключ
 (short-links.json) главнее автоматического, домен — латиницей.
 Запуск: python3 tools/test_short_url_index.py
 """
@@ -34,12 +34,12 @@ def test_apply_short_urls_latin_domain_and_kvartira() -> None:
     items = [
         {"source_kind": "hotel", "slug": "grass-gostevoy-dom-3001"},
         {"source_kind": "kvartira", "slug": "biryuza-etazh-1367"},
-        {"source_kind": "hotel", "slug": "bez-klyucha-1", "short_url": "https://abhazbereg.com/old"},
+        {"source_kind": "hotel", "slug": "bez-klyucha-1", "short_url": "https://abhazbereg.ru/old"},
     ]
     keys = {"/hotels/grass-gostevoy-dom-3001/": "grass", "/kvartira/biryuza-etazh-1367/": "biryuza"}
     assert apply_short_urls(items, keys) == 2
-    assert items[0]["short_url"] == "https://abhazbereg.com/grass"
-    assert items[1]["short_url"] == "https://abhazbereg.com/biryuza"
+    assert items[0]["short_url"] == "https://abhazbereg.ru/grass"
+    assert items[1]["short_url"] == "https://abhazbereg.ru/biryuza"
     assert "short_url" not in items[2], "снятый ключ не должен оставаться в индексе"
     assert listing_path(items[1]) == "/kvartira/biryuza-etazh-1367/"
 
@@ -54,7 +54,7 @@ def test_real_registry_covers_catalog() -> None:
     assert found == len(items), f"без короткой ссылки: {[r['slug'] for r in items if 'short_url' not in r][:10]}"
     leona = [r for r in items if r["slug"].startswith("villa-leona-otel")]
     if leona:
-        assert leona[0]["short_url"] == "https://abhazbereg.com/villa-leona", leona[0]["short_url"]
+        assert leona[0]["short_url"] == "https://abhazbereg.ru/villa-leona", leona[0]["short_url"]
 
 
 def test_stub_keeps_utm_and_has_preview() -> None:

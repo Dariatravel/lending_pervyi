@@ -15,8 +15,8 @@ STORAGE_BUCKET = "abhazbereg-media"
 SHORT_LINKS_MANUAL_PATH = ROOT / "data" / "short-links.json"
 SHORT_LINKS_GENERATED_PATH = ROOT / "data" / "short-links-generated.json"
 # Короткие ссылки — главные для публикаций, домен латиницей (Дарья 19.10.2026:
-# «abhazbereg.com/grass», без кириллицы в ссылках).
-SHORT_LINK_ORIGIN = "https://abhazbereg.com"
+# «abhazbereg.ru/grass», без кириллицы в ссылках).
+SHORT_LINK_ORIGIN = "https://abhazbereg.ru"
 
 
 def load_payload() -> dict[str, Any]:
