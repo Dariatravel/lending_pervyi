@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-21T17:09:33.756537+00:00",
+  "generated_at": "2026-11-23T20:52:47.394870+00:00",
   "schema_version": 1,
   "source": "local-sync",
-  "listings_total": 257,
-  "listings_hotels": 205,
+  "listings_total": 258,
+  "listings_hotels": 206,
   "listings_kvartira": 52,
   "listings": [
     {
@@ -15865,28 +15865,8 @@
         ],
         "prices": [
           {
-            "kind": "price",
-            "text": "АКЦИЯ🔥"
-          },
-          {
-            "kind": "price",
-            "text": "В сентябре 3000₽"
-          },
-          {
-            "kind": "price",
-            "text": "Свободные даты:"
-          },
-          {
-            "kind": "price",
-            "text": "5.09-13.09"
-          },
-          {
-            "kind": "price",
-            "text": "5.09-15.09"
-          },
-          {
-            "kind": "price",
-            "text": "16.09-22.09"
+            "kind": "note",
+            "text": "(БРОНИРОВАНИЕ 2027)"
           },
           {
             "kind": "price",
@@ -15894,31 +15874,23 @@
           },
           {
             "kind": "price",
+            "text": "3000₽ - июнь до 15"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - июнь с 16, июль до 15"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - июль с 16"
+          },
+          {
+            "kind": "price",
             "text": "5000₽ - август"
           },
           {
             "kind": "price",
-            "text": "4000₽ - сентябрь до 10го"
-          },
-          {
-            "kind": "price",
-            "text": "3500₽ - сентябрь с 11"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - октябрь"
-          },
-          {
-            "kind": "price",
-            "text": "Четырёхместный"
-          },
-          {
-            "kind": "price",
-            "text": "6000₽ - август"
-          },
-          {
-            "kind": "price",
-            "text": "4500₽ - сентябрь до 10го"
+            "text": "5000₽ - сентябрь до 10"
           },
           {
             "kind": "price",
@@ -15926,7 +15898,31 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - октябрь"
+            "text": "Четырёхместный"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - июнь до 15"
+          },
+          {
+            "kind": "price",
+            "text": "5000₽ - июнь с 16, июль до 15"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - июль с 16"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - сентябрь до 10"
+          },
+          {
+            "kind": "price",
+            "text": "4500₽ - сентябрь с 11"
           },
           {
             "kind": "price",
@@ -16057,7 +16053,7 @@
           "details": {
             "telegram_post": "abhazbooking/3940",
             "telegram_url": "https://t.me/abhazbooking/3940",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sozvezdie-mini-otel-3933/video-01-source-poster.jpg"
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/sozvezdie-mini-otel-3933/video-01-poster.jpg"
           }
         }
       ]
@@ -40783,7 +40779,9 @@
           "room": [
             "tv"
           ],
-          "stay": []
+          "stay": [
+            "pets"
+          ]
         }
       },
       "id": 1055,
@@ -45997,15 +45995,19 @@
           },
           {
             "kind": "price",
-            "text": "8000₽ - апрель, май"
+            "text": "8000₽ - апрель"
           },
           {
             "kind": "price",
-            "text": "10000₽ - июнь (до 15 числа)"
+            "text": "10000 - май"
           },
           {
             "kind": "price",
-            "text": "15000₽ - с 15 июня / июль / август / сентябрь"
+            "text": "13000₽ - июнь (до 15 числа)"
+          },
+          {
+            "kind": "price",
+            "text": "17000₽ - с 15 июня / июль / август / сентябрь"
           },
           {
             "kind": "price",
@@ -67781,9 +67783,9 @@
       "source_message_id": 5176,
       "source_topic_id": null,
       "slug": "trio-nomer-na-plyazhe-5176",
-      "title": "\"ТРИО\" номер на пляже",
+      "title": "\"ТРИО\" два номера на пляже",
       "summary": "Лдзаа. 0 минут до пляжа, размещение до 3 человек.",
-      "excerpt": "Номер у самого моря, отличный вариант для отдыха без долгих прогулок до пляжа",
+      "excerpt": "Два одинаковых номера у самого моря, отличный вариант для отдыха без долгих прогулок до пляжа",
       "city": "Лдзаа",
       "location_text": "Лдзаа, ул. Рыбзаводская, 88",
       "distance_text": "0 минут до пляжа",
@@ -67799,12 +67801,12 @@
         "lead": "Лдзаа. 0 минут до пляжа, размещение до 3 человек.",
         "sections": [
           {
-            "label": "✔️НОМЕР:",
+            "label": "✔️НОМЕРА:",
             "lines": [
-              "Номер у самого моря, отличный вариант для отдыха без долгих прогулок до пляжа.",
-              "В номере: двуспальная кровать, раскладной диванчик на одного человека, шкаф, прикроватная тумбочка. Санузел с тропическим душем.",
+              "Два одинаковых номера у самого моря, отличный вариант для отдыха без долгих прогулок до пляжа.",
+              "В каждом номере: двуспальная кровать, раскладной диванчик на одного человека, шкаф, прикроватная тумбочка. Санузел с тропическим душем.",
               "Оснащение: кондиционер, телевизор, Wi‑Fi, фен, мини-холодильник, теплые полы.",
-              "Своя просторная веранда со столом и стульями."
+              "У каждого номера своя просторная веранда со столом и стульями."
             ]
           },
           {
@@ -67855,6 +67857,10 @@
           {
             "kind": "note",
             "text": "(БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "note",
+            "text": "(за трехместное размещение)"
           },
           {
             "kind": "price",
@@ -78311,6 +78317,280 @@
             "telegram_post": "abhazbooking/5540",
             "telegram_url": "https://t.me/abhazbooking/5540",
             "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/novyy-god-v-royal-rivera-barhatnaya-zima-5531/video-01-poster.jpg"
+          }
+        }
+      ]
+    },
+    {
+      "source_kind": "hotel",
+      "source_channel": "abhazbooking",
+      "source_message_id": 5544,
+      "source_topic_id": null,
+      "slug": "novyy-god-v-bugenvilleya-s-basseynom-5544",
+      "title": "НОВЫЙ ГОД В «БУГЕНВИЛЛЕЯ» С БАССЕЙНОМ 🎄🔥",
+      "summary": "Лдзаа. 5 минут до соснового пляжа, размещение до 6 человек.",
+      "excerpt": "Зимние праздники у моря - это прогулки по сосновому берегу, отдых в теплом бассейне и вечер без привычной предновогодней суеты. ✨",
+      "city": "Лдзаа",
+      "location_text": "Лдзаа, ул. Аиааиа, д. 35",
+      "distance_text": "5 минут до соснового пляжа",
+      "beach_text": "5 минут до соснового пляжа",
+      "capacity_text": "Размещение до 6 человек",
+      "page_url": "https://абхазберег.рф/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/",
+      "telegram_url": "https://t.me/abhazbooking/5544",
+      "published_at": "2026-11-23",
+      "has_video": true,
+      "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-bugenvilleya-s-basseynom-5544.jpg",
+      "is_active": true,
+      "details": {
+        "lead": "Лдзаа. 5 минут до соснового пляжа, размещение до 6 человек.",
+        "sections": [
+          {
+            "label": "",
+            "lines": [
+              "Зимние праздники у моря - это прогулки по сосновому берегу, отдых в теплом бассейне и вечер без привычной предновогодней суеты. ✨",
+              "31 декабря для гостей предусмотрен фуршет, включенный в стоимость проживания.",
+              "Экскурсии и трансфер можно организовать по запросу."
+            ]
+          },
+          {
+            "label": "✔️НОМЕРА:",
+            "lines": [
+              "В трёхэтажном отеле с панорамными окнами расположено 35 номеров.",
+              "Все номера имеют балконы с видом на бассейн или зелёные окрестности. На первом этаже предусмотрены тёплые полы.",
+              "В номерах: кровати бокс спринг - совмещаются в двухместную, односпальная кровать, шкаф платяной, стол.",
+              "Оснащение: кондиционер, холодильник, телевизор с интернетом, Wi-Fi, чайник, фен и сушилка для одежды.",
+              "По запросу предоставляются халаты и пляжные полотенца.",
+              "Однокомнатный Стандарт — 22 м²",
+              "Двуспальная и односпальная кровати. Доп место — раскладная кровать. Размещение до 4 человек.",
+              "Двухкомнатный Люкс — 35 м²",
+              "Двуспальная и односпальная кровати, диван. Размещение до 5 человек.",
+              "Улучшенные двухкомнатные апартаменты с кухней.",
+              "Расположены в двухэтажном здании над кафе.",
+              "Две двуспальные кровати и диван. Размещение до 6 человек."
+            ]
+          },
+          {
+            "label": "✔️ТЕРРИТОРИЯ:",
+            "lines": [
+              "Подогреваемый бассейн с пресной водой и отдельной детской зоной. Вокруг бассейна установлены шезлонги, столики и зонты.",
+              "На втором этаже расположена веранда с панорамным видом.",
+              "Также на территории предусмотрены небольшая детская площадка и просторная парковочная зона."
+            ]
+          },
+          {
+            "label": "✔️ПИТАНИЕ:",
+            "lines": [
+              "На территории работает кафе. Блюда по меню готовят по предварительному заказу: выбрать и заказать их нужно хотя бы за пару часов. 🍽"
+            ]
+          },
+          {
+            "label": "✔️УСЛОВИЯ:",
+            "lines": [
+              "Размещение с животными возможно по согласованию.",
+              "По бронированию и наличию номеров пишите в телеграм:",
+              "@abhazbooking_online",
+              "(будьте внимательны ⚠️только этот контакт для брони)",
+              "Мой сайт: abhazbereg.ru"
+            ]
+          }
+        ],
+        "prices": [
+          {
+            "kind": "price",
+            "text": "С 20 декабря по 15 января:"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - Стандартный трёхместный номер"
+          },
+          {
+            "kind": "note",
+            "text": "(за 3х местное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "Доп место для четвертого гостя — раскладная кровать, 1000₽"
+          },
+          {
+            "kind": "price",
+            "text": "6000₽ - Двухкомнатный Люкс"
+          },
+          {
+            "kind": "note",
+            "text": "(за 5 местное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "8000₽ - Улучшенные апартаменты с кухней"
+          },
+          {
+            "kind": "note",
+            "text": "(за 6 местное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "Минимальный срок проживания - 3 суток."
+          },
+          {
+            "kind": "price",
+            "text": "Завтраки проходят в формате «шведский стол» - 500₽ с человека."
+          }
+        ],
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/index.html",
+        "filters": {
+          "distance": [
+            "up-to-5"
+          ],
+          "food": [
+            "cafe"
+          ],
+          "price": [
+            "midrange"
+          ],
+          "city": [
+            "ldzaa"
+          ],
+          "beach": [
+            "pine-pebble-ldzaa-pitsunda"
+          ],
+          "room": [
+            "pool",
+            "heated-pool",
+            "balcony",
+            "tv",
+            "five-plus",
+            "two-room-plus"
+          ],
+          "stay": [
+            "pets"
+          ]
+        }
+      },
+      "id": 1236,
+      "media": [
+        {
+          "id": 1236001,
+          "media_role": "card",
+          "sort_order": 0,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-bugenvilleya-s-basseynom-5544.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "cards/novyy-god-v-bugenvilleya-s-basseynom-5544.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/novyy-god-v-bugenvilleya-s-basseynom-5544.jpg",
+          "details": {}
+        },
+        {
+          "id": 1236002,
+          "media_role": "gallery",
+          "sort_order": 1,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-01.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-01.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-01.jpg",
+          "details": {}
+        },
+        {
+          "id": 1236003,
+          "media_role": "gallery",
+          "sort_order": 2,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-02.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-02.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-02.jpg",
+          "details": {}
+        },
+        {
+          "id": 1236004,
+          "media_role": "gallery",
+          "sort_order": 3,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-03.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-03.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-03.jpg",
+          "details": {}
+        },
+        {
+          "id": 1236005,
+          "media_role": "gallery",
+          "sort_order": 4,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-04.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-04.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-04.jpg",
+          "details": {}
+        },
+        {
+          "id": 1236006,
+          "media_role": "gallery",
+          "sort_order": 5,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-05.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-05.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-05.jpg",
+          "details": {}
+        },
+        {
+          "id": 1236007,
+          "media_role": "gallery",
+          "sort_order": 6,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-06.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-06.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-06.jpg",
+          "details": {}
+        },
+        {
+          "id": 1236008,
+          "media_role": "gallery",
+          "sort_order": 7,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-07.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-07.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-07.jpg",
+          "details": {}
+        },
+        {
+          "id": 1236009,
+          "media_role": "gallery",
+          "sort_order": 8,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-08.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-08.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-08.jpg",
+          "details": {}
+        },
+        {
+          "id": 1236010,
+          "media_role": "gallery",
+          "sort_order": 9,
+          "mime_type": "image/jpeg",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-09.jpg",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-09.jpg",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/photo-09.jpg",
+          "details": {}
+        },
+        {
+          "id": 1236011,
+          "media_role": "gallery",
+          "sort_order": 10,
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/video-01.mp4",
+          "storage_bucket": "abhazbereg-media",
+          "storage_path": "videos/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/video-01.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/video-01.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5553",
+            "telegram_url": "https://t.me/abhazbooking/5553",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/novyy-god-v-bugenvilleya-s-basseynom-5544/video-01-poster.jpg"
           }
         }
       ]
