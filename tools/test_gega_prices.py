@@ -63,7 +63,9 @@ class GegaPricesTests(unittest.TestCase):
     def test_original_image_preserved_and_no_media_changes(self):
         def images(source):
             return sorted(img.get('src','') for img in BeautifulSoup(source,'html.parser').find_all('img'))
-        self.assertEqual(images(self.original),images(self.output))
+        expected = [url for url in images(self.original) if '/supplemental/block-01/photo-01.jpg' not in url]
+        self.assertEqual(expected,images(self.output))
+        self.assertFalse(BeautifulSoup(self.output,'html.parser').select('.gega-original-image'))
 
     def test_second_application_and_fresh_supplement_do_not_duplicate_or_lose_prices(self):
         twice = apply_to_page_html(self.output,SLUG)

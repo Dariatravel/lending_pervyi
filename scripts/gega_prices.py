@@ -167,13 +167,8 @@ def apply_to_page_html(page_html: str, slug: str) -> str:
     raw.string = summer_text
     if summer_text:
         new.append(raw)
-    image_details = old.select_one('.gega-original-image') if summer_text else None
-    if summer is not None and summer.find('img'):
-        image_details = soup.new_tag('details', attrs={'class':'gega-original-image'})
-        summary = soup.new_tag('summary');summary.string = 'Изображение из публикации летнего прайса'
-        image_details.append(summary);image_details.append(copy(summer.find('img')))
-    if image_details:
-        archive.select_one('article').append(copy(image_details))
+    # Дарья24.11.2026: постер летнего прайса больше не публиковать.
+    # Текст цен сохраняется, фотография не возвращается при синке комментариев.
     old.decompose()
     if summer is not None:
         summer.decompose()

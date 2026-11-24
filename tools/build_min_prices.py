@@ -15,6 +15,8 @@ import re
 import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1] / 'scripts'))
+from early_booking import early_booking_year
 
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
@@ -44,6 +46,7 @@ PRICE_LEADING = re.compile(r"^\s*(\d{3,6})\s*[-—–]")
 # «Акция в сентябре» и давала «Цену от 1 000 ₽». Слово «завтрак» само по себе
 # НЕ стоп: «8500₽ — сентябрь (с завтраком)» — законная цена размещения.
 STOP_WORDS = re.compile(
+    r"(?:^|₽|руб(?:\.|лей)?|р\.)\s*\+\s*1\s*(?:взр|реб)|"
     r"доп\.?\s*место|доп\.?\s*чел|доп\.?\s*плат|доплат|дополнительн|"
     r"за\s+завтрак|за\s+питание|за\s+обед|за\s+ужин|трансфер|депозит|залог|скидк|"
     r"кэшбек|кешбэк|экскурс|за\s+весь|за\s+месяц|предоплат|\bдет(?:и|ям|ск)",
@@ -219,10 +222,15 @@ def main() -> int:
     rows = [r for r in snap.get("listings") or [] if r.get("slug") and r.get("is_active", True)]
 
     prices: dict[str, int] = {}
+    early_bookings: dict[str, int] = {}
     uncovered: list[tuple[str, list[str]]] = []
     suspicious: list[str] = []
     for row in rows:
         raw = (row.get("details") or {}).get("prices") or []
+        booking_year = early_booking_year(row,month,today,monthly_min_prices,extract_price)
+        if booking_year:
+            early_bookings[row['slug']] = booking_year
+            continue
         monthly = monthly_min_prices(raw, today)
         value = monthly.get(month)
         if value is None:
@@ -238,12 +246,14 @@ def main() -> int:
         "month": month,
         "month_label": MONTH_LABEL[month],
         "prices": dict(sorted(prices.items())),
+        "early_bookings": dict(sorted(early_bookings.items())),
     }
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     lines = [
         f"Минимальные цены на {MONTH_LABEL[month].replace('в ', '')} — {now.strftime('%d.%m.%Y %H:%M МСК')}",
         f"Покрыто: {len(prices)} из {len(rows)} активных объектов",
+        f"Раннее бронирование будущего сезона: {len(early_bookings)}",
         "",
         f"Без распознанной цены ({len(uncovered)}):",
     ]

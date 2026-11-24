@@ -50,9 +50,16 @@ def _load_min_prices() -> tuple[dict[str, int], str]:
 
 
 MIN_PRICES, MIN_PRICES_MONTH_LABEL = _load_min_prices()
+try:
+    EARLY_BOOKINGS = json.loads(MIN_PRICES_PATH.read_text(encoding='utf-8')).get('early_bookings') or {}
+except (OSError,ValueError):
+    EARLY_BOOKINGS = {}
 
 
 def render_card_price_html(slug: str) -> str:
+    booking_year = EARLY_BOOKINGS.get(str(slug))
+    if isinstance(booking_year,int) and 2000 < booking_year < 2100:
+        return f'<p class="catalog-card__price"><strong class="early-booking-label">Раннее бронирование {booking_year}</strong></p>'
     value = MIN_PRICES.get(str(slug))
     if not value or not MIN_PRICES_MONTH_LABEL:
         return ""

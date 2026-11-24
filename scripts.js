@@ -281,7 +281,7 @@
   initDeferredAnalytics();
 
   const CDN_MEDIA_BASE = "https://media.xn--80aacbklan7f0b.xn--p1ai/media";
-  const ASSET_VERSION = "202611231250";
+  const ASSET_VERSION = "202611242213";
   const CATALOG_INDEX_URL = `/data/catalog-index.json?v=${ASSET_VERSION}`;
   const SCREENSHOT_REVIEW_GLOBAL_URL = `${CDN_MEDIA_BASE}/reviews/global.json?v=${ASSET_VERSION}`;
   /** Контракт `data-filter-*` и порядок URL не меняем; здесь описание групп для UI и поддержки. */
@@ -6203,7 +6203,7 @@
     // всегда видит полный каталог — без «частичных» результатов из-за чанков.
     const fragment = document.createDocumentFragment();
     ordered.forEach((row) => {
-      fragment.appendChild(buildIndexCatalogCard(row, priceMap, monthLabel));
+      fragment.appendChild(buildIndexCatalogCard(row, priceMap, monthLabel, pricePayload?.early_bookings || {}));
     });
     grid.appendChild(fragment);
     initCatalogMapPlaques(grid);
@@ -6215,7 +6215,7 @@
     }
   }
 
-  function buildIndexCatalogCard(row, priceMap, monthLabel) {
+  function buildIndexCatalogCard(row, priceMap, monthLabel, earlyBookings = {}) {
     const isKvartira = row.source_kind === "kvartira";
     const card = document.createElement("a");
     card.className = "catalog-card";
@@ -6250,7 +6250,12 @@
     appendCardFacts(card, row);
 
     const priceValue = Number(priceMap[row.slug] || 0);
-    if (priceValue > 0 && monthLabel) {
+    const bookingYear = Number(earlyBookings[row.slug] || 0);
+    if (Number.isInteger(bookingYear) && bookingYear > 2000 && bookingYear < 2100) {
+      const price = document.createElement('p');price.className = 'catalog-card__price';
+      const label = document.createElement('strong');label.className = 'early-booking-label';
+      label.textContent = `Раннее бронирование ${bookingYear}`;price.append(label);card.append(price);
+    } else if (priceValue > 0 && monthLabel) {
       const price = document.createElement("p");
       price.className = "catalog-card__price";
       const strong = document.createElement("strong");
@@ -6260,6 +6265,46 @@
     }
     return card;
   }
+})();
+
+/* Выделение раннего бронирования сохраняется и после динамической загрузки. */
+(function () {
+  const pattern = /раннее\s+бронирование(?:\s+20\d{2})?/gi;
+  const skip = 'script,style,noscript,textarea,template,option,strong,b';
+  function emphasize(root) {
+    if (root.nodeType !== 1 && root.nodeType !== 3) return;
+    const nodes = [];
+    if (root.nodeType === 3) nodes.push(root);
+    else {
+      const walker = document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+    }
+    for (const node of nodes) {
+      if (!node.parentElement || node.parentElement.closest(skip)) continue;
+      const text = node.textContent;pattern.lastIndex = 0;
+      if (!pattern.test(text)) continue;
+      pattern.lastIndex = 0;
+      const fragment = document.createDocumentFragment();let start = 0;
+      for (const match of text.matchAll(pattern)) {
+        fragment.append(document.createTextNode(text.slice(start,match.index)));
+        const strong = document.createElement('strong');strong.className = 'early-booking-emphasis';
+        strong.textContent = match[0];fragment.append(strong);start = match.index + match[0].length;
+      }
+      fragment.append(document.createTextNode(text.slice(start)));node.replaceWith(fragment);
+    }
+  }
+  const settings = {childList:true,subtree:true,characterData:true};
+  const observer = new MutationObserver(records => {
+    observer.disconnect();
+    for (const record of records) {
+      if (record.type === 'characterData') emphasize(record.target);
+      else for (const node of record.addedNodes) emphasize(node);
+    }
+    observer.observe(document.body,settings);
+  });
+  function start() {emphasize(document.body);observer.observe(document.body,settings);}
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',start,{once:true});
+  else start();
 })();
 
 /* Виртуальный 3D-тур: iframe грузится только по клику (без автозвука, не тормозит страницу) */

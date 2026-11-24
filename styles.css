@@ -9376,3 +9376,18 @@ body.podborka-mode #catalog-grid .catalog-card.podborka-hit {
     padding-block: 0;
   }
 }
+
+/* Дарья24.11.2026: названия объектов видны целиком, в том числе на телефоне. */
+.catalog-card h3,
+.site-concept .catalog-card h3 {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.early-booking-emphasis { font-weight: 800 !important; }
+strong.early-booking-label { color: #b5222c !important; font-weight: 800 !important; }
