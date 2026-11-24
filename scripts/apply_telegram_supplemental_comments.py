@@ -689,13 +689,22 @@ async def apply_target(
             # ошибке блок нельзя было убрать пересинком. Теперь при --force
             # и пустом списке блоков секция снимается со страницы и манифеста.
             if force and ("id=\"supplemental-comments\"" in page_html
-                          or "id=\"room-overviews\"" in page_html):
+                          or "id=\"room-overviews\"" in page_html
+                          or (target.slug == 'gega-otel-s-basseynom-i-zavtrakami-5510'
+                              and 'data-gega-summer-source' in page_html)):
                 if not dry_run:
                     soup = BeautifulSoup(page_html, "html.parser")
                     existing = soup.select_one("#supplemental-comments, #room-overviews")
                     if existing:
                         existing.decompose()
-                        path.write_text(str(soup), encoding="utf-8")
+                    if target.slug == 'gega-otel-s-basseynom-i-zavtrakami-5510':
+                        for stale in soup.select('[data-gega-summer-source], .gega-original-image'):
+                            stale.decompose()
+                        from gega_prices import apply_to_page_html as apply_gega_prices
+                        updated = apply_gega_prices(str(soup),target.slug)
+                    else:
+                        updated = str(soup)
+                    path.write_text(updated, encoding="utf-8")
                     remove_supplemental_section(target.slug)
                 return True, "removed section (no eligible media after excludes)"
             return False, "no captioned media in comments"
@@ -711,6 +720,9 @@ async def apply_target(
         return True, f"dry-run ok ({len(target.blocks)} blocks)"
     upload_media_dirs([media_root(target)], dry_run=dry_run)
     updated = insert_section(page_html, section_html)
+    if target.slug == 'gega-otel-s-basseynom-i-zavtrakami-5510':
+        from gega_prices import apply_to_page_html as apply_gega_prices
+        updated = apply_gega_prices(updated, target.slug)
     path.write_text(updated, encoding="utf-8")
     # Секция сохраняется в data/supplemental-blocks.json, чтобы переживать
     # любые пересборки страниц (генераторы вставляют её обратно).

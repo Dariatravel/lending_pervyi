@@ -54,7 +54,7 @@ def remove_section(slug: str) -> None:
         )
 
 
-def apply_to_page_html(page_html: str, slug: str) -> str:
+def _apply_saved_section(page_html: str, slug: str) -> str:
     """Вставить сохранённую секцию объекта в свежесгенерированный HTML страницы.
 
     Точки вставки повторяют apply_telegram_supplemental_comments.insert_section;
@@ -80,3 +80,11 @@ def apply_to_page_html(page_html: str, slug: str) -> str:
         detail_main.insert(0, fragment)
         return str(soup)
     return page_html
+
+
+def apply_to_page_html(page_html: str, slug: str) -> str:
+    updated = _apply_saved_section(page_html, slug)
+    if slug == 'gega-otel-s-basseynom-i-zavtrakami-5510':
+        from gega_prices import apply_to_page_html as apply_gega_prices
+        updated = apply_gega_prices(updated, slug)
+    return updated

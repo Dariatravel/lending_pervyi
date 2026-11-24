@@ -1,0 +1,34 @@
+.gega-prices{grid-column:1/-1;min-width:0;width:100%;scroll-margin-top:24px}
+.gega-prices>.card{padding:clamp(20px,4vw,40px)}
+.gega-prices h2{font-size:clamp(25px,3vw,36px);margin:6px 0 12px;text-transform:none;letter-spacing:-.025em}
+.gega-prices h3{font-size:20px;margin:24px 0 8px;text-transform:none;letter-spacing:0}
+.gega-prices .gega-eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#527565;margin:0}
+.gega-prices .gega-intro,.gega-prices .gega-price-note{color:#526059;line-height:1.6;max-width:75ch}
+.gega-price-picker{display:grid;gap:8px;max-width:590px;margin:24px 0}
+.gega-price-picker label{font-weight:700;color:#263e32}
+.gega-price-picker select{width:100%;min-height:52px;padding:12px 38px 12px 14px;font:inherit;font-size:16px;color:#203c2c;border:1px solid #91b2a0;border-radius:12px;background:#f5faf6}
+.gega-price-picker select:focus-visible,.gega-prices summary:focus-visible{outline:3px solid #c68a37;outline-offset:4px}
+.gega-food{display:inline-block;margin:0 0 12px;padding:7px 12px;border-radius:8px;background:#edf5e8;color:#385030}
+.gega-prices .gega-price-table{width:100%;border-collapse:collapse;table-layout:fixed;margin:0 0 16px;color:#26372d}
+.gega-price-table caption{text-align:left;font-size:14px;color:#526059;padding:0 0 10px}
+.gega-price-table th,.gega-price-table td{text-align:left;padding:13px 14px;border-bottom:1px solid #e0e9e2;vertical-align:top;overflow-wrap:anywhere}
+.gega-price-table thead{background:#edf3ee;font-size:13px}
+.gega-price-table th:first-child{width:59%;font-weight:500}
+.gega-price-table thead th{font-weight:700}
+.gega-price-table th:nth-child(2){width:17%}
+.gega-price-table td:last-child,.gega-price-table th:last-child{text-align:right}
+.gega-price-table .gega-price-amount{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.gega-price-table tbody tr:nth-child(even){background:#f8faf7}
+.gega-prices [hidden]{display:none!important}
+.gega-prices .gega-full{margin-top:24px;border:1px solid #d9e4d9;border-radius:12px;padding:16px 20px}
+.gega-prices summary{cursor:pointer;font-weight:600;color:#35543c;line-height:1.5}
+.gega-all-period{padding:15px 0;border-bottom:1px solid #e0e9e2}
+.gega-all-period:last-child{border:0}
+.gega-all-period[open]>summary{margin-bottom:16px}
+.gega-extras{margin-top:30px;border-top:1px solid #d9e4d9;padding-top:4px}
+.gega-extra-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.gega-extra-grid h4{font-size:16px;margin:16px 0 10px}
+.gega-extra-grid ul{padding-left:18px;margin:0;line-height:1.65}
+.gega-extra-grid li{margin:0 0 8px}
+.gega-original-image{margin-top:20px}.gega-original-image img{display:block;max-width:100%;height:auto;margin-top:16px;border-radius:10px}
+@media(max-width:700px){.gega-extra-grid{grid-template-columns:1fr;gap:0}.gega-price-table th,.gega-price-table td{padding:11px 6px;font-size:14px}.gega-price-table th:first-child{width:53%}.gega-price-table th:nth-child(2){width:20%}.gega-prices .gega-price-note{font-size:14px}.gega-prices .gega-full{padding:14px 10px}}

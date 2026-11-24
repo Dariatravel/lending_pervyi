@@ -657,6 +657,8 @@ def update_hotel_page(row: dict[str, Any]) -> None:
     else:
         text = re.sub(r"(\s*)</head>", rf"\1{ld_script}\n\1</head>", text, count=1)
 
+    if row["slug"] == 'gega-otel-s-basseynom-i-zavtrakami-5510':
+        text = supplemental_apply_to_page(text, row["slug"])
     text = apply_tour_to_page(text, row["slug"], cover_url)
     path.write_text(text, encoding="utf-8")
 

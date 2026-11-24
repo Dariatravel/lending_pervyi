@@ -257,7 +257,11 @@ def apply_to_page(path: Path, channel: str, message_id: int, dry_run: bool) -> t
     if dry_run:
         return True, "dry-run OK"
 
-    path.write_text(str(soup), encoding="utf-8")
+    updated_html = str(soup)
+    if path.parent.name == 'gega-otel-s-basseynom-i-zavtrakami-5510':
+        from gega_prices import apply_to_page_html as apply_gega_prices
+        updated_html = apply_gega_prices(updated_html, path.parent.name)
+    path.write_text(updated_html, encoding="utf-8")
     return True, "written"
 
 

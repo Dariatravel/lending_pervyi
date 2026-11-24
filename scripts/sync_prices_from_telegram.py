@@ -60,7 +60,7 @@ def load_env(path: Path) -> dict[str, str]:
     return data
 
 
-def replace_prices_block(html_text: str, prices_html: str) -> str | None:
+def replace_prices_block(html_text: str, prices_html: str, slug: str = '') -> str | None:
     if not prices_html.strip():
         return None
     soup = BeautifulSoup(html_text, "html.parser")
@@ -76,7 +76,11 @@ def replace_prices_block(html_text: str, prices_html: str) -> str | None:
         if not main:
             return None
         main.append(new_section)
-    return str(soup)
+    updated = str(soup)
+    if slug == 'gega-otel-s-basseynom-i-zavtrakami-5510':
+        from supplemental_store import apply_to_page_html
+        updated = apply_to_page_html(updated, slug)
+    return updated
 
 
 async def sync_prices(dry_run: bool = False, kv_only: bool = False, sync_all: bool = False) -> int:
@@ -174,7 +178,7 @@ async def sync_prices(dry_run: bool = False, kv_only: bool = False, sync_all: bo
             skipped.append(f"{row.slug}: already OK after audit")
             continue
 
-        new_html = replace_prices_block(html_text, prices_html)
+        new_html = replace_prices_block(html_text, prices_html, slug)
         if not new_html:
             failed.append(f"{row.slug}: could not patch HTML")
             continue
