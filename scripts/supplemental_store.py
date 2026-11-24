@@ -87,4 +87,7 @@ def apply_to_page_html(page_html: str, slug: str) -> str:
     if slug == 'gega-otel-s-basseynom-i-zavtrakami-5510':
         from gega_prices import apply_to_page_html as apply_gega_prices
         updated = apply_gega_prices(updated, slug)
+    elif slug == 'shambala-eko-otel-na-beregu-morya-s-basseynom-5520':
+        from shambala_prices import apply_to_page_html as apply_shambala_prices
+        updated = apply_shambala_prices(updated, slug)
     return updated

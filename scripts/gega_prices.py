@@ -184,8 +184,11 @@ def apply_to_page_html(page_html: str, slug: str) -> str:
         soup.head.append(soup.new_tag('link', attrs={'rel':'stylesheet','href':ASSET+'.css','data-gega-prices':''}))
     if not soup.select_one('script[data-gega-prices]'):
         soup.body.append(soup.new_tag('script', attrs={'src':ASSET+'.js','defer':'','data-gega-prices':''}))
-    if not soup.select_one('script[data-gega-live]'):
-        soup.body.append(soup.new_tag('script', attrs={'src':'/assets/gega-live-prices-v1.js','defer':'','data-gega-live':''}))
+    live_script = soup.select_one('script[data-gega-live]')
+    if live_script:
+        live_script['src'] = '/assets/hotel-live-prices-v2.js'
+    else:
+        soup.body.append(soup.new_tag('script', attrs={'src':'/assets/hotel-live-prices-v2.js','defer':'','data-gega-live':''}))
     if not soup.select_one('link[data-gega-live]'):
         soup.head.append(soup.new_tag('link', attrs={'rel':'stylesheet','href':'/assets/gega-live-prices-v1.css','data-gega-live':''}))
     return re.sub(r'[ \t]+\n','\n',str(soup))

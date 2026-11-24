@@ -77,7 +77,7 @@ def replace_prices_block(html_text: str, prices_html: str, slug: str = '') -> st
             return None
         main.append(new_section)
     updated = str(soup)
-    if slug == 'gega-otel-s-basseynom-i-zavtrakami-5510':
+    if slug in {'gega-otel-s-basseynom-i-zavtrakami-5510', 'shambala-eko-otel-na-beregu-morya-s-basseynom-5520'}:
         from supplemental_store import apply_to_page_html
         updated = apply_to_page_html(updated, slug)
     return updated
