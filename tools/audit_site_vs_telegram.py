@@ -22,7 +22,6 @@ from __future__ import annotations
 
 import argparse
 import asyncio
-import difflib
 import os
 import re
 import sys
@@ -50,44 +49,44 @@ REPORT_PATH = ROOT / "output" / "site-vs-telegram-report.txt"
 FINDINGS_PATH = ROOT / "output" / "site-vs-telegram-findings.txt"
 
 
-def _numbers(value: str) -> list[str]:
-    """Числа строки без пробелов: помогает отличить новую сумму от новой подписи."""
-    return [re.sub(r"\s+", "", item) for item in re.findall(r"\d[\d\s]*", value or "")]
+def tariff_summary(current: list[str], expected: list[str]) -> str:
+    """Сравниваем тарифные строки целиком, не образуя пары по позиции."""
+    def groups(lines):
+        tariffs, labels = [], []
+        for line in lines:
+            target = tariffs if re.search(r"\d[\d\s]*(?:₽|руб)|(?<!\d)\d{3,}(?!\d)", re.sub(r"(?i)бронирование\s+20\d{2}", "", line), re.I) else labels
+            target.append(line)
+        return tariffs, labels
+
+    season_pattern = re.compile(r"(?i)(?:бронирование|сезон)[^0-9]{0,12}(20\d{2})")
+    def seasons(lines):
+        return sorted({year for line in lines for year in season_pattern.findall(line)})
+
+    old_seasons, new_seasons = seasons(current), seasons(expected)
+    if old_seasons != new_seasons:
+        old = ", ".join(old_seasons) or "не указан"
+        new = ", ".join(new_seasons) or "не указан"
+        return f"сезон на сайте: {old}, в Telegram: {new}. Суммы между сезонами не сравнивались"
+
+    before, old_labels = groups(current)
+    after, new_labels = groups(expected)
+    if not old_labels and not new_labels and sorted(before) == sorted(after):
+        month = r"(?:январь|февраль|март|апрель|май|июнь|июль|август|сентябрь|октябрь|ноябрь|декабрь)"
+        flat_rate = rf"\d[\d\s]*₽\s*[-–—]\s*{month}"
+        if all(re.fullmatch(flat_rate, line, re.I) for line in before):
+            return ""
+    if before == after and old_labels != new_labels:
+        return "изменилось описание в блоке тарифов"
+    if sorted(before) == sorted(after):
+        return "различается порядок или группировка строк прайса"
+    return "различаются тарифные строки сайта и Telegram (проверьте сезон и категорию номера)"
 
 
-def price_mismatch_details(row: dict | None, telegram_text: str, limit: int = 12) -> list[str]:
-    """Понятный diff тарифов: что было на сайте и что сейчас в Telegram."""
-    if not row:
-        return []
-    try:
-        parsed = parse_post(telegram_text)
-    except Exception:  # noqa: BLE001 - основной аудит не должен падать на одном посте
-        return []
-    current_details = row.get("details") if isinstance(row.get("details"), dict) else {}
-    current = price_texts(current_details.get("prices"))
-    expected = price_texts(parsed.get("prices"))
-    if current == expected:
-        return []
-
-    details: list[str] = []
-    matcher = difflib.SequenceMatcher(a=current, b=expected, autojunk=False)
-    for tag, old_start, old_end, new_start, new_end in matcher.get_opcodes():
-        if tag == "equal":
-            continue
-        old_rows = current[old_start:old_end]
-        new_rows = expected[new_start:new_end]
-        count = max(len(old_rows), len(new_rows))
-        for index in range(count):
-            old = old_rows[index] if index < len(old_rows) else "—"
-            new = new_rows[index] if index < len(new_rows) else "—"
-            change = "подпись цены" if old != "—" and new != "—" and _numbers(old) == _numbers(new) else "цена/период"
-            details.append(f"{change}: сайт «{old}» → Telegram «{new}»")
-            if len(details) >= limit:
-                remaining = sum(1 for opcode in matcher.get_opcodes() if opcode[0] != "equal")
-                if remaining > 1:
-                    details.append("остальные отличия — в полном отчёте")
-                return details
-    return details
+def tariff_report_label(row: dict, telegram_text: str) -> str:
+    details = row.get("details")
+    current = price_texts(details.get("prices") if isinstance(details, dict) else [])
+    expected = price_texts(parse_post(telegram_text).get("prices"))
+    return tariff_summary(current, expected)
 
 
 async def run(limit: int) -> int:
@@ -157,11 +156,13 @@ async def run(limit: int) -> int:
                         if edited_at is not None and (datetime.now(timezone.utc) - edited_at).total_seconds() < GRACE_SECONDS:
                             pending.append(f"{item.title} — пост правлен {edited_at.astimezone().strftime('%H:%M')}, ждёт автосинка — {item.telegram_url}")
                         else:
-                            entry = f"{item.title} — не совпадает: {', '.join(parts)} — {item.telegram_url}"
                             if "цены сайта" in parts:
-                                price_details = price_mismatch_details(rows.get(item.key), message.message or "")
-                                if price_details:
-                                    entry += "\n    " + "\n    ".join(price_details)
+                                parts = [tariff_report_label(rows[item.key], message.message or "")
+                                         if part == "цены сайта" else part for part in parts]
+                            parts = [part for part in parts if part]
+                            if not parts:
+                                continue
+                            entry = f"{item.title}: {', '.join(parts)} – {item.telegram_url}"
                             mismatched.append(entry)
                 except Exception as error:  # noqa: BLE001
                     errors.append(f"{item.slug}: {error}")
