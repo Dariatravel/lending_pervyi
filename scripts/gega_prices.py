@@ -141,6 +141,24 @@ def apply_to_page_html(page_html: str, slug: str) -> str:
         '<p>Завтрак или завтрак с ужином, включённые в тариф, указаны над таблицей выбранного периода.</p>'
         '<div class="gega-extra-grid">'+extra_html+'</div></section></article></section>')
     new = BeautifulSoup(section_html, 'html.parser').section
+    # Динамические цены отделены от справочного прайса: состав гостей различается.
+    archive = soup.new_tag('details', attrs={'class': 'gega-reference'})
+    summary = soup.new_tag('summary')
+    summary.string = 'Справочный прайс и доплаты из публикаций отеля'
+    archive.append(summary)
+    archive.append(new.select_one('article').extract())
+    new.append(archive)
+    live = BeautifulSoup('''<article class="card gega-live">
+      <h2>Актуальные цены на выбранную ночь</h2>
+      <p>Стоимость номера за одну ночь для 2 взрослых без детей. Для другого состава гостей обратитесь к менеджеру.</p>
+      <div class="gega-price-picker"><label for="gega-night">Дата ночи проживания</label>
+      <input id="gega-night" type="date" disabled></div>
+      <p data-gega-status role="status">Загружаем цены отеля…</p>
+      <div data-gega-live-table></div>
+      <p class="gega-price-note">Питание зависит от тарифа. Состав питания и окончательную стоимость всей поездки подтвердит менеджер.</p>
+      <noscript>Для просмотра актуальных цен включите JavaScript или напишите менеджеру.</noscript>
+      </article>''', 'html.parser').article
+    new.insert(0, live)
     # These source nodes preserve original text and let repeated application work.
     original = soup.new_tag('div', attrs={'data-gega-source': '', 'hidden':'', 'class':'price-card'})
     original.append(copy((source or old).select_one('ul')))
@@ -155,7 +173,7 @@ def apply_to_page_html(page_html: str, slug: str) -> str:
         summary = soup.new_tag('summary');summary.string = 'Изображение из публикации летнего прайса'
         image_details.append(summary);image_details.append(copy(summer.find('img')))
     if image_details:
-        new.select_one('article').append(copy(image_details))
+        archive.select_one('article').append(copy(image_details))
     old.decompose()
     if summer is not None:
         summer.decompose()
@@ -166,4 +184,8 @@ def apply_to_page_html(page_html: str, slug: str) -> str:
         soup.head.append(soup.new_tag('link', attrs={'rel':'stylesheet','href':ASSET+'.css','data-gega-prices':''}))
     if not soup.select_one('script[data-gega-prices]'):
         soup.body.append(soup.new_tag('script', attrs={'src':ASSET+'.js','defer':'','data-gega-prices':''}))
+    if not soup.select_one('script[data-gega-live]'):
+        soup.body.append(soup.new_tag('script', attrs={'src':'/assets/gega-live-prices-v1.js','defer':'','data-gega-live':''}))
+    if not soup.select_one('link[data-gega-live]'):
+        soup.head.append(soup.new_tag('link', attrs={'rel':'stylesheet','href':'/assets/gega-live-prices-v1.css','data-gega-live':''}))
     return re.sub(r'[ \t]+\n','\n',str(soup))

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>Label</key><string>com.rental-ai.gega-public-prices</string>
+<key>ProgramArguments</key><array>
+<string>__HOME__/dev/travel_time-cron/gega/.venv-public-prices/bin/python3</string>
+<string>__HOME__/dev/travel_time-cron/gega/scripts/export_gega_live_prices.py</string>
+<string>--publish</string></array>
+<key>StartInterval</key><integer>300</integer>
+<key>RunAtLoad</key><true/>
+<key>StandardOutPath</key><string>__HOME__/backups/chessmate-cron/gega-public.log</string>
+<key>StandardErrorPath</key><string>__HOME__/backups/chessmate-cron/gega-public-errors.log</string>
+</dict></plist>

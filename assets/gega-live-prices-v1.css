@@ -1,0 +1,7 @@
+.gega-live .gega-price-picker input{width:100%;min-height:52px;box-sizing:border-box;padding:12px 14px;font:inherit;font-size:16px;color:#203c2c;border:1px solid #91b2a0;border-radius:12px;background:#f5faf6}
+.gega-live .gega-price-picker input:focus-visible{outline:3px solid #c68a37;outline-offset:4px}
+.gega-live .gega-price-table th:first-child{width:48%}
+.gega-live .gega-price-table th:nth-child(2){width:32%}
+.gega-reference{padding:20px;margin-top:20px;border:1px solid #d9e4d9;border-radius:12px}
+.gega-reference>.card{margin-top:20px;box-shadow:none}
+@media(max-width:700px){.gega-live .gega-price-table th:first-child{width:40%}.gega-live .gega-price-table th:nth-child(2){width:34%}.gega-reference{padding:12px}.gega-live .gega-price-amount{white-space:normal}}
