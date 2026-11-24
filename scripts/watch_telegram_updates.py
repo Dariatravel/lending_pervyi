@@ -972,6 +972,7 @@ async def run(args: argparse.Namespace) -> int:
     changes: list[Change] = []
     new_objects: list[NewObject] = []
     errors: list[str] = []
+    observations = {}
     missing: list[str] = []
     seen_keys: set[str] = set()
     pending_state_items: dict[str, Any] = {}
@@ -989,6 +990,9 @@ async def run(args: argparse.Namespace) -> int:
                     entity = await client.get_entity(item.channel)
                     entities[item.channel] = entity
                 canonical, media_messages = await read_object_from_telegram(client, entity, item.message_id)
+                observations[f"{item.channel}/{item.message_id}"] = (
+                    hashlib.sha256((canonical.message or "").encode()).hexdigest() if canonical is not None else None
+                )
                 if canonical is None:
                     # Пост удалили из канала: это постоянное состояние, а не сбой
                     # связи — strict-режим (и часовой workflow) падать не должен.
@@ -1087,6 +1091,8 @@ async def run(args: argparse.Namespace) -> int:
         encoding="utf-8",
     )
 
+    if destination := os.getenv("TELEGRAM_OBSERVATIONS"):
+        Path(destination).write_text(json.dumps(observations), encoding="utf-8")
     write_targets(changes, new_objects)
     report = render_report(
         checked=checked,

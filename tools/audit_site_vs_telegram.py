@@ -22,6 +22,8 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import hashlib
+import json
 import os
 import re
 import sys
@@ -95,6 +97,8 @@ async def run(limit: int) -> int:
     api_hash = os.getenv("TELEGRAM_API_HASH", DEFAULT_API_HASH)
     session = os.getenv("TG_SESSION", str(ROOT / "tg_session"))
 
+    source = os.getenv("TELEGRAM_OBSERVATIONS")
+    observations = json.loads(Path(source).read_text()) if source else None
     items = load_watch_items(limit=limit or None)
     rows = {
         f"{row.get('source_kind')}:{row.get('slug')}": row
@@ -120,21 +124,31 @@ async def run(limit: int) -> int:
             entities[channel] = entity
             # Посты берём пачками по 100 — это одна-две команды на канал, а не сотни.
             messages: dict[int, object] = {}
+            unread = set()
             ids = sorted({item.message_id for item in channel_items})
             for start in range(0, len(ids), 100):
                 chunk = ids[start:start + 100]
                 try:
                     fetched = await client.get_messages(entity, ids=chunk)
                 except Exception as error:  # noqa: BLE001
+                    unread.update(chunk)
                     errors.append(f"{channel}: не удалось получить посты {chunk[0]}–{chunk[-1]}: {error}")
                     continue
                 for message in fetched or []:
                     if message is not None:
                         messages[int(message.id)] = message
             for item in channel_items:
+                if item.message_id in unread:
+                    continue
                 message = messages.get(item.message_id)
                 label = f"{item.title} — {item.telegram_url}"
                 try:
+                    if observations is not None:
+                        key = f"{item.channel}/{item.message_id}"
+                        digest = hashlib.sha256((message.message or "").encode()).hexdigest() if message is not None else None
+                        if key not in observations or observations[key] != digest:
+                            pending.append(f"{label}: версия поста ещё не прошла синхронизацию")
+                            continue
                     if message is None:
                         replacement = None
                         if item.kind == "kvartira" and item.topic_id:
@@ -153,7 +167,7 @@ async def run(limit: int) -> int:
                         # Такое не расхождение, а очередь: иначе утренний отчёт
                         # шумел бы о том, что само исправится к следующему часу.
                         edited_at = getattr(message, "edit_date", None) or getattr(message, "date", None)
-                        if edited_at is not None and (datetime.now(timezone.utc) - edited_at).total_seconds() < GRACE_SECONDS:
+                        if observations is None and edited_at is not None and (datetime.now(timezone.utc) - edited_at).total_seconds() < GRACE_SECONDS:
                             pending.append(f"{item.title} — пост правлен {edited_at.astimezone().strftime('%H:%M')}, ждёт автосинка — {item.telegram_url}")
                         else:
                             if "цены сайта" in parts:
@@ -185,10 +199,12 @@ async def run(limit: int) -> int:
         lines.append("Расхождений нет: сайт совпадает с каналами.")
 
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    alert = replaced + orphaned + mismatched
+    REPORT_PATH.with_name("site-vs-telegram-alert.txt").write_text("\n".join(alert), encoding="utf-8")
     REPORT_PATH.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
-    FINDINGS_PATH.write_text(str(findings + len(errors)) + "\n", encoding="utf-8")
+    FINDINGS_PATH.write_text(str(findings) + "\n", encoding="utf-8")
     print("\n".join(lines))
-    return 0
+    return 1 if errors and not findings else 0
 
 
 def main() -> int:

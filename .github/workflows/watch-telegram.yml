@@ -111,7 +111,7 @@ jobs:
         if: steps.gate.outputs.enabled == 'true'
         run: |
           set -o pipefail
-          python scripts/watch_telegram_updates.py --strict 2>&1 | tee /tmp/watch.log
+          TELEGRAM_OBSERVATIONS="$RUNNER_TEMP/telegram-sync-observations.json" python scripts/watch_telegram_updates.py --strict 2>&1 | tee /tmp/watch.log
 
       # Подборки «Межсезон» (пост 5348) и «Новый год 2027» (пост 5346) следуют
       # за постами-списками в канале (просьба Дарьи 13.10.2026): кто есть в
@@ -419,26 +419,18 @@ jobs:
             sleep 10
           done
 
-      - name: Уведомить в Telegram
-        if: steps.gate.outputs.enabled == 'true' && steps.detect.outputs.changed == 'true'
+      - name: Предупредить об отключённой синхронизации
+        if: steps.gate.outputs.enabled == 'true' && steps.detect.outputs.changed == 'true' && env.SYNC_ENABLED != 'true'
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
-          PUSHED: ${{ steps.publish.outputs.pushed }}
-          FILES: ${{ steps.publish.outputs.files }}
         run: |
           if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then
             echo "TG_BOT_TOKEN/TG_REPORT_CHAT_ID не заданы — уведомление пропущено."
             exit 0
           fi
           REPORT=$(head -c 3000 output/telegram-watch-report.txt 2>/dev/null || true)
-          if [ "$PUSHED" = "true" ]; then
-            HEAD_MSG="✅ Автосинк: изменения из Telegram опубликованы на сайт (файлов: ${FILES})."
-          elif [ "$SYNC_ENABLED" = "true" ]; then
-            HEAD_MSG="ℹ️ Изменения в Telegram обработаны, публикация не потребовалась."
-          else
-            HEAD_MSG="🔭 Есть изменения в Telegram. Автосинк выключен (нет ключей Yandex) — нужен ручной синк."
-          fi
+          HEAD_MSG="🔭 Есть изменения в Telegram. Автосинк выключен (нет ключей Yandex) – нужен ручной синк."
           MSG=$(printf '%s\n\n%s' "$HEAD_MSG" "$REPORT")
           curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
             --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
@@ -492,3 +484,13 @@ jobs:
             --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
             --data-urlencode "text=${MSG}" >/dev/null
           echo "Уведомление о сбое отправлено."
+
+      - name: Сохранить версии постов после синхронизации
+        if: steps.gate.outputs.enabled == 'true' && env.SYNC_ENABLED == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: telegram-sync-observations
+          path: ${{ runner.temp }}/telegram-sync-observations.json
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 7

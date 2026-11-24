@@ -7,9 +7,14 @@ name: Site vs Telegram audit
 # старыми данными (06.10.2026). Расхождения уходят отчётом в Telegram-чат.
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: "20 5 * * *"   # 08:20 МСК, после ночной фиксации цен (03:00 МСК)
+  workflow_call:
+    inputs:
+      revision:
+        required: true
+        type: string
+      sync_run:
+        required: true
+        type: number
 
 concurrency:
   group: site-vs-telegram-audit
@@ -33,7 +38,17 @@ jobs:
           fi
 
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.revision }}
         if: steps.gate.outputs.enabled == 'true'
+
+      - uses: actions/download-artifact@v4
+        if: steps.gate.outputs.enabled == 'true'
+        with:
+          name: telegram-sync-observations
+          run-id: ${{ inputs.sync_run }}
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}
 
       - uses: actions/setup-python@v5
         if: steps.gate.outputs.enabled == 'true'
@@ -53,7 +68,7 @@ jobs:
         run: |
           if [ -n "$OPT_API_ID" ]; then export TELEGRAM_API_ID="$OPT_API_ID"; fi
           if [ -n "$OPT_API_HASH" ]; then export TELEGRAM_API_HASH="$OPT_API_HASH"; fi
-          python tools/audit_site_vs_telegram.py
+          TELEGRAM_OBSERVATIONS="$RUNNER_TEMP/telegram-sync-observations.json" python tools/audit_site_vs_telegram.py
           echo "findings=$(cat output/site-vs-telegram-findings.txt 2>/dev/null || echo 0)" >> "$GITHUB_OUTPUT"
 
       - name: Сохранить отчёт
@@ -76,24 +91,9 @@ jobs:
             echo "TG_BOT_TOKEN/TG_REPORT_CHAT_ID не заданы — уведомление пропущено."
             exit 0
           fi
-          REPORT=$(head -c 3200 output/site-vs-telegram-report.txt)
+          REPORT=$(python -c "from pathlib import Path; print(Path('output/site-vs-telegram-alert.txt').read_text()[:1800])")
           MSG=$(printf '🔎 Сверка сайта с Telegram: есть расхождения.\n\n%s\n\nПолный отчёт: %s' "$REPORT" "$RUN_URL")
-          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+          curl --fail-with-body -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
             --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
             --data-urlencode "text=${MSG}" >/dev/null
           echo "Уведомление отправлено."
-
-      # Сбой самой сверки (сеть, сессия) — тоже сигнал: иначе тишина будет
-      # выглядеть как «всё совпадает».
-      - name: Сообщить о сбое сверки
-        if: failure() && steps.gate.outputs.enabled == 'true'
-        env:
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_REPORT_CHAT_ID: ${{ secrets.TG_REPORT_CHAT_ID }}
-          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: |
-          if [ -z "$TG_BOT_TOKEN" ] || [ -z "$TG_REPORT_CHAT_ID" ]; then exit 0; fi
-          MSG=$(printf '⚠️ Сверка сайта с Telegram не выполнилась (сбой прогона).\n\n%s' "$RUN_URL")
-          curl -sS "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
-            --data-urlencode "chat_id=${TG_REPORT_CHAT_ID}" \
-            --data-urlencode "text=${MSG}" >/dev/null
