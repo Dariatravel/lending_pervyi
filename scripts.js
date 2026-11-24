@@ -822,7 +822,11 @@
 
   function gallerySrcFromImage(image) {
     if (!image) return "";
-    return image.currentSrc || image.src || "";
+    return image.currentSrc || image.getAttribute("src") || image.dataset.gallerySrc || "";
+  }
+
+  function galleryImageKey(image) {
+    return normalizeGallerySrc(image.dataset.gallerySrc || image.getAttribute("src") || gallerySrcFromImage(image));
   }
 
   /** Самая крупная копия фото для окна просмотра: из srcset (-1440.webp) или оригинал.
@@ -830,7 +834,7 @@
       «микро» и не растягивалась (жалоба сотрудника 15.09.2026). */
   function largestSrcFromImage(image) {
     if (!image) return "";
-    const srcset = image.getAttribute("srcset") || "";
+    const srcset = image.getAttribute("srcset") || image.dataset.gallerySrcset || "";
     let best = "";
     let bestWidth = 0;
     srcset.split(",").forEach((part) => {
@@ -860,7 +864,7 @@
         src,
         full: largestSrcFromImage(node),
         alt: node.getAttribute("alt") || "",
-        key: normalizeGallerySrc(src),
+        key: galleryImageKey(node),
       };
     }
 
@@ -1056,9 +1060,9 @@
     openGalleryLightbox(findGalleryIndexByKey(key));
   }
 
-  const openLightbox = (src, alt) => {
+  const openLightbox = (src, alt, key = normalizeGallerySrc(src)) => {
     if (!src) return;
-    openGalleryLightboxAtKey(normalizeGallerySrc(src));
+    openGalleryLightboxAtKey(key);
     if (!galleryItems.length && lightboxImage) {
       galleryItems = [{ type: "image", src, alt: alt || "", key: normalizeGallerySrc(src) }];
       galleryIndex = 0;
@@ -2261,6 +2265,7 @@
 
     roots.forEach((root) => {
       root.querySelectorAll("video").forEach((video) => {
+        if (video.hasAttribute("data-gallery-poster") && video.preload === "none") return;
         const hasSrc = Boolean(video.getAttribute("src"));
         const hasSourceChild = Boolean(video.querySelector("source[src]"));
         if (!hasSrc && !hasSourceChild) return;
@@ -2335,12 +2340,40 @@
     if (!video || !video.classList.contains("local-video")) return;
     if (video.dataset.posterWired === "1" || video.dataset.posterReady === "frame") return;
 
+    if (video.hasAttribute("data-gallery-poster") || video.poster) return;
     video.dataset.posterWired = "1";
     applyLocalVideoPoster(video, pickLocalVideoFallbackPoster(video), "fallback");
   }
 
+  function revealGalleryMedia(node) {
+    if (node.dataset.galleryPoster) {
+      node.poster = node.dataset.galleryPoster;
+    } else {
+      if (node.dataset.gallerySrcset) node.srcset = node.dataset.gallerySrcset;
+      if (node.dataset.gallerySrc) node.src = node.dataset.gallerySrc;
+    }
+  }
+
+  function observeGalleryMedia(root) {
+    const media = root.querySelectorAll("[data-gallery-src], [data-gallery-poster]");
+    if (!media.length) return;
+    if (!("IntersectionObserver" in window)) {
+      media.forEach(revealGalleryMedia);
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        observer.unobserve(entry.target);
+        revealGalleryMedia(entry.target);
+      }
+    }, { rootMargin: "300px 0px" });
+    media.forEach(node => observer.observe(node));
+  }
+
   function initLocalVideoPosters(root = document) {
     if (!root?.querySelectorAll) return;
+    observeGalleryMedia(root);
     root.querySelectorAll("video.local-video").forEach(wireLocalVideoPoster);
   }
 
@@ -3481,6 +3514,14 @@
 
   function renderHotelMedia(row, grid) {
     const fragment = document.createDocumentFragment();
+    const deferred = grid.hasAttribute("data-large-gallery");
+    const existing = new Map();
+    if (deferred) {
+      for (const node of grid.querySelectorAll("img[data-gallery-src], video")) {
+        const url = node.dataset.gallerySrc || gallerySrcFromVideo(node);
+        if (url) existing.set(url, node);
+      }
+    }
     const media = Array.isArray(row.listing_media) ? [...row.listing_media] : [];
     media
       .filter((item) => item.media_role !== "card" && (item.public_url || item.storage_path || item.source_url || item.mime_type === "application/x-telegram-embed" || (item.details && item.details.telegram_post)))
@@ -3489,12 +3530,17 @@
         if ((item.mime_type || "").startsWith("video/")) {
           const resolvedUrl = resolveMediaUrl(item, row);
           if (!resolvedUrl) return;
-          const video = document.createElement("video");
+          const previous = existing.get(resolvedUrl);
+          const video = previous?.cloneNode(false) || document.createElement("video");
           video.className = "local-video";
           video.controls = true;
           video.preload = "none";
           video.playsInline = true;
           video.src = resolvedUrl;
+          if (deferred && !video.dataset.galleryPoster) {
+            const poster = item.details?.poster || item.poster || pickLocalVideoFallbackPoster(video);
+            if (poster) video.dataset.galleryPoster = poster;
+          }
           fragment.appendChild(video);
           return;
         }
@@ -3518,9 +3564,11 @@
 
         const resolvedUrl = resolveMediaUrl(item, row);
         if (!resolvedUrl) return;
-        const image = document.createElement("img");
+        const previous = existing.get(resolvedUrl);
+        const image = previous?.cloneNode(false) || document.createElement("img");
         image.loading = "lazy";
-        image.src = resolvedUrl;
+        if (deferred) image.dataset.gallerySrc = resolvedUrl;
+        else image.src = resolvedUrl;
         image.alt = `${row.title || "Объект"} фото ${index + 1}`;
         image.classList.add("media-grid__zoomable");
         fragment.appendChild(image);
@@ -5518,7 +5566,7 @@
         event.target.closest(".hotel-card__gallery img") ||
         (cardGalleryHit.matches("img") ? cardGalleryHit : cardGalleryHit.querySelector("img"));
       if (cardImage) {
-        openGalleryLightboxAtKey(normalizeGallerySrc(gallerySrcFromImage(cardImage)));
+        openGalleryLightboxAtKey(galleryImageKey(cardImage));
       } else {
         openGalleryLightbox(0);
       }
@@ -5547,7 +5595,7 @@
       }
 
       image.classList.add("media-grid__zoomable");
-      openLightbox(gallerySrcFromImage(image), image.alt);
+      openLightbox(gallerySrcFromImage(image), image.alt, galleryImageKey(image));
       return;
     }
 
