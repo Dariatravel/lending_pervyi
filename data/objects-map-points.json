@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T17:19:05.274281+00:00",
+  "generated_at": "2026-11-24T19:54:04.944235+00:00",
   "constructor_id": "47a048a54a4e4cf37fe78f17d5eda329d8c2953f90ff0882671cd20baa5dac33",
   "points": [
     {
@@ -440,6 +440,14 @@
       "lat": 43.2850267976542,
       "lon": 40.267194542327736,
       "url": "/hotels/sekret-garden-apartamenty-4162/",
+      "cityKey": "gagra"
+    },
+    {
+      "title": "\"СЕМЕЙНАЯ\" КВАРТИРА 2К",
+      "address": "Гагра, ул. Абазгаа, 49/2, 1 этаж",
+      "lat": 43.2768,
+      "lon": 40.267567,
+      "url": "/kvartira/semeynaya-kvartira-2k-1104/",
       "cityKey": "gagra"
     },
     {
@@ -2046,16 +2054,16 @@
   "stats": {
     "placemarks_total": 498,
     "placemarks_unique": 249,
-    "pages_total": 508,
-    "pages_on_disk": 572,
+    "pages_total": 509,
+    "pages_on_disk": 573,
     "pages_excluded": 64,
-    "from_constructor": 274,
+    "from_constructor": 275,
     "from_page_coords": 0,
     "from_manual": 0,
     "skipped_without_constructor": 234,
     "skipped_without_coords": 234,
     "shared_coordinate_groups": 36,
     "deduped_redirect_points": 19,
-    "points_total": 255
+    "points_total": 256
   }
 }

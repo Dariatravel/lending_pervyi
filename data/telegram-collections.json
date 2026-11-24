@@ -16,6 +16,7 @@
           "/kvartira/magnoliya-kvartira-3k-gagra-1253/",
           "/kvartira/kiparisovaya-kvartira-1k-gagry-976/",
           "/kvartira/kurortnaya-kvartira-2k-bagripsh-gagra-998/",
+          "/kvartira/semeynaya-kvartira-2k-1104/",
           "/kvartira/biryuza-etazh-pod-klyuch-gagra-1367/"
         ]
       },
@@ -137,8 +138,7 @@
       }
     ],
     "skipped": [
-      "t.me/abhazbooking/5346: нет на сайте — синхронизирую",
-      "t.me/abhkvartira/1104: объект снят с сайта"
+      "t.me/abhazbooking/5346: нет на сайте — синхронизирую"
     ]
   },
   "novyy-god-2027": {

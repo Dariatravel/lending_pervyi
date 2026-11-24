@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-24T19:02:18.842758+00:00",
+  "generated_at": "2026-11-24T19:55:21.569939+00:00",
   "schema_version": 1,
-  "source": "restore-public-post-20261124",
+  "source": "local-sync",
   "listings_total": 259,
   "listings_hotels": 206,
   "listings_kvartira": 53,
@@ -34331,7 +34331,7 @@
       "source_topic_id": 1103,
       "slug": "semeynaya-kvartira-2k-1104",
       "title": "\"СЕМЕЙНАЯ\" квартира 2к",
-      "summary": "Гагра. 5 минут пешком до пляжа, размещение до 6 человек. Уютнaя двухкoмнатнaя квартира в центре города, площадь 50м. Cделaн евроремонт, всё необхoдимoе ecть для вaшегo проживaния и отдыxа. Все бытовые приборы, телевизор, гладильная доска и утюг, пылесос и робот-пылесос, стиральная машинка, сплит-система. На кухне микроволновка, большой холодильник, чайник, плитка. Есть посуда и постельные принадлежности, смарт-тв и вай-фай",
+      "summary": "Гагра. 5 минут пешком до пляжа, размещение до 6 человек.",
       "excerpt": "Уютнaя двухкoмнатнaя квартира в центре города, площадь 50м. Cделaн евроремонт, всё необхoдимoе ecть для вaшегo проживaния и отдыxа. Все бытовые приборы, телевизор, гладильная доска и утюг, пылесос и робот-пылесос, стиральная машинка, сплит-система. На кухне микроволновка, большой холодильник, чайник, плитка. Есть посуда и постельные принадлежности, смарт-тв и вай-фай",
       "city": "Гагра",
       "location_text": "Гагра, ул. Абазгаа, 49/2, 1 этаж",
@@ -34345,7 +34345,7 @@
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/kvartira-cards/semeynaya-kvartira-2k-1104-cover.jpg",
       "is_active": true,
       "details": {
-        "lead": "Гагра. 5 минут пешком до пляжа, размещение до 6 человек. Уютнaя двухкoмнатнaя квартира в центре города, площадь 50м. Cделaн евроремонт, всё необхoдимoе ecть для вaшегo проживaния и отдыxа. Все бытовые приборы, телевизор, гладильная доска и утюг, пылесос и робот-пылесос, стиральная машинка, сплит-система. На кухне микроволновка, большой холодильник, чайник, плитка. Есть посуда и постельные принадлежности, смарт-тв и вай-фай",
+        "lead": "Гагра. 5 минут пешком до пляжа, размещение до 6 человек.",
         "sections": [
           {
             "label": "✔️КВАРТИРА:",
@@ -34421,14 +34421,12 @@
             "text": "40 000₽/сутки - аренда на месяц"
           }
         ],
-        "page_path": "kvartira/semeynaya-kvartira-2k-1104/index.html",
+        "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/semeynaya-kvartira-2k-1104/index.html",
         "filters": {
           "distance": [
             "up-to-5"
           ],
-          "food": [
-            "no-food"
-          ],
+          "food": [],
           "price": [
             "midrange"
           ],
@@ -34540,7 +34538,8 @@
           "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/semeynaya-kvartira-2k-1104/video-01.mp4",
           "details": {
             "telegram_post": "abhkvartira/1110",
-            "telegram_url": "https://t.me/abhkvartira/1110"
+            "telegram_url": "https://t.me/abhkvartira/1110",
+            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/semeynaya-kvartira-2k-1104/video-01-poster.jpg"
           }
         },
         {
