@@ -58,6 +58,7 @@ if str(ROOT / "scripts") not in sys.path:
 
 from sync_abhazbooking_2026 import build_slug, clean_line, parse_post, summary_text  # noqa: E402
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
+from telegram_object_text import is_service_text  # noqa: E402
 
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
 STATE_PATH = ROOT / "output" / "telegram-watch-state.json"
@@ -231,24 +232,11 @@ def repost_match_keys(*, title: str, slug: str = "", message_id: int | None = No
     return keys
 
 
-def is_service_text(text: str) -> bool:
-    sample = clean_line(text).lower()
-    markers = (
-        "кто я и почему выгодно бронировать",
-        "отзывы гостей",
-        "друзья, в этой группе собраны варианты",
-        "здесь вы найдёте квартиры",
-        "здесь вы найдете квартиры",
-        "общение в группе",
-    )
-    return any(marker in sample for marker in markers)
-
-
 def is_hotel_object_message(text: str) -> bool:
     if not text:
         return False
     cleaned = clean_line(text)
-    if is_service_text(cleaned):
+    if is_service_text(text):
         return False
     if "📍" not in cleaned or "👥" not in cleaned:
         return False
@@ -260,7 +248,7 @@ def is_kvartira_object_message(text: str) -> bool:
     if not text:
         return False
     cleaned = clean_line(text)
-    if is_service_text(cleaned):
+    if is_service_text(text):
         return False
     if "📍" not in cleaned:
         return False
@@ -271,7 +259,7 @@ def topic_message_score(text: str) -> float:
     if not text:
         return -1.0
     cleaned = clean_line(text)
-    if is_service_text(cleaned):
+    if is_service_text(text):
         return -100.0
     score = 0.0
     if "📍" in cleaned:

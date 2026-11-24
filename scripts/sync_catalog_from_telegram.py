@@ -59,6 +59,7 @@ from telegram_runtime import connected_telegram_client, run_async_entrypoint  # 
 from promo_title import strip_promo_tail  # noqa: E402
 from supplemental_store import apply_to_page_html as supplemental_apply_to_page  # noqa: E402
 from virtual_tour_store import apply_tour_to_page  # noqa: E402
+from telegram_object_text import is_service_text  # noqa: E402
 
 ROOT_INDEX = ROOT / 'index.html'
 HOTELS_DIR = ROOT / 'hotels'
@@ -515,24 +516,11 @@ def normalize_title(raw: str) -> str:
     return clean_line(raw).strip()
 
 
-def is_service_text(text: str) -> bool:
-    sample = clean_line(text).lower()
-    markers = (
-        'кто я и почему выгодно бронировать',
-        'отзывы гостей',
-        'друзья, в этой группе собраны варианты',
-        'здесь вы найдёте квартиры',
-        'здесь вы найдете квартиры',
-        'общение в группе',
-    )
-    return any(marker in sample for marker in markers)
-
-
 def is_hotel_object_message(text: str) -> bool:
     if not text:
         return False
     cleaned = clean_line(text)
-    if is_service_text(cleaned):
+    if is_service_text(text):
         return False
     if '📍' not in cleaned or '👥' not in cleaned:
         return False
@@ -546,7 +534,7 @@ def is_kvartira_object_message(text: str) -> bool:
     if not text:
         return False
     cleaned = clean_line(text)
-    if is_service_text(cleaned):
+    if is_service_text(text):
         return False
     if '📍' not in cleaned:
         return False
@@ -559,7 +547,7 @@ def topic_message_score(text: str) -> float:
     if not text:
         return -1.0
     cleaned = clean_line(text)
-    if is_service_text(cleaned):
+    if is_service_text(text):
         return -100.0
     score = 0.0
     if '📍' in cleaned:
@@ -1686,6 +1674,28 @@ def cleanup_removed_listing(source_kind: str, listing: dict[str, Any], supa: Sup
         supa.delete_listing(listing['id'])
 
 
+def cleanup_unprocessed_kvartira(
+    existing: list[dict[str, Any]], processed: set[int], failed: set[int],
+    supa: SupabaseClient | None,
+) -> tuple[int, int]:
+    """Пропуск темы/поста при чтении не является решением снять квартиру."""
+    hidden = load_hidden_slugs()
+    deleted = preserved = 0
+    for row in existing:
+        if row['id'] in processed or row['id'] in failed:
+            continue
+        if row.get('slug') in hidden:
+            cleanup_removed_listing('kvartira', row, supa)
+            deleted += 1
+        else:
+            # Как и в часовом watcher: даже удалённый исходный пост сам по
+            # себе не снимает объект с сайта. Явное снятие – hidden_listings.
+            preserved += 1
+            print(f"[warn] Квартира {row.get('slug')} не собрана из Telegram; "
+                  "прежняя карточка сохранена, автоматическое удаление отменено.", flush=True)
+    return deleted, preserved
+
+
 def find_active_duplicate_by_title(source_kind: str, title: str) -> dict[str, Any] | None:
     """Активный объект того же типа с тем же названием (правило: один объект — одно название)."""
     wanted = normalize_title(title or '').strip().upper()
@@ -2289,11 +2299,11 @@ async def main() -> None:
                 print(f'Обновлены квартиры: {index}/{len(kvartira_objects)}', flush=True)
 
     deleted_kvartira_count = 0
+    preserved_kvartira_count = 0
     if run_kvartira and not TARGET_SYNC_MODE:
-        for row in existing_kvartira:
-            if row['id'] not in processed_kv_rows and row['id'] not in failed_kv_existing_rows:
-                cleanup_removed_listing('kvartira', row, supa)
-                deleted_kvartira_count += 1
+        deleted_kvartira_count, preserved_kvartira_count = cleanup_unprocessed_kvartira(
+            existing_kvartira, processed_kv_rows, failed_kv_existing_rows, supa,
+        )
 
     if not TARGET_SYNC_MODE:
         CURRENT_PAGES_FILE.write_text(json.dumps(sorted(current_pages, key=lambda item: item['source_id']), ensure_ascii=False, indent=2), encoding='utf-8')
@@ -2316,6 +2326,7 @@ async def main() -> None:
         'failed_kvartira': len(failed_kv_objects),
         'deleted_hotels': deleted_hotels_count,
         'deleted_kvartira': deleted_kvartira_count,
+        'preserved_kvartira': preserved_kvartira_count,
     }, ensure_ascii=False))
     if failed_hotel_objects:
         print('[warn] Не обновились отели:', json.dumps(failed_hotel_objects[:20], ensure_ascii=False), flush=True)
