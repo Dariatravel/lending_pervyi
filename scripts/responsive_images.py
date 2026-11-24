@@ -101,17 +101,38 @@ def attrs_to_html(attrs: dict[str, str]) -> str:
     return "".join(f' {name}="{html.escape(value, quote=True)}"' for name, value in attrs.items() if value)
 
 
+def mobile_cover_url(srcset: str) -> str:
+    for candidate in srcset.split(","):
+        parts = candidate.split()
+        if len(parts) == 2 and parts[1] == "480w":
+            return parts[0]
+    return ""
+
+
+def cover_picture(img: str, mobile: str) -> str:
+    if not mobile:
+        return img
+    return (f'<picture><source media="(max-width: 480px)" type="image/webp" '
+            f'srcset="{html.escape(mobile, quote=True)}" />{img}</picture>')
+
+
 def responsive_preload_link(src: str, *, sizes: str, root: Path = ROOT) -> str:
     src = yandex_photo_url(src)
     srcset = srcset_for_image(src, root=root)
     href = variant_url(src, 960)
     if not srcset or f"{href} 960w" not in srcset:
         return ""
-    return (
+    mobile = mobile_cover_url(srcset)
+    desktop_media = ' media="(min-width: 481px)"' if mobile else ""
+    desktop = (
         f'<link rel="preload" as="image" href="{html.escape(href, quote=True)}" '
         f'imagesrcset="{html.escape(srcset, quote=True)}" '
-        f'imagesizes="{html.escape(sizes, quote=True)}" fetchpriority="high" />'
+        f'imagesizes="{html.escape(sizes, quote=True)}" fetchpriority="high"{desktop_media} />'
     )
+    if mobile:
+        return (f'<link rel="preload" as="image" type="image/webp" media="(max-width: 480px)" '
+                f'href="{html.escape(mobile, quote=True)}" fetchpriority="high" />\n    {desktop}')
+    return desktop
 
 
 def responsive_img_html(
@@ -128,4 +149,7 @@ def responsive_img_html(
     attrs = responsive_image_attrs(src, sizes=sizes, root=root)
     if fetchpriority:
         attrs["fetchpriority"] = fetchpriority
-    return f'<img src="{escaped_src}"{attrs_to_html(attrs)} alt="{escaped_alt}" loading="{html.escape(loading, quote=True)}" />'
+    img = f'<img src="{escaped_src}"{attrs_to_html(attrs)} alt="{escaped_alt}" loading="{html.escape(loading, quote=True)}" />'
+    if fetchpriority == "high" and loading == "eager":
+        return cover_picture(img, mobile_cover_url(attrs.get("srcset", "")))
+    return img
