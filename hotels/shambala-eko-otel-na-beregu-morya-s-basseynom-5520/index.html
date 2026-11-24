@@ -23,7 +23,7 @@
 <script data-schema="listing" type="application/ld+json">
       {"@context":"https://schema.org","@type":"Hotel","name":"\"ШАМБАЛА\" эко-отель на берегу моря с бассейном","description":"Сухум. 0 минут до пляжа, галечный, размещение до 9 человек.","url":"https://абхазберег.рф/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/","image":["https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/shambala-eko-otel-na-beregu-morya-s-basseynom-5520/photo-01.jpg"]}
     </script>
-<link data-shambala-prices="" href="/assets/gega-prices-v1.css" rel="stylesheet"/><link data-shambala-live="" href="/assets/gega-live-prices-v1.css" rel="stylesheet"/></head>
+<link data-shambala-prices="" href="/assets/gega-prices-v1.css" rel="stylesheet"/><link data-shambala-live="" href="/assets/gega-live-prices-v1.css" rel="stylesheet"/><link data-hotel-guest-controls="" href="/assets/hotel-guest-controls-v1.css" rel="stylesheet"/></head>
 <body>
 <div aria-hidden="true" class="grain"></div>
 <main class="hotel-site-concept">
@@ -87,12 +87,18 @@
 <div class="hotel-site-concept__detail-grid" id="details"><section class="section hotel-price-section gega-prices" id="prices">
 <article class="card gega-live" data-hotel="shambala">
 <h2>Актуальные цены на выбранную ночь</h2>
-<p>Стоимость номера за одну ночь для 2 взрослых без детей. Для другого состава гостей обратитесь к менеджеру.</p>
-<div class="gega-price-picker"><label for="shambala-night">Дата ночи проживания</label>
-<input disabled="" id="shambala-night" type="date"/></div>
+<p>Стоимость номера за одну ночь для выбранного состава гостей.</p>
+
+
+<form class="hotel-guest-form" data-guest-form=""><div class="gega-price-picker"><label for="shambala-night">Дата ночи проживания</label>
+<input id="shambala-night" type="date"/></div>
+<div class="hotel-guest-grid">
+<div class="gega-price-picker"><label for="shambala-adults">Взрослые</label><select data-guest-adults="" id="shambala-adults"><option value="1">1</option><option selected="" value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></div>
+<div class="gega-price-picker"><label for="shambala-children">Дети</label><select data-guest-children="" id="shambala-children"><option selected="" value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div>
+</div><div aria-live="polite" class="hotel-child-ages" data-child-ages="" hidden=""></div>
 <div class="gega-price-picker"><label for="shambala-meal">Питание</label>
-<select data-live-meal="" disabled="" id="shambala-meal"><option value="">Любое питание</option></select></div>
-<p data-gega-status="" role="status">Загружаем цены отеля…</p>
+<select data-live-meal="" disabled="" id="shambala-meal"><option value="">Любое питание</option></select></div><button class="hotel-guest-submit" data-guest-search="" type="submit">Показать цены</button>
+</form><p data-gega-status="" role="status">Загружаем цены отеля…</p>
 <div data-gega-live-table=""></div>
 <p class="gega-price-note">Показываем самую низкую цену для выбранного питания. Название тарифа указано рядом с ценой. В тарифах с пометкой «Завтрак включён» он входит в указанную цену.</p>
 <p class="gega-price-note">Окончательную стоимость поездки и условия бронирования подтвердит менеджер.</p>
@@ -493,5 +499,5 @@
 </main>
 <script defer="" src="../../scripts.min.js?v=202611231250"></script>
 <a aria-label="Наверх" class="back-to-top" href="#top"><span aria-hidden="true" class="back-to-top__icon">↑</span></a>
-<script data-shambala-live="" defer="" src="/assets/hotel-live-prices-v2.js"></script></body>
+<script data-hotel-guest-source="" defer="" src="/assets/hotel-guest-source-v1.js"></script><script data-shambala-live="" defer="" src="/assets/hotel-live-prices-v3.js"></script></body>
 </html>

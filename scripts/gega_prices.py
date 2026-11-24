@@ -191,4 +191,6 @@ def apply_to_page_html(page_html: str, slug: str) -> str:
         soup.body.append(soup.new_tag('script', attrs={'src':'/assets/hotel-live-prices-v2.js','defer':'','data-gega-live':''}))
     if not soup.select_one('link[data-gega-live]'):
         soup.head.append(soup.new_tag('link', attrs={'rel':'stylesheet','href':'/assets/gega-live-prices-v1.css','data-gega-live':''}))
+    from hotel_guest_controls import attach_controls
+    attach_controls(soup, new.select_one('.gega-live'), 'gega')
     return re.sub(r'[ \t]+\n','\n',str(soup))

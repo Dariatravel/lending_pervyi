@@ -53,4 +53,6 @@ def apply_to_page_html(page_html, slug):
     if not soup.select_one('script[data-shambala-live]'):
         soup.body.append(soup.new_tag('script', attrs={'src': '/assets/hotel-live-prices-v2.js',
                                                     'defer': '', 'data-shambala-live': ''}))
+    from hotel_guest_controls import attach_controls
+    attach_controls(soup, section.select_one('.gega-live'), 'shambala')
     return str(soup)
