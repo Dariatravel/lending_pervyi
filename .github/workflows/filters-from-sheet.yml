@@ -20,7 +20,7 @@ on:
 
 concurrency:
   group: watch-telegram # не толкаться с автосинком за push в main
-  cancel-in-progress: false
+  queue: max
 
 jobs:
   apply:
@@ -30,6 +30,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref == 'refs/heads/main' && 'main' || '' }}
 
       - uses: actions/setup-python@v5
         with:

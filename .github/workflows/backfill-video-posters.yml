@@ -10,7 +10,7 @@ on:
 # Публикуем в main — сериализуемся с автосинком, чтобы не гоняться пушами.
 concurrency:
   group: watch-telegram
-  cancel-in-progress: false
+  queue: max
 
 jobs:
   posters:
@@ -23,6 +23,8 @@ jobs:
       YANDEX_S3_SECRET_ACCESS_KEY: ${{ secrets.YANDEX_S3_SECRET_ACCESS_KEY }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref == 'refs/heads/main' && 'main' || '' }}
 
       - uses: actions/setup-python@v5
         with:

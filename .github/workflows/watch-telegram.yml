@@ -28,7 +28,7 @@ on:
 
 concurrency:
   group: watch-telegram
-  cancel-in-progress: false
+  queue: max
 
 jobs:
   watch:
@@ -52,6 +52,8 @@ jobs:
           fi
 
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref == 'refs/heads/main' && 'main' || '' }}
         if: steps.gate.outputs.enabled == 'true'
 
       - uses: actions/setup-python@v5
