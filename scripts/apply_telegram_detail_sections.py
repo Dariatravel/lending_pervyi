@@ -40,6 +40,9 @@ SESSION.headers["User-Agent"] = "Mozilla/5.0 (compatible; AbhazberegSync/1.0)"
 
 HEADER_RE = re.compile(r"^\s*✔️?\s*(.+?):\s*$")
 
+PRICE_HEADER_RE = re.compile(r"^(?:[✔✅☑]️?\s*)?цены(?:\s*(\([^()]+\)))?\s*:?$", re.I)
+
+
 # Строка про цены живёт в статическом блоке «✔️ВАЖНО:» (data-static-important),
 # который рендерит sync_catalog_from_telegram. Из переносимых текстов постов
 # её вырезаем, а сам блок «ВАЖНО» не трогаем.
@@ -84,13 +87,31 @@ def parse_sections(raw: str) -> dict[str, str]:
     current: str | None = None
     buf: list[str] = []
 
+    price_note = ""
+
+    def save_section():
+        if current is None:
+            return
+        body = "\n".join(buf).strip()
+        if current == "ЦЕНЫ":
+            rows = price_lines_from_block(body)
+            if rows:
+                sections[current] = "\n".join(filter(None, (
+                    sections.get(current),
+                    price_note if rows[0].casefold() != price_note.casefold() else "",
+                    *rows,
+                )))
+        else:
+            sections[current] = body
+
     for line in lines:
         stripped = line.strip()
+        price_header = PRICE_HEADER_RE.fullmatch(stripped)
         m = HEADER_RE.match(stripped)
-        if m:
-            if current is not None:
-                sections[current] = "\n".join(buf).strip()
-            current = normalize_section_key(m.group(1))
+        if price_header or m:
+            save_section()
+            current = "ЦЕНЫ" if price_header else normalize_section_key(m.group(1))
+            price_note = (price_header.group(1) or "") if price_header else ""
             buf = []
             continue
         if current is not None:
@@ -100,8 +121,7 @@ def parse_sections(raw: str) -> dict[str, str]:
                 buf = []
                 break
             buf.append(line)
-    if current is not None:
-        sections[current] = "\n".join(buf).strip()
+    save_section()
     return sections
 
 
@@ -247,7 +267,7 @@ def apply_to_page(path: Path, channel: str, message_id: int, dry_run: bool) -> t
     # Цены в aside
     price_ul = soup.select_one("ul.price-card__seasons")
     if price_ul and "ЦЕНЫ" in sections:
-        lines = price_lines_from_block(sections["ЦЕНЫ"])
+        lines = sections["ЦЕНЫ"].splitlines()
         if lines:
             price_ul.clear()
             for line in lines:
