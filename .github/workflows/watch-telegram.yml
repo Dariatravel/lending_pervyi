@@ -104,7 +104,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: output/telegram-watch-state.json
-          key: telegram-watch-state-${{ github.run_id }}
+          key: telegram-watch-state-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             telegram-watch-state-
 
@@ -239,12 +239,6 @@ jobs:
         continue-on-error: true
         run: python tools/build_ai_search_assets.py --catalog-only
 
-      # Изменения применены и проверены — фиксируем их сигнатуры в watch-state,
-      # чтобы тот же самый дифф не попадал в отчёт и синк повторно каждый час.
-      - name: Принять применённые изменения в watch-state
-        if: steps.sync.outputs.done == 'true'
-        run: python tools/accept_watch_changes.py
-
       - name: Опубликовать изменения
         id: publish
         if: steps.sync.outputs.done == 'true'
@@ -288,6 +282,11 @@ jobs:
           fi
           echo "pushed=true" >> "$GITHUB_OUTPUT"
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
+
+      # Успех включает проверенный случай без содержательных изменений.
+      - name: Принять опубликованные изменения в watch-state
+        if: steps.publish.outcome == 'success'
+        run: python tools/accept_watch_changes.py
 
       # IndexNow: сообщить Яндексу об изменённых страницах — индексация за
       # минуты вместо дней. Ошибка сети не валит синк (скрипт всегда exit 0).
@@ -362,11 +361,11 @@ jobs:
         run: pip install --quiet pyjwt cryptography && python3 tools/webcams_snapshots.py
 
       - name: Сохранить watch-state
-        if: steps.gate.outputs.enabled == 'true' && always()
+        if: success() && steps.watch.outcome == 'success'
         uses: actions/cache/save@v4
         with:
           path: output/telegram-watch-state.json
-          key: telegram-watch-state-${{ github.run_id }}
+          key: telegram-watch-state-${{ github.run_id }}-${{ github.run_attempt }}
 
       # Статьи блога следуют за правками постов-источников (просьба Дарьи
       # 18.10.2026). Правка поста у статьи, которую собирает синк блога, —
