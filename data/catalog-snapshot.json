@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T19:55:21.569939+00:00",
+  "generated_at": "2026-11-25T20:34:27.367432+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 259,
@@ -52,8 +52,24 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(2026)"
+          },
+          {
             "kind": "price",
-            "text": "3000₽ - июнь"
+            "text": "3000₽ - ноябрь, декабрь"
+          },
+          {
+            "kind": "note",
+            "text": "(БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "price",
+            "text": "3000₽ - с января по май"
+          },
+          {
+            "kind": "price",
+            "text": "4000₽ - июнь"
           },
           {
             "kind": "price",
@@ -61,11 +77,7 @@
           },
           {
             "kind": "price",
-            "text": "4000₽ - сентябрь, октябрь"
-          },
-          {
-            "kind": "price",
-            "text": "3000₽ - с ноября по апрель"
+            "text": "4000₽ - сентябрь"
           }
         ],
         "page_path": "/home/runner/work/lending_pervyi/lending_pervyi/kvartira/akira-2k-kvartira-1623/index.html",
@@ -212,14 +224,13 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/akira-2k-kvartira-1623/video-01.mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/akira-2k-kvartira-1623/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/kvartira/akira-2k-kvartira-1623/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/akira-2k-kvartira-1623/video-01.mp4",
+          "storage_path": "videos/kvartira/akira-2k-kvartira-1623/video-01-source.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/akira-2k-kvartira-1623/video-01-source.mp4",
           "details": {
             "telegram_post": "abhkvartira/1632",
-            "telegram_url": "https://t.me/abhkvartira/1632",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/kvartira/akira-2k-kvartira-1623/video-01-poster.jpg"
+            "telegram_url": "https://t.me/abhkvartira/1632"
           }
         }
       ]
@@ -2626,6 +2637,10 @@
           },
           {
             "kind": "price",
+            "text": "4500₽ - май (без питания)"
+          },
+          {
+            "kind": "price",
             "text": "4500₽ - июнь до 15"
           },
           {
@@ -2655,6 +2670,10 @@
           {
             "kind": "note",
             "text": "(за четырехместное размещение)"
+          },
+          {
+            "kind": "price",
+            "text": "7500₽ - май (без питания)"
           },
           {
             "kind": "price",
@@ -2839,14 +2858,13 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/belaya-dacha-otel-s-pitaniem-4630/video-01.mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/belaya-dacha-otel-s-pitaniem-4630/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/belaya-dacha-otel-s-pitaniem-4630/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/belaya-dacha-otel-s-pitaniem-4630/video-01.mp4",
+          "storage_path": "videos/hotels/belaya-dacha-otel-s-pitaniem-4630/video-01-source.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/belaya-dacha-otel-s-pitaniem-4630/video-01-source.mp4",
           "details": {
             "telegram_post": "abhazbooking/4639",
-            "telegram_url": "https://t.me/abhazbooking/4639",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/belaya-dacha-otel-s-pitaniem-4630/video-01-poster.jpg"
+            "telegram_url": "https://t.me/abhazbooking/4639"
           }
         }
       ]
@@ -58982,27 +59000,27 @@
         "prices": [
           {
             "kind": "note",
+            "text": "(БРОНИРОВАНИЕ 2027)"
+          },
+          {
+            "kind": "note",
             "text": "(за четырехместное размещение)"
           },
           {
             "kind": "price",
-            "text": "6500 ₽/сутки - июнь"
+            "text": "6000 ₽/сутки - июнь"
           },
           {
             "kind": "price",
-            "text": "7500 ₽/сутки - июль"
+            "text": "6500 ₽/сутки - июль"
           },
           {
             "kind": "price",
-            "text": "6500 ₽/сутки - август"
+            "text": "7500 ₽/сутки - август"
           },
           {
             "kind": "price",
             "text": "6500 ₽/сутки - сентябрь"
-          },
-          {
-            "kind": "price",
-            "text": "3500 ₽/сутки - с 31 декабря по 8 января 🎄"
           },
           {
             "kind": "price",
@@ -59140,14 +59158,13 @@
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/peschanyy-bereg-apartamenty-3700/video-01.mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/peschanyy-bereg-apartamenty-3700/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/peschanyy-bereg-apartamenty-3700/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/peschanyy-bereg-apartamenty-3700/video-01.mp4",
+          "storage_path": "videos/hotels/peschanyy-bereg-apartamenty-3700/video-01-source.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/peschanyy-bereg-apartamenty-3700/video-01-source.mp4",
           "details": {
             "telegram_post": "abhazbooking/3705",
-            "telegram_url": "https://t.me/abhazbooking/3705",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/peschanyy-bereg-apartamenty-3700/video-01-poster.jpg"
+            "telegram_url": "https://t.me/abhazbooking/3705"
           }
         },
         {
@@ -60167,28 +60184,36 @@
         ],
         "prices": [
           {
+            "kind": "note",
+            "text": "(БРОНИРОВАНИЕ 2027)"
+          },
+          {
             "kind": "price",
             "text": "Двухместный номер"
           },
           {
             "kind": "price",
-            "text": "2300₽ - июнь"
+            "text": "2000₽ - май"
           },
           {
             "kind": "price",
-            "text": "2700₽ - июль"
+            "text": "2800₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "2800₽ - август"
+            "text": "3200₽ - июль"
           },
           {
             "kind": "price",
-            "text": "2500₽ - сентябрь"
+            "text": "3500₽ - август"
           },
           {
             "kind": "price",
-            "text": "2300₽ - октябрь"
+            "text": "3000₽ - сентябрь"
+          },
+          {
+            "kind": "price",
+            "text": "2000₽ - октябрь"
           },
           {
             "kind": "price",
@@ -60196,19 +60221,23 @@
           },
           {
             "kind": "price",
-            "text": "2500₽ - июнь"
+            "text": "2500₽ - май"
           },
           {
             "kind": "price",
-            "text": "2900₽ - июль"
+            "text": "3000₽ - июнь"
           },
           {
             "kind": "price",
-            "text": "3100₽ - август"
+            "text": "3500₽ - июль"
           },
           {
             "kind": "price",
-            "text": "2700₽ - сентябрь"
+            "text": "3700₽ - август"
+          },
+          {
+            "kind": "price",
+            "text": "3200₽ - сентябрь"
           },
           {
             "kind": "price",
@@ -60360,14 +60389,13 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/barnaba-gostevoy-dom-4842/video-01.mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/barnaba-gostevoy-dom-4842/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/barnaba-gostevoy-dom-4842/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/barnaba-gostevoy-dom-4842/video-01.mp4",
+          "storage_path": "videos/hotels/barnaba-gostevoy-dom-4842/video-01-source.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/barnaba-gostevoy-dom-4842/video-01-source.mp4",
           "details": {
             "telegram_post": "abhazbooking/4851",
-            "telegram_url": "https://t.me/abhazbooking/4851",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/barnaba-gostevoy-dom-4842/video-01-source-poster.jpg"
+            "telegram_url": "https://t.me/abhazbooking/4851"
           }
         }
       ]
@@ -62025,7 +62053,8 @@
             "label": "✔️ТЕРРИТОРИЯ:",
             "lines": [
               "На территории пляж, мангал.",
-              "Территория не огорожена, выход сразу к берегу моря."
+              "Территория не огорожена, выход сразу к берегу моря.",
+              "В сезоне 2027 появится общая кухня."
             ]
           },
           {
@@ -62206,14 +62235,13 @@
           "media_role": "gallery",
           "sort_order": 9,
           "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/briz-domiki-na-beregu-4937/video-01.mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/briz-domiki-na-beregu-4937/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/briz-domiki-na-beregu-4937/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/briz-domiki-na-beregu-4937/video-01.mp4",
+          "storage_path": "videos/hotels/briz-domiki-na-beregu-4937/video-01-source.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/briz-domiki-na-beregu-4937/video-01-source.mp4",
           "details": {
             "telegram_post": "abhazbooking/4945",
-            "telegram_url": "https://t.me/abhazbooking/4945",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/briz-domiki-na-beregu-4937/video-01-poster.jpg"
+            "telegram_url": "https://t.me/abhazbooking/4945"
           }
         }
       ]
@@ -67296,7 +67324,7 @@
       "page_url": "https://абхазберег.рф/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/",
       "telegram_url": "https://t.me/abhazbooking/5109",
       "published_at": "2026-07-27",
-      "has_video": false,
+      "has_video": true,
       "cover_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/cards/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109.jpg",
       "is_active": true,
       "details": {
@@ -67316,9 +67344,9 @@
             "label": "✔️ТЕРРИТОРИЯ:",
             "lines": [
               "Бассейн с подогревом и детской зоной с шезлонгами и зонтиками.",
-              "Свое кафе сразу за территорией.",
-              "Летняя кухня со всем необходимым для самостоятельного приготовления.",
-              "Мангальная зона и зона отдыха с качелями."
+              "Свое летнее кафе.",
+              "Мангальная зона и зона отдыха с качелями.",
+              "Волейбольная сетка."
             ]
           },
           {
@@ -67502,12 +67530,15 @@
           "id": 1198011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "image/jpeg",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-10.jpg",
+          "mime_type": "video/mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-10.jpg",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/photo-10.jpg",
-          "details": {}
+          "storage_path": "videos/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/video-01-source.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/yuzhnoe-schaste-domiki-s-basseynom-i-zavtrakami-5109/video-01-source.mp4",
+          "details": {
+            "telegram_post": "abhazbooking/5118",
+            "telegram_url": "https://t.me/abhazbooking/5118"
+          }
         }
       ]
     },
