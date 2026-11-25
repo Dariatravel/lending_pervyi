@@ -17,7 +17,7 @@ if str(LOCAL_ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(LOCAL_ROOT / "scripts"))
 
 from responsive_images import responsive_img_html  # noqa: E402
-from telegram_line_filters import clean_line_for_site, is_link_stub_line  # noqa: E402
+from telegram_line_filters import CONTACT_PHONE, clean_line_for_site, is_link_stub_line  # noqa: E402
 
 
 ROOT = Path(__file__).resolve().parent
@@ -550,7 +550,7 @@ def should_drop_line(line: str) -> bool:
         return True
     if "ПИШИТЕ В СООБЩЕНИЯ" in upper and ("БРОНИРОВАН" in upper or "НАЛИЧ" in upper):
         return True
-    if re.search(r"\+7[-\s]?\d", line):
+    if CONTACT_PHONE.search(line):
         return True
     # Контакты менеджера уезжали в блок «ЦЕНЫ» (Дарья заметила 20.08.2026):
     # ссылки на мессенджеры и соцсети в тексте поста — это контакты, их место

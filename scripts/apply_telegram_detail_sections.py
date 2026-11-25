@@ -23,6 +23,11 @@ import sys
 import time
 from pathlib import Path
 
+if __package__:
+    from .telegram_line_filters import CONTACT_PHONE
+else:
+    from telegram_line_filters import CONTACT_PHONE
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -42,8 +47,8 @@ def strip_commission_line(paras: list[str]) -> list[str]:
     return [p for p in paras if "точь" not in p.lower()]
 
 FOOTER_LINE = re.compile(
-    r"abhazbooking_online|whatsapp|telegram\.me|t\.me/|\+7|\+7940|только этот контакт|"
-    r"будьте внимательны|по бронированию и наличию|я на связи",
+    r"abhazbooking_online|whatsapp|telegram\.me|t\.me/|только этот контакт|"
+    r"будьте внимательны|по бронированию и наличию|я на связи|" + CONTACT_PHONE.pattern,
     re.I,
 )
 
