@@ -121,6 +121,11 @@ def wanted(path: Path) -> bool:
     relative = path.relative_to(ROOT)
     if any(part in SKIP_DIR_NAMES or part.startswith(".") for part in relative.parts[:-1]):
         return False
+    name = path.name.lower()
+    if name == ".env" or name.startswith(".env.") or name.endswith((
+        ".session", ".session-journal", ".session-wal", ".session-shm", ".session.lock",
+    )):
+        return False
     if path.name in SKIP_FILES or path.suffix.lower() in SKIP_SUFFIXES:
         return False
     top = relative.parts[0]
@@ -135,17 +140,17 @@ def collect() -> list[Path]:
     files: list[Path] = []
     for name in INCLUDE_FILES:
         candidate = ROOT / name
-        if candidate.is_file():
+        if not candidate.is_symlink() and candidate.is_file():
             files.append(candidate)
     for pattern in VERIFICATION_PATTERNS:
         for candidate in ROOT.glob(pattern):
-            if candidate.is_file():
+            if not candidate.is_symlink() and candidate.is_file():
                 files.append(candidate)
     for base in sorted(ROOT.iterdir()):
-        if not base.is_dir() or base.name in SKIP_TOP_DIRS or base.name.startswith("."):
+        if base.is_symlink() or not base.is_dir() or base.name in SKIP_TOP_DIRS or base.name.startswith("."):
             continue
         for path in base.rglob("*"):
-            if path.is_file() and wanted(path):
+            if not path.is_symlink() and path.is_file() and wanted(path):
                 files.append(path)
     return sorted(set(files))
 
