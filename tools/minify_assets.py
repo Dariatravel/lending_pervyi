@@ -17,6 +17,7 @@ def run_js_minifier(source: str, outfile: str) -> None:
             "terser",
             source,
             "--compress",
+            "passes=3",
             "--mangle",
             "--output",
             outfile,
@@ -40,6 +41,14 @@ def run_css_minifier(source: str, outfile: str) -> None:
         cwd=ROOT,
         check=True,
     )
+
+    # Level 1 simplifies individual declarations without moving selectors.
+    compact = subprocess.check_output(
+        ["npx", "--yes", "--package", "clean-css-cli@5.6.3", "cleancss",
+         "-O1", outfile],
+        cwd=ROOT,
+    )
+    (ROOT / outfile).write_bytes(compact)
 
 
 def main() -> int:
