@@ -1,6 +1,10 @@
 (() => {
   const body = document.body;
   if (!body) return;
+  const catalogMediaClass = "catalog-card__media-wrap";
+  const catalogMediaSelector = ".catalog-card__media-wrap";
+  const catalogCardsSelector = "#catalog-grid .catalog-card, #selection-podborka-view .catalog-card";
+  const copiedLabelText = "Ссылка скопирована";
   const METRIKA_ID = 108214677;
   const GA4_ID = "G-MZ2NTRDDJ5";
   const SITE_CANONICAL_ORIGIN = "https://абхазберег.рф";
@@ -53,7 +57,7 @@
     return text;
   }
 
-  async function copyPublicUrl(triggerBtn, copiedLabel = "Ссылка скопирована", defaultLabel = "", explicitUrl = "") {
+  async function copyPublicUrl(triggerBtn, copiedLabel = copiedLabelText, defaultLabel = "", explicitUrl = "") {
     const url = (explicitUrl || buildPublicShareUrl()).replace(/^https?:\/\//, "");
     const original = triggerBtn?.textContent || defaultLabel;
     try {
@@ -172,7 +176,7 @@
       btn.disabled = false;
     });
     btn.addEventListener("click", () => {
-      void copyPublicUrl(btn, "Ссылка скопирована", "", listingShareUrl);
+      void copyPublicUrl(btn, copiedLabelText, "", listingShareUrl);
     });
     catalogBtn.after(btn);
   }
@@ -397,7 +401,7 @@
 
     function restoreCardsToGrid() {
       if (!grid) return;
-      const cards = Array.from(document.querySelectorAll("#catalog-grid .catalog-card, #selection-podborka-view .catalog-card"));
+      const cards = Array.from(document.querySelectorAll(catalogCardsSelector));
       cards.sort((a, b) => {
         const ai = Number(a.dataset.catalogAnchorIndex || cardAnchorIndex.get(a) || 0);
         const bi = Number(b.dataset.catalogAnchorIndex || cardAnchorIndex.get(b) || 0);
@@ -412,7 +416,7 @@
     }
 
     function setRankBadge(card, rank) {
-      const wrap = card.querySelector(".catalog-card__media-wrap");
+      const wrap = card.querySelector(catalogMediaSelector);
       if (!wrap) return;
       let badge = wrap.querySelector(".catalog-card__badge--rank");
       if (!badge) {
@@ -488,7 +492,7 @@
     }
 
     async function copyShareLink(triggerBtn) {
-      await copyPublicUrl(triggerBtn, "Ссылка скопирована", triggerBtn?.textContent || "");
+      await copyPublicUrl(triggerBtn, copiedLabelText, triggerBtn?.textContent || "");
     }
 
     function wireShareButtons() {
@@ -2995,7 +2999,7 @@
       applyFilterData(card, row.details?.filters);
 
       const mediaWrap = document.createElement("div");
-      mediaWrap.className = "catalog-card__media-wrap";
+      mediaWrap.className = catalogMediaClass;
 
       if (row.has_video) {
         const badge = document.createElement("span");
@@ -3032,7 +3036,7 @@
       card.href = pathnameFromUrl(row.page_url, row.telegram_url || "/kvartira/");
 
       const mediaWrap = document.createElement("div");
-      mediaWrap.className = "catalog-card__media-wrap";
+      mediaWrap.className = catalogMediaClass;
 
       if (row.has_video) {
         const badge = document.createElement("span");
@@ -3176,7 +3180,7 @@
     applyFilterData(card, row.details?.filters);
 
     const mediaWrap = document.createElement("div");
-    mediaWrap.className = "catalog-card__media-wrap";
+    mediaWrap.className = catalogMediaClass;
 
     if (row.has_video) {
       const badge = document.createElement("span");
@@ -5181,12 +5185,12 @@
   }
 
   function ensureCatalogCardMediaWrap(card) {
-    let mediaWrap = card.querySelector(".catalog-card__media-wrap");
+    let mediaWrap = card.querySelector(catalogMediaSelector);
     if (mediaWrap) return mediaWrap;
     const firstImage = card.querySelector("img");
     if (!firstImage) return null;
     mediaWrap = document.createElement("div");
-    mediaWrap.className = "catalog-card__media-wrap";
+    mediaWrap.className = catalogMediaClass;
     firstImage.parentNode?.insertBefore(mediaWrap, firstImage);
     mediaWrap.appendChild(firstImage);
     return mediaWrap;
@@ -5316,12 +5320,12 @@
   function addHotelVideoBadges(grid) {
     if (!grid) return;
     grid.querySelectorAll('.catalog-card[data-has-video="1"]').forEach((card) => {
-      let mediaWrap = card.querySelector(".catalog-card__media-wrap");
+      let mediaWrap = card.querySelector(catalogMediaSelector);
       if (!mediaWrap) {
         const firstImage = card.querySelector("img");
         if (firstImage) {
           mediaWrap = document.createElement("div");
-          mediaWrap.className = "catalog-card__media-wrap";
+          mediaWrap.className = catalogMediaClass;
           firstImage.parentNode?.insertBefore(mediaWrap, firstImage);
           mediaWrap.appendChild(firstImage);
         }
@@ -5901,7 +5905,7 @@
           repaintHearts();
           showFavToast(added ? "Добавлено в избранное ♥" : "Убрано из избранного");
         });
-        (card.querySelector(".catalog-card__media-wrap") || card).appendChild(btn);
+        (card.querySelector(catalogMediaSelector) || card).appendChild(btn);
       });
       repaintHearts();
     }
@@ -6176,7 +6180,7 @@
     // совпавшие карточки уезжают в подборку, и без этого дедуп их дублировал.
     const presentSlugs = new Set(
       Array.from(
-        document.querySelectorAll("#catalog-grid .catalog-card, #selection-podborka-view .catalog-card")
+        document.querySelectorAll(catalogCardsSelector)
       ).map((card) => {
         const parts = String(card.getAttribute("href") || "").split("/").filter(Boolean);
         return parts[parts.length - 1] || "";
@@ -6229,7 +6233,7 @@
     applyFilterData(card, row.details?.filters);
 
     const mediaWrap = document.createElement("div");
-    mediaWrap.className = "catalog-card__media-wrap";
+    mediaWrap.className = catalogMediaClass;
     if (row.has_video) {
       const badge = document.createElement("span");
       badge.className = "catalog-card__badge";
