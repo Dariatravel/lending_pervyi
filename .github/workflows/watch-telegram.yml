@@ -202,6 +202,14 @@ jobs:
           EXTRA_KV_TOPICS: ${{ inputs.force_kv_topics }}
         run: python scripts/apply_telegram_supplemental_comments.py --from-watch-targets --force
 
+      - name: Обновить цены и плашки по изменённым постам и комментариям
+        if: steps.sync.outputs.done == 'true'
+        run: |
+          python tools/build_min_prices.py
+          python scripts/rebuild_from_catalog_snapshot.py
+          python scripts/build_podborki_from_filters.py
+          python tools/reorder_home_grid.py
+
       - name: Контрольные аудиты после синка
         if: steps.sync.outputs.done == 'true'
         run: |
