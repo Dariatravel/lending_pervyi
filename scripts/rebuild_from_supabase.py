@@ -58,15 +58,16 @@ except (OSError,ValueError):
 
 def render_card_price_html(slug: str) -> str:
     booking_year = EARLY_BOOKINGS.get(str(slug))
+    badge = ""
     if isinstance(booking_year,int) and 2000 < booking_year < 2100:
-        return f'<p class="catalog-card__price"><strong class="early-booking-label">Раннее бронирование {booking_year}</strong></p>'
+        badge = f'<strong class="early-booking-label">Раннее бронирование {booking_year}</strong>'
     value = MIN_PRICES.get(str(slug))
     if not value or not MIN_PRICES_MONTH_LABEL:
-        return ""
+        return f'<p class="catalog-card__price">{badge}</p>' if badge else ""
     pretty = f"{value:,}".replace(",", " ")
     return (
         f'<p class="catalog-card__price">Цена от <strong>{pretty} ₽</strong>/сутки '
-        f"{MIN_PRICES_MONTH_LABEL}</p>"
+        f"{MIN_PRICES_MONTH_LABEL}" + ("<br>" + badge if badge else "") + "</p>"
     )
 
 

@@ -6255,18 +6255,21 @@
 
     const priceValue = Number(priceMap[row.slug] || 0);
     const bookingYear = Number(earlyBookings[row.slug] || 0);
-    if (Number.isInteger(bookingYear) && bookingYear > 2000 && bookingYear < 2100) {
-      const price = document.createElement('p');price.className = 'catalog-card__price';
-      const label = document.createElement('strong');label.className = 'early-booking-label';
-      label.textContent = `Раннее бронирование ${bookingYear}`;price.append(label);card.append(price);
-    } else if (priceValue > 0 && monthLabel) {
-      const price = document.createElement("p");
-      price.className = "catalog-card__price";
-      const strong = document.createElement("strong");
-      strong.textContent = `${priceValue.toLocaleString("ru-RU")} ₽`;
-      price.append("Цена от ", strong, `/сутки ${monthLabel}`);
-      card.appendChild(price);
+    const price = document.createElement('p');
+    price.className = 'catalog-card__price';
+    if (priceValue > 0 && monthLabel) {
+      const strong = document.createElement('strong');
+      strong.textContent = priceValue.toLocaleString('ru-RU') + ' ₽';
+      price.append('Цена от ', strong, '/сутки ' + monthLabel);
     }
+    if (Number.isInteger(bookingYear) && bookingYear > 2000 && bookingYear < 2100) {
+      if (price.hasChildNodes()) price.append(document.createElement('br'));
+      const badge = document.createElement('strong');
+      badge.className = 'early-booking-label';
+      badge.textContent = 'Раннее бронирование ' + bookingYear;
+      price.append(badge);
+    }
+    if (price.hasChildNodes()) card.append(price);
     return card;
   }
 })();

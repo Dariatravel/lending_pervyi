@@ -43,3 +43,49 @@ def early_booking_year(row, month, today, monthly_prices, extract_price):
     if not future or monthly_prices(current,today).get(month) is not None:
         return None
     return min(future)
+
+def advertised_year(row, supplemental, today, extract_price):
+    """Явное предложение ранней брони или тариф проживания следующего года."""
+    from bs4 import BeautifulSoup
+    target = 2027
+    if today.year > target:
+        return None
+    details = row.get("details") or {}
+    prices = [str(p.get("text", "") if isinstance(p, dict) else p)
+              for p in details.get("prices", [])]
+    sections = [str(line) for section in details.get("sections", [])
+                for line in [section.get("label", ""), *section.get("lines", [])]]
+    extra = BeautifulSoup(supplemental, "html.parser").get_text(" ", strip=True) if supplemental else ""
+    lines = [str(row.get(key) or "") for key in ("title", "summary", "excerpt")]
+    lines += [str(details.get("lead") or ""), *sections, *prices, extra]
+    for line in lines:
+        for match in re.finditer(r"\bранн?е[а-яё]*\s+бронировани[а-яё]*(?:\s+(?:на\s+)?(20\d{2}))?", line, re.I):
+            if not match[1] or int(match[1]) == target:
+                return target
+        if re.search(rf"\b(?:бронирование|цены|тарифы)\s*(?:на\s+)?(?:сезон\s+)?{target}\b", line, re.I):
+            return target
+    for i, line in enumerate(prices):
+        if not re.search(rf"\b{target}\b", line) or re.search(r"лист ожидания|появится|будет готов", line, re.I):
+            continue
+        if any(extract_price(text) and not NON_STAY_PRICE.search(text) for text in prices[i:]):
+            return target
+    return None
+
+def current_prices_before_campaign(prices, today):
+    """Для сезонной карточки сохраняем цену только в явно указанном текущем периоде."""
+    current = []
+    period = False
+    for item in prices:
+        text = str(item.get("text", "") if isinstance(item, dict) else item)
+        years = [int(y) for y in re.findall(r"\b20\d{2}\b", text)]
+        months = any(re.search(r"\b" + month, text, re.I) for month in MONTHS)
+        if re.search(r"бронировани|цены.{0,12}2027|сезон.{0,12}2027", text, re.I):
+            if today.year != 2027:
+                break
+        if years and today.year not in years:
+            break
+        if months:
+            period = True
+        if period:
+            current.append(item)
+    return current

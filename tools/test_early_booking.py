@@ -13,6 +13,16 @@ class EarlyBookingTests(unittest.TestCase):
         row={'source_kind':kind,'title':title,'details':{'prices':[{'text':p} for p in prices]}}
         return early_booking_year(row,11,date(2026,11,24),monthly_min_prices,extract_price)
 
+    def test_apartment_future_tariff_is_not_current(self):
+        from early_booking import advertised_year, current_prices_before_campaign
+        raw = ["РАННЕЕ БРОНИРОВАНИЕ 2027", "8000₽ за номер"]
+        row = {"source_kind": "kvartira", "details": {"prices": raw}}
+        today = date(2026, 11, 26)
+        self.assertEqual(advertised_year(row, "", today, extract_price), 2027)
+        self.assertFalse(current_prices_before_campaign(raw, today))
+        self.assertEqual(current_prices_before_campaign(["Ноябрь", "3500₽", *raw], today),
+                         ["Ноябрь", "3500₽"])
+
     def test_future_summer_only(self):
         self.assertEqual(self.year('Отель – РАННЕЕ БРОНИРОВАНИЕ 2027',['Май','8000₽ – номер']),2027)
 

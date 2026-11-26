@@ -16,7 +16,7 @@ import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1] / 'scripts'))
-from early_booking import early_booking_year
+from early_booking import early_booking_year, advertised_year, current_prices_before_campaign
 
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT_PATH = ROOT / "data" / "catalog-snapshot.json"
@@ -225,12 +225,17 @@ def main() -> int:
     early_bookings: dict[str, int] = {}
     uncovered: list[tuple[str, list[str]]] = []
     suspicious: list[str] = []
+    supplements = json.loads((ROOT / "data/supplemental-blocks.json").read_text())
     for row in rows:
         raw = (row.get("details") or {}).get("prices") or []
         booking_year = early_booking_year(row,month,today,monthly_min_prices,extract_price)
         if booking_year:
             early_bookings[row['slug']] = booking_year
             continue
+        advertised = advertised_year(row, supplements.get(row["slug"], {}).get("section_html", ""), today, extract_price)
+        if advertised:
+            early_bookings[row["slug"]] = advertised
+            raw = current_prices_before_campaign(raw, today)
         monthly = monthly_min_prices(raw, today)
         value = monthly.get(month)
         if value is None:
