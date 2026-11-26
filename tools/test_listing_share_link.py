@@ -14,8 +14,10 @@ def main() -> int:
     assert "btn.disabled = true;" in source
     assert "if (shortUrl) listingShareUrl = shortUrl;" in source
     assert "btn.disabled = false;" in source
-    assert 'copyPublicUrl(btn, "Ссылка скопирована", "", listingShareUrl)' in source
-    assert 'const url = explicitUrl || buildPublicShareUrl();' in source
+    assert 'const copiedLabelText = "Ссылка скопирована";' in source
+    assert 'copyPublicUrl(btn, copiedLabelText, "", listingShareUrl)' in source
+    assert r'const url = (explicitUrl || buildPublicShareUrl()).replace(/^https?:\/\//, "");' in source
+    assert 'await navigator.clipboard.writeText(url);' in source
     print("ok  кнопка объекта использует короткую ссылку и сохраняет резервный полный адрес")
     return 0
 
