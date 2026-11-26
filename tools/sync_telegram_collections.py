@@ -160,6 +160,42 @@ class Resolver:
         return None, "hidden"
 
 
+def read_offseason(entry: dict) -> dict:
+    from urllib.request import urlopen
+    from bs4 import BeautifulSoup
+
+    def message(url):
+        with urlopen(url + "?embed=1", timeout=30) as response:
+            doc = BeautifulSoup(response.read(), "html.parser")
+        return doc.select_one(".js-message_text")
+
+    parent = f"https://t.me/{entry['channel']}/{entry['message_id']}"
+    links = [a for a in message(parent).select("a[href]")
+             if re.fullmatch(r"https://t[.]me/abhazbooking/[0-9]+", a["href"])]
+    if len({a["href"] for a in links}) != 8 or len(links) != 8:
+        raise ValueError("Ожидали восемь ссылок на подборки")
+    navigation = {a["href"] for a in links} | {parent}
+    items = []
+    themes = []
+    for link in links:
+        url = link["href"]
+        child = message(url)
+        title = link.get_text(" ", strip=True)
+        if title.casefold() == "здесь":
+            title = child.find("b").get_text(" ", strip=True)
+        members = []
+        for a in child.select("a[href]"):
+            target = a["href"].split("?")[0]
+            if target in navigation:
+                continue
+            members.extend(parse_post("", [(0, target)]))
+        if not members:
+            raise ValueError(f"В подборке {url} отсутствуют ссылки на объекты")
+        themes.append({"label": title, "id": url.rsplit("/", 1)[1], "items": members})
+        items.extend(members)
+    return {"items": items, "themes": themes}
+
+
 async def fetch_posts(config: list[dict]) -> dict[str, dict]:
     from telethon.tl.types import MessageEntityTextUrl, MessageEntityUrl
     from telegram_runtime import connected_telegram_client
@@ -172,6 +208,9 @@ async def fetch_posts(config: list[dict]) -> dict[str, dict]:
     out: dict[str, dict] = {}
     async with connected_telegram_client(session, api_id, api_hash, receive_updates=False) as client:
         for entry in config:
+            if entry["slug"] == "mezhsezon":
+                out[entry["slug"]] = read_offseason(entry)
+                continue
             message = await client.get_messages(entry["channel"], ids=int(entry["message_id"]))
             if message is None:
                 out[entry["slug"]] = {"error": "пост не найден (удалён?)"}
@@ -233,6 +272,12 @@ def build(config: list[dict], posts: dict[str, dict], previous: dict) -> tuple[d
             "groups": [g for g in groups if g["hrefs"]],
             "skipped": skipped,
         }
+        if post.get("themes"):
+            data[slug]["themes"] = []
+            for theme in post["themes"]:
+                hrefs = dict.fromkeys(resolver.resolve(item)[0] for item in theme["items"])
+                data[slug]["themes"].append({"id": theme["id"], "label": theme["label"],
+                                             "hrefs": [href for href in hrefs if href]})
     for key in targets:
         targets[key] = sorted(set(targets[key]))
     return data, targets
@@ -246,7 +291,7 @@ def main() -> int:
     config = load_json(CONFIG, [])
     previous = load_json(DATA, {})
     if args.offline:
-        posts = {slug: {"items": entry.get("items", [])} for slug, entry in (load_json(TARGETS, {}).get("raw") or {}).items()}
+        posts = {slug: entry for slug, entry in (load_json(TARGETS, {}).get("raw") or {}).items()}
     else:
         posts = asyncio.run(fetch_posts(config))
     data, targets = build(config, posts, previous)

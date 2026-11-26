@@ -440,8 +440,28 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
     description = page_meta.get("meta_description") or f"{h1}: подборка проверенных вариантов размещения в Абхазии."
     parts: list[str] = []
     rank = 0
+    if selection.slug == "mezhsezon":
+        themes = json.loads(TELEGRAM_COLLECTIONS_PATH.read_text())["mezhsezon"].get("themes", [])
+        by_href = {card.href: card for card in cards}
+        parts.append('<ul class="podborki-index-list">')
+        for theme in themes:
+            slug = "mezhsezon-" + str(int(theme["id"]))
+            title = theme["label"]
+            target = PODBORKI_DIR / slug
+            target.mkdir(exist_ok=True)
+            members = [by_href[href] for href in theme["hrefs"] if href in by_href]
+            page = Selection(slug, title, selection.predicate, group_by_city=False)
+            if theme["id"] == "5346":
+                slug = "novyy-god-2027"
+            else:
+                (target / "index.html").write_text(render_page(page, members, meta, version), encoding="utf-8")
+            cover = members[0] if members else None
+            parts.append(render_index_link(slug, title, cover.image if cover else ""))
+        parts.append("</ul>")
     if selection.groups:
         for label, group_cards in selection.groups:
+            if selection.slug == "mezhsezon" and label == "ДРУГИЕ ЛОКАЦИИ":
+                label = "Все объекты"
             parts.append(f'        <h2 class="podborki-region">{html.escape(label)}</h2>')
             parts.append('        <div class="catalog-grid podborki-catalog-grid">')
             for card in group_cards:
