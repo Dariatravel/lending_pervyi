@@ -169,11 +169,17 @@ def monthly_min_prices(price_rows: list, today: date | None = None) -> dict[int,
     result: dict[int, int] = {}
     context_months: set[int] = set()
     blocked_context = False
+    has_month_context = False
+    undated = []
     for item in price_rows:
         text = str(item.get("text") if isinstance(item, dict) else item or "").strip()
         if not text:
             continue
         line_months = months_in(text)
+        has_month_context = has_month_context or bool(line_months)
+        if re.search(r"сторонних\s+гостей|посещени[яе]\s+vip|(?:₽|руб\.?)\s*(?:в\s+|/\s*)час|"
+                     r"при\s+бронировании\s+от\s+\d+\s+(?:дн|сут|ноч)", text, re.I):
+            continue
         price = extract_price(text)
         if price is None:
             if STOP_WORDS.search(text):
@@ -197,20 +203,14 @@ def monthly_min_prices(price_rows: list, today: date | None = None) -> dict[int,
             if deadline is not None and deadline < today:
                 continue
         target = line_months or context_months
+        if not target:
+            undated.append(price)
         for month in target:
             if month not in result or price < result[month]:
                 result[month] = price
 
-    if not result:
-        # Во всём блоке нет ни одного месяца — прайс постоянный, действует всегда.
-        year_round: int | None = None
-        for item in price_rows:
-            text = str(item.get("text") if isinstance(item, dict) else item or "").strip()
-            price = extract_price(text) if text else None
-            if price is not None and (year_round is None or price < year_round):
-                year_round = price
-        if year_round is not None:
-            result = {month: year_round for month in range(1, 13)}
+    if not result and not has_month_context and undated:
+        result = dict.fromkeys(range(1, 13), min(undated))
     return result
 
 
