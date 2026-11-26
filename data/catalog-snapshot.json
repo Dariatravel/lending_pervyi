@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25T20:34:27.367432+00:00",
+  "generated_at": "2026-11-26T13:16:21.853361+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 259,
@@ -4399,12 +4399,6 @@
             "label": "✔️НОМЕРА:",
             "lines": [
               "Двухэтажный гостевой дом. Несколько категорий размещения.",
-              "Семейный номер с кухней расположен на 1 этаже. Размещение до 4 человек.",
-              "Двуспальная кровать в спальне, прикроватная тумбочка, шкаф. Сан узел с тропическим душем.",
-              "Двуспальная кровать в кухне-гостиной, прикроватные тумбочки.",
-              "На кухне: мини-холодильник, варочная панель, вытяжка, раковина, чайник, набор посуды, стол со стульями.",
-              "Есть стиральная машина.",
-              "Вид во двор и вдалеке видно море.",
               "Четырехместный номер с двухъярусной кроватью расположен на 2 этаже.",
               "Две совмещенные односпальные кровати и двухъярусная кровать, прикроватные тумбочки, шкаф. Раздельный сан узел с тропическим душем.",
               "Трехместный номер расположен на 2 этаже. Размещение до 3 человек.",
@@ -4679,14 +4673,13 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/pion-gostevoy-dom-4539/video-01.mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/pion-gostevoy-dom-4539/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/pion-gostevoy-dom-4539/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/pion-gostevoy-dom-4539/video-01.mp4",
+          "storage_path": "videos/hotels/pion-gostevoy-dom-4539/video-01-source.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/pion-gostevoy-dom-4539/video-01-source.mp4",
           "details": {
             "telegram_post": "abhazbooking/4548",
-            "telegram_url": "https://t.me/abhazbooking/4548",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/pion-gostevoy-dom-4539/video-01-poster.jpg"
+            "telegram_url": "https://t.me/abhazbooking/4548"
           }
         }
       ]
