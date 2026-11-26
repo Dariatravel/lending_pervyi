@@ -170,19 +170,21 @@ def read_offseason(entry: dict) -> dict:
         return doc.select_one(".js-message_text")
 
     parent = f"https://t.me/{entry['channel']}/{entry['message_id']}"
-    links = [a for a in message(parent).select("a[href]")
-             if re.fullmatch(r"https://t[.]me/abhazbooking/[0-9]+", a["href"])]
-    if len({a["href"] for a in links}) != 8 or len(links) != 8:
-        raise ValueError("Ожидали восемь ссылок на подборки")
-    navigation = {a["href"] for a in links} | {parent}
+    sources = entry["themes"]
+    base = f"https://t.me/{entry['channel']}/"
+    navigation = {base + theme["id"] for theme in sources} | {parent}
     items = []
     themes = []
-    for link in links:
-        url = link["href"]
+    for theme in sources:
+        url = base + theme["id"]
         child = message(url)
-        title = link.get_text(" ", strip=True)
-        if title.casefold() == "здесь":
-            title = child.find("b").get_text(" ", strip=True)
+        headings = [b.get_text(" ", strip=True) for b in child.select("b")
+                    if not b.find_parent("b") and not b.find_parent("a")]
+        title = next((heading for heading in headings if any(c.isalpha() for c in heading)
+                      and "ОТДЫХ В АБХАЗИИ В МЕЖСЕЗОНЬЕ" not in heading.upper()), theme["label"])
+        title = re.sub(r"^[^А-Яа-яЁёA-Za-z0-9]+", "", title).replace("—", "–")
+        if title.isupper():
+            title = title.capitalize()
         members = []
         for a in child.select("a[href]"):
             target = a["href"].split("?")[0]

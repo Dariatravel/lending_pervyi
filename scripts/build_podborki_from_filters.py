@@ -440,28 +440,8 @@ def render_page(selection: Selection, cards: list[Card], meta: dict[str, dict[st
     description = page_meta.get("meta_description") or f"{h1}: подборка проверенных вариантов размещения в Абхазии."
     parts: list[str] = []
     rank = 0
-    if selection.slug == "mezhsezon":
-        themes = json.loads(TELEGRAM_COLLECTIONS_PATH.read_text())["mezhsezon"].get("themes", [])
-        by_href = {card.href: card for card in cards}
-        parts.append('<ul class="podborki-index-list">')
-        for theme in themes:
-            slug = "mezhsezon-" + str(int(theme["id"]))
-            title = theme["label"]
-            target = PODBORKI_DIR / slug
-            target.mkdir(exist_ok=True)
-            members = [by_href[href] for href in theme["hrefs"] if href in by_href]
-            page = Selection(slug, title, selection.predicate, group_by_city=False)
-            if theme["id"] == "5346":
-                slug = "novyy-god-2027"
-            else:
-                (target / "index.html").write_text(render_page(page, members, meta, version), encoding="utf-8")
-            cover = members[0] if members else None
-            parts.append(render_index_link(slug, title, cover.image if cover else ""))
-        parts.append("</ul>")
     if selection.groups:
         for label, group_cards in selection.groups:
-            if selection.slug == "mezhsezon" and label == "ДРУГИЕ ЛОКАЦИИ":
-                label = "Все объекты"
             parts.append(f'        <h2 class="podborki-region">{html.escape(label)}</h2>')
             parts.append('        <div class="catalog-grid podborki-catalog-grid">')
             for card in group_cards:
@@ -710,6 +690,13 @@ PODBORKI_DISPLAY_ORDER = [
     "novyy-god-2027",
     # Межсезонная подборка — сразу за новогодней (13.10.2026).
     "mezhsezon",
+    "mezhsezon-5509",
+    "mezhsezon-5530",
+    "mezhsezon-5541",
+    "mezhsezon-5542",
+    "mezhsezon-5543",
+    "mezhsezon-5554",
+    "mezhsezon-5555",
     "sosnovyy-plyazh",
     "peschanyy-ldzaa",
     "basseyn-vse-varianty",
@@ -872,6 +859,7 @@ def main() -> int:
     used_cover_images: set[str] = set()
     cards_by_href = {card.href: card for card in cards}
     telegram_collections = load_telegram_collections()
+    theme_titles = {}
     for selection in selections():
         manual_hrefs = manual_selection_hrefs.get(selection.slug)
         post_groups = telegram_collections.get(selection.slug)
@@ -898,6 +886,24 @@ def main() -> int:
             selected = [card for card in cards if selection.predicate(card)]
             selected = sorted(selected, key=card_sort_key)
             page_selection = selection
+        if selection.slug == "mezhsezon":
+            selected = list({card.href: card for card in selected}.values())
+            page_selection = Selection(selection.slug, selection.title, selection.predicate)
+            themes = json.loads(TELEGRAM_COLLECTIONS_PATH.read_text())["mezhsezon"]["themes"]
+            for theme in themes:
+                if theme["id"] == "5346":
+                    theme_titles["novyy-god-2027"] = theme["label"]
+                    continue  # Новогодняя страница уже входит в общий каталог.
+                slug = "mezhsezon-" + theme["id"]
+                title = theme["label"]
+                members = [cards_by_href[href] for href in theme["hrefs"] if href in cards_by_href]
+                target = PODBORKI_DIR / slug
+                target.mkdir(exist_ok=True)
+                page = Selection(slug, title, selection.predicate, group_by_city=False)
+                (target / "index.html").write_text(render_page(page, members, meta, version), encoding="utf-8")
+                cover = members[0] if members else None
+                index_items.append((slug, title, cover.image if cover else "", title))
+                slugs.append(slug)
         out_dir = PODBORKI_DIR / selection.slug
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "index.html").write_text(render_page(page_selection, selected, meta, version), encoding="utf-8")
@@ -916,6 +922,7 @@ def main() -> int:
         slugs.append(selection.slug)
         report.append(f"- {selection.slug}: {len(selected)}")
     PODBORKI_DIR.mkdir(parents=True, exist_ok=True)
+    index_items = [(slug, theme_titles.get(slug, title), cover, alt) for slug, title, cover, alt in index_items]
     (PODBORKI_DIR / "index.html").write_text(render_index(index_items, version), encoding="utf-8")
     update_sitemap(slugs)
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
