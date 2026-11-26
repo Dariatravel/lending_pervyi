@@ -663,7 +663,8 @@ PODBORKI_INDEX_COVER_OVERRIDES: dict[str, tuple[str, str]] = {
 
 
 def render_index_link(slug: str, title: str, cover_image: str = "", cover_alt: str = "") -> str:
-    visual, label = PODBORKI_INDEX_VISUALS.get(slug, ("default", "Абхазия"))
+    visual_slug = "mezhsezon" if re.fullmatch(r"mezhsezon-\d+", slug) else slug
+    visual, label = PODBORKI_INDEX_VISUALS.get(visual_slug, ("default", "Абхазия"))
     photo_html = ""
     visual_mod = ""
     if cover_image:
