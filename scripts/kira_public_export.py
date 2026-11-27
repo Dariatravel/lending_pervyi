@@ -136,6 +136,8 @@ def gallery(frame, data):
 def crm_gallery(frame, data):
     existing = {media_key(item): item for item in frame.select("img, video")}
     groups = {g["title"]: [] for g in data["groups"]}
+    if "" not in groups:
+        groups = {"": [], **groups}
     badges = {g["title"]: g["badge"] for g in data["groups"]}
     for record in data["media"]:
         key = ORIGINAL_MEDIA.get(record["id"], record["key"])
@@ -264,12 +266,14 @@ def apply_snapshot(page, data):
         replacements.append((location, str(location)))
     line_offsets = [0] + [m.end() for m in re.finditer("\n", page)]
     patches = []
+    frame_section = soup.select_one(".hotel-site-concept__detail-main > .hotel-media-section")
+    source_summaries = [block for block in frame_section.find_previous_siblings()
+                        if block.find("h2") and block.h2.get_text(strip=True).rstrip(":").casefold() == "об объекте"]
     if data.get("guest_summary") is not None:
-        summary = soup.select_one("[data-crm-summary]")
         text = "".join("<p>" + guest_inline(line) + "</p>" for line in data["guest_summary"].splitlines() if line.strip())
         html = '<article class="section card" data-crm-summary><h2>Об объекте</h2>' + text + '</article>' if text else ""
-        if summary:
-            replacements.append((summary, html))
+        if source_summaries:
+            replacements.extend((block, html if i == 0 else "") for i,block in enumerate(source_summaries))
         elif html:
             target = soup.select_one(".hotel-site-concept__detail-main > .hotel-media-section")
             offset = line_offsets[target.sourceline - 1] + target.sourcepos
@@ -288,10 +292,14 @@ def apply_snapshot(page, data):
             patches.append((offset, offset, html))
     for key, label in (("guest_description", "Об объекте"), ("guest_nearby", "Рядом")):
         value = data[key]
+        if key == "guest_nearby" and "guest_summary" in data and value is None:
+            value = ""
         if value is None:
             continue
         details = []
         for block in soup.select("section.hotel-site-concept__detail-section"):
+            if block in source_summaries:
+                continue
             heading = block.find("h2")
             if not heading or not block.select_one(".paragraph-blocks"):
                 continue
@@ -304,7 +312,9 @@ def apply_snapshot(page, data):
         if details:
             replacements.extend((detail, html if i == 0 else "") for i, detail in enumerate(details))
         elif html:
-            offset = line_offsets[conditions.sourceline - 1] + conditions.sourcepos
+            parent = frame_section.parent
+            start = line_offsets[parent.sourceline - 1] + parent.sourcepos
+            offset = start + TagEnd(page[start:], parent.name).end - len("</div>")
             patches.append((offset, offset, html))
     for tag, replacement in replacements:
         offset = line_offsets[tag.sourceline - 1] + tag.sourcepos

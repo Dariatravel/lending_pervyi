@@ -28,3 +28,18 @@ class GalleryV2Test(unittest.TestCase):
         self.assertEqual(soup.select_one("[data-crm-summary] p").text,"Тихий двор")
         self.assertIn("Балкон",soup.select_one(".benefit-grid").get_text())
         self.assertEqual(page,export.apply_snapshot(page,data))
+
+    def test_regeneration_replaces_generated_summary_and_clears_stale_nearby(self):
+        data = json.loads(export.SNAPSHOT.read_text())
+        data["conditions"]["Уборка"] = None
+        data.update(guest_summary="Новая сводка", guest_highlights=None, guest_nearby=None,
+                    media=[], groups=[])
+        source = export.PAGE.read_text().replace('<section class="section hotel-media-section',
+            '<section class="section hotel-site-concept__detail-section"><article><h2>Об объекте</h2>'
+            '<div class="paragraph-blocks">Старое</div></article></section>'
+            '<section class="section hotel-media-section', 1)
+        page = export.apply_snapshot(source, data)
+        soup = BeautifulSoup(page, "html.parser")
+        self.assertEqual(len(soup.find_all("h2", string="Об объекте")), 1)
+        self.assertNotIn("Старое", soup.select_one(".hotel-site-concept__detail-main").text)
+        self.assertFalse(any("рядом" == h.get_text(strip=True).strip("✔️: ").casefold() for h in soup.select("h2")))
