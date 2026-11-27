@@ -1258,7 +1258,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     preload_block = f"    {preload_link}\n" if preload_link else ""
     ld_json = json.dumps(ld_blob, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
     ld_block = f'    <script type="application/ld+json" data-schema="listing">\n      {ld_json}\n    </script>\n'
-    return f'''<!doctype html>
+    page = f'''<!doctype html>
 <html id="top" lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -1371,6 +1371,12 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
     <a aria-label="Наверх" class="back-to-top" href="#top"><span aria-hidden="true" class="back-to-top__icon">↑</span></a>
   </body>
 </html>'''
+    if source_kind == 'hotel' and slug == 'kira-gostevoy-kompleks-2725':
+        from kira_public_export import SNAPSHOT, apply_snapshot
+        if SNAPSHOT.is_file():
+            page = apply_snapshot(page, json.loads(SNAPSHOT.read_text(encoding='utf-8')))
+    return page
+
 
 
 def parse_city_value(location: str) -> str:
