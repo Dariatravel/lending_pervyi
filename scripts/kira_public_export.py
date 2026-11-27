@@ -361,6 +361,8 @@ def main():
     args = parser.parse_args()
     with urlopen(API, timeout=20) as result:
         data = validate(json.loads(result.read(2_000_000)))
+    if "guest_summary" not in data:
+        raise ValueError("Рабочая CRM ещё не отдаёт вторую версию публичного среза")
     html = apply_snapshot(PAGE.read_text(), data)
     if args.apply:
         SNAPSHOT.parent.mkdir(exist_ok=True)
