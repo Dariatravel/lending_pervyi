@@ -222,7 +222,8 @@ def main() -> int:
     rows = [r for r in snap.get("listings") or [] if r.get("slug") and r.get("is_active", True)]
 
     prices: dict[str, int] = {}
-    early_bookings: dict[str, int] = {}
+    confirmed = set(json.loads((ROOT / "data/early-booking-2027.json").read_text()))
+    early_bookings = {row["slug"]: 2027 for row in rows if row["slug"] in confirmed and today.year <= 2027}
     uncovered: list[tuple[str, list[str]]] = []
     suspicious: list[str] = []
     supplements = json.loads((ROOT / "data/supplemental-blocks.json").read_text())
@@ -230,11 +231,9 @@ def main() -> int:
         raw = (row.get("details") or {}).get("prices") or []
         booking_year = early_booking_year(row,month,today,monthly_min_prices,extract_price)
         if booking_year:
-            early_bookings[row['slug']] = booking_year
             continue
         advertised = advertised_year(row, supplements.get(row["slug"], {}).get("section_html", ""), today, extract_price)
         if advertised:
-            early_bookings[row["slug"]] = advertised
             raw = current_prices_before_campaign(raw, today)
         monthly = monthly_min_prices(raw, today)
         value = monthly.get(month)
