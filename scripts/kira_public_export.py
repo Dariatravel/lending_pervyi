@@ -232,7 +232,12 @@ def apply_snapshot(page, data):
     frame = soup.select_one(".hotel-media-section .media-group-frame")
     if not frame:
         raise ValueError("Нет галереи рабочей Киры")
-    replacements = [(frame, gallery(frame, data))]
+    # Старый обновитель каталога иногда оставлял незакрытый div галереи.
+    # Граница article остаётся надёжной и не захватывает описание под фото.
+    owner = frame.find_parent("article")
+    if not owner or not owner.h2:
+        raise ValueError("Галерея без заголовка")
+    replacements = [(owner, '<article class="card">' + str(owner.h2) + gallery(frame, data) + '</article>')]
     def condition_value(label):
         value = str(data["conditions"][label]).strip()
         if label in ("Заезд с", "Выезд до") and re.fullmatch(r"(?:[01]?\d|2[0-3])", value):
@@ -362,15 +367,20 @@ def apply_snapshot(page, data):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument("--saved", action="store_true", help="Использовать уже проверенный снимок из текущего коммита")
     args = parser.parse_args()
-    with urlopen(API, timeout=20) as result:
-        data = validate(json.loads(result.read(2_000_000)))
+    if args.saved:
+        data = validate(json.loads(SNAPSHOT.read_text()))
+    else:
+        with urlopen(API, timeout=20) as result:
+            data = validate(json.loads(result.read(2_000_000)))
     if "guest_summary" not in data:
         raise ValueError("Рабочая CRM ещё не отдаёт вторую версию публичного среза")
     html = apply_snapshot(PAGE.read_text(), data)
     if args.apply:
-        SNAPSHOT.parent.mkdir(exist_ok=True)
-        SNAPSHOT.write_text(json.dumps(data, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+        if not args.saved:
+            SNAPSHOT.parent.mkdir(exist_ok=True)
+            SNAPSHOT.write_text(json.dumps(data, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
         PAGE.write_text(html)
 
 

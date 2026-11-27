@@ -87,12 +87,13 @@ jobs:
 
       - name: Установить boto3
         if: steps.gate.outputs.enabled == 'true'
-        run: pip install --quiet boto3
+        run: pip install --quiet boto3 beautifulsoup4
 
       - name: Залить сайт в бакет
         if: steps.gate.outputs.enabled == 'true'
         run: |
           set -o pipefail
+          python3 scripts/kira_public_export.py --saved --apply
           python3 tools/prepare_large_galleries.py
           python3 tools/deploy_site_to_yandex.py --bucket abhazbereg-site \
             | tee /tmp/deploy.log

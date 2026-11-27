@@ -278,6 +278,13 @@ jobs:
               fi
               GIT_EDITOR=true git rebase --continue || { git rebase --abort || true; sleep 10; continue; }
             fi
+            # За время синхронизации редактор мог выпустить новый снимок.
+            # После rebase заново накладываем сохранённую публичную карточку.
+            python scripts/kira_public_export.py --saved --apply
+            git add -- hotels/kira-gostevoy-kompleks-2725/index.html
+            if ! git diff --cached --quiet; then
+              git commit -m "Сохранить рабочие поля Киры после синхронизации каталога"
+            fi
             if git push origin main; then
               PUSH_OK=true
               break

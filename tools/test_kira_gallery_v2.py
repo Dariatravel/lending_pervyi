@@ -1,6 +1,8 @@
 import json
 import sys
 import unittest
+from tempfile import TemporaryDirectory
+from unittest.mock import patch
 from pathlib import Path
 from bs4 import BeautifulSoup
 
@@ -9,6 +11,20 @@ import kira_public_export as export
 
 
 class GalleryV2Test(unittest.TestCase):
+    def test_hourly_catalog_rebuild_preserves_crm_gallery_and_description(self):
+        import rebuild_from_supabase as rebuild
+        with TemporaryDirectory() as folder:
+            path = Path(folder, "index.html")
+            path.write_text(export.PAGE.read_text())
+            with patch.object(rebuild, "resolve_site_page_path", return_value=path), \
+                 patch.object(rebuild, "render_media_grid", return_value='<img src="stale.jpg">'):
+                rebuild.update_hotel_page(dict(slug=export.SLUG, title="Кира", details={}))
+            soup = BeautifulSoup(path.read_text(), "html.parser")
+            data = json.loads(export.SNAPSHOT.read_text())
+            self.assertEqual(len(soup.select(".media-group-frame [data-crm-media-id]")),len(data["media"]))
+            self.assertIsNotNone(soup.select_one("[data-static-important]"))
+            self.assertNotIn("stale.jpg",str(soup.select_one(".media-group-frame")))
+
     def test_rebuild_from_legacy_and_crm_files(self):
         data = json.loads(export.SNAPSHOT.read_text())
         data["conditions"]["Уборка"] = "Раз в неделю"

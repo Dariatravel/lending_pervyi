@@ -643,7 +643,9 @@ def update_hotel_page(row: dict[str, Any]) -> None:
         )
 
     gallery_html = render_media_grid(row, title)
-    if gallery_html:
+    from kira_public_export import SLUG as crm_slug, SNAPSHOT, apply_snapshot
+    crm_gallery = row["slug"] == crm_slug and SNAPSHOT.is_file()
+    if gallery_html and not crm_gallery:
         text = re.sub(
             r'(<div class="media-grid">)(.*?)(\s*</div>\s*</article>)',
             r"\1\n" + gallery_html + r"\3",
@@ -668,6 +670,8 @@ def update_hotel_page(row: dict[str, Any]) -> None:
     if row["slug"] in {'gega-otel-s-basseynom-i-zavtrakami-5510', 'shambala-eko-otel-na-beregu-morya-s-basseynom-5520'}:
         text = supplemental_apply_to_page(text, row["slug"])
     text = apply_tour_to_page(text, row["slug"], cover_url)
+    if crm_gallery:
+        text = apply_snapshot(text, json.loads(SNAPSHOT.read_text(encoding="utf-8")))
     path.write_text(text, encoding="utf-8")
 
 
