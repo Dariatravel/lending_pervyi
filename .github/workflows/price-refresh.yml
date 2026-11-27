@@ -32,6 +32,12 @@ jobs:
       - name: Установить зависимости
         run: pip install --quiet -r requirements-site-update-bot.txt
 
+      - name: Обновить плашки из таблицы Межсезон
+        continue-on-error: true
+        run: |
+          pip install --quiet openpyxl==3.1.5
+          python tools/sync_early_booking_2027.py
+
       - name: Зафиксировать минимальные цены месяца
         run: python tools/build_min_prices.py
 
