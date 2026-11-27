@@ -299,7 +299,7 @@ def apply_snapshot(page, data):
             offset = line_offsets[target.sourceline - 1] + target.sourcepos
             offset = page.index(">", offset) + 1
             patches.append((offset, offset, html))
-    for key, label in (("guest_description", "Об объекте"), ("guest_nearby", "Рядом")):
+    for key, label in (("guest_description", "Об объекте"), ("guest_nearby", "✔️ Рядом")):
         value = data[key]
         if key == "guest_nearby" and "guest_summary" in data and value is None:
             value = ""
@@ -359,8 +359,9 @@ def apply_snapshot(page, data):
     if summary:
         # The summary precedes the detail columns.
         page = page[:start] + summary_html + page[end:]
+    page = page.replace('<main class="hotel-site-concept">', '<main class="hotel-site-concept" data-kira-guest>')
     page = re.sub(r'href="../../assets/hotel-guest-layout-v1\.css(?:\?v=[\w-]+)?"',
-                  'href="../../assets/hotel-guest-layout-v1.css?v=kira-media-3"', page)
+                  'href="../../assets/hotel-guest-layout-v1.css?v=kira-layout-4"', page)
     return page
 
 

@@ -122,3 +122,19 @@
 .guest-spoiler:hover, .guest-spoiler:focus { color: inherit; background: transparent; }
 
 .hotel-site-concept__detail-aside .price-card .price-card__extra { font-weight: 400; color: #626b67; }
+
+[data-kira-guest] #prices { margin-bottom: 0; }
+[data-kira-guest] #prices .price-card__extra { font-weight: 400; color: #626b67; }
+[data-kira-guest] .hotel-media-section {
+  display: grid;
+  min-width: 0;
+  margin: 0;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  gap: clamp(.875rem, 2vw, 1.25rem);
+  border-radius: 1.5rem;
+  background: #fff;
+}
+[data-kira-guest] .hotel-media-section > article.card { display: contents; }
+@media (max-width: 760px) {
+  [data-kira-guest] .guest-conditions { order: -1; }
+}

@@ -77,7 +77,7 @@ class SnapshotTest(unittest.TestCase):
         self.assertEqual(block.u.text, "курорт")
         self.assertEqual(block.a["href"], "https://example.com")
         self.assertIsNone(block.find("iframe"))
-        self.assertEqual(soup.find("h2", string="Рядом").parent.p.text, "Рынок через дорогу")
+        self.assertEqual(soup.find("h2", string="✔️ Рядом").parent.p.text, "Рынок через дорогу")
         self.assertIsNotNone(soup.select_one("[data-static-important]"))
         self.assertEqual(k.apply_snapshot(result, data), result)
         self.assertNotIn("Рынок через дорогу", k.apply_snapshot(result, {**data, "guest_nearby":""}))
