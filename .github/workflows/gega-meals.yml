@@ -1,0 +1,34 @@
+name: Gega meals
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+
+concurrency:
+  group: gega-meals
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install beautifulsoup4
+      - run: python tools/sync_gega_meals.py
+      - name: Опубликовать изменившиеся условия
+        run: |
+          git add assets/gega-meals.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name abhazbereg-autosync
+          git config user.email 209351708+Dariatravel@users.noreply.github.com
+          git commit -m "Обновить питание Геги из Telegram"
+          git pull --rebase origin main
+          git push origin main

@@ -16,6 +16,17 @@
   const output = root.querySelector('[data-gega-live-table]');
   const today = () => new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Moscow'}).format(new Date());
   let revision = 0, controller, result, resultKey = '';
+  let mealPeriods = [];
+
+  async function loadGegaMeals(signal) {
+    try {
+      const response = await fetch('/assets/gega-meals.json', {signal: AbortSignal.any([signal, AbortSignal.timeout(5000)]), cache:'no-cache'});
+      const periods = response.ok ? await response.json() : null;
+      return Array.isArray(periods) ? periods : [];
+    } catch (_) {
+      return [];
+    }
+  }
   const element = (tag,text) => {const node=document.createElement(tag);node.textContent=text;return node;};
   const message = text => {status.textContent=text;status.hidden=false;};
   const query = () => ({night:night.value,adults:Number(adults.value),
@@ -53,6 +64,10 @@
     }
     const table=element('table','');table.className='gega-price-table';
     const q=query();table.setAttribute('aria-label',`Стоимость за ночь: взрослых ${q.adults}, детей ${q.ages.length}`);
+    const matchingMeals = new Set(mealPeriods
+      .filter(period => period.start <= q.night && q.night <= period.end)
+      .map(period => period.meal));
+    const publishedMeal = matchingMeals.size === 1 ? [...matchingMeals][0] : '';
     const head=element('thead',''),titles=element('tr','');
     for (const text of ['Категория номера','Тариф и питание','За ночь']) {
       const th=element('th',text);th.scope='col';titles.append(th);
@@ -65,10 +80,7 @@
       offers=offers.slice().sort((a,b) => a.price-b.price || a.name.localeCompare(b.name,'ru')).slice(0,1);
       const tariff=offers[0];if (tariff) count++;
       const row=element('tr',''),room=element('th',category.category);room.scope='row';row.append(room);
-      // В публикации Геги 5510 тариф межсезонья на 1–25 декабря указан без завтраков.
-      const mealLabel = hotel === 'gega' && tariff?.name === 'Межсезонье'
-        && q.night >= '2026-12-01' && q.night <= '2026-12-25'
-        ? 'Без завтрака' : tariff?.meal;
+      const mealLabel = hotel === 'gega' ? publishedMeal || tariff?.meal : tariff?.meal;
       row.append(element('td',tariff?[tariff.name,mealLabel,tariff.notes].filter(Boolean).join('. '):'Нет предложения для выбранного состава и питания'));
       const price=element('td',tariff?`${new Intl.NumberFormat('ru-RU').format(tariff.price)} ₽`:'Уточнить');
       price.className='gega-price-amount';row.append(price);body.append(row);
@@ -98,6 +110,7 @@
     result=null;resultKey='';output.replaceChildren();button.disabled=true;message('Получаем цену для выбранного состава гостей…');
     const timeout=setTimeout(() => current.abort(),25000);
     try {
+      const mealsRequest = hotel === 'gega' ? loadGegaMeals(current.signal) : null;
       let data;
       if (snapshot && q.adults===2 && q.ages.length===0) {
         const response=await fetch(`https://storage.yandexcloud.net/abhazbereg-media/media/${hotel}-live-prices/v1.json`,{signal:current.signal,cache:'no-store',credentials:'omit'});
@@ -107,6 +120,8 @@
         data=saved.nights[q.night];
         if (!data) throw Error('Нет сохранённой цены. Нажмите «Показать цены».');
       } else data=await source.getPrices(hotel,q,current.signal);
+      const periods = await mealsRequest;
+      if (token === revision && periods) mealPeriods = periods;
       accept(data,q,token);
     } catch (error) {
       if (token===revision) {

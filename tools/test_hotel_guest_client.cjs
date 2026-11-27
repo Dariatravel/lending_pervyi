@@ -51,7 +51,7 @@ function harness(hotel = 'shambala', date = '2026-11-24') {
   const source={validateQuery,getPrices(hotel,q,signal){const pending=defer();requests.push({hotel,q:JSON.parse(JSON.stringify(q)),signal,...pending});return pending.promise;}};
   const context={window:{HotelGuestPrices:source},document:{hidden:false,querySelector:()=>root,createElement:tag=>new Element(tag)},
     Date:Clock,Intl,AbortController,setTimeout:()=>1,clearTimeout(){},setInterval:callback=>intervals.push(callback),
-    fetch:(url,options)=>{initial.signal=options.signal;return initial.promise;}};
+    fetch:(url,options)=>{if(url==='/assets/gega-meals.json')return Promise.resolve({ok:true,json:async()=>[{start:'2026-12-01',end:'2026-12-25',meal:'Без завтрака'}]});initial.signal=options.signal;return initial.promise;}};
   vm.runInNewContext(client,context,{filename:'hotel-live-prices-v3.js'});
   const data=(price=9900,payment='Без питания')=>({checked_at:new Clock().toISOString(),categories:Array.from({length:9},(_,i)=>({
     category:'Номер '+i,available:1,tariffs:[{name:'Тариф',meal:payment,price,notes:''}]}))});

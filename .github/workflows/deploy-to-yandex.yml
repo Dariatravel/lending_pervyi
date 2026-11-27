@@ -30,7 +30,7 @@ on:
     # бакета только со следующим ежечасным автосинком.
     # Filters from sheet добавлен 16.10.2026 по той же причине: фильтры из
     # «БАЗЫ» (и новогодние — от своего отеля) иначе ждали следующего синка.
-    workflows: ["Watch Telegram", "Blog Sync", "Daily price refresh", "Filters from sheet"]
+    workflows: ["Watch Telegram", "Blog Sync", "Daily price refresh", "Filters from sheet", "Gega meals"]
     types: [completed]
     branches: [main]
   workflow_dispatch:
