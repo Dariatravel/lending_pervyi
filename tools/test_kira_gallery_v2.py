@@ -28,6 +28,14 @@ class GalleryV2Test(unittest.TestCase):
         self.assertEqual(soup.select_one("[data-crm-summary] p").text,"Тихий двор")
         self.assertIn("Балкон",soup.select_one(".benefit-grid").get_text())
         self.assertEqual(page,export.apply_snapshot(page,data))
+        data["media"][0]["group"] = "Номер, цена за троих"
+        data["groups"] = []
+        fallback = BeautifulSoup(export.apply_snapshot(page, data), "html.parser")
+        self.assertEqual([b.text for b in fallback.select(".media-group-badge")], ["Обзор номера"])
+        self.assertEqual(fallback.find("h3", string="Номер").find_previous_sibling().text, "Обзор номера")
+        data["groups"] = [dict(title="Номер, цена за троих",badge="Внутри номера")]
+        manual = BeautifulSoup(export.apply_snapshot(page, data), "html.parser")
+        self.assertEqual([b.text for b in manual.select(".media-group-badge")], ["Внутри номера"])
 
     def test_regeneration_replaces_generated_summary_and_clears_stale_nearby(self):
         data = json.loads(export.SNAPSHOT.read_text())

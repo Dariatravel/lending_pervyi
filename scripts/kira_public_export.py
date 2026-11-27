@@ -154,10 +154,13 @@ def crm_gallery(frame, data):
                 item = f'<video {attrs} class="local-video" controls="" playsinline="" preload="metadata"><source src="{url}"/></video>'
             item = str(BeautifulSoup(item, "html.parser"))
         groups.setdefault(record["group"], []).append(item)
-    return '<div class="media-group-frame">' + "".join(
-        media_group("Номер" if title == "Номер, цена за троих" else title,
-                    badges.get(title, ""), "".join(items)) for title,items in groups.items() if items
-    ) + "</div>"
+    sections = []
+    for title, items in groups.items():
+        if items:
+            heading = "Номер" if title == "Номер, цена за троих" else title
+            badge = badges.get(title, "").strip() or ("Обзор номера" if heading == "Номер" else "")
+            sections.append(media_group(heading, badge, "".join(items)))
+    return '<div class="media-group-frame">' + "".join(sections) + "</div>"
 
 
 class TagEnd(HTMLParser):
