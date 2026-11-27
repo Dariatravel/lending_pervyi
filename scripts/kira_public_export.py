@@ -48,7 +48,7 @@ def validate(data):
     for row in data["media"]:
         strings(row, ("id", "key", "kind", "group"))
         UUID(row["id"])
-        if row["kind"] not in ("photo", "video") or not re.fullmatch("media/hotels/" + SLUG + r"/[\w.%-]+", row["key"]):
+        if row["kind"] not in ("photo", "video") or not re.fullmatch("media/(?:videos/)?hotels/" + SLUG + r"/[\w.%-]+", row["key"]):
             raise ValueError("Недопустимый ключ медиа")
     if len({m["id"] for m in data["media"]}) != len(data["media"]):
         raise ValueError("Повтор файла")
