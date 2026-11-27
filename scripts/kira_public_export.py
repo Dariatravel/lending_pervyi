@@ -248,6 +248,33 @@ def apply_snapshot(page, data):
         patches.append((offset, offset + end, replacement))
     for start, end, replacement in sorted(patches, reverse=True):
         page = page[:start] + replacement + page[end:]
+    # Apply to the final description, including blocks added by manual edits.
+    final = BeautifulSoup(page, "html.parser")
+    offsets = [0] + [m.end() for m in re.finditer("\n", page)]
+    def bounds(tag):
+        start = offsets[tag.sourceline - 1] + tag.sourcepos
+        return start, start + TagEnd(page[start:], tag.name).end
+    summary = next((a for a in final.select(".benefit-grid article")
+                    if a.strong and a.strong.get_text(strip=True).rstrip(":") == "Важно для гостя"), None)
+    if summary:
+        items = "".join("<li>" + escape(label) + ": " + escape(condition_value(label)) + "</li>"
+                        for label in ("Заезд с", "Выезд до", "Минимум ночей", "С питомцами")
+                        if data["conditions"][label] not in (None, ""))
+        start, end = bounds(summary)
+        summary_html = ('<article class="guest-important"' + ('' if items else ' hidden') +
+                        '><strong>Важно для гостя:</strong><ul>' + items + '</ul></article>')
+    details = final.select(".hotel-site-concept__detail-main > section:has(.paragraph-blocks)")
+    important = next((section for section in details if section.select_one("[data-static-important]")), None)
+    if important and important is not details[-1]:
+        first, last = bounds(important)
+        _, destination = bounds(details[-1])
+        indent = page[page.rfind("\n", 0, first) + 1:first]
+        moved = "\n" + indent + page[first:last]
+        page = page[:first] + page[last:destination].lstrip() + moved + page[destination:]
+    if summary:
+        # The summary precedes the detail columns.
+        page = page[:start] + summary_html + page[end:]
+    page = page.replace('href="../../assets/hotel-guest-layout-v1.css"', 'href="../../assets/hotel-guest-layout-v1.css?v=kira-conditions-2"')
     return page
 
 

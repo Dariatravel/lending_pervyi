@@ -26,7 +26,7 @@ class GuestPageTest(unittest.TestCase):
         soup = self.page("kira-gostevoy-kompleks-2725")
         main = soup.select_one(".hotel-site-concept__detail-main")
         self.assertEqual([el.text.strip() for el in main.select("h2")],
-                         ["Об объекте", "Фото и видео", "Отель", "✔️ВАЖНО:", "✔️ Рядом"])
+                         ["Об объекте", "Фото и видео", "Отель", "✔️ Рядом", "✔️ВАЖНО:"])
         self.assertEqual(main.select_one(".media-group-badge").text, "<вид>")
         self.assertEqual(len(main.select(".media-group-card")), 2)
         self.assertEqual(len(main.select(".media-grid img")), 2)

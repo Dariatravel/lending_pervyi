@@ -44,6 +44,13 @@ class SnapshotTest(unittest.TestCase):
         self.assertEqual([tag.get_text() for tag in soup.select(".paragraph-blocks")],
                          [tag.get_text() for tag in self.soup.select(".paragraph-blocks")])
 
+    def test_important_lists_only_filled_guest_facts(self):
+        self.data["conditions"]["Заезд с"] = "14"
+        self.data["conditions"]["С питомцами"] = "До 5 кг"
+        soup = BeautifulSoup(k.apply_snapshot(self.page, self.data), "html.parser")
+        self.assertEqual([li.text for li in soup.select(".guest-important li")],
+                         ["Заезд с: 14:00", "С питомцами: До 5 кг"])
+
     def test_manual_price_projects_current_version_only(self):
         self.data["prices"] = dict(description="Цена за дом", groups=[dict(title="Домик", note="Двое",
             mode="rows", freeText="", rows=[dict(amount="777", period="июнь", note="Допместо <500>")])])
