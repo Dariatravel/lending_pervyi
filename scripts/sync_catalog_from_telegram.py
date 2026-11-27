@@ -57,6 +57,7 @@ from responsive_images import responsive_img_html, responsive_preload_link  # no
 from yandex_storage import upload_file as upload_to_yandex  # noqa: E402
 from telegram_runtime import connected_telegram_client, run_async_entrypoint  # noqa: E402
 from promo_title import strip_promo_tail  # noqa: E402
+from public_guest_layout import guest_conditions, media_group  # noqa: E402
 from supplemental_store import apply_to_page_html as supplemental_apply_to_page  # noqa: E402
 from virtual_tour_store import apply_tour_to_page  # noqa: E402
 from telegram_object_text import is_service_text  # noqa: E402
@@ -847,7 +848,7 @@ def _section_heading_markup(label: str) -> str:
     return f'          <h2>{html.escape(t)}</h2>\n'
 
 
-def render_sections_html(sections: list[dict[str, Any]], parsed: dict[str, Any] | None = None) -> str:
+def render_sections_html(sections: list[dict[str, Any]], parsed: dict[str, Any] | None = None, *, include_important: bool = True) -> str:
     parts: list[str] = []
     for section in sections:
         # Строка про цены живёт в блоке «ВАЖНО» — из текстов постов вырезаем.
@@ -860,7 +861,8 @@ def render_sections_html(sections: list[dict[str, Any]], parsed: dict[str, Any] 
         parts.append(
             f'''      <section class="section hotel-site-concept__detail-section">\n        <article class="card">\n{heading}          <div class="paragraph-blocks">\n{block}\n          </div>\n        </article>\n      </section>'''
         )
-    parts.append(render_important_section_html())
+    if include_important:
+        parts.append(render_important_section_html())
     return ''.join(parts)
 
 
@@ -1014,11 +1016,14 @@ def build_top_meta_lines(parsed: dict[str, Any]) -> list[str]:
     return lines
 
 
-def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
+def render_media_items(media_items: list[dict[str, Any]], title: str, *, grouped: bool = False) -> str:
     parts: list[str] = []
+    groups: dict[str, list[str]] = {}
+    badges: dict[str, str] = {}
     image_index = 1
     video_index = 1
     for item in media_items:
+        start = len(parts)
         if item['kind'] == 'photo':
             src = image_src_for_html(str(item.get('source_url') or ''))
             parts.append(
@@ -1039,6 +1044,14 @@ def render_media_items(media_items: list[dict[str, Any]], title: str) -> str:
                     f'''            <div class="video-embed video-embed--telegram">\n              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="{html.escape(telegram_post)}" data-width="100%" data-userpic="false" data-single="1"></script>\n            </div>'''
                 )
             video_index += 1
+        if grouped and len(parts) > start:
+            group = str(item.get('category_title') or '').strip()
+            groups.setdefault(group, []).append(parts[-1])
+            if item.get('category_badge') and group not in badges:
+                badges[group] = str(item['category_badge']).strip()
+    if grouped:
+        return ''.join(media_group(group, badges.get(group, ''), '\n'.join(items))
+                       for group, items in groups.items())
     return '\n'.join(parts)
 
 
@@ -1157,7 +1170,25 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
         )
     reviews_panel = _reviews_panel_for_slug(mod, slug, page_href)
     top_gallery = render_top_gallery(media_items, title)
-    media_html = render_media_items(media_items, title)
+    conditions_html = guest_conditions(slug) if source_kind == 'hotel' else ''
+    media_html = render_media_items(media_items, title, grouped=bool(conditions_html))
+    gallery_class = 'media-group-frame' if conditions_html else 'media-grid'
+    summary_html = ''
+    if conditions_html:
+        summary_sections, nearby_sections, body_sections = [], [], []
+        for section in sections:
+            label = str(section.get('label') or '').strip('✔️✓: ').casefold()
+            if label in ('коротко об объекте', 'об объекте'):
+                summary_sections.append({**section, 'label': 'Об объекте'})
+            elif label in ('рядом', 'что рядом'):
+                nearby_sections.append({**section, 'label': '✔️ Рядом'})
+            else:
+                body_sections.append(section)
+        summary_html = render_sections_html(summary_sections, parsed, include_important=False)
+        description_html = (render_sections_html(body_sections, parsed)
+                            + render_sections_html(nearby_sections, parsed, include_important=False))
+    else:
+        description_html = render_sections_html(sections, parsed)
     why_lines, important_lines = select_guest_facts(sections, slug)
     # Телеграм-хвосты чистим до вывода: «ОБЗОРЫ НОМЕРОВ ТУТ» убираем целиком,
     # у полезных строк обрезаем только хвост (17.09.2026).
@@ -1308,18 +1339,20 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
 
       <div class="hotel-site-concept__detail-grid" id="details">
         <div class="hotel-site-concept__detail-main">
+{summary_html}
           <section class="section hotel-media-section hotel-site-concept__detail-section">
             <article class="card">
               <h2>Фото и видео</h2>
-              <div class="media-grid">
+              <div class="{gallery_class}">
 {media_html}
               </div>
             </article>
           </section>
-{render_sections_html(sections, parsed)}
+{description_html}
         </div>
         <aside class="hotel-site-concept__detail-aside">
 {render_prices_html(prices)}
+{conditions_html}
 {FAQ_BLOCK}
 {CONTACT_BLOCK}
         </aside>

@@ -70,3 +70,48 @@
 @media (max-width: 760px) {
   .hotel-site-concept__detail-grid { --guest-card-gap: 12px; }
 }
+
+    .hotel-media-section .media-group-frame {
+      display: grid;
+      gap: clamp(1.5rem, 4vw, 2.625rem);
+      min-width: 0;
+    }
+    .hotel-media-section .media-group-card {
+      display: grid;
+      gap: .65rem;
+      padding: clamp(.625rem, 1.4vw, 1rem);
+      padding-inline: calc(clamp(.625rem, 1.4vw, 1rem) + 4px);
+      border: 1px solid #e6eeea;
+      border-radius: 1rem;
+      background: #fff;
+      min-width: 0;
+    }
+    .hotel-media-section .media-group-card > h3 {
+      margin: 0;
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+    .hotel-media-section .media-group-badge {
+      justify-self: start;
+      margin: 0;
+      padding: .35rem .65rem;
+      border-radius: 999px;
+      background: #e4f2eb;
+      color: #215445;
+      font-size: .78rem;
+      font-weight: 700;
+      line-height: 1.25;
+      text-transform: uppercase;
+      overflow-wrap: anywhere;
+    }
+
+.guest-conditions {
+  background: #fff;
+  margin: 0;
+}
+.guest-conditions .study-facts { display: grid; gap: .45rem; }
+.guest-conditions dt, .guest-conditions dd { display: inline; margin: 0; }
+.guest-conditions dt { font-weight: 650; margin-right: .4rem; }
+.hotel-media-section .media-group-card { box-shadow: none; }
+.hotel-site-concept__detail-aside:has(.guest-conditions) .price-card__season-line { font-weight: 700; }
