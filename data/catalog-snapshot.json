@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T22:42:28.840484+00:00",
+  "generated_at": "2026-11-27T14:33:29.899171+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 259,
@@ -72181,7 +72181,7 @@
           {
             "label": "✔️УСЛОВИЯ:",
             "lines": [
-              "Размещение с маленькими собачками возможно по согласованию."
+              "Размещение с маленькими собачками возможно по согласованию, с доплатой 3000₽."
             ]
           }
         ],
@@ -72359,14 +72359,13 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/video-01.mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/video-01.mp4",
+          "storage_path": "videos/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/video-01-source.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/video-01-source.mp4",
           "details": {
             "telegram_post": "abhazbooking/5345",
-            "telegram_url": "https://t.me/abhazbooking/5345",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-pervyy-etazh-doma-pod-klyuch-s-basseynom-5336/video-01-poster.jpg"
+            "telegram_url": "https://t.me/abhazbooking/5345"
           }
         }
       ]
@@ -72920,7 +72919,7 @@
           {
             "label": "✔️УСЛОВИЯ:",
             "lines": [
-              "Размещение с маленькими собачками возможно по согласованию."
+              "Размещение с маленькими собачками возможно по согласованию, с доплатой 3000₽."
             ]
           }
         ],
@@ -73098,14 +73097,13 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/video-01.mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/video-01.mp4",
+          "storage_path": "videos/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/video-01-source.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/video-01-source.mp4",
           "details": {
             "telegram_post": "abhazbooking/5369",
-            "telegram_url": "https://t.me/abhazbooking/5369",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/vista-mare-vtoroy-etazh-doma-pod-klyuch-s-basseynom-5360/video-01-poster.jpg"
+            "telegram_url": "https://t.me/abhazbooking/5369"
           }
         }
       ]
