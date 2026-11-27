@@ -65,7 +65,11 @@
       offers=offers.slice().sort((a,b) => a.price-b.price || a.name.localeCompare(b.name,'ru')).slice(0,1);
       const tariff=offers[0];if (tariff) count++;
       const row=element('tr',''),room=element('th',category.category);room.scope='row';row.append(room);
-      row.append(element('td',tariff?[tariff.name,tariff.meal,tariff.notes].filter(Boolean).join('. '):'Нет предложения для выбранного состава и питания'));
+      // В публикации Геги 5510 тариф межсезонья на 1–25 декабря указан без завтраков.
+      const mealLabel = hotel === 'gega' && tariff?.name === 'Межсезонье'
+        && q.night >= '2026-12-01' && q.night <= '2026-12-25'
+        ? 'Без завтрака' : tariff?.meal;
+      row.append(element('td',tariff?[tariff.name,mealLabel,tariff.notes].filter(Boolean).join('. '):'Нет предложения для выбранного состава и питания'));
       const price=element('td',tariff?`${new Intl.NumberFormat('ru-RU').format(tariff.price)} ₽`:'Уточнить');
       price.className='gega-price-amount';row.append(price);body.append(row);
     }

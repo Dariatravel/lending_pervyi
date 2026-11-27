@@ -34,10 +34,10 @@ class Element {
   }
 }
 
-function harness() {
-  let now=Date.parse('2026-11-24T15:00:00Z');
+function harness(hotel = 'shambala', date = '2026-11-24') {
+  let now=Date.parse(date+'T15:00:00Z');
   class Clock extends Date {constructor(...args){super(...(args.length?args:[now]));}static now(){return now;}}
-  const root=new Element('article');root.dataset={hotel:'shambala'};
+  const root=new Element('article');root.dataset={hotel};
   const form=new Element('form'),night=new Element('input'),adults=new Element('select'),children=new Element('select');
   const ages=new Element('div'),meal=new Element('select'),button=new Element('button'),status=new Element('p'),output=new Element('div');
   const option=(select,value)=>{const node=new Element('option');node.value=String(value);select.append(node);};
@@ -45,7 +45,7 @@ function harness() {
   for(let i=0;i<=5;i++)option(children,i);children.value='0';option(meal,'');
   form.append(night,adults,children,ages,meal,button);root.append(form,status,output);
   form.selectors={'input[type="date"]':night,'[data-guest-adults]':adults,'[data-guest-children]':children,
-    '[data-child-ages]':ages,'[data-live-meal]':meal,'[data-guest-search]':button};
+    '[data-child-ages]':ages,'[data-live-meal]':hotel==='shambala'?meal:null,'[data-guest-search]':button};
   root.selectors={'[data-guest-form]':form,'[data-gega-status]':status,'[data-gega-live-table]':output};
   const initial=defer(),requests=[],intervals=[];
   const source={validateQuery,getPrices(hotel,q,signal){const pending=defer();requests.push({hotel,q:JSON.parse(JSON.stringify(q)),signal,...pending});return pending.promise;}};
@@ -56,7 +56,7 @@ function harness() {
   const data=(price=9900,payment='Без питания')=>({checked_at:new Clock().toISOString(),categories:Array.from({length:9},(_,i)=>({
     category:'Номер '+i,available:1,tariffs:[{name:'Тариф',meal:payment,price,notes:''}]}))});
   const start=async(value=data())=>{
-    const saved={hotel:'shambala',adults:2,children:0,version:1,nights:{[night.value]:value}};
+    const saved={hotel,adults:2,children:0,version:1,nights:{[night.value]:value}};
     initial.resolve({ok:true,json:async()=>saved});await flush();
   };
   const price=()=>{
@@ -70,6 +70,17 @@ function harness() {
 (async()=>{
   let passed=0;
   async function test(name,callback){await callback();passed++;console.log('OK '+name);}
+
+  await test('Гега показывает «Без завтрака» только с 1 по 25 декабря',async()=>{
+    for (const [date,expected] of [['2026-11-30',false],['2026-12-01',true],['2026-12-25',true],['2026-12-26',false]]) {
+      const h=harness('gega',date);
+      const data=h.data(2200,'Питание уточняется');
+      data.categories.forEach(c=>{c.tariffs[0].name='Межсезонье';});
+      await h.start(data);
+      assert.equal(h.output.textContent.includes('Без завтрака'),expected);
+      assert.match(h.price(),/2\s?200/);
+    }
+  });
 
   await test('выбранный завтрак сохраняется, когда новый состав не имеет такого тарифа',async()=>{
     const h=harness(),initial=h.data(12060,'Завтрак включён');
