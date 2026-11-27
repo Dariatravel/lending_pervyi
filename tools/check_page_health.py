@@ -14,6 +14,8 @@ from pathlib import Path
 
 from PIL import Image
 
+from minify_assets import run_css_minifier, run_js_minifier
+
 ROOT = Path(__file__).resolve().parents[1]
 OBJECT_ROOTS = (ROOT / "hotels", ROOT / "kvartira")
 FORBIDDEN_CLIENT_STRINGS = (
@@ -41,15 +43,15 @@ def asset_version() -> str:
 
 
 def html_files() -> list[Path]:
-    files: list[Path] = []
-    for path in ROOT.rglob("*.html"):
-        rel = path.relative_to(ROOT).as_posix()
-        if rel.startswith((".git/", "node_modules/", "output/", "media/")):
-            continue
-        if rel.startswith("concept-"):
-            continue
-        files.append(path)
-    return sorted(files)
+    names = subprocess.check_output(
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z", "--", "*.html"],
+        cwd=ROOT,
+    ).decode().split("\0")
+    excluded = {"media", "output", "node_modules", ".venv", ".venv-banner"}
+    return sorted(
+        ROOT / name for name in names
+        if name and not excluded.intersection(Path(name).parts) and not name.startswith("concept-") and (ROOT / name).is_file()
+    )
 
 
 def object_pages() -> list[Path]:
@@ -124,34 +126,8 @@ def check_minified_freshness(errors: list[str]) -> None:
         tmpdir = Path(tmp)
         js_tmp = tmpdir / "scripts.min.js"
         css_tmp = tmpdir / "styles.min.css"
-        subprocess.run(
-            [
-                "npx",
-                "--yes",
-                "terser",
-                str(ROOT / "scripts.js"),
-                "--compress",
-                "--mangle",
-                "--output",
-                str(js_tmp),
-            ],
-            cwd=ROOT,
-            check=True,
-            stdout=subprocess.DEVNULL,
-        )
-        subprocess.run(
-            [
-                "npx",
-                "--yes",
-                "esbuild",
-                str(ROOT / "styles.css"),
-                "--minify",
-                "--outfile=" + str(css_tmp),
-            ],
-            cwd=ROOT,
-            check=True,
-            stdout=subprocess.DEVNULL,
-        )
+        run_js_minifier("scripts.js", str(js_tmp))
+        run_css_minifier("styles.css", str(css_tmp))
         if sha256(js_tmp) != sha256(ROOT / "scripts.min.js"):
             errors.append("scripts.min.js устарел относительно scripts.js")
         if sha256(css_tmp) != sha256(ROOT / "styles.min.css"):

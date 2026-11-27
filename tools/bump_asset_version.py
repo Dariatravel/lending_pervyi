@@ -18,16 +18,15 @@ CACHE_VERSION_RE = re.compile(r"(abhazbereg-[a-z-]+-v)\d{10,14}")
 
 
 def iter_text_files() -> list[Path]:
-    skipped = {".git", "node_modules", "output", "media", ".venv", ".venv-banner"}
-    files: list[Path] = []
-    for path in ROOT.rglob("*"):
-        if not path.is_file() or path.suffix.lower() not in {".html", ".js", ".py"}:
-            continue
-        rel_parts = set(path.relative_to(ROOT).parts)
-        if rel_parts & skipped:
-            continue
-        files.append(path)
-    return sorted(files)
+    paths = subprocess.check_output(
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z", "--", "*.html", "*.js", "*.py"],
+        cwd=ROOT,
+    ).decode().split("\0")
+    excluded = {"media", "output", "node_modules", ".venv", ".venv-banner"}
+    return sorted(
+        ROOT / name for name in paths
+        if name and not excluded.intersection(Path(name).parts) and (ROOT / name).is_file()
+    )
 
 
 def replace_version(path: Path, version: str) -> bool:
