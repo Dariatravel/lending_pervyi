@@ -19,12 +19,19 @@
   let mealPeriods = [];
 
   async function loadGegaMeals(signal) {
+    const controller = new AbortController();
+    const cancel = () => controller.abort();
+    signal.addEventListener('abort', cancel, {once:true});
+    const timer = setTimeout(cancel, 5000);
     try {
-      const response = await fetch('/assets/gega-meals.json', {signal: AbortSignal.any([signal, AbortSignal.timeout(5000)]), cache:'no-cache'});
+      const response = await fetch('/assets/gega-meals.json', {signal: controller.signal, cache:'no-cache'});
       const periods = response.ok ? await response.json() : null;
       return Array.isArray(periods) ? periods : [];
     } catch (_) {
       return [];
+    } finally {
+      clearTimeout(timer);
+      signal.removeEventListener('abort', cancel);
     }
   }
   const element = (tag,text) => {const node=document.createElement(tag);node.textContent=text;return node;};
