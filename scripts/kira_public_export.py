@@ -155,7 +155,8 @@ def crm_gallery(frame, data):
             item = str(BeautifulSoup(item, "html.parser"))
         groups.setdefault(record["group"], []).append(item)
     return '<div class="media-group-frame">' + "".join(
-        media_group(title, badges.get(title, ""), "".join(items)) for title,items in groups.items() if items
+        media_group("Номер" if title == "Номер, цена за троих" else title,
+                    badges.get(title, ""), "".join(items)) for title,items in groups.items() if items
     ) + "</div>"
 
 

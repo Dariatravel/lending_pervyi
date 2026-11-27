@@ -15,6 +15,10 @@ class SnapshotTest(unittest.TestCase):
     def setUp(self):
         self.page = k.PAGE.read_text()
         self.soup = BeautifulSoup(self.page, "html.parser")
+        # В этом сценарии проверяется первая привязка старой страницы по адресу.
+        for item in self.soup.select("[data-crm-media-id]"):
+            del item["data-crm-media-id"]
+        self.page = str(self.soup)
         keys = [k.media_key(item) for item in self.soup.select(".media-group-card img")][:2]
         self.rows = [dict(id="ab000000-0000-4000-8000-00000000000" + str(i),
                           key=key, kind="photo", group=name)

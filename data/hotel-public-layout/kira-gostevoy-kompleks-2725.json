@@ -12,15 +12,243 @@
     "Питание": "нет",
     "Правила проживания": null,
     "С питомцами": "Можно с маленькими собаками (до 5 кг). Послушные, не гавкающие",
+    "Уборка": "при заезде, далее самостоятельная",
     "Удобства": null
   },
   "groups": [],
   "guest_address": null,
   "guest_description": null,
-  "guest_nearby": null,
+  "guest_highlights": null,
+  "guest_nearby": "Место с прекрасным расположением, в 1 минуте кафе. В 2-3 минутах столовые, шашлыки, рыбка, бар, кофейня. В 4 минутах гагрский рынок, фрукты, сувениры, местные продукты. В 6 минутах галечный пляж, прокат шезлонгов. А также дельфинарий, аквапарк, колесо обозрения.",
+  "guest_summary": null,
   "guest_title": null,
   "hotel_id": "73976495-c594-4497-b1e8-a84aac611e69",
-  "media": [],
-  "prices": null,
+  "media": [
+    {
+      "group": "",
+      "id": "20d2024d-4898-4ca2-9ea8-c18b1335657f",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/f6805a4cb02cb5f50318318bbafec852ac06343cc4ff8ee8e1215e8d807280f1.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "",
+      "id": "93df7c61-3c78-44ad-8291-1da4d830ac6e",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/ea9dd4122de768b2e9e425f36e94031b2141f543891d72a3d5998f6fdd1b723f.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "",
+      "id": "2e98bd2f-82b2-4097-94d0-0f64bf5d0c65",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/a2f3b6bd4d301b04b96bae79f05d4a26319fc5afdf79c99d597fa6e8b080192f.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "",
+      "id": "0d935292-9ba2-4548-a465-f6172e02265a",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/15b66415d4678ff2448d0d38800175d87678e9d2651f526e5c972145132e106e.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "",
+      "id": "8d022b8f-6064-4ded-ad1e-b8023a0b7e45",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/5da9ad9b9cbea6ab42d63eb4f0829f473d43951108691f1135a433623a5760e9.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "",
+      "id": "313973f3-2e7d-4a8d-b625-d7509d82a58c",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/da45f763415ddf88c659dead7c3e9eab76655a37fb7b6eaeeea6047e346b656f.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "",
+      "id": "7800321a-afd4-4170-b0ec-0033fb5be6b0",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/7ceaf6ee23be93b0be22cc51e976d29e186d39df081ce1649fcb9e5362167f1c.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "",
+      "id": "34eb0bda-5cfe-49b2-9743-2b7b29126fcd",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/eb074fc3ad4791aa21f4f8e00dd86f5d77c84dc9920648038723cdd83be60057.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "",
+      "id": "e668c107-68ef-4aed-8ec2-858cdfaaeef0",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/1f75c0f148f9cc946b8c9244f11e31d87187d2848dbedd4c9004cc3b495c7685.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "",
+      "id": "979619e9-dbc8-4c4b-8dfa-fd84148e4505",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/video/7a7fdf85-55c7-42c4-80a7-ba4408d70fce.mp4",
+      "kind": "video"
+    },
+    {
+      "group": "Домик",
+      "id": "bc9d71ec-cb58-424c-b4b8-aa674aeca9ae",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/07b15f4ebf01fe301c3422fad92f289350456990166690782002627ca561751e.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Домик",
+      "id": "99a90a97-de8d-49e6-84da-caecdb8d1ea4",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/2bb559be7520f24a38bf4e2ef0d2c005bb15e681540044a845aaf0dac78d596b.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Домик",
+      "id": "aab63a8d-1db9-4189-a829-346528af4c09",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/40201b14add78a2cf65b3c02e0381398b2d3e86a30f8b76cb85c023d7790d588.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Домик",
+      "id": "089c63f2-16ec-4634-8432-51a50ec9d5c3",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/f281aa669b43775ab5f6f216b338038f577dda24181f2316c2fa89e26578ade7.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Домик",
+      "id": "e7998987-6d83-42d4-9d9e-a27011da58a7",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/d69ced58dab91fdded21eccb13885544c800c573ea9dee5d81569fb8359138de.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Домик",
+      "id": "f572d6be-40f0-42ec-abb2-3caa0a2fa2b2",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/fd47740b0465c7e179ade818b2ed2f7f00543e363bdccd3bb8c2b7e71996bf19.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Домик",
+      "id": "e280ecf1-d6bd-4cf5-a552-e451cec6dc21",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/4b5175f29205892d34f604fdeae6be5cb7bd47594ae43ce881aa0e220d6007e9.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Номер, цена за троих",
+      "id": "3f6df7ce-a6f5-49b4-b2c3-2c77457a1ee6",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/c793007b243b096927596ca275c959d466cc484b2664a4e9f10d3e5ad69fe8fd.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Номер, цена за троих",
+      "id": "384621bd-a996-41ef-a29e-6419873a2a44",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/9ed5efa60e51e0647259f1696fdafdf9c9a6017ecf320574afadb7b554eac4b0.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Номер, цена за троих",
+      "id": "8e423e59-31a2-4a1a-a71f-6653e6d7a786",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/837d1be6ddbc6509d1d08e5014ae8eed190869c6ddf40a1ec8ed85efb4e0d481.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Номер, цена за троих",
+      "id": "cf034bbd-34e0-4950-b42e-9cfa7f035122",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/4b215d5c895b2095f0fb4f5d2316dcd364c873a8ae8967a377e136ba70e7d4fb.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Номер, цена за троих",
+      "id": "3a82e286-fe6b-421d-a254-c43805888ae2",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/e8be312091170736e9f5da020235feee484acf72faad284e57d7106bd66f5d3d.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Номер, цена за троих",
+      "id": "197dd78b-e16f-41de-9f3b-31942b39acd8",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/eaf2f6151a55aec8a3d22d3ca518830c59244613dfdb374de01dc1ceaf24ffd9.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Номер, цена за троих",
+      "id": "3cc01657-65a1-4b6f-9400-db88c9441877",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/cfebed56f4fececf5b09099dde378ecd5091b9592e3f86a53098ab6747ab8211.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Номер, цена за троих",
+      "id": "6309d228-3ae5-4f95-8891-0fe172c9ae3b",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/ea56e3473d4baac3f00b9725bf8e7d67fd88358d9bce1c6dda3fbb2291003e9d.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Номер, цена за троих",
+      "id": "52471290-00d6-40eb-aaca-04a316aa4e1b",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/be2339f3d0b9871e2376214aeb3470a1ba5af4086dbda99cb9794f075737f398.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "Номер, цена за троих",
+      "id": "7c24f8ce-e2f7-4d7f-88cf-d7a794797381",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/1b91c50a8703f3a3b488c2d3025aa04035258af33fff13c511556d39c7aae3d0.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "",
+      "id": "f21cc456-eaed-4a76-970b-eaf42f7e7883",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/1f47ebf9da81445c6e50470681c9fe82bd1ada1d66b0a7b685e1c3da9050cdf2.jpg",
+      "kind": "photo"
+    },
+    {
+      "group": "",
+      "id": "8e2ec1fc-9ca8-456f-9c9a-f1e715da54f2",
+      "key": "media/photobank/73976495-c594-4497-b1e8-a84aac611e69/large/4e82670de345518a7799063a941eee11ddc5caaccd47429d7238b8d64dcb01ed.jpg",
+      "kind": "photo"
+    }
+  ],
+  "prices": {
+    "description": "(БРОНИРОВАНИЕ 2027)",
+    "groups": [
+      {
+        "freeText": "",
+        "mode": "rows",
+        "note": "",
+        "rows": [
+          {
+            "amount": "4000",
+            "extra": false,
+            "note": "",
+            "period": "июнь"
+          },
+          {
+            "amount": "5000",
+            "extra": false,
+            "note": "",
+            "period": "июль, август, сентябрь"
+          }
+        ],
+        "title": "Домик"
+      },
+      {
+        "freeText": "",
+        "mode": "rows",
+        "note": "(цены указаны за трехместное размещение)",
+        "rows": [
+          {
+            "amount": "3000",
+            "extra": false,
+            "note": "",
+            "period": "июнь"
+          },
+          {
+            "amount": "4000",
+            "extra": false,
+            "note": "",
+            "period": "июль, август, сентябрь"
+          },
+          {
+            "amount": "500",
+            "extra": true,
+            "note": "",
+            "period": "четвёртое допместо"
+          }
+        ],
+        "title": "Номер"
+      }
+    ]
+  },
   "slug": "kira-gostevoy-kompleks-2725"
 }
