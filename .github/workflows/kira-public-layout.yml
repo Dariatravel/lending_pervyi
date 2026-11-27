@@ -1,0 +1,33 @@
+name: Kira public layout
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+concurrency:
+  group: kira-public-layout
+  cancel-in-progress: false
+jobs:
+  public-kira-layout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install --quiet beautifulsoup4
+      - name: Обновить публичное оформление Киры из рабочей CRM
+        run: |
+          set -euo pipefail
+          python scripts/kira_public_export.py --apply
+          git add -- data/hotel-public-layout/kira-gostevoy-kompleks-2725.json hotels/kira-gostevoy-kompleks-2725/index.html
+          if ! git diff --cached --quiet; then
+            git config user.name "abhazbereg-autosync"
+            git config user.email "209351708+Dariatravel@users.noreply.github.com"
+            git commit -m "Обновить публичное оформление Киры из CRM"
+            git push origin HEAD:main
+          fi

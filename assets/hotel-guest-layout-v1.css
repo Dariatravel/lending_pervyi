@@ -115,3 +115,5 @@
 .guest-conditions dt { font-weight: 650; margin-right: .4rem; }
 .hotel-media-section .media-group-card { box-shadow: none; }
 .hotel-site-concept__detail-aside:has(.guest-conditions) .price-card__season-line { font-weight: 700; }
+.guest-spoiler { color: transparent; background: #475569; border-radius: .2em; }
+.guest-spoiler:hover, .guest-spoiler:focus { color: inherit; background: transparent; }

@@ -33,9 +33,12 @@ def strings(row, keys):
 
 
 def validate(data):
-    schema(data, ("hotel_id", "slug", "conditions", "media", "groups", "prices"))
+    schema(data, ("hotel_id", "slug", "guest_title", "guest_address", "guest_description", "guest_nearby", "conditions", "media", "groups", "prices"))
     if data["hotel_id"] != HOTEL or data["slug"] != SLUG:
         raise ValueError("Неверная привязка карточки")
+    for key in ("guest_title", "guest_address", "guest_description", "guest_nearby"):
+        if data[key] is not None and not isinstance(data[key], str):
+            raise ValueError("Неверное название или адрес")
     schema(data["conditions"], PUBLIC_CONDITIONS)
     if any(value is not None and type(value) not in (str, int) for value in data["conditions"].values()):
         raise ValueError("Некорректные условия")
@@ -133,19 +136,43 @@ class TagEnd(HTMLParser):
                 self.end = self.offsets[line - 1] + col + len(tag) + 3
 
 
+INLINE = re.compile(
+    r"\*\*([^*\n]+)\*\*|\*([^*\n]+)\*|\[([^\]\n]+)\]\((https?://[^\s()<>\\]+)\)"
+    r"|\[\[(u|q)\|([^\]\n]+)\]\]|~~([^~\n]+)~~|`([^`\n]+)`|\|\|([^|\n]+)\|\|"
+)
+
+
+def guest_inline(line):
+    parts, pos = [], 0
+    for match in INLINE.finditer(line):
+        parts.append(escape(line[pos:match.start()]))
+        strong, italic, label, url, kind, special, deleted, code, hidden = match.groups()
+        if url:
+            parts.append(f'<a href="{escape(url)}" rel="noopener noreferrer">{escape(label)}</a>')
+        elif hidden:
+            parts.append(f'<button type="button" class="guest-spoiler" aria-label="Показать скрытый текст">{escape(hidden)}</button>')
+        else:
+            tag = kind or ("strong" if strong else "em" if italic else "s" if deleted else "code")
+            parts.append(f"<{tag}>{escape(strong or italic or special or deleted or code)}</{tag}>")
+        pos = match.end()
+    return "".join(parts) + escape(line[pos:])
+
+
 def render_prices(doc):
     lines = ['<h2 class="price-card__heading">ЦЕНЫ:</h2>']
     if doc["description"]:
         lines.append('<p class="price-card__description">' + escape(doc["description"]) + '</p>')
     for group in doc["groups"]:
+        rows = [(" - ".join(filter(None, ((r["amount"] + "₽") if r["amount"] else "", r["period"]))), r["note"]) for r in group["rows"]]
         if group["mode"] == "text":
-            values = group["freeText"].splitlines()
-        else:
-            values = [" - ".join(filter(None, ((r["amount"] + "₽") if r["amount"] else "", r["period"]))) for r in group["rows"]]
+            def price_key(text):
+                return re.sub(r"\s+", "", text).replace("–", "-").replace("—", "-")
+            notes = {price_key(line): note for line, note in rows}
+            rows = [(line, notes.get(price_key(line), "")) for line in group["freeText"].splitlines()]
         title = '<h3 class="price-card__group">' + escape(group["title"]) + '</h3>'
         note = '<p>' + escape(group["note"]) + '</p>' if group["note"] else ""
         lines.append('<div class="price-card__tariff-group">' + title + note + '<ul class="price-card__seasons">' +
-                     "".join('<li class="price-card__season-line">' + escape(v) + '</li>' for v in values if v.strip()) + '</ul></div>')
+                     "".join('<li class="price-card__season-line">' + escape(v) + (' · ' + escape(n) if n else '') + '</li>' for v, n in rows if v.strip()) + '</ul></div>')
     return '<section id="prices" class="section hotel-price-section hotel-site-concept__detail-section"><article class="card price-card">' + "".join(lines) + '</article></section>'
 
 
@@ -169,8 +196,45 @@ def apply_snapshot(page, data):
             replacements.append((prices, render_prices(data["prices"])))
         else:
             replacements[-1] = (conditions, render_prices(data["prices"]) + replacements[-1][1])
+    if data["guest_title"]:
+        title = soup.select_one("h1")
+        if not title:
+            raise ValueError("Не найден заголовок карточки")
+        title.string = data["guest_title"]
+        replacements.append((title, str(title)))
+    if data["guest_address"]:
+        location = soup.select_one("p.location")
+        if not location:
+            raise ValueError("Не найдена строка адреса")
+        first = location.find(string=lambda value: str(value).strip().startswith("📍"))
+        if first:
+            first.replace_with("📍 " + data["guest_address"])
+        else:
+            location.insert(0, soup.new_tag("br"))
+            location.insert(0, "📍 " + data["guest_address"])
+        replacements.append((location, str(location)))
     line_offsets = [0] + [m.end() for m in re.finditer("\n", page)]
     patches = []
+    for key, label in (("guest_description", "Об объекте"), ("guest_nearby", "Рядом")):
+        value = data[key]
+        if value is None:
+            continue
+        details = []
+        for block in soup.select("section.hotel-site-concept__detail-section"):
+            heading = block.find("h2")
+            if not heading or not block.select_one(".paragraph-blocks"):
+                continue
+            title = heading.get_text(strip=True).strip("✔️: ").casefold()
+            if (title == "рядом" if key == "guest_nearby" else title not in ("важно", "рядом")):
+                details.append(block)
+        body = "".join("<p>" + guest_inline(line) + "</p>" for line in value.splitlines() if line.strip())
+        html = ('<section class="section hotel-site-concept__detail-section"><article class="card"><h2>' +
+                label + '</h2><div class="paragraph-blocks">' + body + '</div></article></section>') if body else ""
+        if details:
+            replacements.extend((detail, html if i == 0 else "") for i, detail in enumerate(details))
+        elif html:
+            offset = line_offsets[conditions.sourceline - 1] + conditions.sourcepos
+            patches.append((offset, offset, html))
     for tag, replacement in replacements:
         offset = line_offsets[tag.sourceline - 1] + tag.sourcepos
         end = TagEnd(page[offset:], tag.name).end
