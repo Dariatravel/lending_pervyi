@@ -183,7 +183,12 @@ def apply_snapshot(page, data):
     if not frame:
         raise ValueError("Нет галереи рабочей Киры")
     replacements = [(frame, gallery(frame, data))]
-    facts = "".join("<div><dt>" + escape(label) + ":</dt> <dd>" + escape(str(data["conditions"][label])) + "</dd></div>"
+    def condition_value(label):
+        value = str(data["conditions"][label]).strip()
+        if label in ("Заезд с", "Выезд до") and re.fullmatch(r"(?:[01]?\d|2[0-3])", value):
+            return f"{int(value):02d}:00"
+        return value
+    facts = "".join("<div><dt>" + escape(label) + ":</dt> <dd>" + escape(condition_value(label)) + "</dd></div>"
                     for label in PUBLIC_CONDITIONS if data["conditions"][label] not in (None, ""))
     conditions = soup.select_one(".guest-conditions")
     if not conditions:
