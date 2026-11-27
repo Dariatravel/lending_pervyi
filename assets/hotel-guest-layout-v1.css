@@ -1,0 +1,72 @@
+/* Гостевая карточка: оформление редактора, данные рабочего каталога. */
+.hotel-site-concept__detail-grid {
+  --guest-card-gap: 1.5rem;
+}
+.hotel-site-concept__detail-main,
+.hotel-site-concept__detail-aside {
+  row-gap: var(--guest-card-gap);
+}
+.hotel-site-concept__detail-section > .card {
+  background: #fff;
+  min-width: 0;
+}
+.hotel-site-concept .hotel-media-section > .card {
+  display: grid;
+  gap: clamp(.875rem, 2vw, 1.25rem);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border-radius: 1.5rem;
+}
+.hotel-site-concept .hotel-media-section h2 {
+  margin: 0;
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  line-height: 1.25;
+}
+.hotel-site-concept .media-grid img,
+.hotel-site-concept .media-grid video {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
+}
+.hotel-site-concept .media-grid video:fullscreen {
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+.hotel-site-concept .price-card {
+  box-sizing: border-box;
+  padding-inline: clamp(1rem, 2vw, 1.5rem);
+}
+.hotel-site-concept .price-card__heading { margin-bottom: .75rem; }
+.hotel-site-concept .price-card__tariff-group {
+  display: grid;
+  gap: .5rem;
+  min-width: 0;
+}
+.hotel-site-concept .price-card__tariff-group + .price-card__tariff-group {
+  margin-top: .875rem;
+}
+.hotel-site-concept .price-card__tariff-group > .price-card__group {
+  display: grid;
+  align-content: center;
+  box-sizing: border-box;
+  min-height: 2.75rem;
+  margin: 0;
+  padding: .625rem .875rem;
+  border: 1px solid #bed9d0;
+  border-radius: .75rem;
+  background: linear-gradient(142deg, transparent 26%, #ffffffb3 47%, #ffffff70 59%, transparent 77%),
+    radial-gradient(ellipse at 96% -15%, #b9dacf, #d4ebe3 32%, transparent 70%),
+    linear-gradient(115deg, #e9f6f1, #f9fdfa 55%, #e4f3ed);
+  box-shadow: inset 0 1px 0 #fff;
+  color: #24483b;
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: normal;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+.hotel-site-concept .price-card__season-line { overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .hotel-site-concept__detail-grid { --guest-card-gap: 12px; }
+}

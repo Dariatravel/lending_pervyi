@@ -1246,6 +1246,7 @@ def render_detail_page(source_kind: str, slug: str, telegram_url: str, date_text
 {preload_block}    <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/favicon-48.png" rel="icon" type="image/png" />
     <link href="https://media.xn--80aacbklan7f0b.xn--p1ai/media/branding/apple-touch-icon.png" rel="apple-touch-icon" />
     <link rel="stylesheet" href="../../styles.min.css?v=202611271443" />
+    <link rel="stylesheet" href="../../assets/hotel-guest-layout-v1.css" />
 {ld_block}  </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
