@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T14:33:29.899171+00:00",
+  "generated_at": "2026-11-28T14:43:54.260614+00:00",
   "schema_version": 1,
   "source": "local-sync",
   "listings_total": 259,
@@ -50209,74 +50209,6 @@
         "prices": [
           {
             "kind": "price",
-            "text": "АКЦИЯ🔥"
-          },
-          {
-            "kind": "price",
-            "text": "в октябре номер с размещением до 4 человек без питания - 3000₽"
-          },
-          {
-            "kind": "price",
-            "text": "Июль/ август/ сентябрь до 24.09"
-          },
-          {
-            "kind": "price",
-            "text": "с завтраками"
-          },
-          {
-            "kind": "price",
-            "text": "2 чел - 8500₽"
-          },
-          {
-            "kind": "price",
-            "text": "3 чел - 9000₽"
-          },
-          {
-            "kind": "price",
-            "text": "4 чел - 9500₽"
-          },
-          {
-            "kind": "price",
-            "text": "полный пансион"
-          },
-          {
-            "kind": "price",
-            "text": "2 чел - 9800₽"
-          },
-          {
-            "kind": "price",
-            "text": "3 чел - 11600₽"
-          },
-          {
-            "kind": "price",
-            "text": "4 чел - 12600₽"
-          },
-          {
-            "kind": "price",
-            "text": "Сентябрь с 24.09"
-          },
-          {
-            "kind": "price",
-            "text": "без питания"
-          },
-          {
-            "kind": "price",
-            "text": "4 чел - 5500₽"
-          },
-          {
-            "kind": "price",
-            "text": "Октябрь"
-          },
-          {
-            "kind": "price",
-            "text": "без питания"
-          },
-          {
-            "kind": "price",
-            "text": "4 чел - 4000₽"
-          },
-          {
-            "kind": "price",
             "text": "Ноябрь, декабрь"
           },
           {
@@ -50461,14 +50393,13 @@
           "media_role": "gallery",
           "sort_order": 10,
           "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/video-01.mp4",
+          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/video-01-source.mp4",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/video-01.mp4",
+          "storage_path": "videos/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/video-01-source.mp4",
+          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/video-01-source.mp4",
           "details": {
             "telegram_post": "abhazbooking/2898",
-            "telegram_url": "https://t.me/abhazbooking/2898",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/pshada-otel-s-pitaniem-u-sosnovogo-plyazha-2889/video-01-poster.jpg"
+            "telegram_url": "https://t.me/abhazbooking/2898"
           }
         }
       ]
@@ -76327,6 +76258,10 @@
           },
           {
             "kind": "price",
+            "text": "Доп место в межсезон без питания - 500₽"
+          },
+          {
+            "kind": "price",
             "text": "Доп место с завтраком - 1000₽"
           },
           {
@@ -76479,15 +76414,13 @@
           "id": 1230011,
           "media_role": "gallery",
           "sort_order": 10,
-          "mime_type": "video/mp4",
-          "source_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/video-01.mp4",
+          "mime_type": "application/x-telegram-embed",
+          "source_url": "https://t.me/abhazbooking/5486",
           "storage_bucket": "abhazbereg-media",
-          "storage_path": "videos/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/video-01.mp4",
-          "public_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/video-01.mp4",
+          "storage_path": "",
+          "public_url": "https://t.me/abhazbooking/5486",
           "details": {
-            "telegram_post": "abhazbooking/5486",
-            "telegram_url": "https://t.me/abhazbooking/5486",
-            "poster_url": "https://media.xn--80aacbklan7f0b.xn--p1ai/media/videos/hotels/karakas-spa-otel-s-basseynom-i-pitaniem-5477/video-01-poster.jpg"
+            "telegram_post": "abhazbooking/5486"
           }
         }
       ]
